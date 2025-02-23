@@ -1,20 +1,13 @@
-# Astro Starter Kit: Basics
+# 🗺️ Digital Public Infrastructure Map
 
-```sh
-npm create astro@latest -- --template basics
-```
+Tracking the state of national-scale digital infrastructure around the world.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+A reimagining of https://dpimap.org/
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+![screenshot v1](https://private-user-images.githubusercontent.com/58871/416028077-f255b32b-49e6-495d-94d7-9d0d3b22104b.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDAzNTA5MjksIm5iZiI6MTc0MDM1MDYyOSwicGF0aCI6Ii81ODg3MS80MTYwMjgwNzctZjI1NWIzMmItNDllNi00OTVkLTk0ZDctOWQwZDNiMjIxMDRiLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTAyMjMlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwMjIzVDIyNDM0OVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTllNzFhZjM5YmJiOTNhZDM5NmVhZDM3Mzg2ZjMyODY3ZWQ1ZjZlYWM2ZDAwOTQ1MTUyOTk2YmE1NTk1M2IzM2QmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.WykbTJe1KATDvMban4ThXjQBtbBsvdoskBJ5AfIw-ak)
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
 
 ## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
 
 ```text
 /
@@ -28,7 +21,7 @@ Inside of your Astro project, you'll see the following folders and files:
 └── package.json
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+[Docs: ](https://docs.astro.build/en/basics/project-structure/).
 
 ## 🧞 Commands
 
@@ -43,6 +36,3 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

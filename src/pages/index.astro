@@ -1,11 +1,60 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from '../layouts/Layout.astro'
+import Status from '../components/Status.astro'
+import Card from '../components/Card.astro'
+import Header from '../components/Header.astro'
+import IdentityIcon from '../components/icons/IdentityIcon.astro'
+import data from '../digital-id.json'
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const statusMap = {
+	'Rollout': 4,
+	'Pilot': 3,
+	'Plan': 2,
+	'Unknown': 1
+}
+function statusCode (s: string) {
+	return statusMap[s] ?? 0
+}
+const items = data.sort((a, b) => {
+	return statusCode(b['Status of implementation']) - statusCode(a['Status of implementation'])
+})
+const active = data.filter((row) => row['Status of implementation'] === 'Rollout')
+const wip = data.filter((row) => row['Status of implementation'] === 'Pilot')
+const plan = data.filter((row) => row['Status of implementation'] === 'Plan')
+const tbc = data.filter((row) => row['Status of implementation'] === 'Unknown')
 ---
 
 <Layout>
-	<Welcome />
+	<Header dpiType="id" countryCount={data.length} />
+  <div class="text-center align-middle text-mono text-sm">
+    <div class="bg-gray-200 h-10 inline-block" style={{width: `${(tbc.length / data.length) * 100}%` }}>
+    </div><div class="bg-blue-200 h-10 inline-block" style={{width: `${(plan.length / data.length) * 100}%` }}>
+    </div><div class="bg-amber-200 h-10 inline-block" style={{width: `${(wip.length / data.length) * 100}%` }}>
+    </div><div class="bg-green-200 h-10 inline-block" style={{width: `${(active.length / data.length) * 100}%` }}></div>
+  </div>
+	<div class="grid grid-flow-row-dense grid-cols-2 md:grid-cols-3">
+	{ items.map(row => (
+		<Card>
+			<article>
+				<Status status={row['Status of implementation']} />
+				<div class="inline pl-1 text-zinc-600">{row.Country}</div>
+				<IdentityIcon class="inline float-right text-zinc-400"/>
+				<div class="pt-2 font-semibold hover:underline">
+					<a href={row.URL}>
+						{row['Digital ID name']}
+					</a>
+				</div>
+				<div class="text-xs uppercase font-mono tracking-wider text-zinc-400 pt-2">Governing Entity</div>
+				<div>{row['Governing entity']}</div>
+				<div class="text-xs uppercase font-mono tracking-wider text-zinc-400 pt-2">Technical support organizations</div>
+				<div>{row['Technical support organizations identified\n']}</div>
+				{/* <details>
+					<summary class="text-zinc-400 pt-2">Details</summary>
+					<div class="text-xs uppercase font-mono tracking-wider text-zinc-400 pt-2">Technical support organizations</div>
+					<div>{row['Technical support organizations identified\n']}</div>
+				</details> */}
+			</article>
+		</Card>
+	))}
+	</div>
 </Layout>
