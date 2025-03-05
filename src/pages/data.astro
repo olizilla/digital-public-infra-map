@@ -42,20 +42,23 @@ const tbc = items.filter((row) => row['Status'] === 'Unknown')
 	{ items.map(data => (
 		<Card>
 			<article>
-				<Status status={data['Status']} />
-				<div class="inline pl-1 text-zinc-600">
-					<a href={`../${slug(data.Country)}`}>{data.Country}</a>
-				</div>
-				<DataIcon class="inline float-right text-zinc-400"/>
-				<div class="pt-2 font-semibold">
-					{data['Name']}
-				</div>
-				<dl>
+				<details>
+					<summary class="">
+						<Status status={data['Status']} />
+						<div class="inline pl-1 text-zinc-600">
+							<a href={`../${slug(data.Country)}`}>{data.Country}</a>
+						</div>
+						<DataIcon class="inline float-right text-zinc-400"/>
+						<div class="pt-2 font-semibold">
+							{data['Name']}
+						</div>
+						<dl>
 				{ DataExchangeText.map(key => (
 					<dt><KeyLabel>{key}</KeyLabel></dt>
 					<dd>{data[key]}</dd>
 				))}
 				</dl>
+					</summary>
 				<dl class="pt-4">
 					{ DataExchangeFlags.map(key => (
 						<div class="flex flex-row-reverse items-baseline justify-items-start ">
