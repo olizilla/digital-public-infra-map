@@ -5,6 +5,9 @@ import Card from '../components/Card.astro'
 import Header from '../components/Header.astro'
 import IdentityIcon from '../components/icons/IdentityIcon.astro'
 import data from '../digital-id.json'
+import KeyLabel from '../components/KeyLabel.astro'
+import Footer from '../components/Footer.astro'
+import slug from 'slug'
 
 const statusMap = {
 	'Rollout': 4,
@@ -36,25 +39,35 @@ const tbc = data.filter((row) => row['Status of implementation'] === 'Unknown')
 	{ items.map(row => (
 		<Card>
 			<article>
-				<Status status={row['Status of implementation']} />
-				<div class="inline pl-1 text-zinc-600">{row.Country}</div>
-				<IdentityIcon class="inline float-right text-zinc-400"/>
-				<div class="pt-2 font-semibold hover:underline">
-					<a href={row.URL}>
-						{row['Digital ID name']}
-					</a>
-				</div>
-				<div class="text-xs uppercase font-mono tracking-wider text-zinc-400 pt-2">Governing Entity</div>
-				<div>{row['Governing entity']}</div>
-				<div class="text-xs uppercase font-mono tracking-wider text-zinc-400 pt-2">Technical support organizations</div>
-				<div>{row['Technical support organizations identified\n']}</div>
-				{/* <details>
-					<summary class="text-zinc-400 pt-2">Details</summary>
-					<div class="text-xs uppercase font-mono tracking-wider text-zinc-400 pt-2">Technical support organizations</div>
+				<details>
+					<summary class="">
+						<Status status={row['Status of implementation']} />
+						<div class="inline pl-1 text-zinc-600">
+							<a href={slug(row.Country)}>{row.Country}</a>
+						</div>
+						<IdentityIcon class="inline float-right text-zinc-400"/>
+						<div class="pt-2 font-semibold hover:underline">
+							<a href={row.URL}>
+								{row['Digital ID name']}
+							</a>
+						</div>
+						<KeyLabel>Governing Entity</KeyLabel>
+						<div>{row['Governing entity']}</div>
+						<KeyLabel>Governance structure</KeyLabel>
+						<div>{row['Institutional governance structure']}</div>
+					</summary>
+					<KeyLabel>Legally binding redress mechanism</KeyLabel>
+					<div>{row['Legally binding redress mechanism\n']}</div>
+					<KeyLabel>Enables Authentication</KeyLabel>
+					<div>{row['Digital authentication function']}</div>
+					<KeyLabel>Enables KYC</KeyLabel>
+					<div>{row['Enables KYC packet collection for service provision']}</div>
+					<KeyLabel>Tech support organizations</KeyLabel>
 					<div>{row['Technical support organizations identified\n']}</div>
-				</details> */}
+				</details>
 			</article>
 		</Card>
 	))}
 	</div>
+	<!-- <Footer /> -->
 </Layout>

@@ -1,0 +1,109 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Status from '../components/Status.astro'
+import Card from '../components/Card.astro'
+import DataIcon from '../components/icons/DataIcon.astro'
+import PayIcon from '../components/icons/PaymentIcon.astro'
+import KeyLabel from '../components/KeyLabel.astro'
+import Footer from '../components/Footer.astro'
+import { DataExchanges, DataExchangeFlags, DataExchangeText } from '../dpi.js'
+import ids from '../digital-id.json'
+import IdentityIcon from '../components/icons/IdentityIcon.astro'
+import slug from 'slug'
+
+export async function getStaticPaths () {
+	return ids.map(({Country}) => ({ 
+		params: { country: slug(Country) },
+		props: { country: Country}
+	}))
+}
+
+const country = Astro.props.country
+
+const data = DataExchanges.find(x => x.Country === country) ?? DataExchanges[0]
+const pay = ids.find(x => x.Country === country) ?? ids[0]
+const id = ids.find(x => x.Country === country) ?? ids[0]
+
+---
+
+<Layout>
+	<header class="px-2 pt-1">
+    <h1 class="font-sans font-bold text-xl">
+      <a href="../">The Digital Public Infrastructure Map</a>
+    </h1>
+    <p class="pt-1 md:pt-0 font-sans text-xs md:text-base text-zinc-500"><a href="https://dpimap.org/data">Tracking</a> the state of national-scale digital infrastructure around the world.</p>
+  </header>
+  <h1 class="text-sm text-center pt-10 pb-8 font-mono">{country}</h1>
+	<div class="grid grid-flow-row-dense grid-cols-1 md:grid-cols-3">
+    <Card>
+			<article>
+				<Status status={id['Status of implementation']} />
+				<div class="inline pl-1 text-zinc-600">Digital ID System</div>
+				<IdentityIcon class="inline float-right text-zinc-400"/>
+				<div class="pt-2 font-semibold">
+					{id['Digital ID name']}
+				</div>
+				<KeyLabel>Governing Entity</KeyLabel>
+				<div>{id['Governing entity']}</div>
+				<KeyLabel>Governance structure</KeyLabel>
+				<div>{id['Institutional governance structure']}</div>
+				<KeyLabel>Tech support organizations</KeyLabel>
+				<div>{id['Technical support organizations identified\n']}</div>
+				<KeyLabel>Legally binding redress mechanism</KeyLabel>
+				<div>{id['Legally binding redress mechanism\n']}</div>
+				<KeyLabel>Enables Authentication</KeyLabel>
+				<div>{id['Digital authentication function']}</div>
+				<KeyLabel>Enables KYC</KeyLabel>
+				<div>{id['Enables KYC packet collection for service provision']}</div>
+				<KeyLabel>Collects or uses biometric data</KeyLabel>
+				<div>{id['Collects or uses biometric data']}</div>
+				{ ['Regulation for digital ID', 'Digital authentication function'].map(key => (
+					<KeyLabel>{key}</KeyLabel>
+					<div>{id[key]}</div>
+				))}
+			</article>
+		</Card>
+    <Card>
+			<article class="opacity-20">
+				<Status status={pay['Status of implementation']} />
+				<div class="inline pl-1 text-zinc-600">Payment System</div>
+				<PayIcon class="inline float-right text-zinc-400"/>
+				<div class="pt-2 font-semibold">
+					{pay['Digital ID name']}
+				</div>
+				<KeyLabel>Governing Entity</KeyLabel>
+				<div>{pay['Governing entity']}</div>
+				<KeyLabel>Base technical architecture</KeyLabel>
+				<div>?</div>
+			</article>
+		</Card>
+		<Card>
+			<article>
+				<Status status={data['Status']} />
+				<div class="inline pl-1 text-zinc-600">Data Exchange System</div>
+				<DataIcon class="inline float-right text-zinc-400"/>
+				<div class="pt-2 font-semibold">
+					{data['Name']}
+				</div>
+				<dl>
+				{ DataExchangeText.map(key => (
+					<dt><KeyLabel>{key}</KeyLabel></dt>
+					<dd>{data[key]}</dd>
+				))}
+				</dl>
+				<dl class="pt-4">
+					{ DataExchangeFlags.map(key => (
+						<div class="flex flex-row-reverse items-baseline justify-items-start ">
+							<dt class="grow pl-2	">
+								<KeyLabel>{key}</KeyLabel></dt>
+							<dd class="flex-none">
+								<Status status={data[key]} />
+							</dd>
+						</div>
+					))}
+				</dl>
+			</article>
+		</Card>
+	</div>
+	<!-- <Footer /> -->
+</Layout>
