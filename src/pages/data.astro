@@ -41,7 +41,7 @@ const tbc = items.filter((row) => row['Status'] === 'Unknown')
     </div><div title="Inactive" class="bg-red-200 h-10 inline-block" style={{width: `${(ded.length / items.length) * 100}%` }}>
     </div><div title="Actitve" class="bg-green-200 h-10 inline-block" style={{width: `${(active.length / items.length) * 100}%` }}></div>
   </div>
-	<div class="grid grid-flow-row-dense grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-items-stretch place-items-start">
+	<div class="grid grid-flow-row-dense grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-stretch place-items-start">
 	{ items.map(data => (
 		<Card>
 			<article>
