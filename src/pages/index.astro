@@ -4,7 +4,7 @@ import Status from '../components/Status.astro'
 import Card from '../components/Card.astro'
 import Header from '../components/Header.astro'
 import IdentityIcon from '../components/icons/IdentityIcon.astro'
-import data from '../digital-id.json'
+import { IDs, IDTextHeadlines, IDTextOtherText, IDFlags } from '../Identity.js'
 import KeyLabel from '../components/KeyLabel.astro'
 import Footer from '../components/Footer.astro'
 import slug from 'slug'
@@ -18,50 +18,61 @@ const statusMap = {
 function statusCode (s: string) {
 	return statusMap[s] ?? 0
 }
-const items = data.sort((a, b) => {
-	return statusCode(b['Status of implementation']) - statusCode(a['Status of implementation'])
+const items = [...IDs].sort((a, b) => {
+	return statusCode(b['Status']) - statusCode(a['Status'])
 })
-const active = data.filter((row) => row['Status of implementation'] === 'Rollout')
-const wip = data.filter((row) => row['Status of implementation'] === 'Pilot')
-const plan = data.filter((row) => row['Status of implementation'] === 'Plan')
-const tbc = data.filter((row) => row['Status of implementation'] === 'Unknown')
+const active = items.filter((row) => row['Status'] === 'Rollout')
+const wip = items.filter((row) => row['Status'] === 'Pilot')
+const plan = items.filter((row) => row['Status'] === 'Plan')
+const tbc = items.filter((row) => row['Status'] === 'Unknown')
 ---
 
 <Layout>
-	<Header dpiType="id" countryCount={data.length} />
+	<Header dpiType="id" countryCount={items.length} />
   <div class="text-center align-middle text-mono text-sm">
-    <div class="bg-gray-200 h-10 inline-block" style={{width: `${(tbc.length / data.length) * 100}%` }}>
-    </div><div class="bg-blue-200 h-10 inline-block" style={{width: `${(plan.length / data.length) * 100}%` }}>
-    </div><div class="bg-amber-200 h-10 inline-block" style={{width: `${(wip.length / data.length) * 100}%` }}>
-    </div><div class="bg-green-200 h-10 inline-block" style={{width: `${(active.length / data.length) * 100}%` }}></div>
+    <div class="bg-gray-200 h-10 inline-block" style={{width: `${(tbc.length / items.length) * 100}%` }}>
+    </div><div class="bg-blue-200 h-10 inline-block" style={{width: `${(plan.length / items.length) * 100}%` }}>
+    </div><div class="bg-amber-200 h-10 inline-block" style={{width: `${(wip.length / items.length) * 100}%` }}>
+    </div><div class="bg-green-200 h-10 inline-block" style={{width: `${(active.length / items.length) * 100}%` }}></div>
   </div>
 	<div class="grid grid-flow-row-dense grid-cols-2 md:grid-cols-3">
 	{ items.map(data => (
 		<Card>
 			<article>
 				<header class="text-zinc-600 pb-2">
-					<Status status={data['Status of implementation']} />
+					<Status status={data['Status']} />
 					<a class="ml-1 hover:underline" href={`${slug(data.Country)}`}>{data.Country}</a>
 					<IdentityIcon class="inline float-right text-zinc-400"/>
 				</header>
 				<details>
 					<summary>
 						<span title="Name" class="font-semibold cursor-pointer">
-							{data['Digital ID name']}
+							{data['Name']}
 						</span>
-						<KeyLabel>Governing Entity</KeyLabel>
-						<div>{data['Governing entity']}</div>
-						<KeyLabel>Governance structure</KeyLabel>
-						<div>{data['Institutional governance structure']}</div>
+						<dl>
+						{ IDTextHeadlines.map(key => (
+							<dt><KeyLabel>{key}</KeyLabel></dt>
+							<dd>{data[key]}</dd>
+						))}
+						</dl>
 					</summary>
-					<KeyLabel>Legally binding redress mechanism</KeyLabel>
-					<div>{data['Legally binding redress mechanism\n']}</div>
-					<KeyLabel>Enables Authentication</KeyLabel>
-					<div>{data['Digital authentication function']}</div>
-					<KeyLabel>Enables KYC</KeyLabel>
-					<div>{data['Enables KYC packet collection for service provision']}</div>
-					<KeyLabel>Tech support organizations</KeyLabel>
-					<div>{data['Technical support organizations identified\n']}</div>
+					<dl>
+						{ IDTextOtherText.map(key => (
+							<dt><KeyLabel>{key}</KeyLabel></dt>
+							<dd>{data[key]}</dd>
+						))}
+					</dl>
+					<dl class="pt-2">
+						{ IDFlags.map(key => (
+							<div class="flex flex-row-reverse items-baseline justify-items-start ">
+								<dt class="grow pl-2">
+									<KeyLabel>{key}</KeyLabel></dt>
+								<dd class="flex-none">
+									<Status status={data[key]} />
+								</dd>
+							</div>
+						))}
+					</dl>
 				</details>
 			</article>
 		</Card>

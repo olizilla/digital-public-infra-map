@@ -20,6 +20,6 @@ const {status, title = 'Implementation status'} = Astro.props
   <span title={title} class="inline border border-gray-300 bg-gray-200 px-1 text-xs rounded">TBC</span> }
 
 {status === 'Yes' &&
-  <span class="inline border border-green-300 bg-green-200 px-1 text-xs rounded">YES</span> }
+  <span class="text-center inline-block border border-green-300 bg-green-200 px-1 text-xs rounded" style="width:33px">YES</span> }
 {status === 'No' &&
-  <span class="inline border border-red-300 bg-red-200 px-1 text-xs rounded">NO</span> }
+  <span class="text-center inline-block border border-red-300 bg-red-200 px-1 text-xs rounded" style="width:33px">NO</span> }

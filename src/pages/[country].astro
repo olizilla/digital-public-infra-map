@@ -6,13 +6,13 @@ import DataIcon from '../components/icons/DataIcon.astro'
 import PayIcon from '../components/icons/PaymentIcon.astro'
 import KeyLabel from '../components/KeyLabel.astro'
 import Footer from '../components/Footer.astro'
-import { DataExchanges, DataExchangeFlags, DataExchangeText } from '../dpi.js'
-import ids from '../digital-id.json'
+import { DataExchanges, DataExchangeFlags, DataExchangeText } from '../DataExchange.js'
+import { IDs, IDFlags, IDText } from '../Identity.js'
 import IdentityIcon from '../components/icons/IdentityIcon.astro'
 import slug from 'slug'
 
 export async function getStaticPaths () {
-	return ids.map(({Country}) => ({ 
+	return IDs.map(({Country}) => ({ 
 		params: { country: slug(Country) },
 		props: { country: Country}
 	}))
@@ -21,8 +21,8 @@ export async function getStaticPaths () {
 const country = Astro.props.country
 
 const data = DataExchanges.find(x => x.Country === country) ?? DataExchanges[0]
-const pay = ids.find(x => x.Country === country) ?? ids[0]
-const id = ids.find(x => x.Country === country) ?? ids[0]
+const pay = IDs.find(x => x.Country === country) ?? IDs[0]
+const id = IDs.find(x => x.Country === country) ?? IDs[0]
 
 ---
 
@@ -37,44 +37,39 @@ const id = ids.find(x => x.Country === country) ?? ids[0]
 	<div class="grid grid-flow-row-dense grid-cols-1 md:grid-cols-3">
     <Card>
 			<article>
-				<Status status={id['Status of implementation']} />
+				<Status status={id['Status']} />
 				<div class="inline pl-1 text-zinc-600">Digital ID System</div>
 				<IdentityIcon class="inline float-right text-zinc-400"/>
 				<div class="pt-2 font-semibold">
-					{id['Digital ID name']}
+					{id['Name']}
 				</div>
-				<KeyLabel>Governing Entity</KeyLabel>
-				<div>{id['Governing entity']}</div>
-				<KeyLabel>Governance structure</KeyLabel>
-				<div>{id['Institutional governance structure']}</div>
-				<KeyLabel>Tech support organizations</KeyLabel>
-				<div>{id['Technical support organizations identified\n']}</div>
-				<KeyLabel>Legally binding redress mechanism</KeyLabel>
-				<div>{id['Legally binding redress mechanism\n']}</div>
-				<KeyLabel>Enables Authentication</KeyLabel>
-				<div>{id['Digital authentication function']}</div>
-				<KeyLabel>Enables KYC</KeyLabel>
-				<div>{id['Enables KYC packet collection for service provision']}</div>
-				<KeyLabel>Collects or uses biometric data</KeyLabel>
-				<div>{id['Collects or uses biometric data']}</div>
-				{ ['Regulation for digital ID', 'Digital authentication function'].map(key => (
-					<KeyLabel>{key}</KeyLabel>
-					<div>{id[key]}</div>
-				))}
+				<dl>
+					{ IDText.map(key => (
+						<dt><KeyLabel>{key}</KeyLabel></dt>
+						<dd>{id[key]}</dd>
+					))}
+				</dl>
+				<dl class="pt-4">
+					{ IDFlags.map(key => (
+						<div class="flex flex-row-reverse items-baseline justify-items-start ">
+							<dt class="grow pl-2	">
+								<KeyLabel>{key}</KeyLabel></dt>
+							<dd class="flex-none">
+								<Status status={id[key]} />
+							</dd>
+						</div>
+					))}
+				</dl>
 			</article>
 		</Card>
     <Card>
 			<article class="opacity-20">
-				<Status status={pay['Status of implementation']} />
+				<Status status={pay['Status']} />
 				<div class="inline pl-1 text-zinc-600">Payment System</div>
 				<PayIcon class="inline float-right text-zinc-400"/>
 				<div class="pt-2 font-semibold">
-					{pay['Digital ID name']}
+					{pay['Name']}
 				</div>
-				<KeyLabel>Governing Entity</KeyLabel>
-				<div>{pay['Governing entity']}</div>
-				<KeyLabel>Base technical architecture</KeyLabel>
-				<div>?</div>
 			</article>
 		</Card>
 		<Card>
