@@ -37,9 +37,12 @@ export const DataExchangeFlags = [
 
 export const DataExchangeText = [
   'Governing Entity',
-  'Ownership',
   'Allowed users',
+  'Ownership',
   'National or Regional',
   'Sector-specific or Cross-sectoral',
-  'Coordination unit'
+  'Coordination unit',
 ]
+
+export const DataExchangeHeadlines = DataExchangeText.slice(0, 2)
+export const DataExchangeOtherText = DataExchangeText.slice(2)

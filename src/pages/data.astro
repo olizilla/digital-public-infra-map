@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro'
 import Status from '../components/Status.astro'
 import Header from '../components/Header.astro'
 import Card from '../components/Card.astro'
-import { DataExchanges, DataExchangeFlags, DataExchangeText } from '../dpi.js'
+import { DataExchanges, DataExchangeFlags, DataExchangeHeadlines, DataExchangeOtherText } from '../dpi.js'
 import DataIcon from '../components/icons/DataIcon.astro'
 import KeyLabel from '../components/KeyLabel.astro'
 import Footer from '../components/Footer.astro'
@@ -27,6 +27,7 @@ const ded = items.filter((row) => row['Status'] === 'Inactive')
 const wip = items.filter((row) => row['Status'] === 'In Progress')
 const plan = items.filter((row) => row['Status'] === 'Proposed')
 const tbc = items.filter((row) => row['Status'] === 'Unknown')
+
 ---
 
 <Layout>
@@ -53,23 +54,30 @@ const tbc = items.filter((row) => row['Status'] === 'Unknown')
 							{data['Name']}
 						</div>
 						<dl>
-				{ DataExchangeText.map(key => (
-					<dt><KeyLabel>{key}</KeyLabel></dt>
-					<dd>{data[key]}</dd>
-				))}
-				</dl>
+						{ DataExchangeHeadlines.map(key => (
+							<dt><KeyLabel>{key}</KeyLabel></dt>
+							<dd>{data[key]}</dd>
+						))}
+						</dl>
 					</summary>
-				<dl class="pt-4">
-					{ DataExchangeFlags.map(key => (
-						<div class="flex flex-row-reverse items-baseline justify-items-start ">
-							<dt class="grow pl-2	">
-								<KeyLabel>{key}</KeyLabel></dt>
-							<dd class="flex-none">
-								<Status status={data[key]} />
-							</dd>
-						</div>
-					))}
-				</dl>
+					<dl>
+						{ DataExchangeOtherText.map(key => (
+							<dt><KeyLabel>{key}</KeyLabel></dt>
+							<dd>{data[key]}</dd>
+						))}
+						</dl>
+					<dl class="pt-2">
+						{ DataExchangeFlags.map(key => (
+							<div class="flex flex-row-reverse items-baseline justify-items-start ">
+								<dt class="grow pl-2">
+									<KeyLabel>{key}</KeyLabel></dt>
+								<dd class="flex-none">
+									<Status status={data[key]} />
+								</dd>
+							</div>
+						))}
+					</dl>
+				</details>
 			</article>
 		</Card>
 	))}
