@@ -1,23 +1,23 @@
 ---
-const {status} = Astro.props
+const {status, title = 'Implementation status'} = Astro.props
 ---
 {status === 'Active' &&
-  <span class="inline border border-green-300 bg-green-200 px-1 text-xs rounded">{status}</span> }
+  <span title={title} class="inline border border-green-300 bg-green-200 px-1 text-xs rounded">{status}</span> }
 {status === 'In Progress' &&
-  <span class="inline border border-amber-300 bg-amber-200 px-1 text-xs rounded">WIP</span> }
+  <span title={title} class="inline border border-amber-300 bg-amber-200 px-1 text-xs rounded">WIP</span> }
 {status === 'Proposed' &&
-  <span class="inline border border-blue-300 bg-blue-200 px-1 text-xs rounded">Plan</span> }
+  <span title={title} class="inline border border-blue-300 bg-blue-200 px-1 text-xs rounded">Plan</span> }
 {status === 'Inactive' &&
-  <span class="inline border border-red-300 bg-red-200 px-1 text-xs rounded">Inactive</span> }
+  <span title={title} class="inline border border-red-300 bg-red-200 px-1 text-xs rounded">Inactive</span> }
 
 {status === 'Rollout' &&
-  <span class="inline border border-green-300 bg-green-200 px-1 text-xs rounded">{status}</span> }
+  <span title={title} class="inline border border-green-300 bg-green-200 px-1 text-xs rounded">{status}</span> }
 {status === 'Pilot' &&
-  <span class="inline border border-amber-300 bg-amber-200 px-1 text-xs rounded">{status}</span>}
+  <span title={title} class="inline border border-amber-300 bg-amber-200 px-1 text-xs rounded">{status}</span>}
 {status === 'Plan' &&
-  <span class="inline border border-blue-300 bg-blue-200 px-1 text-xs rounded">{status}</span> }
+  <span title={title} class="inline border border-blue-300 bg-blue-200 px-1 text-xs rounded">{status}</span> }
 {status === 'Unknown' &&
-  <span class="inline border border-gray-300 bg-gray-200 px-1 text-xs rounded">TBC</span> }
+  <span title={title} class="inline border border-gray-300 bg-gray-200 px-1 text-xs rounded">TBC</span> }
 
 {status === 'Yes' &&
   <span class="inline border border-green-300 bg-green-200 px-1 text-xs rounded">YES</span> }

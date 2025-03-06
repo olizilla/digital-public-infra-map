@@ -43,16 +43,16 @@ const tbc = items.filter((row) => row['Status'] === 'Unknown')
 	{ items.map(data => (
 		<Card>
 			<article>
+				<header class="text-zinc-600 pb-2">
+					<Status status={data['Status']} />
+					<a class="ml-1 hover:underline" href={`../${slug(data.Country)}`}>{data.Country}</a>
+					<DataIcon class="inline float-right text-zinc-400"/>
+				</header>
 				<details>
 					<summary class="">
-						<Status status={data['Status']} />
-						<div class="inline pl-1 text-zinc-600">
-							<a href={`../${slug(data.Country)}`}>{data.Country}</a>
-						</div>
-						<DataIcon class="inline float-right text-zinc-400"/>
-						<div class="pt-2 font-semibold">
+						<span title="Name" class="font-semibold cursor-pointer">
 							{data['Name']}
-						</div>
+						</span>
 						<dl>
 						{ DataExchangeHeadlines.map(key => (
 							<dt><KeyLabel>{key}</KeyLabel></dt>
