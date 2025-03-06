@@ -19,7 +19,9 @@ function statusCode (s: string) {
 	return statusMap[s] ?? 0
 }
 const items = [...IDs].sort((a, b) => {
-	return statusCode(b['Status']) - statusCode(a['Status'])
+	const diff1 = statusCode(b['Status']) - statusCode(a['Status'])
+	if (diff1 !== 0) return diff1
+	return a.Country.localeCompare(b.Country)
 })
 const active = items.filter((row) => row['Status'] === 'Rollout')
 const wip = items.filter((row) => row['Status'] === 'Pilot')
@@ -35,7 +37,7 @@ const tbc = items.filter((row) => row['Status'] === 'Unknown')
     </div><div class="bg-amber-200 h-10 inline-block" style={{width: `${(wip.length / items.length) * 100}%` }}>
     </div><div class="bg-green-200 h-10 inline-block" style={{width: `${(active.length / items.length) * 100}%` }}></div>
   </div>
-	<div class="grid grid-flow-row-dense grid-cols-2 md:grid-cols-3">
+	<div class="grid grid-flow-row-dense grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-items-stretch place-items-start">
 	{ items.map(data => (
 		<Card>
 			<article>
@@ -52,7 +54,7 @@ const tbc = items.filter((row) => row['Status'] === 'Unknown')
 						<dl>
 						{ IDTextHeadlines.map(key => (
 							<dt><KeyLabel>{key}</KeyLabel></dt>
-							<dd>{data[key]}</dd>
+							<dd class="truncate">{data[key]}</dd>
 						))}
 						</dl>
 					</summary>
@@ -61,8 +63,15 @@ const tbc = items.filter((row) => row['Status'] === 'Unknown')
 							<dt><KeyLabel>{key}</KeyLabel></dt>
 							<dd>{data[key]}</dd>
 						))}
+							<dt><KeyLabel>Project homepage</KeyLabel></dt>
+							<dd>
+								{ data['URL'].startsWith('http') 
+								? <a class="hover:underline" href={data['URL']}>{new URL(data['URL']).origin}</a>
+								: <span>{data['URL']}</span>
+								}
+							</dd>
 					</dl>
-					<dl class="pt-2">
+					<dl class="py-2">
 						{ IDFlags.map(key => (
 							<div class="flex flex-row-reverse items-baseline justify-items-start ">
 								<dt class="grow pl-2">

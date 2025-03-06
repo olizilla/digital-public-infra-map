@@ -33,8 +33,10 @@ const id = IDs.find(x => x.Country === country) ?? IDs[0]
     </h1>
     <p class="pt-1 md:pt-0 font-sans text-xs md:text-base text-zinc-500"><a href="https://dpimap.org/data">Tracking</a> the state of national-scale digital infrastructure around the world.</p>
   </header>
-  <h1 class="text-sm text-center pt-10 pb-8 font-mono">{country}</h1>
-	<div class="grid grid-flow-row-dense grid-cols-1 md:grid-cols-3">
+  <h1 class="text-sm text-center pt-10 pb-8 font-mono">
+		<a href='../' class="hover:underline">{country}</a>
+	</h1>
+	<div class="grid grid-flow-row-dense grid-cols-1 md:grid-cols-2">
     <Card>
 			<article>
 				<Status status={id['Status']} />
@@ -62,16 +64,16 @@ const id = IDs.find(x => x.Country === country) ?? IDs[0]
 				</dl>
 			</article>
 		</Card>
-    <Card>
+    <!-- <Card>
 			<article class="opacity-20">
 				<Status status={pay['Status']} />
 				<div class="inline pl-1 text-zinc-600">Payment System</div>
 				<PayIcon class="inline float-right text-zinc-400"/>
 				<div class="pt-2 font-semibold">
-					{pay['Name']}
+					Coming soon.
 				</div>
 			</article>
-		</Card>
+		</Card> -->
 		<Card>
 			<article>
 				<Status status={data['Status']} />
