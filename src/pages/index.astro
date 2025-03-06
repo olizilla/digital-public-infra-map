@@ -36,34 +36,32 @@ const tbc = data.filter((row) => row['Status of implementation'] === 'Unknown')
     </div><div class="bg-green-200 h-10 inline-block" style={{width: `${(active.length / data.length) * 100}%` }}></div>
   </div>
 	<div class="grid grid-flow-row-dense grid-cols-2 md:grid-cols-3">
-	{ items.map(row => (
+	{ items.map(data => (
 		<Card>
 			<article>
+				<header class="text-zinc-600 pb-2">
+					<Status status={data['Status of implementation']} />
+					<a class="ml-1 hover:underline" href={`${slug(data.Country)}`}>{data.Country}</a>
+					<IdentityIcon class="inline float-right text-zinc-400"/>
+				</header>
 				<details>
-					<summary class="">
-						<Status status={row['Status of implementation']} />
-						<div class="inline pl-1 text-zinc-600">
-							<a href={slug(row.Country)}>{row.Country}</a>
-						</div>
-						<IdentityIcon class="inline float-right text-zinc-400"/>
-						<div class="pt-2 font-semibold hover:underline">
-							<a href={row.URL}>
-								{row['Digital ID name']}
-							</a>
-						</div>
+					<summary>
+						<span title="Name" class="font-semibold cursor-pointer">
+							{data['Digital ID name']}
+						</span>
 						<KeyLabel>Governing Entity</KeyLabel>
-						<div>{row['Governing entity']}</div>
+						<div>{data['Governing entity']}</div>
 						<KeyLabel>Governance structure</KeyLabel>
-						<div>{row['Institutional governance structure']}</div>
+						<div>{data['Institutional governance structure']}</div>
 					</summary>
 					<KeyLabel>Legally binding redress mechanism</KeyLabel>
-					<div>{row['Legally binding redress mechanism\n']}</div>
+					<div>{data['Legally binding redress mechanism\n']}</div>
 					<KeyLabel>Enables Authentication</KeyLabel>
-					<div>{row['Digital authentication function']}</div>
+					<div>{data['Digital authentication function']}</div>
 					<KeyLabel>Enables KYC</KeyLabel>
-					<div>{row['Enables KYC packet collection for service provision']}</div>
+					<div>{data['Enables KYC packet collection for service provision']}</div>
 					<KeyLabel>Tech support organizations</KeyLabel>
-					<div>{row['Technical support organizations identified\n']}</div>
+					<div>{data['Technical support organizations identified\n']}</div>
 				</details>
 			</article>
 		</Card>
