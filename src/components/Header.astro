@@ -49,6 +49,7 @@ const { dpiType } = Astro.props
     <Map dpiType={dpiType} client:load />
     <h2 class="pb-8 text-center -mt-20 font-mono tracked-wider text-zinc-400 text-xs">
       { dpiType === 'id' && 'Digital ID System' }
+      { dpiType === 'pay' && 'Payment System' }
       { dpiType === 'data' && 'Data Exchange System' }
       Implementation Status by Country
     </h2>
