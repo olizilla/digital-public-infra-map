@@ -31,11 +31,11 @@ const { dpiType } = Astro.props
           <IdentityIcon class="text-zinc-500" />
         </a>
       </Card>
-      <Card>
-        <div class="flex content-center justify-between opacity-10" title="coming soon">
+      <Card isActive={Astro.url.pathname === '/pay/'}>
+        <a class="flex content-center justify-between" href="/pay/">
           <Stat number={93} unit="countries claim a">Digital Payment System</Stat>
           <PaymentIcon class="text-zinc-500" />
-        </div>
+        </a>
       </Card>
       <Card isActive={Astro.url.pathname === '/data/'}>
         <a class="flex content-center justify-between" href="/data/">

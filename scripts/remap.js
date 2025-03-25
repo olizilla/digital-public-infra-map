@@ -5,6 +5,14 @@ import { writeFileSync } from 'node:fs'
 import features from '../public/features.json' with { type: 'json' }
 import id from '../src/digital-id.json' with { type: 'json' }
 import data from '../src/data-exchange.json' with { type: 'json' }
+import pay from '../src/pay.json' with { type: 'json' }
+
+export function fixStatus(raw) {
+  if (!raw) return 'Unknown'
+  if (raw.match(/Operating at scale/i)) return 'Active'
+  if (raw.match(/Planned/i)) return 'Plan'
+  return 'Unknown'
+}
 
 const nameMap = new Map([
   ['Democratic Republic of Congo', 'Congo'],
@@ -22,6 +30,13 @@ id.forEach(row => {
   idMap.set(country, status)
 })
 
+const payMap = new Map()
+pay.forEach(row => {
+  const country = row['Country']
+  const status = fixStatus(row['Status of payment system implementation'])
+  payMap.set(country, status)
+})
+
 const dataMap = new Map()
 data.forEach(row => {
   const country = row['Country']
@@ -35,7 +50,8 @@ const updated = geometries.map(geom => {
   const name = nameMap.get(props.name) ?? props.name
   const id = idMap.get(name) ?? 'NA'
   const data = dataMap.get(name) ?? 'NA'
-  props.status = { id, data }
+  const pay = payMap.get(name) ?? 'NA'
+  props.status = { id, data, pay }
   props.name = name
   return geom
 })

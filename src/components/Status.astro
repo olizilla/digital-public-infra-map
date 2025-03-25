@@ -1,5 +1,5 @@
 ---
-const {status, title = 'Implementation status'} = Astro.props
+const {status = '', title = 'Implementation status'} = Astro.props
 ---
 {status === 'Active' &&
   <span title={title} class="inline border border-green-300 bg-green-200 px-1 text-xs rounded">{status}</span> }

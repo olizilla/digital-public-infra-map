@@ -10,7 +10,7 @@ const geoUrl = '/features-mod.json'
 
 export const StatusMap = {
   'Active': 'oklch(0.925 0.084 155.995)',
-  'In Progress': 'oklch(0.924 0.12 95.746)', //amber
+  'In Progress': 'oklch(0.924 0.12 95.746)',   //amber
   'Proposed': 'oklch(0.882 0.059 254.128)',    // blue
   'Inactive': 'oklch(0.885 0.062 18.334)',    // red
 

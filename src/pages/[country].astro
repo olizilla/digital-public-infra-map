@@ -8,6 +8,7 @@ import KeyLabel from '../components/KeyLabel.astro'
 import Footer from '../components/Footer.astro'
 import { DataExchanges, DataExchangeFlags, DataExchangeText } from '../DataExchange.js'
 import { IDs, IDFlags, IDText } from '../Identity.js'
+import { Payments, PaymentFlags, PaymentText } from '../Payment.js'
 import IdentityIcon from '../components/icons/IdentityIcon.astro'
 import slug from 'slug'
 
@@ -21,7 +22,7 @@ export async function getStaticPaths () {
 const country = Astro.props.country
 
 const data = DataExchanges.find(x => x.Country === country) ?? DataExchanges[0]
-const pay = IDs.find(x => x.Country === country) ?? IDs[0]
+const pay = Payments.find(x => x.Country === country) ?? IDs[0]
 const id = IDs.find(x => x.Country === country) ?? IDs[0]
 
 ---
@@ -33,15 +34,15 @@ const id = IDs.find(x => x.Country === country) ?? IDs[0]
     </h1>
     <p class="pt-1 md:pt-0 font-sans text-xs md:text-base text-zinc-500"><a href="https://dpimap.org/data">Tracking</a> the state of national-scale digital infrastructure around the world.</p>
   </header>
-  <h1 class="text-sm text-center pt-10 pb-8 font-mono">
+  <h1 class="text-lg text-center pt-10 pb-8 font-sans font-bold">
 		<a href='../' class="hover:underline">{country}</a>
 	</h1>
-	<div class="grid grid-flow-row-dense grid-cols-1 md:grid-cols-2">
+	<div class="grid grid-flow-row-dense grid-cols-1 md:grid-cols-3">
     <Card>
 			<article>
 				<Status status={id['Status']} />
 				<div class="inline pl-1 text-zinc-600">Digital ID System</div>
-				<IdentityIcon class="inline float-right text-zinc-400"/>
+				<IdentityIcon class="inline float-right text-zinc-600"/>
 				<div class="pt-2 font-semibold">
 					{id['Name']}
 				</div>
@@ -64,21 +65,40 @@ const id = IDs.find(x => x.Country === country) ?? IDs[0]
 				</dl>
 			</article>
 		</Card>
-    <!-- <Card>
-			<article class="opacity-20">
+
+		<Card>
+			<article>
 				<Status status={pay['Status']} />
 				<div class="inline pl-1 text-zinc-600">Payment System</div>
-				<PayIcon class="inline float-right text-zinc-400"/>
+				<PayIcon class="inline float-right text-zinc-600"/>
 				<div class="pt-2 font-semibold">
-					Coming soon.
+					{pay['Name']}
 				</div>
+				<dl>
+				{ PaymentText.map(key => (
+					<dt><KeyLabel>{key}</KeyLabel></dt>
+					<dd>{pay[key]}</dd>
+				))}
+				</dl>
+				<dl class="pt-4">
+					{ PaymentFlags.map(key => (
+						<div class="flex flex-row-reverse items-baseline justify-items-start ">
+							<dt class="grow pl-2	">
+								<KeyLabel>{key}</KeyLabel></dt>
+							<dd class="flex-none">
+								<Status status={pay[key]} />
+							</dd>
+						</div>
+					))}
+				</dl>
 			</article>
-		</Card> -->
+		</Card>
+
 		<Card>
 			<article>
 				<Status status={data['Status']} />
 				<div class="inline pl-1 text-zinc-600">Data Exchange System</div>
-				<DataIcon class="inline float-right text-zinc-400"/>
+				<DataIcon class="inline float-right text-zinc-600"/>
 				<div class="pt-2 font-semibold">
 					{data['Name']}
 				</div>
