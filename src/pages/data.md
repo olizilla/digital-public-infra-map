@@ -3,3 +3,38 @@ layout: ../layouts/Standard.astro
 ---
 
 # Data
+
+Review and download the data from the <a class="underline text-blue-500" href="https://docs.google.com/spreadsheets/d/15WRbF7g7MgL9dxKJ_7RJgUckNFx3Ebhs-j13AzEXFGw/edit?gid=1403655500#gid=1403655500">Google Sheets</a>.
+
+The DPI data is collected based on the [DPI conceptualisation and measurement](/methodology) framework. Each variable pertains to a specific attribute of DPI, tracking indicators across digital ID, digital payment and data exchange systems.
+
+Read the [Code Book](https://docs.google.com/spreadsheets/d/1JbpmZ1ap235wVCTcnA1dE5ghCWEzdFJXxyZz1FTRupk/edit?gid=201000496#gid=201000496) for detailed descriptions of the variables.
+
+
+
+
+## Citation
+
+```
+DPI Map ([version], [date]). Institute for Innovation and Public Purpose, UCL. https://dpimap.org/data
+```
+
+### Example
+
+<span class="text-sm">
+DPI Map (v2, 2025-03-31). Institute for Innovation and Public Purpose, UCL. https://dpimap.org/data
+</span>
+
+
+## Releases
+
+| Date           | Version | Changes                                   |
+|----------------|---------|-------------------------------------------|
+| [2025-03-31] _Current_   | v2     | **Digital ID**: Tanzania, Egypt, Italy, Argentina, Indonesia, Switzerland, Vietnam Greece, Bolivia, El Salvador, Ethiopia, Rwanda, Qatar, **Digital payments**: Cambodia, Tanzania, Egypt, Switzerland, Kenya, Segeal, Tunisia, Sri Lanka, Philippines, **Data exchange**: Tanzania, Azerbaijan, Switzerland, Tunisia, Philippines. Some variables combined and data reporting revised. See [codebook](https://docs.google.com/spreadsheets/d/1JbpmZ1ap235wVCTcnA1dE5ghCWEzdFJXxyZz1FTRupk/edit?gid=201000496#gid=201000496) |
+| [2024-11-19]   | v2      | Digital identity – information on funding orgs removed |
+| 2024-09-30     | v2      | Global dataset of 210 countries, excluding non-self-governing territories and overseas territories. Excludes data points from previous version where the keyword search methodology was not successful / effective |
+| 2024-06-10 | v1 | Dataset with 132 countries across all of Asia, Africa, Latin America, Caribbean and parts of Asia
+
+[2025-03-31]: https://docs.google.com/spreadsheets/d/15WRbF7g7MgL9dxKJ_7RJgUckNFx3Ebhs-j13AzEXFGw/edit?gid=1403655500#gid=1403655500
+
+[2024-11-19]: https://docs.google.com/spreadsheets/d/1PSGB9QXLAHSBJczbim0vUaO2wZb8xAJ8RBaZAvNRlc4/edit?gid=1403655500#gid=1403655500
