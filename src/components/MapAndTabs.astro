@@ -1,0 +1,63 @@
+---
+import Card from '../components/Card.astro'
+import Stat from '../components/Stat.astro'
+import PaymentIcon from '../components/icons/PaymentIcon.astro'
+import IdentityIcon from '../components/icons/IdentityIcon.astro'
+import DataIcon from '../components/icons/DataIcon.astro'
+
+import Map from '../components/Map.jsx'
+
+const { dpiType } = Astro.props
+---
+
+<div>
+  <div class="flex flex-col-reverse lg:flex-row pt-8">
+    <section class="flex-none">
+      <div class="px-2 text-zinc-700 text-md text-center">
+        <p class="font-bold text-lg">
+          DPI is far more prevalent than initially believed.
+        </p>
+      </div>
+      <nav class="grid font-mono pt-2 pb-8 max-w-md mx-auto" >
+        <Card isActive={Astro.url.pathname === '/'}>
+          <a class="flex content-center justify-between" href="/">
+            <Stat number={57} unit="countries claim a">Digital ID System</Stat>
+            <IdentityIcon class="text-zinc-500" />
+          </a>
+        </Card>
+        <Card isActive={Astro.url.pathname === '/digital-payment/'}>
+          <a class="flex content-center justify-between" href="/digital-payment/">
+            <Stat number={93} unit="countries claim a">Digital Payment System</Stat>
+            <PaymentIcon class="text-zinc-500" />
+          </a>
+        </Card>
+        <Card isActive={Astro.url.pathname === '/data-exchange/'}>
+          <a class="flex content-center justify-between" href="/data-exchange/">
+            <Stat number={103} unit="countries claim a">Data Exchange System</Stat>
+            <DataIcon class="text-zinc-500" />
+          </a>
+        </Card>
+      </nav>
+      <div class="max-w-md pl-4 pb-8">
+        <p>
+          <a href="/about" class="underline">This project aims</a> to advance our understanding of digital public infrastructure and promote its inclusive and safe development.
+        </p>
+        <p class="pt-2">
+          <a href="/data" class="underline">Download</a> the data, read the <a href="/global-state-of-dpi" class="underline">report</a>, and <a href="/global-state-of-dpi" class="underline">help</a> improve it.
+        </p>
+        <p class="pt-8">
+          The cards below show DPI information about every region researched so far. Click on them to show the details and click on the region name to see the DPI information discovered so far.
+        </p>
+      </div>
+    </section>
+    <section class="flex-grow -mt-10 max-w-5xl">
+      <Map dpiType={dpiType} client:load />
+      <h2 class="pb-8 text-center -mt-20 font-mono tracked-wider text-zinc-400 text-xs">
+        { dpiType === 'id' && 'Digital ID System' }
+        { dpiType === 'pay' && 'Payment System' }
+        { dpiType === 'data' && 'Data Exchange System' }
+        Implementation Status by Country
+      </h2>
+    </section>
+  </div>
+</div>

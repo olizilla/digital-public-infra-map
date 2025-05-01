@@ -28,7 +28,7 @@ function statusToColour (status) {
 
 export default function Map ({dpiType}) {
   return (
-    <div className="map text-2xl max-w-2xl mx-auto">
+    <div className="map max-w-4xl mx-auto lg:-mt-2">
       <ComposableMap>
         <Geographies geography={geoUrl}>
           {({ geographies }) =>

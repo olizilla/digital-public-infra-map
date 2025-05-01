@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import Status from '../components/Status.astro'
-import Header from '../components/Header.astro'
+import MapAndTabs from '../components/MapAndTabs.astro'
 import Card from '../components/Card.astro'
 import { Payments, PaymentFlags, PaymentHeadlines, PaymentOtherText } from '../Payment.js'
 import DataIcon from '../components/icons/DataIcon.astro'
@@ -29,7 +29,7 @@ const tbc = items.filter((row) => row['Status'] === 'Unknown')
 ---
 
 <Layout>
-	<Header countryCount={items.length} dpiType="pay" />
+	<MapAndTabs countryCount={items.length} dpiType="pay" />
   <div class="text-center align-middle text-mono text-sm">
     <div title="TBC" class="bg-gray-200 h-10 inline-block" style={{width: `${(tbc.length / items.length) * 100}%` }}>
     </div><div title="Plan" class="bg-blue-200 h-10 inline-block" style={{width: `${(plan.length / items.length) * 100}%` }}>

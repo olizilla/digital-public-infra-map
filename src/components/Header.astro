@@ -1,57 +1,29 @@
----
-import Card from '../components/Card.astro'
-import Stat from '../components/Stat.astro'
-import PaymentIcon from '../components/icons/PaymentIcon.astro'
-import IdentityIcon from '../components/icons/IdentityIcon.astro'
-import DataIcon from '../components/icons/DataIcon.astro'
-
-import Map from '../components/Map.jsx'
-
-const { dpiType } = Astro.props
----
-
 <header class="px-2 pt-1">
-  <h1 class="font-sans font-bold text-xl">The Digital Public Infrastructure Map</h1>
-  <p class="pt-1 md:pt-0 font-sans text-xs md:text-base text-zinc-500"><a href="https://dpimap.org/data">Tracking</a> the state of national-scale digital infrastructure around the world.</p>
-</header>
-<div class="flex flex-col-reverse lg:flex-row pt-8">
-  <section class="">
-    <div class="px-2 text-zinc-700 text-md max-w-xl mx-auto">
-      <p class="font-bold">
-        DPI is far more prevalent and widespread than initially believed.
-      </p>
-      <p class="pt-4">
-        Of the 210 countries researched: 57 claim a digital ID System, 93 claim a digital payment system and 103 claim a data exchange system.
+  <div class="flex items-center">
+    <a href="/">
+      <img src="/iipp.png" width="50" height="47" />
+    </a>
+    <div class="pl-2 flex-none hidden md:block">
+      <h1 class="font-sans font-bold text-xl">
+        <a href="/">The Digital Public Infrastructure Map</a>
+      </h1>
+      <p class="pt-0 font-sans text-xs text-zinc-500">
+        <a href="/">Tracking national-scale digital infrastructure around the world</a>
       </p>
     </div>
-    <nav class="grid font-mono pt-8 pb-8 max-w-md mx-auto" >
-      <Card isActive={Astro.url.pathname === '/'}>
-        <a class="flex content-center justify-between" href="/">
-          <Stat number={57} unit="countries claim a">Digital ID System</Stat>
-          <IdentityIcon class="text-zinc-500" />
-        </a>
-      </Card>
-      <Card isActive={Astro.url.pathname === '/pay/'}>
-        <a class="flex content-center justify-between" href="/pay/">
-          <Stat number={93} unit="countries claim a">Digital Payment System</Stat>
-          <PaymentIcon class="text-zinc-500" />
-        </a>
-      </Card>
-      <Card isActive={Astro.url.pathname === '/data/'}>
-        <a class="flex content-center justify-between" href="/data/">
-          <Stat number={103} unit="countries claim a">Data Exchange System</Stat>
-          <DataIcon class="text-zinc-500" />
-        </a>
-      </Card>
+    <nav class="pl-6 flex-auto font-sans text-right text-sm font-semibold max-w-5xl">
+      <a class="px-1 lg:px-2 hover:text-blue-500" href="/about">About</a>
+      <a class="px-1 lg:px-2 hover:text-blue-500" href="/data">Data</a>
+      <a class="px-1 lg:px-2 hover:text-blue-500" href="/global-state-of-dpi">Insights</a>
+      <a class="px-1 lg:px-2 hover:text-blue-500" href="/methodology">Method</a>
+      <a class="px-1 lg:px-2 hover:text-blue-500" href="/measurement-community">Community</a>
+      <a class="hidden lg:inline px-3 py-2 bg-zinc-700 hover:bg-black text-white rounded-2xl" href="/contribute-to-the-dpi-map">Help map DPI</a>
     </nav>
-  </section>
-  <section class="flex-grow -mt-10">
-    <Map dpiType={dpiType} client:load />
-    <h2 class="pb-8 text-center -mt-20 font-mono tracked-wider text-zinc-400 text-xs">
-      { dpiType === 'id' && 'Digital ID System' }
-      { dpiType === 'pay' && 'Payment System' }
-      { dpiType === 'data' && 'Data Exchange System' }
-      Implementation Status by Country
-    </h2>
-  </section>
-</div>
+  </div>
+  <div class="text-center pt-4 flex-none md:hidden">
+    <h1 class="font-sans font-bold text-xl">
+      The Digital Public Infrastructure Map
+    </h1>
+    <p class="pt-0 font-sans text-xs text-zinc-500"><a href="https://dpimap.org/data">Tracking</a> national-scale digital infrastructure around the world</p>
+  </div>
+</header>
