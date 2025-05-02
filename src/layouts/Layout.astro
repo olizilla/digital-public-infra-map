@@ -1,16 +1,22 @@
 ---
- import CodeIcon from '../components/icons/CodeIcon.astro'
 import '/src/styles/global.css'
+import Header from '../components/Header.astro';
+
+const { frontmatter } = Astro.props;
+const title = Astro.props.title ?? frontmatter?.title ?? ''
+const fullTitle = title ? `${title} | DPI Map` : 'DPI Map | UCL IIPP'
 ---
+
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🗺️</text></svg>">
-		<title>DPI Map</title>
+		<title>{fullTitle}</title>
 	</head>
 	<body>
+		<Header />
 		<slot />
 	</body>
 </html>
