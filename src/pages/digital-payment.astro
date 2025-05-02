@@ -35,48 +35,52 @@ const tbc = items.filter((row) => row['Status'] === 'Unknown')
     </div><div title="Plan" class="bg-blue-200 h-10 inline-block" style={{width: `${(plan.length / items.length) * 100}%` }}>
     </div><div title="Active" class="bg-green-200 h-10 inline-block" style={{width: `${(active.length / items.length) * 100}%` }}></div>
   </div>
-	<div class="grid grid-flow-row-dense grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-stretch place-items-start">
-	{ items.map(data => (
-		<Card>
-			<article>
-				<header class="text-zinc-600 pb-2">
-					<Status status={data['Status']} />
-					<a class="ml-1 hover:underline" href={`../${slug(data.Country)}`}>{data.Country}</a>
-					<DataIcon class="inline float-right text-zinc-400"/>
-				</header>
-				<details>
-					<summary>
-						<span title="Name" class="font-semibold cursor-pointer">
-							{data['Name']}
-						</span>
+	<section>
+		<h2 class="pl-6 pt-2 pb-1 font-mono text-xs">
+			Digital Payment Systems
+		</h2>
+		<div class="grid grid-flow-row-dense grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-stretch place-items-start">
+		{ items.map(data => (
+			<Card>
+				<article>
+					<header class="text-zinc-600 pb-2">
+						<Status status={data['Status']} />
+						<a class="ml-1 hover:underline" href={`../${slug(data.Country)}`}>{data.Country}</a>
+						<DataIcon class="inline float-right text-zinc-400"/>
+					</header>
+					<details>
+						<summary>
+							<span title="Name" class="font-semibold cursor-pointer">
+								{data['Name']}
+							</span>
+							<dl>
+							{ PaymentHeadlines.map(key => (
+								<dt><KeyLabel>{key}</KeyLabel></dt>
+								<dd class="truncate">{data[key]}</dd>
+							))}
+							</dl>
+						</summary>
 						<dl>
-						{ PaymentHeadlines.map(key => (
-							<dt><KeyLabel>{key}</KeyLabel></dt>
-							<dd class="truncate">{data[key]}</dd>
-						))}
+							{ PaymentOtherText.map(key => (
+								<dt><KeyLabel>{key}</KeyLabel></dt>
+								<dd>{data[key]}</dd>
+							))}
 						</dl>
-					</summary>
-					<dl>
-						{ PaymentOtherText.map(key => (
-							<dt><KeyLabel>{key}</KeyLabel></dt>
-							<dd>{data[key]}</dd>
-						))}
-					</dl>
-					<dl class="py-2">
-						{ PaymentFlags.map(key => (
-							<div class="flex flex-row-reverse items-baseline justify-items-start ">
-								<dt class="grow pl-2">
-									<KeyLabel>{key}</KeyLabel></dt>
-								<dd class="flex-none">
-									<Status status={data[key]} />
-								</dd>
-							</div>
-						))}
-					</dl>
-				</details>
-			</article>
-		</Card>
-	))}
-	</div>
+						<dl class="py-2">
+							{ PaymentFlags.map(key => (
+								<div class="flex flex-row-reverse items-baseline justify-items-start ">
+									<dt class="grow pl-2">
+										<KeyLabel>{key}</KeyLabel></dt>
+									<dd class="flex-none">
+										<Status status={data[key]} />
+									</dd>
+								</div>
+							))}
+						</dl>
+					</details>
+				</article>
+			</Card>
+		))}
+		</div>
 	<Footer />
 </Layout>
