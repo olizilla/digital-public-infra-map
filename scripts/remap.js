@@ -1,6 +1,6 @@
 // take a topojson and add a DPI status
 
-// import process from 'node:process'
+import slug from 'slug'
 import { writeFileSync } from 'node:fs'
 import features from '../public/features.json' with { type: 'json' }
 import id from '../src/digital-id.json' with { type: 'json' }
@@ -47,12 +47,13 @@ data.forEach(row => {
 const { geometries } = features.objects.world
 const updated = geometries.map(geom => {
   const props = geom.properties
-  const name = nameMap.get(props.name) ?? props.name
+  const name = nameMap.get(props.name) ?? props.name 
   const id = idMap.get(name) ?? 'NA'
   const data = dataMap.get(name) ?? 'NA'
   const pay = payMap.get(name) ?? 'NA'
   props.status = { id, data, pay }
   props.name = name
+  props.slug = slug(name)
   return geom
 })
 
