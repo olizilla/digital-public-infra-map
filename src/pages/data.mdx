@@ -1,6 +1,9 @@
 ---
 layout: ../layouts/Standard.astro
 ---
+import DataIcon from '../components/icons/DataIcon.astro'
+import PayIcon from '../components/icons/PaymentIcon.astro'
+import IdentityIcon from '../components/icons/IdentityIcon.astro'
 
 # Data
 
@@ -11,16 +14,10 @@ View the data in <a class="underline text-blue-500" href="https://docs.google.co
 
 Download the data as JSON
 
-<div class="text-center py-4">
-  <a href="/data/2024-11-19.identity.json" class="button-blue">
-    Identity JSON
-  </a>
-  <a href="/data/2024-11-19.payment.json" class="button-blue">
-    Payment JSON
-  </a>
-  <a href="/data/2024-11-19.exchange.json" class="button-blue">
-    Exchange JSON
-  </a>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+  <a href="/data/2024-11-19.identity.json" class="button-blue"><IdentityIcon class='inline-block mr-2' /> Identity JSON </a>
+  <a href="/data/2024-11-19.payment.json" class="button-blue"><PayIcon class='inline-block mr-2' /> Payment JSON </a>
+  <a href="/data/2024-11-19.exchange.json" class="button-blue"><DataIcon class='inline-block mr-2' /> Exchange JSON </a>
 </div>
 
 
