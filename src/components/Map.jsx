@@ -33,7 +33,17 @@ export default function Map ({dpiType}) {
         <Geographies geography={geoUrl}>
           {({ geographies }) =>
             geographies.map((geo) => (
-              <Geography fill={statusToColour(geo.properties.status[dpiType])} key={geo.rsmKey} geography={geo} title={geo.properties.name} onClick={() => window.location.pathname = geo.properties.slug } />
+              <Geography stroke="#acc" key={geo.rsmKey} geography={geo} title={geo.properties.name} onClick={() => window.location.pathname = geo.properties.slug } style={{
+                default: {
+                  fill: statusToColour(geo.properties.status[dpiType])
+                },
+                hover: {
+                  fill: "#8af",
+                },
+                pressed: {
+                  fill: "#79f",
+                },
+              }} />
           ))}
         </Geographies>
       </ComposableMap>

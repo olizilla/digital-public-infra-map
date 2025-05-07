@@ -3,9 +3,9 @@
 import slug from 'slug'
 import { writeFileSync } from 'node:fs'
 import features from '../public/features.json' with { type: 'json' }
-import id from '../src/digital-id.json' with { type: 'json' }
-import data from '../src/data-exchange.json' with { type: 'json' }
-import pay from '../src/pay.json' with { type: 'json' }
+import id from '../public/data/2024-11-19.identity.json' with { type: 'json' }
+import data from '../public/pages/data/2024-11-19.exchange.json' with { type: 'json' }
+import pay from '../public/pages/data/2024-11-19.payment.json' with { type: 'json' }
 
 export function fixStatus(raw) {
   if (!raw) return 'Unknown'
@@ -32,7 +32,7 @@ id.forEach(row => {
 
 const payMap = new Map()
 pay.forEach(row => {
-  const country = row['Country']
+  const country = row['Country/ Region']
   const status = fixStatus(row['Status of payment system implementation'])
   payMap.set(country, status)
 })

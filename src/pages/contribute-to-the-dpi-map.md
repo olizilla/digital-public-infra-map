@@ -6,11 +6,17 @@ layout: ../layouts/Standard.astro
 
 Contributions are welcome and encouraged! Share information about DPI deployments, provide feedback on our framework, or add to data and build on it.
 
+<div class="text-center py-4">
+  <a href="https://forms.gle/k3zqfXVENMbpsKDp7" class="button-blue">
+    Get in touch
+  </a>
+</div>
+
 ## Provide data
 
-Use the [1 minute feedback form](https://forms.gle/k3zqfXVENMbpsKDp7") to tell us about new DPI deployments or provide information the current state of an existing deployment.
+Use the [1 minute feedback form](https://forms.gle/k3zqfXVENMbpsKDp7) to tell us about new DPI deployments or provide information the current state of an existing deployment.
 
-Use the [Measuring DPI framework](https://docs.google.com/spreadsheets/d/1-G3Jmo85tABaBLyg1UPXtzUKK8NK3VH4/edit?usp=sharing&ouid=109666902899934821981&rtpof=true&sd=true) to review of the state of DPI in your country of interest, and [share with with us](https://forms.gle/k3zqfXVENMbpsKDp7")
+Use the [Measuring DPI framework](https://docs.google.com/spreadsheets/d/1-G3Jmo85tABaBLyg1UPXtzUKK8NK3VH4/edit?usp=sharing&ouid=109666902899934821981&rtpof=true&sd=true) to review of the state of DPI in your country of interest, and [share with with us](https://forms.gle/k3zqfXVENMbpsKDp7)
 
 ## Improve the framework
 

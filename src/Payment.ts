@@ -1,4 +1,4 @@
-import json from './pay.json'
+import json from '../public/data/2024-11-19.payment.json'
 
 export function fixStatus(raw: string) {
   if (!raw) return 'Unknown'
@@ -9,7 +9,7 @@ export function fixStatus(raw: string) {
 
 export const Payments = json.map(x => {
   return {
-    'Country': x['Country'],
+    'Country': x['Country/ Region'],
     'Name': x['Payment system name'],
     'Status': fixStatus(x['Status of payment system implementation']),
     'Active real-time payment system': x['Active real-time payment system present'],
@@ -18,12 +18,11 @@ export const Payments = json.map(x => {
     "Cross-border payments": x["Cross-border payments"],
     "Interoperability policy": x["Interoperability policy"],
     "Types of transactions": x["Types of transactions supported"],
-    "Type of settlement system": x["Type of settlement system"],
     "Operator": x["Operator"],
     "Bank participation": x["Bank participation"],
     "Non-bank participation": "Unknown",
     "Participation rules": x["Participation conditions and rules"],
-    "Participants": x["No. of participants"],
+    "Participants": x["No. of participants* (PSPs)\n*For regional payment systems > countries"],
     "Cost of transactions": x["Cost of transactions"],
     "Annual value of transactions (USD)": x["Annual value of transactions (USD)"],
     "Annual volume of transactions": x["Annual volume of transactions"],

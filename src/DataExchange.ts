@@ -1,4 +1,4 @@
-import dataJSON from './data-exchange.json'
+import dataJSON from '../public/data/2024-11-19.exchange.json'
 
 export const DataExchanges = dataJSON.map(x => {
   return {

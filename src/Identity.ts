@@ -1,4 +1,4 @@
-import json from './digital-id.json'
+import json from '../public/data/2024-11-19.identity.json'
 
 export const IDs = json.map(x => {
   return {

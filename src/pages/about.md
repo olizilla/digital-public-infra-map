@@ -11,7 +11,7 @@ The **DPI Mapping project** aims to advance our understanding of digital public 
 - Highlighting opportunities to support DPI deployment and develop safeguards.
 
 <div class="text-center py-4">
-  <a href="https://forms.gle/dhoXGR9M6fVAoDKt7" class="rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-semibold px-3 py-3 no-underline">
+  <a href="https://forms.gle/dhoXGR9M6fVAoDKt7" class="button-blue">
     Sign up to the news letter
   </a>
 </div>

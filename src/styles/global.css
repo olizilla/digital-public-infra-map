@@ -1,3 +1,10 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+.prose table {
+  @apply lg:-mx-30 w-auto;
+}
+
+.button-blue {
+  @apply rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-semibold px-3 py-3 no-underline;
+}
