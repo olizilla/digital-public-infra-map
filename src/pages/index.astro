@@ -30,7 +30,7 @@ const tbc = items.filter((row) => row['Status'] === 'Unknown')
 ---
 
 <Layout>
-	<MapAndTabs countryCount={items.length} dpiType="data" />
+	<MapAndTabs countryCount={items.length} dpiType="id" />
   <div class="text-center align-middle text-mono text-sm">
     <div class="bg-gray-200 h-10 inline-block" style={{width: `${(tbc.length / items.length) * 100}%` }}>
     </div><div class="bg-blue-200 h-10 inline-block" style={{width: `${(plan.length / items.length) * 100}%` }}>
