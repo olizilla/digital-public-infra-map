@@ -4,13 +4,28 @@ layout: ../layouts/Standard.astro
 
 # Data
 
-Review and download the data from the <a class="underline text-blue-500" href="https://docs.google.com/spreadsheets/d/15WRbF7g7MgL9dxKJ_7RJgUckNFx3Ebhs-j13AzEXFGw/edit?gid=1403655500#gid=1403655500">Google Sheets</a>.
-
 The DPI data is collected based on the [DPI conceptualisation and measurement](/methodology) framework. Each variable pertains to a specific attribute of DPI, tracking indicators across digital ID, digital payment and data exchange systems.
 
+
+View the data in <a class="underline text-blue-500" href="https://docs.google.com/spreadsheets/d/15WRbF7g7MgL9dxKJ_7RJgUckNFx3Ebhs-j13AzEXFGw/edit?gid=1403655500#gid=1403655500">Google Sheets</a>.
+
+Download the data as JSON
+
+<div class="text-center py-4">
+  <a href="/data/2024-11-19.identity.json" class="button-blue">
+    Identity JSON
+  </a>
+  <a href="/data/2024-11-19.payment.json" class="button-blue">
+    Payment JSON
+  </a>
+  <a href="/data/2024-11-19.exchange.json" class="button-blue">
+    Exchange JSON
+  </a>
+</div>
+
+
+
 Read the [Code Book](https://docs.google.com/spreadsheets/d/1JbpmZ1ap235wVCTcnA1dE5ghCWEzdFJXxyZz1FTRupk/edit?gid=201000496#gid=201000496) for detailed descriptions of the variables.
-
-
 
 
 ## Citation
