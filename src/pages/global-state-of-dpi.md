@@ -12,7 +12,7 @@ A top-level scan of deployments of identity systems, digital payment systems and
 - **93 countries with digital payment systems** - which includes those with at least one active digital payment system that facilitates real-time transactions and has a public interest operator. This may comprise cross-domain systems, interbank real-time payment systems, mobile money and CBDCs.
 - **103 Data exchange systems** - which includes those with a cross-sectoral, national-level and active data exchange system. This can range from internal platforms facilitating data sharing within government departments, to systems connecting multiple agencies and authorised third parties to share data crucial to public service delivery. 
 
-<p class="text-3xl py-4 text-blue-600 font-bold">
+<p class="lead">
 A clear definition of DPI is key to enhancing its measurement and unlocking its potential.
 </p>
 
@@ -26,7 +26,7 @@ Within subset 2, 87 countries have an authentication mechanism.
 Finally, only 57 countries of the final subset have been operationalised across two sectoral use cases. 
 ![A chart showing the number of Digital ID systems that meet the criteria](./global-state-of-dpi/id-funnel.png)
 
-<aside class='bg-amber-100 px-4 py-0.5 text-sm leading-6 border-l-2'>
+<aside>
 
 The first two conditions of this funnel – whether a country claims to have a digital ID system, and whether it is in the rollout stage – are considered crucial to our articulation of digital Identity systems as DPI. The analysis below treats this subset (of 93 digital identity systems) as the primary sample for analysis.
 
@@ -64,7 +64,7 @@ Insights on the institutional arrangements that house digital identity programs 
 Payment systems are highly variable across the domains they engage with (banks only, mobile-only, digital currency, or a mix of these). While it is more intuitive to think of one of these payment systems as DPI, they all facilitate real-time transactions at the user level (even if settlements between banks or payment system providers may not be in real-time). Independently and in combination, they all facilitate financial inclusion and economic growth.
 
 
-<aside class='bg-amber-100 px-4 py-0.5 text-sm leading-6 border-l-2'>
+<aside>
 
 Data on digital payment systems looks for cross-domain payment systems, interbank and mobile money payment systems, and CBDCs in that order. Across 210 countries, 249 payment systems have been researched.
 
@@ -100,7 +100,7 @@ While 132 countries are identified to have active and real-time payment systems,
 Furthermore, even fewer (27%) of these countries (subset 1) had payment systems that operated across domains. These included payment systems that allowed participation from both banks and non-banks.
 
 
-<aside class='bg-amber-100 px-4 py-0.5 text-sm leading-6 border-l-2'>
+<aside>
 
 To analyse payment systems as DPI, a subset of 93 countries have been regarded as a primary sample. This includes countries whose payment systems have at least one active real-time payment system, with some public-interest governance.
 
@@ -122,7 +122,7 @@ When scrutinising for information on the base technical architecture (such as X-
 
 ---
 
-<p class="text-3xl py-4 text-blue-600 font-bold">
+<p class="lead">
 Across the globe, digital identity, digital payment, and data exchange systems are thriving. Countries at every income level showcase unique and compelling DPI narratives.
 </p>
 
@@ -176,7 +176,7 @@ Ninety-seven 'Active' national and cross-sectoral data exchange systems were fou
 
 ---
 
-<p class="text-3xl py-4 text-blue-600 font-bold">
+<p class="lead">
 Distinct regional patterns in system deployments are undeniably shaping the global DPI landscape.
 </p>
 

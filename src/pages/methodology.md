@@ -7,7 +7,7 @@ layout: ../layouts/Standard.astro
 The DPI Map collects data based on a framework explained below. This framework provides a comprehensive view of the technical and governance characteristics of DPI, studying DPI through a set of attributes and indicators. Given its desk-based data collection methods, the DPI Map gathers data on a limited number of these indicators.
 
 <div class="text-center py-4">
-  <a href="https://bit.ly/dpimapframe" class="rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-semibold px-3 py-3 no-underline">
+  <a href="https://bit.ly/dpimapframe" class="button-blue">
     Download the PDF
   </a>
 </div>
@@ -18,9 +18,9 @@ As governments, multilateral actors, and technology implementers collaborate tow
 
 To answer this, we had to wrestle with some fundamental issues. How does one define DPI as a concept? How do you translate any definition into foundational qualities that can be objectively measured across different national contexts around the world? This piece seeks to explain our approach in addressing these questions, to enable researchers, technical advisors, policymakers and advocates to understand the context of this data set and its limits, so they can effectively use it in their work.
 
-<aside class='bg-amber-100 px-4 py-0.5 text-sm leading-6 border-l-2'>
+<aside>
 
-  **Digital public infrastructure** is <a href="https://medium.com/iipp-blog/what-is-digital-public-infrastructure-6fbfa74f2f8c">understood</a> as "society-wide, digital capabilities that are essential to formal participation in society and markets as a citizen, entrepreneur, and consumer in a digital era."
+**Digital public infrastructure** is [understood](https://medium.com/iipp-blog/what-is-digital-public-infrastructure-6fbfa74f2f8c) as "society-wide, digital capabilities that are essential to formal participation in society and markets as a citizen, entrepreneur, and consumer in a digital era."
 
 </aside>
 
@@ -36,7 +36,7 @@ These attributes describe the qualities that define artefacts - like digital ide
 
 These attributes should be read in framing DPI as the means to serve foundational societal functions in the digital age, namely digital authentication, digital transactions and the exchange of data.
 
-<aside class='bg-amber-100 px-4 py-0.5 text-sm leading-6 border-l-2'>
+<aside>
 
 The following DPI components are [treated](https://medium.com/iipp-blog/what-is-digital-public-infrastructure-6fbfa74f2f8c) as fundamental to a country’s DPI infrastructure, and form the primary focus of this project. Nevertheless, we acknowledge that this list may expand as countries progress in their respective journeys towards sophisticated DPI.
 
