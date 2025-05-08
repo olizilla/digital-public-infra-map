@@ -44,7 +44,7 @@ The absence of a reliable resource to quickly access this information creates ch
   <img src="/about/_david.jpg" alt="" />
   <figcaption>
 
-  ### [David Eaves](https://www.ucl.ac.uk/bartlett/public-purpose/david-eaves)
+  ### [David Eaves](https://profiles.ucl.ac.uk/89749-david-eaves)
 
   Principal Investigator
 
