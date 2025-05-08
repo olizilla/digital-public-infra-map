@@ -4,7 +4,7 @@ import Status from '../components/Status.astro'
 import MapAndTabs from '../components/MapAndTabs.astro'
 import Card from '../components/Card.astro'
 import { Payments, PaymentFlags, PaymentHeadlines, PaymentOtherText } from '../Payment.js'
-import DataIcon from '../components/icons/DataIcon.astro'
+import PaymentIcon from '../components/icons/PaymentIcon.astro'
 import KeyLabel from '../components/KeyLabel.astro'
 import Footer from '../components/Footer.astro'
 import slug from 'slug'
@@ -46,7 +46,7 @@ const tbc = items.filter((row) => row['Status'] === 'Unknown')
 					<header class="text-zinc-600 pb-2">
 						<Status status={data['Status']} />
 						<a class="ml-1 hover:underline" href={`../${slug(data.Country)}`}>{data.Country}</a>
-						<DataIcon class="inline float-right text-zinc-400"/>
+						<PaymentIcon class="inline float-right text-zinc-400"/>
 					</header>
 					<details>
 						<summary>
