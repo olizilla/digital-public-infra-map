@@ -18,7 +18,9 @@ The **DPI Mapping project** aims to advance our understanding of digital public 
 
 Over fifty national governments have committed to build national-scale digital public infrastructure in the coming years. Despite this pledge, it remains challenging to measure the number and status of DPI pilots and deployments globally. 
 
-The absence of a reliable resource to quickly access this information creates challenges for many important stakeholders. For example, it limits researchers ability to explore and understand what is happening around the world. It prevents government officials and implementors from identifying peers and best practices as well as coordinating on deployments. And, among others, it impedes civil society actors from identifying emerging trends or governance patterns. 
+The absence of a reliable resource to quickly access this information creates challenges for many important stakeholders. For example, it limits researchers ability to explore and understand what is happening around the world. It prevents government officials and implementors from identifying peers and best practices as well as coordinating on deployments. And, among others, it impedes civil society actors from identifying emerging trends or governance patterns.
+
+The DPI Map addresses this. It offers the first global investigation of digital identity, payment, and data exchange systems.
 
 ---
 
