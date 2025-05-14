@@ -25,7 +25,7 @@ Out of 210 countries researched, 164 (subset 1) claim to have a digital or elect
 Within subset 2, 87 countries have an authentication mechanism. 
 
 Finally, only 57 countries of the final subset have been operationalised across two sectoral use cases. 
-![A chart showing the number of Digital ID systems that meet the criteria](./global-state-of-dpi/id-funnel.png)
+![A chart showing the number of Digital ID systems that meet the criteria](../assets/global-state-of-dpi/id-funnel.png)
 
 <aside>
 
@@ -43,7 +43,7 @@ Insights on the institutional arrangements that house digital identity programs 
 <div class="grid lg:grid-cols-2 lg:-mx-30 gap-x-4">
   <figure>
 
-  ![](./global-state-of-dpi/id-regulation-pie.png)
+  ![](../assets/global-state-of-dpi/id-regulation-pie.png)
 
   <figcaption>
   From the countries in rollout stage, 75% have specific regulation on digital IDs and 25% have no regulation or no specific data regarding digital ID regulation.
@@ -51,7 +51,7 @@ Insights on the institutional arrangements that house digital identity programs 
   </figure>
   <figure>
 
-  ![](./global-state-of-dpi/id-governance.png)
+  ![](../assets/global-state-of-dpi/id-governance.png)
 
   <figcaption>
   From the countries in rollout stage, 75% have specific regulation on digital IDs and 25% have no regulation or no specific data regarding digital ID regulation.
@@ -73,14 +73,14 @@ Data on digital payment systems looks for cross-domain payment systems, interban
 
 
 
-![](./global-state-of-dpi/payment-type-bubbles.png)
+![](../assets/global-state-of-dpi/payment-type-bubbles.png)
 
 Interbank payment systems are most the most prevalent real-time payment system, followed by cross-domain payment systems, mobile money and CBDCs. This includes payment systems that are both active or planned, with all types of operating models.
 
 <div class="grid lg:grid-cols-2 lg:-mx-30 items-end gap-x-4">
   <figure>
 
-  ![](./global-state-of-dpi/payment-pi.png)
+  ![](../assets/global-state-of-dpi/payment-pi.png)
 
   <figcaption>
   Of 249 payment systems studied across 210 countries, only 44 of them were cross-domain i.e. permitting participation across bank and non-bank participants.
@@ -88,7 +88,7 @@ Interbank payment systems are most the most prevalent real-time payment system, 
   </figure>
   <figure>
 
-  ![](./global-state-of-dpi/payment-pi-2.png)
+  ![](../assets/global-state-of-dpi/payment-pi-2.png)
 
   <figcaption>
   Of 210 countries, only a third had payment-system interoperability policies that incentivised cross-domain real-time transactions.
@@ -107,7 +107,7 @@ To analyse payment systems as DPI, a subset of 93 countries have been regarded a
 
 </aside>
 
-![](./global-state-of-dpi/payment-funnel.png)
+![](../assets/global-state-of-dpi/payment-funnel.png)
 
 
 
@@ -119,7 +119,7 @@ To analyse payment systems as DPI, a subset of 93 countries have been regarded a
 
 When scrutinising for information on the base technical architecture (such as X-Road, API Gateway), the capacity for semantic and technical interoperability (to enable integration with various data formats and technologies), and the availability of clear guidelines for enrolment (essential for scaling operations), 67 systems provide comprehensive information on these key aspects.
 
-![](./global-state-of-dpi/data-exchange-funnel.png)
+![](../assets/global-state-of-dpi/data-exchange-funnel.png)
 
 ---
 
@@ -131,7 +131,7 @@ Across the globe, digital identity, digital payment, and data exchange systems a
 ## Digital Identity
 
 **Eight out of ten high-income countries have implemented digital ID systems.** Of these, 49% have fully rolled them out, making evident how high income countries are likely to have advanced in their digital identity system deployments. However, the gap between high-income and middle-income countries is smaller than expected, with middle-income countries having rollout rates around 20%. This indicates that while income matters, other factors might influence the pace of digital ID deployment.
-![](./global-state-of-dpi/id-income-hist.png)
+![](../assets/global-state-of-dpi/id-income-hist.png)
 
 
 ## Digital payment
@@ -143,7 +143,7 @@ However, when comparing these against a subset of payment systems that are opera
 <div class="grid lg:grid-cols-2 lg:-mx-30 items-end gap-x-4">
   <figure>
 
-  ![](./global-state-of-dpi/payment-operators.png)
+  ![](../assets/global-state-of-dpi/payment-operators.png)
 
   <figcaption>
   Payment systems with diverse operator models
@@ -151,7 +151,7 @@ However, when comparing these against a subset of payment systems that are opera
   </figure>
   <figure>
 
-  ![](./global-state-of-dpi/payment-operators-2.png)
+  ![](../assets/global-state-of-dpi/payment-operators-2.png)
 
   <figcaption>
   Payment systems with central bank as operator
@@ -170,7 +170,7 @@ Ninety-seven 'Active' national and cross-sectoral data exchange systems were fou
 - **Other**: Ministries of Economy, Finance, Public Administration, or executive offices.
 
 
-![](./global-state-of-dpi/data-exchange-hist.png)
+![](../assets/global-state-of-dpi/data-exchange-hist.png)
 
 
 **Regardless of income classification, over half of these systems are found to be managed by units associated with Digital Government (e.g., digital transformation, digitisation, e-government)**. This trend indicates a global perspective that positions data exchange as a component of Digital Public Infrastructure (DPI), under the purview of specialised units, rather than as a matter for Telecommunication or Infrastructure agencies (29 countries), and even less so for Data Management or Statistics departments (6 countries).
@@ -188,7 +188,7 @@ Distinct regional patterns in system deployments are undeniably shaping the glob
 
 <figure>
 
-![](./global-state-of-dpi/id-distribution.png)
+![](../assets/global-state-of-dpi/id-distribution.png)
 
 <figcaption>Regional distribution of countries which claim to have digital ID and are in either planning, pilot or rollout stages.</figcaption>
 </figure>
@@ -199,7 +199,7 @@ Regional differences in the implementation of payments DPI are predictable. Econ
 
 <figure>
 
-![](./global-state-of-dpi/payment-regions.png)
+![](../assets/global-state-of-dpi/payment-regions.png)
 
 <figcaption>
 Proportion of payment systems across regions that are operated by a central bank and active.
@@ -211,7 +211,7 @@ Proportion of payment systems across regions that are operated by a central bank
 
 Of the 103 countries with an active data exchange system, **61 revealed information about the technical architecture their system leverages**. Among these, API Gateway, X-Road, and Enterprise Service Bus (ESB) are the most commonly reported technical architectures, with Unified eXchange Platform (UXP) by Cybernetica following. Notably, the X-Road model shows a strong presence in regions like Africa, Asia, and Europe, indicating its adoption in regions that prioritise secure, interoperable frameworks for cross-sectoral data sharing. Meanwhile, the API Gateway model is more commonly used in North America and Latin America, with some presence in Europe, reflecting a preference for customizable and flexible API management solutions in these areas.
 
-![](./global-state-of-dpi/data-exchange-tech.png)
+![](../assets/global-state-of-dpi/data-exchange-tech.png)
 
 In addition, some tailor-made architectures, as well as solutions from private companies, are found primarily in Europe, showing that certain countries are opting for bespoke or proprietary systems to meet their unique data exchange needs. Furthermore, many of the other architectures identified seem to exist but are not in operation yet, reflecting the evolving landscape of technical choices in these countries. 
 

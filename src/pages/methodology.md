@@ -31,7 +31,9 @@ The first layer of the framework is inductive. It proposes a set of normative **
 
 The framework identifies **six attributes**
 
-![Foundational Societal Functions](./methodology/foundational-societal-functions.webp)
+<!-- ![Foundational Societal Functions](./methodology/foundational-societal-functions.webp) -->
+
+![Foundational Societal Functions](../assets/methodology/foundational-societal-functions.webp)
 
 These attributes describe the qualities that define artefacts - like digital identity systems - as public (and not private) infrastructures. In addition to the four attributes, an essential condition to implementing DPI is the supportive ecosystem capacity and coordination capability. A final component for assessing DPI’s attributes is through the adoption of DPI, or the extent to which actors other than the DPI operator leverage the DPI.
 
@@ -57,7 +59,7 @@ Each foundational DPI (i.e. ID, payments, data exchange) has both unique and sha
 
 It’s worth mentioning that **not all indicators are equal.**
 
-![Indicators quadrant](./methodology/indicators.png)
+![Indicators quadrant](../assets/methodology/indicators.png)
 
 In version 1.0 of this framework, we present an exhaustive version of indicators for all attributes. These indicators however can be divided into subjective and objectively measurable (based on our data scoping methods, accessible here). We further divided indicators into two other categories: ‘must haves’ referred to indicators that more directly assessed the essence of an attribute, while ‘good to haves’ reflected those that did so more indirectly or partially. In an effort to both be more objective and make effective use of our limited resources, version 1.0 of our map collects data on only measurable must-have indicators.
 
