@@ -45,10 +45,10 @@ const dpiType = Astro.props.dpiType ?? 'id'
   <svg viewBox={`0 0 ${width} ${height()}`} style="display: block;">
     <defs>
       <path id="outline" d={path(outline)} />
-      <clipPath id="clip"><use xlink:href={`${new URL("#outline", Astro.url)}`} /></clipPath>
+      <clipPath id="clip"><use href="#outline" /></clipPath>
     </defs>
-    <g clip-path={`url(${new URL("#clip", Astro.url)})`}>
-      <use xlink:href={`${new URL("#outline", Astro.url)}" fill="#fff`} />
+    <g clip-path="url(#clip)">
+      <use href="#outline" fill="#fff" />
       <!-- <path d={path(graticule)} fill="none" class="stroke-zinc-100"></path> -->
       <g class="regions">
       { regions.map(region => (
