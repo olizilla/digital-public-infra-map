@@ -4,7 +4,8 @@ import Stat from '../components/Stat.astro'
 import PaymentIcon from '../components/icons/PaymentIcon.astro'
 import IdentityIcon from '../components/icons/IdentityIcon.astro'
 import DataIcon from '../components/icons/DataIcon.astro'
-import Map from '../components/Map.jsx'
+// import Map from '../components/Map.jsx'
+import Map from '../components/Map.astro'
 
 const { dpiType } = Astro.props
 ---
@@ -50,15 +51,16 @@ const { dpiType } = Astro.props
       </div>
     </section>
     <section class="flex-grow -mt-10 max-w-5xl">
-      <div class="aspect-4/3">
-        <Map dpiType={dpiType} client:load />
-        <h2 class="pb-8 text-center -mt-20 font-mono tracked-wider text-zinc-400 text-xs">
+      <!-- <div class="aspect-4/3"> -->
+        <!-- <Map dpiType={dpiType} client:load /> -->
+        <Map dpiType={dpiType} />
+        <h2 class="pb-8 text-center -mt-13 font-mono tracked-wider text-zinc-400 text-xs">
           { dpiType === 'id' && 'Digital ID System' }
           { dpiType === 'pay' && 'Payment System' }
           { dpiType === 'data' && 'Data Exchange System' }
           Implementation Status by Country
         </h2>
-      </div>
+      <!-- </div> -->
     </section>
   </div>
 </div>
