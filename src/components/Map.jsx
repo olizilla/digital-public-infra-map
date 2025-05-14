@@ -1,6 +1,4 @@
 import { ComposableMap, Geographies, Geography } from "react-simple-maps"
-import features from './features-mod.json'
-
 
 export const StatusMap = {
   'Active': 'oklch(0.925 0.084 155.995)',
@@ -20,11 +18,11 @@ function statusToColour (status) {
   return `${StatusMap[status]}`
 }
 
-export default function Map ({dpiType}) {
+export default function Map ({dpiType, geography="/features-mod.json"}) {
   return (
     <div className="map max-w-4xl mx-auto lg:-mt-2">
-      <ComposableMap className=''>
-        <Geographies geography={features}>
+      <ComposableMap className='Map'>
+        <Geographies geography={geography}>
           {({ geographies }) =>
             geographies.map((geo) => (
               <Geography stroke="#acc" key={geo.rsmKey} geography={geo} title={geo.properties.name} onClick={() => window.location.pathname = geo.properties.slug } style={{
