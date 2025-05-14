@@ -1,5 +1,6 @@
 ---
 layout: ../layouts/Standard.astro
+title: 'Contribute'
 ---
 
 # Contribute to the DPI Map

@@ -4,12 +4,13 @@ import Status from '../components/Status.astro'
 import Card from '../components/Card.astro'
 import DataIcon from '../components/icons/DataIcon.astro'
 import PayIcon from '../components/icons/PaymentIcon.astro'
+import IdentityIcon from '../components/icons/IdentityIcon.astro'
 import KeyLabel from '../components/KeyLabel.astro'
 import Footer from '../components/Footer.astro'
 import { DataExchanges, DataExchangeFlags, DataExchangeText } from '../DataExchange.js'
 import { IDs, IDFlags, IDText } from '../Identity.js'
 import { Payments, PaymentFlags, PaymentText } from '../Payment.js'
-import IdentityIcon from '../components/icons/IdentityIcon.astro'
+
 import slug from 'slug'
 
 export async function getStaticPaths () {
@@ -27,7 +28,7 @@ const id = IDs.find(x => x.Country === country) ?? IDs[0]
 
 ---
 
-<Layout>
+<Layout title={country}>
   <h1 class="text-lg text-center pt-10 pb-8 font-sans font-bold">
 		<a href='../' class="hover:underline">{country}</a>
 	</h1>
