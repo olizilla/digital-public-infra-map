@@ -22,6 +22,12 @@ function height () {
   return dy;
 }
 
+const NoData = [
+  'french-southern-territories',
+  'new-caledonia',
+  'western-sahara'
+]
+
 const StatusMap = {
   'Active': 'oklch(0.925 0.084 155.995)',
   'In Progress': 'oklch(0.924 0.12 95.746)',   //amber
@@ -40,10 +46,17 @@ function statusToColour (status) {
   return `${StatusMap[status]}`
 }
 
+function countryToLink (name) {
+  const path = slug(name)
+  return NoData.includes(path) ? '.' : `/${path}`
+}
+
 const dpiType = Astro.props.dpiType ?? 'id'
 const cropLeft = 80 // trim hard to see islands. data still available in card list view.
 const cropRight = 105
+
 ---
+
 <figure class="map mx-auto block">
   <svg viewBox={`${cropLeft} 0 ${width - cropRight} ${height()}`} class="bg-zinc-0 lg:py-4">
     <defs>
@@ -55,7 +68,7 @@ const cropRight = 105
       <!-- <path d={path(graticule)} fill="none" class="stroke-zinc-100"></path> -->
       <g class="regions">
       { regions.map(region => (
-        <a href={`/${slug(region.properties.name)}`}>
+        <a href={countryToLink(region.properties.name)}>
           <title>{region.properties.name}
 Status: {region.properties.status[dpiType]}</title>
           <path d={path(region)} fill={statusToColour(region.properties.status[dpiType])}></path>

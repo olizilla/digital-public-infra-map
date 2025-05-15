@@ -4,8 +4,8 @@ import slug from 'slug'
 import { writeFileSync } from 'node:fs'
 import features from '../public/features.json' with { type: 'json' }
 import id from '../public/data/2024-11-19.identity.json' with { type: 'json' }
-import data from '../public/pages/data/2024-11-19.exchange.json' with { type: 'json' }
-import pay from '../public/pages/data/2024-11-19.payment.json' with { type: 'json' }
+import data from '../public/data/2024-11-19.exchange.json' with { type: 'json' }
+import pay from '../public/data/2024-11-19.payment.json' with { type: 'json' }
 
 export function fixStatus(raw) {
   if (!raw) return 'Unknown'
@@ -20,6 +20,10 @@ const nameMap = new Map([
   ['United States', 'United States of America'],
   ['United Kingdom', 'United Kingdom of Great Britain and Northern Ireland'],
   ['Czechia', 'Czech Republic'],
+  ['Timor', 'Timor-Leste'],
+  ['Cape Verde', 'Cabo Verde'],
+  ['Micronesia (country)', 'Micronesia (Federated States of)'],
+  ['West Bank', 'State of Palestine'],
   // ['Western Sahara'] Morocco has claimed authority over Western Sahara since 1975, but the United Nations (UN) does not recognize Moroccan control, calling Western Sahara a “non-self-governing territory.”
 ])
 

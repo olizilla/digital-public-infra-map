@@ -4,10 +4,12 @@
   "version": "0.0.1",
   "scripts": {
     "start": "astro dev",
+    "test": "astro build && npm run links",
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "links": "npx linkinator ./dist --recurse --timeout 1000 --skip 'https' --verbosity error"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.2.6",
@@ -25,6 +27,7 @@
   "devDependencies": {
     "@types/d3-geo": "^3.1.0",
     "@types/slug": "^5.0.9",
-    "@types/topojson-client": "^3.1.5"
+    "@types/topojson-client": "^3.1.5",
+    "linkinator": "^6.1.2"
   }
 }

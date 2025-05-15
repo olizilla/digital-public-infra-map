@@ -14,17 +14,21 @@ import { Payments, PaymentFlags, PaymentText } from '../Payment.js'
 import slug from 'slug'
 
 export async function getStaticPaths () {
-	return IDs.map(({Country}) => ({ 
-		params: { country: slug(Country) },
-		props: { country: Country}
-	}))
+	const regionMap = new Map()
+	;[...Payments, ...IDs, ...DataExchanges].forEach(({Country}) => {
+		regionMap.set(Country, {
+			params: { country: slug(Country) },
+			props: { country: Country}
+		})
+	})
+	return [...regionMap.values()]
 }
 
 const country = Astro.props.country
 
-const data = DataExchanges.find(x => x.Country === country) ?? DataExchanges[0]
-const pay = Payments.find(x => x.Country === country) ?? IDs[0]
-const id = IDs.find(x => x.Country === country) ?? IDs[0]
+const data = DataExchanges.find(x => x.Country === country)
+const pay = Payments.find(x => x.Country === country)
+const id = IDs.find(x => x.Country === country)
 
 ---
 
@@ -32,90 +36,94 @@ const id = IDs.find(x => x.Country === country) ?? IDs[0]
   <h1 class="text-lg text-center pt-10 pb-8 font-sans font-bold">
 		<a href='../' class="hover:underline">{country}</a>
 	</h1>
-	<div class="grid grid-flow-row-dense grid-cols-1 md:grid-cols-3">
-    <Card>
-			<article>
-				<Status status={id['Status']} />
-				<div class="inline pl-1 text-zinc-600">Digital ID System</div>
-				<IdentityIcon class="inline float-right text-zinc-600"/>
-				<div class="pt-2 font-semibold">
-					{id['Name']}
-				</div>
-				<dl>
-					{ IDText.map(key => (
+	<div class="grid grid-cols-1 md:grid-cols-3 gap-y-8">
+		{ id && 
+			<Card>
+				<article>
+					<Status status={id['Status']} />
+					<div class="inline pl-1 text-zinc-600">Digital ID System</div>
+					<IdentityIcon class="inline float-right text-zinc-600"/>
+					<div class="pt-2 font-semibold">
+						{id['Name']}
+					</div>
+					<dl>
+						{ IDText.map(key => (
+							<dt><KeyLabel>{key}</KeyLabel></dt>
+							<dd>{id[key]}</dd>
+						))}
+					</dl>
+					<dl class="pt-4">
+						{ IDFlags.map(key => (
+							<div class="flex flex-row-reverse items-baseline justify-items-start ">
+								<dt class="grow pl-2	">
+									<KeyLabel>{key}</KeyLabel></dt>
+								<dd class="flex-none">
+									<Status status={id[key]} />
+								</dd>
+							</div>
+						))}
+					</dl>
+				</article>
+			</Card>
+		}
+		{ pay && 
+			<Card>
+				<article>
+					<Status status={pay['Status']} />
+					<div class="inline pl-1 text-zinc-600">Payment System</div>
+					<PayIcon class="inline float-right text-zinc-600"/>
+					<div class="pt-2 font-semibold">
+						{pay['Name']}
+					</div>
+					<dl>
+					{ PaymentText.map(key => (
 						<dt><KeyLabel>{key}</KeyLabel></dt>
-						<dd>{id[key]}</dd>
+						<dd>{pay[key]}</dd>
 					))}
-				</dl>
-				<dl class="pt-4">
-					{ IDFlags.map(key => (
-						<div class="flex flex-row-reverse items-baseline justify-items-start ">
-							<dt class="grow pl-2	">
-								<KeyLabel>{key}</KeyLabel></dt>
-							<dd class="flex-none">
-								<Status status={id[key]} />
-							</dd>
-						</div>
+					</dl>
+					<dl class="pt-4">
+						{ PaymentFlags.map(key => (
+							<div class="flex flex-row-reverse items-baseline justify-items-start ">
+								<dt class="grow pl-2	">
+									<KeyLabel>{key}</KeyLabel></dt>
+								<dd class="flex-none">
+									<Status status={pay[key]} />
+								</dd>
+							</div>
+						))}
+					</dl>
+				</article>
+			</Card>
+		}
+		{ data && 
+			<Card>
+				<article>
+					<Status status={data['Status']} />
+					<div class="inline pl-1 text-zinc-600">Data Exchange System</div>
+					<DataIcon class="inline float-right text-zinc-600"/>
+					<div class="pt-2 font-semibold">
+						{data['Name']}
+					</div>
+					<dl>
+					{ DataExchangeText.map(key => (
+						<dt><KeyLabel>{key}</KeyLabel></dt>
+						<dd>{data[key]}</dd>
 					))}
-				</dl>
-			</article>
-		</Card>
-
-		<Card>
-			<article>
-				<Status status={pay['Status']} />
-				<div class="inline pl-1 text-zinc-600">Payment System</div>
-				<PayIcon class="inline float-right text-zinc-600"/>
-				<div class="pt-2 font-semibold">
-					{pay['Name']}
-				</div>
-				<dl>
-				{ PaymentText.map(key => (
-					<dt><KeyLabel>{key}</KeyLabel></dt>
-					<dd>{pay[key]}</dd>
-				))}
-				</dl>
-				<dl class="pt-4">
-					{ PaymentFlags.map(key => (
-						<div class="flex flex-row-reverse items-baseline justify-items-start ">
-							<dt class="grow pl-2	">
-								<KeyLabel>{key}</KeyLabel></dt>
-							<dd class="flex-none">
-								<Status status={pay[key]} />
-							</dd>
-						</div>
-					))}
-				</dl>
-			</article>
-		</Card>
-
-		<Card>
-			<article>
-				<Status status={data['Status']} />
-				<div class="inline pl-1 text-zinc-600">Data Exchange System</div>
-				<DataIcon class="inline float-right text-zinc-600"/>
-				<div class="pt-2 font-semibold">
-					{data['Name']}
-				</div>
-				<dl>
-				{ DataExchangeText.map(key => (
-					<dt><KeyLabel>{key}</KeyLabel></dt>
-					<dd>{data[key]}</dd>
-				))}
-				</dl>
-				<dl class="pt-4">
-					{ DataExchangeFlags.map(key => (
-						<div class="flex flex-row-reverse items-baseline justify-items-start ">
-							<dt class="grow pl-2	">
-								<KeyLabel>{key}</KeyLabel></dt>
-							<dd class="flex-none">
-								<Status status={data[key]} />
-							</dd>
-						</div>
-					))}
-				</dl>
-			</article>
-		</Card>
+					</dl>
+					<dl class="pt-4">
+						{ DataExchangeFlags.map(key => (
+							<div class="flex flex-row-reverse items-baseline justify-items-start ">
+								<dt class="grow pl-2	">
+									<KeyLabel>{key}</KeyLabel></dt>
+								<dd class="flex-none">
+									<Status status={data[key]} />
+								</dd>
+							</div>
+						))}
+					</dl>
+				</article>
+			</Card>
+		}
 	</div>
 	<Footer />
 </Layout>
