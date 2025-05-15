@@ -17,10 +17,10 @@
   @apply rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-semibold mx-2 px-3 py-3 no-underline whitespace-nowrap;
 }
 
-.regions path {
+.map .regions path {
   stroke:#acc;
-  stroke-width: 0.5px;
 }
-.regions path:hover {
+
+.map .regions path:hover {
   fill:#8af;
 }
