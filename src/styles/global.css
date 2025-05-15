@@ -16,3 +16,11 @@
 .button-blue {
   @apply rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-semibold mx-2 px-3 py-3 no-underline whitespace-nowrap;
 }
+
+.map .regions path {
+  stroke:#acc;
+}
+
+.map .regions path:hover {
+  fill:#8af;
+}
