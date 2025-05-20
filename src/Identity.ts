@@ -23,7 +23,7 @@ export const IDs = json.map(x => {
     "Legally binding redress mechanism": x["Legally binding redress mechanism\n"],
     "Terms of data storage and sharing available": x["Personal data collection, storage and sharing terms publicly available\n"],
     "Data Protection Act exists": x["National Data Protection Act exists"],    
-    "Identity act sets up procedural rules": x["Identity act or secondary policy sets up procedural rules for digital ID"],
+    "Procedural rules for data management": x["Identity act or secondary policy sets up procedural rules for digital ID"],
     "Data leak disclosure process exists": x["Processes to notify individuals about personal data leaks in place\n"],
     "Data handling terms exist": x["Data handling terms"],
     "Identity act clarifies relationship with feeder documents": x["Identity act clarifies relationship with feeder documents"],
