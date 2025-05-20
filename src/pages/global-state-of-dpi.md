@@ -54,7 +54,7 @@ Insights on the institutional arrangements that house digital identity programs 
   ![](../assets/global-state-of-dpi/id-governance.png)
 
   <figcaption>
-  From the countries in rollout stage, 75% have specific regulation on digital IDs and 25% have no regulation or no specific data regarding digital ID regulation.
+  Governance is dominates by ID or registration authorities, followed by Digital Governance bodies. Fewer countries (4%), put their digital identity systems under the umbrella of Economic Affairs institutions.
   </figcaption>
   </figure>
 </div>
