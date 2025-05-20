@@ -39,7 +39,7 @@ export const IDFlags = [
   'Regulation for digital ID',
   'ID or Civil Registry Act',
   'Identity act codifies legal status',
-  'Identity act sets up procedural rules',
+  'Procedural rules for data management',
   'Court oversight',
   'Operators accountable to authority',
   'Legally binding redress mechanism',
