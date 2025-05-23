@@ -24,3 +24,7 @@
 .map .regions path:hover {
   fill:#8af;
 }
+
+.release-table thead th:first-of-type {
+  min-width: 80px;
+}
