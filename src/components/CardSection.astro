@@ -18,26 +18,31 @@
 </section>
 
 <script>
-  const filter = document.querySelector("#filter");
-  const cards = document.querySelectorAll("#cards .card");
+  const collator = new Intl.Collator("en", {sensitivity: "base"})
+  const filter = document.querySelector("#filter")
+  const cards = document.querySelectorAll("#cards .card")
   const cardsByTitle = initCardsMap()
 
   function initCardsMap() {
     const cardsByTitle = new Map()
     for (const card of cards) {
-      const title = card.querySelector("header a").innerText.toLowerCase();
-      cardsByTitle.set(title, card)
+      const title = card.querySelector("header a").innerText
+      const values = cardsByTitle.get(title) ?? [card]
+      values.push(card)
+      cardsByTitle.set(title, values)
     }
     return cardsByTitle
   }
 
   function filterCards (search) {
     for (const key of cardsByTitle.keys()) {
-      const card = cardsByTitle.get(key);
-      if (key.startsWith(search.toLowerCase())) {
-        card.setAttribute("aria-hidden", "false");
-      } else {
-        card.setAttribute("aria-hidden", "true");
+      const cards = cardsByTitle.get(key)
+      for (const card of cards) {
+        if (collator.compare(search, key.substring(0, search.length)) === 0) {
+        card.setAttribute("aria-hidden", "false")
+        } else {
+          card.setAttribute("aria-hidden", "true")
+        }
       }
     }
   }
@@ -50,11 +55,11 @@
     const s = event.target.value
     if (s.length === 0) {
       for (const card of cards) {
-        card.removeAttribute("aria-hidden");
+        card.removeAttribute("aria-hidden")
       }
     } else {
       filterCards(s)
     }
-  });
+  })
 
 </script>
