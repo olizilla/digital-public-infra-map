@@ -25,6 +25,23 @@
   fill:#8af;
 }
 
+
+.card {
+  @apply text-sm rounded-lg shadow border border-teal-50 px-3 py-2 m-2 outline-2 outline-transparent;
+}
+.card.active {
+  @apply outline-blue-300;
+}
+.card[aria-hidden="false"] {
+  @apply outline-blue-300;
+}
+.card[aria-hidden="true"] {
+  display: none;
+}
+#cards .card {
+  @apply bg-white;
+}
+
 .release-table thead th:first-of-type {
   min-width: 80px;
 }

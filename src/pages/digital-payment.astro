@@ -8,6 +8,7 @@ import PaymentIcon from '../components/icons/PaymentIcon.astro'
 import KeyLabel from '../components/KeyLabel.astro'
 import Footer from '../components/Footer.astro'
 import slug from 'slug'
+import CardSection from '../components/CardSection.astro'
 
 const statusMap = {
 	'Active': 4,
@@ -35,17 +36,13 @@ const tbc = items.filter((row) => row['Status'] === 'Unknown')
     </div><div title="Plan" class="bg-blue-200 h-10 inline-block" style={{width: `${(plan.length / items.length) * 100}%` }}>
     </div><div title="Active" class="bg-green-200 h-10 inline-block" style={{width: `${(active.length / items.length) * 100}%` }}></div>
   </div>
-	<section>
-		<h2 class="pl-6 pt-2 pb-1 font-mono text-xs">
-			Digital Payment Systems
-		</h2>
-		<div class="grid grid-flow-row-dense grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-stretch place-items-start">
+	<CardSection title="Digital Payment Systems">
 		{ items.map(data => (
 			<Card>
 				<article>
 					<header class="text-zinc-600 pb-2">
 						<Status status={data['Status']} />
-						<a class="ml-1 hover:underline" href={`../${slug(data.Country)}`}>{data.Country}</a>
+						<a class="ml-1 underline" href={`../${slug(data.Country)}`}>{data.Country}</a>
 						<PaymentIcon class="inline float-right text-zinc-400"/>
 					</header>
 					<details>
@@ -81,6 +78,6 @@ const tbc = items.filter((row) => row['Status'] === 'Unknown')
 				</article>
 			</Card>
 		))}
-		</div>
+	</CardSection>
 	<Footer />
 </Layout>

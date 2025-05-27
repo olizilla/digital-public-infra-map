@@ -18,19 +18,19 @@ const { dpiType } = Astro.props
         </p>
       </div>
       <nav class="grid font-mono pt-2 pb-8 max-w-md mx-auto" >
-        <Card isActive={Astro.url.pathname === '/'}>
+        <Card class="bg-zinc-50" isActive={Astro.url.pathname === '/'}>
           <a class="flex content-center justify-between" href="/">
             <Stat number={57} unit="countries claim a">Digital ID System</Stat>
             <IdentityIcon class="text-zinc-500" />
           </a>
         </Card>
-        <Card isActive={Astro.url.pathname === '/digital-payment/'}>
+        <Card class="bg-zinc-50" isActive={Astro.url.pathname === '/digital-payment/'}>
           <a class="flex content-center justify-between" href="/digital-payment/">
             <Stat number={93} unit="countries claim a">Digital Payment System</Stat>
             <PaymentIcon class="text-zinc-500" />
           </a>
         </Card>
-        <Card isActive={Astro.url.pathname === '/data-exchange/'}>
+        <Card class="bg-zinc-50" isActive={Astro.url.pathname === '/data-exchange/'}>
           <a class="flex content-center justify-between" href="/data-exchange/">
             <Stat number={103} unit="countries claim a">Data Exchange System</Stat>
             <DataIcon class="text-zinc-500" />
@@ -49,7 +49,7 @@ const { dpiType } = Astro.props
         </p>
       </div>
     </section>
-    <section class="flex-grow max-w-5xl pb-10 lg:pl-4">
+    <section class="flex-grow max-w-7xl pb-10 lg:pl-4 xl:mx-auto">
       <Map dpiType={dpiType} />
     </section>
   </div>

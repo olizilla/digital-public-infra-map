@@ -12,6 +12,7 @@ import { IDs, IDFlags, IDText } from '../Identity.js'
 import { Payments, PaymentFlags, PaymentText } from '../Payment.js'
 
 import slug from 'slug'
+import MapAndTabs from '../components/MapAndTabs.astro'
 
 export async function getStaticPaths () {
 	const regionMap = new Map()
@@ -33,12 +34,13 @@ const id = IDs.find(x => x.Country === country)
 ---
 
 <Layout title={country}>
+	<!-- <MapAndTabs countryCount={IDs.length} dpiType="id" /> -->
   <h1 class="text-lg text-center pt-10 pb-8 font-sans font-bold">
 		<a href='../' class="hover:underline">{country}</a>
 	</h1>
 	<div class="grid grid-cols-1 md:grid-cols-3 gap-y-8">
 		{ id && 
-			<Card>
+			<Card class="bg-zinc-50">
 				<article>
 					<Status status={id['Status']} />
 					<div class="inline pl-1 text-zinc-600">Digital ID System</div>
@@ -67,7 +69,7 @@ const id = IDs.find(x => x.Country === country)
 			</Card>
 		}
 		{ pay && 
-			<Card>
+			<Card class="bg-zinc-50">
 				<article>
 					<Status status={pay['Status']} />
 					<div class="inline pl-1 text-zinc-600">Payment System</div>
@@ -96,7 +98,7 @@ const id = IDs.find(x => x.Country === country)
 			</Card>
 		}
 		{ data && 
-			<Card>
+			<Card class="bg-zinc-50">
 				<article>
 					<Status status={data['Status']} />
 					<div class="inline pl-1 text-zinc-600">Data Exchange System</div>
@@ -125,5 +127,10 @@ const id = IDs.find(x => x.Country === country)
 			</Card>
 		}
 	</div>
-	<Footer />
+	<section class="max-w-xl mx-auto my-10 text-center">
+		<aside class="prose ">
+			<p class="">🔍 Found an error or something missing? <a href="/help">Let us know</a>.</p>
+			<p>📧 <a href="https://forms.gle/dhoXGR9M6fVAoDKt7">Sign up here</a> for email updates about the DPI map.</p>
+		</aside>
+	</section>
 </Layout>
