@@ -3,7 +3,11 @@ import '/src/styles/global.css'
 import Header from '../components/Header.astro';
 
 const {title} = Astro.props
-const fullTitle = title ? `${title} | DPI Map` : 'DPI Map | UCL IIPP'
+const fullTitle = title ? `${title} - DPI Map` : 'Digital Public Infrastructure Map - IIPP UCL'
+const desc = 'The first global investigation of digital public infrastructure.'
+const pageUrl = Astro.url
+const rootUrl = Astro.site
+const imgUrl = new URL('/dpi-map.png', rootUrl)
 ---
 
 <!doctype html>
@@ -13,6 +17,18 @@ const fullTitle = title ? `${title} | DPI Map` : 'DPI Map | UCL IIPP'
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🗺️</text></svg>">
 		<title>{fullTitle}</title>
+		<meta name="title" content={fullTitle} />
+		<meta name="description" content={desc} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={pageUrl} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={desc} />
+		<meta property="og:image" content={imgUrl} />
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={pageUrl} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={desc} />
+		<meta property="twitter:image" content={imgUrl} />
 	</head>
 	<body>
 		<Header />
