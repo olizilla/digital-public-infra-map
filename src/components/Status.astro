@@ -17,7 +17,7 @@ const {status = '', title = 'Implementation status'} = Astro.props
 {status === 'Plan' &&
   <span title={title} class="inline border border-blue-300 bg-blue-200 px-1 text-xs rounded">{status}</span> }
 {status === 'Unknown' &&
-  <span title={title} class="inline border border-gray-300 bg-gray-200 px-1 text-xs rounded">TBC</span> }
+  <span title={title} class="inline border border-gray-300 bg-gray-200 px-1 text-xs rounded" style="width:33px">N/A</span> }
 
 {status === 'Yes' &&
   <span class="text-center inline-block border border-green-300 bg-green-200 px-1 text-xs rounded" style="width:33px">YES</span> }

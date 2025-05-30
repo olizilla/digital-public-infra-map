@@ -41,6 +41,9 @@
 #cards .card {
   @apply bg-white;
 }
+#cards .card:hover {
+  @apply outline-blue-200;
+}
 
 .release-table thead th:first-of-type {
   min-width: 80px;
