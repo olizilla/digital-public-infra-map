@@ -51,7 +51,6 @@ export const PaymentText = [
   'Types of transactions',
   'Type of settlement system',
   'National or Regional',
-  'Notes'
 ]
 
 export const PaymentHeadlines = PaymentText.slice(0, 2)
