@@ -1,17 +1,11 @@
-import json from '../public/data/2024-11-19.payment.json'
-
-export function fixStatus(raw: string) {
-  if (!raw) return 'Unknown'
-  if (raw.match(/Operating at scale/i)) return 'Active'
-  if (raw.match(/Planned/i)) return 'Plan'
-  return 'Unknown'
-}
+import json from '../public/data/2025-03-31/2025-03-31-payment.json'
+import { normaliseStatus, statusSort } from './Status'
 
 export const Payments = json.map(x => {
   return {
     'Country': x['Country/ Region'],
     'Name': x['Payment system name'],
-    'Status': fixStatus(x['Status of payment system implementation']),
+    'Status': normaliseStatus(x['Status of payment system implementation']),
     'Active real-time payment system': x['Active real-time payment system present'],
     'Payment system type': x['Payment system type'],
     'National or Regional': x['National / Regional'],
@@ -32,7 +26,7 @@ export const Payments = json.map(x => {
     "QR code transactions": x["QR code based transactions"],
     "Notes": x["Notes"]
   }
-})
+}).sort(statusSort)
 
 export const PaymentFlags = [
   'Active real-time payment system',

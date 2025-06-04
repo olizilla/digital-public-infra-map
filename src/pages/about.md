@@ -13,7 +13,7 @@ The **DPI Mapping project** aims to advance our understanding of digital public 
 
 <div class="text-center py-4">
   <a href="https://forms.gle/dhoXGR9M6fVAoDKt7" class="button-blue">
-    Sign up to the news letter
+    Sign up to the newsletter
   </a>
 </div>
 

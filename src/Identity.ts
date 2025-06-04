@@ -1,15 +1,15 @@
-import json from '../public/data/2024-11-19.identity.json'
+import json from '../public/data/2025-03-31/2025-03-31-identity.json'
+import { normaliseStatus, statusSort } from './Status'
 
 export const IDs = json.map(x => {
   return {
     'Country': x['Country'],
-    "Region": x['Region'],
     "Income classification": "Low-income countries",
     'Claim digital ID': x['Claim of digital (or electronic) ID'],
     'Name': x['Digital ID name'],
     'URL': x['URL'],
     "Uses biometrics": x["Collects or uses biometric data"],
-    'Status': x['Status of implementation'],
+    'Status': normaliseStatus(x['Status of implementation']),
     "ID or Civil Registry Act": x["ID or Civil Registry Act"],
     "Regulation for digital ID": x["Regulation for digital ID"],
     "Enables authentication": x["Digital authentication function"],
@@ -17,7 +17,7 @@ export const IDs = json.map(x => {
     "Enables authentication via government portal": x["Authentication possible through a government portal"],
     "Identity act codifies legal status": x["Identity act codifies digital ID legal status\n"],
     "Governing entity": x["Governing entity"],
-    "Governance structure": x["Institutional governance structure"],
+    "Type of governing entity": x["Type of governing entity"],
     "Court oversight": x["Court oversight on digital ID system"],
     "Operators accountable to authority": x["Accountability of ID executors to authority"],
     "Legally binding redress mechanism": x["Legally binding redress mechanism\n"],
@@ -25,14 +25,12 @@ export const IDs = json.map(x => {
     "Data Protection Act exists": x["National Data Protection Act exists"],    
     "Procedural rules for data management": x["Identity act or secondary policy sets up procedural rules for digital ID"],
     "Data leak disclosure process exists": x["Processes to notify individuals about personal data leaks in place\n"],
-    "Data handling terms exist": x["Data handling terms"],
+    "Data handling terms exist": x["ID data handling terms"],
     "Identity act clarifies relationship with feeder documents": x["Identity act clarifies relationship with feeder documents"],
-    "Used by at least one external entity": x["Use of digital ID infrastructure by at least one external entity\n"],
     "Two or more sectoral use cases enabled": x["Two or more sectoral use cases enabled"],
-    "Tech support organizations": x["Technical support organizations identified\n"],
     "Notes": x["Notes"]
   }
-})
+}).sort(statusSort)
 
 export const IDFlags = [
   'Claim digital ID',
@@ -42,7 +40,6 @@ export const IDFlags = [
   'Procedural rules for data management',
   'Court oversight',
   'Operators accountable to authority',
-  'Legally binding redress mechanism',
   'Terms of data storage and sharing available',
   'Data Protection Act exists',
   'Data leak disclosure process exists',
@@ -52,14 +49,13 @@ export const IDFlags = [
   'Enables authentication',
   'Enables KYC',
   'Enables authentication via government portal',
-  'Used by at least one external entity',
   'Two or more sectoral use cases enabled',
 ]
 
 export const IDText = [
   'Governing entity',
-  'Governance structure',
-  'Tech support organizations'
+  'Type of governing entity',
+  'Legally binding redress mechanism',
 ]
 
 export const IDTextHeadlines = IDText.slice(0, 2)

@@ -1,0 +1,15 @@
+---
+import { statusToClass } from "../Status";
+
+const { items } = Astro.props
+
+const active = items.filter((row) => row['Status'] === 'Active')
+const pilot = items.filter((row) => row['Status'] === 'Pilot')
+const na = items.filter((row) => row['Status'] === 'NA')
+---
+
+<div class="text-center align-middle text-mono text-sm">
+  <div title="NA" class:list={['h-10', 'inline-block', statusToClass('NA')]} style={{width: `${(na.length / items.length) * 100}%` }}>
+  </div><div title="Pilot" class:list={['h-10', 'inline-block', statusToClass('Pilot')]} style={{width: `${(pilot.length / items.length) * 100}%` }}>
+  </div><div title="Active" class:list={['h-10', 'inline-block', statusToClass('Active')]} style={{width: `${(active.length / items.length) * 100}%` }}></div>
+</div>

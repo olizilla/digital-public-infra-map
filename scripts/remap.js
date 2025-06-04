@@ -3,16 +3,10 @@
 import slug from 'slug'
 import { writeFileSync } from 'node:fs'
 import features from '../public/features.json' with { type: 'json' }
-import id from '../public/data/2024-11-19.identity.json' with { type: 'json' }
-import data from '../public/data/2024-11-19.exchange.json' with { type: 'json' }
-import pay from '../public/data/2024-11-19.payment.json' with { type: 'json' }
-
-export function fixStatus(raw) {
-  if (!raw) return 'Unknown'
-  if (raw.match(/Operating at scale/i)) return 'Active'
-  if (raw.match(/Planned/i)) return 'Plan'
-  return 'Unknown'
-}
+import id from '../public/data/2025-03-31/2025-03-31-identity.json' with { type: 'json' }
+import data from '../public/data/2025-03-31/2025-03-31-exchange.json' with { type: 'json' }
+import pay from '../public/data/2025-03-31/2025-03-31-payment.json' with { type: 'json' }
+import { normaliseStatus } from '../src/Status.js'
 
 const nameMap = new Map([
   ['Democratic Republic of Congo', 'Congo'],
@@ -31,21 +25,21 @@ const idMap = new Map()
 id.forEach(row => {
   const country = row['Country']
   const status = row['Status of implementation']
-  idMap.set(country, status)
+  idMap.set(country, normaliseStatus(status))
 })
 
 const payMap = new Map()
 pay.forEach(row => {
   const country = row['Country/ Region']
-  const status = fixStatus(row['Status of payment system implementation'])
-  payMap.set(country, status)
+  const status = row['Status of payment system implementation']
+  payMap.set(country, normaliseStatus(status))
 })
 
 const dataMap = new Map()
 data.forEach(row => {
   const country = row['Country']
   const status = row['Status of implementation']
-  dataMap.set(country, status)
+  dataMap.set(country, normaliseStatus(status))
 })
 
 const { geometries } = features.objects.world

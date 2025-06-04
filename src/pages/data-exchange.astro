@@ -9,39 +9,13 @@ import KeyLabel from '../components/KeyLabel.astro'
 import Footer from '../components/Footer.astro'
 import slug from 'slug'
 import CardSection from '../components/CardSection.astro'
+import StatusBar from '../components/StatusBar.astro'
 
-const statusMap = {
-	'Active': 4,
-  'Inactive': 3.5,
-	'In Progress': 3,
-	'Proposed': 2,
-	'Unknown': 1
-}
-function statusCode (s: string) {
-	return statusMap[s] ?? 0
-}
-const items = [...DataExchanges].sort((a, b) => {
-	const diff1 = statusCode(b['Status']) - statusCode(a['Status'])
-	if (diff1 !== 0) return diff1
-	return a.Country.localeCompare(b.Country)
-})
-const active = items.filter((row) => row['Status'] === 'Active')
-const ded = items.filter((row) => row['Status'] === 'Inactive')
-const wip = items.filter((row) => row['Status'] === 'In Progress')
-const plan = items.filter((row) => row['Status'] === 'Proposed')
-const tbc = items.filter((row) => row['Status'] === 'Unknown')
-
+const items = DataExchanges
 ---
-
 <Layout>
 	<MapAndTabs countryCount={items.length} dpiType="data" />
-  <div class="text-center align-middle text-mono text-sm">
-    <div title="TBC" class="bg-gray-200 h-10 inline-block" style={{width: `${(tbc.length / items.length) * 100}%` }}>
-    </div><div title="Plan" class="bg-blue-200 h-10 inline-block" style={{width: `${(plan.length / items.length) * 100}%` }}>
-    </div><div title="WIP" class="bg-amber-200 h-10 inline-block" style={{width: `${(wip.length / items.length) * 100}%` }}>
-    </div><div title="Inactive" class="bg-red-200 h-10 inline-block" style={{width: `${(ded.length / items.length) * 100}%` }}>
-    </div><div title="Active" class="bg-green-200 h-10 inline-block" style={{width: `${(active.length / items.length) * 100}%` }}></div>
-  </div>
+	<StatusBar items={items} />
 	<CardSection title="Data Exchange Systems">
 		{ items.map(data => (
 			<Card>

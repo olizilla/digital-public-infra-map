@@ -1,23 +1,17 @@
 ---
-const {status = '', title = 'Implementation status'} = Astro.props
+import { normaliseStatus } from "../Status"
+
+let {status = '', title = 'Implementation status'} = Astro.props
+
+status = normaliseStatus(status)
 ---
 {status === 'Active' &&
   <span title={title} class="inline border border-green-300 bg-green-200 px-1 text-xs rounded">{status}</span> }
-{status === 'In Progress' &&
-  <span title={title} class="inline border border-amber-300 bg-amber-200 px-1 text-xs rounded">WIP</span> }
-{status === 'Proposed' &&
-  <span title={title} class="inline border border-blue-300 bg-blue-200 px-1 text-xs rounded">Plan</span> }
-{status === 'Inactive' &&
-  <span title={title} class="inline border border-blue-200 bg-blue-100 px-1 text-xs rounded">Inactive</span> }
-
-{status === 'Rollout' &&
-  <span title={title} class="inline border border-green-300 bg-green-200 px-1 text-xs rounded">{status}</span> }
 {status === 'Pilot' &&
-  <span title={title} class="inline border border-amber-300 bg-amber-200 px-1 text-xs rounded">{status}</span>}
-{status === 'Plan' &&
-  <span title={title} class="inline border border-blue-300 bg-blue-200 px-1 text-xs rounded">{status}</span> }
-{status === 'Unknown' &&
-  <span title={title} class="inline border border-gray-300 bg-gray-200 px-1 text-xs rounded" style="width:33px">N/A</span> }
+  <span title={title} class="inline border border-amber-300 bg-amber-200 px-1 text-xs rounded">{status}</span> }
+{status === 'NA' &&
+  <span title={title} class="text-center inline-block border border-gray-300 bg-gray-200 px-1 text-xs rounded" style="width:33px">NA</span> }
+
 
 {status === 'Yes' &&
   <span class="text-center inline-block border border-green-300 bg-green-200 px-1 text-xs rounded" style="width:33px">YES</span> }

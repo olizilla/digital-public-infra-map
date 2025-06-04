@@ -1,47 +1,47 @@
-import dataJSON from '../public/data/2024-11-19.exchange.json'
+import dataJSON from '../public/data/2025-03-31/2025-03-31-exchange.json'
+import { normaliseStatus, statusSort } from './Status'
 
 export const DataExchanges = dataJSON.map(x => {
   return {
     'Country': x['Country'],
     'Name': x['Data exchange system name'],
-    'Status': x['Status of implementation'],
+    'Status': normaliseStatus(x['Status of implementation']),
     'National or Regional': x['National/ Regional'],
     "Sector-specific or Cross-sectoral": x["Sector-specific/ Cross-sectoral"],
     "Semantic interoperability": x["Semantic interoperability"],
-    "Real-time": x["Data is shared in (near) real-time through the Data Exchange"],
-    "Scalable architecture": x["Technology architecture of the DES is scalable"],
-    "Governing Entity": x["Public-interest entity governing the development and operations of the Data Exchange"],
+    "Real-time sharing": x["(Near) real-time sharing"],
+    "Scalable architecture": x["Scalable technology architecture"],
+    "Governing Entity": x["Governing entity"],
     "Ownership": x["Ownership"],
     "Onboarding docs": "Unknown",
-    "Allowed users": x["Types of entities that can participate  in the data exchange"],
-    "Auditable": x["The system provides mechanisms to audit data exchanges"],
-    "Procedural rules established": x["Procedural rules for the Data Exchange (access restrictions, protections, etc.) are established"],
+    "Permitted participants": x["Permitted participants"],
+    "Auditable": x["Audit mechanism"],
+    "Procedural rules for data mgmt": x["Procedural rules for data mgmt."],
     "Coordination unit": x["Coordination unit"],
-    "Public entity users": x["Public entities other than the Data Exchange operator use the system"],
-    "Impact metrics exist": x["Impact metrics of the Data Exchange exist"],
-    "Additional Info": x["0 Additional Information"],
-    "Notes": x["0 Notes"],
+    "Enrolment and participation information": x["Enrolment and participation information"],
+    "Impact metrics": x["Impact metrics"],
+    "Notes": x["Notes"],
   }
-})
+}).sort(statusSort)
 
 export const DataExchangeFlags = [
   'Semantic interoperability',
-  'Real-time',
+  'Real-time sharing',
   'Scalable architecture',
   'Onboarding docs',
   'Auditable',
-  'Procedural rules established',
-  'Public entity users',
-  'Impact metrics exist',
+  'Procedural rules for data mgmt',
+  'Enrolment and participation information',
+  'Impact metrics',
 ]
 
 export const DataExchangeText = [
   'Governing Entity',
-  'Allowed users',
+  'Coordination unit',
+  'Permitted participants',
   'Ownership',
   'National or Regional',
-  'Sector-specific or Cross-sectoral',
-  'Coordination unit',
+  'Sector-specific or Cross-sectoral'
 ]
 
 export const DataExchangeHeadlines = DataExchangeText.slice(0, 2)

@@ -4,7 +4,8 @@ import features from '../../public/features-mod.json'
 import topojson from 'topojson-client'
 import * as d3 from 'd3-geo'
 import * as d3p from 'd3-geo-projection'
-import slug from 'slug'
+import slug from 'slug' 
+import { statusToClass } from '../Status'
 
 // const regions = topojson.feature(countries, "countries").features
 const regions = topojson.feature(features, "world").features
@@ -28,31 +29,13 @@ const NoData = [
   'western-sahara'
 ]
 
-const StatusMap = {
-  'Active': 'oklch(0.925 0.084 155.995)',
-  'In Progress': 'oklch(0.924 0.12 95.746)',   //amber
-  'Proposed': 'oklch(0.882 0.059 254.128)',    // blue
-  'Inactive': 'oklch(0.882 0.059 254.128)',    // also blue
-
-  'Rollout': 'oklch(0.925 0.084 155.995)',     // green
-  'Pilot': 'oklch(0.924 0.12 95.746)',
-  'Plan': 'oklch(0.882 0.059 254.128)',
-
-  'Unknown': '#E0DFDD',
-  'NA': '#E0DFDD'
-}
-
-function statusToColour (status) {
-  return `${StatusMap[status]}`
-}
-
 function countryToLink (name) {
   const path = slug(name)
   return NoData.includes(path) ? '.' : `/${path}`
 }
 
 const dpiType = Astro.props.dpiType ?? 'id'
-const cropLeft = 80 // trim hard to see islands. data still available in card list view.
+const cropLeft = 80 // trim hard-to-see islands. data still available in card list view.
 const cropRight = 105
 
 ---
@@ -71,7 +54,7 @@ const cropRight = 105
         <a href={countryToLink(region.properties.name)}>
           <title>{region.properties.name}
 Status: {region.properties.status[dpiType]}</title>
-          <path d={path(region)} fill={statusToColour(region.properties.status[dpiType])}></path>
+          <path d={path(region)} class={statusToClass(region.properties.status[dpiType])}></path>
         </a>
       ))}
       </g>
