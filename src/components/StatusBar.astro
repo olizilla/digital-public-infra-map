@@ -6,10 +6,35 @@ const { items } = Astro.props
 const active = items.filter((row) => row['Status'] === 'Active')
 const pilot = items.filter((row) => row['Status'] === 'Pilot')
 const na = items.filter((row) => row['Status'] === 'NA')
+
+function percent (set: Object[], all = items) {
+  return (set.length / items.length) * 100
+}
+
+function percentLabel (set) {
+  return Math.round(percent(set)) + '%'
+}
+
+
 ---
 
-<div class="text-center align-middle text-mono text-sm">
-  <div title="NA" class:list={['h-10', 'inline-block', statusToClass('NA')]} style={{width: `${(na.length / items.length) * 100}%` }}>
-  </div><div title="Pilot" class:list={['h-10', 'inline-block', statusToClass('Pilot')]} style={{width: `${(pilot.length / items.length) * 100}%` }}>
-  </div><div title="Active" class:list={['h-10', 'inline-block', statusToClass('Active')]} style={{width: `${(active.length / items.length) * 100}%` }}></div>
+<div class="flex font-sans text-xs font-normal tracking-wider text-zinc-700">
+  <div
+    title="Active"
+    style={{width: `${percent(active).toFixed(2)}%` }}
+    class:list={['flex', 'items-center','justify-end', 'h-10', statusToClass('Active')]}>
+    <span class="px-4">Active</span>
+  </div>
+  <div 
+    title="Pilot"
+    style={{width: `${percent(pilot).toFixed(2)}%` }}
+    class:list={['flex', 'items-center','justify-end', 'h-10', statusToClass('Pilot')]}>
+    <span class="px-4">Pilot</span>
+  </div>
+  <div
+    title="NA" 
+    style={{width: `${percent(na).toFixed(2)}%` }}
+    class:list={['flex', 'items-center','justify-end', 'h-10', statusToClass('NA')]}>
+    <span class="px-4">NA</span>
+  </div>
 </div>

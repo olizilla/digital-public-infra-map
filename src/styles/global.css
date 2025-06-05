@@ -21,12 +21,21 @@
   stroke:#acc;
 }
 
-.map .regions path:hover {
-  @apply stroke-blue-300 fill-blue-300
+/* .map .regions path:hover {
+  @apply stroke-blue-300
+} */
+.map .regions path.status-na:hover {
+  @apply fill-zinc-300
+}
+.map .regions path.status-pilot:hover {
+  @apply fill-amber-300
+}
+.map .regions path.status-active:hover {
+  @apply fill-green-300
 }
 
 .status-na {
-  @apply fill-gray-200 bg-gray-200;
+  @apply fill-zinc-200 bg-zinc-200;
 }
 .status-pilot {
   @apply fill-amber-200 bg-amber-200;
