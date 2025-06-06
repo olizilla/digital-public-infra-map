@@ -1,8 +1,28 @@
 import json from '../public/data/2025-03-31/2025-03-31-identity.json'
 import { normaliseStatus, statusSort } from './Status'
 
+type IdentityType = typeof json[number]
+
+export function identityDPIStatus(x: IdentityType) {
+  const implStatus = normaliseStatus(x['Status of implementation'])
+  if (
+    x['Two or more sectoral use cases enabled'] === 'Yes'
+    && x['Digital authentication function'] === 'Yes'
+    && x['Claim of digital (or electronic) ID'] === 'Yes'
+    && implStatus === 'Active'
+  ) return 'Active'
+
+  if (
+    implStatus === 'Active'
+    || implStatus === 'Pilot'
+  ) return 'Pilot'
+
+  return 'NA'
+}
+
 export const IDs = json.map(x => {
   return {
+    'DPI Status': identityDPIStatus(x),
     'Country': x['Country'],
     "Income classification": "Low-income countries",
     'Claim digital ID': x['Claim of digital (or electronic) ID'],

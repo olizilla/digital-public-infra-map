@@ -1,5 +1,5 @@
 ---
-const { number, unit } = Astro.props
+const { number, unit = 'countries have a DPI-like' } = Astro.props
 ---
 <span class="text-left block pa-6">
   <span class="text-xl text-bold">{number}</span>
@@ -9,3 +9,10 @@ const { number, unit } = Astro.props
   </span>
 </span>
 
+<!-- <span class="text-left py-2">
+  <span class="text-lg text-bold">{number}</span>
+  <span class="text-base font-sans">
+    <slot />s
+  </span>
+</span>
+ -->

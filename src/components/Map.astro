@@ -1,11 +1,14 @@
 ---
 // import countries from 'world-atlas/countries-110m.json'
-import features from '../../public/features-mod.json'
+import features from '../../public/features.json'
 import topojson from 'topojson-client'
 import * as d3 from 'd3-geo'
 import * as d3p from 'd3-geo-projection'
 import slug from 'slug' 
-import { statusToClass } from '../Status'
+import { normaliseStatus, statusToClass } from '../Status'
+import { IDs } from '../Identity'
+import { DataExchanges } from '../DataExchange'
+import { Payments } from '../Payment'
 
 // const regions = topojson.feature(countries, "countries").features
 const regions = topojson.feature(features, "world").features
@@ -29,7 +32,58 @@ const NoData = [
   'western-sahara'
 ]
 
-function countryToLink (name) {
+const nameMap: Map<string,string> = new Map([
+  ['Democratic Republic of Congo', 'Congo'],
+  ['Russia', 'Russian Federation'],
+  ['United States', 'United States of America'],
+  ['United Kingdom', 'United Kingdom of Great Britain and Northern Ireland'],
+  ['Czechia', 'Czech Republic'],
+  ['Timor', 'Timor-Leste'],
+  ['Cape Verde', 'Cabo Verde'],
+  ['Micronesia (country)', 'Micronesia (Federated States of)'],
+  ['West Bank', 'State of Palestine'],
+  // ['Western Sahara'] Morocco has claimed authority over Western Sahara since 1975, but the United Nations (UN) does not recognize Moroccan control, calling Western Sahara a “non-self-governing territory.”
+])
+
+function regionName (name:string) {
+  return nameMap.get(name) ?? name
+}
+
+const idMap = new Map()
+IDs.forEach(row => {
+  const country = row['Country']
+  const status = row['DPI Status']
+  idMap.set(country, normaliseStatus(status))
+})
+
+const payMap = new Map()
+Payments.forEach(row => {
+  const country = row['Country']
+  const status = row['DPI Status']
+  payMap.set(country, status)
+})
+
+const dataMap = new Map(DataExchanges.map(row => {
+  const country = row['Country']
+  const status = row['DPI Status']
+  return [country, status]
+}))
+
+function getStatus (dpiType: string, region: string) {
+  const country = regionName(region)
+  if (dpiType === 'id') {
+    return idMap.get(country)
+  }
+  if (dpiType === 'pay') {
+    return payMap.get(country)
+  }
+  if (dpiType === 'data') {
+    return dataMap.get(country)
+  }
+  throw Error(`No such dpiType, ${dpiType}`)
+}
+
+function countryToLink (name: string) {
   const path = slug(name)
   return NoData.includes(path) ? '.' : `/${path}`
 }
@@ -50,13 +104,17 @@ const cropRight = 105
       <use href="#outline" fill="#fff" />
       <!-- <path d={path(graticule)} fill="none" class="stroke-zinc-100"></path> -->
       <g class="regions">
-      { regions.map(region => (
-        <a href={countryToLink(region.properties.name)}>
-          <title>{region.properties.name}
-Status: {region.properties.status[dpiType]}</title>
-          <path d={path(region)} class={statusToClass(region.properties.status[dpiType])}></path>
-        </a>
-      ))}
+      { regions.map(region => {
+        const name = regionName(region.properties.name)
+        const status = getStatus(dpiType, name)
+        return (
+          <a href={countryToLink(name)}>
+            <title>{name}
+  Status: {status}</title>
+            <path d={path(region)} class={statusToClass(status)}></path>
+          </a>
+        )
+      })}
       </g>
     </g>
     <!-- <use href="#outline" fill="none" class="stroke-zinc-300 stroke-1" /> -->
