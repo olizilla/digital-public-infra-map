@@ -7,6 +7,8 @@ import DataIcon from '../components/icons/DataIcon.astro'
 import Map from '../components/Map.astro'
 
 const { dpiType } = Astro.props
+
+const unit = ''
 ---
 
 <div>
@@ -19,20 +21,21 @@ const { dpiType } = Astro.props
       </div>
       <nav class="grid font-mono pt-2 pb-8 max-w-md mx-auto" >
         <Card class="bg-zinc-50" isActive={Astro.url.pathname === '/'}>
-          <a class="flex content-center justify-between" href="/">
-            <Stat number={57} unit="countries claim a">Digital ID System</Stat>
+          <a class="flex items-center justify-between" href="/">
+            <Stat number={57}>Digital ID System</Stat>
             <IdentityIcon class="text-zinc-500" />
           </a>
         </Card>
         <Card class="bg-zinc-50" isActive={Astro.url.pathname === '/digital-payment/'}>
-          <a class="flex content-center justify-between" href="/digital-payment/">
-            <Stat number={93} unit="countries claim a">Digital Payment System</Stat>
+          <a class="flex items-center justify-between" href="/digital-payment/">
+            <Stat number={93}>Digital Payment System</Stat>
             <PaymentIcon class="text-zinc-500" />
           </a>
         </Card>
         <Card class="bg-zinc-50" isActive={Astro.url.pathname === '/data-exchange/'}>
-          <a class="flex content-center justify-between" href="/data-exchange/">
-            <Stat number={103} unit="countries claim a">Data Exchange System</Stat>
+          <a class="flex items-center justify-between" href="/data-exchange/">
+            <Stat number={103}>
+              Data Exchange System</Stat>
             <DataIcon class="text-zinc-500" />
           </a>
         </Card>
