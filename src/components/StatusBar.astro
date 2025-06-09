@@ -3,18 +3,13 @@ import { statusToClass } from "../Status";
 
 const { items } = Astro.props
 
-const active = items.filter((row) => row['Status'] === 'Active')
-const pilot = items.filter((row) => row['Status'] === 'Pilot')
-const na = items.filter((row) => row['Status'] === 'NA')
+const active = items.filter((row) => row['DPI Status'] === 'Active')
+const pilot = items.filter((row) => row['DPI Status'] === 'Pilot')
+const na = items.filter((row) => row['DPI Status'] === 'NA')
 
 function percent (set: Object[], all = items) {
   return (set.length / items.length) * 100
 }
-
-function percentLabel (set) {
-  return Math.round(percent(set)) + '%'
-}
-
 
 ---
 
@@ -23,13 +18,17 @@ function percentLabel (set) {
     title="Active"
     style={{width: `${percent(active).toFixed(2)}%` }}
     class:list={['flex', 'items-center','justify-end', 'h-10', statusToClass('Active')]}>
-    <span class="px-4">Active</span>
+    <span class="px-4">
+      <span class="font-bold">{active.length}</span> DPI-like
+    </span>
   </div>
   <div 
     title="Pilot"
     style={{width: `${percent(pilot).toFixed(2)}%` }}
     class:list={['flex', 'items-center','justify-end', 'h-10', statusToClass('Pilot')]}>
-    <span class="px-4">Pilot</span>
+    <span class="px-4">
+      <span class="font-bold">{pilot.length}</span> WIP
+    </span>
   </div>
   <div
     title="NA" 

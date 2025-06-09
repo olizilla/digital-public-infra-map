@@ -1,66 +1,9 @@
 ---
-// import countries from 'world-atlas/countries-110m.json'
-import features from '../../public/features-mod.json'
-import topojson from 'topojson-client'
-import * as d3 from 'd3-geo'
-import * as d3p from 'd3-geo-projection'
-import slug from 'slug' 
-import { statusToClass } from '../Status'
-
-// const regions = topojson.feature(countries, "countries").features
-const regions = topojson.feature(features, "world").features
-const graticule = d3.geoGraticule10()
-const projection = d3p.geoNaturalEarth2()
-const path = d3.geoPath(projection)
-const outline = { type: "Sphere" }
-const width = 800
-
-// from Bostock: https://observablehq.com/@d3/world-map-svg
-function height () {
-  const [[x0, y0], [x1, y1]] = d3.geoPath(projection.fitWidth(width, outline)).bounds(outline);
-  const dy = Math.ceil(y1 - y0), l = Math.min(Math.ceil(x1 - x0), dy);
-  projection.scale(projection.scale() * (l - 1) / l).precision(0.2);
-  return dy;
-}
-
-const NoData = [
-  'french-southern-territories',
-  'new-caledonia',
-  'western-sahara'
-]
-
-function countryToLink (name) {
-  const path = slug(name)
-  return NoData.includes(path) ? '.' : `/${path}`
-}
-
-const dpiType = Astro.props.dpiType ?? 'id'
-const cropLeft = 80 // trim hard-to-see islands. data still available in card list view.
-const cropRight = 105
-
+import MapSvg from './MapSvg.astro'
+const { grid = false, nocrop = false, dpiType = 'id' } = Astro.props
 ---
-
-<figure class="map mx-auto block">
-  <svg viewBox={`${cropLeft} 0 ${width - cropRight} ${height()}`} class="bg-zinc-0 lg:py-4">
-    <defs>
-      <path id="outline" d={path(outline)} />
-      <clipPath id="clip"><use href="#outline" /></clipPath>
-    </defs>
-    <g clip-path="url(#clip)">
-      <use href="#outline" fill="#fff" />
-      <!-- <path d={path(graticule)} fill="none" class="stroke-zinc-100"></path> -->
-      <g class="regions">
-      { regions.map(region => (
-        <a href={countryToLink(region.properties.name)}>
-          <title>{region.properties.name}
-Status: {region.properties.status[dpiType]}</title>
-          <path d={path(region)} class={statusToClass(region.properties.status[dpiType])}></path>
-        </a>
-      ))}
-      </g>
-    </g>
-    <!-- <use href="#outline" fill="none" class="stroke-zinc-300 stroke-1" /> -->
-  </svg>
+<figure class="map mx-auto block lg:py-4">
+  <MapSvg grid={grid} nocrop={nocrop} dpiType={dpiType} />
   <figcaption>
     <p class="text-center -mt-10 lg:-mt-24 font-sans tracking-wide text-zinc-400 text-xs">
       { dpiType === 'id' && 'Digital ID System' }

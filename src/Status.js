@@ -34,7 +34,7 @@ function statusCode (s) {
 }
 
 export function statusSort (a, b) {
-  const diff1 = statusCode(b['Status']) - statusCode(a['Status'])
+  const diff1 = statusCode(b['DPI Status']) - statusCode(a['DPI Status'])
 	if (diff1 !== 0) return diff1
 	return a.Country.localeCompare(b.Country)
 }
