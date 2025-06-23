@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import Status from '../components/Status.astro'
+import YesNo from '../components/YesNo.astro'
 import Card from '../components/Card.astro'
 import MapAndTabs from '../components/MapAndTabs.astro'
 import IdentityIcon from '../components/icons/IdentityIcon.astro'
@@ -21,10 +22,10 @@ const items = IDs
 		{ items.map(data => (
 			<Card>
 				<article>
-					<header class="text-zinc-600 pb-2">
-						<Status status={data['DPI Status']} />
-						<a class="ml-1 underline" href={`${slug(data.Country)}`}>{data.Country}</a>
-						<IdentityIcon class="inline float-right text-zinc-300"/>
+					<header class="text-zinc-600 pb-2 border-b border-zinc-100 mb-2 flex items-center">
+						<IdentityIcon class="flex-none text-zinc-300 "/>
+						<a class="flex-grow px-1 hover:underline" href={slug(data.Country)}>{data.Country}</a>
+						<div class="flex-none"><Status status={data['DPI Status']} title='DPI status' /></div>
 					</header>
 					<details>
 						<summary>
@@ -57,7 +58,7 @@ const items = IDs
 									<dt class="grow pl-2">
 										<KeyLabel>{key}</KeyLabel></dt>
 									<dd class="flex-none">
-										<Status status={data[key]} />
+										<YesNo status={data[key]} />
 									</dd>
 								</div>
 							))}

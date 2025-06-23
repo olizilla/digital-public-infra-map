@@ -1,20 +1,20 @@
 import dataJSON from '../public/data/2025-03-31/2025-03-31-exchange.json'
-import { normaliseStatus, statusSort } from './Status'
+import { normaliseImplementationStatus, statusSort } from './Status'
 
 type DataExchangeType = typeof dataJSON[number]
 
 export function dataExchangeDPIStatus(x: DataExchangeType) {
-  const implStatus = normaliseStatus(x['Status of implementation'])
+  const implStatus = normaliseImplementationStatus(x['Status of implementation'])
 
   if (
     x['Sector-specific/ Cross-sectoral'] === 'Cross-sectoral'
     && implStatus === 'Active'
-  ) return 'Active'
+  ) return 'DPI'
 
   if (
     implStatus === 'Active'
     || implStatus === 'Pilot'
-  ) return 'Pilot'
+  ) return 'WIP'
 
   return 'NA'
 }
@@ -24,7 +24,7 @@ export const DataExchanges = dataJSON.map(x => {
     'DPI Status': dataExchangeDPIStatus(x),
     'Country': x['Country'],
     'Name': x['Data exchange system name'],
-    'Status': normaliseStatus(x['Status of implementation']),
+    'Status': normaliseImplementationStatus(x['Status of implementation']),
     'National or Regional': x['National/ Regional'],
     "Sector-specific or Cross-sectoral": x["Sector-specific/ Cross-sectoral"],
     "Semantic interoperability": x["Semantic interoperability"],

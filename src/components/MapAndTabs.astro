@@ -5,12 +5,16 @@ import PaymentIcon from '../components/icons/PaymentIcon.astro'
 import IdentityIcon from '../components/icons/IdentityIcon.astro'
 import DataIcon from '../components/icons/DataIcon.astro'
 import Map from '../components/Map.astro'
+import { IDs } from '../Identity'
+import { DataExchanges } from '../DataExchange'
+import { Payments } from '../Payment'
 
 const { dpiType } = Astro.props
+const dpiIdCount = IDs.filter(row => row['DPI Status'] === 'DPI').length
+const dpiPaymentsCount = Payments.filter(row => row['DPI Status'] === 'DPI').length
+const dpiDataExchangeCount = DataExchanges.filter(row => row['DPI Status'] === 'DPI').length
 
-const unit = ''
 ---
-
 <div>
   <div class="flex flex-col-reverse lg:flex-row pt-10">
     <section class="flex-none pb-8">
@@ -22,19 +26,19 @@ const unit = ''
       <nav class="grid font-mono pt-2 pb-8 max-w-md mx-auto" >
         <Card class="bg-zinc-50" isActive={Astro.url.pathname === '/'}>
           <a class="flex items-center justify-between" href="/">
-            <Stat number={57}>Digital ID System</Stat>
+            <Stat number={dpiIdCount}>Digital ID System</Stat>
             <IdentityIcon class="text-zinc-500" />
           </a>
         </Card>
         <Card class="bg-zinc-50" isActive={Astro.url.pathname === '/digital-payment/'}>
           <a class="flex items-center justify-between" href="/digital-payment/">
-            <Stat number={93}>Digital Payment System</Stat>
+            <Stat number={dpiPaymentsCount}>Digital Payment System</Stat>
             <PaymentIcon class="text-zinc-500" />
           </a>
         </Card>
         <Card class="bg-zinc-50" isActive={Astro.url.pathname === '/data-exchange/'}>
           <a class="flex items-center justify-between" href="/data-exchange/">
-            <Stat number={103}>
+            <Stat number={dpiDataExchangeCount}>
               Data Exchange System</Stat>
             <DataIcon class="text-zinc-500" />
           </a>

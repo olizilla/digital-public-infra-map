@@ -1,0 +1,9 @@
+---
+let {status = ''} = Astro.props
+---
+{status === 'Yes' &&
+  <span class="pill border-green-300 bg-green-200">YES</span> }
+{status === 'No' &&
+  <span class="pill border-red-300 bg-red-200">NO</span> }
+{status === 'NA' &&
+  <span class="pill border-zinc-300 bg-zinc-200">NA</span> }

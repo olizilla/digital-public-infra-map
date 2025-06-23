@@ -1,47 +1,41 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
-
-.prose table {
-  @apply lg:-mx-30 w-auto;
-}
-
-.prose aside {
-  @apply bg-amber-100 px-4 py-0.5 text-sm leading-6 border-l-2;
-}
-
-.lead {
-  @apply text-3xl py-10 text-blue-600 font-bold;
-}
-
-.button-blue {
-  @apply rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-semibold mx-2 px-3 py-3 no-underline whitespace-nowrap;
-}
-
-.map .regions path {
-  stroke:#acc;
-}
-
-/* .map .regions path:hover {
-  @apply stroke-blue-300
-} */
-.map .regions path.status-na:hover {
-  @apply fill-zinc-300
-}
-.map .regions path.status-pilot:hover {
-  @apply fill-amber-300
-}
-.map .regions path.status-active:hover {
-  @apply fill-green-300
+@theme { 
+  --color-dpi: var(--color-green-200);
+  --color-wip: var(--color-yellow-200);
+  --color-na: var(--color-zinc-200);
 }
 
 .status-na {
   @apply fill-zinc-200 bg-zinc-200;
 }
-.status-pilot {
+.status-wip {
   @apply fill-amber-200 bg-amber-200;
 }
-.status-active {
+.status-dpi {
   @apply fill-green-200 bg-green-200;
+}
+.map .regions path.status-na:hover {
+  @apply fill-zinc-300;
+}
+.map .regions path.status-wip:hover {
+  @apply fill-amber-300;
+}
+.map .regions path.status-dpi:hover {
+  @apply fill-green-300;
+}
+.pill {
+  @apply text-center inline-block border px-1 text-xs rounded;
+  min-width: 33px;
+}
+.pill.status-na {
+  @apply border-zinc-300;
+}
+.pill.status-wip {
+  @apply border-amber-300;
+}
+.pill.status-dpi {
+  @apply border-green-300;
 }
 
 .card {
@@ -61,6 +55,25 @@
 }
 #cards .card:hover {
   @apply outline-blue-200;
+}
+
+.prose table {
+  @apply lg:-mx-30 w-auto;
+}
+.prose aside {
+  @apply bg-amber-100 px-4 py-0.5 text-sm leading-6 border-l-2;
+}
+
+.lead {
+  @apply text-3xl py-10 text-blue-600 font-bold;
+}
+
+.button-blue {
+  @apply rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-semibold mx-2 px-3 py-3 no-underline whitespace-nowrap;
+}
+
+.map .regions path {
+  stroke:#acc;
 }
 
 .release-table thead th:first-of-type {
