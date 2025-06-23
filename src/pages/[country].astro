@@ -25,9 +25,9 @@ export async function getStaticPaths () {
 
 const country = Astro.props.country
 
-const data = DataExchanges.find(x => x.Country === country)
-const pay = Payments.find(x => x.Country === country)
-const id = IDs.find(x => x.Country === country)
+const data = DataExchanges.find(x => x.Country === country) ?? {}
+const pay = Payments.find(x => x.Country === country) ?? {}
+const id = IDs.find(x => x.Country === country) ?? {}
 
 ---
 
