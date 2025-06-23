@@ -24,7 +24,7 @@ export const DataExchanges = dataJSON.map(x => {
     'DPI Status': dataExchangeDPIStatus(x),
     'Country': x['Country'],
     'Name': x['Data exchange system name'],
-    'Status': normaliseImplementationStatus(x['Status of implementation']),
+    'Status of implementation': normaliseImplementationStatus(x['Status of implementation']),
     'National or Regional': x['National/ Regional'],
     "Sector-specific or Cross-sectoral": x["Sector-specific/ Cross-sectoral"],
     "Semantic interoperability": x["Semantic interoperability"],
@@ -57,10 +57,11 @@ export const DataExchangeFlags = [
 export const DataExchangeText = [
   'Governing Entity',
   'Coordination unit',
+  'Status of implementation',
   'Permitted participants',
   'Ownership',
   'National or Regional',
-  'Sector-specific or Cross-sectoral'
+  'Sector-specific or Cross-sectoral',
 ]
 
 export const DataExchangeHeadlines = DataExchangeText.slice(0, 2)

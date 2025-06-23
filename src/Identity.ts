@@ -33,7 +33,7 @@ export const IDs = json.map(x => {
     'Name': x['Digital ID name'],
     'URL': x['URL'],
     "Uses biometrics": x["Collects or uses biometric data"],
-    'Status': normaliseImplementationStatus(x['Status of implementation']),
+    'Status of implementation': normaliseImplementationStatus(x['Status of implementation']),
     "ID or Civil Registry Act": x["ID or Civil Registry Act"],
     "Regulation for digital ID": x["Regulation for digital ID"],
     "Enables authentication": x["Digital authentication function"],
@@ -79,6 +79,7 @@ export const IDFlags = [
 export const IDText = [
   'Governing entity',
   'Type of governing entity',
+  'Status of implementation',
   'Legally binding redress mechanism',
 ]
 

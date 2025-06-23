@@ -24,7 +24,7 @@ export const Payments = json.map(x => {
     'DPI Status': paymentDPIStatus(x),
     'Country': x['Country/ Region'],
     'Name': x['Payment system name'],
-    'Status': normaliseImplementationStatus(x['Status of payment system implementation']),
+    'Status of implementation': normaliseImplementationStatus(x['Status of payment system implementation']),
     'Active real-time payment system': x['Active real-time payment system present'],
     'Payment system type': x['Payment system type'],
     'National or Regional': x['National / Regional'],
@@ -63,6 +63,7 @@ export const PaymentFlags = [
 export const PaymentText = [
   'Payment system type',
   'Operator',
+  'Status of implementation',
   'Annual value of transactions (USD)',
   'Annual volume of transactions',
   'Cost of transactions',
