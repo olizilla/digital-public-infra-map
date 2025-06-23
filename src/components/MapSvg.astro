@@ -1,0 +1,112 @@
+---
+import features from '../../public/features.json'
+import topojson from 'topojson-client'
+import * as d3 from 'd3-geo'
+import * as d3p from 'd3-geo-projection'
+import slug from 'slug' 
+import { dpiStatusToClass } from '../Status'
+import { IDs } from '../Identity'
+import { DataExchanges } from '../DataExchange'
+import { Payments } from '../Payment'
+
+const { grid = false, nocrop = false, dpiType = 'id' } = Astro.props
+const regions = topojson.feature(features, "world").features
+const graticule = d3.geoGraticule10()
+const projection = d3p.geoNaturalEarth2()
+const path = d3.geoPath(projection)
+const outline = { type: "Sphere" }
+const width = 800
+
+// from Bostock: https://observablehq.com/@d3/world-map-svg
+function height () {
+  const [[x0, y0], [x1, y1]] = d3.geoPath(projection.fitWidth(width, outline)).bounds(outline);
+  const dy = Math.ceil(y1 - y0), l = Math.min(Math.ceil(x1 - x0), dy);
+  projection.scale(projection.scale() * (l - 1) / l).precision(0.2);
+  return dy;
+}
+
+const NoData = [
+  'french-southern-territories',
+  'new-caledonia',
+  'western-sahara'
+]
+
+const nameMap: Map<string,string> = new Map([
+  ['Democratic Republic of Congo', 'Congo'],
+  ['Russia', 'Russian Federation'],
+  ['United States', 'United States of America'],
+  ['United Kingdom', 'United Kingdom of Great Britain and Northern Ireland'],
+  ['Czechia', 'Czech Republic'],
+  ['Timor', 'Timor-Leste'],
+  ['Cape Verde', 'Cabo Verde'],
+  ['Micronesia (country)', 'Micronesia (Federated States of)'],
+  ['West Bank', 'State of Palestine'],
+  // ['Western Sahara'] Morocco has claimed authority over Western Sahara since 1975, but the United Nations (UN) does not recognize Moroccan control, calling Western Sahara a “non-self-governing territory.”
+])
+
+function regionName (name:string) {
+  return nameMap.get(name) ?? name
+}
+
+const idMap = new Map(IDs.map(row => [row['Country'], row['DPI Status']]))
+const payMap = new Map(Payments.map(row => [row['Country'], row['DPI Status']]))
+const dataMap = new Map(DataExchanges.map(row =>[row['Country'], row['DPI Status']]))
+
+function getStatus (dpiType: string, region: string) {
+  const country = regionName(region)
+  if (dpiType === 'id') {
+    return idMap.get(country)
+  }
+  if (dpiType === 'pay') {
+    return payMap.get(country)
+  }
+  if (dpiType === 'data') {
+    return dataMap.get(country)
+  }
+  throw Error(`No such dpiType, ${dpiType}`)
+}
+
+function getDPI (country: string) {
+  const items = dpiType === 'id' ? IDs : dpiType === 'pay' ? Payments : DataExchanges
+  return items.find(row => row['Country'] === country)
+}
+
+function countryToLink (name: string) {
+  const path = slug(name)
+  return NoData.includes(path) ? '.' : `/${path}`
+}
+
+function statusToColor (s: string) {
+  if (s === 'DPI') return '#bbf7d0'  // green-200
+  if (s === 'WIP') return '#fde68a'  // amber-200
+  return '#e4e4e7'                   //  zinc-200 
+}
+
+const cropLeft = nocrop ? 0 : 80 // trim hard-to-see islands. data still available in card list view.
+const cropRight = nocrop ? -20 : 105
+---
+<svg viewBox={`${cropLeft} 0 ${width - cropRight} ${height()}`} version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <path id="outline" d={path(outline)} />
+    <clipPath id="clip"><use href="#outline" /></clipPath>
+  </defs>
+  <g clip-path="url(#clip)">
+    <use href="#outline" fill="none"/>
+    {grid && <path d={path(graticule)} fill="none" class="stroke-blue-100"></path>}
+    <g class="regions">
+    { regions.map(region => {
+      const name = regionName(region.properties.name)
+      const dpi = getDPI(name)
+      const status = dpi?.['DPI Status']
+      return (
+        <a href={countryToLink(name)}>
+          <title>{name}
+{dpi?.Name}</title>
+          <path d={path(region)} class={dpiStatusToClass(status)} fill={statusToColor(status)} stroke="#acc" style="stroke-width: 0.5px;"></path>
+        </a>
+      )
+    })}
+    </g>
+  </g>
+  <use href="#outline" fill="none" class="stroke-blue stroke-1" />
+</svg>

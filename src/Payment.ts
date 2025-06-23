@@ -1,11 +1,30 @@
 import json from '../public/data/2025-03-31/2025-03-31-payment.json'
-import { normaliseStatus, statusSort } from './Status'
+import { normaliseImplementationStatus, statusSort } from './Status'
+
+type PaymentType = typeof json[number]
+
+export function paymentDPIStatus(x: PaymentType) {
+  const implStatus = normaliseImplementationStatus(x['Status of payment system implementation'])
+  if (
+    x['Active real-time payment system present'] === 'Yes'
+    && x['Operator'].match(/Central bank/i) !== null
+    && implStatus === 'Active'
+  ) return 'DPI'
+
+  if (
+    implStatus === 'Active'
+    || implStatus === 'Pilot'
+  ) return 'WIP'
+
+  return 'NA'
+}
 
 export const Payments = json.map(x => {
   return {
+    'DPI Status': paymentDPIStatus(x),
     'Country': x['Country/ Region'],
     'Name': x['Payment system name'],
-    'Status': normaliseStatus(x['Status of payment system implementation']),
+    'Status of implementation': normaliseImplementationStatus(x['Status of payment system implementation']),
     'Active real-time payment system': x['Active real-time payment system present'],
     'Payment system type': x['Payment system type'],
     'National or Regional': x['National / Regional'],
@@ -44,6 +63,7 @@ export const PaymentFlags = [
 export const PaymentText = [
   'Payment system type',
   'Operator',
+  'Status of implementation',
   'Annual value of transactions (USD)',
   'Annual volume of transactions',
   'Cost of transactions',

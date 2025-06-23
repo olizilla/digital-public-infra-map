@@ -1,19 +1,10 @@
 ---
-import { normaliseStatus } from "../Status"
+import { dpiStatusToClass } from "../Status"
 
-let {status = '', title = 'Implementation status'} = Astro.props
-
-status = normaliseStatus(status)
+let {status = '', title = ''} = Astro.props
 ---
-{status === 'Active' &&
-  <span title={title} class="inline border border-green-300 bg-green-200 px-1 text-xs rounded">{status}</span> }
-{status === 'Pilot' &&
-  <span title={title} class="inline border border-amber-300 bg-amber-200 px-1 text-xs rounded">{status}</span> }
-{status === 'NA' &&
-  <span title={title} class="text-center inline-block border border-gray-300 bg-gray-200 px-1 text-xs rounded" style="width:33px">NA</span> }
-
-
-{status === 'Yes' &&
-  <span class="text-center inline-block border border-green-300 bg-green-200 px-1 text-xs rounded" style="width:33px">YES</span> }
-{status === 'No' &&
-  <span class="text-center inline-block border border-red-300 bg-red-200 px-1 text-xs rounded" style="width:33px">NO</span> }
+<span 
+  title={title} 
+  class:list={['pill', dpiStatusToClass(status), Astro.props.class]}>
+  {status === 'DPI' ? 'DPI-like' : status}
+</span>

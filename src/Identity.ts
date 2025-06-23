@@ -1,15 +1,39 @@
 import json from '../public/data/2025-03-31/2025-03-31-identity.json'
-import { normaliseStatus, statusSort } from './Status'
+import { normaliseImplementationStatus, statusSort } from './Status'
+
+type IdentityType = typeof json[number]
+
+/**
+ * Derive DPI status for project.
+ * @returns "DPI" | "WIP" | "NA"
+ */
+export function identityDPIStatus(x: IdentityType) {
+  const implStatus = normaliseImplementationStatus(x['Status of implementation'])
+  if (
+    x['Two or more sectoral use cases enabled'] === 'Yes'
+    && x['Digital authentication function'] === 'Yes'
+    && x['Claim of digital (or electronic) ID'] === 'Yes'
+    && implStatus === 'Active'
+  ) return 'DPI'
+
+  if (
+    implStatus === 'Active'
+    || implStatus === 'Pilot'
+  ) return 'WIP'
+
+  return 'NA'
+}
 
 export const IDs = json.map(x => {
   return {
+    'DPI Status': identityDPIStatus(x),
     'Country': x['Country'],
     "Income classification": "Low-income countries",
     'Claim digital ID': x['Claim of digital (or electronic) ID'],
     'Name': x['Digital ID name'],
     'URL': x['URL'],
     "Uses biometrics": x["Collects or uses biometric data"],
-    'Status': normaliseStatus(x['Status of implementation']),
+    'Status of implementation': normaliseImplementationStatus(x['Status of implementation']),
     "ID or Civil Registry Act": x["ID or Civil Registry Act"],
     "Regulation for digital ID": x["Regulation for digital ID"],
     "Enables authentication": x["Digital authentication function"],
@@ -55,6 +79,7 @@ export const IDFlags = [
 export const IDText = [
   'Governing entity',
   'Type of governing entity',
+  'Status of implementation',
   'Legally binding redress mechanism',
 ]
 

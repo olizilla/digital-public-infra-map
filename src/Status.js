@@ -1,4 +1,4 @@
-export function normaliseStatus (s) {
+export function normaliseImplementationStatus (s) {
   if (!s) return 'NA'
   if(s.match(/Implemented|Active/i)) {
     return 'Active'
@@ -15,17 +15,17 @@ export function normaliseStatus (s) {
   if (s.match(/No/i)) {
     return 'No'
   }
-  console.log("New exchange status", s)
+  console.log("New status", s)
   return s
 }
 
-export function statusToClass (status) {
-  return `status-${normaliseStatus(status).toLowerCase()}`
+export function dpiStatusToClass (status = '') {
+  return `status-${status.toLowerCase()}`
 }
 
 const statusMap = {
-	'Active': 3,
-	'Pilot': 2,
+	'DPI': 3,
+	'WIP': 2,
 	'NA': 1
 }
 
@@ -34,7 +34,7 @@ function statusCode (s) {
 }
 
 export function statusSort (a, b) {
-  const diff1 = statusCode(b['Status']) - statusCode(a['Status'])
+  const diff1 = statusCode(b['DPI Status']) - statusCode(a['DPI Status'])
 	if (diff1 !== 0) return diff1
 	return a.Country.localeCompare(b.Country)
 }

@@ -1,17 +1,16 @@
 ---
+import slug from 'slug'
 import Layout from '../layouts/Layout.astro'
 import Status from '../components/Status.astro'
 import Card from '../components/Card.astro'
 import DataIcon from '../components/icons/DataIcon.astro'
-import PayIcon from '../components/icons/PaymentIcon.astro'
+import PaymentIcon from '../components/icons/PaymentIcon.astro'
 import IdentityIcon from '../components/icons/IdentityIcon.astro'
 import KeyLabel from '../components/KeyLabel.astro'
 import { DataExchanges, DataExchangeFlags, DataExchangeText } from '../DataExchange.js'
 import { IDs, IDFlags, IDText } from '../Identity.js'
 import { Payments, PaymentFlags, PaymentText } from '../Payment.js'
-
-import slug from 'slug'
-import MapAndTabs from '../components/MapAndTabs.astro'
+import YesNo from '../components/YesNo.astro'
 
 export async function getStaticPaths () {
 	const regionMap = new Map()
@@ -26,43 +25,44 @@ export async function getStaticPaths () {
 
 const country = Astro.props.country
 
-const data = DataExchanges.find(x => x.Country === country)
-const pay = Payments.find(x => x.Country === country)
-const id = IDs.find(x => x.Country === country)
+const data = DataExchanges.find(x => x.Country === country) ?? {}
+const pay = Payments.find(x => x.Country === country) ?? {}
+const id = IDs.find(x => x.Country === country) ?? {}
 
 ---
 
 <Layout title={country}>
-	<!-- <MapAndTabs countryCount={IDs.length} dpiType="id" /> -->
-  <h1 class="text-lg text-center pt-10 pb-8 font-sans font-bold">
+  <h1 class="text-lg lg:text-2xl text-center pt-10 pb-8 font-sans font-bold">
 		<a href='../' class="hover:underline">{country}</a>
 	</h1>
 	<div class="grid grid-cols-1 md:grid-cols-3 gap-y-8">
 		{ id && 
 			<Card class="bg-zinc-50">
 				<article>
-					<Status status={id['Status']} />
-					<div class="inline pl-1 text-zinc-600">Digital ID System</div>
-					<IdentityIcon class="inline float-right text-zinc-600"/>
-					<div class="pt-2 font-semibold">
+					<header class="text-zinc-600 pb-2 border-b border-zinc-100 mb-2 flex items-center">
+						<IdentityIcon class="flex-none text-zinc-400"/>
+						<div class="flex-grow px-1 text-zinc-600">Digital ID System</div>
+						<div class="flex-none"><Status status={id['DPI Status']} title='DPI status' /></div>
+					</header>
+					<h1 class="pb-2 font-semibold text-base">
 						{id['Name']}
-					</div>
+					</h1>
 					<dl>
 						{ IDText.map(key => (
 							<dt><KeyLabel>{key}</KeyLabel></dt>
 							<dd>{id[key]}</dd>
 						))}
-					</dl>
-					<dl class="pt-4">
-						{ IDFlags.map(key => (
-							<div class="flex flex-row-reverse items-baseline justify-items-start ">
-								<dt class="grow pl-2	">
-									<KeyLabel>{key}</KeyLabel></dt>
-								<dd class="flex-none">
-									<Status status={id[key]} />
-								</dd>
-							</div>
-						))}
+						<div class="pt-4">
+							{ IDFlags.map(key => (
+								<div class="flex flex-row-reverse items-baseline justify-items-start ">
+									<dt class="grow pl-2	">
+										<KeyLabel>{key}</KeyLabel></dt>
+									<dd class="flex-none">
+										<YesNo status={id[key]} />
+									</dd>
+								</div>
+							))}
+						</div>
 					</dl>
 				</article>
 			</Card>
@@ -70,28 +70,30 @@ const id = IDs.find(x => x.Country === country)
 		{ pay && 
 			<Card class="bg-zinc-50">
 				<article>
-					<Status status={pay['Status']} />
-					<div class="inline pl-1 text-zinc-600">Payment System</div>
-					<PayIcon class="inline float-right text-zinc-600"/>
-					<div class="pt-2 font-semibold">
+					<header class="text-zinc-600 pb-2 border-b border-zinc-100 mb-2 flex items-center">
+						<PaymentIcon class="flex-none text-zinc-400"/>
+						<div class="flex-grow px-1 text-zinc-600">Digital Payment System</div>
+						<div class="flex-none"><Status status={data['DPI Status']} title='DPI status' /></div>
+					</header>
+					<h1 class="pb-2 font-semibold text-base">
 						{pay['Name']}
-					</div>
+					</h1>
 					<dl>
 					{ PaymentText.map(key => (
 						<dt><KeyLabel>{key}</KeyLabel></dt>
 						<dd>{pay[key]}</dd>
 					))}
-					</dl>
-					<dl class="pt-4">
+					<div class="pt-4">
 						{ PaymentFlags.map(key => (
 							<div class="flex flex-row-reverse items-baseline justify-items-start ">
 								<dt class="grow pl-2	">
 									<KeyLabel>{key}</KeyLabel></dt>
 								<dd class="flex-none">
-									<Status status={pay[key]} />
+									<YesNo status={pay[key]} />
 								</dd>
 							</div>
 						))}
+						</div>
 					</dl>
 				</article>
 			</Card>
@@ -99,10 +101,12 @@ const id = IDs.find(x => x.Country === country)
 		{ data && 
 			<Card class="bg-zinc-50">
 				<article>
-					<Status status={data['Status']} />
-					<div class="inline pl-1 text-zinc-600">Data Exchange System</div>
-					<DataIcon class="inline float-right text-zinc-600"/>
-					<div class="pt-2 font-semibold">
+					<header class="text-zinc-600 pb-2 border-b border-zinc-100 mb-2 flex items-center">
+						<DataIcon class="flex-none text-zinc-400 "/>
+						<div class="flex-grow px-1 text-zinc-600">Data Exchange System</div>
+						<div class="flex-none"><Status status={data['DPI Status']} title='DPI status' /></div>
+					</header>
+					<div class="pb-2 font-semibold text-base">
 						{data['Name']}
 					</div>
 					<dl>
@@ -110,17 +114,17 @@ const id = IDs.find(x => x.Country === country)
 						<dt><KeyLabel>{key}</KeyLabel></dt>
 						<dd>{data[key]}</dd>
 					))}
-					</dl>
-					<dl class="pt-4">
+					<div class="pt-4">
 						{ DataExchangeFlags.map(key => (
-							<div class="flex flex-row-reverse items-baseline justify-items-start ">
-								<dt class="grow pl-2	">
-									<KeyLabel>{key}</KeyLabel></dt>
-								<dd class="flex-none">
-									<Status status={data[key]} />
-								</dd>
-							</div>
-						))}
+								<div class="flex flex-row-reverse items-baseline justify-items-start ">
+									<dt class="grow pl-2	">
+										<KeyLabel>{key}</KeyLabel></dt>
+									<dd class="flex-none">
+										<YesNo status={data[key]} />
+									</dd>
+								</div>
+							))}
+						</div>
 					</dl>
 				</article>
 			</Card>

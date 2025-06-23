@@ -1,5 +1,5 @@
 ---
-const { number, unit } = Astro.props
+const { number, unit = 'countries have a DPI-like' } = Astro.props
 ---
 <span class="text-left block pa-6">
   <span class="text-xl text-bold">{number}</span>

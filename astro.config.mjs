@@ -3,16 +3,15 @@ import { defineConfig } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
 
-import react from '@astrojs/react';
-
 import mdx from '@astrojs/mdx';
+
+const site = process.env.CF_PAGES_URL ?? 'https://dpi-map.pages.dev'
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://dpi-map.pages.dev',
+  site,
   vite: {
     plugins: [tailwindcss()]
   },
-
-  integrations: [react(), mdx()]
+  integrations: [mdx()]
 });
