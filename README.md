@@ -2,9 +2,10 @@
 
 Tracking the state of national-scale digital infrastructure around the world.
 
-A reimagining of https://dpimap.org/
+https://dpi-map.pages.dev is a reimagining of https://dpimap.org
 
-<img width="1582" alt="Screenshot v1" src="https://github.com/user-attachments/assets/6b474068-7cfb-411f-9889-2803276e0581" />
+<img width="1468" alt="screenshot of the ui. it's got a map of the world showing which regions are running digital public infrastructure projects." src="https://github.com/user-attachments/assets/7398f03d-dd4b-4330-ae6a-265e21254f58" />
+
 
 ## 🚀 Project Structure
 
