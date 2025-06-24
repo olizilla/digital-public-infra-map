@@ -3,7 +3,7 @@ import Layout from "./Layout.astro"
 const title = Astro.props.frontmatter?.title ?? Astro.props.title
 ---
 
-<Layout title={title}>
+<Layout title={title} bodyClass={Astro.props.bodyClass}>
 	<article class="prose py-10 max-w-2xl mx-auto px-2 md:px-0">
 		<slot/>
 	</article>
