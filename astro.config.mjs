@@ -15,6 +15,7 @@ export default defineConfig({
   },
   integrations: [mdx()],
   redirects: {
-    "/blog/my-blog/[...slug]": "/blog/[...slug]"
+    "/blog/my-blog/dpi-map-data-for-statistical-analysis": "/blog/dpi-map-data-for-statistical-analysis",
+    "blog/my-blog/dpi-dataset-update-mar-2025": "blog/dpi-dataset-update-mar-2025"
   }
 })
