@@ -1,5 +1,5 @@
 ---
-layout: ../layouts/Standard.astro
+layout: ../../layouts/Standard.astro
 title: Community
 ---
 
@@ -20,16 +20,9 @@ The DPI Measurement CoP brings together the diverse stakeholder community around
 - Address key **research questions** relevant to building measurement frameworks for DPI assessment and evaluation
 - Contribute to ongoing **governance and research initiatives** (including the Universal DPI Safeguards Working Group, G20 DEWG outputs, DPI Map)
 
+---
 
-## Sessions
-
-Sessions happen monthly. Check out the upcoming and previous sessions below.
-
-
-### Next: May 6, 2024 - Interoperability
-
-[Register on Zoom](https://ucl.zoom.us/meeting/register/cD9gPKuQR7WiDYB3ZNSS-g#/registration) to attend.
-
+## Previous Sessions
 
 ### April 09, 2025 - Inclusion
 
@@ -37,18 +30,23 @@ There is an increasing need to make transparent how DPI embodies the normative v
 
 The session brought together researchers, policymakers, technical providers, and civil society representatives to explore a critical question: _how can we effectively measure whether DPI systems are genuinely inclusive in both design and impact?_
 
-**Project spotlight**: Inclusivity Pulse for DPI _(Co-Develop, Dalberg)_
+**Project spotlight**: [Inclusivity Pulse for DPI](https://www.codevelop.fund/inclusivity-pulse-for-dpi) _(Co-Develop, Dalberg)_
 
 Blog: [Deconstructing inclusion in DPI: Lessons from measuring real-world DPI deployments](https://medium.com/iipp-blog/deconstructing-inclusion-in-dpi-lessons-from-measuring-real-world-dpi-deployments-743cfb4bbfc1) _(IIPP)_
 
+See the [session notes](/measurement-community/session-1) for more detail.
+
+---
 
 ### March 11, 2025 - Measurement of DPI: approaches and pitfalls
 
 The introductory session highlighted the importance of measuring Digital Public Infrastructure (DPI) effectiveness, inclusivity, and impact through both individual and collective goals within the Community of Practice (CoP) for DPI Measurement⁠⁠.
 
+<iframe class="aspect-video w-full" src="https://www.youtube-nocookie.com/embed/lwgBAJPrqvs?si=J7H9cSVQ5jkMbAXF&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 Framework: [A framework for conceptualising and measuring DPI](https://www.ucl.ac.uk/bartlett/public-purpose/publications/2025/jan/digital-public-infrastructure-framework-conceptualisation-and-measurement) _(IIPP)_
 
-Recording: https://www.youtube.com/watch?v=lwgBAJPrqvs
+See the [session notes](/measurement-community/session-0) for more detail.
 
 ---
 
