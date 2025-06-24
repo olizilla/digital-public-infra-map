@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, fontProviders } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
 
@@ -16,6 +16,6 @@ export default defineConfig({
   integrations: [mdx()],
   redirects: {
     "/blog/my-blog/dpi-map-data-for-statistical-analysis": "/blog/dpi-map-data-for-statistical-analysis",
-    "blog/my-blog/dpi-dataset-update-mar-2025": "blog/dpi-dataset-update-mar-2025"
+    "/blog/my-blog/dpi-dataset-update-mar-2025": "/blog/dpi-dataset-update-mar-2025"
   }
 })
