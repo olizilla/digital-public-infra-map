@@ -13,5 +13,8 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()]
   },
-  integrations: [mdx()]
-});
+  integrations: [mdx()],
+  redirects: {
+    "/blog/my-blog/[...slug]": "/blog/[...slug]"
+  }
+})
