@@ -30,7 +30,7 @@ const imgUrl = new URL('/map/preview.png', rootUrl)
 		<meta property="twitter:description" content={desc} />
 		<meta property="twitter:image" content={imgUrl} />
 	</head>
-	<body>
+	<body class={Astro.props.bodyClass ?? ''}>
 		<Header />
 		<slot />
 	</body>
