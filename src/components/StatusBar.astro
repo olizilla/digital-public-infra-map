@@ -18,7 +18,7 @@ function percent (set: Object[], all = items) {
     title="Active"
     style={{width: `${percent(active).toFixed(2)}%` }}
     class:list={['flex', 'items-center','justify-end', 'h-10', dpiStatusToClass('DPI')]}>
-    <span class="px-4">
+    <span class="pr-3">
       <span class="font-bold">{active.length}</span> DPI-like
     </span>
   </div>
@@ -26,7 +26,7 @@ function percent (set: Object[], all = items) {
     title="Pilot"
     style={{width: `${percent(pilot).toFixed(2)}%` }}
     class:list={['flex', 'items-center','justify-end', 'h-10', dpiStatusToClass('WIP')]}>
-    <span class="px-4">
+    <span class="pr-3">
       <span class="font-bold">{pilot.length}</span> WIP
     </span>
   </div>
@@ -34,6 +34,6 @@ function percent (set: Object[], all = items) {
     title="NA" 
     style={{width: `${percent(na).toFixed(2)}%` }}
     class:list={['flex', 'items-center','justify-end', 'h-10', dpiStatusToClass('NA')]}>
-    <span class="px-4">NA</span>
+    <span class="pr-3">NA</span>
   </div>
 </div>
