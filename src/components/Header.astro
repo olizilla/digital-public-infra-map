@@ -3,18 +3,18 @@ import IIPP from '../assets/iipp.svg'
 ---
 <header class="pl-1 pr-2 pt-1">
   <div class="flex items-center">
-    <a href="/">
+    <a href="/" aria-label="Home">
       <IIPP width="50" height="47" />
     </a>
-    <div class="pl-2 flex-none hidden md:block">
+    <a href="/" aria-label="Home" class="pl-2 flex-none hidden md:block">
       <h1 class="font-sans font-bold text-xl">
-        <a href="/">The Digital Public Infrastructure Map</a>
+        The Digital Public Infrastructure Map
       </h1>
       <p class="pt-0 font-sans text-xs text-zinc-500">
-        <a href="/">Tracking national-scale digital infrastructure around the world</a>
+        Tracking national-scale digital infrastructure around the world
       </p>
-    </div>
-    <nav class="pl-6 flex-auto font-sans text-right text-sm font-semibold max-w-7xl">
+    </a>
+    <nav class="flex-auto font-sans text-right text-sm font-semibold max-w-7xl">
       <a class="hidden lg:inline px-1 lg:px-2 hover:text-blue-500" href="/">Map</a>
       <a class="px-1 lg:px-2 hover:text-blue-500" href="/about">About</a>
       <a class="px-1 lg:px-2 hover:text-blue-500" href="/data">Data</a>
@@ -24,12 +24,10 @@ import IIPP from '../assets/iipp.svg'
       <a class="hidden lg:inline px-3 py-2 bg-zinc-700 hover:bg-black text-white rounded-2xl" href="/contribute-to-the-dpi-map">Help map DPI</a>
     </nav>
   </div>
-  <div class="text-center pt-8 flex-none md:hidden">
-    <h1 class="font-sans font-bold text-xl">
-      <a href="/">The Digital Public Infrastructure Map</a>
-    </h1>
-    <p class="pt-0 font-sans text-xs text-zinc-500">
-      <a href="/">Tracking national-scale digital infrastructure around the world</a>
-    </p>
+  <div class="pt-8 flex-none md:hidden text-center">
+    <a href="/" aria-label="Home" class="inline-block">
+      <h1 class="font-sans font-bold text-xl">The Digital Public Infrastructure Map</h1>
+      <p class="pt-0 font-sans text-xs text-zinc-500">Tracking national-scale digital infrastructure around the world</p>
+    </a>
   </div>
 </header>
