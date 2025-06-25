@@ -10,4 +10,13 @@ const blog = defineCollection({
   })
 })
 
-export const collections = { blog }
+const cop = defineCollection({
+  loader: glob({ pattern: "**/!(index)*.md", base: "./src/pages/measurement-community" }),
+  schema: z.object({
+    title: z.string(),
+    date: z.date(),
+    published: z.boolean().optional().default(true)
+  })
+})
+
+export const collections = { blog, cop }
