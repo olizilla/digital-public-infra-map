@@ -52,10 +52,17 @@ const id = IDs.find(x => x.Country === country) ?? {}
 							<dt><KeyLabel>{key}</KeyLabel></dt>
 							<dd>{id[key]}</dd>
 						))}
+						<dt><KeyLabel>URL</KeyLabel></dt>
+						<dd>
+							{ id['URL']?.startsWith('http')
+							? <a class="hover:underline" href={id['URL']}>{new URL(id['URL']).origin}</a>
+							: <span>{id['URL'] ?? 'NA'}</span>
+							}
+						</dd>
 						<div class="pt-4">
 							{ IDFlags.map(key => (
-								<div class="flex flex-row-reverse items-baseline justify-items-start ">
-									<dt class="grow pl-2	">
+								<div class="flex flex-row-reverse items-baseline justify-items-start">
+									<dt class="grow pl-2">
 										<KeyLabel>{key}</KeyLabel></dt>
 									<dd class="flex-none">
 										<YesNo status={id[key]} />
@@ -73,7 +80,7 @@ const id = IDs.find(x => x.Country === country) ?? {}
 					<header class="text-zinc-600 pb-2 border-b border-zinc-100 mb-2 flex items-center">
 						<PaymentIcon class="flex-none text-zinc-400"/>
 						<div class="flex-grow px-1 text-zinc-600">Digital Payment System</div>
-						<div class="flex-none"><Status status={data['DPI Status']} title='DPI status' /></div>
+						<div class="flex-none"><Status status={pay['DPI Status']} title='DPI status' /></div>
 					</header>
 					<h1 class="pb-2 font-semibold text-base">
 						{pay['Name']}
@@ -83,6 +90,13 @@ const id = IDs.find(x => x.Country === country) ?? {}
 						<dt><KeyLabel>{key}</KeyLabel></dt>
 						<dd>{pay[key]}</dd>
 					))}
+					<dt><KeyLabel>URL</KeyLabel></dt>
+					<dd>
+						{ pay['URL']?.startsWith('http')
+						? <a class="hover:underline" href={pay['URL']}>{new URL(pay['URL']).origin}</a>
+						: <span>{pay['URL'] ?? 'NA'}</span>
+						}
+					</dd>
 					<div class="pt-4">
 						{ PaymentFlags.map(key => (
 							<div class="flex flex-row-reverse items-baseline justify-items-start ">
@@ -114,6 +128,13 @@ const id = IDs.find(x => x.Country === country) ?? {}
 						<dt><KeyLabel>{key}</KeyLabel></dt>
 						<dd>{data[key]}</dd>
 					))}
+						<dt><KeyLabel>URL</KeyLabel></dt>
+						<dd>
+							{ data['URL']?.startsWith('http')
+							? <a class="hover:underline" href={data['URL']}>{new URL(data['URL']).origin}</a>
+							: <span>{data['URL'] ?? 'NA'}</span>
+							}
+						</dd>
 					<div class="pt-4">
 						{ DataExchangeFlags.map(key => (
 								<div class="flex flex-row-reverse items-baseline justify-items-start ">

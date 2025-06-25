@@ -43,6 +43,13 @@ const items = DataExchanges
 								<dt><KeyLabel>{key}</KeyLabel></dt>
 								<dd>{data[key]}</dd>
 							))}
+								<dt><KeyLabel>URL</KeyLabel></dt>
+								<dd>
+									{ data['URL'].startsWith('http')
+									? <a class="hover:underline" href={data['URL']}>{new URL(data['URL']).origin}</a>
+									: <span>{data['URL']}</span>
+									}
+								</dd>
 						</dl>
 						<dl class="py-2">
 							{ DataExchangeFlags.map(key => (

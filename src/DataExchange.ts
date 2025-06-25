@@ -1,5 +1,6 @@
 import dataJSON from '../public/data/2025-03-31/2025-03-31-exchange.json'
 import { normaliseImplementationStatus, statusSort } from './Status'
+import { fixURL } from './Util'
 
 type DataExchangeType = typeof dataJSON[number]
 
@@ -11,20 +12,19 @@ export function dataExchangeDPIStatus(x: DataExchangeType) {
     && implStatus === 'Active'
   ) return 'DPI'
 
-  if (
-    implStatus === 'Active'
-    || implStatus === 'Pilot'
-  ) return 'WIP'
+  if (implStatus === 'Active' || implStatus === 'Pilot') return 'WIP'
 
   return 'NA'
 }
 
 export const DataExchanges = dataJSON.map(x => {
   return {
-    'DPI Status': dataExchangeDPIStatus(x),
     'Country': x['Country'],
+    'Last updated': x['Last updated'],
     'Name': x['Data exchange system name'],
+    'URL': fixURL('data', x['Country'], x['URL']),
     'Status of implementation': normaliseImplementationStatus(x['Status of implementation']),
+    "Base technical architecture": x['Base technical architecture'],
     'National or Regional': x['National/ Regional'],
     "Sector-specific or Cross-sectoral": x["Sector-specific/ Cross-sectoral"],
     "Semantic interoperability": x["Semantic interoperability"],
@@ -32,14 +32,14 @@ export const DataExchanges = dataJSON.map(x => {
     "Scalable architecture": x["Scalable technology architecture"],
     "Governing Entity": x["Governing entity"],
     "Ownership": x["Ownership"],
-    "Onboarding docs": "Unknown",
+    "Enrolment and participation information": x["Enrolment and participation information"],
     "Permitted participants": x["Permitted participants"],
     "Auditable": x["Audit mechanism"],
     "Procedural rules for data mgmt": x["Procedural rules for data mgmt."],
     "Coordination unit": x["Coordination unit"],
-    "Enrolment and participation information": x["Enrolment and participation information"],
+    "Used by more than one public entity": x['Used by more than one public entity'],
     "Impact metrics": x["Impact metrics"],
-    "Notes": x["Notes"],
+    'DPI Status': dataExchangeDPIStatus(x),
   }
 }).sort(statusSort)
 
@@ -47,21 +47,22 @@ export const DataExchangeFlags = [
   'Semantic interoperability',
   'Real-time sharing',
   'Scalable architecture',
-  'Onboarding docs',
   'Auditable',
   'Procedural rules for data mgmt',
   'Enrolment and participation information',
+  'Used by more than one public entity',
   'Impact metrics',
 ]
 
 export const DataExchangeText = [
+  'Base technical architecture',
   'Governing Entity',
   'Coordination unit',
   'Status of implementation',
-  'Permitted participants',
-  'Ownership',
   'National or Regional',
   'Sector-specific or Cross-sectoral',
+  'Permitted participants',
+  'Ownership',
 ]
 
 export const DataExchangeHeadlines = DataExchangeText.slice(0, 2)
