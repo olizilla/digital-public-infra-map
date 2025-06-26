@@ -23,7 +23,7 @@ const dpiDataExchangeCount = DataExchanges.filter(row => row['DPI Status'] === '
           DPI is far more prevalent than initially believed.
         </h2>
       </div>
-      <nav class="grid font-mono pt-2 pb-8 max-w-md mx-auto" >
+      <nav class="grid gap-3 px-2 font-mono pt-2 pb-8 max-w-md mx-auto" >
         <Card class="bg-zinc-50" isActive={Astro.url.pathname === '/'}>
           <a class="flex items-center justify-between" href="/">
             <Stat number={dpiIdCount}>Digital ID System</Stat>
@@ -44,7 +44,7 @@ const dpiDataExchangeCount = DataExchanges.filter(row => row['DPI Status'] === '
           </a>
         </Card>
       </nav>
-      <div class="max-w-md pl-4 pb-8">
+      <div class="max-w-md mx-auto pl-4 pb-8">
         <p>
           <a href="/about/" class="underline">This project aims</a> to advance our understanding of digital public infrastructure and promote its inclusive and safe development.
         </p>

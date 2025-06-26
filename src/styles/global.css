@@ -39,7 +39,7 @@
 }
 
 .card {
-  @apply text-sm rounded-lg shadow border border-teal-50 px-3 py-2 m-2 outline-2 outline-transparent;
+  @apply text-sm rounded-lg shadow border border-teal-50 px-3 py-2 outline-2 outline-transparent;
 }
 .card.active {
   @apply outline-blue-300;

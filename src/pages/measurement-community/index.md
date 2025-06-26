@@ -20,8 +20,6 @@ The DPI Measurement CoP brings together the diverse stakeholder community around
 - Address key **research questions** relevant to building measurement frameworks for DPI assessment and evaluation
 - Contribute to ongoing **governance and research initiatives** (including the Universal DPI Safeguards Working Group, G20 DEWG outputs, DPI Map)
 
----
-
 ## Previous Sessions
 
 ### April 09, 2025 - Inclusion

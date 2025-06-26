@@ -8,7 +8,7 @@ title: Method
 The DPI Map collects data based on a framework explained below. This framework provides a comprehensive view of the technical and governance characteristics of DPI, studying DPI through a set of attributes and indicators. Given its desk-based data collection methods, the DPI Map gathers data on a limited number of these indicators.
 
 <div class="text-center py-4">
-  <a href="https://www.ucl.ac.uk/bartlett/public-purpose/publications/2025/jan/digital-public-infrastructure-framework-conceptualisation-and-measurement" class="button-blue">
+  <a href="https://www.ucl.ac.uk/bartlett/sites/bartlett/files/dpi_conceptualisation_and_measurement.pdf" class="button-blue">
     Download the PDF
   </a>
 </div>
@@ -73,7 +73,7 @@ Download the framework (.xls) [here](https://docs.google.com/spreadsheets/d/1-G3
 
 Download the codebook to understand how the Map uses this framework [here](https://docs.google.com/spreadsheets/d/1JbpmZ1ap235wVCTcnA1dE5ghCWEzdFJXxyZz1FTRupk/edit?usp=sharing).
 
-Download the PDF [here](https://bit.ly/dpimapframe)
+Download the PDF [here]https://www.ucl.ac.uk/bartlett/sites/bartlett/files/dpi_conceptualisation_and_measurement.pdf)
 
 ### Citation
 

@@ -35,7 +35,7 @@ const id = IDs.find(x => x.Country === country) ?? {}
   <h1 class="text-lg lg:text-2xl text-center pt-10 pb-8 font-sans font-bold">
 		<a href='../' class="hover:underline">{country}</a>
 	</h1>
-	<div class="grid grid-cols-1 md:grid-cols-3 gap-y-8">
+	<div class="grid grid-cols-1 md:grid-cols-3 sm:px-2 gap-x-3 gap-y-8">
 		{ id && 
 			<Card class="bg-zinc-50">
 				<article>
