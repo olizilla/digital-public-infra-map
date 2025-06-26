@@ -3,9 +3,11 @@ const { name, link, imgSrc, imgAlt = `Photo of ${name}` } = Astro.props
 ---
 
 <figure>
-  <img src={imgSrc} alt={imgAlt} />
+  <a href={link}>
+    <img src={imgSrc} alt={imgAlt} />
+  </a>
   <figcaption>
-    <h3>
+    <h3 class="mt-2">
       <a href={link}>{name}</a>
     </h3>
     <slot/>
