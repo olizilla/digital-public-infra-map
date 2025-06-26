@@ -7,10 +7,10 @@ const { name, link, imgSrc, imgAlt = `Photo of ${name}` } = Astro.props
     <img src={imgSrc} alt={imgAlt} class="m-0"/>
   </a>
   <figcaption class="px-4 lg:px-3">
-    <h3 class="mt-0">
+    <h3 class="mt-0 -mb-2">
       <a href={link} class="no-underline hover:underline">{name}</a>
     </h3>
-    <div class="text-sm">
+    <div class="text-sm text-zinc-600">
     <slot/>
     </div>
   </figcaption>
