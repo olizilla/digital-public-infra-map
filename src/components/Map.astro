@@ -5,11 +5,11 @@ const { grid = false, nocrop = false, dpiType = 'id' } = Astro.props
 <figure class="map mx-auto block lg:py-4">
   <MapSvg grid={grid} nocrop={nocrop} dpiType={dpiType} />
   <figcaption>
-    <p class="text-center -mt-10 lg:-mt-24 font-sans tracking-wide text-zinc-400 text-xs">
+    <p class="text-center font-sans tracking-wide text-zinc-400 text-xs">
       { dpiType === 'id' && 'Digital ID System' }
       { dpiType === 'pay' && 'Payment System' }
       { dpiType === 'data' && 'Data Exchange System' }
       implementation status by country
     </p>
   </figcaption>
-</div>
+</figure>
