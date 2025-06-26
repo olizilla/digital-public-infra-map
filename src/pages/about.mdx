@@ -3,6 +3,7 @@ layout: ../layouts/Standard.astro
 title: 'About'
 ---
 import Blog from '../components/Blog.astro'
+import TeamCard from '../components/TeamCard.astro'
 
 
 # About
@@ -45,92 +46,57 @@ The DPI Map addresses this. It offers the first global investigation of digital 
 
 ## Team
 
-<div class="grid gap-3 grid-cols-2 md:grid-cols-3 lg:grid-cols-6 lg:-mx-30 content-start">
+<div class="grid gap-3 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 content-start">
 
-<figure>
-  <img src="/about/_david.jpg" alt="" />
-  <figcaption>
-
-  ### [David Eaves](https://profiles.ucl.ac.uk/89749-david-eaves)
-
+<TeamCard name="David Eaves" link="https://profiles.ucl.ac.uk/89749-david-eaves" imgSrc="/about/_david.jpg">
   Principal Investigator
 
   Associate Professor in Digital Government
 
   IIPP UCL
+</TeamCard>
 
-  </figcaption>
-</figure>
-
-
-<figure>
-  <img src="/about/_krisstina.jpg" alt="" />
-  <figcaption>
-
-### [Krisstina Rao](https://de.linkedin.com/in/krisstina-rao)
-
+<TeamCard name="Krisstina Rao" link="https://de.linkedin.com/in/krisstina-rao" imgSrc="/about/_krisstina.jpg">
 Project Manager and Research Fellow
 
 IIPP UCL
+</TeamCard>
 
-  </figcaption>
-</figure>
-
-
-<figure>
-  <img src="/about/_jordan.jpg" alt="" />
-  <figcaption>
-
-### [Jordan Sandman](https://www.codevelop.fund/team)
-
+<TeamCard name="Jordan Sandman" link="https://www.codevelop.fund/team" imgSrc="/about/_jordan.jpg">
 Principal, Investments
 
 Co-Develop
+</TeamCard>
 
-  </figcaption>
-</figure>
-
-
-<figure>
-  <img src="/about/_erik.jpg" alt="" />
-  <figcaption>
-
-### [Erik Paessler](https://www.linkedin.com/in/erik-paessler/)
-
+<TeamCard name="Michelle Wronski" link="https://www.linkedin.com/in/michelle-wronski-464006164/" imgSrc="/about/_michelle.jpg">
 Research Assistant
 
 IIPP UCL
+</TeamCard>
 
-  </figcaption>
-</figure>
-
-
-<figure>
-  <img src="/about/_michelle.jpg" alt="" />
-  <figcaption>
-
-### [Michelle Wronski](https://www.linkedin.com/in/michelle-wronski-464006164/)
-
+<TeamCard name="Erik Paessler" link="https://www.linkedin.com/in/erik-paessler/" imgSrc="/about/_erik.jpg">
 Research Assistant
 
 IIPP UCL
+</TeamCard>
 
-  </figcaption>
-</figure>
-
-
-<figure>
-  <img src="/about/_mitchel.jpg" alt="" />
-  <figcaption>
-
-### [Mitchel Pass](https://www.linkedin.com/in/mitch-alexander-52524b159/)
-
+<TeamCard name="Mitchel Pass" link="https://www.linkedin.com/in/mitch-alexander-52524b159/" imgSrc="/about/_mitchel.jpg">
 Research Fellow and Community Manager
 
 IIPP UCL
+</TeamCard>
 
-  </figcaption>
-</figure>
+<TeamCard name="Jordyn Fetter" link="https://www.linkedin.com/in/jordyn-fetter" imgSrc="/about/_jordyn.jpg">
+Research Assistant
+
+IIPP UCL
+</TeamCard>
+
+<TeamCard name="Oli Evans" link="https://oli.zilla.org.uk/" imgSrc="/about/olizilla.svg">
+Webmaster
+
+IIPP UCL
+</TeamCard>
 
 
 </div>
@@ -138,48 +104,25 @@ IIPP UCL
 
 ## Alumni
 
-<div class="grid gap-3 grid-cols-2 md:grid-cols-3 lg:grid-cols-6 lg:-mx-30 content-start">
+<div class="grid gap-3 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 content-start">
 
-<figure>
-  <img src="/about/_anjum.jpg" alt="" />
-  <figcaption>
-
-### [Anjum Dhamija](https://www.linkedin.com/in/anjum-dhamija/)
-
+<TeamCard name="Anjum Dhamija" link="https://www.linkedin.com/in/anjum-dhamija/" imgSrc="/about/_anjum.jpg">
 Researcher
 
 IIPP UCL
+</TeamCard>
 
-  </figcaption>
-</figure>
-
-
-<figure>
-  <img src="/about/_giulia.jpg" alt="" />
-  <figcaption>
-
-### [Giulia Lanzuolo](https://www.linkedin.com/in/giulialanzuolo/)
-
+<TeamCard name="Giulia Lanzuolo" link="https://www.linkedin.com/in/giulialanzuolo/" imgSrc="/about/_giulia.jpg">
 Researcher
 
 IIPP UCL
+</TeamCard>
 
-  </figcaption>
-</figure>
-
-
-<figure>
-  <img src="/about/_kassim.jpg" alt="" />
-  <figcaption>
-
-### [Kassim Vera](https://www.linkedin.com/in/kassimvera/)
-
+<TeamCard name="Kassim Vera" link="https://www.linkedin.com/in/kassimvera/" imgSrc="/about/_kassim.jpg">
 Researcher
 
 IIPP UCL
-
-  </figcaption>
-</figure>
+</TeamCard>
 
 </div>
 
@@ -221,7 +164,6 @@ _We would like to thank the following individuals for contributing their insight
 - Priscilla Koo Wilkens, Central Bank of Brazil
 - Jonathan Dolan, Digital Impact Alliance (DIAL)
 - Jonathan Marskell, World Bank
-- Jordyn Fetter, IIPP UCL
 - Manuel Aguilera, Centre for Digital Public Infrastructure (CDPI)
 - Matthew McNaughton, Co-Develop
 - Naeha Rashid
@@ -229,7 +171,6 @@ _We would like to thank the following individuals for contributing their insight
 - Nick Coleman, Digital Public Infrastructure Center (Egov)
 - Nigel Edmead, Place
 - Olivia Rakotomalala, World Bank
-- [Oli Evans](https://oli.zilla.org.uk)
 - Sabine Mensah, AfricaNenda
 - Sarthak Satapathy, Digital Impact Alliance (DIAL)
 - Siim Sikut, Digital Nations
