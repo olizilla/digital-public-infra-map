@@ -1,4 +1,4 @@
-import json from '../public/data/2025-03-31/2025-03-31-payment.json'
+import json from '../public/data/2025-06-30/2025-06-30-payment.json'
 import { normaliseImplementationStatus, statusSort } from './Status'
 import { fixURL } from './Util'
 
@@ -20,10 +20,10 @@ export function paymentDPIStatus(x: PaymentType) {
 export const Payments = json.map(x => {
   return {
     'DPI Status': paymentDPIStatus(x),
-    'Country': x['Country/ Region'],
+    'Country': x['Country/Region'],
     'Last updated': x['Last updated'],
     'Name': x['Payment system name'],
-    'URL': fixURL('pay', x['Country/ Region'], x['URL']),
+    'URL': fixURL('pay', x['Country/Region'] ?? '', x['URL']),
     'Active real-time payment system': x['Active real-time payment system present'],
     'Payment system type': x['Payment system type'],
     'Status of implementation': normaliseImplementationStatus(x['Status of payment system implementation']),
@@ -62,8 +62,8 @@ export const PaymentFlags = [
 
 export const PaymentText = [
   'Payment system type',
-  'Operator',
   'Status of implementation',
+  'Operator',
   'National or Regional',
   'Annual value of transactions (USD)',
   'Annual volume of transactions',

@@ -9,7 +9,12 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "links": "npx linkinator ./dist --recurse --timeout 1000 --skip 'https' --verbosity error"
+    "links": "npx linkinator ./dist --recurse --timeout 1000 --skip 'https' --verbosity error",
+    "data": "mkdir ./public/data/$(date +'%Y-%m-%d') && run-p data:*",
+    "data:identity": "curl -Ss --output ./public/data/$(date +'%Y-%m-%d')/$(date +'%Y-%m-%d')-identity.json http://localhost:4321/api/identity.json",
+    "data:payment": "curl -Ss --output ./public/data/$(date +'%Y-%m-%d')/$(date +'%Y-%m-%d')-payment.json http://localhost:4321/api/payment.json",
+    "data:exchange": "curl -Ss --output ./public/data/$(date +'%Y-%m-%d')/$(date +'%Y-%m-%d')-exchange.json http://localhost:4321/api/exchange.json",
+    "clean": "rm -r ./public/data/$(date +'%Y-%m-%d')"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.0",
@@ -28,6 +33,7 @@
     "@types/d3-geo": "^3.1.0",
     "@types/slug": "^5.0.9",
     "@types/topojson-client": "^3.1.5",
-    "linkinator": "^6.1.2"
+    "linkinator": "^6.1.2",
+    "npm-run-all2": "^8.0.4"
   }
 }
