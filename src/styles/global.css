@@ -5,6 +5,7 @@
   --color-wip: var(--color-yellow-200);
   --color-na: var(--color-zinc-200);
 }
+@source inline("row-start-{1,2,3}");
 
 .status-na {
   @apply fill-zinc-200 bg-zinc-200;
