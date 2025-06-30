@@ -7,6 +7,16 @@ title: Method
 
 The DPI Map collects data based on a framework explained below. This framework provides a comprehensive view of the technical and governance characteristics of DPI, studying DPI through a set of attributes and indicators. Given its desk-based data collection methods, the DPI Map gathers data on a limited number of these indicators.
 
+Based on a minimal set of benchmarks that are regarded as characteristics of DPI, we arrived at a “count” for DPI-like systems. 
+
+For digital ID systems, we counted if the country claimed to have a digital ID, whether it was active, enabled digital authentication, and was used by 2 more sectors.
+
+For digital payment systems, we counted if the country had a payment system that was active and enabled real-time transactions, and was operated by the central bank wholly or partially.
+
+For data exchange systems, we counted countries with active systems that were designed to exchange data across sectors.
+
+DPI-likeness refers to systems most closely associated with being DPI.
+
 <div class="text-center py-4">
   <a href="https://www.ucl.ac.uk/bartlett/sites/bartlett/files/dpi_conceptualisation_and_measurement.pdf" class="button-blue">
     Download the PDF
