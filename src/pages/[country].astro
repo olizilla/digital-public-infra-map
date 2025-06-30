@@ -25,9 +25,9 @@ export async function getStaticPaths () {
 
 const country = Astro.props.country
 
-const data = DataExchanges.find(x => x.Country === country) ?? {}
-const pay = Payments.find(x => x.Country === country) ?? {}
-const id = IDs.find(x => x.Country === country) ?? {}
+const datas = DataExchanges.filter(x => x.Country === country) ?? {}
+const pays = Payments.filter(x => x.Country === country) ?? {}
+const ids = IDs.filter(x => x.Country === country) ?? {}
 
 ---
 
@@ -36,8 +36,8 @@ const id = IDs.find(x => x.Country === country) ?? {}
 		<a href='../' class="hover:underline">{country}</a>
 	</h1>
 	<div class="grid grid-cols-1 md:grid-cols-3 sm:px-2 gap-x-3 gap-y-8">
-		{ id && 
-			<Card class="bg-zinc-50">
+		{ ids.map((id, i) =>
+			<Card class:list={["bg-zinc-50", "md:col-start-1", `md:row-start-${i + 1}`]}>
 				<article>
 					<header class="text-zinc-600 pb-2 border-b border-zinc-100 mb-2 flex items-center">
 						<IdentityIcon class="flex-none text-zinc-400"/>
@@ -59,6 +59,8 @@ const id = IDs.find(x => x.Country === country) ?? {}
 							: <span>{id['URL'] ?? 'NA'}</span>
 							}
 						</dd>
+						<dt><KeyLabel>Last Updated</KeyLabel></dt>
+						<dd>{id['Last updated']}</dd>
 						<div class="pt-4">
 							{ IDFlags.map(key => (
 								<div class="flex flex-row-reverse items-baseline justify-items-start">
@@ -73,9 +75,9 @@ const id = IDs.find(x => x.Country === country) ?? {}
 					</dl>
 				</article>
 			</Card>
-		}
-		{ pay && 
-			<Card class="bg-zinc-50">
+		)}
+		{ pays.map((pay, i) =>
+			<Card class:list={["bg-zinc-50", "md:col-start-2", `md:row-start-${i + 1}`]}>
 				<article>
 					<header class="text-zinc-600 pb-2 border-b border-zinc-100 mb-2 flex items-center">
 						<PaymentIcon class="flex-none text-zinc-400"/>
@@ -97,6 +99,8 @@ const id = IDs.find(x => x.Country === country) ?? {}
 						: <span>{pay['URL'] ?? 'NA'}</span>
 						}
 					</dd>
+					<dt><KeyLabel>Last Updated</KeyLabel></dt>
+					<dd>{pay['Last updated']}</dd>
 					<div class="pt-4">
 						{ PaymentFlags.map(key => (
 							<div class="flex flex-row-reverse items-baseline justify-items-start ">
@@ -111,9 +115,9 @@ const id = IDs.find(x => x.Country === country) ?? {}
 					</dl>
 				</article>
 			</Card>
-		}
-		{ data && 
-			<Card class="bg-zinc-50">
+		)}
+		{ datas.map((data, i) =>
+			<Card class:list={["bg-zinc-50", "md:col-start-3", `md:row-start-${i + 1}`]}>
 				<article>
 					<header class="text-zinc-600 pb-2 border-b border-zinc-100 mb-2 flex items-center">
 						<DataIcon class="flex-none text-zinc-400 "/>
@@ -135,6 +139,8 @@ const id = IDs.find(x => x.Country === country) ?? {}
 							: <span>{data['URL'] ?? 'NA'}</span>
 							}
 						</dd>
+						<dt><KeyLabel>Last Updated</KeyLabel></dt>
+						<dd>{data['Last updated']}</dd>
 					<div class="pt-4">
 						{ DataExchangeFlags.map(key => (
 								<div class="flex flex-row-reverse items-baseline justify-items-start ">
@@ -149,11 +155,11 @@ const id = IDs.find(x => x.Country === country) ?? {}
 					</dl>
 				</article>
 			</Card>
-		}
+		)}
 	</div>
 	<section class="max-w-xl mx-auto my-10 text-center">
 		<aside class="prose ">
-			<p class="">🔍 Found an error or something missing? <a href="/help">Let us know</a>.</p>
+			<p class="">🔍 Found an error or something missing? <a href="/contribute-to-the-dpi-map/">Let us know</a>.</p>
 			<p>📧 <a href="https://forms.gle/dhoXGR9M6fVAoDKt7">Sign up here</a> for email updates about the DPI map.</p>
 		</aside>
 	</section>

@@ -17,7 +17,7 @@ const items = Payments
 <Layout>
 	<MapAndTabs countryCount={items.length} dpiType="pay" />
   <StatusBar items={items} />
-	<CardSection title="Digital Payment Systems">
+	<CardSection title="Digital Payment Systems" items={items}>
 		{ items.map(data => (
 			<Card>
 				<article>

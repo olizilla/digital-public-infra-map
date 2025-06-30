@@ -1,7 +1,8 @@
 ---
 import { dpiStatusToClass } from "../Status";
+import { oneSystemPerCountry } from "../Util";
 
-const { items } = Astro.props
+const items = oneSystemPerCountry(Astro.props.items)
 
 const active = items.filter((row) => row['DPI Status'] === 'DPI')
 const pilot = items.filter((row) => row['DPI Status'] === 'WIP')

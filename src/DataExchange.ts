@@ -1,4 +1,4 @@
-import dataJSON from '../public/data/2025-03-31/2025-03-31-exchange.json'
+import dataJSON from '../public/data/2025-06-30/2025-06-30-exchange.json'
 import { normaliseImplementationStatus, statusSort } from './Status'
 import { fixURL } from './Util'
 
@@ -6,23 +6,21 @@ type DataExchangeType = typeof dataJSON[number]
 
 export function dataExchangeDPIStatus(x: DataExchangeType) {
   const implStatus = normaliseImplementationStatus(x['Status of implementation'])
-
-  if (
-    x['Sector-specific/ Cross-sectoral'] === 'Cross-sectoral'
-    && implStatus === 'Active'
-  ) return 'DPI'
-
-  if (implStatus === 'Active' || implStatus === 'Pilot') return 'WIP'
-
+  if (x['Count for DPI-like data exchange system'] === 1) {
+    return 'DPI'
+  }
+  if (implStatus === 'Active' || implStatus === 'Pilot') {
+    return 'WIP'
+  }
   return 'NA'
 }
 
 export const DataExchanges = dataJSON.map(x => {
   return {
-    'Country': x['Country'],
+    'Country': x['Country/Region'],
     'Last updated': x['Last updated'],
     'Name': x['Data exchange system name'],
-    'URL': fixURL('data', x['Country'], x['URL']),
+    'URL': fixURL('data', x['Country/Region'], x['URL']),
     'Status of implementation': normaliseImplementationStatus(x['Status of implementation']),
     "Base technical architecture": x['Base technical architecture'],
     'National or Regional': x['National/ Regional'],
@@ -56,9 +54,9 @@ export const DataExchangeFlags = [
 
 export const DataExchangeText = [
   'Base technical architecture',
+  'Status of implementation',
   'Governing Entity',
   'Coordination unit',
-  'Status of implementation',
   'National or Regional',
   'Sector-specific or Cross-sectoral',
   'Permitted participants',

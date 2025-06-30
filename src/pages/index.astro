@@ -18,7 +18,7 @@ const items = IDs
 <Layout>
 	<MapAndTabs countryCount={items.length} dpiType="id" />
 	<StatusBar items={items} />
-	<CardSection title="Digital ID Systems">
+	<CardSection title="Digital ID Systems" items={items}>
 		{ items.map(data => (
 			<Card>
 				<article>

@@ -5,6 +5,18 @@
   --color-wip: var(--color-yellow-200);
   --color-na: var(--color-zinc-200);
 }
+@source inline("md:row-start-{1,2,3}");
+@utility prose {
+    blockquote {
+        /* Disable adding quote marks to block-quotes: https://github.com/tailwindlabs/tailwindcss-typography/issues/66 */
+        p {
+            &:first-of-type::before,
+            &:last-of-type::after {
+                content: none;
+            }
+        }
+    }
+}
 
 .status-na {
   @apply fill-zinc-200 bg-zinc-200;
@@ -62,6 +74,9 @@
 }
 .prose aside {
   @apply bg-amber-100 px-4 py-0.5 text-sm leading-6 border-l-2;
+}
+.prose .cite {
+  @apply text-zinc-500 font-mono block mt-1 text-sm;
 }
 
 .lead {

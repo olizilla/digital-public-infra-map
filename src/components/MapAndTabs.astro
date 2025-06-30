@@ -8,11 +8,12 @@ import Map from '../components/Map.astro'
 import { IDs } from '../Identity'
 import { DataExchanges } from '../DataExchange'
 import { Payments } from '../Payment'
+import { oneSystemPerCountry } from '../Util'
 
 const { dpiType } = Astro.props
-const dpiIdCount = IDs.filter(row => row['DPI Status'] === 'DPI').length
-const dpiPaymentsCount = Payments.filter(row => row['DPI Status'] === 'DPI').length
-const dpiDataExchangeCount = DataExchanges.filter(row => row['DPI Status'] === 'DPI').length
+const dpiIdCount = oneSystemPerCountry(IDs).filter(row => row['DPI Status'] === 'DPI').length
+const dpiPaymentsCount = oneSystemPerCountry(Payments).filter(row => row['DPI Status'] === 'DPI').length
+const dpiDataExchangeCount = oneSystemPerCountry(DataExchanges).filter(row => row['DPI Status'] === 'DPI').length
 
 ---
 <div>

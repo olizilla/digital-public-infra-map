@@ -48,24 +48,6 @@ function regionName (name:string) {
   return nameMap.get(name) ?? name
 }
 
-const idMap = new Map(IDs.map(row => [row['Country'], row['DPI Status']]))
-const payMap = new Map(Payments.map(row => [row['Country'], row['DPI Status']]))
-const dataMap = new Map(DataExchanges.map(row =>[row['Country'], row['DPI Status']]))
-
-function getStatus (dpiType: string, region: string) {
-  const country = regionName(region)
-  if (dpiType === 'id') {
-    return idMap.get(country)
-  }
-  if (dpiType === 'pay') {
-    return payMap.get(country)
-  }
-  if (dpiType === 'data') {
-    return dataMap.get(country)
-  }
-  throw Error(`No such dpiType, ${dpiType}`)
-}
-
 function getDPI (country: string) {
   const items = dpiType === 'id' ? IDs : dpiType === 'pay' ? Payments : DataExchanges
   return items.find(row => row['Country'] === country)
