@@ -6,14 +6,12 @@ type PaymentType = typeof json[number]
 
 export function paymentDPIStatus(x: PaymentType) {
   const implStatus = normaliseImplementationStatus(x['Status of payment system implementation'])
-  if (
-    x['Active real-time payment system present'] === 'Yes'
-    && x['Operator'].match(/Central bank/i) !== null
-    && implStatus === 'Active'
-  ) return 'DPI'
-
-  if (implStatus === 'Active' || implStatus === 'Pilot') return 'WIP'
-
+  if (x['Count for DPI'] === 1) { 
+    return 'DPI'
+  }
+  if (implStatus === 'Active' || implStatus === 'Pilot') {
+    return 'WIP'
+  }
   return 'NA'
 }
 

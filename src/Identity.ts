@@ -10,15 +10,12 @@ type IdentityType = typeof json[number]
  */
 export function identityDPIStatus(x: IdentityType) {
   const implStatus = normaliseImplementationStatus(x['Status of implementation'])
-  if (
-    x['Two or more sectoral use cases enabled'] === 'Yes'
-    && x['Digital authentication function'] === 'Yes'
-    && x['Claim of digital (or electronic) ID'] === 'Yes'
-    && implStatus === 'Active'
-  ) return 'DPI'
-
-  if (implStatus === 'Active' || implStatus === 'Pilot') return 'WIP'
-
+  if (x['DPI based digital ID\n(to count for Visualisation)'] === 1) {
+    return 'DPI'
+  }
+  if (implStatus === 'Active' || implStatus === 'Pilot'){
+    return 'WIP'
+  }
   return 'NA'
 }
 

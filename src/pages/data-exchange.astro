@@ -17,7 +17,7 @@ const items = DataExchanges
 <Layout>
 	<MapAndTabs countryCount={items.length} dpiType="data" />
 	<StatusBar items={items} />
-	<CardSection title="Data Exchange Systems">
+	<CardSection title="Data Exchange Systems" items={items}>
 		{ items.map(data => (
 			<Card>
 				<article>

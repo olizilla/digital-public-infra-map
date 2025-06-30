@@ -6,14 +6,12 @@ type DataExchangeType = typeof dataJSON[number]
 
 export function dataExchangeDPIStatus(x: DataExchangeType) {
   const implStatus = normaliseImplementationStatus(x['Status of implementation'])
-
-  if (
-    x['Sector-specific/ Cross-sectoral'] === 'Cross-sectoral'
-    && implStatus === 'Active'
-  ) return 'DPI'
-
-  if (implStatus === 'Active' || implStatus === 'Pilot') return 'WIP'
-
+  if (x['Count for DPI-like data exchange system'] === 1) {
+    return 'DPI'
+  }
+  if (implStatus === 'Active' || implStatus === 'Pilot') {
+    return 'WIP'
+  }
   return 'NA'
 }
 
