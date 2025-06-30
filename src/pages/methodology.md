@@ -73,7 +73,7 @@ Download the framework (.xls) [here](https://docs.google.com/spreadsheets/d/1-G3
 
 Download the codebook to understand how the Map uses this framework [here](https://docs.google.com/spreadsheets/d/1JbpmZ1ap235wVCTcnA1dE5ghCWEzdFJXxyZz1FTRupk/edit?usp=sharing).
 
-Download the PDF [here]https://www.ucl.ac.uk/bartlett/sites/bartlett/files/dpi_conceptualisation_and_measurement.pdf)
+Download the PDF [here](https://www.ucl.ac.uk/bartlett/sites/bartlett/files/dpi_conceptualisation_and_measurement.pdf)
 
 ### Citation
 
@@ -81,7 +81,7 @@ Eaves, D. and Rao, K. (2025). Digital Public Infrastructure: a framework for con
 
 ## Data collection methodology
 
-The [DPI Map](https://dpimap.org/dpi-map) [](https://dpimap.org/99b3390d6e6d46e49f3d4b0c923b960b)puts the ‘Measuring DPI’ framework to the test, reporting a mix of data points from publicly accessible data sources. Typically, these sources include government-reported updates through their websites, press releases, as well as data from other third-party reporters (World Bank, UN, regional development banks, regional technical capacity-builders).
+The [DPI Map](https://dpimap.org/dpi-map) puts the ‘Measuring DPI’ framework to the test, reporting a mix of data points from publicly accessible data sources. Typically, these sources include government-reported updates through their websites, press releases, as well as data from other third-party reporters (World Bank, UN, regional development banks, regional technical capacity-builders).
 
 Since the release of the first version of our Map, we have also received data from country-level implementers and advisors, on the state of their country’s DPI. These have since been validated and included in the dataset as well.
 
