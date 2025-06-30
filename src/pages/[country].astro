@@ -37,7 +37,7 @@ const ids = IDs.filter(x => x.Country === country) ?? {}
 	</h1>
 	<div class="grid grid-cols-1 md:grid-cols-3 sm:px-2 gap-x-3 gap-y-8">
 		{ ids.map((id, i) =>
-			<Card class:list={["bg-zinc-50", "col-start-1", `row-start-${i + 1}`]}>
+			<Card class:list={["bg-zinc-50", "md:col-start-1", `md:row-start-${i + 1}`]}>
 				<article>
 					<header class="text-zinc-600 pb-2 border-b border-zinc-100 mb-2 flex items-center">
 						<IdentityIcon class="flex-none text-zinc-400"/>
@@ -75,7 +75,7 @@ const ids = IDs.filter(x => x.Country === country) ?? {}
 			</Card>
 		)}
 		{ pays.map((pay, i) =>
-			<Card class:list={["bg-zinc-50", "col-start-2", `row-start-${i + 1}`]}>
+			<Card class:list={["bg-zinc-50", "md:col-start-2", `md:row-start-${i + 1}`]}>
 				<article>
 					<header class="text-zinc-600 pb-2 border-b border-zinc-100 mb-2 flex items-center">
 						<PaymentIcon class="flex-none text-zinc-400"/>
@@ -113,7 +113,7 @@ const ids = IDs.filter(x => x.Country === country) ?? {}
 			</Card>
 		)}
 		{ datas.map((data, i) =>
-			<Card class:list={["bg-zinc-50", "col-start-3", `row-start-${i + 1}`]}>
+			<Card class:list={["bg-zinc-50", "md:col-start-3", `md:row-start-${i + 1}`]}>
 				<article>
 					<header class="text-zinc-600 pb-2 border-b border-zinc-100 mb-2 flex items-center">
 						<DataIcon class="flex-none text-zinc-400 "/>
@@ -153,7 +153,7 @@ const ids = IDs.filter(x => x.Country === country) ?? {}
 	</div>
 	<section class="max-w-xl mx-auto my-10 text-center">
 		<aside class="prose ">
-			<p class="">🔍 Found an error or something missing? <a href="/help">Let us know</a>.</p>
+			<p class="">🔍 Found an error or something missing? <a href="/contribute-to-the-dpi-map/">Let us know</a>.</p>
 			<p>📧 <a href="https://forms.gle/dhoXGR9M6fVAoDKt7">Sign up here</a> for email updates about the DPI map.</p>
 		</aside>
 	</section>
