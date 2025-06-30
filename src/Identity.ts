@@ -57,7 +57,6 @@ export const IDFlags = [
   'Identity act codifies legal status',
   'Identity act sets up procedural rules for data management',
   'Identity act clarifies relationship with feeder documents',
-  'Accountability of ID executors to authority',
   'Terms of data storage and sharing available',
   'National Data Protection Act exists',
   'Data leak disclosure process exists',
