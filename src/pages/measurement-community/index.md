@@ -7,9 +7,9 @@ title: Community
 
 This **community of practice (CoP)** for DPI measurement aims to bring together practitioners, researchers, and policymakers to collaboratively develop more nuanced, context-sensitive approaches to DPI assessment and evaluation.
 
-The next session is **May 6 2025** on the theme of **Interoperability**.
+The next session is **May 6 2025** on the theme of **Trust, Safety and Security**.
 
-We meet via Zoom. [Register here](https://ucl.zoom.us/meeting/register/cD9gPKuQR7WiDYB3ZNSS-g#/registration) to attend.
+We meet via Zoom. [Register here]( https://ucl.zoom.us/meeting/register/oQiCoJvcSx-MfNjqL7Nojw) to attend.
 
 
 ## Goals
@@ -22,7 +22,28 @@ The DPI Measurement CoP brings together the diverse stakeholder community around
 
 ## Previous Sessions
 
-### April 09, 2025 - Inclusion
+### Session 3 - Measuring Gender Inclusion
+
+<iframe class="aspect-video w-full" src="https://www.youtube-nocookie.com/embed/mqt8Xw_gwY4?si=spL709fMfJvNXbU9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+---
+
+### Session 2 - Measuring Interoperability
+
+_Measuring What Matters: Insights on DPI Interoperability from Global Experts_
+
+- **Standards-Interoperability Relationship is Contextual**: As systems mature and ecosystems need to connect, explicit standards become essential for maintaining interoperability at scale. Effective DPI measurement approaches must work to assess different maturity stages and prioritise real-world outcomes over rigid compliance metrics.
+- **Testing as Research:** Creating empirical tests that directly measure system compatibility provides more usable metrics than theoretical assessments. Real-world compatibility tests offer a way to transform abstract interoperability standards into measurable outcomes that reflect actual user experiences.
+- **Compliance with Purpose**: Interoperability should be measured against its ability to deliver tangible value rather than technical compliance. Measurement frameworks should prioritize service continuity, reduced transaction costs, and cross-border functionality over standards adherence.
+- **Interoperability is Multidimensional**: Effective measurement must consider technical, syntactic, semantic, and legal dimensions of interoperability. Each dimension presents unique challenges and requires different assessment approaches to capture both capabilities and limitations.
+
+See the [session notes](/measurement-community/session-2) for more detail.
+
+<iframe class="aspect-video w-full" src="https://www.youtube-nocookie.com/embed/8JdZift6mqk?si=XA0ccnLPD1zF0eZ8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+---
+
+### Session 1 - Inclusion
 
 There is an increasing need to make transparent how DPI embodies the normative values it claims to represent. Inclusion stands at the heart of this challenge, offering a litmus test for whether DPI can achieve population-scale outcomes while preserving public values.
 
@@ -36,7 +57,7 @@ See the [session notes](/measurement-community/session-1) for more detail.
 
 ---
 
-### March 11, 2025 - Measurement of DPI: approaches and pitfalls
+### Session 0 - Launch
 
 The introductory session highlighted the importance of measuring Digital Public Infrastructure (DPI) effectiveness, inclusivity, and impact through both individual and collective goals within the Community of Practice (CoP) for DPI Measurement⁠⁠.
 
