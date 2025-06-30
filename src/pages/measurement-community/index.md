@@ -7,7 +7,7 @@ title: Community
 
 This **community of practice (CoP)** for DPI measurement aims to bring together practitioners, researchers, and policymakers to collaboratively develop more nuanced, context-sensitive approaches to DPI assessment and evaluation.
 
-The next session is **May 6 2025** on the theme of **Trust, Safety and Security**.
+The next session is **July 16, 12:00 BST (midday)** on the theme of **Trust, Safety and Security**.
 
 We meet via Zoom. [Register here]( https://ucl.zoom.us/meeting/register/oQiCoJvcSx-MfNjqL7Nojw) to attend.
 
