@@ -64,10 +64,11 @@ function statusToColor (s: string) {
   return '#e4e4e7'                   //  zinc-200 
 }
 
-const cropLeft = nocrop ? 0 : 80 // trim hard-to-see islands. data still available in card list view.
-const cropRight = nocrop ? -20 : 105
+const cropLeft = nocrop ? 0 : 90 // trim hard-to-see islands. data still available in card list view.
+const cropRight = nocrop ? -20 : 90
+const cropBottom = 60
 ---
-<svg viewBox={`${cropLeft} 0 ${width - cropRight} ${height() - 60}`} version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg viewBox={`${cropLeft} 0 ${width - cropRight} ${height() - cropBottom}`} version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
     <path id="outline" d={path(outline)} />
     <clipPath id="clip"><use href="#outline" /></clipPath>
