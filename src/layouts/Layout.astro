@@ -33,5 +33,12 @@ const imgUrl = new URL('/map/preview.png', rootUrl)
 	<body class={Astro.props.bodyClass ?? ''}>
 		<Header />
 		<slot />
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-S6Q8LFD9PE"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'G-S6Q8LFD9PE');
+		</script>
 	</body>
 </html>
