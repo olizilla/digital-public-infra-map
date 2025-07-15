@@ -31,6 +31,7 @@ content:
     label: Community
     type: collection
     path: 'src/pages/measurement-community'
+    exclude: [ 'index.md' ]
     view:
       fields: [ title, published, date ]
     fields:
@@ -51,3 +52,20 @@ content:
       - name: body
         label: Body
         type: rich-text
+  - name: community-home
+    label: Community homepage
+    type: file
+    path: 'src/pages/measurement-community/index.md'
+    view:
+      fields: [ title ]
+    fields:
+      - name: layout
+        type: string
+        hidden: true
+        default: '../../layouts/Standard.astro'
+      - name: title
+        label: Title
+        type: string
+      - name: body
+        label: Body
+        type: text
