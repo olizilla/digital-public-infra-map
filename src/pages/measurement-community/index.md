@@ -2,11 +2,6 @@
 layout: ../../layouts/Standard.astro
 title: Community
 ---
----
-layout: ../../layouts/Standard.astro
-title: Community
----
-
 # Community
 
 This **community of practice (CoP)** for DPI measurement aims to bring together practitioners, researchers, and policymakers to collaboratively develop more nuanced, context-sensitive approaches to DPI assessment and evaluation.
