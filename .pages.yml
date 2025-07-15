@@ -2,8 +2,8 @@ media:
   input: public
   output: /
 content:
-  - name: Community
-    label: community
+  - name: community
+    label: Community
     type: collection
     path: 'src/pages/measurement-community'
     view:
