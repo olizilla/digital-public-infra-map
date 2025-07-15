@@ -26,3 +26,18 @@ content:
       - name: body
         label: Body
         type: rich-text
+  - name: method
+    label: Methodology
+    type: file
+    path: 'src/pages/methodology.md'
+    fields:
+      - name: layout
+        type: string
+        hidden: true
+        default: '../layouts/Standard.astro'
+      - name: title
+        label: Title
+        type: string
+      - name: body
+        label: Body
+        type: rich-text
