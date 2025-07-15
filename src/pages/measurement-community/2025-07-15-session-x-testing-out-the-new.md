@@ -8,4 +8,4 @@ published: true
 
 hello world
 
-![](/Screenshot%202025-05-29%20at%2010.36.14.png)
+![](./Screenshot%202025-05-29%20at%2010.36.14.png)
