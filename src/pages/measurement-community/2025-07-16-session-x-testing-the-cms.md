@@ -6,4 +6,4 @@ published: true
 ---
 # Session X: Testing the CMS
 
-/q
+![](/dpi-map.png)
