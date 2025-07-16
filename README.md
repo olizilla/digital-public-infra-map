@@ -1,12 +1,14 @@
 # 🗺️ Digital Public Infrastructure Map
 
-Tracking the state of national-scale digital infrastructure around the world.
+Tracking the state of national-scale digital infrastructure around the world. 
 
 <img width="1468" alt="screenshot of the ui. it's got a map of the world showing which regions are running digital public infrastructure projects." src="https://github.com/user-attachments/assets/7398f03d-dd4b-4330-ae6a-265e21254f58" />
 
 ## Getting started
 
-To build this website on your computer:
+**Editors:** You can edit the site via [Pages CMS](https://pagescms.org/).
+
+**The bold and the curious:** You can build this website on your computer:
 
 - Install [node.js](https://nodejs.org)
 - Download the code by cloning this repo
