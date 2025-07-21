@@ -71,6 +71,6 @@ The community discussion revealed that effective security measurement serves mul
 
 **Upcoming Sessions:** The topic of the upcoming session to be held mid-August will be announced in the coming weeks. 
 
-**Session Recording:** The full recording of this session is available on the [IIPP YouTube Channel](https://www.youtube.com/watch?v=mqt8Xw_gwY4&t=5s) for those interested in exploring the complete discussion.
+**Session Recording:** The full recording of this session is available on the [IIPP YouTube Channel](https://www.youtube.com/watch?v=HmRd0rEs6Wc) for those interested in exploring the complete discussion.
 
 For questions about the Community of Practice or to discuss collaboration opportunities around DPI security measurement, contact our community manager Mitchel Pass at [m.pass@ucl.ac.uk](mailto:m.pass@ucl.ac.uk).

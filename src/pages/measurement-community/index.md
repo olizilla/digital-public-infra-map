@@ -22,7 +22,25 @@ The DPI Measurement CoP brings together the diverse stakeholder community around
 
 ## Previous Sessions
 
+### Session 4 - Addressing Safety and Security in Digital Public Infrastructure
+
+* **Safety and Security Measurement Requires New Frameworks:** Current DPI measurement approaches inadequately capture security and resilience needs. Effectively addressing this challenge will require new frameworks that account for the full life cycle of public infrastructure.  
+* **Governance Challenges Exceed Technical Solutions**: Real-world implementation reveals that regulatory frameworks, institutional mandates, and cross-agency coordination present greater barriers than technical security controls.    
+* **Operational Principles Must Bridge High-Level Values**: Translating broadly agreed principles like "security by design" into measurable, operational frameworks remains a critical gap requiring evidence-based approaches and real-world case studies. 
+* **Capacity Building Enables Informed Risk Decisions**: Creating "intelligent customers" who can make informed security decisions is essential for sustainable DPI deployment, requiring frameworks that translate technical concepts into actionable governance choices.
+    
+See the [session notes](/measurement-community/2025-07-18-session-4-addressing-safety-and-security-in-digital-public-infrastructure.md) for more detail.
+
+
+<iframe class="aspect-video w-full" src="https://www.youtube-nocookie.com/embed/HmRd0rEs6Wc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+---
+
 ### Session 3 - Measuring Gender Inclusion
+
+How do you measure success when the metrics themselves might be part of the problem? This question anchored the third Community of Practice session on DPI Measurement convened by the IIPP’s Digital team on **June 16 2025**, as researchers from APTI Institute and Data Privacy Brazil presented findings that challenge conventional wisdom about digital infrastructure impact.
+
+See the [session notes](/measurement-community/src/pages/measurement-community/2025-07-21-session-3-towards-robust-metrics-for-trust-in-dpi.md) for more detail.
 
 <iframe class="aspect-video w-full" src="https://www.youtube-nocookie.com/embed/mqt8Xw_gwY4?si=spL709fMfJvNXbU9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
