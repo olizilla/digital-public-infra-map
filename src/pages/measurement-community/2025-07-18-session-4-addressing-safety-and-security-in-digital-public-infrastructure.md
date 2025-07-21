@@ -8,10 +8,8 @@ published: true
 
 *   **Safety and Security Measurement Requires New Frameworks:** Current DPI measurement approaches inadequately capture security and resilience needs. Effectively addressing this challenge will require new frameworks that account for the full life cycle of public infrastructure.  
     
-*   **Governance Challenges Exceed Technical Solutions**: Real-world implementation reveals that regulatory frameworks, institutional mandates, and cross-agency coordination present greater barriers than technical security controls.  
-    
-*   **Operational Principles Must Bridge High-Level Values**: Translating broadly agreed principles like "security by design" into measurable, operational frameworks remains a critical gap requiring evidence-based approaches and real-world case studies.  
-    
+*   **Governance Challenges Exceed Technical Solutions**: Real-world implementation reveals that regulatory frameworks, institutional mandates, and cross-agency coordination present greater barriers than technical security controls.    
+*   **Operational Principles Must Bridge High-Level Values**: Translating broadly agreed principles like "security by design" into measurable, operational frameworks remains a critical gap requiring evidence-based approaches and real-world case studies. 
 *   **Capacity Building Enables Informed Risk Decisions**: Creating "intelligent customers" who can make informed security decisions is essential for sustainable DPI deployment, requiring frameworks that translate technical concepts into actionable governance choices.
     
 
