@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/Standard.astro
-title: "Session 4: Addressing Safety and Security in Digital Public Infrastructure "
+title: "Session 4: Addressing Safety and Security in Digital Public Infrastructure"
 date: 2025-07-18
 published: true
 ---
