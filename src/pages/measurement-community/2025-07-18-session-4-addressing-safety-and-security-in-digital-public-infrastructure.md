@@ -4,7 +4,9 @@ title: "Session 4: Addressing Safety and Security in Digital Public Infrastructu
 date: 2025-07-18
 published: true
 ---
-## Key Takeaways
+# Session 4: Addressing Safety and Security in Digital Public Infrastructure
+
+**Key Takeaways**
 
 *   **Safety and Security Measurement Requires New Frameworks:** Current DPI measurement approaches inadequately capture security and resilience needs. Effectively addressing this challenge will require new frameworks that account for the full life cycle of public infrastructure.  
     
