@@ -29,15 +29,10 @@ Coleman's presentation began by challenging the adequacy of established security
   
 Drawing on his experience developing security frameworks for the UK government, Coleman proposed a four-pillar approach specifically designed for DPI:
 
-*   governance 
-    
-*   risk management 
-    
+*   governance
+*   risk management
 *   policy and operations
-    
 *   monitoring maintenance and assurance
-    
-
 This framework explicitly addresses the lifecycle nature of DPI implementations, from initial conception through design, deployment, and crucially, decommissioning, a consideration often absent from enterprise models. The approach recognizes that DPI operates across extended timescales and multiple institutional boundaries, requiring security measures that evolve with changing governance structures and technological dependencies.  
 
 ## Multi-Actor Models of Responsibility
