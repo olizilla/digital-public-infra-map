@@ -18,6 +18,24 @@ Tracking the state of national-scale digital infrastructure around the world.
 
 You can now add new pages and edit existing ones and see those changes live in your browser.
 
+## How it works
+
+The DPI data is collected by the team in a google sheet. For every release of the this dataset, a snapshot google sheet is taken. The URLs for the snapshot sheet is captured in this repo in the [./src/pages/api](./src/pages/api) directory. 
+
+The code in this repo uses that data to build out a static, multi-page website using [astro.build].
+
+A date-stamped snapshot of the data is captured as JSON in the [./public/data] directory. Those JSON files are then used to build out the map and cards for all the DPI systems you can see at https://dpimap.org
+
+Updates to the site are deployed to dpimap.org automatically when changes are merged into the main branch of this repository on GitHub. Cloudflare watches for changes, runs the build process (`npm install && npm run build`) and stores the updated html and css files and starts serving the new version of the website.
+
+## Contributing
+
+Contributions are welcome and encouraged! Share information about DPI deployments, provide feedback on our framework, or add to data and build on it. see: https://dpimap.org/contribute-to-the-dpi-map/ 
+
+You can add new blog posts and community of practice posts using [Pages CMS](https://pagescms.org/).
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for more.
+
 ## Project Structure
 
 - `public` - anything in here is published under the root of https://dpimap.org/
@@ -37,21 +55,3 @@ All commands are run from the root of the project, from a terminal:
 | `npm run preview`         | Preview your build locally, before deploying     |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## How it works
-
-The DPI data is collected by the team in a google sheet. For every release of the this dataset, a snapshot google sheet is taken. The URLs for the snapshot sheet is captured in this repo in the [./src/pages/api](./src/pages/api) directory. 
-
-The code in this repo uses that data to build out a static, multi-page website using [astro.build].
-
-A date-stamped snapshot of the data is captured as JSON in the [./public/data] directory. Those JSON files are then used to build out the map and cards for all the DPI systems you can see at https://dpimap.org
-
-Updates to the site are deployed to dpimap.org automatically when changes are merged into the main branch of this repository on GitHub. Cloudflare watches for changes, runs the build process (`npm install && npm run build`) and stores the updated html and css files and starts serving the new version of the website.
-
-## Contributing
-
-Contributions are welcome and encouraged! Share information about DPI deployments, provide feedback on our framework, or add to data and build on it. see: https://dpimap.org/contribute-to-the-dpi-map/ 
-
-You can add new blog posts and community of practice posts using [Pages CMS](https://pagescms.org/).
-
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for more.

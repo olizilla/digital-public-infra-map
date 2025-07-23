@@ -1,0 +1,7 @@
+---
+const url = new URL(Astro.props.url)
+const res = url.toString().match(/((?:\/|v=|vi=|v%)(?<id>([\-\w]){10,14}))/)
+const id = res?.groups?.id
+const src = `https://www.youtube-nocookie.com/embed/${id}`
+---
+<iframe class="aspect-video w-full" src={src} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

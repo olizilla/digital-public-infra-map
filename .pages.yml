@@ -31,6 +31,7 @@ content:
     label: Community
     type: collection
     path: 'src/pages/measurement-community'
+    exclude: [ 'index.mdx' ]
     view:
       fields: [ title, published, date ]
     fields:
