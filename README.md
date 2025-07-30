@@ -4,6 +4,9 @@ Tracking the state of national-scale digital infrastructure around the world.
 
 <img width="1468" alt="screenshot of the ui. it's got a map of the world showing which regions are running digital public infrastructure projects." src="https://github.com/user-attachments/assets/7398f03d-dd4b-4330-ae6a-265e21254f58" />
 
+hello!
+
+
 ## Getting started
 
 **Editors:** You can edit the site via [Pages CMS](https://pagescms.org/).
