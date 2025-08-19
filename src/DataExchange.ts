@@ -4,7 +4,7 @@ import { fixURL } from './Util'
 
 type DataExchangeType = typeof dataJSON[number]
 
-export function dataExchangeDPIStatus(x: DataExchangeType) {
+export function dataExchangeDPIStatus(x: DataExchangeType): "DPI" | "WIP" | "NA" {
   const implStatus = normaliseImplementationStatus(x['Status of implementation'])
   if (x['Count for DPI-like data exchange system'] === 1) {
     return 'DPI'
