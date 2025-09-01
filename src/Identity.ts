@@ -8,7 +8,7 @@ type IdentityType = typeof json[number]
  * Derive DPI status for project.
  * @returns "DPI" | "WIP" | "NA"
  */
-export function identityDPIStatus(x: IdentityType) {
+export function identityDPIStatus(x: IdentityType): "DPI" | "WIP" | "NA" {
   const implStatus = normaliseImplementationStatus(x['Status of implementation'])
   if (x['DPI based digital ID\n(to count for Visualisation)'] === 1) {
     return 'DPI'

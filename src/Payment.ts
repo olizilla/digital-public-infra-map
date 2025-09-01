@@ -4,7 +4,7 @@ import { fixURL } from './Util'
 
 type PaymentType = typeof json[number]
 
-export function paymentDPIStatus(x: PaymentType) {
+export function paymentDPIStatus(x: PaymentType): "DPI" | "WIP" | "NA" {
   const implStatus = normaliseImplementationStatus(x['Status of payment system implementation'])
   if (x['Count for DPI'] === 1) { 
     return 'DPI'
