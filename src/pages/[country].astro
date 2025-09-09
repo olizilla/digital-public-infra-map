@@ -50,7 +50,7 @@ const ids = IDs.filter(x => x.Country === country) ?? {}
 					</h1>
 					<dl>
 						{ IDText.map(key => (
-							<dt><KeyLabel>{key}</KeyLabel></dt>
+							<dt><CodebookLabel key={key} dpiType="id" class="inline-block" /></dt>
 							<dd>{id[key]}</dd>
 						))}
 						<dt><KeyLabel>URL</KeyLabel></dt>
@@ -89,7 +89,7 @@ const ids = IDs.filter(x => x.Country === country) ?? {}
 					</h1>
 					<dl>
 					{ PaymentText.map(key => (
-						<dt><KeyLabel>{key}</KeyLabel></dt>
+						<dt><CodebookLabel key={key} dpiType="pay" class="inline-block"/></dt>
 						<dd>{pay[key]}</dd>
 					))}
 					<dt><KeyLabel>URL</KeyLabel></dt>
@@ -128,7 +128,7 @@ const ids = IDs.filter(x => x.Country === country) ?? {}
 					</div>
 					<dl>
 					{ DataExchangeText.map(key => (
-						<dt><KeyLabel>{key}</KeyLabel></dt>
+						<dt><CodebookLabel key={key} dpiType="data" class="inline-block"/></dt>
 						<dd>{data[key]}</dd>
 					))}
 						<dt><KeyLabel>URL</KeyLabel></dt>

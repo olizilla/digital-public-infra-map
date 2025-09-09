@@ -23,16 +23,16 @@ export const IDs = json.map(x => {
   return {
     'Country': x['Country/Region'],
     'Last updated': x['Last updated\nDD:MM:YY'],
-    'Claim digital ID': x['Claim of digital (or electronic) ID'],
+    'Claim of digital (or electronic) ID': x['Claim of digital (or electronic) ID'],
     'Name': x['Digital ID name'],
     'URL': fixURL('id', x['Country/Region'], x['URL']),
-    "Uses biometrics": x["Collects or uses biometric data"],
+    "Collects or uses biometric data": x["Collects or uses biometric data"],
     'Status of implementation': normaliseImplementationStatus(x['Status of implementation']),
     "ID or Civil Registry Act": x["ID or Civil Registry Act"],
     "Regulation for digital ID": x["Regulation for digital ID"],
-    "Enables authentication": x["Digital authentication function"],
-    "Enables KYC": x["Enables KYC packet collection for service provision"],
-    "Enables authentication via government portal": x["Authentication possible through a government portal"],
+    "Digital authentication function": x["Digital authentication function"],
+    "Enables KYC packet collection": x["Enables KYC packet collection for service provision"],
+    "Authentication possible through a government portal": x["Authentication possible through a government portal"],
     "Identity act codifies digital ID legal status": x["Identity act codifies digital ID legal status "],
     "Governing entity": x["Governing entity"],
     "Legally binding redress mechanism": x["Legally binding redress mechanism "],
@@ -48,7 +48,7 @@ export const IDs = json.map(x => {
 }).sort(statusSort)
 
 export const IDFlags = [
-  'Claim digital ID',
+  'Claim of digital (or electronic) ID',
   'ID or Civil Registry Act',
   'Regulation for digital ID',
   'Identity act codifies digital ID legal status',
@@ -58,10 +58,10 @@ export const IDFlags = [
   'National Data Protection Act exists',
   'Data leak disclosure process exists',
   'Data handling terms exist',
-  'Uses biometrics',
-  'Enables authentication',
-  'Enables KYC',
-  'Enables authentication via government portal',
+  'Collects or uses biometric data',
+  'Digital authentication function',
+  'Enables KYC packet collection',
+  'Authentication possible through a government portal',
   'Two or more sectoral use cases enabled',
 ]
 

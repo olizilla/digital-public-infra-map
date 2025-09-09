@@ -7,15 +7,18 @@ import Card from '../components/Card.astro'
 import { DataExchanges, DataExchangeFlags, DataExchangeHeadlines, DataExchangeOtherText } from '../DataExchange.js'
 import DataIcon from '../components/icons/DataIcon.astro'
 import KeyLabel from '../components/KeyLabel.astro'
+import CodebookLabel from '../components/CodebookLabel.astro'
 import Footer from '../components/Footer.astro'
 import slug from 'slug'
 import CardSection from '../components/CardSection.astro'
 import StatusBar from '../components/StatusBar.astro'
 
+
 const items = DataExchanges
+const dpiType = 'data'
 ---
 <Layout>
-	<MapAndTabs countryCount={items.length} dpiType="data" />
+	<MapAndTabs countryCount={items.length} dpiType={dpiType} />
 	<StatusBar items={items} />
 	<CardSection title="Data Exchange Systems" items={items}>
 		{ items.map(data => (
@@ -33,14 +36,14 @@ const items = DataExchanges
 							</span>
 							<dl>
 							{ DataExchangeHeadlines.map(key => (
-								<dt><KeyLabel>{key}</KeyLabel></dt>
+								<dt><CodebookLabel key={key} dpiType={dpiType} class="inline-block"/></dt>
 								<dd class="truncate">{data[key]}</dd>
 							))}
 							</dl>
 						</summary>
 						<dl>
 							{ DataExchangeOtherText.map(key => (
-								<dt><KeyLabel>{key}</KeyLabel></dt>
+								<dt><CodebookLabel key={key} dpiType={dpiType} class="inline-block"/></dt>
 								<dd>{data[key]}</dd>
 							))}
 								<dt><KeyLabel>URL</KeyLabel></dt>
@@ -55,7 +58,7 @@ const items = DataExchanges
 							{ DataExchangeFlags.map(key => (
 								<div class="flex flex-row-reverse items-baseline justify-items-start ">
 									<dt class="grow pl-2">
-										<KeyLabel>{key}</KeyLabel></dt>
+										<CodebookLabel key={key} dpiType={dpiType} /></dt>
 									<dd class="flex-none">
 										<YesNo status={data[key]} />
 									</dd>

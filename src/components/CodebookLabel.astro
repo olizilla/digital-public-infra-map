@@ -3,8 +3,8 @@ import slug from 'slug'
 const key = Astro.props.key
 const dpi = Astro.props.dpiType
 const url = `/codebook/#${dpi}-${slug(key)}`
-const cls = ["block text-xs uppercase font-mono tracking-wide text-zinc-500 pt-2 hover:text-blue-500", Astro.props.class]
+const cls = ["block text-xs uppercase font-mono tracking-wide text-zinc-500 pt-2 hover:text-blue-500 align-bottom", Astro.props.class]
 ---
-<a href={url} class:list={cls}>
+<a href={url} class:list={cls} class="ali">
   {key}
 </a>
