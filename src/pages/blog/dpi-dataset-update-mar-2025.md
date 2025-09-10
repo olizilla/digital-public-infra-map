@@ -20,7 +20,7 @@ Our latest updated dataset includes several formatting changes providing a more 
 
 <aside>
 
-Have questions about specific variables? Visit our [codebook](https://docs.google.com/spreadsheets/d/1JbpmZ1ap235wVCTcnA1dE5ghCWEzdFJXxyZz1FTRupk/edit?usp=sharing).
+Have questions about specific variables? Visit our [codebook](/codebook).
 
 </aside>
 
