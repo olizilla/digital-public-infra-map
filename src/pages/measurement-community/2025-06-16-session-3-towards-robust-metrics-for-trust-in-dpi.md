@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/Standard.astro
 title: "Session 3: Towards Robust Metrics for Trust in DPI"
-date: 2025-07-21
+date: 2025-06-16
 published: true
 ---
 # Session 3: Towards Robust Metrics for Trust in DPI  
