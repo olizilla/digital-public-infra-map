@@ -79,11 +79,11 @@ We purposely share all the indicators we derived for several reasons. First, we 
 
 We hope that researchers, policymakers, technical advisors, and advocates will use this framework to advise and inform the measurement of DPI as a concept. A complete list of works consulted directly or indirectly in developing this framework will be accessible in our upcoming whitepaper. Feedback is welcome and will be integrated with subsequent versions.
 
-Download the framework (.xls) [here](https://docs.google.com/spreadsheets/d/1-G3Jmo85tABaBLyg1UPXtzUKK8NK3VH4/edit?usp=sharing&ouid=109666902899934821981&rtpof=true&sd=true).
+Download the framework (Google Sheet) [here](https://docs.google.com/spreadsheets/d/1-G3Jmo85tABaBLyg1UPXtzUKK8NK3VH4/edit?usp=sharing&ouid=109666902899934821981&rtpof=true&sd=true).
 
-Download the codebook to understand how the Map uses this framework [here](https://docs.google.com/spreadsheets/d/1JbpmZ1ap235wVCTcnA1dE5ghCWEzdFJXxyZz1FTRupk/edit?usp=sharing).
+Read the [codebook](/codebook) to understand how the Map uses this framework.
 
-Download the PDF [here](https://www.ucl.ac.uk/bartlett/sites/bartlett/files/dpi_conceptualisation_and_measurement.pdf)
+Download the full PDF of the report [here](https://www.ucl.ac.uk/bartlett/sites/bartlett/files/dpi_conceptualisation_and_measurement.pdf)
 
 ### Citation
 

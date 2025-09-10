@@ -7,15 +7,17 @@ import Card from '../components/Card.astro'
 import { Payments, PaymentFlags, PaymentHeadlines, PaymentOtherText } from '../Payment.js'
 import PaymentIcon from '../components/icons/PaymentIcon.astro'
 import KeyLabel from '../components/KeyLabel.astro'
+import CodebookLabel from '../components/CodebookLabel.astro'
 import Footer from '../components/Footer.astro'
 import slug from 'slug'
 import CardSection from '../components/CardSection.astro'
 import StatusBar from '../components/StatusBar.astro'
 
 const items = Payments
+const dpiType = 'pay'
 ---
 <Layout>
-	<MapAndTabs countryCount={items.length} dpiType="pay" />
+	<MapAndTabs countryCount={items.length} dpiType={dpiType} />
   <StatusBar items={items} />
 	<CardSection title="Digital Payment Systems" items={items}>
 		{ items.map(data => (
@@ -33,14 +35,14 @@ const items = Payments
 							</span>
 							<dl>
 							{ PaymentHeadlines.map(key => (
-								<dt><KeyLabel>{key}</KeyLabel></dt>
+								<dt><CodebookLabel key={key} dpiType={dpiType} class="inline-block" /></dt>
 								<dd class="truncate">{data[key]}</dd>
 							))}
 							</dl>
 						</summary>
 						<dl>
 							{ PaymentOtherText.map(key => (
-								<dt><KeyLabel>{key}</KeyLabel></dt>
+								<dt><CodebookLabel key={key} dpiType={dpiType} class="inline-block" /></dt>
 								<dd>{data[key]}</dd>
 							))}
 								<dt><KeyLabel>URL</KeyLabel></dt>
@@ -55,7 +57,7 @@ const items = Payments
 							{ PaymentFlags.map(key => (
 								<div class="flex flex-row-reverse items-baseline justify-items-start ">
 									<dt class="grow pl-2">
-										<KeyLabel>{key}</KeyLabel></dt>
+										<CodebookLabel key={key} dpiType={dpiType} /></dt>
 									<dd class="flex-none">
 										<YesNo status={data[key]} />
 									</dd>

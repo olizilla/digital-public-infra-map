@@ -1,0 +1,36 @@
+---
+import slug from 'slug'
+import KeyLabel from '../components/KeyLabel.astro'
+import { GoogleSpreadsheetRow } from 'google-spreadsheet'
+
+const row: GoogleSpreadsheetRow = Astro.props.row
+const idPrefix: string = Astro.props.idPrefix
+const id = `${idPrefix}-${slug(row.get('Variable name'))}`
+---
+{ row.get('Variable name') !== 'DPI based digital ID count for visualisation' && (
+<div class="xxborder-t-2 border-zinc-100 pt-4 pb-4 " id={id}>
+  <header>
+    <a class="font-bold text-lg m-0" href={`#${id}`}>
+      {row.get('Variable name')}
+    </a>
+  </header>
+  <div class="lg:flex mt-2">
+    <div class="flex-3/4">
+      <p class="mt-0">{row.get('Description')}</p>
+      {row.get('Codes explained') && row.get('Codes explained').trim() !== 'NA' && (
+        <p><KeyLabel class="inline">Values</KeyLabel>{row.get('Codes explained')}</p>
+      )}
+    </div>
+    <div class="flex-1/4 flex lg:flex-col lg:border-l-2 border-zinc-100 lg:pl-4 lg:ml-4">
+      <div class="mr-4">
+        <KeyLabel class="inline">Scope</KeyLabel>
+        <span class="text-sm">{row.get('System vs. subsystem level variable')}</span>
+      </div>
+      <div class="mr-4">
+        <KeyLabel class="inline">Type</KeyLabel>
+        <span class="text-sm">{row.get('Variable type')}</span>
+      </div>
+    </div>
+  </div>
+</div>
+)}

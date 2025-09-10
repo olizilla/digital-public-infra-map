@@ -7,6 +7,7 @@ import DataIcon from '../components/icons/DataIcon.astro'
 import PaymentIcon from '../components/icons/PaymentIcon.astro'
 import IdentityIcon from '../components/icons/IdentityIcon.astro'
 import KeyLabel from '../components/KeyLabel.astro'
+import CodebookLabel from '../components/CodebookLabel.astro'
 import { DataExchanges, DataExchangeFlags, DataExchangeText } from '../DataExchange.js'
 import { IDs, IDFlags, IDText } from '../Identity.js'
 import { Payments, PaymentFlags, PaymentText } from '../Payment.js'
@@ -49,7 +50,7 @@ const ids = IDs.filter(x => x.Country === country) ?? {}
 					</h1>
 					<dl>
 						{ IDText.map(key => (
-							<dt><KeyLabel>{key}</KeyLabel></dt>
+							<dt><CodebookLabel key={key} dpiType="id" class="inline-block" /></dt>
 							<dd>{id[key]}</dd>
 						))}
 						<dt><KeyLabel>URL</KeyLabel></dt>
@@ -64,8 +65,7 @@ const ids = IDs.filter(x => x.Country === country) ?? {}
 						<div class="pt-4">
 							{ IDFlags.map(key => (
 								<div class="flex flex-row-reverse items-baseline justify-items-start">
-									<dt class="grow pl-2">
-										<KeyLabel>{key}</KeyLabel></dt>
+									<dt class="grow pl-2"><CodebookLabel key={key} dpiType="id"/></dt>
 									<dd class="flex-none">
 										<YesNo status={id[key]} />
 									</dd>
@@ -89,7 +89,7 @@ const ids = IDs.filter(x => x.Country === country) ?? {}
 					</h1>
 					<dl>
 					{ PaymentText.map(key => (
-						<dt><KeyLabel>{key}</KeyLabel></dt>
+						<dt><CodebookLabel key={key} dpiType="pay" class="inline-block"/></dt>
 						<dd>{pay[key]}</dd>
 					))}
 					<dt><KeyLabel>URL</KeyLabel></dt>
@@ -104,8 +104,7 @@ const ids = IDs.filter(x => x.Country === country) ?? {}
 					<div class="pt-4">
 						{ PaymentFlags.map(key => (
 							<div class="flex flex-row-reverse items-baseline justify-items-start ">
-								<dt class="grow pl-2	">
-									<KeyLabel>{key}</KeyLabel></dt>
+								<dt class="grow pl-2"><CodebookLabel key={key} dpiType="pay" /></dt>
 								<dd class="flex-none">
 									<YesNo status={pay[key]} />
 								</dd>
@@ -129,7 +128,7 @@ const ids = IDs.filter(x => x.Country === country) ?? {}
 					</div>
 					<dl>
 					{ DataExchangeText.map(key => (
-						<dt><KeyLabel>{key}</KeyLabel></dt>
+						<dt><CodebookLabel key={key} dpiType="data" class="inline-block"/></dt>
 						<dd>{data[key]}</dd>
 					))}
 						<dt><KeyLabel>URL</KeyLabel></dt>
@@ -144,8 +143,7 @@ const ids = IDs.filter(x => x.Country === country) ?? {}
 					<div class="pt-4">
 						{ DataExchangeFlags.map(key => (
 								<div class="flex flex-row-reverse items-baseline justify-items-start ">
-									<dt class="grow pl-2	">
-										<KeyLabel>{key}</KeyLabel></dt>
+									<dt class="grow pl-2"><CodebookLabel key={key} dpiType="data" /></dt>
 									<dd class="flex-none">
 										<YesNo status={data[key]} />
 									</dd>
