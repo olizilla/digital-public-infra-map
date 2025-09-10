@@ -1,21 +1,18 @@
 ---
 layout: ../../layouts/Standard.astro
-title: 'Session 5 - Measuring "Just" DPI '
+title: 'Session 5 - Measuring "Just" DPI'
+date: 2025-08-26
 published: true
 ---
 # Session 5 - Measuring "Just" DPI
 
 ## Key Takeaways
 
-*   **Measurement Shapes Reality:** The metrics we choose don't just describe DPI impacts, they actively shape funding priorities, design decisions, and ultimately determine who benefits from digital infrastructure.  
-    **From Upward to Outward Accountability:** Effective DPI measurement must shift from metrics designed for government reporting to frameworks that capture lived experiences and developmental outcomes for citizens.
-    
-*   J**ustice as Measurement Framework:** Adopting data justice principles such as representation, rights, and redress, provides more meaningful evaluation criteria than technical indicators alone.
-    
-*   **Qualitative Evidence Matters:** The supremacy of quantitative metrics in policy spaces obscures critical insights about exclusion that only emerge through ethnographic and experiential research methods.
-    
-*   Measuring What's Missing: The most important DPI impacts may be those we're not measuring because they're harder to fund, including dignity, agency, and the hidden labour of navigating digital systems.
-    
+* **Measurement Shapes Reality:** The metrics we choose don't just describe DPI impacts, they actively shape funding priorities, design decisions, and ultimately determine who benefits from digital infrastructure.  
+* **From Upward to Outward Accountability:** Effective DPI measurement must shift from metrics designed for government reporting to frameworks that capture lived experiences and developmental outcomes for citizens.
+* **Justice as Measurement Framework:** Adopting data justice principles such as representation, rights, and redress, provides more meaningful evaluation criteria than technical indicators alone.
+* **Qualitative Evidence Matters:** The supremacy of quantitative metrics in policy spaces obscures critical insights about exclusion that only emerge through ethnographic and experiential research methods.
+* **Measuring What's Missing:** The most important DPI impacts may be those we're not measuring because they're harder to fund, including dignity, agency, and the hidden labour of navigating digital systems.
 
 ## Session Overview
 
@@ -23,8 +20,7 @@ Measurement shapes priorities. When we measure the wrong things, or measure the 
 
 The fifth session of our Community of Practice on DPI Measurement, held on August 20th, brought together three researchers who are doing precisely this reimagining. Rather than simply critiquing existing metrics, **Sumedha Deshmukh (Cambridge University)**, **Vanita Leah Falcao (King's College London/ODI Global)**, and **Tony Roberts (Institute of Development Studies)** presented actionable frameworks for measurement that centres human dignity, captures invisible labour, and holds systems accountable to those they claim to serve. Their work suggests that the very act of measurement, when done thoughtfully, can become a lever for justice.
 
-##   
-Navigating the Promises and Realities of the DPI Agenda
+## Navigating the Promises and Realities of the DPI Agenda
 
 Drawing from her ongoing research addressing the tensions between the developing narratives around DPI and the emerging realities of its design and implementation Sumedha Deshmukh demonstrated how this gap persists because our measurement systems are designed to confirm promises rather than investigate realities.  
   
@@ -62,13 +58,13 @@ These principles anchor measurement within a rights-based framework that makes e
   
 This recognition demands clarity about measurement's purpose and beneficiaries. Without this clarity, we risk what Roberts warns against: measurement that serves institutional validation rather than human dignity, that answers to funders rather than citizens, that documents success while ignoring failure.
 
-## **Conclusion**
+## Conclusion
 
 The session demonstrated that better measurement alone won't solve DPI's exclusions, but without it, we can't even see what needs solving. Every metric embodies assumptions about whose experience counts. The speakers showed how making different choices transforms what becomes visible and therefore addressable.  
   
 Measurement reform means changing whose questions get answered, whose experiences become evidence, whose realities count. This is beginning to happen, but requires institutional courage to implement what methodological innovation makes possible.
 
-## **Join the Conversation**
+## Join the Conversation
 
 **Get Involved:** The Community of Practice continues to evolve based on member contributions and interests. To suggest topics for future sessions or share implementation experiences that could inform measurement framework development, please reach out through our [feedback form](https://docs.google.com/forms/d/e/1FAIpQLSfSGSYL6lOwzNBqtwsiRYKQXnBGSx32IXeh9fPpWQjx2r0erg/viewform?usp=dialog).
 
