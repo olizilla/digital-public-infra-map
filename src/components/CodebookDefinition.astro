@@ -9,6 +9,7 @@ const id = `${idPrefix}-${slug(row.get('Variable name'))}`
 const codes:string = row.get('Codes explained') ?? ''
 const re = /^\s*(?<key>[^=]+)=\s*(?<val>.*)$/gm
 const kv = codes.matchAll(re)
+const indicator = row.get('Related indicator in Measuring DPI Framework')
 ---
 { row.get('Variable name') !== 'DPI based digital ID count for visualisation' && (
 <div class="pt-15" id={id}>
@@ -24,6 +25,12 @@ const kv = codes.matchAll(re)
         <KeyLabel>Values</KeyLabel>
       )}
       { codes.includes('=') && kv.map(({groups: {key, val}}) => (<p><span class="font-bold">{key}</span> &ndash; {val}</p>))}
+      {indicator && indicator.trim() !== 'NA' && (
+      <p>
+        <KeyLabel>Related Indicator in Measuring DPI Framework</KeyLabel>
+        <span class="text-sm italic text-zinc-600 whitespace-pre-wrap">{indicator.trim()}</span>
+      </div>
+      ) }
     </div>
     <div class="flex-1/4 flex lg:flex-col lg:border-l-2 border-zinc-100 lg:pl-4 lg:ml-4">
       <div class="mr-4">
