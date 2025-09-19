@@ -6,6 +6,9 @@ import { GoogleSpreadsheetRow } from 'google-spreadsheet'
 const row: GoogleSpreadsheetRow = Astro.props.row
 const idPrefix: string = Astro.props.idPrefix
 const id = `${idPrefix}-${slug(row.get('Variable name'))}`
+const codes:string = row.get('Codes explained') ?? ''
+const re = /^\s*(?<key>[^=]+)=\s*(?<val>.*)$/gm
+const kv = codes.matchAll(re)
 ---
 { row.get('Variable name') !== 'DPI based digital ID count for visualisation' && (
 <div class="pt-15" id={id}>
@@ -17,9 +20,10 @@ const id = `${idPrefix}-${slug(row.get('Variable name'))}`
   <div class="lg:flex mt-2">
     <div class="flex-3/4">
       <p class="mt-0">{row.get('Description')}</p>
-      {row.get('Codes explained') && row.get('Codes explained').trim() !== 'NA' && (
-        <p><KeyLabel class="inline">Values</KeyLabel>{row.get('Codes explained')}</p>
+      { codes.includes('=') && (
+        <KeyLabel>Values</KeyLabel>
       )}
+      { codes.includes('=') && kv.map(({groups: {key, val}}) => (<p><span class="font-bold">{key}</span> &ndash; {val}</p>))}
     </div>
     <div class="flex-1/4 flex lg:flex-col lg:border-l-2 border-zinc-100 lg:pl-4 lg:ml-4">
       <div class="mr-4">
