@@ -43,6 +43,8 @@ export const IDs = json.map(x => {
     "Data handling terms exist": x["ID data handling terms"],
     "Identity act clarifies relationship with feeder documents": x["Identity act clarifies relationship with feeder documents"],
     "Two or more sectoral use cases enabled": x["Two or more sectoral use cases enabled"],
+    "Funding organizations identified": x["Funding organizations identified"],
+    "Technical Support organizations identified": x["Technical support organizations identified\n"],
     'DPI Status': identityDPIStatus(x),
   }
 }).sort(statusSort)
@@ -69,6 +71,8 @@ export const IDText = [
   'Governing entity',
   'Status of implementation',
   'Legally binding redress mechanism',
+  'Funding organizations identified',
+  'Technical Support organizations identified'
 ]
 
 export const IDTextHeadlines = IDText.slice(0, 2)
