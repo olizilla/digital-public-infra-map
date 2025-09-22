@@ -22,9 +22,9 @@ You can now add new pages and edit existing ones and see those changes live in y
 
 The DPI data is collected by the team in a google sheet. For every release of the this dataset, a snapshot google sheet is taken. The URLs for the snapshot sheet is captured in this repo in the [./src/pages/api](./src/pages/api) directory. 
 
-The code in this repo uses that data to build out a static, multi-page website using [astro.build].
+The code in this repo uses that data to build out a static, multi-page website using [astro.build](https://astro.build).
 
-A date-stamped snapshot of the data is captured as JSON in the [./public/data] directory. Those JSON files are then used to build out the map and cards for all the DPI systems you can see at https://dpimap.org
+A date-stamped snapshot of the data is captured as JSON in the [./public/data](./public/data) directory. Those JSON files are then used to build out the map and cards for all the DPI systems you can see at https://dpimap.org
 
 Updates to the site are deployed to dpimap.org automatically when changes are merged into the main branch of this repository on GitHub. Cloudflare watches for changes, runs the build process (`npm install && npm run build`) and stores the updated html and css files and starts serving the new version of the website.
 
