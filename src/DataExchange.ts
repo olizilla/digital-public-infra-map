@@ -1,4 +1,4 @@
-import dataJSON from '../public/data/2025-06-30/2025-06-30-exchange.json'
+import dataJSON from '../public/data/2025-09-30/2025-09-30-exchange.json'
 import { normaliseImplementationStatus, statusSort } from './Status'
 import { fixURL } from './Util'
 
@@ -6,7 +6,7 @@ type DataExchangeType = typeof dataJSON[number]
 
 export function dataExchangeDPIStatus(x: DataExchangeType): "DPI" | "WIP" | "NA" {
   const implStatus = normaliseImplementationStatus(x['Status of implementation'])
-  if (x['Count for DPI-like data exchange system'] === 1) {
+  if (x['Count for DPI'] === 1) {
     return 'DPI'
   }
   if (implStatus === 'Active' || implStatus === 'Pilot') {
@@ -17,16 +17,16 @@ export function dataExchangeDPIStatus(x: DataExchangeType): "DPI" | "WIP" | "NA"
 
 export const DataExchanges = dataJSON.map(x => {
   return {
-    'Country': x['Country/Region'],
+    'Country': x['Country / Region'],
     'Last updated': x['Last updated'],
     'Name': x['Data exchange system name'],
-    'URL': fixURL('data', x['Country/Region'], x['URL']),
+    'URL': fixURL('data', x['Country / Region'], x['URL']),
     'Status of implementation': normaliseImplementationStatus(x['Status of implementation']),
     "Base technical architecture": x['Base technical architecture'],
-    'National / Regional': x['National/ Regional'],
-    "Sector-specific / Cross-sectoral": x["Sector-specific/ Cross-sectoral"],
+    'National / Regional': x['National / Regional'],
+    "Sector-specific / Cross-sectoral": x["Sector-specific / Cross-sectoral"],
     "Semantic interoperability": x["Semantic interoperability"],
-    "Real-time sharing": x["(Near) real-time sharing"],
+    "Real-time sharing": x["Real-time sharing"],
     "Scalable architecture": x["Scalable technology architecture"],
     "Governing Entity": x["Governing entity"],
     "Ownership": x["Ownership"],
