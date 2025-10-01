@@ -10,7 +10,7 @@ type IdentityType = typeof json[number]
  */
 export function identityDPIStatus(x: IdentityType): "DPI" | "WIP" | "NA" {
   const implStatus = normaliseImplementationStatus(x['Status of implementation'])
-  if (x['DPI based digital ID\n(to count for Visualisation)'] === 1) {
+  if (x['Count for DPI'] === 1) {
     return 'DPI'
   }
   if (implStatus === 'Active' || implStatus === 'Pilot'){
@@ -22,7 +22,7 @@ export function identityDPIStatus(x: IdentityType): "DPI" | "WIP" | "NA" {
 export const IDs = json.map(x => {
   return {
     'Country': x['Country / Region'],
-    'Last updated': x['Last updated\nDD:MM:YY'],
+    'Last updated': x['Last updated'],
     'Claim of digital ID': x['Claim of digital ID'],
     'Name': x['Digital ID name'],
     'URL': fixURL('id', x['Country / Region'], x['URL']),
