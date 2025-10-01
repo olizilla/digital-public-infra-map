@@ -19,7 +19,7 @@ const q3 = oneSystemPerCountry(id_q3.map((a) => ({
 const diff = q3.reduce((arr, x, i) => {
   const y = q2.find(y => y['Country'] === x['Country'])
   if (!y) { 
-    arr.push({ ...x, diff: 'New' })
+    arr.push({ ...x, diff: '' })
   }
   else if (x['DPI Status'] !== y['DPI Status']) {
     arr.push({ ...x, diff: y['DPI Status'] })
@@ -70,6 +70,7 @@ const diff = q3.reduce((arr, x, i) => {
         <th>Country</th>
         <th>Q2 Status</th>
         <th>Q3 Status</th>
+        <th>Change</th>
       </tr>
     </thead>
     <tbody>
@@ -78,6 +79,7 @@ const diff = q3.reduce((arr, x, i) => {
           <td>{x.Country}</td>
           <td>{x.diff}</td>
           <td>{x['DPI Status']}</td>
+          <td>{x.diff === 'DPI' ? '📉 down' : '📈 up'}</td>
         </tr>
       ))}
     </tbody>
