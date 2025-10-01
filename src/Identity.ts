@@ -50,7 +50,7 @@ export const IDs = json.map(x => {
 }).sort(statusSort)
 
 export const IDFlags = [
-  'Claim of digital (or electronic) ID',
+  'Claim of digital ID',
   'ID or Civil Registry Act',
   'Regulation for digital ID',
   'Codified digital ID legal status',
