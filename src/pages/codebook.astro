@@ -6,7 +6,7 @@ import DataIcon from '../components/icons/DataIcon.astro'
 import { GoogleSpreadsheet } from 'google-spreadsheet'
 import CodebookDefinition from '../components/CodebookDefinition.astro'
 
-async function initDoc (id = '19jg5wdeJVKlQqSBBHtHVEJOPa8S8j8L-rx3jXk3PGNA') {
+async function initDoc (id = '1gFGNtmhUiCe8sG0J1vtM1FyiVklbFfD3_Lni8a25Nnk') {
   const doc = new GoogleSpreadsheet(id, {
     apiKey: import.meta.env.GOOGLE_API_KEY
   })
