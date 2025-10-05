@@ -1,0 +1,12 @@
+/
+	Cache-Control: public, max-age=1, stale-while-revalidate=14400
+
+/digital-payment/
+	Cache-Control: public, max-age=1, stale-while-revalidate=14400
+
+/data-exchange/
+	Cache-Control: public, max-age=1, stale-while-revalidate=14400
+
+/_astro/*
+	! Cache-Control
+	Cache-Control: public, max-age=14400, stale-while-revalidate=14400
