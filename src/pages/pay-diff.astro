@@ -1,0 +1,87 @@
+---
+import id_q2 from '../../public/data/2025-06-30/2025-06-30-payment.json'
+import id_q3 from '../../public/data/2025-09-30/2025-09-30-payment.json'
+
+import { oneSystemPerCountry } from '../Util.js'
+
+import Layout from '../layouts/Standard.astro'
+
+const q2 = oneSystemPerCountry(id_q2.map((a) => ({ 
+  Country: a['Country/Region'],
+  'DPI Status': a['Count for DPI'] === 1 ? 'DPI' : 'WIP'
+})))
+
+const q3 = oneSystemPerCountry(id_q3.map((a) => ({ 
+  Country: a['Country / Region'], 
+  'DPI Status': a['Count for DPI'] === 1 ? 'DPI' : 'WIP'
+})))
+
+const diff = q3.reduce((arr, x, i) => {
+  const y = q2.find(y => y['Country'] === x['Country'])
+  if (!y) { 
+    arr.push({ ...x, diff: '' })
+  }
+  else if (x['DPI Status'] !== y['DPI Status']) {
+    arr.push({ ...x, diff: y['DPI Status'] })
+  }
+  return arr
+}, [])
+
+---
+
+<Layout>
+  <h2>Payment systems diff Q2 to Q3</h2>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Q2</th>
+        <th>Q3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Total Systems</td>
+        <td>{id_q2.length}</td>
+        <td>{id_q3.length}</td>
+      </tr>
+      <tr>
+        <td>Total DPI-like systems</td>
+        <td>{id_q2.filter(x => x['Count for DPI'] === 1).length}</td>
+        <td>{id_q3.filter(x => x['Count for DPI'] === 1).length}</td>
+      </tr>
+      <tr>
+        <td>Unique Countries</td>
+        <td>{q2.length}</td>
+        <td>{q3.length}</td>
+      </tr>
+
+      <tr>
+        <td>Countries with DPI-like system</td>
+        <td>{q2.filter(x => x['DPI Status'] === 'DPI').length}</td>
+        <td>{q3.filter(x => x['DPI Status'] === 'DPI').length}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Country</th>
+        <th>Q2 Status</th>
+        <th>Q3 Status</th>
+        <th>Change</th>
+      </tr>
+    </thead>
+    <tbody>
+      {diff.map(x => (
+        <tr>
+          <td>{x.Country}</td>
+          <td>{x.diff}</td>
+          <td>{x['DPI Status']}</td>
+          <td>{x.diff === 'DPI' ? '📉 down' : '📈 up'}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</Layout>

@@ -1,4 +1,4 @@
-import json from '../public/data/2025-06-30/2025-06-30-payment.json'
+import json from '../public/data/2025-09-30/2025-09-30-payment.json'
 import { normaliseImplementationStatus, statusSort } from './Status'
 import { fixURL } from './Util'
 
@@ -18,10 +18,10 @@ export function paymentDPIStatus(x: PaymentType): "DPI" | "WIP" | "NA" {
 export const Payments = json.map(x => {
   return {
     'DPI Status': paymentDPIStatus(x),
-    'Country': x['Country/Region'],
+    'Country': x['Country / Region'],
     'Last updated': x['Last updated'],
     'Name': x['Payment system name'],
-    'URL': fixURL('pay', x['Country/Region'] ?? '', x['URL']),
+    'URL': fixURL('pay', x['Country / Region'] ?? '', x['URL']),
     'Active real-time payment system present': x['Active real-time payment system present'],
     'Payment system type': x['Payment system type'],
     'Status of implementation': normaliseImplementationStatus(x['Status of payment system implementation']),
@@ -34,7 +34,7 @@ export const Payments = json.map(x => {
     "Bank participation": x["Bank participation"],
     "Non-bank participation": x["Non-bank participation"],
     "Participation conditions and rules": x["Participation conditions and rules"],
-    "Number of participants": x["No. of participants* (PSPs)\n*For regional payment systems > countries"],
+    "Number of participants": x["Number of participants"],
     "Annual value of transactions (USD)": x["Annual value of transactions (USD)"],
     "Annual volume of transactions": x["Annual volume of transactions"],
     "Data-handing rules for payment system": x["Data-handing rules for payment system"],

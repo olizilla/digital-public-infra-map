@@ -6,7 +6,7 @@ import DataIcon from '../components/icons/DataIcon.astro'
 import { GoogleSpreadsheet } from 'google-spreadsheet'
 import CodebookDefinition from '../components/CodebookDefinition.astro'
 
-async function initDoc (id = '19jg5wdeJVKlQqSBBHtHVEJOPa8S8j8L-rx3jXk3PGNA') {
+async function initDoc (id = '1gFGNtmhUiCe8sG0J1vtM1FyiVklbFfD3_Lni8a25Nnk') {
   const doc = new GoogleSpreadsheet(id, {
     apiKey: import.meta.env.GOOGLE_API_KEY
   })
@@ -32,9 +32,9 @@ const dataSheet = await getSheet(3, doc)
   <h1>Codebook</h1>
   <div class="lg:flex mt-2">
     <div class="flex-3/4 mt-0">
-      <p class="mt-0">This document defines the variables used to categorise DPI systems.
+      <p class="mt-0">This page defines the variables used to categorise DPI systems.
       </p>
-      <p>Unless specified otherwise, <strong>yes/no</strong> values are used to indicate presence or absence of a <em>binary</em> variable. <strong>NA</strong> is used to indicate that data is either unavailable/ insufficient
+      <p>Unless specified otherwise, <strong>yes/no</strong> values are used to indicate presence or absence of a <em>binary</em> variable. <strong>NA</strong> is used to indicate that data is either unavailable or insufficient.
       </p>
       <p><strong>Scope</strong>: System level indicators are common to all deployments in a country; sub-system level indicators are specific to one of several components that collectively serve a country's ID/payment/data exchange components
       </p>
