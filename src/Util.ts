@@ -43,19 +43,6 @@ export function oneSystemPerCountry (arr: DPIData[]) {
     const a = map.get(b.Country)
     map.set(b.Country, mostDpiLike(a, b))
     return map
-/*
-    if (val && val["DPI Status"] === 'DPI') {
-      // we already have a DPI-like entry so move on
-      return map
-    }
-    if (val && val["DPI Status"] === row["DPI Status"]) {
-      // the new one isn't more dpi-like so move on
-      return map
-    }
-    // the new row is the first, or more dpi-like, so include it.
-    map.set(row.Country, row)
-    return map
-*/
-  }, new Map<string, DPIData>())
+  }, new Map<string, DPIData | undefined>())
   return [...map.values()]
 }
