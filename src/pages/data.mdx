@@ -2,10 +2,10 @@
 layout: ../layouts/Standard.astro
 title: 'Data'
 ---
-
 import DataIcon from '../components/icons/DataIcon.astro'
 import PayIcon from '../components/icons/PaymentIcon.astro'
 import IdentityIcon from '../components/icons/IdentityIcon.astro'
+export const snapshot = '2025-10-27'
 
 # Data
 
@@ -15,21 +15,21 @@ Each variable pertains to a specific attribute of DPI, tracking indicators acros
 
 Read the [Codebook](/codebook) for detailed descriptions of the variables.
 
-View the data in [Google Sheets][2025-10-27], or download the data as JSON:
+View the data in [Google Sheets][{snapshot}], or download the data as JSON:
 
 <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-  <a href="/data/2025-10-27/2025-10-27-identity.json" class="button-blue" onclick="trackDownload('identity')"><IdentityIcon class='inline-block mr-2' /> Identity JSON </a>
-  <a href="/data/2025-10-27/2025-10-27-payment.json" class="button-blue" onclick="trackDownload('payment')"><PayIcon class='inline-block mr-2' /> Payment JSON </a>
-  <a href="/data/2025-10-27/2025-10-27-exchange.json" class="button-blue" onclick="trackDownload('exchange')"><DataIcon class='inline-block mr-2' /> Exchange JSON </a>
+  <a href={`/data/${snapshot}/${snapshot}-identity.json`} class="button-blue" onclick="trackDownload('identity')"><IdentityIcon class='inline-block mr-2' /> Identity JSON </a>
+  <a href={`/data/${snapshot}/${snapshot}-payment.json`} class="button-blue" onclick="trackDownload('payment')"><PayIcon class='inline-block mr-2' /> Payment JSON </a>
+  <a href={`/data/${snapshot}/${snapshot}-exchange.json`} class="button-blue" onclick="trackDownload('exchange')"><DataIcon class='inline-block mr-2' /> Exchange JSON </a>
 </div>
 
 A snapshot of the data formatted for statistical analysis is available [here](https://drive.google.com/drive/folders/1dkIhzbEs6MQoULEjDhq_GXbuwMz-2Nxe)
 
 ## Citation
 
-```
-DPI Map (2025-10-27). Institute for Innovation and Public Purpose, UCL. https://dpimap.org/data
-```
+<pre><code>
+{`DPI Map (${snapshot}). Institute for Innovation and Public Purpose, UCL. https://dpimap.org/data`}
+</code></pre>
 
 
 ## Releases
@@ -38,7 +38,7 @@ DPI Map (2025-10-27). Institute for Innovation and Public Purpose, UCL. https://
 
 | Date           | Changes                                   |
 |----------------|-------------------------------------------|
-| [2025-10-27] _Current_ | Data Formatting and Record Count Correction:<br/> **Digital ID**: Lesotho, Indonesia, Kasakhstan, Greenland <br/>**Digital payments:** Moldova<br/>**Data exchange:** Guinea, Philippines, Bonaire, Sint Eustatius
+| [{snapshot}] _Current_ | Data Formatting and Record Count Correction:<br/> **Digital ID**: Lesotho, Indonesia, Kasakhstan, Greenland <br/>**Digital payments:** Moldova<br/>**Data exchange:** Guinea, Philippines, Bonaire, Sint Eustatius
 | [2025-09-30] | **Digital ID**: Tonga, Slovenia, Bosnia and Herzegovina, Zimbabwe, Democratic Republic of Congo, Angola, Benin, Malawi, Japan, Peru, Greenland, Mexico, Honduras, United Kingdom, Indonesia, Philippines, Singapore, Thailand, Mali, Mauritania, Germany, Nigeria <br/>**Digital payments:** Barbados, India, Yemen, Burkina Faso, Samoa <br/>**Data exchange:** Sri Lanka, Bosnia and Herzegovina, Bangladesh, Japan, Mexico, Peru, Yemen
 | [2025-06-30] | **Digital ID**: Indonesia, Philippines, Singapore, Thailand, Mali, Mauritania, Germany, Nigeria <br/>**Digital payments**: Uganda. Some variables combined and data reporting revised. See codebook.
 | [2025-03-31] | **Digital ID**: Tanzania, Egypt, Italy, Argentina, Indonesia, Switzerland, Vietnam Greece, Bolivia, El Salvador, Ethiopia, Rwanda, Qatar, <br/>**Digital payments**: Cambodia, Tanzania, Egypt, Switzerland, Kenya, Segeal, Tunisia, Sri Lanka, Philippines, <br/>**Data exchange**: Tanzania, Azerbaijan, Switzerland, Tunisia, Philippines. Some variables combined and data reporting revised. See [codebook](https://docs.google.com/spreadsheets/d/1JbpmZ1ap235wVCTcnA1dE5ghCWEzdFJXxyZz1FTRupk/edit?gid=201000496#gid=201000496) |
@@ -48,7 +48,7 @@ DPI Map (2025-10-27). Institute for Innovation and Public Purpose, UCL. https://
 
 </div>
 
-[2025-10-27]: https://docs.google.com/spreadsheets/d/168wnnvAk7N_FxAlVUR9HGwKUxMQWx53rLeaWhS90R8Y
+[{snapshot}]: https://docs.google.com/spreadsheets/d/168wnnvAk7N_FxAlVUR9HGwKUxMQWx53rLeaWhS90R8Y
 [2025-09-30]: https://docs.google.com/spreadsheets/d/1YlaBSGV7oBnPZBBzm4BSF6MvIzN_ueozronnjHx5sx0
 [2025-06-30]: https://docs.google.com/spreadsheets/d/1w9Kikr6lWyr5HpdgCa_JcQVAQhwJxVBTEGDumjPeNAI
 [2025-03-31]: https://docs.google.com/spreadsheets/d/15WRbF7g7MgL9dxKJ_7RJgUckNFx3Ebhs-j13AzEXFGw
