@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Standard.astro'
+import { oneSystemPerCountry } from "../Util";
+import { Payments } from "../Payment";
+
+const countries = oneSystemPerCountry(Payments)
+const dpiCountries = countries.filter(x => x?.['DPI Status'] === 'DPI')
+const dpiSystems = Payments.filter(x => x?.['DPI Status'] === 'DPI').length
+---
+
+<Layout>
+  <h1>Payment systems data</h1>
+  <p>Unique Countries: {countries.length} </p>
+  <p>Unique Countries DPI: {countries.filter(x => x?.['DPI Status'] === 'DPI').length } </p>
+  <p>Total systems: {Payments.length}</p>
+  <p>Total systems DPI: {Payments.filter(x => x?.['DPI Status'] === 'DPI').length}</p>
+  <div class="flex">
+    <div>
+      Unique countries ({countries.length})
+    <ul>
+      {countries.map(c => (
+        <li>{c.Country}</li>
+      ))}
+    </ul>
+    </div>
+    <div>
+      countries with DPI ({dpiCountries.length})
+    <ul>
+      {dpiCountries.map(c => (
+        <li>{c.Country}</li>
+      ))}
+    </ul>
+    </div>
+  </div>
+  
+</Layout>
