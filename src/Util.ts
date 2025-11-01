@@ -40,8 +40,13 @@ Returns an array with 1 item per Country; the most DPI-like where there is more 
 */
 export function oneSystemPerCountry (arr: DPIData[]) {
   const map = arr.reduce((map, b) => {
-    const a = map.get(b.Country)
-    map.set(b.Country, mostDpiLike(a, b))
+    const key = b.Country.trim().toLowerCase()
+    if (['europe', 'africa'].includes(key)){
+      // skip continents. they are not countries.
+      return map
+    }
+    const a = map.get(key)
+    map.set(key, mostDpiLike(a, b))
     return map
   }, new Map<string, DPIData | undefined>())
   return [...map.values()]
