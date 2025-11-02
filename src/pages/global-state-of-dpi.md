@@ -7,7 +7,7 @@ title: 2025 State of DPI Report
 
 _A Look at Measurement and Prevalence as DPI Transitions from Experiment to Scale._
 
-<div class="text-center py-4"><a href="/iipp-state-of-dpi-report-2025.pdf" class="button-blue">Download the PDF</a></div>
+<div class="text-center py-4"><a href="/iipp-state-of-dpi-report-2025.pdf" class="button-blue" onclick="pdfDownload()">Download the PDF</a></div>
 
 ## Executive Summary
 
@@ -21,7 +21,11 @@ interest in this approach, a gap has emerge.
 The DPI Map and its associated methodology were established
 to address this by providing a baseline of prevalence.
 
-[![2025 State of DPI report cover](/2025-state-of-dpi.jpg)](/iipp-state-of-dpi-report-2025.pdf)
+<a href="/iipp-state-of-dpi-report-2025.pdf" onclick="pdfDownload()">
+
+![2025 State of DPI report cover](/2025-state-of-dpi.jpg)]
+
+</a>
 
 This report builds on that effort to do four things:
 
@@ -84,7 +88,9 @@ for increasingly rigorous assessment in the years ahead.
 </aside>
 </section>
 
-Read the full [2025 State of DPI report here](/iipp-state-of-dpi-report-2025.pdf).
+<p>
+Read the full <a href="/iipp-state-of-dpi-report-2025.pdf">2025 State of DPI report here</a>.
+</p>
 
 ## Reference
 
@@ -112,3 +118,13 @@ published on our blog, helping to share lessons across contexts.
 
 Participants are encouraged to subscribe to the [DPI Map newsletter](https://docs.google.com/forms/d/e/1FAIpQLSef0ja9DQhV9uBpgSBILh0eNT152Y2nv_9DRGZNFqulZT09Eg/viewform) to receive updates on upcoming sessions, new dataset releases, and the latest analysis from the IIPP digital
 team and our collaborators.
+
+<script>
+  function pdfDownload(label) {
+    if (typeof gtag === 'function') {
+      gtag('event', '2025_state_of_dpi_pdf');
+    } else {
+      console.log('gtag not available. Analytics event not sent for: 2025_state_of_dpi_pdf')
+    }
+  }
+</script>
