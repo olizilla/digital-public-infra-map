@@ -25,27 +25,27 @@ to address this by providing a baseline of prevalence.
 
 This report builds on that effort to do four things:
 
-First, it asserts a growing consensus around the definition
-of DPI centered around 3 societal functions and 6 common
-attributes.
+First, it asserts a **growing consensus around the definition
+of DPI** centered around **3 societal functions and 6 common
+attributes.**
 
-Second, it provides a current snapshot of the prevalence of DPI.
+Second, it provides a **current snapshot of the prevalence of DPI**.
 Looking at DPI’s three components—digital ID, digital payments,
 and data exchange systems—the IIPP’s DPI Map establishes
 the first global snapshot of DPI systems across 210 countries.
-As of 2025, at least 64 countries have DPI-like digital ID
+As of 2025, at least **64 countries have DPI-like digital ID
 systems, 97 countries have DPI-like digital payment systems,
-and 103 countries have DPI-like data exchange systems.
+and 103 countries have DPI-like data exchange systems.**
 
-Third, it analyses what these patterns reveal about DPI’s
-evolution. Our findings reveal significant unevenness across
-global regions, with identifiable maturity clusters and income-
-level patterns shaping implementation. Interoperability
-and adoption often progress together, suggesting an
+Third, it analyses what these patterns reveal about **DPI’s
+evolution**. Our findings reveal significant **unevenness across
+global regions**, with **identifiable maturity clusters and income-
+level patterns shaping implementation**. **Interoperability
+and adoption** often progress together, suggesting an
 interdependence between system design and real-world uptake.
 
-Finally, we share reflections on the state of measurement of
-DPI, and suggest areas for further research. As many existing
+Finally, we share reflections on the **state of measurement of
+DPI**, and suggest areas for further research. As many existing
 measurement approaches rely on proxies for understanding DPI
 attributes, such as technical specifications and the presence
 of legal frameworks, they often paint a narrow picture of how
@@ -73,7 +73,7 @@ for increasingly rigorous assessment in the years ahead.
 **Finding #5:** Interoperability and adoption are correlated.
 
 
-### The Limits of Measure and The Challenges Those Pose
+### The Limits of Measurement and The Challenges Those Pose
 
 **Finding #6:** Despite progress on measuring DPI, it’s unclear whether it correlates with performance.
 
