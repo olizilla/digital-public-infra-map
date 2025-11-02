@@ -1,6 +1,6 @@
 ---
 layout: ../layouts/Standard.astro
-title: Insights
+title: 2025 State of DPI Report
 ---
 
 # 2025 State of DPI Report
