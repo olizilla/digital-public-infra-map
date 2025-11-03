@@ -23,7 +23,7 @@ to address this by providing a baseline of prevalence.
 
 <a href="/iipp-state-of-dpi-report-2025.pdf" onclick="pdfDownload()">
 
-![2025 State of DPI report cover](/2025-state-of-dpi.jpg)]
+![2025 State of DPI report cover](/2025-state-of-dpi.jpg)
 
 </a>
 
