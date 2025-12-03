@@ -1,13 +1,11 @@
 ---
 layout: ../../layouts/Standard.astro
-title: "Six Months of DPI Measurement Insights: What We've Learned from Our
-  Community of Practice"
+title: "Six Months of DPI Measurement Insights: What We've Learned from Our Community of Practice"
 date: 2025-10-31
 published: true
 ---
-  
 
-## **Introduction**
+## Introduction
 
 Digital public infrastructure holds transformative promise: enabling millions to access financial services for the first time, streamlining government service delivery, and creating digital foundations for economic growth.  
   
@@ -15,7 +13,7 @@ However, this promise alone is insufficient. As governments worldwide accelerate
   
 Six months ago, we launched the Community of Practice on DPI Measurement with a fundamental premise: effective measurement is not merely about technical assessment but about accountability to public values. Through intensive discussions covering inclusion, interoperability, trust, security, and scope evaluation, our community has generated insights that challenge conventional approaches and point toward more sophisticated, contextually-sensitive measurement frameworks.
 
-## **The Theory-Practice Gap in DPI Measurement**
+## The Theory-Practice Gap in DPI Measurement
 
 Our most significant discovery concerns the persistent disconnect between theoretical measurement frameworks and implementation realities. Current approaches consistently fail to capture the complex, often messy dynamics that determine whether DPI actually works for people.
 
@@ -28,16 +26,13 @@ Traditional enterprise security models prove inadequate for DPI contexts that op
 A community member's question "Why do we need to measure DPI interoperability?" prompted recognition that measurement must assess whether interoperability achieves its intended outcomes. The academic and researcher Vanita Falcao who I collaborated with to design session Session 5: Measuring “Just” DPI described watching elderly citizens queue for hours at multiple offices to update the same information across disconnected systems, a situation which highlights the ongoing gap between the states goals and lived reality of DPI implementations. Another participant in the same session shared their experience of how entrepreneurs in rural areas abandoned digital payment systems entirely after discovering that interoperability gaps meant accepting payments from only certain providers, fragmenting their customer base and increasing transaction costs beyond what cash operations required.  
   
 
-## **Beyond Technical Metrics: The Importance of User-Centric Measurement**
+## Beyond Technical Metrics: The Importance of User-Centric Measurement
 
-  
 Measurement shapes whose stories get told. A persistent point of discussion that developed across numerous sessions was the potential dangers that emerge when measurement practices lose sight of the human lives at the heart of the DPI story. 
 
 **Meaningful vs. Nominal Inclusion**: The distinction between counting users and understanding impact emerged as perhaps our most uncomfortable reckoning. Digital researcher and legal scholar Rafael Zanatta crystallised this tension with a deceptively simple question during our May session: "Can you log in and use [gov.br](http://gov.br) without any kind of assistance?"
 
 The question exposed how our metrics systematically obscure digital exclusion. Systems report millions of "registered users" while remaining functionally inaccessible to those lacking digital literacy, reliable internet, or the cultural capital to navigate bureaucratic interfaces. Zanatta's intervention forced us to acknowledge what practitioners had long observed: the elderly woman counted as a "digital ID holder" who must rely on her grandson to access her pension; the rural farmer "enrolled" in digital agricultural services but unable to complete basic transactions without visiting a physical office; the immigrant worker technically "included" in the system but confronted by language barriers and interface assumptions that render services unusable.
-
-  
 
 Similar points were raised in another session when community members challenged how inclusion metrics were being used, emphasising how adoption metrics can obscure coercion: "When we say adoption, adoption was especially for welfare entitlements, coercion." Their pointed question: "If we are measuring DPI from a perspective of public trust... what would then our criteria be?", challenged us to acknowledge that adoption through coercion fundamentally differs from voluntary engagement, yet current metrics fail to capture this distinction.
 
@@ -55,11 +50,11 @@ In contexts with limited historical state capacity or infrastructure reach, popu
 
 Effective measurement frameworks must account for these baseline conditions, developing approaches that can isolate DPI-specific impacts from broader governance and infrastructure legacies. This requires sophisticated methodological approaches that establish appropriate comparison points and control for historical context when assessing DPI effectiveness.
 
-## **Building Evidence-Based Measurement Frameworks**
+## Building Evidence-Based Measurement Frameworks
 
 What has struck me across these sessions was how researchers working independently across continents had converged on the same methodological insight: measurement must begin with what actually happens when people encounter DPI, not with what our frameworks assume should happen. As I’ve watched this community grow over the last 6 months it seems to me that we are witnessing the clarification of both measurement methodologies and the values that shape them. 
 
-**Testing as Research**: **Testing as Research**: Our interoperability session introduced "testing as research": creating empirical tests that directly measure system compatibility rather than relying on theoretical assessments. This approach, exemplified by practitioners testing whether elderly citizens could actually complete transactions across supposedly "interoperable" payment systems, illustrated the development of abstract standards into measurable outcomes reflecting actual user experiences.
+**Testing as Research**: Our interoperability session introduced "testing as research": creating empirical tests that directly measure system compatibility rather than relying on theoretical assessments. This approach, exemplified by practitioners testing whether elderly citizens could actually complete transactions across supposedly "interoperable" payment systems, illustrated the development of abstract standards into measurable outcomes reflecting actual user experiences.
 
 **Implementation Experience as Primary Data**: Community discussion emphasised the importance of empirical research: "If you're really going to understand how the system is governed and performed, you have to apply research to specific projects with access to the projects and stakeholders to see how it works in practice."
 
@@ -69,7 +64,7 @@ This challenges measurement approaches relying primarily on desk research or the
 
 The adaptive approach reflects recognition that DPI measurement cannot follow a one-size-fits-all model. Different countries have varying institutional capabilities, regulatory environments, and development priorities. Effective frameworks must be sophisticated enough to account for this variation while remaining practical for widespread adoption.
 
-## **Community Voices and Evolving Debates**
+## Community Voices and Evolving Debates
 
 The most compelling insights emerged from vigorous debates among session participants, revealing fundamental tensions in how we conceptualise DPI effectiveness.
 
@@ -81,7 +76,7 @@ These debates revealed that measurement is never purely technical. The metrics w
 
 These differences reflect different development priorities and institutional contexts. Our community learned to approach framework development with greater contextual sensitivity, recognizing that effective frameworks must be adaptable to diverse priorities and constraints.
 
-## **Pathways Forward**
+## Pathways Forward
 
 Several clear pathways emerge for advancing DPI measurement practice based on our six months of intensive discussion.
 
@@ -95,7 +90,7 @@ These communities should include technical experts, implementers, policymakers, 
 
 **Investing in Empirical Research**: Effective framework development requires substantial investment in empirical research examining how DPI systems function across diverse contexts. This research must include systematic comparative analysis across implementations, understanding relationships between design choices and outcomes, and examining experiences of marginalised populations often excluded from measurement exercises.
 
-## **Join the Conversation**
+## Join the Conversation
 
 The insights presented here represent just the beginning of what we hope will be an ongoing evolution in how we understand and measure DPI effectiveness. Our Community of Practice continues to meet monthly, exploring emerging measurement challenges and developing practical assessment approaches.
 
