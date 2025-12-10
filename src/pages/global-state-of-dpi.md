@@ -106,7 +106,7 @@ Report 2025/06. ISBN: 978-1-917384-39-1
 
 ## Next steps
 
-[Help map DPI](/contribute-to-the-dpi-map) and join the [Community of Practice](/measurement-community)
+[Help map DPI](/contribute) and join the [Community of Practice](/measurement-community)
 
 We invite all who are interested to join the IIPP Community
 of Practice on DPI Measurement. Participants can join virtual sessions in this open

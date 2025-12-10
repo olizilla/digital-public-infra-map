@@ -45,4 +45,4 @@ All these updates have been recorded in the new dataset (accessible under ‘Ver
 
 We would like to thank our contributors' from: **Ministry of Trade, Co-operatives and Small and Medium Enterprises (Fiji), Ministry of Communications and Information Technology (Egypt), Innovation and Digital Development Agency (Azerbaijan)** and **Department for Digital Transformation (Italy)**, for their engagement on the DPI map.
 
-The contributions have been  essential to keeping our map updated with the latest digital developments. **[We welcome our full community’s engagement](https://dpimap.org/contribute-to-the-dpi-map)**on new DPI deployments, feedback, or knowledge sharing.
+The contributions have been  essential to keeping our map updated with the latest digital developments. **[We welcome our full community’s engagement](https://dpimap.org/contribute)**on new DPI deployments, feedback, or knowledge sharing.

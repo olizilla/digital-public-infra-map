@@ -1,6 +1,6 @@
 # Contributing to the DPI Map Website.
 
-Contributions are welcome and encouraged! Share information about DPI deployments, provide feedback on our framework, or add to data and build on it. see: https://dpimap.org/contribute-to-the-dpi-map/ 
+Contributions are welcome and encouraged! Share information about DPI deployments, provide feedback on our framework, or add to data and build on it. see: https://dpimap.org/contribute/ 
 
 ## Editing the content
 
