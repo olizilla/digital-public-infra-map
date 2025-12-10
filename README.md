@@ -30,7 +30,7 @@ Updates to the site are deployed to dpimap.org automatically when changes are me
 
 ## Contributing
 
-Contributions are welcome and encouraged! Share information about DPI deployments, provide feedback on our framework, or add to data and build on it. see: https://dpimap.org/contribute-to-the-dpi-map/ 
+Contributions are welcome and encouraged! Share information about DPI deployments, provide feedback on our framework, or add to data and build on it. see: https://dpimap.org/contribute/ 
 
 You can add new blog posts and community of practice posts using [Pages CMS](https://pagescms.org/).
 
