@@ -1,0 +1,101 @@
+# A github action that runs when a pull request is opened or edited that
+# changes a csv in the public/data directory.
+#
+# The action runs https://github.com/paulfitz/daff from npm to create an
+# html diff between the base version of the csv and the changes introduced
+# in the PR. It pushes the report as a PR artefact and publishes the link
+# to the PR as a comment.
+name: CSV Diff
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - "public/data/**/*.csv"
+
+jobs:
+  csv_diff:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+
+    steps:
+      - name: Checkout head of the PR
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Get changed CSV files
+        id: changed-files
+        uses: tj-actions/changed-files@v44
+        with:
+          files: public/data/**/*.csv
+          base_sha: ${{ github.event.pull_request.base.sha }}
+          sha: ${{ github.event.pull_request.head.sha }}
+
+      - name: Checkout base of the PR
+        if: steps.changed-files.outputs.any_changed == 'true'
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: base
+
+      - name: Setup Node.js
+        if: steps.changed-files.outputs.any_changed == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install daff
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: npm install -g daff
+
+      - name: Generate diffs
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          mkdir -p diff_reports
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            echo "Generating diff for ${file}"
+            base_file="base/${file}"
+            head_file="${file}"
+            output_file="diff_reports/$(basename "${file}").html"
+
+            if [ -f "${base_file}" ]; then
+              daff --output "${output_file}" "${base_file}" "${head_file}"
+            else
+              # File is new, diff against an empty file
+              touch empty.csv
+              daff --output "${output_file}" empty.csv "${head_file}"
+            fi
+          done
+
+      - name: Upload diff reports
+        if: steps.changed-files.outputs.any_changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: csv-diff-reports
+          path: diff_reports/
+
+      - name: Find existing comment
+        if: steps.changed-files.outputs.any_changed == 'true'
+        uses: peter-evans/find-comment@v3
+        id: find_comment
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: "github-actions[bot]"
+          body-includes: "CSV Diff Report"
+
+      - name: Create or update comment
+        if: steps.changed-files.outputs.any_changed == 'true'
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          comment-id: ${{ steps.find_comment.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            📊 **CSV Diff Report**
+
+            An HTML diff report has been generated for changes to CSV files in this PR.
+
+            You can download the report from the [artifacts of this workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}).
+          edit-mode: replace
