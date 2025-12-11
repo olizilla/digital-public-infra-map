@@ -5,7 +5,7 @@
 # html diff between the base version of the csv and the changes introduced
 # in the PR. It pushes the report as a PR artefact and publishes the link
 # to the PR as a comment.
-name: CSV
+name: CSV Diff
 
 on:
   pull_request:
@@ -54,14 +54,12 @@ jobs:
       - name: Generate diffs
         if: steps.changed-files.outputs.any_changed == 'true'
         run: |
+          mkdir -p diff_reports
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             echo "Generating diff for ${file}"
-            report_dir="diff-$(basename "${file}")"
-            mkdir -p "${report_dir}"
             base_file="base/${file}"
             head_file="${file}"
-            output_file="${report_dir}/diff.html"
-
+            output_file="diff_reports/$(basename "${file}").html"
             if [ -f "${base_file}" ]; then
               daff --output "${output_file}" "${base_file}" "${head_file}"
             else
@@ -70,12 +68,12 @@ jobs:
               daff --output "${output_file}" empty.csv "${head_file}"
             fi
           done
-
       - name: Upload diff reports
         if: steps.changed-files.outputs.any_changed == 'true'
         uses: actions/upload-artifact@v4
         with:
-          path: diff-*
+          name: csv-diff-pr-${{ github.event.number }}
+          path: diff_reports/
 
       - name: Find existing comment
         if: steps.changed-files.outputs.any_changed == 'true'
