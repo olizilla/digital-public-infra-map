@@ -1,7 +1,9 @@
 ---
 layout: ../layouts/Standard.astro
-title: Method
+title: Methodology
 ---
+
+import IndicatorsTable from '../components/IndicatorTable.astro';
 
 # Methodology
 
@@ -17,11 +19,7 @@ For data exchange systems, we counted countries with active systems that were de
 
 DPI-likeness refers to systems most closely associated with being DPI.
 
-<div class="text-center py-4">
-  <a href="https://www.ucl.ac.uk/bartlett/sites/bartlett/files/dpi_conceptualisation_and_measurement.pdf" class="button-blue">
-    Download the PDF
-  </a>
-</div>
+<div class="text-center py-4"><a href="https://www.ucl.ac.uk/bartlett/sites/bartlett/files/dpi_conceptualisation_and_measurement.pdf" class="button-blue">Download the PDF</a></div>
 
 ## DPI Conceptualisation and Measurement Framework
 
@@ -40,8 +38,6 @@ To answer this, we had to wrestle with some fundamental issues. How does one def
 The first layer of the framework is inductive. It proposes a set of normative **attributes,** a set of common technological and governance qualities that describe how DPIs _should_ be designed. The second layer is deductive. It is composed of a set of **outcome indicators that** describe how attributes can be realised in real-world deployments.
 
 The framework identifies **six attributes**
-
-<!-- ![Foundational Societal Functions](./methodology/foundational-societal-functions.webp) -->
 
 ![Foundational Societal Functions](../assets/methodology/foundational-societal-functions.webp)
 
@@ -74,6 +70,20 @@ It’s worth mentioning that **not all indicators are equal.**
 In version 1.0 of this framework, we present an exhaustive version of indicators for all attributes. These indicators however can be divided into subjective and objectively measurable (based on our data scoping methods, accessible here). We further divided indicators into two other categories: ‘must haves’ referred to indicators that more directly assessed the essence of an attribute, while ‘good to haves’ reflected those that did so more indirectly or partially. In an effort to both be more objective and make effective use of our limited resources, version 1.0 of our map collects data on only measurable must-have indicators.
 
 We purposely share all the indicators we derived for several reasons. First, we hope users and contributors might suggest edits that would shift non-measurable indicators into being measurable. Second, that our list of indicators might inform others’ research. And third, just because an indicator is non-measurable does not mean it is not important. We hope that policymakers and DPI developers will find all our indicators useful when developing or deploying DPIs.
+
+## DPI Indicators for Digital Identity 
+
+<IndicatorsTable dpi='id' />
+
+## DPI Indicators for Digital Payment Systems
+
+<IndicatorsTable dpi='pay' />
+
+## DPI Indicators for Data Exchange Systems
+
+<IndicatorsTable dpi='data' />
+
+
 
 ## Using the framework
 

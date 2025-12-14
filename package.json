@@ -16,6 +16,7 @@
     "data:exchange": "DATE=${DATE:-`date +'%Y-%m-%d'`} curl -Ss --output ./public/data/$DATE/$DATE-exchange.json http://localhost:4321/api/exchange.json"
   },
   "dependencies": {
+    "@ascorbic/csv-loader": "^2.0.3",
     "@astrojs/mdx": "^4.3.0",
     "@tailwindcss/typography": "^0.5.16",
     "@tailwindcss/vite": "^4.1.11",

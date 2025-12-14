@@ -69,9 +69,6 @@
   @apply outline-blue-200;
 }
 
-.prose table {
-  @apply lg:-mx-30 w-auto;
-}
 .prose aside {
   @apply bg-teal-100 text-teal-900 px-4 py-0.5 text-sm leading-6 border-l-2;
 }
@@ -91,6 +88,14 @@
   stroke:#acc;
 }
 
+.release-table {
+  @apply lg:-mx-30 w-auto;
+}
+
 .release-table thead th:first-of-type {
   min-width: 80px;
+}
+
+.label {
+  @apply text-xs uppercase font-mono tracking-wide text-zinc-500 font-normal
 }
