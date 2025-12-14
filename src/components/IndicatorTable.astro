@@ -1,0 +1,29 @@
+---
+import { getCollection, getEntry } from 'astro:content'
+const {dpi} = Astro.props
+const collName = `${dpi}Indicators`
+const indicators = await getCollection(collName)
+const attrs = await getCollection('dpiAttributes')
+let lastAttributeID = null
+---
+<div class="lg:-mx-12">
+  <table class="indicator-table">
+    <thead>
+      <tr><th>#</th><th>Indicator</th></tr>
+    </thead>
+    <tbody>
+      { indicators.map(({data}) => {
+        const attributeId = data.id.split('.')[0]
+        if (lastAttributeID === attributeId) {
+          return <tr><td>{data.id}</td><td>{data.indicator}</td></tr>
+        }
+        const attr = attrs.find(a => a.id === attributeId)
+        lastAttributeID = attr?.id
+        return (
+          <tr><td class="label bg-zinc-50" colspan="2">{attr?.data.attribute}</td></tr>
+          <tr><td>{data.id}</td><td>{data.indicator}</td></tr>
+        )
+      })}
+    </tbody>
+  </table>
+</div>
