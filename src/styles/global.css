@@ -99,3 +99,9 @@
 .label {
   @apply text-xs uppercase font-mono tracking-wide text-zinc-500 font-normal
 }
+
+
+.indicator-table td,
+.indicator-table th {
+  @apply pl-2
+}
