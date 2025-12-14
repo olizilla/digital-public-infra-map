@@ -6,6 +6,7 @@
   --color-na: var(--color-zinc-200);
 }
 @source inline("md:row-start-{1,2,3}");
+@source inline("break-all");
 @utility prose {
     blockquote {
         /* Disable adding quote marks to block-quotes: https://github.com/tailwindlabs/tailwindcss-typography/issues/66 */
@@ -100,7 +101,9 @@
   @apply text-xs uppercase font-mono tracking-wide text-zinc-500 font-normal
 }
 
-
+.indicator-table tr {
+  @apply hover:bg-teal-50;
+}
 .indicator-table td,
 .indicator-table th {
   @apply pl-2

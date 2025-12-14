@@ -1,0 +1,16 @@
+---
+import { getCollection, getEntry } from 'astro:content'
+const attrs = await getCollection('dpiAttributes')
+---
+<div class="lg:-mx-20">
+  <table class="attribute-table">
+    <thead>
+      <tr><th>#</th><th>Attribute</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      { attrs.map(({data}) => (
+        <tr><td>{data.id}</td><td class="font-bold">{data.attribute}</td><td set:html={data.description.replaceAll('\\n', '<br/>')}></td></tr>
+      ))}
+    </tbody>
+  </table>
+</div>

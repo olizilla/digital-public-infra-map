@@ -2,8 +2,8 @@
 layout: ../layouts/Standard.astro
 title: Methodology
 ---
-
-import IndicatorsTable from '../components/IndicatorTable.astro';
+import IndicatorTable from '../components/IndicatorTable.astro';
+import AttributeTable from '../components/AttributeTable.astro';
 
 # Methodology
 
@@ -41,6 +41,8 @@ The framework identifies **six attributes**
 
 ![Foundational Societal Functions](../assets/methodology/foundational-societal-functions.webp)
 
+<AttributeTable />
+
 These attributes describe the qualities that define artefacts - like digital identity systems - as public (and not private) infrastructures. In addition to the four attributes, an essential condition to implementing DPI is the supportive ecosystem capacity and coordination capability. A final component for assessing DPI’s attributes is through the adoption of DPI, or the extent to which actors other than the DPI operator leverage the DPI.
 
 These attributes should be read in framing DPI as the means to serve foundational societal functions in the digital age, namely digital authentication, digital transactions and the exchange of data.
@@ -73,15 +75,15 @@ We purposely share all the indicators we derived for several reasons. First, we 
 
 ## DPI Indicators for Digital Identity Systems
 
-<IndicatorsTable dpi='id' />
+<IndicatorTable dpi='id' />
 
 ## DPI Indicators for Digital Payment Systems
 
-<IndicatorsTable dpi='pay' />
+<IndicatorTable dpi='pay' />
 
 ## DPI Indicators for Data Exchange Systems
 
-<IndicatorsTable dpi='data' />
+<IndicatorTable dpi='data' />
 
 
 
