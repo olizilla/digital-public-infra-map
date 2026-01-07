@@ -61,7 +61,7 @@ jobs:
             head_file="${file}"
             output_file="diff_reports/$(basename "${file}").html"
             if [ -f "${base_file}" ]; then
-              daff --output "${output_file}" "${base_file}" "${head_file}"
+              daff --output "${output_file}" --unordered "${base_file}" "${head_file}"
             else
               # File is new, diff against an empty file
               touch empty.csv
