@@ -1,4 +1,4 @@
-import dataJSON from '../public/data/2025-10-27/2025-10-27-exchange.json'
+import dataJSON from '../public/data/2026-01-15/2026-01-15-exchange.json'
 import { normaliseImplementationStatus, statusSort } from './Status'
 import { fixURL } from './Util'
 

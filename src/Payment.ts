@@ -1,11 +1,11 @@
-import json from '../public/data/2025-10-27/2025-10-27-payment.json'
+import json from '../public/data/2026-01-15/2026-01-15-payment.json'
 import { normaliseImplementationStatus, statusSort } from './Status'
 import { fixURL } from './Util'
 
 type PaymentType = typeof json[number]
 
 export function paymentDPIStatus(x: PaymentType): "DPI" | "WIP" | "NA" {
-  const implStatus = normaliseImplementationStatus(x['Status of payment system implementation'])
+  const implStatus = normaliseImplementationStatus(x['Status of Implementation'])
   if (x['Count for DPI'] === 1) { 
     return 'DPI'
   }
@@ -24,7 +24,7 @@ export const Payments = json.map(x => {
     'URL': fixURL('pay', x['Country / Region'] ?? '', x['URL']),
     'Active real-time payment system present': x['Active real-time payment system present'],
     'Payment system type': x['Payment system type'],
-    'Status of implementation': normaliseImplementationStatus(x['Status of payment system implementation']),
+    'Status of implementation': normaliseImplementationStatus(x['Status of Implementation']),
     'National / Regional': x['National / Regional'],
     "Cross-border payments": x["Cross-border payments"],
     "Interoperability policy": x["Interoperability policy"],
