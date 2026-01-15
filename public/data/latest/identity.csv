@@ -38,7 +38,7 @@ Mozambique,01/10/24,0,No,NA,NA,No,NA,No,No,No,No,No,No,NA,NA,No,No,No,No,No,No,N
 Namibia,01/10/24,0,NA,National digital identity,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,NA,No,NA,NA,NA,UNDP,NA
 Niger,01/10/24,0,No,National digital identity,NA,No,Planned/Piloted,Yes,No,No,No,No,No,NA,NA,No,Yes,No,Yes,No,No,No,World Bank,NA
 Nigeria,01/12/25,0,Yes,National Identity Number,https://nimc.gov.ng/e-id-card,Yes,Implemented,Yes,Yes,Yes,NA,NA,No,National Identity Management Commission,Customer service mechanism,NA,Yes,Yes,Yes,Yes,Yes,NA,"World Bank, European Investment Bank",World Bank
-Rwanda,06/03/25,0,Yes,Single Digital ID (SDID),NA,Yes,Implemented,Yes,No,NA,NA,NA,No,National Identification Authority (NIDA),NA,No,Yes,No,Yes,No,No,NA,"World Bank,","African Development Bank, World Bank"
+Rwanda,06/03/25,0,Yes,Single Digital ID (SDID),NA,Yes,Implemented,Yes,No,NA,NA,NA,No,National Identification Authority (NIDA),NA,No,Yes,No,Yes,No,No,NA,World Bank,"African Development Bank, World Bank"
 Sao Tome and Principe,01/10/24,0,No,NA,NA,No,NA,No,No,No,No,No,No,NA,NA,No,Yes,No,Yes,No,No,No,NA,NA
 Senegal,01/10/24,0,Yes,National digital identity (INN),NA,Yes,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,NA,No,NA,NA,NA,Enabel- Belgium and European Union Emergency Trust Fund for Africa (EUTF),Iris
 Seychelles,01/10/24,1,Yes,SeyID,https://www.seyid.gov.sc/AboutSeyID,Yes,Implemented,Yes,NA,Yes,Yes,Yes,NA,NA,Legally established mechanism,Yes,Yes,Yes,No,No,No,Yes,NA,WISeKey
@@ -64,7 +64,7 @@ China,01/10/24,0,Yes,National digital identity,NA,Yes,Planned/Piloted,Yes,NA,Yes
 India,01/10/24,1,Yes,Aadhaar,https://uidai.gov.in,Yes,Implemented,Yes,Yes,Yes,Yes,Yes,Yes,Unique Identification Authority of India (UIDAI),Both,Yes,Yes,Yes,Yes,Yes,No,Yes,NA,NA
 Indonesia,16/06/25,1,Yes,Digital Population Identity (IKD),https://web.dukcapil.kemendagri.go.id/web/,Yes,Implemented,Yes,Yes,Yes,Yes,Yes,Yes,Ministry of Home Affairs,NA,NA,Yes,Yes,Yes,NA,Yes,Yes,World Bank,ID4D
 Iran,01/10/24,0,Yes,National identity,NA,Yes,Planned/Piloted,Yes,NA,Yes,Yes,NA,NA,National Police,NA,NA,No,NA,No,NA,NA,NA,NA,NA
-Japan,25/06/25,1,Yes,Ny Number Card,https://www.kojinbango-card.go.jp/card/,Yes,Implemented,Yes,Yes,Yes,Yes,NA,Yes,Digital Agency,Both,Yes,Yes,Yes,Yes,Yes,NA,Yes,NA,NA
+Japan,25/06/25,1,Yes,My Number Card,https://www.kojinbango-card.go.jp/card/,Yes,Implemented,Yes,Yes,Yes,Yes,NA,Yes,Digital Agency,Both,Yes,Yes,Yes,Yes,Yes,NA,Yes,NA,NA
 Kazakhstan,01/10/24,1,Yes,eGov Mobile,https://egov.kz/cms/en/information/about/mobile_application,Yes,Implemented,Yes,Yes,Yes,NA,Yes,NA,"Ministry of Digital Development, Innovation and Aerospace Industry",NA,NA,Yes,NA,Yes,NA,NA,Yes,NA,NA
 Kyrgyzstan,01/10/24,0,Yes,Unified Identification System (ESI)/ Personal Identification Number (PIN),NA,Yes,NA,Yes,No,Yes,NA,Yes,No,Ministry of Digital Development,NA,NA,Yes,NA,No,NA,Yes,NA,NA,NA
 Laos,01/10/24,0,No,National digital identity,NA,No,NA,No,No,No,No,No,No,NA,NA,No,Yes,No,No,No,No,No,NA,NA
@@ -178,8 +178,7 @@ Paraguay,01/10/24,1,Yes,Identidad electrónica,https://www.paraguay.gov.py/crear
 Peru,01/12/25,1,Yes,DNIe (electronic national ID),https://portales.reniec.gob.pe/web/dni,Yes,Implemented,Yes,Yes,Yes,NA,Yes,Yes,Registro Nacional de Identificación y Estado Civil (RENIEC),Customer service mechanism,Yes,Yes,Yes,Yes,Yes,NA,Yes,World Bank,NA
 Suriname,01/10/24,0,Yes,e-ID,NA,NA,Planned/Piloted,NA,No,No,No,No,No,NA,NA,No,No,No,No,No,No,No,NA,NA
 Uruguay,01/10/24,1,Yes,ID Uruguay,https://www.gub.uy/agencia-gobierno-electronico-sociedad-informacion-conocimiento/identidad-digital,Yes,Implemented,Yes,Yes,Yes,NA,Yes,Yes,"National Directorate of Civil Identification Eletronic Certification Unity",Both,No,Yes,NA,Yes,No,No,Yes,NA,Thales
-Venezuela,01/10/24,0,NA,"Carnet de la Patria
-Cédula Nacional de Identidad",https://accesoalajusticia.org/glossary/carnet-de-la-patria/,NA,NA,Yes,NA,No,No,NA,Yes,NA,NA,NA,No,NA,No,NA,NA,NA,NA,ZTE
+Venezuela,01/10/24,0,NA,"Carnet de la Patria Cédula Nacional de Identidad",https://accesoalajusticia.org/glossary/carnet-de-la-patria/,NA,NA,Yes,NA,No,No,NA,Yes,NA,NA,NA,No,NA,No,NA,NA,NA,NA,ZTE
 Armenia,01/10/24,0,Yes,EsEm,https://www.ekeng.am/en/esem,NA,Implemented,Yes,Yes,Yes,NA,Yes,NA,Ekeng: e-Governance infrastructure implementation agency,Customer service mechanism,NA,Yes,NA,Yes,NA,NA,NA,NA,NA
 Azerbaijan,01/10/24,1,Yes,Digital Login / Asan Imza,https://digital.login.gov.az/,Yes,Implemented,NA,Yes,Yes,NA,Yes,NA,Innovation and Digital Development Agency (IDDA),Customer service mechanism,NA,Yes,NA,No,NA,NA,Yes,NA,NA
 Bahrain,01/10/24,0,Yes,Smart ID,https://www.bahrain.bh/wps/portal/en/!ut/p/z1/jZJBU8IwEIX_Si69kqXRUrxVBlFGBgatYC5MWtc20CYlCaj_3igHhxks5Jbke7t5b0M5XVKuxF4WwkmtROX3rzxa3U8h6oZxOI5ZyiCZRoN5fwjdEVzTxTEAjA1_gN6s99IPoxgov0QP4WTQfbjy-skEIIlv54_PdwOAEbtQ_89KLuzfAvD28k-o6PhcE5-iXG-3PKE818rhp6NLLPS-0caJaoUqgFLXGMB2J_MNqaTa2ABy1KRGa0Xhb1yJBCvMndFK5sSL0agalSNCvRHpixbmd2ikMXrtOeut8eOHnRjOwV5L-uf8e-9FpbPDV0lUxuKCcoPvaNB0dsYfl8419iaAADJRGiFVJysDOIWX2vpg_ija1GmaLj--GMhZvYjtN_UhQdk!/dz/d5/L3dHQSEvUUt3SS9nQSEh/,Yes,Implemented,Yes,Yes,NA,Yes,NA,NA,Information and eGovernment Authority (iGA),NA,NA,Yes,NA,Yes,NA,NA,NA,NA,"Thales, Beyon Connect"
