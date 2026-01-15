@@ -1,4 +1,4 @@
-import json from '../public/data/2025-10-27/2025-10-27-identity.json'
+import json from '../public/data/2026-01-15/2026-01-15-identity.json'
 import { normaliseImplementationStatus, statusSort } from './Status'
 import { fixURL } from './Util'
 
@@ -9,7 +9,7 @@ type IdentityType = typeof json[number]
  * @returns "DPI" | "WIP" | "NA"
  */
 export function identityDPIStatus(x: IdentityType): "DPI" | "WIP" | "NA" {
-  const implStatus = normaliseImplementationStatus(x['Status of implementation'])
+  const implStatus = normaliseImplementationStatus(x['Status of Implementation'])
   if (x['Count for DPI'] === 1) {
     return 'DPI'
   }
@@ -27,7 +27,7 @@ export const IDs = json.map(x => {
     'Name': x['Digital ID name'],
     'URL': fixURL('id', x['Country / Region'], x['URL']),
     "Collects or uses biometric data": x["Collects or uses biometric data"],
-    'Status of implementation': normaliseImplementationStatus(x['Status of implementation']),
+    'Status of implementation': normaliseImplementationStatus(x['Status of Implementation']),
     "ID or Civil Registry Act": x["ID or Civil Registry Act"],
     "Regulation for digital ID": x["Regulation for digital ID"],
     "Digital authentication function": x["Digital authentication function"],
@@ -44,7 +44,7 @@ export const IDs = json.map(x => {
     "Relationship with feeder documents": x["Relationship with feeder documents"],
     "Two or more sectoral use cases enabled": x["Two or more sectoral use cases enabled"],
     "Funding organizations identified": x["Funding organizations identified"],
-    "Technical Support organizations identified": x["Technical support organizations identified\n"],
+    "Technical Support organizations identified": x["Technical support organizations identified"],
     'DPI Status': identityDPIStatus(x),
   }
 }).sort(statusSort)

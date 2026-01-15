@@ -1,5 +1,5 @@
-// 2025.Q3.CountryDPITracker_Dataset
-const sheet = new URL('https://docs.google.com/spreadsheets/d/168wnnvAk7N_FxAlVUR9HGwKUxMQWx53rLeaWhS90R8Y/edit?gid=63832391#gid=63832391')
+// 2025.Q4.CountryDPITracker_Dataset
+const sheet = new URL('https://docs.google.com/spreadsheets/d/1AJsuUiupyJGBZH2GDx-NuhMKKZw5Gi5y9oy8CDsxyS8/edit?gid=63832391#gid=63832391')
 const url = new URL(sheet.pathname + sheet.search, 'https://sheetjson.com')
 
 export async function GET () {
