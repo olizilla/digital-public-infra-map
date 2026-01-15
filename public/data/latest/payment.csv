@@ -1,4 +1,4 @@
-Costa Rica,Last updated,Count for DPI,Payment system name,URL,Active real-time payment system present,Payment system type,Status of Implementation,National / Regional,Cross-border payments,Interoperability policy,Types of transactions supported,Type of settlement system,Operator,Bank participation,Non-bank participation,Participation conditions and rules,Number of participants,Annual value of transactions (USD),Annual volume of transactions,Data-handing rules for payment system,Reporting forum,AML Law,Cost of transactions,QR code based transactions
+Country / Region,Last updated,Count for DPI,Payment system name,URL,Active real-time payment system present,Payment system type,Status of Implementation,National / Regional,Cross-border payments,Interoperability policy,Types of transactions supported,Type of settlement system,Operator,Bank participation,Non-bank participation,Participation conditions and rules,Number of participants,Annual value of transactions (USD),Annual volume of transactions,Data-handing rules for payment system,Reporting forum,AML Law,Cost of transactions,QR code based transactions
 Africa,01/10/24,0,COMESA regional payment system,"https://www.comesa.int/comesa-clearing-house/#:~:text=The%20system%20operates%20through%20member,increases%20trade%20within%20the%20region.",Yes,Interbank payment system,Planned/Piloted,Regional,Yes,NA,B2B,DNS,Central Bank,Yes,No,NA,2024- 9,2022- 388 M,NA,NA,NA,NA,NA,NA
 Africa,01/10/24,0,BCEAO Regional Payment Systems Project,https://documents.worldbank.org/en/publication/documents-reports/documentdetail/394311468779408394/western-africa-bceao-regional-payment-systems-project,Yes,Interbank payment system,Planned/Piloted,Regional,Yes,NA,B2B,NA,Central Bank,Yes,NA,NA,2023- 8,NA,NA,NA,NA,NA,NA,NA
 Africa,01/10/24,0,PAPSS (Pan African Payment and Settlement System),https://papss.com/,Yes,Interbank payment system,Planned/Piloted,Regional,Yes,NA,B2B,NA,Commercial bank/ Private PSP,Yes,No,NA,2023- 6,NA,NA,NA,NA,NA,NA,NA
@@ -27,7 +27,7 @@ Ethiopia,01/10/24,0,EthSwitch,https://ethswitch.com/,Yes,Cross-domain payment sy
 Gabon,01/10/24,0,Unknown domestic IPS/ only regional IPS,https://www.africanenda.org/en/map,No,NA,NA,National,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Gambia,01/10/24,1,Gamswitch,https://www.africanenda.org/en/map?scheme=gamswitch,Yes,Interbank payment system,Implemented,National,NA,NA,"P2P, P2G, P2B","RTGS, ACH",Central Bank,Yes,Yes,NA,2023- 12,NA,NA,NA,NA,Yes,Here,NA
 Ghana,01/10/24,1,GhanaPay/ GIPS,https://www.ghipss.net/,Yes,Cross-domain payment system,Implemented,National,Yes,Yes,"P2P, P2M, B2B, G2P",NA,Central Bank,Yes,Yes,NA,2023- 52,2021- 2 B,2021- 37 M,NA,NA,Yes,NA,NA
-Ghana,25/06/25,0,eCedi (CBDC),https://cbdctracker.org/currency/ghana-e-cedi,Yes,CBDC,Planned/Piloted,National,Yes,Yes,"P2P, P2M, B2B, G2P",NA,Central Bank,Yes,Yes,NA,NA,NA,NA,NA,NA,Yes,NA,NA
+Ghana,01/12/25,0,eCedi (CBDC),https://cbdctracker.org/currency/ghana-e-cedi,Yes,CBDC,Planned/Piloted,National,Yes,Yes,"P2P, P2M, B2B, G2P",NA,Central Bank,Yes,Yes,NA,NA,NA,NA,NA,NA,Yes,NA,NA
 Guinea,01/10/24,0,Domestic IPS,https://www.africanenda.org/en/map,No,NA,Planned/Piloted,National,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,NA,NA
 Guinea-Bissau,01/10/24,0,NA,NA,No,NA,NA,National,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Kenya,25/06/25,0,PesaLink,https://www.ipsl.co.ke/,Yes,Interbank payment system,Implemented,National,Yes,NA,"P2P, P2M",DNS,Bank association,Yes,No,NA,2024- 32,2023- 15 K,2023- 16 M,NA,NA,NA,NA,Yes
@@ -41,7 +41,7 @@ Malawi,01/10/24,0,Nat Switch,https://www.africanenda.org/en/map?scheme=natswitch
 Mali,01/10/24,0,NA,NA,No,NA,NA,National,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,NA,NA
 Mauritania,01/10/24,0,Domestic IPS,https://www.africanenda.org/en/map,No,NA,Planned/Piloted,National,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Mauritius,01/10/24,1,MauCAS (Mauritius Central Automated Swtich),https://www.bom.mu/maucas-0,Yes,Cross-domain payment system,Implemented,National,NA,NA,"P2P, P2M",NA,Central Bank,Yes,Yes,NA,2023- 14,2021- 30 M,2021- 467 K,NA,NA,NA,NA,NA
-Morocco,01/10/24,0,Marocpay,https://www.bom.mu/maucas-0,Yes,Cross-domain payment system,Implemented,National,NA,NA,"P2P, P2M",NA,Commercial bank/ Private PSP,Yes,Yes,NA,2023- 23,"2020- 1.4 million transactions (mWallets), valued at about $44.25 M. 51% of these carried out through m-wallets issued by payment institutions (against
+Morocco,01/12/25,0,Marocpay,https://www.bom.mu/maucas-0,Yes,Cross-domain payment system,Implemented,National,NA,NA,"P2P, P2M",NA,Commercial bank/ Private PSP,Yes,Yes,NA,2023- 23,"2020- 1.4 million transactions (mWallets), valued at about $44.25 M. 51% of these carried out through m-wallets issued by payment institutions (against
 49 percent by m-wallets backed by bank accounts). # of wallets has increased 153 percent between 2019 and 2020, transaction volumes have remained low (USAID, 2022)",NA,NA,NA,Yes,NA,NA
 Mozambique,25/06/25,0,Domestic IPS,https://www.africanenda.org/en/map,Yes,Interbank payment system,Planned/Piloted,National,NA,Yes,P2P,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,NA,NA
 Mozambique,25/06/25,0,Sociedade Interbancaria De Mocambique (SIMO),https://www.africanenda.org/en/map?scheme=sociedade-interbancaria-de-mocambique-simo-2023,Yes,Cross-domain payment system,Implemented,National,NA,Yes,P2P,NA,Bank association,Yes,Yes,NA,2023- 22,2021- 3.2 B,2021- 56 M,NA,NA,Yes,NA,NA
@@ -100,11 +100,7 @@ Nepal,01/10/24,0,National Payments Interface (NPI),"https://nchl.com.np/national
 North Korea,01/10/24,0,NA,NA,No,NA,NA,National,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Pakistan,01/10/24,0,Raast,https://www.sbp.org.pk/dfs/Raast.html,Yes,Cross-domain payment system,Implemented,National,NA,NA,"P2P, P2M",RTGS,NA,NA,Yes,NA,2021- 30,2023- 3.09 B,NA,NA,NA,Yes,NA,NA
 Philippines,30/11/25,1,PhilPASSPlus,https://www.bsp.gov.ph/SitePages/MediaAndResearch/Videos/VideoDirectoryDisp.aspx?ItemId=358,Yes,Interbank payment system,Implemented,National,Yes,NA,"P2P, P2M, B2B","RTGS, ACH",Central Bank,Yes,Yes,NA,NA,2024- 127 K,2024- 767 K,NA,NA,NA,NA,NA
-Singapore,01/10/24,0,PayNow,https://www.abs.org.sg/consumer-banking/pay-now,Yes,Cross-domain payment system,Implemented,National,Yes,Yes,"P2P, P2M, B2B",NA,Bank association,Yes,Yes,NA,"2024- 32
-
-Since Feb 2023, Singapore and India's IPSs can transact cross border in real time
-
-Limited to banks only",2022- 91K B,2022- 311 M,NA,NA,Yes,"Free for P2P, charges for P2M",NA
+Singapore,01/10/24,0,PayNow,https://www.abs.org.sg/consumer-banking/pay-now,Yes,Cross-domain payment system,Implemented,National,Yes,Yes,"P2P, P2M, B2B",NA,Bank association,Yes,Yes,NA,"2024- 32 Since Feb 2023, Singapore and India's IPSs can transact cross border in real time Limited to banks only",2022- 91K B,2022- 311 M,NA,NA,Yes,"Free for P2P, charges for P2M",NA
 South Korea,01/10/24,1,BOK Wire +/Retail Payment System,https://www.bok.or.kr/eng/main/contents.do?menuNo=400045,Yes,Interbank payment system,Implemented,National,NA,NA,"P2P, P2M, B2B",NA,Central Bank,Yes,NA,NA,NA,NA,NA,No,NA,Yes,NA,NA
 Sri Lanka,30/01/25,0,Lanka Pay,https://www.lankapay.net/en/about-us,Yes,Cross-domain payment system,Implemented,National,NA,NA,"P2P, P2M",NA,Bank association,Yes,Yes,NA,NA,2024- 43 K,2024- 164.3 M,NA,NA,NA,NA,Yes
 Taiwan,01/10/24,0,Interbank payment system,https://www.cbc.gov.tw/en/np-446-2.html,No,Interbank payment system,NA,National,Yes,NA,NA,RTGS,Central Bank,NA,No,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -118,6 +114,7 @@ Antigua and Barbuda,26/06/25,0,D-Cash (CBDC),https://www.eccb-centralbank.org/d-
 Antigua and Barbuda,01/10/24,0,Mobile money,https://cuminpay.com/,No,Mobile money,NA,National,Yes,NA,"P2P, P2M",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,NA,NA
 Bahamas,01/10/24,0,Sand Dollar (CBDC),https://www.sanddollar.bs/,Yes,CBDC,Planned/Piloted,National,NA,NA,"P2P, P2M",NA,Central Bank,NA,NA,NA,NA,2023- almost 0.2% of BHD in circulation,2023- >100 K wallets,NA,NA,NA,NA,NA
 Barbados,21/08/25,0,BimPay,https://www.centralbank.org.bb/bimpay-about,Yes,Mobile money,Planned/Piloted,National,Yes,NA,"B2B, B2G, B2P, P2B, P2G, P2P",NA,Central Bank,Yes,NA,NA,NA,NA,NA,NA,NA,Yes,NA,NA
+Barbados,01/10/24,0,Mobile money,NA,Yes,Mobile money,Implemented,National,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,NA,NA
 "Bonaire, Sint Eustatius and Saba",01/10/24,0,NA,NA,No,NA,NA,National,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Caribbean,01/10/24,0,DCash 2.0,https://www.dcashec.com/,No,CBDC,Planned/Piloted,Regional,Yes,NA,NA,NA,Central Bank,Yes,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Cuba,01/10/24,0,NA,NA,No,NA,NA,National,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,NA,NA
@@ -242,7 +239,7 @@ United Arab Emirates,01/10/24,1,Aani (instant payment system),https://aletihadpa
 Yemen,15/07/25,0,Yemen Financial Market Infrastructure Project,https://documents1.worldbank.org/curated/en/099052825174515006/pdf/BOSIB-524dd7c7-d52c-4876-80ed-1e3ea9df2463.pdf,Yes,Interbank payment system,Planned/Piloted,National,NA,NA,"P2P, P2M",NA,Bank association,Yes,Yes,NA,NA,NA,NA,NA,NA,Yes,NA,NA
 Antarctica,01/10/24,0,NA,NA,No,NA,NA,National,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Canada,01/10/24,0,Real-Time Rail System,https://www.payments.ca/systems-services/payment-systems/real-time-rail-payment-system,No,Cross-domain payment system,Planned/Piloted,National,NA,NA,"P2P, P2M, B2B",RTGS,Bank association,Yes,Yes,Yes,NA,NA,NA,Yes,Yes,Yes,NA,NA
-Canada,26/06/25,0,Lynx (Interbank payment system),https://www.payments.ca/systems-services/payment-systems/high-value-payment-system-lynx,No,Interbank payment system,Planned/Piloted,National,NA,NA,"P2P, P2M, B2B",NA,Bank association,Yes,No,Yes,NA,2023- 103 M,2023- 13.1 M,Yes,Yes,Yes,NA,NA
+Canada,01/12/25,0,Lynx (Interbank payment system),https://www.payments.ca/systems-services/payment-systems/high-value-payment-system-lynx,No,Interbank payment system,Planned/Piloted,National,NA,NA,"P2P, P2M, B2B",NA,Bank association,Yes,No,Yes,NA,2023- 103 M,2023- 13.1 M,Yes,Yes,Yes,NA,NA
 Greenland,01/10/24,0,TIPS (Target Instant Payment Settlement),https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html,Yes,Cross-domain payment system,Implemented,National,Yes,NA,"P2P, P2B, P2G, B2P, B2B, B2G",RTGS,Commercial bank/ Private PSP,Yes,No,NA,2024- 60,2024- 70 B,2024- 554 K,Yes,Yes,NA,NA,NA
 Greenland,26/06/25,0,Mobile money,https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html,Yes,Mobile money,Implemented,National,Yes,NA,"P2P, P2B, P2G, B2P, B2B, B2G",NA,Commercial bank/Private PSP,Yes,Yes,Yes,NA,NA,NA,Yes,Yes,NA,Free for individuals,NA
 United States of America,01/10/24,1,FedNow,https://www.frbservices.org/financial-services/fednow,Yes,Cross-domain payment system,Implemented,National,NA,NA,"P2P, P2M",RTGS,Central Bank,Yes,Yes,Yes,2024- 930,NA,NA,No,Yes,NA,Individuals- 0.05-1 cent; PSPs- monthly fee (USD 25),No
@@ -260,5 +257,3 @@ Solomon Islands,01/10/24,0,Interbank payment system,https://www.cbsi.com.sb/pres
 Tonga,01/10/24,0,NA,NA,No,NA,NA,National,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,NA,NA
 Tuvalu,01/10/24,0,NA,NA,No,NA,NA,National,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,NA,NA
 Vanuatu,01/10/24,0,Domestic IPS,https://pressroom.ifc.org/all/pages/PressDetail.aspx?ID=27738,Yes,Interbank payment system,Planned/Piloted,National,NA,NA,NA,"RTGS, ACH",NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,NA,NA
-
-
