@@ -21,12 +21,12 @@ const dpiType = 'id'
 	<MapAndTabs countryCount={items.length} dpiType={dpiType} />
 	<StatusBar items={items} />
 	<CardSection title="Digital ID Systems" items={items}>
+		<IdentityIcon class="inline" slot="icon" />
 		{ items.map(data => (
 			<Card>
 				<article>
-					<header class="text-zinc-600 pb-2 border-b border-zinc-100 mb-2 flex items-center">
-						<IdentityIcon class="flex-none text-zinc-300 "/>
-						<a class="flex-grow px-1 hover:underline" href={slug(data.Country)}>{data.Country}</a>
+					<header class="text-zinc-700 pb-2 border-b border-zinc-100 mb-2 flex items-center">
+						<a class="text-base flex-grow px-1 hover:underline" href={slug(data.Country)}>{data.Country}</a>
 						<div class="flex-none"><Status status={data['DPI Status']} title='DPI status' /></div>
 					</header>
 					<details>

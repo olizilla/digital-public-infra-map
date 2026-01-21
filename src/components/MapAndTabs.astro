@@ -18,7 +18,7 @@ const dpiDataExchangeCount = oneSystemPerCountry(DataExchanges).filter(row => ro
 ---
 <div>
   <div class="flex flex-col-reverse lg:flex-row pt-10">
-    <section class="flex-none pb-8">
+    <section class="flex-none pb-0">
       <div class="px-2 text-zinc-700 text-md text-center">
         <h2 class="font-bold lg:text-lg">
           DPI is far more prevalent than initially believed.
@@ -57,7 +57,7 @@ const dpiDataExchangeCount = oneSystemPerCountry(DataExchanges).filter(row => ro
         </p>
       </div>
     </section>
-    <section class="flex-grow pb-10 lg:pl-4 xl:mx-auto">
+    <section class="flex-grow pb-8 lg:pb-0 lg:pl-4 xl:mx-auto">
       <Map dpiType={dpiType} />
     </section>
   </div>

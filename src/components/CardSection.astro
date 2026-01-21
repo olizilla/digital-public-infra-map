@@ -1,8 +1,8 @@
-<section class="bg-zinc-50 -mt-1 pt-2 pb-16 min-h-180">
+<section class="bg-zinc-50 pt-2 pb-16 min-h-180">
   <header
     class="grid gap-2 items-baseline grid-flow-row-dense grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-4">
     <h2 class="pl-6 font-mono text-xs flex-none">
-      {Astro.props.title} ({Astro.props.items.length})
+      <slot name="icon" /> {Astro.props.title} ({Astro.props.items.length})
     </h2>
     <input
       id="filter"
