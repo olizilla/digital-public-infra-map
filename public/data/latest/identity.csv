@@ -20,7 +20,7 @@ Eritrea,01/10/24,0,No,NA,NA,No,NA,No,No,No,No,No,No,NA,NA,No,No,No,No,No,No,No,N
 Eswatini,01/10/24,0,No,National identity,NA,No,NA,Yes,No,No,No,No,No,Ministry of Home Affairs (MOHA),NA,No,Yes,No,Yes,No,No,No,NA,NA
 Ethiopia,10/03/25,1,Yes,Fayda ID,https://id.gov.et/,Yes,Implemented,Yes,Yes,Yes,Yes,NA,Yes,National ID Program,Both,Yes,Yes,Yes,Yes,NA,No,Yes,World Bank,"YOUNIQX Identity AG, Nok Nok Labs"
 Gabon,01/10/24,0,Yes,Carte Nationale d’Identité Electronique (CNIE),https://www.interieur.gouv.ga/9-actualites/559-carte-nationale-didentite-electronique-cnie-/,Yes,Planned/Piloted,Yes,No,NA,NA,NA,No,Ministry of the Interior,NA,No,Yes,No,Yes,No,No,NA,World Bank,Thales
-Gambia,01/10/24,0,Yes,National digital identity (DIDS),NA,Yes,Planned/Piloted,NA,No,NA,NA,NA,No,NA,NA,No,No,No,No,No,Yes,NA,World Bank (supporting the eCRVS initiative),United Nations Economic Commission for Africa (ECA)
+Gambia,01/03/26,0,Yes,National digital identity (DIDS),NA,Yes,Planned/Piloted,NA,No,NA,NA,NA,No,Minstry of Interior,NA,No,No,No,No,No,Yes,NA,World Bank (supporting the eCRVS initiative),United Nations Economic Commission for Africa (ECA)
 Ghana,30/03/25,1,Yes,GhanaCard,https://nia.gov.gh/service/registration-of-citizens-in-ghana/,Yes,Implemented,Yes,No,Yes,NA,NA,No,National Identificaton Authority (NIA),Both,Yes,Yes,Yes,Yes,No,No,Yes,NA,Margins ID Group
 Guinea,01/10/24,0,Yes,National digital identity,NA,Yes,NA,NA,NA,NA,NA,NA,NA,National Agency for Economic and Social Inclusion (ANIES),NA,NA,No,NA,No,NA,NA,NA,World Bank,"MOSIP, IDEMIA, Tech5"
 Guinea-Bissau,01/10/24,0,No,NA,NA,No,NA,Yes,No,No,No,No,No,NA,NA,No,No,No,No,No,No,No,NA,NA
@@ -33,18 +33,18 @@ Malawi,01/10/24,0,Yes,National Registration and Identification System (NRIS),NA,
 Mali,17/06/25,0,Yes,NINA,https://www.jevalidemonnina.ml/ords/r/dl_portal/nina_data_verification/start?session=21584969536084,No,NA,No,No,No,No,No,No,NA,NA,No,Yes,No,NA,No,No,No,NA,NA
 Mauritania,17/06/25,0,Yes,Houwiyeti,https://anrpts.gov.mr/en/verify,No,Planned/Piloted,Yes,No,No,No,No,No,NA,NA,No,No,No,No,No,No,No,UNDP,NA
 Mauritius,01/10/24,0,Yes,MNIC 3.0,NA,Yes,Implemented,Yes,No,Yes,NA,Yes,Yes,Civil Status Division,NA,No,Yes,No,Yes,No,Yes,NA,NA,Thales
-Morocco,01/10/24,0,Yes,Mon eID,https://www.identitenumerique.ma/login.html,Yes,Implemented,Yes,Yes,Yes,NA,Yes,Yes,General Directorate of National Security,Customer service mechanism,NA,Yes,NA,No,No,No,NA,World Bank,"IDEMIA, MOSIP"
+Morocco,01/03/26,0,Yes,Mon eID,https://www.identitenumerique.ma/login.html,Yes,Implemented,Yes,Yes,Yes,NA,Yes,Yes,General Directorate of National Security,Customer service mechanism,NA,Yes,Yes,No,No,No,NA,World Bank,"IDEMIA, MOSIP"
 Mozambique,01/10/24,0,No,NA,NA,No,NA,No,No,No,No,No,No,NA,NA,No,No,No,No,No,No,No,World Bank,ID4D
-Namibia,01/10/24,0,NA,National digital identity,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,NA,No,NA,NA,NA,UNDP,NA
+Namibia,01/03/26,0,NA,National digital identity,https://www.undp.org/namibia/blog/season-3-namibias-digital-identity-journey-vision-reality,NA,Planned/Piloted,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,NA,No,NA,NA,NA,UNDP,NA
 Niger,01/10/24,0,No,National digital identity,NA,No,Planned/Piloted,Yes,No,No,No,No,No,NA,NA,No,Yes,No,Yes,No,No,No,World Bank,NA
-Nigeria,01/12/25,0,Yes,National Identity Number,https://nimc.gov.ng/e-id-card,Yes,Implemented,Yes,Yes,Yes,NA,NA,No,National Identity Management Commission,Customer service mechanism,NA,Yes,Yes,Yes,Yes,Yes,NA,"World Bank, European Investment Bank",World Bank
+Nigeria,01/03/26,1,Yes,National Identity Number,https://nimc.gov.ng/e-id-card,Yes,Implemented,Yes,Yes,Yes,NA,Yes,No,National Identity Management Commission,Customer service mechanism,NA,Yes,Yes,Yes,Yes,Yes,Yes,"World Bank, European Investment Bank",World Bank
 Rwanda,06/03/25,0,Yes,Single Digital ID (SDID),NA,Yes,Implemented,Yes,No,NA,NA,NA,No,National Identification Authority (NIDA),NA,No,Yes,No,Yes,No,No,NA,World Bank,"African Development Bank, World Bank"
 Sao Tome and Principe,01/10/24,0,No,NA,NA,No,NA,No,No,No,No,No,No,NA,NA,No,Yes,No,Yes,No,No,No,NA,NA
 Senegal,01/10/24,0,Yes,National digital identity (INN),NA,Yes,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,NA,No,NA,NA,NA,Enabel- Belgium and European Union Emergency Trust Fund for Africa (EUTF),Iris
 Seychelles,01/10/24,1,Yes,SeyID,https://www.seyid.gov.sc/AboutSeyID,Yes,Implemented,Yes,NA,Yes,Yes,Yes,NA,NA,Legally established mechanism,Yes,Yes,Yes,No,No,No,Yes,NA,WISeKey
 Sierra Leone,01/10/24,0,Yes,National digital identity,NA,Yes,Implemented,Yes,No,NA,NA,NA,No,National Civil Registration Authority (NCRA),NA,No,No,No,No,No,No,NA,World Bank,"MOSIP, ID4D"
 Somalia,01/10/24,0,Yes,National digital identity,NA,Yes,Implemented,Yes,Yes,NA,NA,NA,Yes,National Identity Registration Authority (NIRA),Legally established mechanism,NA,Yes,NA,Yes,NA,NA,NA,"World Bank, Government of Pakistan",Pakistan’s National Database and Registration Authority (NADRA)
-South Africa,01/10/24,0,Yes,Smart Identity Card (Smart ID),NA,Yes,Planned/Piloted,Yes,NA,Yes,NA,NA,NA,Ministry of Home Affairs,NA,NA,Yes,NA,Yes,NA,NA,No,NA,NA
+South Africa,01/03/26,0,Yes,Smart Identity Card (Smart ID),https://www.thepresidency.gov.za/state-nation-address-president-cyril-ramaphosa-1,Yes,Planned/Piloted,Yes,NA,Yes,NA,NA,NA,Ministry of Home Affairs,NA,NA,Yes,NA,Yes,NA,NA,No,NA,NA
 South Sudan,01/10/24,0,No,NA,NA,No,NA,Yes,No,No,No,No,No,NA,NA,No,No,No,No,No,No,No,NA,NA
 Sudan,01/10/24,0,No,NA,NA,No,NA,No,No,No,No,No,No,NA,NA,No,No,No,No,No,No,No,NA,NA
 Tanzania,01/10/24,0,Yes,Jamii Namba/Unique Number ID,NA,Yes,Implemented,Yes,No,NA,NA,NA,No,National Identification Authority (NIDA),NA,No,Yes,No,Yes,No,No,NA,NA,NA
@@ -57,7 +57,7 @@ Afghanistan,01/10/24,0,Yes,National digital identity,NA,Yes,Implemented,Yes,NA,N
 Bangladesh,28/03/25,1,Yes,National identity (NID),https://services.nidw.gov.bd/nid-pub/,Yes,Implemented,Yes,Yes,Yes,Yes,NA,NA,Home Affairs Department,NA,NA,No,NA,No,Yes,NA,Yes,NA,NA
 Bhutan,01/10/24,1,Yes,National digital identity,https://www.bhutanndi.com/,Yes,Implemented,No,Yes,Yes,Yes,Yes,Yes,National Digital Identity Company,Both,No,Yes,No,No,Yes,No,Yes,NA,NA
 Brunei,10/12/25,1,Yes,e-Darussalam,https://www.gov.bn/SitePages/Digital%20Identity.aspx,NA,Implemented,Yes,NA,Yes,NA,Yes,NA,E-Governmen​t National Centre​,Customer service mechanism,Yes,Yes,NA,NA,NA,NA,Yes,NA,NA
-Cambodia,01/10/24,1,Yes,CamDigiKey,https://camdigikey.gov.kh/,Yes,Implemented,No,Yes,Yes,Yes,Yes,No,Ministry of Economy and Finance,NA,Yes,No,No,No,Yes,No,Yes,NA,NA
+Cambodia,01/03/26,1,Yes,CamDigiKey,https://camdigikey.gov.kh/,Yes,Implemented,Yes,Yes,Yes,Yes,Yes,No,Ministry of Economy and Finance,Customer service mechanism,Yes,No,No,No,Yes,No,Yes,Ministry of Economy and Finance,Ministry of Economy and Finance
 China,01/10/24,0,Yes,National digital identity,NA,Yes,Planned/Piloted,Yes,NA,Yes,NA,NA,NA,Cyberspace Administration of China (CAC),NA,NA,Yes,NA,Yes,NA,NA,NA,NA,NA
 "China, Hong Kong Special Administrative Region",01/10/24,1,Yes,iAM Smart,https://www.iamsmart.gov.hk/en/,Yes,Implemented,Yes,Yes,Yes,NA,Yes,No,Office of the Government Chief Information Officer,Customer service mechanism,Yes,Yes,Yes,Yes,Yes,No,Yes,NA,Thales
 "China, Macao Special Administrative Region",01/10/24,1,Yes,"Macao One Account, Macao SAR Resident Identity Card",https://www.dsi.gov.mo/eid/index_e.html#ch0,Yes,Implemented,Yes,Yes,Yes,NA,Yes,Yes,DSI (Directorate of Identification Services),Customer service mechanism,Yes,Yes,Yes,No,Yes,Yes,Yes,NA,Veridos
@@ -72,20 +72,20 @@ Malaysia,30/11/25,1,Yes,MyDigital ID / MyGOV Malaysia,https://www.mygov.gov.my/m
 Maldives,01/10/24,1,Yes,eFaas,https://efaas.egov.mv/,Yes,Implemented,Yes,NA,Yes,NA,Yes,NA,National Centre for Information Technology,Customer service mechanism,NA,No,NA,No,Yes,NA,Yes,NA,NA
 Mongolia,01/10/24,0,Yes,e-Identity,https://e-mongolia.mn/start,Yes,Implemented,Yes,NA,Yes,NA,NA,NA,Ministry of Justice and Internal Affairs,NA,NA,Yes,NA,Yes,NA,NA,NA,NA,"Thales, EGA (E-Governance Academy)"
 Myanmar,01/10/24,0,Yes,National Verification Card (NVC),NA,No,Planned/Piloted,NA,No,No,No,No,No,NA,NA,No,No,No,No,No,No,NA,NA,NA
-Nepal,01/10/24,0,Yes,National identity,https://citizenportal.donidcr.gov.np/en,Yes,Planned/Piloted,Yes,NA,No,No,No,No,NA,NA,No,Yes,No,No,No,No,No,NA,IDEMIA
+Nepal,01/03/26,0,Yes,National identity,https://citizenportal.donidcr.gov.np/en,Yes,Implemented,Yes,Yes,No,No,No,No,National Identity Card and Registration Department,Customer service mechanism,No,Yes,No,No,No,No,Yes,NA,IDEMIA
 North Korea,01/10/24,0,NA,National digital identity,NA,Yes,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,NA,No,NA,NA,NA,NA,NA
 Pakistan,01/10/24,1,Yes,Smart National Identity Card (SNIC),https://www.nadra.gov.pk/,Yes,Implemented,Yes,Yes,Yes,Yes,No,Yes,National Database and Registration Authority (NADRA),Customer service mechanism,No,No,Yes,No,Yes,Yes,Yes,NA,ID4D
 Philippines,12/06/25,1,Yes,PhilSys/ PhilID,https://philsys.gov.ph/,Yes,Implemented,Yes,Yes,Yes,Yes,Yes,Yes,Philippine Statistics Authority (PSA),Customer service mechanism,Yes,Yes,Yes,Yes,Yes,Yes,Yes,National budget,NA
 Singapore,20/06/25,1,Yes,SingPass,https://www.singpass.gov.sg/main/,Yes,Implemented,Yes,Yes,Yes,Yes,Yes,Yes,National Certification Authority (NCA),Customer service mechanism,Yes,Yes,No,Yes,Yes,Yes,Yes,NA,NA
 South Korea,01/10/24,1,Yes,K-DID,NA,Yes,Implemented,Yes,No,Yes,Yes,Yes,NA,Ministry of Interior and KOMSKO SOE,NA,NA,Yes,NA,Yes,NA,NA,Yes,NA,Samsung
-Sri Lanka,01/10/24,0,Yes,Sri Lanka Digital Identity Program (SLUDI),https://www.icta.lk/projects/digitalizing-government/sludi,Yes,Planned/Piloted,Yes,No,NA,NA,NA,No,Information and Communication Technology Agency (ICTA),NA,No,Yes,No,No,No,No,NA,Indo-Sri Lanka Joint Project for the Sri Lanka Unique Digital Identity Project,MOSIP
+Sri Lanka,01/03/26,0,Yes,Sri Lanka Digital Identity Program (SLUDI),https://www.icta.lk/projects/digital-government/sludi,Yes,Planned/Piloted,Yes,No,NA,NA,NA,No,Information and Communication Technology Agency (ICTA),NA,No,Yes,No,No,No,No,NA,Indo-Sri Lanka Joint Project for the Sri Lanka Unique Digital Identity Project,MOSIP
 Taiwan,01/10/24,0,Yes,TW FidO/ National digital identity,https://fido.moi.gov.tw/pt/main/index,Yes,NA,Yes,Yes,Yes,NA,Yes,NA,Ministry of Interior,NA,Yes,Yes,Yes,Yes,No,No,Yes,NA,"IDEMIA, Entrust Datacard"
 Tajikistan,01/10/24,0,Yes,NA,NA,No,Planned/Piloted,Yes,No,No,No,No,No,NA,NA,NA,Yes,NA,No,NA,NA,NA,NA,NA
 Thailand,20/06/25,1,Yes,National digital identity (NDID),https://ndid.co.th/en/home-english/,Yes,Implemented,Yes,Yes,Yes,Yes,NA,No,National Digital ID Company Limited (NDID),Legally established mechanism,No,Yes,No,Yes,No,No,Yes,NA,NA
 Thailand,20/06/25,1,Yes,ThaiID,https://www.bora.dopa.go.th/app-thaid/,Yes,Implemented,Yes,Yes,Yes,Yes,Yes,NA,The Bureau of Registration Administration (BORA),Legally established mechanism,No,Yes,No,Yes,No,No,Yes,NA,NA
 Timor-Leste,20/06/25,0,No,National digital identity,NA,Yes,Planned/Piloted,Yes,NA,NA,NA,NA,NA,NA,NA,NA,No,NA,No,NA,NA,NA,World Bank,"MOSIP, ID4D"
 Turkmenistan,01/10/24,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,NA,No,NA,NA,NA,UNDP,NA
-Uzbekistan,01/10/24,0,NA,Unified Identification System (OneID),https://my.gov.uz/en/pages/oneid-about,Yes,Implemented,Yes,NA,Yes,NA,Yes,NA,NA,Customer service mechanism,NA,Yes,NA,No,NA,NA,NA,NA,NA
+Uzbekistan,01/03/26,1,Yes,Unified Identification System (OneID),https://id.egov.uz/en,Yes,Implemented,Yes,NA,Yes,NA,Yes,NA,Ministry of digital technologies of the republic of Uzbekistan,Customer service mechanism,NA,Yes,Yes,No,Yes,Yes,Yes,NA,Unified Digital Government User Identification System of the Republic of Uzbekistan
 Vietnam,26/03/25,1,Yes,National digital identity (VNeID),https://play.google.com/store/apps/details?hl=en&id=com.vnid,Yes,Implemented,Yes,Yes,Yes,NA,No,Yes,Ministry of Public Security,NA,Yes,Yes,Yes,Yes,No,Yes,Yes,NA,NA
 Antigua and Barbuda,01/10/24,0,Yes,National digital identity,NA,NA,Planned/Piloted,Yes,No,NA,NA,NA,No,NA,NA,No,Yes,No,No,No,No,NA,NA,HID
 Bahamas,01/10/24,0,Yes,National e-Identification System (NIS),NA,NA,Planned/Piloted,NA,No,NA,NA,NA,No,NA,NA,No,No,No,No,No,No,NA,IDB,IDB
@@ -106,7 +106,7 @@ Saint Kitts and Nevis,01/10/24,0,Yes,National digital identity,NA,NA,Planned/Pil
 Saint Lucia,01/10/24,0,NA,National digital identity,NA,NA,NA,No,No,NA,NA,NA,No,NA,NA,No,Yes,No,No,No,No,NA,NA,UNCTAD
 Saint Vincent and the Grenadines,01/10/24,0,Yes,National digital identity,NA,NA,Planned/Piloted,Yes,No,NA,NA,NA,No,NA,NA,No,NA,No,NA,No,No,NA,CARDTP,"MOSIP, 3M Innovative Properties"
 Trinidad and Tobago,01/10/24,0,Yes,e-identity,https://mdt.gov.tt/digital-solutions-services/e-identity/,NA,Planned/Piloted,NA,No,NA,NA,NA,No,Ministry of Digital Transformation,NA,No,Yes,No,No,No,No,NA,"IDB, UNDP, CAF and EU",CDPI.
-Albania,01/10/24,0,Yes,National digital identity,NA,NA,Planned/Piloted,NA,NA,NA,NA,NA,NA,Ministry of the Interior,NA,NA,Yes,NA,Yes,NA,NA,NA,NA,"IDEMIA, IdentiTek"
+Albania,01/03/26,0,Yes,National digital identity,https://www.kryeministria.al/en/newsroom/identiteti-digjital-nje-hap-i-rendesishem-drejt-transformimit-digjital-te-shqiperise/,NA,Planned/Piloted,NA,NA,NA,NA,NA,NA,Ministry of the Interior,NA,NA,Yes,NA,Yes,NA,NA,NA,NA,"IDEMIA, IdentiTek"
 Andorra,01/10/24,0,Yes,Electronic certificate,https://www.signaturaelectronica.ad/,NA,Implemented,NA,Yes,Yes,NA,NA,Yes,Office of Electronic Trust Services,Legally established mechanism,Yes,Yes,No,NA,Yes,No,NA,NA,NA
 Austria,01/10/24,1,Yes,ID Austria,https://www.oesterreich.gv.at/en/id-austria.html,Yes,Implemented,Yes,Yes,Yes,Yes,Yes,Yes,Austrian Federal Ministry for Digital and Economic Affairs,Legally established mechanism,Yes,Yes,Yes,Yes,Yes,Yes,Yes,NA,youniqx Identity
 Belarus,01/10/24,0,Yes,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,EmpTech
@@ -149,7 +149,7 @@ San Marino,01/10/24,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,NA,Yes,NA,NA
 Serbia,01/10/24,1,Yes,eID,https://eid.gov.rs/en-US/portal-for-electronic-identification,Yes,Implemented,Yes,Yes,Yes,NA,Yes,Yes,NA,Customer service mechanism,Yes,Yes,Yes,Yes,No,No,Yes,NA,Veridos
 Slovakia,01/10/24,0,Yes,Slovak eID,https://www.slovensko.sk/en/start-now,NA,Implemented,Yes,Yes,Yes,Yes,Yes,Yes,Office of the Deputy Prime Minister of the Slovak Republic for Investments and Informatization,Both,Yes,Yes,Yes,Yes,Yes,Yes,NA,NA,Infineon
 Slovenia,18/09/25,1,Yes,Electronic ID + eOsebna,https://www.si-trust.gov.si/en/,Yes,Implemented,Yes,Yes,Yes,Yes,Yes,Yes,Ministry of Digital Transformation,Both,Yes,Yes,Yes,Yes,Yes,Yes,Yes,NA,NA
-Spain,01/10/24,0,Yes,DNIe/ Cl@ve,https://clave.gob.es/clave_Home/en/clave.html,Yes,Implemented,Yes,Yes,Yes,Yes,Yes,Yes,Ministry of Interior,Legally established mechanism,Yes,Yes,Yes,Yes,Yes,Yes,NA,NA,Veridas
+Spain,01/03/26,0,Yes,DNIe/ Cl@ve,https://clave.gob.es/,Yes,Implemented,Yes,Yes,Yes,Yes,Yes,Yes,Ministry of Interior,Legally established mechanism,Yes,Yes,Yes,Yes,Yes,Yes,NA,NA,Veridas
 Sweden,01/10/24,1,Yes,BankID/ Freja ID/ Svensk e-legitimation,"https://frejaeid.com/en/get-freja-eid/
 https://www.bankid.com/en/
 https://e-identitet.se/auth/e-legitimation/",Yes,Implemented,Yes,Yes,Yes,Yes,Yes,NA,Digital Administration Authority (DIGG),Legally established mechanism,Yes,Yes,Yes,Yes,Yes,Yes,Yes,NA,NA
@@ -175,10 +175,12 @@ Población (RENAPO)",NA,NA,Yes,NA,NA,NA,NA,NA,NA,NA
 Nicaragua,01/10/24,0,No,NA,NA,No,NA,Yes,No,No,No,No,No,NA,NA,No,Yes,No,No,No,No,No,NA,NA
 Panama,01/10/24,0,Yes,NA,NA,Yes,Planned/Piloted,Yes,No,No,No,No,No,Tribunal Electoral,NA,No,Yes,No,No,No,No,No,NA,NA
 Paraguay,01/10/24,1,Yes,Identidad electrónica,https://www.paraguay.gov.py/crear-cuenta,Yes,Implemented,Yes,Yes,Yes,NA,Yes,Yes,Identification Department,Customer service mechanism,Yes,No,No,No,No,No,Yes,NA,NA
-Peru,01/12/25,1,Yes,DNIe (electronic national ID),https://portales.reniec.gob.pe/web/dni,Yes,Implemented,Yes,Yes,Yes,NA,Yes,Yes,Registro Nacional de Identificación y Estado Civil (RENIEC),Customer service mechanism,Yes,Yes,Yes,Yes,Yes,NA,Yes,World Bank,NA
+Peru,01/03/26,1,Yes,DNIe (electronic national ID),https://www.gob.pe/235-documento-nacional-de-identidad-dni,Yes,Implemented,Yes,Yes,Yes,NA,Yes,Yes,Registro Nacional de Identificación y Estado Civil (RENIEC),Customer service mechanism,Yes,Yes,Yes,Yes,Yes,NA,Yes,World Bank,NA
 Suriname,01/10/24,0,Yes,e-ID,NA,NA,Planned/Piloted,NA,No,No,No,No,No,NA,NA,No,No,No,No,No,No,No,NA,NA
-Uruguay,01/10/24,1,Yes,ID Uruguay,https://www.gub.uy/agencia-gobierno-electronico-sociedad-informacion-conocimiento/identidad-digital,Yes,Implemented,Yes,Yes,Yes,NA,Yes,Yes,"National Directorate of Civil Identification Eletronic Certification Unity",Both,No,Yes,NA,Yes,No,No,Yes,NA,Thales
-Venezuela,01/10/24,0,NA,"Carnet de la Patria Cédula Nacional de Identidad",https://accesoalajusticia.org/glossary/carnet-de-la-patria/,NA,NA,Yes,NA,No,No,NA,Yes,NA,NA,NA,No,NA,No,NA,NA,NA,NA,ZTE
+Uruguay,01/03/26,1,Yes,ID Uruguay,https://www.gub.uy/agencia-gobierno-electronico-sociedad-informacion-conocimiento/identidad-digital,Yes,Implemented,Yes,Yes,Yes,NA,Yes,Yes,"National Directorate of Civil Identification
+
+Eletronic Certification Unity",Both,No,Yes,NA,Yes,No,No,Yes,NA,Thales
+Venezuela,01/10/24,0,NA,Carnet de la Patria Cédula Nacional de Identidad,https://accesoalajusticia.org/glossary/carnet-de-la-patria/,NA,NA,Yes,NA,No,No,NA,Yes,NA,NA,NA,No,NA,No,NA,NA,NA,NA,ZTE
 Armenia,01/10/24,0,Yes,EsEm,https://www.ekeng.am/en/esem,NA,Implemented,Yes,Yes,Yes,NA,Yes,NA,Ekeng: e-Governance infrastructure implementation agency,Customer service mechanism,NA,Yes,NA,Yes,NA,NA,NA,NA,NA
 Azerbaijan,01/10/24,1,Yes,Digital Login / Asan Imza,https://digital.login.gov.az/,Yes,Implemented,NA,Yes,Yes,NA,Yes,NA,Innovation and Digital Development Agency (IDDA),Customer service mechanism,NA,Yes,NA,No,NA,NA,Yes,NA,NA
 Bahrain,01/10/24,0,Yes,Smart ID,https://www.bahrain.bh/wps/portal/en/!ut/p/z1/jZJBU8IwEIX_Si69kqXRUrxVBlFGBgatYC5MWtc20CYlCaj_3igHhxks5Jbke7t5b0M5XVKuxF4WwkmtROX3rzxa3U8h6oZxOI5ZyiCZRoN5fwjdEVzTxTEAjA1_gN6s99IPoxgov0QP4WTQfbjy-skEIIlv54_PdwOAEbtQ_89KLuzfAvD28k-o6PhcE5-iXG-3PKE818rhp6NLLPS-0caJaoUqgFLXGMB2J_MNqaTa2ABy1KRGa0Xhb1yJBCvMndFK5sSL0agalSNCvRHpixbmd2ikMXrtOeut8eOHnRjOwV5L-uf8e-9FpbPDV0lUxuKCcoPvaNB0dsYfl8419iaAADJRGiFVJysDOIWX2vpg_ija1GmaLj--GMhZvYjtN_UhQdk!/dz/d5/L3dHQSEvUUt3SS9nQSEh/,Yes,Implemented,Yes,Yes,NA,Yes,NA,NA,Information and eGovernment Authority (iGA),NA,NA,Yes,NA,Yes,NA,NA,NA,NA,"Thales, Beyon Connect"
@@ -214,4 +216,4 @@ Samoa,01/10/24,0,Yes,Samoa National Digital Identification System - NDIDS,https:
 Solomon Islands,01/10/24,0,No,NA,NA,No,NA,Yes,No,No,No,No,No,NA,NA,No,No,No,No,No,No,No,NA,NA
 Tonga,21/08/25,1,Yes,TongaPass,https://citizen.gov.to/login,NA,Implemented,Yes,Yes,Yes,NA,Yes,NA,"Digital Transformation Department: Prime Minister's Office,Ministry of Justice, Minstry of Health",Yes,NA,No,NA,No,NA,NA,Yes,World Bank,MOSIP
 Tuvalu,01/10/24,0,Yes,National digital identity,https://www.digitaltuvalu.tv/,NA,NA,Yes,No,NA,NA,NA,No,NA,NA,No,NA,No,NA,No,No,NA,NA,NA
-Vanuatu,01/10/24,0,NA,National digital identity,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,NA,No,NA,NA,No,NA,NA
+Vanuatu,01/10/24,0,NA,National digital identity,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,NA,No,NA,NA,No,NA,NA,NA,NA,NA,NA,NA,No,NA,No,NA,NA,No,NA,NA
