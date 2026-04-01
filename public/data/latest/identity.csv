@@ -149,7 +149,7 @@ San Marino,01/10/24,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Yes,NA,Yes,NA,NA
 Serbia,01/10/24,1,Yes,eID,https://eid.gov.rs/en-US/portal-for-electronic-identification,Yes,Implemented,Yes,Yes,Yes,NA,Yes,Yes,NA,Customer service mechanism,Yes,Yes,Yes,Yes,No,No,Yes,NA,Veridos
 Slovakia,01/10/24,0,Yes,Slovak eID,https://www.slovensko.sk/en/start-now,NA,Implemented,Yes,Yes,Yes,Yes,Yes,Yes,Office of the Deputy Prime Minister of the Slovak Republic for Investments and Informatization,Both,Yes,Yes,Yes,Yes,Yes,Yes,NA,NA,Infineon
 Slovenia,18/09/25,1,Yes,Electronic ID + eOsebna,https://www.si-trust.gov.si/en/,Yes,Implemented,Yes,Yes,Yes,Yes,Yes,Yes,Ministry of Digital Transformation,Both,Yes,Yes,Yes,Yes,Yes,Yes,Yes,NA,NA
-Spain,01/03/2026,0,Yes,DNIe/ Cl@ve,https://clave.gob.es/,Yes,Implemented,Yes,Yes,Yes,Yes,Yes,Yes,Ministry of Interior,Legally established mechanism,Yes,Yes,Yes,Yes,Yes,Yes,NA,NA,Veridas
+Spain,01/03/26,0,Yes,DNIe/ Cl@ve,https://clave.gob.es/,Yes,Implemented,Yes,Yes,Yes,Yes,Yes,Yes,Ministry of Interior,Legally established mechanism,Yes,Yes,Yes,Yes,Yes,Yes,NA,NA,Veridas
 Sweden,01/10/24,1,Yes,BankID/ Freja ID/ Svensk e-legitimation,"https://frejaeid.com/en/get-freja-eid/
 https://www.bankid.com/en/
 https://e-identitet.se/auth/e-legitimation/",Yes,Implemented,Yes,Yes,Yes,Yes,Yes,NA,Digital Administration Authority (DIGG),Legally established mechanism,Yes,Yes,Yes,Yes,Yes,Yes,Yes,NA,NA
@@ -177,7 +177,7 @@ Panama,01/10/24,0,Yes,NA,NA,Yes,Planned/Piloted,Yes,No,No,No,No,No,Tribunal Elec
 Paraguay,01/10/24,1,Yes,Identidad electrónica,https://www.paraguay.gov.py/crear-cuenta,Yes,Implemented,Yes,Yes,Yes,NA,Yes,Yes,Identification Department,Customer service mechanism,Yes,No,No,No,No,No,Yes,NA,NA
 Peru,01/03/26,1,Yes,DNIe (electronic national ID),https://www.gob.pe/235-documento-nacional-de-identidad-dni,Yes,Implemented,Yes,Yes,Yes,NA,Yes,Yes,Registro Nacional de Identificación y Estado Civil (RENIEC),Customer service mechanism,Yes,Yes,Yes,Yes,Yes,NA,Yes,World Bank,NA
 Suriname,01/10/24,0,Yes,e-ID,NA,NA,Planned/Piloted,NA,No,No,No,No,No,NA,NA,No,No,No,No,No,No,No,NA,NA
-Uruguay,01/10/24,1,Yes,ID Uruguay,https://www.gub.uy/agencia-gobierno-electronico-sociedad-informacion-conocimiento/identidad-digital,Yes,Implemented,Yes,Yes,Yes,NA,Yes,Yes,"National Directorate of Civil Identification
+Uruguay,01/03/26,1,Yes,ID Uruguay,https://www.gub.uy/agencia-gobierno-electronico-sociedad-informacion-conocimiento/identidad-digital,Yes,Implemented,Yes,Yes,Yes,NA,Yes,Yes,"National Directorate of Civil Identification
 
 Eletronic Certification Unity",Both,No,Yes,NA,Yes,No,No,Yes,NA,Thales
 Venezuela,01/10/24,0,NA,Carnet de la Patria Cédula Nacional de Identidad,https://accesoalajusticia.org/glossary/carnet-de-la-patria/,NA,NA,Yes,NA,No,No,NA,Yes,NA,NA,NA,No,NA,No,NA,NA,NA,NA,ZTE
@@ -216,4 +216,4 @@ Samoa,01/10/24,0,Yes,Samoa National Digital Identification System - NDIDS,https:
 Solomon Islands,01/10/24,0,No,NA,NA,No,NA,Yes,No,No,No,No,No,NA,NA,No,No,No,No,No,No,No,NA,NA
 Tonga,21/08/25,1,Yes,TongaPass,https://citizen.gov.to/login,NA,Implemented,Yes,Yes,Yes,NA,Yes,NA,"Digital Transformation Department: Prime Minister's Office,Ministry of Justice, Minstry of Health",Yes,NA,No,NA,No,NA,NA,Yes,World Bank,MOSIP
 Tuvalu,01/10/24,0,Yes,National digital identity,https://www.digitaltuvalu.tv/,NA,NA,Yes,No,NA,NA,NA,No,NA,NA,No,NA,No,NA,No,No,NA,NA,NA
-Vanuatu,01/10/24,0,NA,National digital identity,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,NA,No,NA,NA,No,NA,NA
+Vanuatu,01/10/24,0,NA,National digital identity,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,No,NA,No,NA,NA,No,NA,NA,NA,NA,NA,NA,NA,No,NA,No,NA,NA,No,NA,NA
