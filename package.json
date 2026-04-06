@@ -10,10 +10,10 @@
     "preview": "astro preview",
     "astro": "astro",
     "links": "npx linkinator ./dist --recurse --timeout 1000 --skip 'https' --verbosity error",
-    "data": "DATE=${DATE:-`date +'%Y-%m-%d'`} mkdir ./public/data/$DATE && run-p data:*",
-    "data:identity": "DATE=${DATE:-`date +'%Y-%m-%d'`} curl -Ss --output ./public/data/$DATE/$DATE-identity.json http://localhost:4321/api/identity.json",
-    "data:payment": "DATE=${DATE:-`date +'%Y-%m-%d'`} curl -Ss --output ./public/data/$DATE/$DATE-payment.json http://localhost:4321/api/payment.json",
-    "data:exchange": "DATE=${DATE:-`date +'%Y-%m-%d'`} curl -Ss --output ./public/data/$DATE/$DATE-exchange.json http://localhost:4321/api/exchange.json"
+    "data": "DATE=${DATE:=$(date +'%Y-%m-%d')} && mkdir \"./public/data/$DATE\" && run-p data:*",
+    "data:identity": "DATE=${DATE:=$(date +'%Y-%m-%d')} && curl -Ss --output ./public/data/$DATE/$DATE-identity.json http://localhost:4321/api/identity.json",
+    "data:payment": "DATE=${DATE:=$(date +'%Y-%m-%d')} && curl -Ss --output ./public/data/$DATE/$DATE-payment.json http://localhost:4321/api/payment.json",
+    "data:exchange": "DATE=${DATE:=$(date +'%Y-%m-%d')} && curl -Ss --output ./public/data/$DATE/$DATE-exchange.json http://localhost:4321/api/exchange.json"
   },
   "dependencies": {
     "@ascorbic/csv-loader": "^2.0.3",
