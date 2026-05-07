@@ -1,8 +1,13 @@
-# **Community of Practice Session Notes**
+---
+layout: ../../layouts/Standard.astro
+title: Data Exchange Systems as Digital Public Infrastructure
+date: 2026-04-08
+published: true
+---
 
-## **Data Exchange Systems as Digital Public Infrastructure**
+# Session 7 – Data Exchange Systems as Digital Public Infrastructure
 
-## **Key Takeaways**
+**Key Takeaways**
 
 1. **Defining DPI-like DES remains a work in progress, but the map is converging on a clearer threshold.** Of the three DPI pillars, data exchange systems are the least conceptually mature and the hardest to measure. The session tested a proposed revised definition — a national-level federated data system, operating with three or more entities, backed by a legal mandate — with session participants. The definition held, but the discussion surfaced important refinements which are still needed. 
 
