@@ -35,14 +35,29 @@ function mostDpiLike(a?: DPIData, b?: DPIData) {
 }
 
 /*
+Names (lowercase) of rows in the data that are regions rather than countries, so must not be counted as countries.
+Hand-maintained until the data has ISO country codes, which can replace this list.
+*/
+export const NonCountryRegions = [
+  'africa',
+  'asia',
+  'caribbean',
+  'central america, caribbean',
+  'eastern caribbean',
+  'europe',
+  'european union',
+  'middle east'
+]
+
+/*
 Takes an array of DPI system data.
 Returns an array with 1 item per Country; the most DPI-like where there is more than 1 system per country.
 */
 export function oneSystemPerCountry (arr: DPIData[]) {
   const map = arr.reduce((map, b) => {
     const key = b.Country.trim().toLowerCase()
-    if (['europe', 'africa'].includes(key)){
-      // skip continents. they are not countries.
+    if (NonCountryRegions.includes(key)){
+      // skip regions. they are not countries.
       return map
     }
     const a = map.get(key)
