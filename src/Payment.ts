@@ -45,6 +45,15 @@ export const Payments = json.map(x => {
   }
 }).sort(statusSort)
 
+/**
+ * Card labels that differ from the codebook's `Variable name`, so we can link them.
+ * Maps card label -> codebook variable name (see src/codebook.json).
+ */
+export const PaymentCodebookNames: Record<string, string> = {
+  'QR code transactions': 'QR code based transactions',
+  'Status of implementation': 'Status of payment system implementation',
+}
+
 export const PaymentFlags = [
   'Active real-time payment system present',
   'Cross-border payments',

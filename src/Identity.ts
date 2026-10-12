@@ -49,6 +49,14 @@ export const IDs = json.map(x => {
   }
 }).sort(statusSort)
 
+/**
+ * Card labels that differ from the codebook's `Variable name`, so we can link them.
+ * Maps card label -> codebook variable name (see src/codebook.json).
+ */
+export const IDCodebookNames: Record<string, string> = {
+  'Data handling terms exist': 'ID data handling terms',
+}
+
 export const IDFlags = [
   'Claim of digital ID',
   'ID or Civil Registry Act',
