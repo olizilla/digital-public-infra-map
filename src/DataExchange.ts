@@ -41,6 +41,14 @@ export const DataExchanges = dataJSON.map(x => {
   }
 }).sort(statusSort)
 
+/**
+ * Card labels that differ from the codebook's `Variable name`, so we can link them.
+ * Maps card label -> codebook variable name (see src/codebook.json).
+ */
+export const DataExchangeCodebookNames: Record<string, string> = {
+  'Scalable architecture': 'Scalable technology architecture',
+}
+
 export const DataExchangeFlags = [
   'Semantic interoperability',
   'Real-time sharing',

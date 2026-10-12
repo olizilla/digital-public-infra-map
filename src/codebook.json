@@ -1,0 +1,876 @@
+{
+  "id": [
+    {
+      "name": "Country / Region",
+      "anchor": "id-country-region",
+      "description": "Name of the country or region (for regional ID systems).",
+      "type": "Nominal",
+      "categories": "NA",
+      "codes": [],
+      "scope": "NA",
+      "indicator": ""
+    },
+    {
+      "name": "Claim of digital ID",
+      "anchor": "id-claim-of-digital-id",
+      "description": "This indicator specifies whether a country publicly claims to have a digital or electronic ID system. It is determined by the use of the terms digital or electronic ID, publicly displayed in official sources (e.g. government websites, regulations and policies) or secondary sources (e.g. news websites and multileral organization reports).",
+      "type": "Binary",
+      "categories": "Yes\nNo",
+      "codes": [],
+      "scope": "System",
+      "indicator": ""
+    },
+    {
+      "name": "Digital ID Name",
+      "anchor": "id-digital-id-name",
+      "description": "The official name of the infrastructure, platform, or network used to facilitate digital identity verification.",
+      "type": "Nominal",
+      "categories": "NA",
+      "codes": [],
+      "scope": "Subsystem",
+      "indicator": ""
+    },
+    {
+      "name": "Collects or uses biometric data",
+      "anchor": "id-collects-or-uses-biometric-data",
+      "description": "Refers to the act of obtaining individuals' unique biological or behavioral characteristics and processing this information for purposes such as identification, authentication, security, or personalized services.",
+      "type": "Binary",
+      "categories": "Yes-No",
+      "codes": [],
+      "scope": "Subsystem",
+      "indicator": ""
+    },
+    {
+      "name": "Status of Implementation",
+      "anchor": "id-status-of-implementation",
+      "description": "This indicator specifies the stage of the ID life cycle a country is currently in, categorized as one of the following: plan, pilot, or rollout. It is determined by the statement of the stage of implementation displayed in official sources (e.g. government websites, regulations and policies) or secondary sources (e.g. news websites and multileral organization reports), as well as evidence that the ID system is running, such an operational website specificaly dedicated to it.",
+      "type": "Categorical",
+      "categories": "Planned/Piloted Implemented",
+      "codes": [
+        {
+          "key": "Planned/Piloted",
+          "value": "The country has announced intentions to implement a digital ID system or there is some evidence of a testing phase, but no evidence of success or indications of a rollout across the country."
+        },
+        {
+          "key": "Implemented",
+          "value": "The country has either officially announced the full implementation of the digital ID system, or there is strong evidence that the system is fully operational."
+        }
+      ],
+      "scope": "System",
+      "indicator": ""
+    },
+    {
+      "name": "ID or Civil Registry Act",
+      "anchor": "id-id-or-civil-registry-act",
+      "description": "This indicator specifies whether a country has an identification, civil registration, or vital statistics act. It is determined by the presence of a document containing the regulation, or a mention of it, publicly displayed in official sources (e.g. government websites, regulations and policies) or secondary sources (e.g. news websites and multileral organization reports).",
+      "type": "Binary",
+      "categories": "Yes\nNo",
+      "codes": [],
+      "scope": "System",
+      "indicator": ""
+    },
+    {
+      "name": "Regulation for digital ID",
+      "anchor": "id-regulation-for-digital-id",
+      "description": "This indicator specifies whether a country has a regulation or policy specifically addressing digital ID. This includes formal acts and policy documents. Terms and conditions or privacy policy from a digital ID website, as well as Data Protection Acts, are not considered as a data source for this indicator. It is determined by the presence of a document containing the regulation, or a mention of it, publicly displayed in official sources (e.g. government websites, regulations and policies) or secondary sources (e.g. news websites and multileral organization reports).",
+      "type": "Binary",
+      "categories": "Yes\nNo",
+      "codes": [],
+      "scope": "System",
+      "indicator": ""
+    },
+    {
+      "name": "Digital authentication function",
+      "anchor": "id-digital-authentication-function",
+      "description": "This indicator specifies whether the ID system can provide a simple \"yes\" or \"no\" response to confirm an individual's ID. It checks for explicit mentions to authentication methods, such as demographic details, biometric data (fingerprints/iris), facial recognition, OTP (one-time password via mobile or email), or explicit mentions of the system’s authentication capability, publicly displayed in official sources (e.g. government websites, regulations and policies) or secondary sources (e.g. news websites and multileral organization reports).",
+      "type": "Binary",
+      "categories": "Yes\nNo",
+      "codes": [],
+      "scope": "System",
+      "indicator": "1.1 Individuals can authenticate themselves or their documents digitally"
+    },
+    {
+      "name": "Enables KYC packet collection",
+      "anchor": "id-enables-kyc-packet-collection",
+      "description": "This indicator specifies whether the country digital ID system allows Know Your Customer (KYC) packet collection. KYC involves verifying a person’s ID to assess customer risk, typically requiring proof of ID and address. In ID-based KYC, the ID is verified electronically, allowing service providers to access profile details from the ID authority's database. It is determined by the use of the term KYC, publicly displayed in official sources (e.g. government websites, regulations and policies) or secondary sources (e.g. news websites and multileral organization reports).",
+      "type": "Binary",
+      "categories": "Yes\nNo",
+      "codes": [],
+      "scope": "System",
+      "indicator": "1.2 Policy preference for a government-wide digital and interoperable ID system exists"
+    },
+    {
+      "name": "Authentication through government portal",
+      "anchor": "id-authentication-through-government-portal",
+      "description": "This indicator specifies whether the country has a governmental portal that can be used for authentication purposes. It is determined either by the direct presence of a website with this function or through secondary sources that confirm its existence.",
+      "type": "Binary",
+      "categories": "Yes\nNo",
+      "codes": [],
+      "scope": "System",
+      "indicator": "1.3 Vision and strategy of the interoperabiity of the ID system as DPI conveyed transparently"
+    },
+    {
+      "name": "Codified digital ID legal status",
+      "anchor": "id-codified-digital-id-legal-status",
+      "description": "This indicator specifies whether the ID system serves as a legal proof of an individual’s ID. It is determined by the explicit mention in the digital ID regulation that the digital ID has legal validity.",
+      "type": "Binary",
+      "categories": "Yes\nNo",
+      "codes": [],
+      "scope": "System",
+      "indicator": "2.1 The ID serves as a legal proof of an individual’s ID"
+    },
+    {
+      "name": "Governing entity",
+      "anchor": "id-governing-entity",
+      "description": "This indicator specifies which is the instituition responsible for managing the digital ID system. It is determined by information publicly diclosed either in official government websites, secondary sources (e.g. news websites), multileral governmental reports, poli",
+      "type": "Nominal",
+      "categories": "NA",
+      "codes": [],
+      "scope": "System",
+      "indicator": "2.2 Institutional governance structure and its accountability are established"
+    },
+    {
+      "name": "Legally binding redress mechanism",
+      "anchor": "id-legally-binding-redress-mechanism",
+      "description": "This indicator specifies whether the digital ID system includes a redress mechanism for addressing user complaints. It is determined by the explicit mention in the digital ID regulation or in the Data Protection Act of such mechanisms, as well as by the existence of a customer service system that enables users to submit complaints.",
+      "type": "Categorical",
+      "categories": "Customer service mechanism,\nLegally bindind mechanism,\nBoth",
+      "codes": [
+        {
+          "key": "Customer service mechanism",
+          "value": "Refers to helpdesks, phone contact, email, digital questionnaires, or any other methods for users to get in touch or raise questions about the digital ID system."
+        },
+        {
+          "key": "Legally bindind mechanism",
+          "value": "Involves explicit mentions of redress mechanisms either in the digital ID regulation or the Data Protection Act."
+        },
+        {
+          "key": "Both",
+          "value": "Indicates that the country has both a customer service mechanism and a legally binding redress mechanism in place."
+        }
+      ],
+      "scope": "System",
+      "indicator": "2.5 Legally-binding redressal framework for ID-related malpractice is established"
+    },
+    {
+      "name": "Terms of data storage and sharing available",
+      "anchor": "id-terms-of-data-storage-and-sharing-available",
+      "description": "This indicator specifies whether the digital ID system specifies how ID data is collected, stored and shared. Is is determined by the explicit mention of mechanisms to gather, archive and/or circulate data in the digital ID regulation.",
+      "type": "Binary",
+      "categories": "Yes\nNo",
+      "codes": [],
+      "scope": "System",
+      "indicator": "2.6 Procedural rules for collection, storage and sharing of personal data related to ID system are established"
+    },
+    {
+      "name": "National Data Protection Act",
+      "anchor": "id-national-data-protection-act",
+      "description": "This indicator specifies whether the country has a Data Protection Act. It is determined by the presence of a document containing the regulation, or a mention of it, publicly displayed in official sources (e.g. government websites, regulations and policies) or secondary sources (e.g. news websites and multileral organization reports).",
+      "type": "Binary",
+      "categories": "Yes\nNo",
+      "codes": [],
+      "scope": "System",
+      "indicator": "3.1 Personal data linked to the ID is under the purview of the DPA and protected by law"
+    },
+    {
+      "name": "Procedural rules for digital ID enrolment",
+      "anchor": "id-procedural-rules-for-digital-id-enrolment",
+      "description": "This indicator specifies whether the digital identity system has clear processes for it's digital identity enrolment. It is determined by the explicit mention of mechanisms for registration, data management and/or issuing in the digital ID regulation.",
+      "type": "Binary",
+      "categories": "Yes\nNo",
+      "codes": [],
+      "scope": "System",
+      "indicator": "3.2 Procedural rules for the ID (enrolment, data processing, issuing credentials, etc.) are established"
+    },
+    {
+      "name": "Data leak disclosure process",
+      "anchor": "id-data-leak-disclosure-process",
+      "description": "This indicator specifies whether the countrie's Data Protection Act has rules on if and how individuals and general public about should be notified about personal data leaks or breaches. It is determined by the explicit mention of such rules in the Data Protection Act.",
+      "type": "Binary",
+      "categories": "Yes\nNo",
+      "codes": [],
+      "scope": "System",
+      "indicator": "3.3 There exists a process to notify individuals and general public about personal data related to ID system leaks or threats"
+    },
+    {
+      "name": "ID data handling terms",
+      "anchor": "id-id-data-handling-terms",
+      "description": "This indicator specifies whether the digital ID system details which are the procedures for data subjects to access, review, edit and delete ID data. Is is determined by the explicit mention of mechanisms to access, review, edit and/or delete data in the digital ID regulation or other sources, such as the digital identity website.",
+      "type": "Binary",
+      "categories": "Yes\nNo",
+      "codes": [],
+      "scope": "System",
+      "indicator": "4.1 Processes to access, review, edit and delete one's ID data are transparent"
+    },
+    {
+      "name": "Relationship with feeder documents",
+      "anchor": "id-relationship-with-feeder-documents",
+      "description": "The legal or regulatory framework (commonly referred to as an Identity Act or law) defines how primary identity documents—such as birth certificates, passports, or driver’s licenses (called feeder documents)—are used to establish or authenticate a person’s identity when issuing or updating a digital ID.",
+      "type": "Binary",
+      "categories": "Yes\nNo",
+      "codes": [],
+      "scope": "System",
+      "indicator": "0"
+    },
+    {
+      "name": "Two or more sectoral use cases enabled",
+      "anchor": "id-two-or-more-sectoral-use-cases-enabled",
+      "description": "This indicator specifies whether the digital ID infrastructure is utilized across multiple sectors. It is determined by explicit references to the use of the digital ID system by institutions other than the identity manager or by mentions of use cases beyond citizen identification in official sources (such as government websites) or secondary sources (such as news outlets and reports from multilateral organizations).",
+      "type": "Binary",
+      "categories": "Yes\nNo",
+      "codes": [],
+      "scope": "System",
+      "indicator": "6.2 ID infrastructure is used across more than 1 sector"
+    },
+    {
+      "name": "Funding organizations identified",
+      "anchor": "id-funding-organizations-identified",
+      "description": "Institutions or entities that provide the financial resources necessary for the development, rollout, and maintenance of the digital ID system. This variable does not specify which components of the digital system have been financed by which funding organisation.",
+      "type": "Nominal",
+      "categories": "NA",
+      "codes": [],
+      "scope": "NA",
+      "indicator": ""
+    },
+    {
+      "name": "Technical Support organizations identified",
+      "anchor": "id-technical-support-organizations-identified",
+      "description": "This refers to the entity or group responsible for providing technical expertise and operational support for the design, implementation, and management of the digital ID infrastructure.",
+      "type": "Nominal",
+      "categories": "NA",
+      "codes": [],
+      "scope": "NA",
+      "indicator": ""
+    },
+    {
+      "name": "DPI based digital ID count for visualisation",
+      "anchor": "id-dpi-based-digital-id-count-for-visualisation",
+      "description": "",
+      "type": "",
+      "categories": "",
+      "codes": [],
+      "scope": "",
+      "indicator": ""
+    }
+  ],
+  "pay": [
+    {
+      "name": "Country / Region",
+      "anchor": "pay-country-region",
+      "description": "Name of the country or region (for regional payment systems)",
+      "type": "Nominal",
+      "categories": "NA",
+      "codes": [],
+      "scope": "NA",
+      "indicator": ""
+    },
+    {
+      "name": "Payment system name",
+      "anchor": "pay-payment-system-name",
+      "description": "Refers to the name of the payment system in official documentation. In cases where this is not evident, the payment system type is used.",
+      "type": "Nominal",
+      "categories": "NA",
+      "codes": [],
+      "scope": "Subsystem",
+      "indicator": ""
+    },
+    {
+      "name": "Active-real time payment system present",
+      "anchor": "pay-active-real-time-payment-system-present",
+      "description": "Given that a country can have multiple payment systems at distinct stages of deployment, this filters for those countries with at least one payment system that is in operation. The status of the payment system is inferred based on the volume and value of transactions, as well as its mention on the country's central bank website.",
+      "type": "Binary",
+      "categories": "Yes\nNo",
+      "codes": [
+        {
+          "key": "Yes",
+          "value": "if a country has an active (in operation) payment system that facilitate real-time transactions."
+        },
+        {
+          "key": "No",
+          "value": "if country does not have active (in operation) payment systems that facilitate real-time transactions OR has such payment systems but they are in planning/ pilot stages."
+        }
+      ],
+      "scope": "System",
+      "indicator": ""
+    },
+    {
+      "name": "Payment system type",
+      "anchor": "pay-payment-system-type",
+      "description": "Refers to the domain in which the payment system operates. This is inferred based on the key channel of transactions highlighted on payment system documentations and its list of participants.",
+      "type": "Categorical",
+      "categories": "Cross-domain\nInterbank\nMobile money\nCBDC\nCard Payment",
+      "codes": [
+        {
+          "key": "Cross-domain",
+          "value": "payment system allows both bank and non-bank participants."
+        },
+        {
+          "key": "Interbank",
+          "value": "payment system allows only bank participants."
+        },
+        {
+          "key": "Mobile money",
+          "value": "payment system allows only non-bank mobile wallet providers, either interoperably or in closed-loop systems."
+        },
+        {
+          "key": "Central bank digital currencies (CBDC)",
+          "value": "Payment systems that support transactions in that country or region's CBDC."
+        },
+        {
+          "key": "Card Payment",
+          "value": "a card payment refers to the use of a government-issued payment card—such as a procurement card (P-Card), corporate credit card, or prepaid debit card—to make purchases or disburse funds for official purposes."
+        }
+      ],
+      "scope": "Subsystem",
+      "indicator": ""
+    },
+    {
+      "name": "Status of payment system implementation",
+      "anchor": "pay-status-of-payment-system-implementation",
+      "description": "Distinguishes between payment systems that are in operation and those that are not.  The status of the payment system is inferred based on the volume and value of transactions, as well as its mention on the country's central bank website. If information about a payment system is only found in a press release without information about its launch, it is not assumed to be in operation.",
+      "type": "Categorical",
+      "categories": "Planned/Piloted\nImplemented",
+      "codes": [
+        {
+          "key": "Planned/Piloted",
+          "value": "payment system plans have been announced by the operator/ central bank, without any information on the scale achieved."
+        },
+        {
+          "key": "Implemented",
+          "value": "payment systems listed on the central bank website as an offering and/or payment system volumes of transactions are reported."
+        }
+      ],
+      "scope": "Subsystem",
+      "indicator": ""
+    },
+    {
+      "name": "National / Regional",
+      "anchor": "pay-national-regional",
+      "description": "Distinguishes between national and regional-level deployments.",
+      "type": "Categorical",
+      "categories": "National\nRegional",
+      "codes": [
+        {
+          "key": "National",
+          "value": "any payment system that is set up and operated within a national territory."
+        },
+        {
+          "key": "Regional",
+          "value": "any payment system that is set up by a group of national actors and may operatate across more than one national territory."
+        }
+      ],
+      "scope": "System",
+      "indicator": ""
+    },
+    {
+      "name": "Cross-border payments",
+      "anchor": "pay-cross-border-payments",
+      "description": "Determines if any of the country's payment systems facilitates cross-border transactions in real-time.",
+      "type": "Binary",
+      "categories": "Yes",
+      "codes": [],
+      "scope": "System",
+      "indicator": ""
+    },
+    {
+      "name": "Interoperability policy",
+      "anchor": "pay-interoperability-policy",
+      "description": "Indicates if a country has a payment system Act, or policy, or strategy that articulates if interoperability between diverse payment service-providers (banks and non-bank payment service providers) is a stated goal.",
+      "type": "Binary",
+      "categories": "Yes",
+      "codes": [],
+      "scope": "System",
+      "indicator": "1.1 Payment system policy prefers interoperability between PSPs"
+    },
+    {
+      "name": "Types of transactions supported",
+      "anchor": "pay-types-of-transactions-supported",
+      "description": "Indicates the type of transactions supported between individuals and businesses. Inferred through a keyword search on the payment system documentation, as well as a review of its participant types.",
+      "type": "Nominal",
+      "categories": "P2P\nB2B\nP2M\nB2P\nG2P\nB2G\nOther",
+      "codes": [
+        {
+          "key": "(P2P) Person-to-Person",
+          "value": "Transactions between two individuals, typically for personal or non-commercial purposes."
+        },
+        {
+          "key": "(B2B) Business-to-Business",
+          "value": "Transactions between two businesses, generally involving the exchange of goods, services, or contractual obligations."
+        },
+        {
+          "key": "(P2M) Person-to-Merchant",
+          "value": "Transactions where an individual makes a payment to a merchant or service provider."
+        },
+        {
+          "key": "(B2P) Business-to-Person",
+          "value": "Transactions where a business transfers funds to an individual, often as part of compensation or reimbursement."
+        },
+        {
+          "key": "(G2P) Government-to-Person",
+          "value": "Payments made by a government entity to individuals, usually as part of social, welfare, or support programs."
+        },
+        {
+          "key": "(B2G) Business-to-Government",
+          "value": "Transactions where businesses make payments to government entities, often in the form of taxes, fees, or regulatory charges."
+        },
+        {
+          "key": "Other",
+          "value": "A category for transactions that fall outside the standard models, including government-to-government, person-to-government, and nonprofit-related payments."
+        }
+      ],
+      "scope": "System",
+      "indicator": "4.1 RTPS enables key transaction types for financial inclusion: P2P, G2P payments\n6.1 Public entities (that are not the same as the architect of the payment system) use the payment system for G2P/P2G transactions"
+    },
+    {
+      "name": "Type of settlement system",
+      "anchor": "pay-type-of-settlement-system",
+      "description": "Indicates the settlement system available in the country's banking and payments infrastructure. Inferred through a keyword search on the central bank website, as well as resources from BIS.",
+      "type": "Nominal",
+      "categories": "RTGS\nDNS\nMN\nACH",
+      "codes": [
+        {
+          "key": "RTGS",
+          "value": "Real time gross settlement"
+        },
+        {
+          "key": "DNS",
+          "value": "Deferred net settlement"
+        },
+        {
+          "key": "MN",
+          "value": "Multilateral netting"
+        },
+        {
+          "key": "ACH",
+          "value": "Automated Clearing House"
+        }
+      ],
+      "scope": "System",
+      "indicator": "1.3 Payment system has the infrastructure to facilitate (near) real-time settlement of transactions between users"
+    },
+    {
+      "name": "Operator",
+      "anchor": "pay-operator",
+      "description": "Indicates the type of operator of the payment system, referring to institutional arranagement of the payment system. This is inferred from the payment system website, specifically through a scan of the governance structure.",
+      "type": "Categorical",
+      "categories": "Central bank\nCommerical bank/Private PSP\nBank association\nBank association/Central bank\nOther",
+      "codes": [
+        {
+          "key": "Bank association",
+          "value": "Association or consortium of banks who collectively operate the payment system, with or without the central bank being involved in the institutional structure."
+        },
+        {
+          "key": "Central bank",
+          "value": "A public authority responsible for managing a country’s currency, money supply, and interest rates. In payment systems, the central bank often acts as the regulator, operator, and settlement agent for national payment infrastructure."
+        },
+        {
+          "key": "Bank association/ Central bank",
+          "value": "refers to operating model where the central bank is one of the operators, among as association of private banks, operating the system"
+        },
+        {
+          "key": "Commercial bank",
+          "value": "A privately or publicly owned financial institution that accepts deposits, offers loans, and provides various financial services to individuals and businesses."
+        },
+        {
+          "key": "Private PSP (Payment Service Provider)",
+          "value": "A non-bank entity that offers payment services to end-users, such as facilitating money transfers, processing cards, or enabling mobile/digital wallets."
+        },
+        {
+          "key": "Other",
+          "value": "Any non-traditional or auxiliary actors involved in the payment ecosystem that don’t fall into the above categories."
+        }
+      ],
+      "scope": "Subsystem",
+      "indicator": "2.1 RTPS is governed by a central bank/ financial regulator"
+    },
+    {
+      "name": "Bank participation",
+      "anchor": "pay-bank-participation",
+      "description": "Indicates if banks can participate in a given payment system as payment service providers. This is determined according to rules stated on the payment system website, or in the stated payment system rules.",
+      "type": "Categorical",
+      "categories": "Yes\nNo",
+      "codes": [],
+      "scope": "Subsystem",
+      "indicator": "1.2 Payment system facilitates cross-domain and/or domain-specific interoperability"
+    },
+    {
+      "name": "Non-bank participation",
+      "anchor": "pay-non-bank-participation",
+      "description": "Indicates if non-bank payment service providers can particiapte in a given payment system. This is determined based on the payment system website or stated rules, as well as the list of participants made available",
+      "type": "Categorical",
+      "categories": "Yes\nNo",
+      "codes": [],
+      "scope": "Subsystem",
+      "indicator": "1.2 Payment system facilitates cross-domain and/or domain-specific interoperability"
+    },
+    {
+      "name": "Participation conditions and rules",
+      "anchor": "pay-participation-conditions-and-rules",
+      "description": "Indicates if the rules and conditions for payment service providers to be a part of the payment system have been made available",
+      "type": "Binary",
+      "categories": "Yes",
+      "codes": [],
+      "scope": "Subsystem",
+      "indicator": "2.2 RTPS is transparent about the rules and conditions of participation"
+    },
+    {
+      "name": "Number of participants",
+      "anchor": "pay-number-of-participants",
+      "description": "Indicates the number of participants that are stated to be a part of a given payment system. For regional payment systems, this refers to the number of countries part of the payment system",
+      "type": "Nominal",
+      "categories": "NA",
+      "codes": [],
+      "scope": "Subsystem",
+      "indicator": "1.2 Payment system facilitates cross-domain and/or domain-specific interoperability"
+    },
+    {
+      "name": "Annual value of transactions (USD)",
+      "anchor": "pay-annual-value-of-transactions-usd",
+      "description": "Indicates the annual value of transactions in USD",
+      "type": "Nominal",
+      "categories": "NA",
+      "codes": [],
+      "scope": "Subsystem",
+      "indicator": "1.2 Payment system facilitates cross-domain and/or domain-specific interoperability"
+    },
+    {
+      "name": "Annual volume of transactions",
+      "anchor": "pay-annual-volume-of-transactions",
+      "description": "Indicates the annual volume of transactions",
+      "type": "Nominal",
+      "categories": "NA",
+      "codes": [],
+      "scope": "Subsystem",
+      "indicator": "1.2 Payment system facilitates cross-domain and/or domain-specific interoperability"
+    },
+    {
+      "name": "Data-handing rules for payment system",
+      "anchor": "pay-data-handing-rules-for-payment-system",
+      "description": "Indicates if there if the payment system guidelines or central bank rules offer specific regulations for handling personal data relevant to payment systems",
+      "type": "Categorical",
+      "categories": "Yes\nNo",
+      "codes": [],
+      "scope": "System",
+      "indicator": "3.1 Procedural rules for the RTPS's data handling are established"
+    },
+    {
+      "name": "Reporting forum",
+      "anchor": "pay-reporting-forum",
+      "description": "Indicates if the payment system or central bank has a mechanism to report issues with transactions, through its website, a form, or a helpline number",
+      "type": "Nominal",
+      "categories": "Yes\nNo",
+      "codes": [],
+      "scope": "System",
+      "indicator": "3.2 Fraudulent transactions on the RTPS are proactively prevented and managed"
+    },
+    {
+      "name": "AML Law",
+      "anchor": "pay-aml-law",
+      "description": "Indicates if the country codifies protections against money-laundering in its legal code. This is gathered from the UNODC databse- Sherloc.",
+      "type": "Categorical",
+      "categories": "Yes",
+      "codes": [],
+      "scope": "System",
+      "indicator": "3.3 RTPS is subject to relevant security compliance and consumer protection laws"
+    },
+    {
+      "name": "Cost of transactions",
+      "anchor": "pay-cost-of-transactions",
+      "description": "Indicates the fee structure for transactions",
+      "type": "Nominal",
+      "categories": "NA",
+      "codes": [],
+      "scope": "Subsystem",
+      "indicator": "4.3 Transaction fee for retail users is low/none"
+    },
+    {
+      "name": "QR code based transactions",
+      "anchor": "pay-qr-code-based-transactions",
+      "description": "For cross domain payment systems, this indicates if push and pull transactions can be conducted through the payment system",
+      "type": "Categorical",
+      "categories": "Yes\nNo",
+      "codes": [],
+      "scope": "System",
+      "indicator": "4.2 Transactions are enabled through multiple access channels and non-digital means"
+    }
+  ],
+  "data": [
+    {
+      "name": "Country / Region",
+      "anchor": "data-country-region",
+      "description": "Name of the country or region (for regional data exchange systems).",
+      "type": "Nominal",
+      "categories": "NA",
+      "codes": [],
+      "scope": "NA",
+      "indicator": ""
+    },
+    {
+      "name": "Data exchange system name",
+      "anchor": "data-data-exchange-system-name",
+      "description": "Refers to the name of the data exchange system as listed in official documentation. If no specific name is found, \"Data Exchange System\" is used. In cases where no information is available, \"Unknown\" is used",
+      "type": "Nominal",
+      "categories": "NA",
+      "codes": [],
+      "scope": "Subsystem",
+      "indicator": ""
+    },
+    {
+      "name": "Status of implementation",
+      "anchor": "data-status-of-implementation",
+      "description": "This indicator represents the stage at which the data exchange system currently exists within a country. It tracks the development and operational status based on available information. The stages range from having no information on the system (Unknown), to a system being planned (Proposed), actively being developed (In Progress), or fully functional (Active).",
+      "type": "Categorical",
+      "categories": "Planned/Piloted\nImplemented\nNA",
+      "codes": [
+        {
+          "key": "Planned/Piloted",
+          "value": "There is an official announcement or credible documentation, such as government plans, policy documents, or reports, indicating an intention to develop a data exchange system OR the system is under development, which may include phases such as drafting legislation, pilot projects, or technical setup."
+        },
+        {
+          "key": "Implemented",
+          "value": "The data exchange system is fully operational and being used. This indicates that the system is implemented and data exchange activities are taking place as intended."
+        }
+      ],
+      "scope": "Subsystem",
+      "indicator": ""
+    },
+    {
+      "name": "Base technical architecture",
+      "anchor": "data-base-technical-architecture",
+      "description": "This indicator identifies the technical architecture used for the data exchange system within a country. It includes frameworks such as X-Road, ESB, API Gateway, UXP, and others. The technical architecture is considered disclosed when it is either explicitly mentioned in official documents or websites, or when indicative terms are used.",
+      "type": "Nominal",
+      "categories": "NA",
+      "codes": [],
+      "scope": "System",
+      "indicator": ""
+    },
+    {
+      "name": "National / Regional",
+      "anchor": "data-national-regional",
+      "description": "Distinguishes between national and regional-level deployments.",
+      "type": "Categorical",
+      "categories": "National\nRegional",
+      "codes": [
+        {
+          "key": "National",
+          "value": "any data exchange that is set up and operated within a national territory."
+        },
+        {
+          "key": "Regional",
+          "value": "any payment system that is set up by a group of national actors and may operatate across more than one national territory."
+        }
+      ],
+      "scope": "System",
+      "indicator": ""
+    },
+    {
+      "name": "Sector-specific / Cross-sectoral",
+      "anchor": "data-sector-specific-cross-sectoral",
+      "description": "This indicator refers to whether the data exchange system operates within a single specific sector or across multiple sectors (i.e., cross-sectoral). If no sufficient information is available, \"Unknown\" is used.",
+      "type": "Categorical",
+      "categories": "Sector-specific\nCross-sectoral",
+      "codes": [
+        {
+          "key": "Sectoral and in brackets the specific sector. ie. Sectoral (Trade).\nCross-sectoral",
+          "value": "Sufficient information was found to determine the data exchange operates accross multiple sectors."
+        }
+      ],
+      "scope": "System",
+      "indicator": ""
+    },
+    {
+      "name": "Semantic interoperability",
+      "anchor": "data-semantic-interoperability",
+      "description": "This indicator assesses whether semantic interoperability within the Data Exchange System is facilitated through either policy or technical mechanisms. It specifically looks for officially published documents or standards that outline the use of standardized data formats, protocols, or terminologies to ensure consistent data exchange and understanding across systems.",
+      "type": "Binary",
+      "categories": "Yes",
+      "codes": [
+        {
+          "key": "Yes",
+          "value": "Indicates the presence of published standards or policies enabling semantic interoperability."
+        }
+      ],
+      "scope": "System",
+      "indicator": "1.1 Semantic interoperability within the DES is facilitated through either policy or technical means"
+    },
+    {
+      "name": "Real-time sharing",
+      "anchor": "data-real-time-sharing",
+      "description": "This indicator examines whether the data exchange system explicitly supports real-time or near real-time data sharing. It is determined by the presence of documentation that either mentions the use of data formats enabling real-time exchanges or explicitly references \"real-time data sharing\" capabilities.",
+      "type": "Binary",
+      "categories": "Yes",
+      "codes": [
+        {
+          "key": "Yes",
+          "value": "The data exchange system documentation mentions real-time or near real-time data sharing capabilities or specifies formats that support real-time exchanges."
+        }
+      ],
+      "scope": "System",
+      "indicator": "1.2 Data is shared in (near) real-time through the DES"
+    },
+    {
+      "name": "Scalable technology architecture",
+      "anchor": "data-scalable-technology-architecture",
+      "description": "This indicator evaluates whether the technology architecture of the Data Exchange System is designed for scalability. It includes any documented mention of infrastructure elements that facilitate scalability, such as load balancers, elastic cloud resources, scalable databases, or the ability to add resources to handle increased demand and load.",
+      "type": "Binary",
+      "categories": "Yes",
+      "codes": [
+        {
+          "key": "Yes",
+          "value": "When documentation mentions scalable infrastructure elements."
+        }
+      ],
+      "scope": "Subsystem",
+      "indicator": "1.3 Technology architecture of the DES is scalable"
+    },
+    {
+      "name": "Governing entity",
+      "anchor": "data-governing-entity",
+      "description": "Refers to the entity responsible for the governance and operational control of the data exchange system. The name of the entity is provided, or \"Unknown\" is recorded if no information is available.",
+      "type": "Nominal",
+      "categories": "NA",
+      "codes": [],
+      "scope": "System",
+      "indicator": "2.1 A public-interest entity governs the development and operations of the DES"
+    },
+    {
+      "name": "Ownership",
+      "anchor": "data-ownership",
+      "description": "Identifies who owns and controls the data exchange system, based on official documentation or sources. If no information is found, \"Unknown\" is recorded.",
+      "type": "Categorical",
+      "categories": "Public\nPrivate\nJoint",
+      "codes": [
+        {
+          "key": "Public",
+          "value": "The system is entirely owned by a public-sector entity."
+        },
+        {
+          "key": "Private",
+          "value": "The system is entirely owned by a private-sector entity."
+        },
+        {
+          "key": "Joint",
+          "value": "The system is jointly owned by public and private entities"
+        }
+      ],
+      "scope": "Subsystem",
+      "indicator": "2.1 A public-interest entity governs the development and operations of the DES"
+    },
+    {
+      "name": "Enrolment and participation information",
+      "anchor": "data-enrolment-and-participation-information",
+      "description": "This indicator specifies whether a data exchange system provides clear and accessible information on how entities can enroll and participate. The presence of such information typically includes official guidelines or procedures, as well as accessible platforms such as login pages where users or organizations can directly register for participation in the data exchange.",
+      "type": "Binary",
+      "categories": "Yes",
+      "codes": [
+        {
+          "key": "Yes",
+          "value": "The data exchange system has documented and publicly accessible information on enrollment and participation. This can include official guidelines, step-by-step procedures, or accessible web pages where users can register or log in."
+        },
+        {
+          "key": "NA",
+          "value": "There is no publicly available information or documentation found on how entities can enroll or participate in the data exchange. This indicates either the absence of such documentation or that it is not accessible to the public."
+        }
+      ],
+      "scope": "Subsystem",
+      "indicator": "2.2 Data Exchange provides information for enrollment and participation"
+    },
+    {
+      "name": "Permitted participants",
+      "anchor": "data-permitted-participants",
+      "description": "This indicator captures the types of entities that are allowed or documented to use the data exchange system, where public entities are always included by default. It assesses whether the system is also accessible to private sector entities and civil society organizations based on documented evidence such as user registrations or usage reports. The default assumption is that public sector entities are always included, as the system is a Digital Public Infrastructure (DPI). Therefore, the range categorization reflects the additional inclusion of private and/or civil society entities.",
+      "type": "Categorical",
+      "categories": "Public\nPrivate\nCivil",
+      "codes": [
+        {
+          "key": "Public",
+          "value": "The data exchange is used exclusively by public sector entities. No evidence of participation by private or civil society entities."
+        },
+        {
+          "key": "Public, Private",
+          "value": "The data exchange is used by both public sector entities and private sector organizations. Documented evidence includes private entities registered as users or showing engagement in the system."
+        },
+        {
+          "key": "Public, Civil",
+          "value": "The data exchange is used by public sector entities and civil society organizations. Evidence includes civil society organizations registered as users or reports on their involvement."
+        },
+        {
+          "key": "Public, Private, Civil",
+          "value": "The data exchange system is used by public sector entities, private sector organizations, and civil society organizations. Documented evidence shows participation or engagement from all these types of entities."
+        }
+      ],
+      "scope": "Subsystem",
+      "indicator": "2.2 Types of entities that can participate  in the data exchange"
+    },
+    {
+      "name": "Procedural rules for data mgmt.",
+      "anchor": "data-procedural-rules-for-data-mgmt",
+      "description": "This indicator checks for any official documents, policies, or guidelines that describe access controls, usage conditions, and data protection measures for the data exchange system.",
+      "type": "Binary",
+      "categories": "Yes",
+      "codes": [
+        {
+          "key": "Yes",
+          "value": "There is documented evidence on access controls and data protection."
+        }
+      ],
+      "scope": "System",
+      "indicator": "3.1 Procedural rules for the DES (access restrictions, protections, etc.) are established"
+    },
+    {
+      "name": "Audit mechanism",
+      "anchor": "data-audit-mechanism",
+      "description": "Refers to the existence of protocols or system features that allow the auditing of data transactions. This includes mechanisms such as traditional audit logs, transaction tracking, or other verification technologies.",
+      "type": "Binary",
+      "categories": "Yes",
+      "codes": [
+        {
+          "key": "Yes",
+          "value": "The system has documented features for auditing and verifying data exchanges (e.g., audit logs, transaction tracking)."
+        }
+      ],
+      "scope": "System",
+      "indicator": "2.3 Data exchange instances within the DES can be monitored in public-interest"
+    },
+    {
+      "name": "Coordination unit",
+      "anchor": "data-coordination-unit",
+      "description": "This indicator identifies the entity responsible for coordinating operations and ensuring the data exchange is implemented across government agencies. Evidence includes official documents, organizational charts, or reports demonstrating the existence and operational framework of a coordination unit managing data exchanges across various government entities. \"Unknown\" is used when no information was found.",
+      "type": "Nominal",
+      "categories": "NA",
+      "codes": [],
+      "scope": "System",
+      "indicator": "4.1 Data exchange across government is implemented by a coordination unit"
+    },
+    {
+      "name": "Used by more than one public entity",
+      "anchor": "data-used-by-more-than-one-public-entity",
+      "description": "Refers to whether other public sector entities, besides the operator, are using the data exchange system. Documentation or evidence of usage by multiple public entities is necessary to verify this.",
+      "type": "Binary",
+      "categories": "Yes",
+      "codes": [
+        {
+          "key": "Yes",
+          "value": "Evidence shows that public sector entities other than the operator use the system."
+        }
+      ],
+      "scope": "System",
+      "indicator": "5.1 Public entities (other than the operator of the DES) leverage the data exchange"
+    },
+    {
+      "name": "Impact metrics",
+      "anchor": "data-impact-metrics",
+      "description": "This indicator checks whether there is information about the performance or usage of the data exchange system. Metrics may include the number of entities using the system, the volume of data exchanged, the number of connections, or the number of transactions.",
+      "type": "Binary",
+      "categories": "Yes",
+      "codes": [
+        {
+          "key": "Yes",
+          "value": "Documentation exists with data on the number of entities, transactions, or volume of data."
+        }
+      ],
+      "scope": "System",
+      "indicator": ""
+    }
+  ]
+}

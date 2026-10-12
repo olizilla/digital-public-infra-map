@@ -26,6 +26,8 @@ The code in this repo uses that data to build out a static, multi-page website u
 
 A date-stamped snapshot of the data is captured as JSON in the [./public/data](./public/data) directory. Those JSON files are then used to build out the map and cards for all the DPI systems you can see at https://dpimap.org
 
+The [codebook](https://dpimap.org/codebook/) is built from a snapshot of the [codebook google sheet](https://docs.google.com/spreadsheets/d/1XywQ7War3luFLzfuvqdeH-ZH7S_b2jibYk9fOjlcRgs/). To refresh it after the sheet has changed, run `npm run codebook:pull` and commit the result. That writes [./src/codebook.json](./src/codebook.json), which has the variables with their anchor ids and value codes already extracted, and is what the site imports. Card labels that link to the codebook are checked against it at build time, so a renamed variable fails the build rather than leaving a dead link.
+
 Updates to the site are deployed to dpimap.org automatically when changes are merged into the main branch of this repository on GitHub. Cloudflare watches for changes, runs the build process (`npm install && npm run build`) and stores the updated html and css files and starts serving the new version of the website.
 
 ## Contributing
@@ -53,5 +55,6 @@ All commands are run from the root of the project, from a terminal:
 | `npm start`               | Starts local dev server at `localhost:4321`      |
 | `npm run build`           | Build your production site to `./dist/`          |
 | `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run codebook:pull`   | Refresh `src/codebook.json` from the sheet       |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
