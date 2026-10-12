@@ -22,28 +22,37 @@ jobs:
 
     steps:
       - name: Checkout head of the PR
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
 
       - name: Get changed CSV files
         id: changed-files
-        uses: tj-actions/changed-files@v44
-        with:
-          files: public/data/**/*.csv
-          base_sha: ${{ github.event.pull_request.base.sha }}
-          sha: ${{ github.event.pull_request.head.sha }}
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          changed_files=$(git diff --name-only --diff-filter=d "${BASE_SHA}...${HEAD_SHA}" -- ':(glob)public/data/**/*.csv')
+          changed_files="${changed_files//$'\n'/ }"
+          if [ -n "${changed_files}" ]; then
+            any_changed=true
+          else
+            any_changed=false
+          fi
+          echo "any_changed=${any_changed}" >> "${GITHUB_OUTPUT}"
+          echo "all_changed_files=${changed_files}" >> "${GITHUB_OUTPUT}"
 
       - name: Checkout base of the PR
         if: steps.changed-files.outputs.any_changed == 'true'
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           ref: ${{ github.event.pull_request.base.sha }}
           path: base
 
       - name: Setup Node.js
         if: steps.changed-files.outputs.any_changed == 'true'
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: "20"
 
@@ -53,9 +62,11 @@ jobs:
 
       - name: Generate diffs
         if: steps.changed-files.outputs.any_changed == 'true'
+        env:
+          CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
         run: |
           mkdir -p diff_reports
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+          for file in ${CHANGED_FILES}; do
             echo "Generating diff for ${file}"
             base_file="base/${file}"
             head_file="${file}"
@@ -70,14 +81,14 @@ jobs:
           done
       - name: Upload diff reports
         if: steps.changed-files.outputs.any_changed == 'true'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: csv-diff-pr-${{ github.event.number }}
           path: diff_reports/
 
       - name: Find existing comment
         if: steps.changed-files.outputs.any_changed == 'true'
-        uses: peter-evans/find-comment@v3
+        uses: peter-evans/find-comment@3eae4d37986fb5a8592848f6a574fdf654e61f9e # v3.1.0
         id: find_comment
         with:
           issue-number: ${{ github.event.pull_request.number }}
@@ -86,7 +97,7 @@ jobs:
 
       - name: Create or update comment
         if: steps.changed-files.outputs.any_changed == 'true'
-        uses: peter-evans/create-or-update-comment@v4
+        uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043 # v4.0.0
         with:
           comment-id: ${{ steps.find_comment.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
