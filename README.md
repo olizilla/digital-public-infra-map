@@ -32,13 +32,7 @@ Updates to the site are deployed to dpimap.org automatically when changes are me
 
 ## Data package
 
-[./datapackage.json](./datapackage.json) describes the CSVs in [./public/data/latest](./public/data/latest). It's a [Frictionless Data Package](https://datapackage.org/standard/data-package/) (v2), with a resource for each dataset and its [Table Schema](https://datapackage.org/standard/table-schema/) inline.
-
-Each field's `name` is the column header as it is today, typos and trailing spaces included, and its `title` is the codebook's variable name. `id` is our one extra field property: a stable snake_case id, which code uses to refer to the field. At the next release it becomes `name`, with the human header in `title`.
-
-How the site shows each field (its label, where it goes on the cards, and whether it links to the codebook) is in [./src/SiteFields.ts](./src/SiteFields.ts), by field `id`.
-
-Run `npm run validate` to check the package and the CSVs, and `npm run codebook:check` to see where the codebook and the data disagree.
+[./datapackage.json](./datapackage.json) describes the CSVs in [./public/data/latest](./public/data/latest). It's an Open Knowledge Foundation [Data Package](https://datapackage.org/standard/data-package/) (v2) file, that documents the shapes of the dpimap.org data, to aid reuse.
 
 ## Contributing
 
