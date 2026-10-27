@@ -1,4 +1,8 @@
-@import "tailwindcss";
+@import "tailwindcss" source(none);
+/* Only scan the files that contain markup for class names */
+@source "../pages";
+@source "../components";
+@source "../layouts";
 @plugin "@tailwindcss/typography";
 @theme { 
   --color-dpi: var(--color-green-200);

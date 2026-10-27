@@ -14,7 +14,9 @@
     "data:identity": "DATE=${DATE:=$(date +'%Y-%m-%d')} && curl -Ss --output ./public/data/$DATE/$DATE-identity.json http://localhost:4321/api/identity.json",
     "data:payment": "DATE=${DATE:=$(date +'%Y-%m-%d')} && curl -Ss --output ./public/data/$DATE/$DATE-payment.json http://localhost:4321/api/payment.json",
     "data:exchange": "DATE=${DATE:=$(date +'%Y-%m-%d')} && curl -Ss --output ./public/data/$DATE/$DATE-exchange.json http://localhost:4321/api/exchange.json",
-    "codebook:pull": "node scripts/codebook-pull.mjs"
+    "codebook:pull": "node scripts/codebook-pull.mjs",
+    "validate": "node scripts/validate.mjs",
+    "codebook:check": "node scripts/codebook-check.mjs"
   },
   "dependencies": {
     "@ascorbic/csv-loader": "^2.0.3",

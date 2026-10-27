@@ -30,6 +30,16 @@ The [codebook](https://dpimap.org/codebook/) is built from a snapshot of the [co
 
 Updates to the site are deployed to dpimap.org automatically when changes are merged into the main branch of this repository on GitHub. Cloudflare watches for changes, runs the build process (`npm install && npm run build`) and stores the updated html and css files and starts serving the new version of the website.
 
+## Data package
+
+[./datapackage.json](./datapackage.json) describes the CSVs in [./public/data/latest](./public/data/latest). It's a [Frictionless Data Package](https://datapackage.org/standard/data-package/) (v2), with a resource for each dataset and its [Table Schema](https://datapackage.org/standard/table-schema/) inline.
+
+Each field's `name` is the column header as it is today, typos and trailing spaces included, and its `title` is the codebook's variable name. `id` is our one extra field property: a stable snake_case id, which code uses to refer to the field. At the next release it becomes `name`, with the human header in `title`.
+
+How the site shows each field (its label, where it goes on the cards, and whether it links to the codebook) is in [./src/SiteFields.ts](./src/SiteFields.ts), by field `id`.
+
+Run `npm run validate` to check the package and the CSVs, and `npm run codebook:check` to see where the codebook and the data disagree.
+
 ## Contributing
 
 Contributions are welcome and encouraged! Share information about DPI deployments, provide feedback on our framework, or add to data and build on it. see: https://dpimap.org/contribute/ 
@@ -56,5 +66,7 @@ All commands are run from the root of the project, from a terminal:
 | `npm run build`           | Build your production site to `./dist/`          |
 | `npm run preview`         | Preview your build locally, before deploying     |
 | `npm run codebook:pull`   | Refresh `src/codebook.json` from the sheet       |
+| `npm run validate`        | Check `datapackage.json` and the latest CSVs     |
+| `npm run codebook:check`  | Report where the codebook and the data disagree  |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |

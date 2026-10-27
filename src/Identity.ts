@@ -1,6 +1,9 @@
 import json from '../public/data/2026-03-31/2026-03-31-identity.json'
 import { normaliseImplementationStatus, statusSort } from './Status'
 import { fixURL } from './Util'
+import { schemas, toRecord, displayTitles, headlineTitles, otherTextTitles } from './Schema'
+
+const schema = schemas.id
 
 type IdentityType = typeof json[number]
 
@@ -21,67 +24,15 @@ export function identityDPIStatus(x: IdentityType): "DPI" | "WIP" | "NA" {
 
 export const IDs = json.map(x => {
   return {
-    'Country': x['Country / Region'],
-    'Last updated': x['Last updated'],
-    'Claim of digital ID': x['Claim of digital ID'],
-    'Name': x['Digital ID name'],
-    'URL': fixURL('id', x['Country / Region'], x['URL']),
-    "Collects or uses biometric data": x["Collects or uses biometric data"],
-    'Status of implementation': normaliseImplementationStatus(x['Status of Implementation']),
-    "ID or Civil Registry Act": x["ID or Civil Registry Act"],
-    "Regulation for digital ID": x["Regulation for digital ID"],
-    "Digital authentication function": x["Digital authentication function"],
-    "Enables KYC packet collection": x["Enables KYC packet collection"],
-    "Authentication through government portal": x["Authentication through government portal"],
-    "Codified digital ID legal status": x["Codified digital ID legal status"],
-    "Governing entity": x["Governing entity"],
-    "Legally binding redress mechanism": x["Legally binding redress mechanism "],
-    "Terms of data storage and sharing available": x["Terms of data storage and sharing available"],
-    "National Data Protection Act": x["National Data Protection Act"],    
-    "Procedural rules for digital ID enrolment": x["Procedural rules for digital ID enrolment "],
-    "Data leak disclosure process": x["Data leak disclosure process"],
-    "Data handling terms exist": x["ID data handling terms"],
-    "Relationship with feeder documents": x["Relationship with feeder documents"],
-    "Two or more sectoral use cases enabled": x["Two or more sectoral use cases enabled"],
-    "Funding organizations identified": x["Funding organizations identified"],
-    "Technical Support organizations identified": x["Technical support organizations identified"],
+    ...toRecord(schema, x, {
+      url: (url, get) => fixURL('id', get('country'), url),
+      status: normaliseImplementationStatus,
+    }),
     'DPI Status': identityDPIStatus(x),
   }
 }).sort(statusSort)
 
-/**
- * Card labels that differ from the codebook's `Variable name`, so we can link them.
- * Maps card label -> codebook variable name (see src/codebook.json).
- */
-export const IDCodebookNames: Record<string, string> = {
-  'Data handling terms exist': 'ID data handling terms',
-}
-
-export const IDFlags = [
-  'Claim of digital ID',
-  'ID or Civil Registry Act',
-  'Regulation for digital ID',
-  'Codified digital ID legal status',
-  'Procedural rules for digital ID enrolment',
-  'Relationship with feeder documents',
-  'Terms of data storage and sharing available',
-  'National Data Protection Act',
-  'Data leak disclosure process',
-  'Data handling terms exist',
-  'Collects or uses biometric data',
-  'Digital authentication function',
-  'Enables KYC packet collection',
-  'Authentication through government portal',
-  'Two or more sectoral use cases enabled',
-]
-
-export const IDText = [
-  'Governing entity',
-  'Status of implementation',
-  'Legally binding redress mechanism',
-  'Funding organizations identified',
-  'Technical Support organizations identified'
-]
-
-export const IDTextHeadlines = IDText.slice(0, 2)
-export const IDTextOtherText = IDText.slice(2)
+export const IDFlags = displayTitles(schema, 'flag')
+export const IDText = displayTitles(schema, 'text')
+export const IDTextHeadlines = headlineTitles(schema)
+export const IDTextOtherText = otherTextTitles(schema)

@@ -1,0 +1,650 @@
+{
+  "$schema": "https://datapackage.org/profiles/2.0/datapackage.json",
+  "name": "dpi-map",
+  "title": "Digital Public Infrastructure Map",
+  "description": "Data on national-scale digital public infrastructure (DPI) around the world, collected by researchers at UCL IIPP and shown at https://dpimap.org: digital identity, payment and data exchange systems, by country or region.",
+  "resources": [
+    {
+      "name": "identity",
+      "path": "public/data/latest/identity.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "schema": {
+        "missingValues": ["NA"],
+        "fields": [
+          {
+            "id": "country",
+            "name": "Country / Region",
+            "title": "Country / Region",
+            "type": "string",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "id": "last_updated",
+            "name": "Last updated",
+            "title": "Last updated",
+            "type": "date",
+            "format": "%d/%m/%y",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "id": "dpi_count",
+            "name": "Count for DPI",
+            "title": "DPI based digital ID count for visualisation",
+            "type": "integer",
+            "constraints": {
+              "required": true,
+              "enum": [0, 1]
+            }
+          },
+          {
+            "id": "claim",
+            "name": "Claim of digital ID",
+            "title": "Claim of digital ID",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          },
+          {
+            "id": "name",
+            "name": "Digital ID name",
+            "title": "Digital ID Name",
+            "type": "string"
+          },
+          {
+            "id": "url",
+            "name": "URL",
+            "title": "URL",
+            "type": "string",
+            "constraints": {
+              "pattern": "https?://\\S+"
+            }
+          },
+          {
+            "id": "biometrics",
+            "name": "Collects or uses biometric data",
+            "title": "Collects or uses biometric data",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          },
+          {
+            "id": "status",
+            "name": "Status of Implementation",
+            "title": "Status of Implementation",
+            "type": "string",
+            "constraints": {
+              "enum": ["Planned/Piloted", "Implemented"]
+            }
+          },
+          {
+            "id": "id_act",
+            "name": "ID or Civil Registry Act",
+            "title": "ID or Civil Registry Act",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          },
+          {
+            "id": "regulation",
+            "name": "Regulation for digital ID",
+            "title": "Regulation for digital ID",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          },
+          {
+            "id": "digital_auth",
+            "name": "Digital authentication function",
+            "title": "Digital authentication function",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          },
+          {
+            "id": "kyc",
+            "name": "Enables KYC packet collection",
+            "title": "Enables KYC packet collection",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          },
+          {
+            "id": "gov_portal_auth",
+            "name": "Authentication through government portal",
+            "title": "Authentication through government portal",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          },
+          {
+            "id": "legal_status",
+            "name": "Codified digital ID legal status",
+            "title": "Codified digital ID legal status",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          },
+          {
+            "id": "governing_entity",
+            "name": "Governing entity",
+            "title": "Governing entity",
+            "type": "string"
+          },
+          {
+            "id": "legal_redress",
+            "name": "Legally binding redress mechanism ",
+            "title": "Legally binding redress mechanism",
+            "type": "string",
+            "constraints": {
+              "enum": ["Customer service mechanism", "Legally binding mechanism", "Both"]
+            }
+          },
+          {
+            "id": "storage_sharing_terms",
+            "name": "Terms of data storage and sharing available",
+            "title": "Terms of data storage and sharing available",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          },
+          {
+            "id": "data_protection_act",
+            "name": "National Data Protection Act",
+            "title": "National Data Protection Act",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          },
+          {
+            "id": "enrolment_rules",
+            "name": "Procedural rules for digital ID enrolment ",
+            "title": "Procedural rules for digital ID enrolment",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          },
+          {
+            "id": "data_leak_disclosure",
+            "name": "Data leak disclosure process",
+            "title": "Data leak disclosure process",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          },
+          {
+            "id": "data_handling_terms",
+            "name": "ID data handling terms",
+            "title": "ID data handling terms",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          },
+          {
+            "id": "feeder_documents",
+            "name": "Relationship with feeder documents",
+            "title": "Relationship with feeder documents",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          },
+          {
+            "id": "sectoral_use_cases",
+            "name": "Two or more sectoral use cases enabled",
+            "title": "Two or more sectoral use cases enabled",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          },
+          {
+            "id": "funders",
+            "name": "Funding organizations identified",
+            "title": "Funding organizations identified",
+            "type": "string"
+          },
+          {
+            "id": "technical_support",
+            "name": "Technical support organizations identified",
+            "title": "Technical Support organizations identified",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "payment",
+      "path": "public/data/latest/payment.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "schema": {
+        "missingValues": ["NA"],
+        "fields": [
+          {
+            "id": "country",
+            "name": "Country / Region",
+            "title": "Country / Region",
+            "type": "string",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "id": "last_updated",
+            "name": "Last updated",
+            "title": "Last updated",
+            "type": "date",
+            "format": "%d/%m/%y",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "id": "dpi_count",
+            "name": "Count for DPI",
+            "title": "Count for DPI",
+            "type": "integer",
+            "constraints": {
+              "required": true,
+              "enum": [0, 1]
+            }
+          },
+          {
+            "id": "name",
+            "name": "Payment system name",
+            "title": "Payment system name",
+            "type": "string"
+          },
+          {
+            "id": "url",
+            "name": "URL",
+            "title": "URL",
+            "type": "string",
+            "constraints": {
+              "pattern": "https?://\\S+"
+            }
+          },
+          {
+            "id": "realtime_active",
+            "name": "Active real-time payment system present",
+            "title": "Active-real time payment system present",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          },
+          {
+            "id": "system_type",
+            "name": "Payment system type",
+            "title": "Payment system type",
+            "type": "string",
+            "constraints": {
+              "enum": ["Cross-domain", "Interbank", "Mobile money", "CBDC", "Card Payment"]
+            }
+          },
+          {
+            "id": "status",
+            "name": "Status of Implementation",
+            "title": "Status of payment system implementation",
+            "type": "string",
+            "constraints": {
+              "enum": ["Planned/Piloted", "Implemented"]
+            }
+          },
+          {
+            "id": "national_regional",
+            "name": "National / Regional",
+            "title": "National / Regional",
+            "type": "string",
+            "constraints": {
+              "enum": ["National", "Regional"]
+            }
+          },
+          {
+            "id": "cross_border",
+            "name": "Cross-border payments",
+            "title": "Cross-border payments",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          },
+          {
+            "id": "interoperability_policy",
+            "name": "Interoperability policy",
+            "title": "Interoperability policy",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          },
+          {
+            "id": "transaction_types",
+            "name": "Types of transactions supported",
+            "title": "Types of transactions supported",
+            "type": "string",
+            "constraints": {
+              "pattern": "(P2P|B2B|P2M|B2P|G2P|B2G|Other)(, (P2P|B2B|P2M|B2P|G2P|B2G|Other))*"
+            }
+          },
+          {
+            "id": "settlement_type",
+            "name": "Type of settlement system",
+            "title": "Type of settlement system",
+            "type": "string",
+            "constraints": {
+              "pattern": "(RTGS|DNS|MN|ACH)(, (RTGS|DNS|MN|ACH))*"
+            }
+          },
+          {
+            "id": "operator",
+            "name": "Operator",
+            "title": "Operator",
+            "type": "string",
+            "constraints": {
+              "enum": ["Central bank", "Commercial bank/Private PSP", "Bank association", "Bank association/Central bank", "Other"]
+            }
+          },
+          {
+            "id": "bank_participation",
+            "name": "Bank participation",
+            "title": "Bank participation",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          },
+          {
+            "id": "nonbank_participation",
+            "name": "Non-bank participation",
+            "title": "Non-bank participation",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          },
+          {
+            "id": "participation_rules",
+            "name": "Participation conditions and rules",
+            "title": "Participation conditions and rules",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          },
+          {
+            "id": "participants",
+            "name": "Number of participants",
+            "title": "Number of participants",
+            "type": "string"
+          },
+          {
+            "id": "annual_value_usd",
+            "name": "Annual value of transactions (USD)",
+            "title": "Annual value of transactions (USD)",
+            "type": "string"
+          },
+          {
+            "id": "annual_volume",
+            "name": "Annual volume of transactions",
+            "title": "Annual volume of transactions",
+            "type": "string"
+          },
+          {
+            "id": "data_handling_rules",
+            "name": "Data-handing rules for payment system",
+            "title": "Data-handing rules for payment system",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          },
+          {
+            "id": "reporting_forum",
+            "name": "Reporting forum",
+            "title": "Reporting forum",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          },
+          {
+            "id": "aml_law",
+            "name": "AML Law",
+            "title": "AML Law",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          },
+          {
+            "id": "transaction_cost",
+            "name": "Cost of transactions",
+            "title": "Cost of transactions",
+            "type": "string"
+          },
+          {
+            "id": "qr_code",
+            "name": "QR code based transactions",
+            "title": "QR code based transactions",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "exchange",
+      "path": "public/data/latest/exchange.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "schema": {
+        "missingValues": ["NA"],
+        "fields": [
+          {
+            "id": "country",
+            "name": "Country / Region",
+            "title": "Country / Region",
+            "type": "string",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "id": "last_updated",
+            "name": "Last updated",
+            "title": "Last updated",
+            "type": "date",
+            "format": "%d/%m/%y",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "id": "dpi_count",
+            "name": "Count for DPI",
+            "title": "Count for DPI",
+            "type": "integer",
+            "constraints": {
+              "required": true,
+              "enum": [0, 1]
+            }
+          },
+          {
+            "id": "name",
+            "name": "Data exchange system name",
+            "title": "Data exchange system name",
+            "type": "string"
+          },
+          {
+            "id": "url",
+            "name": "URL",
+            "title": "URL",
+            "type": "string",
+            "constraints": {
+              "pattern": "https?://\\S+"
+            }
+          },
+          {
+            "id": "status",
+            "name": "Status of implementation",
+            "title": "Status of implementation",
+            "type": "string",
+            "constraints": {
+              "enum": ["Planned/Piloted", "Implemented"]
+            }
+          },
+          {
+            "id": "architecture",
+            "name": "Base technical architecture",
+            "title": "Base technical architecture",
+            "type": "string"
+          },
+          {
+            "id": "national_regional",
+            "name": "National / Regional",
+            "title": "National / Regional",
+            "type": "string",
+            "constraints": {
+              "enum": ["National", "Regional"]
+            }
+          },
+          {
+            "id": "sectoral",
+            "name": "Sector-specific / Cross-sectoral",
+            "title": "Sector-specific / Cross-sectoral",
+            "type": "string",
+            "constraints": {
+              "pattern": "(Cross-sectoral|Sectoral \\(.+\\))"
+            }
+          },
+          {
+            "id": "semantic_interoperability",
+            "name": "Semantic interoperability",
+            "title": "Semantic interoperability",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          },
+          {
+            "id": "realtime_sharing",
+            "name": "Real-time sharing",
+            "title": "Real-time sharing",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          },
+          {
+            "id": "scalable_architecture",
+            "name": "Scalable technology architecture",
+            "title": "Scalable technology architecture",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          },
+          {
+            "id": "governing_entity",
+            "name": "Governing entity",
+            "title": "Governing entity",
+            "type": "string"
+          },
+          {
+            "id": "ownership",
+            "name": "Ownership",
+            "title": "Ownership",
+            "type": "string",
+            "constraints": {
+              "enum": ["Public", "Private", "Joint"]
+            }
+          },
+          {
+            "id": "enrolment_info",
+            "name": "Enrolment and participation information",
+            "title": "Enrolment and participation information",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          },
+          {
+            "id": "permitted_participants",
+            "name": "Permitted participants",
+            "title": "Permitted participants",
+            "type": "string",
+            "constraints": {
+              "pattern": "(Public|Private|Civil)(, (Public|Private|Civil))*"
+            }
+          },
+          {
+            "id": "audit_mechanism",
+            "name": "Audit mechanism",
+            "title": "Audit mechanism",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          },
+          {
+            "id": "data_management_rules",
+            "name": "Procedural rules for data mgmt.",
+            "title": "Procedural rules for data mgmt.",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          },
+          {
+            "id": "coordination_unit",
+            "name": "Coordination unit",
+            "title": "Coordination unit",
+            "type": "string"
+          },
+          {
+            "id": "multiple_public_entities",
+            "name": "Used by more than one public entity",
+            "title": "Used by more than one public entity",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          },
+          {
+            "id": "impact_metrics",
+            "name": "Impact metrics",
+            "title": "Impact metrics",
+            "type": "string",
+            "constraints": {
+              "enum": ["Yes", "No"]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

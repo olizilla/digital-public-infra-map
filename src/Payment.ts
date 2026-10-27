@@ -1,6 +1,9 @@
 import json from '../public/data/2026-03-31/2026-03-31-payment.json'
 import { normaliseImplementationStatus, statusSort } from './Status'
 import { fixURL } from './Util'
+import { schemas, toRecord, displayTitles, headlineTitles, otherTextTitles } from './Schema'
+
+const schema = schemas.pay
 
 type PaymentType = typeof json[number]
 
@@ -17,68 +20,15 @@ export function paymentDPIStatus(x: PaymentType): "DPI" | "WIP" | "NA" {
 
 export const Payments = json.map(x => {
   return {
+    ...toRecord(schema, x, {
+      url: (url, get) => fixURL('pay', get('country'), url),
+      status: normaliseImplementationStatus,
+    }),
     'DPI Status': paymentDPIStatus(x),
-    'Country': x['Country / Region'],
-    'Last updated': x['Last updated'],
-    'Name': x['Payment system name'],
-    'URL': fixURL('pay', x['Country / Region'] ?? '', x['URL']),
-    'Active real-time payment system present': x['Active real-time payment system present'],
-    'Payment system type': x['Payment system type'],
-    'Status of implementation': normaliseImplementationStatus(x['Status of Implementation']),
-    'National / Regional': x['National / Regional'],
-    "Cross-border payments": x["Cross-border payments"],
-    "Interoperability policy": x["Interoperability policy"],
-    "Types of transactions supported": x["Types of transactions supported"],
-    "Type of settlement system": x["Type of settlement system"],
-    "Operator": x["Operator"],
-    "Bank participation": x["Bank participation"],
-    "Non-bank participation": x["Non-bank participation"],
-    "Participation conditions and rules": x["Participation conditions and rules"],
-    "Number of participants": x["Number of participants"],
-    "Annual value of transactions (USD)": x["Annual value of transactions (USD)"],
-    "Annual volume of transactions": x["Annual volume of transactions"],
-    "Data-handing rules for payment system": x["Data-handing rules for payment system"],
-    "Reporting forum": x["Reporting forum"],
-    "AML Law": x["AML Law"],
-    "Cost of transactions": x["Cost of transactions"],
-    "QR code transactions": x["QR code based transactions"],
   }
 }).sort(statusSort)
 
-/**
- * Card labels that differ from the codebook's `Variable name`, so we can link them.
- * Maps card label -> codebook variable name (see src/codebook.json).
- */
-export const PaymentCodebookNames: Record<string, string> = {
-  'QR code transactions': 'QR code based transactions',
-  'Status of implementation': 'Status of payment system implementation',
-}
-
-export const PaymentFlags = [
-  'Active real-time payment system present',
-  'Cross-border payments',
-  'QR code transactions',
-  'Bank participation',
-  'Non-bank participation',
-  'Interoperability policy',
-  'Participation conditions and rules',
-  'Data-handing rules for payment system',
-  'Reporting forum',
-  'AML Law',
-]
-
-export const PaymentText = [
-  'Payment system type',
-  'Status of implementation',
-  'Operator',
-  'National / Regional',
-  'Annual value of transactions (USD)',
-  'Annual volume of transactions',
-  'Cost of transactions',
-  'Number of participants',
-  'Types of transactions supported',
-  'Type of settlement system',
-]
-
-export const PaymentHeadlines = PaymentText.slice(0, 2)
-export const PaymentOtherText = PaymentText.slice(2)
+export const PaymentFlags = displayTitles(schema, 'flag')
+export const PaymentText = displayTitles(schema, 'text')
+export const PaymentHeadlines = headlineTitles(schema)
+export const PaymentOtherText = otherTextTitles(schema)
