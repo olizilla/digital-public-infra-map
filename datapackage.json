@@ -12,7 +12,20 @@
       "encoding": "utf-8",
       "schema": {
         "missingValues": ["NA"],
+        "primaryKey": ["System ID"],
         "fields": [
+          {
+            "id": "system_id",
+            "name": "System ID",
+            "title": "System ID",
+            "description": "A stable id for this system, unique in DPI Map. The global form is https://dpimap.org/<id>.",
+            "type": "string",
+            "constraints": {
+              "required": true,
+              "unique": true,
+              "pattern": "id-([a-z]{2}|africa|asia|europe|oceania|lac|noram|americas|world)-[0-9]{2,}"
+            }
+          },
           {
             "id": "country",
             "name": "Country / Region",
@@ -239,7 +252,20 @@
       "encoding": "utf-8",
       "schema": {
         "missingValues": ["NA"],
+        "primaryKey": ["System ID"],
         "fields": [
+          {
+            "id": "system_id",
+            "name": "System ID",
+            "title": "System ID",
+            "description": "A stable id for this system, unique in DPI Map. The global form is https://dpimap.org/<id>.",
+            "type": "string",
+            "constraints": {
+              "required": true,
+              "unique": true,
+              "pattern": "pay-([a-z]{2}|africa|asia|europe|oceania|lac|noram|americas|world)-[0-9]{2,}"
+            }
+          },
           {
             "id": "country",
             "name": "Country / Region",
@@ -463,7 +489,20 @@
       "encoding": "utf-8",
       "schema": {
         "missingValues": ["NA"],
+        "primaryKey": ["System ID"],
         "fields": [
+          {
+            "id": "system_id",
+            "name": "System ID",
+            "title": "System ID",
+            "description": "A stable id for this system, unique in DPI Map. The global form is https://dpimap.org/<id>.",
+            "type": "string",
+            "constraints": {
+              "required": true,
+              "unique": true,
+              "pattern": "dx-([a-z]{2}|africa|asia|europe|oceania|lac|noram|americas|world)-[0-9]{2,}"
+            }
+          },
           {
             "id": "country",
             "name": "Country / Region",
@@ -641,6 +680,110 @@
             "type": "string",
             "constraints": {
               "enum": ["Yes", "No"]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "places",
+      "path": "public/data/places.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "schema": {
+        "primaryKey": ["code"],
+        "fields": [
+          {
+            "id": "code",
+            "name": "code",
+            "title": "Code",
+            "description": "The place part of a System ID: a lower case ISO 3166-1 alpha-2 code, or a region slug.",
+            "type": "string",
+            "constraints": {
+              "required": true,
+              "unique": true,
+              "pattern": "[a-z]{2}|africa|asia|europe|oceania|lac|noram|americas|world"
+            }
+          },
+          {
+            "id": "name",
+            "name": "name",
+            "title": "Name",
+            "description": "The English name of the place, as given by its source.",
+            "type": "string",
+            "constraints": {
+              "required": true,
+              "unique": true
+            }
+          },
+          {
+            "id": "source",
+            "name": "source",
+            "title": "Source",
+            "description": "Where the code and name come from: the UN M49 table, which gives each country's ISO 3166-1 alpha-2 code; ISO 3166-1 for tw (Taiwan), which M49 doesn't list; and Unicode CLDR for xk (Kosovo), which isn't an ISO code.",
+            "type": "string",
+            "constraints": {
+              "enum": ["UN M49", "ISO 3166-1", "Unicode CLDR"]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "place_names",
+      "path": "public/data/place-names.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "schema": {
+        "primaryKey": ["dpimap_name"],
+        "foreignKeys": [
+          {
+            "fields": ["code", "name_in_source", "source"],
+            "reference": { "resource": "places", "fields": ["code", "name", "source"] }
+          }
+        ],
+        "fields": [
+          {
+            "id": "dpimap_name",
+            "name": "dpimap_name",
+            "title": "DPI Map name",
+            "description": "A name that Country / Region uses for a place, where it differs from its name in places.",
+            "type": "string",
+            "constraints": {
+              "required": true,
+              "unique": true
+            }
+          },
+          {
+            "id": "code",
+            "name": "code",
+            "title": "Code",
+            "description": "The place the name is for.",
+            "type": "string",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "id": "name_in_source",
+            "name": "name_in_source",
+            "title": "Name in source",
+            "description": "The place's name in its source, as in places.",
+            "type": "string",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "id": "source",
+            "name": "source",
+            "title": "Source",
+            "description": "The source of the code and name, as in places.",
+            "type": "string",
+            "constraints": {
+              "required": true
             }
           }
         ]

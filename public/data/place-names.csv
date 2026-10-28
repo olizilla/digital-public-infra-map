@@ -1,0 +1,23 @@
+dpimap_name,code,name_in_source,source
+Taiwan,tw,Taiwan (Province of China),ISO 3166-1
+Middle East,asia,Asia,UN M49
+Brunei,bn,Brunei Darussalam,UN M49
+Bolivia,bo,Bolivia (Plurinational State of),UN M49
+Czech Republic,cz,Czechia,UN M49
+European Union,europe,Europe,UN M49
+Iran,ir,Iran (Islamic Republic of),UN M49
+North Korea,kp,Democratic People's Republic of Korea,UN M49
+South Korea,kr,Republic of Korea,UN M49
+Laos,la,Lao People's Democratic Republic,UN M49
+Caribbean,lac,Latin America and the Caribbean,UN M49
+"Central America, Caribbean",lac,Latin America and the Caribbean,UN M49
+Eastern Caribbean,lac,Latin America and the Caribbean,UN M49
+Moldova,md,Republic of Moldova,UN M49
+Netherlands,nl,Netherlands (Kingdom of the),UN M49
+Nauru,nr,Naoero,UN M49
+Syria,sy,Syrian Arab Republic,UN M49
+Turkey,tr,Türkiye,UN M49
+Tanzania,tz,United Republic of Tanzania,UN M49
+Vatican City,va,Holy See,UN M49
+Venezuela,ve,Venezuela (Bolivarian Republic of),UN M49
+Vietnam,vn,Viet Nam,UN M49
