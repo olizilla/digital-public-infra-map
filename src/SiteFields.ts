@@ -2,8 +2,8 @@
 // This is presentation only, so it lives here rather than in the data package.
 // src/Schema.ts throws if this and datapackage.json don't have the same field ids.
 
-/** How the site uses a field */
-export type Kind = 'country' | 'name' | 'url' | 'updated' | 'count' | 'flag' | 'text'
+/** How the site uses a field. `hidden` is in the data but not shown on cards, like the System ID */
+export type Kind = 'country' | 'name' | 'url' | 'updated' | 'count' | 'flag' | 'text' | 'hidden'
 
 interface Common {
   /** the label shown on the site, only when it differs from the field's `title` */
@@ -26,6 +26,7 @@ export type SiteField = Common & (
 
 export const siteFields = {
   identity: {
+    system_id: { kind: 'hidden', codebook: false },
     country: { label: 'Country', kind: 'country' },
     last_updated: { kind: 'updated', codebook: false },
     dpi_count: { label: 'Count for DPI', kind: 'count' },
@@ -53,6 +54,7 @@ export const siteFields = {
     technical_support: { kind: 'text', order: 5 },
   },
   payment: {
+    system_id: { kind: 'hidden', codebook: false },
     country: { label: 'Country', kind: 'country' },
     last_updated: { kind: 'updated', codebook: false },
     dpi_count: { kind: 'count', codebook: false },
@@ -80,6 +82,7 @@ export const siteFields = {
     qr_code: { label: 'QR code transactions', kind: 'flag', order: 3 },
   },
   exchange: {
+    system_id: { kind: 'hidden', codebook: false },
     country: { label: 'Country', kind: 'country' },
     last_updated: { kind: 'updated', codebook: false },
     dpi_count: { kind: 'count', codebook: false },
