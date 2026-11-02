@@ -17,11 +17,10 @@ const pill = { Active: ['yes', 'YES'], Pilot: ['wip', 'WIP'], Suspended: ['no', 
 const criteria = dpiTest(dpiType, record).filter(c => c.label !== 'Active')
 ---
 <ul class="dpi-test">
-  <li><span class={`pill ${pill[0]}`}>{pill[1]}</span>{label}</li>
+	<li><span class={`pill ${pill[0]}`}>{pill[1]}</span>Status: {label === 'NA' ? 'Unknown' : label}</li>
   { criteria.map(c => (
-    <li>
-      <YesNo status={c.value} />
-      { c.note ? <span>{c.label}<span class="note"> ({c.note})</span></span> : c.label }
-    </li>
+	  <li>
+	    <YesNo status={c.value} /> {c.label}
+	  </li>
   ))}
 </ul>
