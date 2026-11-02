@@ -6,12 +6,13 @@ import LocatorMap from '../components/LocatorMap.astro'
 import SystemCard from '../components/SystemCard.astro'
 import TypeIcon from '../components/TypeIcon.astro'
 import { nameOf, nouns, presence, valueOf } from '../DpiTest'
-import { records } from '../Records'
+import { placesWithPages, records } from '../Records'
 import { parseDMY } from '../Util'
 import type { DPIType } from '../Schema'
 
 export async function getStaticPaths () {
 	const countries = [...new Set(Object.values(records).flat().map(({ Country }) => Country as string))]
+		.filter(country => placesWithPages.has(country))
 		.sort((a, b) => a.localeCompare(b, 'en'))
 	return countries.map((country, i) => ({
 		params: { country: slug(country) },
@@ -123,10 +124,10 @@ const link = 'underline decoration-zinc-300 underline-offset-3 hover:text-blue-5
 			))}
 		</section>
 
-		<nav class="flex justify-between pt-8 pb-2 text-sm font-semibold" aria-label="Countries">
-			<a class="hover:text-blue-500" href={`/${slug(prev)}/`}>← {prev}</a>
-			<a class="hover:text-blue-500" href="/">All countries</a>
-			<a class="hover:text-blue-500" href={`/${slug(next)}/`}>{next} →</a>
+		<nav class="grid grid-cols-3 gap-4 pt-8 pb-2 text-sm font-semibold" aria-label="Countries">
+			<a class="justify-self-start hover:text-blue-500" href={`/${slug(prev)}/`}>← {prev}</a>
+			<a class="justify-self-center hover:text-blue-500" href="/">All countries</a>
+			<a class="justify-self-end text-right hover:text-blue-500" href={`/${slug(next)}/`}>{next} →</a>
 		</nav>
 
 		<section class="grid min-[901px]:grid-cols-2 gap-6 mt-6 pt-5 border-t border-zinc-200 text-sm leading-[22px] text-zinc-600">

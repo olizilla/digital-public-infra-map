@@ -7,7 +7,7 @@ import { findVariable } from './Codebook'
 import { normaliseImplementationStatus } from './Status'
 
 export type YesNoNA = 'Yes' | 'No' | 'NA'
-export type ImplStatus = 'Active' | 'Pilot' | 'NA'
+export type ImplStatus = 'Active' | 'Pilot' | 'Suspended' | 'NA'
 export type DpiStatus = 'DPI' | 'WIP' | 'NA'
 type SystemRecord = Record<string, any>
 
@@ -39,10 +39,16 @@ export function valueOf (dpiType: DPIType, record: SystemRecord, id: string) {
   return text(record[labelOf(fieldById(schemas[dpiType], id as never))])
 }
 
-/** 'Active', 'Pilot' or 'NA' */
+/** 'Active', 'Pilot', 'Suspended' or 'NA' */
 export function implementationStatus (value: unknown): ImplStatus {
   const s = normaliseImplementationStatus(text(value))
-  return s === 'Active' || s === 'Pilot' ? s : 'NA'
+  return s === 'Active' || s === 'Pilot' || s === 'Suspended' ? s : 'NA'
+}
+
+/** The system's implementation status, shown on its own line above the DPI test criteria */
+export function statusOf (dpiType: DPIType, record: SystemRecord): { status: ImplStatus, label: string } {
+  const status = implementationStatus(valueOf(dpiType, record, 'status'))
+  return { status, label: status === 'Pilot' ? 'Pilot/Planned' : status }
 }
 
 /** 'Yes', 'No' or 'NA' for a flag value, or undefined if it isn't a clean yes or no, like a note */
@@ -87,10 +93,11 @@ export function dpiTest (dpiType: DPIType, record: SystemRecord): Criterion[] {
 
 export const passesDpiTest = (criteria: Criterion[]) => criteria.every(c => c.value === 'Yes')
 
-/** 'DPI' if the system passes the DPI test, 'WIP' if it's active or a pilot but doesn't pass, otherwise 'NA' */
+/** 'DPI' if the system passes the DPI test, 'WIP' if it's active or a pilot but doesn't pass, otherwise 'NA'. A suspended system is 'NA'. */
 export function dpiStatus (dpiType: DPIType, record: SystemRecord): DpiStatus {
   if (passesDpiTest(dpiTest(dpiType, record))) return 'DPI'
-  return implementationStatus(valueOf(dpiType, record, 'status')) === 'NA' ? 'NA' : 'WIP'
+  const status = implementationStatus(valueOf(dpiType, record, 'status'))
+  return status === 'NA' || status === 'Suspended' ? 'NA' : 'WIP'
 }
 
 /** A message for each system whose 'Count for DPI' disagrees with the DPI test. There's no good reason for any. */

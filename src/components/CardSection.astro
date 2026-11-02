@@ -2,12 +2,12 @@
   <header
     class="grid gap-2 items-baseline grid-flow-row-dense grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-4">
     <h2 class="pl-6 font-sans font-semibold text-[15px] leading-[22px] text-zinc-700 flex-none">
-      <slot name="icon" /> {Astro.props.title} ({Astro.props.items.length})
+      <slot name="icon" /> {Astro.props.title} <span class="text-zinc-500 font-normal text-sm ml-1">({Astro.props.items.length} total)</span>
     </h2>
     <input
       id="filter"
       class="block mx-2 shadow-inner border-zinc-500 border-2 focus:outline-2 focus:outline-offset-2 focus:outline-blue-300 text-left rounded-4xl px-4 py-2 bg-white mb-4 text-sm font-sans"
-      placeholder="🔍 Filter by region"
+      placeholder="🔍 Filter by country"
     />
   </header>
   <div
@@ -26,7 +26,7 @@
   function initCardsMap() {
     const cardsByTitle = new Map()
     for (const card of cards) {
-      const title = card.querySelector("header a").innerText
+      const title = card.querySelector("header > :first-child").innerText
       const values = cardsByTitle.get(title) ?? [card]
       values.push(card)
       cardsByTitle.set(title, values)

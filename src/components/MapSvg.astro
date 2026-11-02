@@ -61,13 +61,12 @@ const cropBottom = 60
       const page = code ? pages.get(code) : undefined
       const dpi = code ? systems.get(code) : undefined
       const status = dpi?.['DPI Status']
-      return (
-        <a href={page?.href ?? '.'}>
-          <title>{page?.name ?? region.properties.name}
-{dpi?.Name}</title>
-          <path d={path(region)} class={dpiStatusToClass(status)} fill={statusToColor(status)} stroke="#acc" style="stroke-width: 0.5px;"></path>
-        </a>
-      )
+      const shape = <path d={path(region)} class={dpiStatusToClass(status)} fill={statusToColor(status)} stroke="#acc" style="stroke-width: 0.5px;"></path>
+      // a place without a page gets no link
+      return page
+        ? <a href={page.href}><title>{page.name}
+{dpi?.Name}</title>{shape}</a>
+        : <g><title>{region.properties.name}</title>{shape}</g>
     })}
     </g>
   </g>

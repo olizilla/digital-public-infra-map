@@ -6,17 +6,20 @@ import { DataExchanges } from '../DataExchange.js'
 import Footer from '../components/Footer.astro'
 import CardSection from '../components/CardSection.astro'
 import ListingCard from '../components/ListingCard.astro'
+import { presence } from '../DpiTest'
 import StatusBar from '../components/StatusBar.astro'
 
 const items = DataExchanges
 const dpiType = 'data'
+// the cards are for systems: places where research found none are on the map, not here
+const systems = items.filter(record => presence(dpiType, record) !== 'not-found')
 ---
 <Layout>
 	<MapAndTabs countryCount={items.length} dpiType={dpiType} />
 	<StatusBar items={items} />
-	<CardSection title="Data Exchange Systems" items={items}>
+	<CardSection title="Data Exchange Systems" items={systems}>
 		<TypeIcon dpiType="data" class="inline" slot="icon" />
-		{ items.map(record => <ListingCard dpiType={dpiType} record={record} />) }
+		{ systems.map(record => <ListingCard dpiType={dpiType} record={record} />) }
 	</CardSection>
 	<Footer />
 </Layout>

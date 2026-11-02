@@ -263,6 +263,9 @@ body:has(#hide-na:checked) :is(.field-flags, .field-texts) > .na {
   .pill.na {
     @apply border-zinc-300 bg-zinc-200;
   }
+  .pill.wip {
+    @apply border-wip-line bg-wip;
+  }
 
   /* DPI test */
   .dpi-test {
@@ -277,6 +280,8 @@ body:has(#hide-na:checked) :is(.field-flags, .field-texts) > .na {
   .dpi-test .note {
     @apply text-zinc-500;
   }
+  /* implementation status: a dot the height of the text's x-height, then the status.
+     It sits at the pills' left edge, on the text baseline */
 
   /* fields: yes/no flags, then text fields */
   .field-flags {
@@ -326,7 +331,10 @@ body:has(#hide-na:checked) :is(.field-flags, .field-texts) > .na {
       @apply grid grid-cols-[minmax(0,1fr)_auto] items-start gap-x-2 px-3.5 pt-2.5 pb-[11px] border-b border-zinc-200;
     }
     & > header > a {
-      @apply col-span-2 justify-self-start mb-0.5 text-[13px] leading-[18px] text-zinc-600 underline decoration-zinc-300 underline-offset-3 hover:text-blue-500;
+      @apply col-span-2 justify-self-start mb-0.5 text-[13px] leading-[18px] text-zinc-600;
+    }
+    & > header > a {
+      @apply underline decoration-zinc-300 underline-offset-3 hover:text-blue-500;
     }
     & h3 {
       @apply text-[15px] leading-5 font-semibold;
@@ -366,15 +374,6 @@ body:has(#hide-na:checked) :is(.field-flags, .field-texts) > .na {
     }
     & .field-texts dt a {
       @apply text-xs leading-[18px];
-    }
-    & > .none-found {
-      @apply bg-zinc-50 px-3.5 pt-[18px] pb-5 text-[13px] leading-[18px];
-    }
-    & > .none-found > p {
-      @apply mb-2.5 text-zinc-600;
-    }
-    & > .none-found > a {
-      @apply inline-block mt-1 font-medium text-zinc-700 underline decoration-zinc-300 underline-offset-3 hover:text-blue-500;
     }
   }
 }

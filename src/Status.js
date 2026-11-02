@@ -1,5 +1,8 @@
 export function normaliseImplementationStatus (s) {
   if (!s) return 'NA'
+  if (s.match(/suspend/i)) {
+    return 'Suspended'
+  }
   if(s.match(/Implemented|Active/i)) {
     return 'Active'
   }

@@ -1,7 +1,8 @@
 ---
 // A system's card in the homepage listings: the country, the system and its
-// DPI status, the DPI test, then all its fields behind a toggle.
-// The country link must stay the first link in the header: CardSection's
+// DPI status, the DPI test, then all its fields behind a toggle. Only for
+// systems: the listing pages leave out rows where research found none.
+// The country link must stay the first element in the header: CardSection's
 // filter script reads the country name from it. There are hundreds of these on
 // a page, so they're styled by .card-id, .card-pay and .card-data in
 // src/styles/global.css rather than with utility classes.
@@ -19,7 +20,7 @@ interface Props {
 const { dpiType, record } = Astro.props
 const state = presence(dpiType, record)
 const noun = nouns[dpiType]
-const title = state === 'named' ? nameOf(dpiType, record) : state === 'unnamed' ? `Unnamed ${noun} system` : 'Not Found'
+const title = state === 'named' ? nameOf(dpiType, record) : `Unnamed ${noun} system`
 const { count } = displayValues(dpiType, record)
 ---
 <article class={`card-${dpiType}`}>
@@ -28,20 +29,12 @@ const { count } = displayValues(dpiType, record)
     <h3 class:list={{ unnamed: state !== 'named' }}>{title}</h3>
     <Status status={record['DPI Status']} title="DPI status" />
   </header>
-  { state === 'not-found'
-    ? <div class="none-found">
-        <p>No {noun} system found in public sources.</p>
-        <a href="/contribute/">Know of one? Propose it</a>
-      </div>
-    : <Fragment>
-        <span class="test-label">DPI test</span>
-        <DpiTestList dpiType={dpiType} record={record} />
-        <details class="more">
-          <summary>All {count} fields</summary>
-          <div>
-            <SystemFields dpiType={dpiType} record={record} />
-          </div>
-        </details>
-      </Fragment>
-  }
+  <span class="test-label">DPI test</span>
+  <DpiTestList dpiType={dpiType} record={record} />
+  <details class="more">
+    <summary>All {count} fields</summary>
+    <div>
+      <SystemFields dpiType={dpiType} record={record} />
+    </div>
+  </details>
 </article>
