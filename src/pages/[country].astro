@@ -91,7 +91,9 @@ const link = 'underline decoration-zinc-300 underline-offset-3 hover:text-blue-5
 					<a class:list={['text-zinc-700', link]} href="#cite">Cite this page</a>
 				</p>
 			</div>
-			<LocatorMap country={country} class="h-[170px] rounded-lg bg-zinc-50 border border-zinc-100" />
+			<!-- on mobile the map comes first, where the homepage map is, so scrolling past it doesn't tap its links.
+			     It stays after the text in the source, so keyboard and screen reader users reach the heading before the map's links -->
+			<LocatorMap country={country} class="order-first min-[901px]:order-none h-[170px] rounded-lg bg-zinc-50 border border-zinc-100" />
 		</section>
 
 		<div class="flex justify-end pb-4">
