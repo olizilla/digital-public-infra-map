@@ -15,6 +15,7 @@ export interface Field<Id extends string = string> {
   format?: string
   constraints?: {
     required?: boolean
+    unique?: boolean
     enum?: (string | number)[]
     pattern?: string
   }
@@ -104,6 +105,8 @@ export function toRecord<Id extends string> (schema: Schema<Id>, row: Record<str
   for (const field of schema.fields) {
     const transform = transforms[field.id]
     const value = row[field.name]
+    // the site's data may predate the System ID column
+    if (field.site.kind === 'hidden' && value === undefined) continue
     record[labelOf(field)] = transform ? transform(value, get) : value
   }
   return record

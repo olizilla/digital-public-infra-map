@@ -1,0 +1,259 @@
+code,name,source
+tw,Taiwan (Province of China),ISO 3166-1
+ad,Andorra,UN M49
+ae,United Arab Emirates,UN M49
+af,Afghanistan,UN M49
+africa,Africa,UN M49
+ag,Antigua and Barbuda,UN M49
+ai,Anguilla,UN M49
+al,Albania,UN M49
+am,Armenia,UN M49
+americas,Americas,UN M49
+ao,Angola,UN M49
+aq,Antarctica,UN M49
+ar,Argentina,UN M49
+as,American Samoa,UN M49
+asia,Asia,UN M49
+at,Austria,UN M49
+au,Australia,UN M49
+aw,Aruba,UN M49
+ax,Åland Islands,UN M49
+az,Azerbaijan,UN M49
+ba,Bosnia and Herzegovina,UN M49
+bb,Barbados,UN M49
+bd,Bangladesh,UN M49
+be,Belgium,UN M49
+bf,Burkina Faso,UN M49
+bg,Bulgaria,UN M49
+bh,Bahrain,UN M49
+bi,Burundi,UN M49
+bj,Benin,UN M49
+bl,Saint Barthélemy,UN M49
+bm,Bermuda,UN M49
+bn,Brunei Darussalam,UN M49
+bo,Bolivia (Plurinational State of),UN M49
+bq,"Bonaire, Sint Eustatius and Saba",UN M49
+br,Brazil,UN M49
+bs,Bahamas,UN M49
+bt,Bhutan,UN M49
+bv,Bouvet Island,UN M49
+bw,Botswana,UN M49
+by,Belarus,UN M49
+bz,Belize,UN M49
+ca,Canada,UN M49
+cc,Cocos (Keeling) Islands,UN M49
+cd,Democratic Republic of the Congo,UN M49
+cf,Central African Republic,UN M49
+cg,Congo,UN M49
+ch,Switzerland,UN M49
+ci,Côte d’Ivoire,UN M49
+ck,Cook Islands,UN M49
+cl,Chile,UN M49
+cm,Cameroon,UN M49
+cn,China,UN M49
+co,Colombia,UN M49
+cr,Costa Rica,UN M49
+cu,Cuba,UN M49
+cv,Cabo Verde,UN M49
+cw,Curaçao,UN M49
+cx,Christmas Island,UN M49
+cy,Cyprus,UN M49
+cz,Czechia,UN M49
+de,Germany,UN M49
+dj,Djibouti,UN M49
+dk,Denmark,UN M49
+dm,Dominica,UN M49
+do,Dominican Republic,UN M49
+dz,Algeria,UN M49
+ec,Ecuador,UN M49
+ee,Estonia,UN M49
+eg,Egypt,UN M49
+eh,Western Sahara,UN M49
+er,Eritrea,UN M49
+es,Spain,UN M49
+et,Ethiopia,UN M49
+europe,Europe,UN M49
+fi,Finland,UN M49
+fj,Fiji,UN M49
+fk,Falkland Islands (Malvinas),UN M49
+fm,Micronesia (Federated States of),UN M49
+fo,Faroe Islands,UN M49
+fr,France,UN M49
+ga,Gabon,UN M49
+gb,United Kingdom of Great Britain and Northern Ireland,UN M49
+gd,Grenada,UN M49
+ge,Georgia,UN M49
+gf,French Guiana,UN M49
+gg,Guernsey,UN M49
+gh,Ghana,UN M49
+gi,Gibraltar,UN M49
+gl,Greenland,UN M49
+gm,Gambia,UN M49
+gn,Guinea,UN M49
+gp,Guadeloupe,UN M49
+gq,Equatorial Guinea,UN M49
+gr,Greece,UN M49
+gs,South Georgia and the South Sandwich Islands,UN M49
+gt,Guatemala,UN M49
+gu,Guam,UN M49
+gw,Guinea-Bissau,UN M49
+gy,Guyana,UN M49
+hk,"China, Hong Kong Special Administrative Region",UN M49
+hm,Heard Island and McDonald Islands,UN M49
+hn,Honduras,UN M49
+hr,Croatia,UN M49
+ht,Haiti,UN M49
+hu,Hungary,UN M49
+id,Indonesia,UN M49
+ie,Ireland,UN M49
+il,Israel,UN M49
+im,Isle of Man,UN M49
+in,India,UN M49
+io,British Indian Ocean Territory,UN M49
+iq,Iraq,UN M49
+ir,Iran (Islamic Republic of),UN M49
+is,Iceland,UN M49
+it,Italy,UN M49
+je,Jersey,UN M49
+jm,Jamaica,UN M49
+jo,Jordan,UN M49
+jp,Japan,UN M49
+ke,Kenya,UN M49
+kg,Kyrgyzstan,UN M49
+kh,Cambodia,UN M49
+ki,Kiribati,UN M49
+km,Comoros,UN M49
+kn,Saint Kitts and Nevis,UN M49
+kp,Democratic People's Republic of Korea,UN M49
+kr,Republic of Korea,UN M49
+kw,Kuwait,UN M49
+ky,Cayman Islands,UN M49
+kz,Kazakhstan,UN M49
+la,Lao People's Democratic Republic,UN M49
+lac,Latin America and the Caribbean,UN M49
+lb,Lebanon,UN M49
+lc,Saint Lucia,UN M49
+li,Liechtenstein,UN M49
+lk,Sri Lanka,UN M49
+lr,Liberia,UN M49
+ls,Lesotho,UN M49
+lt,Lithuania,UN M49
+lu,Luxembourg,UN M49
+lv,Latvia,UN M49
+ly,Libya,UN M49
+ma,Morocco,UN M49
+mc,Monaco,UN M49
+md,Republic of Moldova,UN M49
+me,Montenegro,UN M49
+mf,Saint Martin (French Part),UN M49
+mg,Madagascar,UN M49
+mh,Marshall Islands,UN M49
+mk,North Macedonia,UN M49
+ml,Mali,UN M49
+mm,Myanmar,UN M49
+mn,Mongolia,UN M49
+mo,"China, Macao Special Administrative Region",UN M49
+mp,Northern Mariana Islands,UN M49
+mq,Martinique,UN M49
+mr,Mauritania,UN M49
+ms,Montserrat,UN M49
+mt,Malta,UN M49
+mu,Mauritius,UN M49
+mv,Maldives,UN M49
+mw,Malawi,UN M49
+mx,Mexico,UN M49
+my,Malaysia,UN M49
+mz,Mozambique,UN M49
+na,Namibia,UN M49
+nc,New Caledonia,UN M49
+ne,Niger,UN M49
+nf,Norfolk Island,UN M49
+ng,Nigeria,UN M49
+ni,Nicaragua,UN M49
+nl,Netherlands (Kingdom of the),UN M49
+no,Norway,UN M49
+noram,Northern America,UN M49
+np,Nepal,UN M49
+nr,Naoero,UN M49
+nu,Niue,UN M49
+nz,New Zealand,UN M49
+oceania,Oceania,UN M49
+om,Oman,UN M49
+pa,Panama,UN M49
+pe,Peru,UN M49
+pf,French Polynesia,UN M49
+pg,Papua New Guinea,UN M49
+ph,Philippines,UN M49
+pk,Pakistan,UN M49
+pl,Poland,UN M49
+pm,Saint Pierre and Miquelon,UN M49
+pn,Pitcairn,UN M49
+pr,Puerto Rico,UN M49
+ps,State of Palestine,UN M49
+pt,Portugal,UN M49
+pw,Palau,UN M49
+py,Paraguay,UN M49
+qa,Qatar,UN M49
+re,Réunion,UN M49
+ro,Romania,UN M49
+rs,Serbia,UN M49
+ru,Russian Federation,UN M49
+rw,Rwanda,UN M49
+sa,Saudi Arabia,UN M49
+sb,Solomon Islands,UN M49
+sc,Seychelles,UN M49
+sd,Sudan,UN M49
+se,Sweden,UN M49
+sg,Singapore,UN M49
+sh,Saint Helena,UN M49
+si,Slovenia,UN M49
+sj,Svalbard and Jan Mayen Islands,UN M49
+sk,Slovakia,UN M49
+sl,Sierra Leone,UN M49
+sm,San Marino,UN M49
+sn,Senegal,UN M49
+so,Somalia,UN M49
+sr,Suriname,UN M49
+ss,South Sudan,UN M49
+st,Sao Tome and Principe,UN M49
+sv,El Salvador,UN M49
+sx,Sint Maarten (Dutch part),UN M49
+sy,Syrian Arab Republic,UN M49
+sz,Eswatini,UN M49
+tc,Turks and Caicos Islands,UN M49
+td,Chad,UN M49
+tf,French Southern Territories,UN M49
+tg,Togo,UN M49
+th,Thailand,UN M49
+tj,Tajikistan,UN M49
+tk,Tokelau,UN M49
+tl,Timor-Leste,UN M49
+tm,Turkmenistan,UN M49
+tn,Tunisia,UN M49
+to,Tonga,UN M49
+tr,Türkiye,UN M49
+tt,Trinidad and Tobago,UN M49
+tv,Tuvalu,UN M49
+tz,United Republic of Tanzania,UN M49
+ua,Ukraine,UN M49
+ug,Uganda,UN M49
+um,United States Minor Outlying Islands,UN M49
+us,United States of America,UN M49
+uy,Uruguay,UN M49
+uz,Uzbekistan,UN M49
+va,Holy See,UN M49
+vc,Saint Vincent and the Grenadines,UN M49
+ve,Venezuela (Bolivarian Republic of),UN M49
+vg,British Virgin Islands,UN M49
+vi,United States Virgin Islands,UN M49
+vn,Viet Nam,UN M49
+vu,Vanuatu,UN M49
+wf,Wallis and Futuna Islands,UN M49
+world,World,UN M49
+ws,Samoa,UN M49
+ye,Yemen,UN M49
+yt,Mayotte,UN M49
+za,South Africa,UN M49
+zm,Zambia,UN M49
+zw,Zimbabwe,UN M49
+xk,Kosovo,Unicode CLDR

@@ -3,7 +3,13 @@
 // Prints one line per problem, tab separated, then a summary per resource
 // that counts, for each column, the values found that aren't allowed.
 // A cell in the schema's `missingValues` (NA) is unknown, which is fine unless
-// the field is `required`.
+// the field is `required`. A field with `unique` must not repeat a value, and
+// the schema's `primaryKey` is always required and unique, even if its fields
+// don't say so. A `foreignKeys` entry must refer to a value in another resource.
+// A resource with a `system_id` field has its ids checked against the places in
+// public/data/places.csv: the id's place must be a code there, and the same
+// place as the row's Country / Region, which can be a name from places.csv or
+// public/data/place-names.csv.
 // Exits 1 if there are any errors. If the package is invalid, the CSVs aren't checked.
 //
 // usage: npm run validate
@@ -102,6 +108,30 @@ function cast (field, value) {
   }
 }
 
+/** The rows of a resource's CSV, or undefined if the package has no such resource or its CSV is missing */
+const tables = new Map()
+function rowsOf (name) {
+  if (!tables.has(name)) {
+    const resource = datapackage.resources.find(resource => resource.name === name)
+    const found = resource && fs.existsSync(new URL(resource.path, root))
+    const csv = found && read(resource.path).replace(/^\uFEFF/, '')
+    tables.set(name, found ? Papa.parse(csv, { header: true, skipEmptyLines: true }).data : undefined)
+  }
+  return tables.get(name)
+}
+
+/** The place codes in places.csv, and place name -> code, from places.csv then place-names.csv */
+let places
+function placesOf () {
+  const rows = rowsOf('places') ?? []
+  const aliases = rowsOf('place_names') ?? []
+  places ??= {
+    codes: new Set(rows.map(row => row.code)),
+    byName: new Map([...rows.map(row => [row.name, row.code]), ...aliases.map(row => [row.dpimap_name, row.code])])
+  }
+  return places
+}
+
 const quoteAll = values => values.map(value => JSON.stringify(value)).join(', ')
 
 /**
@@ -160,6 +190,9 @@ function checkCell (field, value, missingValues) {
   return problems
 }
 
+/** The names of the schema's `primaryKey` fields. Table Schema allows a single name or a list. */
+const primaryKeyOf = schema => [schema.primaryKey ?? []].flat()
+
 function validate ({ name: dataset, path, schema }) {
   const errors = []
   const report = (row, country, column, value, message, tally = []) => {
@@ -189,15 +222,65 @@ function validate ({ name: dataset, path, schema }) {
   const missingValues = schema.missingValues ?? []
   const countryField = schema.fields.find(field => field.id === 'country')
   const fields = schema.fields.filter(field => meta.fields.includes(field.name))
+  const primaryKey = primaryKeyOf(schema)
+  for (const name of primaryKey.filter(name => !names.includes(name))) {
+    report(1, '-', name, undefined, 'primaryKey names a field that is not in the schema')
+  }
+  // the columns whose values must not repeat: each `unique` field, and the primary key as a whole
+  const uniques = fields.filter(field => field.constraints?.unique).map(field => [field.name])
+  const keyInData = primaryKey.length > 0 && primaryKey.every(name => meta.fields.includes(name))
+  if (keyInData && !uniques.some(names => names.join() === primaryKey.join())) uniques.push(primaryKey)
+  const foreignKeys = schema.foreignKeys ?? []
+  // for each foreign key, the values its referenced fields have
+  const referenced = foreignKeys.map(({ reference }) => {
+    const rows = rowsOf(reference.resource)
+    if (!rows) report('-', '-', '-', undefined, `foreignKeys refers to resource "${reference.resource}", which is not in the package or has no CSV`)
+    return new Set((rows ?? []).map(row => JSON.stringify([reference.fields].flat().map(name => row[name]))))
+  })
+  const systemIdField = schema.fields.find(field => field.id === 'system_id')
+  const { codes, byName } = placesOf()
+  // for each of uniques, value -> the row it was first seen in
+  const firstSeen = uniques.map(() => new Map())
   rows.forEach((row, i) => {
     // the sheet's row number: row 1 is the header
     const rowNumber = i + 2
     const country = row[countryField?.name] || '-'
     for (const field of fields) {
-      for (const { message, tally } of checkCell(field, row[field.name], missingValues)) {
+      const checked = primaryKey.includes(field.name) ? { ...field, constraints: { ...field.constraints, required: true } } : field
+      for (const { message, tally } of checkCell(checked, row[field.name], missingValues)) {
         report(rowNumber, country, field.name, row[field.name], message, tally)
       }
     }
+    // an empty or missing value is already reported above, so only repeats and references are looked at here
+    const isMissing = value => value === undefined || value === '' || missingValues.includes(value)
+    foreignKeys.forEach(({ fields: names, reference }, n) => {
+      const values = names.map(name => row[name])
+      if (values.some(isMissing) || referenced[n].has(JSON.stringify(values))) return
+      report(rowNumber, country, names.join(' + '), values.join(' + '), `is not a ${[reference.fields].flat().join(' + ')} in ${reference.resource}`, [values.join(' + ')])
+    })
+    // the place in the System ID must be a known place, and the one the row's Country / Region is
+    const id = row[systemIdField?.name]
+    const place = isMissing(id) ? undefined : id.split('-')[1]
+    const named = row[countryField?.name]
+    const expected = !countryField || isMissing(named) ? undefined : byName.get(named)
+    if (place && !codes.has(place)) {
+      report(rowNumber, country, systemIdField.name, id, `has place ${JSON.stringify(place)}, which is not a code in public/data/places.csv`, [id])
+    } else if (place && countryField && !isMissing(named) && expected === undefined) {
+      report(rowNumber, country, countryField.name, named, 'is not a known place name, add it to public/data/place-names.csv or fix the name', [named])
+    } else if (place && expected !== place) {
+      report(rowNumber, country, systemIdField.name, id, `has place ${JSON.stringify(place)}, but ${JSON.stringify(named)} is ${JSON.stringify(expected)}`, [id])
+    }
+    uniques.forEach((names, n) => {
+      const values = names.map(name => row[name])
+      if (values.some(isMissing)) return
+      const key = JSON.stringify(values)
+      if (firstSeen[n].has(key)) {
+        const value = values.join(' + ')
+        report(rowNumber, country, names.join(' + '), value, `is not unique, it repeats row ${firstSeen[n].get(key)}`, [value])
+      } else {
+        firstSeen[n].set(key, rowNumber)
+      }
+    })
   })
 
   return { dataset, rows: rows.length, errors, schema }

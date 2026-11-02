@@ -34,6 +34,20 @@ Updates to the site are deployed to dpimap.org automatically when changes are me
 
 [./datapackage.json](./datapackage.json) describes the CSVs in [./public/data/latest](./public/data/latest). It's an Open Knowledge Foundation [Data Package](https://datapackage.org/standard/data-package/) (v2) file, that documents the shapes of the dpimap.org data, to aid reuse.
 
+### System IDs
+
+Every row has a stable id in its first column, `System ID`, so a system can be referred to even if its name or country changes. An id is `<dpi type>-<place>-<index>`:
+
+- `dpi type` is `id` (identity), `pay` (payment) or `dx` (data exchange).
+- `place` is the lower case ISO 3166-1 alpha-2 code of the country or territory (`xk` for Kosovo), or for a regional system `africa`, `asia`, `europe`, `oceania`, `lac`, `noram`, `americas` or `world`.
+- `index` is two or more digits, counting up from `01` for each type and place.
+
+For example `pay-gb-01`, `id-id-01` and `dx-europe-01`. The global form is `https://dpimap.org/<id>`.
+
+Place codes are in [public/data/places.csv](./public/data/places.csv), with the source of each: the [UN M49](https://unstats.un.org/unsd/methodology/m49/overview/) table, which gives each country's ISO code and its UN name; [ISO 3166-1](https://www.iso.org/obp/ui/#iso:code:3166:TW) for Taiwan, which M49 doesn't list; and [Unicode CLDR](https://github.com/unicode-org/cldr/blob/main/common/validity/region.xml) for `xk`, Kosovo, which is in ISO's user-assigned range rather than an ISO code. The names our data uses that differ from the names in those sources are in [public/data/place-names.csv](./public/data/place-names.csv).
+
+An id is never reused or renumbered, even if its system is removed, so gaps are fine. A rename keeps the id, and a different system gets a new one. To add a system, use the next unused number for its type and place. `npm run validate` rejects duplicate and malformed ids, and checks that each id's place matches its row's Country / Region.
+
 ## Contributing
 
 Contributions are welcome and encouraged! Share information about DPI deployments, provide feedback on our framework, or add to data and build on it. see: https://dpimap.org/contribute/ 
