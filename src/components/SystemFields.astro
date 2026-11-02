@@ -1,0 +1,44 @@
+---
+// All the fields of a system that the DPI test doesn't already show:
+// yes/no flags as a pill column, then text fields with the label above the value.
+// Labels link to the codebook. Fields with no data get the `na` class, so the
+// country page's "Hide fields with no data" checkbox can hide them.
+import YesNo from './YesNo.astro'
+import { displayValues } from '../DpiTest'
+import { codebookAnchorForLabel } from '../Codebook'
+import type { DPIType } from '../Schema'
+
+interface Props {
+  dpiType: DPIType
+  record: Record<string, any>
+  /** `sm` for the homepage cards */
+  size?: 'sm' | 'md'
+}
+const { dpiType, record, size = 'md' } = Astro.props
+const sm = size === 'sm'
+const { flags, texts } = displayValues(dpiType, record)
+const href = (label: string) => `/codebook/#${codebookAnchorForLabel(dpiType, label)}`
+---
+{ flags.length > 0 &&
+  <ul class:list={['grid gap-1', sm ? 'py-1' : 'pt-4 pb-1']}>
+    { flags.map(f => (
+      <li class:list={['field grid grid-cols-[auto_1fr] items-baseline gap-x-2.5', { na: f.flag === 'NA' }]}>
+        <YesNo status={f.flag} class="min-w-9" />
+        <a href={href(f.label)} class:list={['hover:text-blue-500 hover:underline', sm ? 'text-[13px] leading-[18px]' : 'text-sm leading-5']}>{f.label}</a>
+      </li>
+    ))}
+  </ul>
+}
+{ texts.length > 0 &&
+  <dl class:list={['grid pb-1', flags.length ? 'mt-2 pt-3' : 'pt-3.5', sm ? 'gap-3' : 'gap-2.5']}>
+    { texts.map(f => (
+      <div class:list={['field pl-[6.5px]', { na: f.value === 'NA' }]}>
+        <dt><a href={href(f.label)} class:list={['text-zinc-600 hover:text-blue-500 hover:underline', sm ? 'text-xs leading-[18px]' : 'text-[13px] leading-[18px]']}>{f.label}</a></dt>
+        { f.value === 'NA'
+          ? <dd class="mt-px text-[13px] leading-5 tracking-[.02em] text-zinc-500" title="No data">NA</dd>
+          : <dd class="mt-px text-sm leading-5 font-medium">{f.value}</dd>
+        }
+      </div>
+    ))}
+  </dl>
+}

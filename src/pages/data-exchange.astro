@@ -1,18 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import Status from '../components/Status.astro'
-import YesNo from '../components/YesNo.astro'
 import MapAndTabs from '../components/MapAndTabs.astro'
-import Card from '../components/Card.astro'
-import { DataExchanges, DataExchangeFlags, DataExchangeHeadlines, DataExchangeOtherText } from '../DataExchange.js'
-import DataIcon from '../components/icons/DataIcon.astro'
-import KeyLabel from '../components/KeyLabel.astro'
-import CodebookLabel from '../components/CodebookLabel.astro'
+import TypeIcon from '../components/TypeIcon.astro'
+import { DataExchanges } from '../DataExchange.js'
 import Footer from '../components/Footer.astro'
-import slug from 'slug'
 import CardSection from '../components/CardSection.astro'
+import ListingCard from '../components/ListingCard.astro'
 import StatusBar from '../components/StatusBar.astro'
-
 
 const items = DataExchanges
 const dpiType = 'data'
@@ -21,54 +15,8 @@ const dpiType = 'data'
 	<MapAndTabs countryCount={items.length} dpiType={dpiType} />
 	<StatusBar items={items} />
 	<CardSection title="Data Exchange Systems" items={items}>
-		<DataIcon class="inline" slot="icon" />
-		{ items.map(data => (
-			<Card>
-				<article>
-					<header class="text-zinc-600 pb-2 border-b border-zinc-100 mb-2 flex items-center">
-						<a class="text-base flex-grow px-1 hover:underline" href={`../${slug(data.Country)}`}>{data.Country}</a>
-						<div class="flex-none"><Status status={data['DPI Status']} title='DPI status' /></div>
-					</header>
-					<details>
-						<summary>
-							<span title="Name" class="font-semibold cursor-pointer">
-								{data['Name']}
-							</span>
-							<dl>
-							{ DataExchangeHeadlines.map(key => (
-								<dt><CodebookLabel key={key} dpiType={dpiType} class="inline-block"/></dt>
-								<dd class="truncate">{data[key]}</dd>
-							))}
-							</dl>
-						</summary>
-						<dl>
-							{ DataExchangeOtherText.map(key => (
-								<dt><CodebookLabel key={key} dpiType={dpiType} class="inline-block"/></dt>
-								<dd>{data[key]}</dd>
-							))}
-								<dt><KeyLabel>URL</KeyLabel></dt>
-								<dd>
-									{ data['URL'].startsWith('http')
-									? <a class="hover:underline" href={data['URL']}>{new URL(data['URL']).origin}</a>
-									: <span>{data['URL']}</span>
-									}
-								</dd>
-						</dl>
-						<dl class="py-2">
-							{ DataExchangeFlags.map(key => (
-								<div class="flex flex-row-reverse items-baseline justify-items-start ">
-									<dt class="grow pl-2">
-										<CodebookLabel key={key} dpiType={dpiType} /></dt>
-									<dd class="flex-none">
-										<YesNo status={data[key]} />
-									</dd>
-								</div>
-							))}
-						</dl>
-					</details>
-				</article>
-			</Card>
-		))}
+		<TypeIcon dpiType="data" class="inline" slot="icon" />
+		{ items.map(record => <ListingCard dpiType={dpiType} record={record} />) }
 	</CardSection>
 	<Footer />
 </Layout>

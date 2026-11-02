@@ -692,7 +692,14 @@
       "mediatype": "text/csv",
       "encoding": "utf-8",
       "schema": {
+        "missingValues": ["NA"],
         "primaryKey": ["code"],
+        "foreignKeys": [
+          {
+            "fields": ["parent"],
+            "reference": { "resource": "places", "fields": ["code"] }
+          }
+        ],
         "fields": [
           {
             "id": "code",
@@ -726,6 +733,24 @@
             "constraints": {
               "enum": ["UN M49", "ISO 3166-1", "Unicode CLDR"]
             }
+          },
+          {
+            "id": "iso3",
+            "name": "iso3",
+            "title": "ISO alpha-3",
+            "description": "The place's ISO 3166-1 alpha-3 code, from the same source as its code, for joining with other data. NA for regions, and for xk (Kosovo), which has none.",
+            "type": "string",
+            "constraints": {
+              "unique": true,
+              "pattern": "[A-Z]{3}"
+            }
+          },
+          {
+            "id": "parent",
+            "name": "parent",
+            "title": "Parent",
+            "description": "The region the place is in, from the UN M49 regions and sub-regions: africa, asia, europe, oceania, or for the Americas, lac (Latin America and the Caribbean) or noram (Northern America). Those are in americas or world. tw is in asia and xk in europe, as neither is in M49. Antarctica, which M49 puts in no region, is in world. NA for world.",
+            "type": "string"
           }
         ]
       }

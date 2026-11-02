@@ -111,24 +111,3 @@ export function toRecord<Id extends string> (schema: Schema<Id>, row: Record<str
   }
   return record
 }
-
-/** Labels of the fields of `kind` shown on cards, in display `order`. */
-export function displayTitles (schema: Schema, kind: 'flag' | 'text') {
-  const order = (field: Field) => 'order' in field.site ? field.site.order : 0
-  return schema.fields
-    .filter(field => field.site.kind === kind)
-    .sort((a, b) => order(a) - order(b))
-    .map(labelOf)
-}
-
-/** Labels of the text fields shown in a card's summary */
-export function headlineTitles (schema: Schema) {
-  const headlines = new Set(schema.fields.filter(f => 'headline' in f.site && f.site.headline).map(labelOf))
-  return displayTitles(schema, 'text').filter(title => headlines.has(title))
-}
-
-/** Labels of the text fields shown only when a card is expanded */
-export function otherTextTitles (schema: Schema) {
-  const headlines = new Set(headlineTitles(schema))
-  return displayTitles(schema, 'text').filter(title => !headlines.has(title))
-}

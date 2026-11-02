@@ -16,12 +16,7 @@ interface Common {
 export type SiteField = Common & (
   | { kind: Exclude<Kind, 'flag' | 'text'> }
   | { kind: 'flag', order: number }
-  | {
-    kind: 'text'
-    order: number
-    /** shown on a card before it is expanded */
-    headline?: true
-  }
+  | { kind: 'text', order: number }
 )
 
 export const siteFields = {
@@ -34,14 +29,14 @@ export const siteFields = {
     name: { label: 'Name', kind: 'name' },
     url: { kind: 'url', codebook: false },
     biometrics: { kind: 'flag', order: 11 },
-    status: { label: 'Status of implementation', kind: 'text', order: 2, headline: true },
+    status: { label: 'Status of implementation', kind: 'text', order: 2 },
     id_act: { kind: 'flag', order: 2 },
     regulation: { kind: 'flag', order: 3 },
     digital_auth: { kind: 'flag', order: 12 },
     kyc: { kind: 'flag', order: 13 },
     gov_portal_auth: { kind: 'flag', order: 14 },
     legal_status: { kind: 'flag', order: 4 },
-    governing_entity: { kind: 'text', order: 1, headline: true },
+    governing_entity: { kind: 'text', order: 1 },
     legal_redress: { kind: 'text', order: 3 },
     storage_sharing_terms: { kind: 'flag', order: 7 },
     data_protection_act: { kind: 'flag', order: 8 },
@@ -61,8 +56,8 @@ export const siteFields = {
     name: { label: 'Name', kind: 'name' },
     url: { kind: 'url', codebook: false },
     realtime_active: { label: 'Active real-time payment system present', kind: 'flag', order: 1 },
-    system_type: { kind: 'text', order: 1, headline: true },
-    status: { label: 'Status of implementation', kind: 'text', order: 2, headline: true },
+    system_type: { kind: 'text', order: 1 },
+    status: { label: 'Status of implementation', kind: 'text', order: 2 },
     national_regional: { kind: 'text', order: 4 },
     cross_border: { kind: 'flag', order: 2 },
     interoperability_policy: { kind: 'flag', order: 6 },
@@ -88,8 +83,8 @@ export const siteFields = {
     dpi_count: { kind: 'count', codebook: false },
     name: { label: 'Name', kind: 'name' },
     url: { kind: 'url', codebook: false },
-    status: { kind: 'text', order: 2, headline: true },
-    architecture: { kind: 'text', order: 1, headline: true },
+    status: { kind: 'text', order: 2 },
+    architecture: { kind: 'text', order: 1 },
     national_regional: { kind: 'text', order: 5 },
     sectoral: { kind: 'text', order: 6 },
     semantic_interoperability: { kind: 'flag', order: 1 },

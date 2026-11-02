@@ -1,9 +1,7 @@
 ---
 import Card from '../components/Card.astro'
 import Stat from '../components/Stat.astro'
-import PaymentIcon from '../components/icons/PaymentIcon.astro'
-import IdentityIcon from '../components/icons/IdentityIcon.astro'
-import DataIcon from '../components/icons/DataIcon.astro'
+import TypeIcon from '../components/TypeIcon.astro'
 import Map from '../components/Map.astro'
 import { IDs } from '../Identity'
 import { DataExchanges } from '../DataExchange'
@@ -24,24 +22,24 @@ const dpiDataExchangeCount = oneSystemPerCountry(DataExchanges).filter(row => ro
           DPI is far more prevalent than initially believed.
         </h2>
       </div>
-      <nav class="grid gap-3 px-2 font-mono pt-2 pb-8 max-w-md mx-auto" >
+      <nav class="grid gap-3 px-2 font-sans pt-2 pb-8 max-w-md mx-auto" >
         <Card class="bg-zinc-50" isActive={Astro.url.pathname === '/'}>
           <a class="flex items-center justify-between" href="/">
             <Stat number={dpiIdCount}>Digital ID System</Stat>
-            <IdentityIcon class="text-zinc-500" />
+            <TypeIcon dpiType="id" />
           </a>
         </Card>
         <Card class="bg-zinc-50" isActive={Astro.url.pathname === '/digital-payment/'}>
           <a class="flex items-center justify-between" href="/digital-payment/">
             <Stat number={dpiPaymentsCount}>Digital Payment System</Stat>
-            <PaymentIcon class="text-zinc-500" />
+            <TypeIcon dpiType="pay" />
           </a>
         </Card>
         <Card class="bg-zinc-50" isActive={Astro.url.pathname === '/data-exchange/'}>
           <a class="flex items-center justify-between" href="/data-exchange/">
             <Stat number={dpiDataExchangeCount}>
               Data Exchange System</Stat>
-            <DataIcon class="text-zinc-500" />
+            <TypeIcon dpiType="data" />
           </a>
         </Card>
       </nav>
@@ -58,7 +56,7 @@ const dpiDataExchangeCount = oneSystemPerCountry(DataExchanges).filter(row => ro
       </div>
     </section>
     <section class="flex-grow pb-8 lg:pb-0 lg:pl-4 xl:mx-auto">
-      <Map dpiType={dpiType} />
+      <Map dpiType={dpiType} legend />
     </section>
   </div>
 </div>

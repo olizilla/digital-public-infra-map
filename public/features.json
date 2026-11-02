@@ -7,157 +7,157 @@
         {
           "type": "Polygon",
           "arcs": [[0, 1, 2, 3, 4, 5]],
-          "id": "AFG",
+          "id": "af",
           "properties": { "name": "Afghanistan" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[6, 7, 8, 9]], [[10, 11, 12]]],
-          "id": "AGO",
+          "id": "ao",
           "properties": { "name": "Angola" }
         },
         {
           "type": "Polygon",
           "arcs": [[13, 14, 15, 16, 17]],
-          "id": "ALB",
+          "id": "al",
           "properties": { "name": "Albania" }
         },
         {
           "type": "Polygon",
           "arcs": [[18, 19, 20, 21, 22]],
-          "id": "ARE",
+          "id": "ae",
           "properties": { "name": "United Arab Emirates" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[23, 24]], [[25, 26, 27, 28, 29, 30]]],
-          "id": "ARG",
+          "id": "ar",
           "properties": { "name": "Argentina" }
         },
         {
           "type": "Polygon",
           "arcs": [[31, 32, 33, 34, 35]],
-          "id": "ARM",
+          "id": "am",
           "properties": { "name": "Armenia" }
         },
         {
           "type": "Polygon",
           "arcs": [[36]],
-          "id": "ATF",
+          "id": "tf",
           "properties": { "name": "French Southern Territories" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[37]], [[38]]],
-          "id": "AUS",
+          "id": "au",
           "properties": { "name": "Australia" }
         },
         {
           "type": "Polygon",
           "arcs": [[39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]],
-          "id": "AUT",
+          "id": "at",
           "properties": { "name": "Austria" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[50, -35]], [[51, 52, -33, 53, 54]]],
-          "id": "AZE",
+          "id": "az",
           "properties": { "name": "Azerbaijan" }
         },
         {
           "type": "Polygon",
           "arcs": [[55, 56, 57, 58]],
-          "id": "BDI",
+          "id": "bi",
           "properties": { "name": "Burundi" }
         },
         {
           "type": "Polygon",
           "arcs": [[59, 60, 61, 62, 63]],
-          "id": "BEL",
+          "id": "be",
           "properties": { "name": "Belgium" }
         },
         {
           "type": "Polygon",
           "arcs": [[64, 65, 66, 67, 68]],
-          "id": "BEN",
+          "id": "bj",
           "properties": { "name": "Benin" }
         },
         {
           "type": "Polygon",
           "arcs": [[69, 70, 71, -67, 72, 73]],
-          "id": "BFA",
+          "id": "bf",
           "properties": { "name": "Burkina Faso" }
         },
         {
           "type": "Polygon",
           "arcs": [[74, 75, 76]],
-          "id": "BGD",
+          "id": "bd",
           "properties": { "name": "Bangladesh" }
         },
         {
           "type": "Polygon",
           "arcs": [[77, 78, 79, 80, 81, 82]],
-          "id": "BGR",
+          "id": "bg",
           "properties": { "name": "Bulgaria" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[83]], [[84]], [[85]]],
-          "id": "BHS",
+          "id": "bs",
           "properties": { "name": "Bahamas" }
         },
         {
           "type": "Polygon",
           "arcs": [[86, 87, 88, 89]],
-          "id": "BIH",
+          "id": "ba",
           "properties": { "name": "Bosnia and Herzegovina" }
         },
         {
           "type": "Polygon",
           "arcs": [[90, 91, 92, 93, 94, 95, 96, 97]],
-          "id": "BLR",
+          "id": "by",
           "properties": { "name": "Belarus" }
         },
         {
           "type": "Polygon",
           "arcs": [[98, 99, 100]],
-          "id": "BLZ",
+          "id": "bz",
           "properties": { "name": "Belize" }
         },
         {
           "type": "Polygon",
           "arcs": [[101, 102, 103, 104, -31]],
-          "id": "BOL",
+          "id": "bo",
           "properties": { "name": "Bolivia" }
         },
         {
           "type": "Polygon",
           "arcs": [[-27, 105, -104, 106, 107, 108, 109, 110, 111, 112, 113]],
-          "id": "BRA",
+          "id": "br",
           "properties": { "name": "Brazil" }
         },
         {
           "type": "Polygon",
           "arcs": [[114, 115]],
-          "id": "BRN",
+          "id": "bn",
           "properties": { "name": "Brunei" }
         },
         {
           "type": "Polygon",
           "arcs": [[116, 117]],
-          "id": "BTN",
+          "id": "bt",
           "properties": { "name": "Bhutan" }
         },
         {
           "type": "Polygon",
           "arcs": [[118, 119, 120, 121]],
-          "id": "BWA",
+          "id": "bw",
           "properties": { "name": "Botswana" }
         },
         {
           "type": "Polygon",
           "arcs": [[122, 123, 124, 125, 126, 127, 128]],
-          "id": "CAF",
+          "id": "cf",
           "properties": { "name": "Central African Republic" }
         },
         {
@@ -194,19 +194,19 @@
             [[162]],
             [[163]]
           ],
-          "id": "CAN",
+          "id": "ca",
           "properties": { "name": "Canada" }
         },
         {
           "type": "Polygon",
           "arcs": [[-47, 164, 165, 166, -43, 167, 168, 169]],
-          "id": "CHE",
+          "id": "ch",
           "properties": { "name": "Switzerland" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[-24, 170]], [[-30, 171, 172, -102]]],
-          "id": "CHL",
+          "id": "cl",
           "properties": { "name": "Chile" }
         },
         {
@@ -249,19 +249,19 @@
               ]
             ]
           ],
-          "id": "CHN",
+          "id": "cn",
           "properties": { "name": "China" }
         },
         {
           "type": "Polygon",
           "arcs": [[203, 204, 205, 206, -70, 207]],
-          "id": "CIV",
+          "id": "ci",
           "properties": { "name": "Cote d'Ivoire" }
         },
         {
           "type": "Polygon",
           "arcs": [[208, 209, 210, 211, 212, 213, 214, -129, 215]],
-          "id": "CMR",
+          "id": "cm",
           "properties": { "name": "Cameroon" }
         },
         {
@@ -285,109 +285,109 @@
               226
             ]
           ],
-          "id": "COD",
+          "id": "cd",
           "properties": { "name": "Democratic Republic of Congo" }
         },
         {
           "type": "Polygon",
           "arcs": [[-12, 227, 228, -216, -128, -225]],
-          "id": "COG",
+          "id": "cg",
           "properties": { "name": "Congo" }
         },
         {
           "type": "Polygon",
           "arcs": [[229, 230, 231, 232, 233, -108, 234]],
-          "id": "COL",
+          "id": "co",
           "properties": { "name": "Colombia" }
         },
         {
           "type": "Polygon",
           "arcs": [[235, 236, 237, 238]],
-          "id": "CRI",
+          "id": "cr",
           "properties": { "name": "Costa Rica" }
         },
         {
           "type": "Polygon",
           "arcs": [[239]],
-          "id": "CUB",
+          "id": "cu",
           "properties": { "name": "Cuba" }
         },
         {
           "type": "Polygon",
           "arcs": [[240]],
-          "id": "CYP",
+          "id": "cy",
           "properties": { "name": "Cyprus" }
         },
         {
           "type": "Polygon",
           "arcs": [[-49, 241, 242, 243]],
-          "id": "CZE",
+          "id": "cz",
           "properties": { "name": "Czechia" }
         },
         {
           "type": "Polygon",
           "arcs": [[244, 245, -242, -48, -170, 246, 247, -61, 248, 249, 250]],
-          "id": "DEU",
+          "id": "de",
           "properties": { "name": "Germany" }
         },
         {
           "type": "Polygon",
           "arcs": [[251, 252, 253, 254]],
-          "id": "DJI",
+          "id": "dj",
           "properties": { "name": "Djibouti" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[255]], [[-251, 256]]],
-          "id": "DNK",
+          "id": "dk",
           "properties": { "name": "Denmark" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[257]]],
-          "id": "GRL",
+          "id": "gl",
           "properties": { "name": "Greenland" }
         },
         {
           "type": "Polygon",
           "arcs": [[258, 259]],
-          "id": "DOM",
+          "id": "do",
           "properties": { "name": "Dominican Republic" }
         },
         {
           "type": "Polygon",
           "arcs": [[260, 261, 262, 263, 264, 265, 266, 267]],
-          "id": "DZA",
+          "id": "dz",
           "properties": { "name": "Algeria" }
         },
         {
           "type": "Polygon",
           "arcs": [[268, -230, 269]],
-          "id": "ECU",
+          "id": "ec",
           "properties": { "name": "Ecuador" }
         },
         {
           "type": "Polygon",
           "arcs": [[270, 271, 272]],
-          "id": "EGY",
+          "id": "eg",
           "properties": { "name": "Egypt" }
         },
         {
           "type": "Polygon",
           "arcs": [[273, 274, 275, 276, 277, 278, 279, -255]],
-          "id": "ERI",
+          "id": "er",
           "properties": { "name": "Eritrea" }
         },
         {
           "type": "Polygon",
           "arcs": [[280, 281, 282, 283]],
-          "id": "ESP",
+          "id": "es",
           "properties": { "name": "Spain" }
         },
         {
           "type": "Polygon",
           "arcs": [[284, 285, 286, 287]],
-          "id": "EST",
+          "id": "ee",
           "properties": { "name": "Estonia" }
         },
         {
@@ -395,121 +395,121 @@
           "arcs": [
             [288, 289, -274, -254, 290, 291, 292, 293, 294, 295, 296, 297, -277]
           ],
-          "id": "ETH",
+          "id": "et",
           "properties": { "name": "Ethiopia" }
         },
         {
           "type": "Polygon",
           "arcs": [[298, 299, 300, 301]],
-          "id": "FIN",
+          "id": "fi",
           "properties": { "name": "Finland" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[302]], [[303]], [[304]]],
-          "id": "FJI",
+          "id": "fj",
           "properties": { "name": "Fiji" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[305]], [[306, -247, -169, 307, 308, -282, 309, -63]]],
-          "id": "FRA",
+          "id": "fr",
           "properties": { "name": "France" }
         },
         {
           "type": "Polygon",
           "arcs": [[310, 311, 312, -112]],
-          "id": "GUF",
+          "id": "gf",
           "properties": { "name": "French Guiana" }
         },
         {
           "type": "Polygon",
           "arcs": [[313, 314, -209, -229]],
-          "id": "GAB",
+          "id": "ga",
           "properties": { "name": "Gabon" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[315, 316]], [[317]]],
-          "id": "GBR",
+          "id": "gb",
           "properties": { "name": "United Kingdom" }
         },
         {
           "type": "Polygon",
           "arcs": [[318, 319, 320, 321, 322, -54, -32, 323]],
-          "id": "GEO",
+          "id": "ge",
           "properties": { "name": "Georgia" }
         },
         {
           "type": "Polygon",
           "arcs": [[324, -208, -74, 325]],
-          "id": "GHA",
+          "id": "gh",
           "properties": { "name": "Ghana" }
         },
         {
           "type": "Polygon",
           "arcs": [[326, 327, 328, 329, 330, 331, -206]],
-          "id": "GIN",
+          "id": "gn",
           "properties": { "name": "Guinea" }
         },
         {
           "type": "Polygon",
           "arcs": [[332, 333]],
-          "id": "GMB",
+          "id": "gm",
           "properties": { "name": "Gambia" }
         },
         {
           "type": "Polygon",
           "arcs": [[334, 335, -330]],
-          "id": "GNB",
+          "id": "gw",
           "properties": { "name": "Guinea-Bissau" }
         },
         {
           "type": "Polygon",
           "arcs": [[336, -210, -315]],
-          "id": "GNQ",
+          "id": "gq",
           "properties": { "name": "Equatorial Guinea" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[337]], [[338, -14, 339, -81, 340]]],
-          "id": "GRC",
+          "id": "gr",
           "properties": { "name": "Greece" }
         },
         {
           "type": "Polygon",
           "arcs": [[341, 342, -101, 343, 344, 345]],
-          "id": "GTM",
+          "id": "gt",
           "properties": { "name": "Guatemala" }
         },
         {
           "type": "Polygon",
           "arcs": [[346, 347, -110, 348]],
-          "id": "GUY",
+          "id": "gy",
           "properties": { "name": "Guyana" }
         },
         {
           "type": "Polygon",
           "arcs": [[349, 350, -345, 351, 352]],
-          "id": "HND",
+          "id": "hn",
           "properties": { "name": "Honduras" }
         },
         {
           "type": "Polygon",
           "arcs": [[353, 354, 355, -90, 356, 357, 358]],
-          "id": "HRV",
+          "id": "hr",
           "properties": { "name": "Croatia" }
         },
         {
           "type": "Polygon",
           "arcs": [[-260, 359]],
-          "id": "HTI",
+          "id": "ht",
           "properties": { "name": "Haiti" }
         },
         {
           "type": "Polygon",
           "arcs": [[-40, 360, 361, 362, 363, 364, -359, 365]],
-          "id": "HUN",
+          "id": "hu",
           "properties": { "name": "Hungary" }
         },
         {
@@ -529,67 +529,67 @@
             [[379, 380]],
             [[381]]
           ],
-          "id": "IDN",
+          "id": "id",
           "properties": { "name": "Indonesia" }
         },
         {
           "type": "Polygon",
           "arcs": [[-191, 382, -189, -117, -188, 383, -77, 384, 385]],
-          "id": "IND",
+          "id": "in",
           "properties": { "name": "India" }
         },
         {
           "type": "Polygon",
           "arcs": [[386, -316]],
-          "id": "IRL",
+          "id": "ie",
           "properties": { "name": "Ireland" }
         },
         {
           "type": "Polygon",
           "arcs": [[387, -6, 388, 389, 390, 391, 392, -51, -34, -53, 393]],
-          "id": "IRN",
+          "id": "ir",
           "properties": { "name": "Iran" }
         },
         {
           "type": "Polygon",
           "arcs": [[-391, 394, 395, 396, 397, 398, 399, 400]],
-          "id": "IRQ",
+          "id": "iq",
           "properties": { "name": "Iraq" }
         },
         {
           "type": "Polygon",
           "arcs": [[401]],
-          "id": "ISL",
+          "id": "is",
           "properties": { "name": "Iceland" }
         },
         {
           "type": "Polygon",
           "arcs": [[402, 403, 404, 405, 406, 407]],
-          "id": "ISR",
+          "id": "il",
           "properties": { "name": "Israel" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[408]], [[409]], [[410, 411, -308, -168, -42]]],
-          "id": "ITA",
+          "id": "it",
           "properties": { "name": "Italy" }
         },
         {
           "type": "Polygon",
           "arcs": [[412]],
-          "id": "JAM",
+          "id": "jm",
           "properties": { "name": "Jamaica" }
         },
         {
           "type": "Polygon",
           "arcs": [[-403, 413, -398, 414, 415, -405, 416]],
-          "id": "JOR",
+          "id": "jo",
           "properties": { "name": "Jordan" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[417]], [[418]], [[419]]],
-          "id": "JPN",
+          "id": "jp",
           "properties": { "name": "Japan" }
         },
         {
@@ -613,187 +613,187 @@
               433
             ]
           ],
-          "id": "KAZ",
+          "id": "kz",
           "properties": { "name": "Kazakhstan" }
         },
         {
           "type": "Polygon",
           "arcs": [[434, 435, 436, 437, -295, 438]],
-          "id": "KEN",
+          "id": "ke",
           "properties": { "name": "Kenya" }
         },
         {
           "type": "Polygon",
           "arcs": [[-434, -194, 439, 440]],
-          "id": "KGZ",
+          "id": "kg",
           "properties": { "name": "Kyrgyzstan" }
         },
         {
           "type": "Polygon",
           "arcs": [[441, 442, 443, 444]],
-          "id": "KHM",
+          "id": "kh",
           "properties": { "name": "Cambodia" }
         },
         {
           "type": "Polygon",
           "arcs": [[445, 446]],
-          "id": "KOR",
+          "id": "kr",
           "properties": { "name": "South Korea" }
         },
         {
           "type": "Polygon",
           "arcs": [[447, 448, 449, 450, 451]],
-          "id": "XXK",
+          "id": "xk",
           "properties": { "name": "Kosovo" }
         },
         {
           "type": "Polygon",
           "arcs": [[452, 453, -396]],
-          "id": "KWT",
+          "id": "kw",
           "properties": { "name": "Kuwait" }
         },
         {
           "type": "Polygon",
           "arcs": [[454, 455, -186, 456, -443]],
-          "id": "LAO",
+          "id": "la",
           "properties": { "name": "Laos" }
         },
         {
           "type": "Polygon",
           "arcs": [[-407, 457, 458]],
-          "id": "LBN",
+          "id": "lb",
           "properties": { "name": "Lebanon" }
         },
         {
           "type": "Polygon",
           "arcs": [[459, 460, -327, -205]],
-          "id": "LBR",
+          "id": "lr",
           "properties": { "name": "Liberia" }
         },
         {
           "type": "Polygon",
           "arcs": [[461, -268, 462, 463, -272, 464, 465]],
-          "id": "LBY",
+          "id": "ly",
           "properties": { "name": "Libya" }
         },
         {
           "type": "Polygon",
           "arcs": [[466]],
-          "id": "LKA",
+          "id": "lk",
           "properties": { "name": "Sri Lanka" }
         },
         {
           "type": "Polygon",
           "arcs": [[467]],
-          "id": "LSO",
+          "id": "ls",
           "properties": { "name": "Lesotho" }
         },
         {
           "type": "Polygon",
           "arcs": [[468, 469, 470, -91, 471]],
-          "id": "LTU",
+          "id": "lt",
           "properties": { "name": "Lithuania" }
         },
         {
           "type": "Polygon",
           "arcs": [[-248, -307, -62]],
-          "id": "LUX",
+          "id": "lu",
           "properties": { "name": "Luxembourg" }
         },
         {
           "type": "Polygon",
           "arcs": [[472, -288, 473, -92, -471]],
-          "id": "LVA",
+          "id": "lv",
           "properties": { "name": "Latvia" }
         },
         {
           "type": "Polygon",
           "arcs": [[-265, 474, 475]],
-          "id": "MAR",
+          "id": "ma",
           "properties": { "name": "Morocco" }
         },
         {
           "type": "Polygon",
           "arcs": [[476, 477]],
-          "id": "MDA",
+          "id": "md",
           "properties": { "name": "Moldova" }
         },
         {
           "type": "Polygon",
           "arcs": [[478]],
-          "id": "MDG",
+          "id": "mg",
           "properties": { "name": "Madagascar" }
         },
         {
           "type": "Polygon",
           "arcs": [[-99, -343, 479, 480, 481]],
-          "id": "MEX",
+          "id": "mx",
           "properties": { "name": "Mexico" }
         },
         {
           "type": "Polygon",
           "arcs": [[-452, 482, -82, -340, 483]],
-          "id": "MKD",
+          "id": "mk",
           "properties": { "name": "North Macedonia" }
         },
         {
           "type": "Polygon",
           "arcs": [[484, -262, 485, -71, -207, -332, 486]],
-          "id": "MLI",
+          "id": "ml",
           "properties": { "name": "Mali" }
         },
         {
           "type": "Polygon",
           "arcs": [[487, -75, -384, -187, -456, 488]],
-          "id": "MMR",
+          "id": "mm",
           "properties": { "name": "Myanmar" }
         },
         {
           "type": "Polygon",
           "arcs": [[489, -89, 490, -450, -16]],
-          "id": "MNE",
+          "id": "me",
           "properties": { "name": "Montenegro" }
         },
         {
           "type": "Polygon",
           "arcs": [[491, 492, 493, 494, 495, 496, 497, 498, -197]],
-          "id": "MNG",
+          "id": "mn",
           "properties": { "name": "Mongolia" }
         },
         {
           "type": "Polygon",
           "arcs": [[499, 500, 501, 502, 503, 504, 505, 506, 507]],
-          "id": "MOZ",
+          "id": "mz",
           "properties": { "name": "Mozambique" }
         },
         {
           "type": "Polygon",
           "arcs": [[508, 509, 510, -263, -485]],
-          "id": "MRT",
+          "id": "mr",
           "properties": { "name": "Mauritania" }
         },
         {
           "type": "Polygon",
           "arcs": [[-508, 511, 512, 513]],
-          "id": "MWI",
+          "id": "mw",
           "properties": { "name": "Malawi" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[514, 515, 516, 517]], [[-380, 518, -116, 519]]],
-          "id": "MYS",
+          "id": "my",
           "properties": { "name": "Malaysia" }
         },
         {
           "type": "Polygon",
           "arcs": [[520, -8, 521, -120, 522]],
-          "id": "NAM",
+          "id": "na",
           "properties": { "name": "Namibia" }
         },
         {
           "type": "Polygon",
           "arcs": [[523]],
-          "id": "NCL",
+          "id": "nc",
           "properties": { "name": "New Caledonia" }
         },
         {
@@ -801,67 +801,67 @@
           "arcs": [
             [-72, -486, -261, -462, 524, 525, 526, 527, 528, -213, 529, -68]
           ],
-          "id": "NER",
+          "id": "ne",
           "properties": { "name": "Niger" }
         },
         {
           "type": "Polygon",
           "arcs": [[530, -69, -530, -212]],
-          "id": "NGA",
+          "id": "ng",
           "properties": { "name": "Nigeria" }
         },
         {
           "type": "Polygon",
           "arcs": [[531, -353, 532, -237]],
-          "id": "NIC",
+          "id": "ni",
           "properties": { "name": "Nicaragua" }
         },
         {
           "type": "Polygon",
           "arcs": [[-249, -60, 533]],
-          "id": "NLD",
+          "id": "nl",
           "properties": { "name": "Netherlands" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[-302, 534, 535]], [[536]], [[537]], [[538]]],
-          "id": "NOR",
+          "id": "no",
           "properties": { "name": "Norway" }
         },
         {
           "type": "Polygon",
           "arcs": [[-383, -190]],
-          "id": "NPL",
+          "id": "np",
           "properties": { "name": "Nepal" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[539]], [[540]]],
-          "id": "NZL",
+          "id": "nz",
           "properties": { "name": "New Zealand" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[541, 542, -22, 543]], [[-20, 544]]],
-          "id": "OMN",
+          "id": "om",
           "properties": { "name": "Oman" }
         },
         {
           "type": "Polygon",
           "arcs": [[-192, -386, 545, -389, -5]],
-          "id": "PAK",
+          "id": "pk",
           "properties": { "name": "Pakistan" }
         },
         {
           "type": "Polygon",
           "arcs": [[546, -239, 547, -232]],
-          "id": "PAN",
+          "id": "pa",
           "properties": { "name": "Panama" }
         },
         {
           "type": "Polygon",
           "arcs": [[-173, 548, -270, -235, -107, -103]],
-          "id": "PER",
+          "id": "pe",
           "properties": { "name": "Peru" }
         },
         {
@@ -875,55 +875,55 @@
             [[554]],
             [[555]]
           ],
-          "id": "PHL",
+          "id": "ph",
           "properties": { "name": "Philippines" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[556]], [[557]], [[-376, 558]], [[559]]],
-          "id": "PNG",
+          "id": "pg",
           "properties": { "name": "Papua New Guinea" }
         },
         {
           "type": "Polygon",
           "arcs": [[-246, 560, 561, -472, -98, 562, 563, -243]],
-          "id": "POL",
+          "id": "pl",
           "properties": { "name": "Poland" }
         },
         {
           "type": "Polygon",
           "arcs": [[564]],
-          "id": "PRI",
+          "id": "pr",
           "properties": { "name": "Puerto Rico" }
         },
         {
           "type": "Polygon",
           "arcs": [[565, -447, 566, -183]],
-          "id": "PRK",
+          "id": "kp",
           "properties": { "name": "North Korea" }
         },
         {
           "type": "Polygon",
           "arcs": [[-284, 567]],
-          "id": "PRT",
+          "id": "pt",
           "properties": { "name": "Portugal" }
         },
         {
           "type": "Polygon",
           "arcs": [[-105, -106, -26]],
-          "id": "PRY",
+          "id": "py",
           "properties": { "name": "Paraguay" }
         },
         {
           "type": "Polygon",
           "arcs": [[568, 569]],
-          "id": "QAT",
+          "id": "qa",
           "properties": { "name": "Qatar" }
         },
         {
           "type": "Polygon",
           "arcs": [[570, -478, 571, 572, -78, 573, -363]],
-          "id": "ROU",
+          "id": "ro",
           "properties": { "name": "Romania" }
         },
         {
@@ -1002,25 +1002,25 @@
             [[617]],
             [[618]]
           ],
-          "id": "RUS",
+          "id": "ru",
           "properties": { "name": "Russia" }
         },
         {
           "type": "Polygon",
           "arcs": [[619, 620, -57, -220, 621]],
-          "id": "RWA",
+          "id": "rw",
           "properties": { "name": "Rwanda" }
         },
         {
           "type": "Polygon",
           "arcs": [[-475, -264, -511, 622]],
-          "id": "ESH",
+          "id": "eh",
           "properties": { "name": "Western Sahara" }
         },
         {
           "type": "Polygon",
           "arcs": [[623, -415, -397, -454, 624, -570, 625, -23, -543, 626]],
-          "id": "SAU",
+          "id": "sa",
           "properties": { "name": "Saudi Arabia" }
         },
         {
@@ -1028,133 +1028,133 @@
           "arcs": [
             [627, 628, -124, 629, -465, -271, 630, -279, 631, -298, 632]
           ],
-          "id": "SDN",
+          "id": "sd",
           "properties": { "name": "Sudan" }
         },
         {
           "type": "Polygon",
           "arcs": [[633, -296, -438, 634, 635, -226, -126, 636, -628]],
-          "id": "SSD",
+          "id": "ss",
           "properties": { "name": "South Sudan" }
         },
         {
           "type": "Polygon",
           "arcs": [[637, -509, -487, -331, -336, 638, -334]],
-          "id": "SEN",
+          "id": "sn",
           "properties": { "name": "Senegal" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[639]], [[640]], [[641]], [[642]], [[643]]],
-          "id": "SLB",
+          "id": "sb",
           "properties": { "name": "Solomon Islands" }
         },
         {
           "type": "Polygon",
           "arcs": [[644, -328, -461]],
-          "id": "SLE",
+          "id": "sl",
           "properties": { "name": "Sierra Leone" }
         },
         {
           "type": "Polygon",
           "arcs": [[645, -346, -351]],
-          "id": "SLV",
+          "id": "sv",
           "properties": { "name": "El Salvador" }
         },
         {
           "type": "Polygon",
           "arcs": [[646, 647, -291, -253, 648, -439, -294]],
-          "id": "SOM",
+          "id": "so",
           "properties": { "name": "Somalia" }
         },
         {
           "type": "Polygon",
           "arcs": [[-83, -483, -451, -491, -88, 649, -355, 650, -364, -574]],
-          "id": "SRB",
+          "id": "rs",
           "properties": { "name": "Serbia" }
         },
         {
           "type": "Polygon",
           "arcs": [[651, -312, 652, -111, -348]],
-          "id": "SUR",
+          "id": "sr",
           "properties": { "name": "Suriname" }
         },
         {
           "type": "Polygon",
           "arcs": [[-564, 653, -361, -50, -244]],
-          "id": "SVK",
+          "id": "sk",
           "properties": { "name": "Slovakia" }
         },
         {
           "type": "Polygon",
           "arcs": [[-41, -366, -358, 654, -411]],
-          "id": "SVN",
+          "id": "si",
           "properties": { "name": "Slovenia" }
         },
         {
           "type": "Polygon",
           "arcs": [[-535, -301, 655]],
-          "id": "SWE",
+          "id": "se",
           "properties": { "name": "Sweden" }
         },
         {
           "type": "Polygon",
           "arcs": [[656, -504]],
-          "id": "SWZ",
+          "id": "sz",
           "properties": { "name": "Eswatini" }
         },
         {
           "type": "Polygon",
           "arcs": [[-414, -408, -459, 657, 658, -399]],
-          "id": "SYR",
+          "id": "sy",
           "properties": { "name": "Syria" }
         },
         {
           "type": "Polygon",
           "arcs": [[-529, 659, -527, 660, -525, -466, -630, -123, -215, 661]],
-          "id": "TCD",
+          "id": "td",
           "properties": { "name": "Chad" }
         },
         {
           "type": "Polygon",
           "arcs": [[662, -326, -73, -66]],
-          "id": "TGO",
+          "id": "tg",
           "properties": { "name": "Togo" }
         },
         {
           "type": "Polygon",
           "arcs": [[663, -518, 664, -489, -455, -442]],
-          "id": "THA",
+          "id": "th",
           "properties": { "name": "Thailand" }
         },
         {
           "type": "Polygon",
           "arcs": [[-440, -193, -3, 665]],
-          "id": "TJK",
+          "id": "tj",
           "properties": { "name": "Tajikistan" }
         },
         {
           "type": "Polygon",
           "arcs": [[-388, 666, -422, 667, -1]],
-          "id": "TKM",
+          "id": "tm",
           "properties": { "name": "Turkmenistan" }
         },
         {
           "type": "Polygon",
           "arcs": [[668, -368]],
-          "id": "TLS",
+          "id": "tl",
           "properties": { "name": "Timor" }
         },
         {
           "type": "Polygon",
           "arcs": [[669]],
-          "id": "TTO",
+          "id": "tt",
           "properties": { "name": "Trinidad and Tobago" }
         },
         {
           "type": "Polygon",
           "arcs": [[-267, 670, -463]],
-          "id": "TUN",
+          "id": "tn",
           "properties": { "name": "Tunisia" }
         },
         {
@@ -1163,13 +1163,13 @@
             [[-324, -36, -393, 671, -400, -659, 672]],
             [[-341, -80, 673]]
           ],
-          "id": "TUR",
+          "id": "tr",
           "properties": { "name": "Turkey" }
         },
         {
           "type": "Polygon",
           "arcs": [[674]],
-          "id": "TWN",
+          "id": "tw",
           "properties": { "name": "Taiwan" }
         },
         {
@@ -1191,13 +1191,13 @@
               682
             ]
           ],
-          "id": "TZA",
+          "id": "tz",
           "properties": { "name": "Tanzania" }
         },
         {
           "type": "Polygon",
           "arcs": [[-622, -219, 683, -217, 684, -635, -437, -683]],
-          "id": "UGA",
+          "id": "ug",
           "properties": { "name": "Uganda" }
         },
         {
@@ -1222,13 +1222,13 @@
               -97
             ]
           ],
-          "id": "UKR",
+          "id": "ua",
           "properties": { "name": "Ukraine" }
         },
         {
           "type": "Polygon",
           "arcs": [[-114, 691, -28]],
-          "id": "URY",
+          "id": "uy",
           "properties": { "name": "Uruguay" }
         },
         {
@@ -1245,61 +1245,61 @@
             [[701]],
             [[-144, 702, -142, 703]]
           ],
-          "id": "USA",
+          "id": "us",
           "properties": { "name": "United States" }
         },
         {
           "type": "Polygon",
           "arcs": [[-668, -421, -441, -666, -2]],
-          "id": "UZB",
+          "id": "uz",
           "properties": { "name": "Uzbekistan" }
         },
         {
           "type": "Polygon",
           "arcs": [[704, -349, -109, -234]],
-          "id": "VEN",
+          "id": "ve",
           "properties": { "name": "Venezuela" }
         },
         {
           "type": "Polygon",
           "arcs": [[705, -444, -457, -185]],
-          "id": "VNM",
+          "id": "vn",
           "properties": { "name": "Vietnam" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[706]], [[707]]],
-          "id": "VUT",
+          "id": "vu",
           "properties": { "name": "Vanuatu" }
         },
         {
           "type": "Polygon",
           "arcs": [[-417, -404]],
-          "id": "PSX",
+          "id": "ps",
           "properties": { "name": "West Bank" }
         },
         {
           "type": "Polygon",
           "arcs": [[708, -627, -542]],
-          "id": "YEM",
+          "id": "ye",
           "properties": { "name": "Yemen" }
         },
         {
           "type": "Polygon",
           "arcs": [[-523, -119, 709, -505, -657, -503, 710], [-468]],
-          "id": "ZAF",
+          "id": "za",
           "properties": { "name": "South Africa" }
         },
         {
           "type": "Polygon",
           "arcs": [[-512, -507, 711, -121, -522, -7, -223, 712, -680]],
-          "id": "ZMB",
+          "id": "zm",
           "properties": { "name": "Zambia" }
         },
         {
           "type": "Polygon",
           "arcs": [[-710, -122, -712, -506]],
-          "id": "ZWE",
+          "id": "zw",
           "properties": { "name": "Zimbabwe" }
         },
         {
@@ -1314,79 +1314,79 @@
             [[719]],
             [[720]]
           ],
-          "id": "CPV",
+          "id": "cv",
           "properties": { "name": "Cape Verde" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[721]], [[722]], [[723]]],
-          "id": "COM",
+          "id": "km",
           "properties": { "name": "Comoros" }
         },
         {
           "type": "Polygon",
           "arcs": [[724]],
-          "id": "MUS",
+          "id": "mu",
           "properties": { "name": "Mauritius" }
         },
         {
           "type": "Polygon",
           "arcs": [[725]],
-          "id": "SYC",
+          "id": "sc",
           "properties": { "name": "Seychelles" }
         },
         {
           "type": "Polygon",
           "arcs": [[726]],
-          "id": "BHR",
+          "id": "bh",
           "properties": { "name": "Bahrain" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[727]], [[728]]],
-          "id": "MDV",
+          "id": "mv",
           "properties": { "name": "Maldives" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[729]], [[730]]],
-          "id": "MHL",
+          "id": "mh",
           "properties": { "name": "Marshall Islands" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[731]], [[732]], [[733]], [[734]], [[735]]],
-          "id": "FSM",
+          "id": "fm",
           "properties": { "name": "Micronesia (country)" }
         },
         {
           "type": "Polygon",
           "arcs": [[736]],
-          "id": "NRU",
+          "id": "nr",
           "properties": { "name": "Nauru" }
         },
         {
           "type": "Polygon",
           "arcs": [[737]],
-          "id": "PLW",
+          "id": "pw",
           "properties": { "name": "Palau" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[738]], [[739]]],
-          "id": "WSM",
+          "id": "ws",
           "properties": { "name": "Samoa" }
         },
         {
           "type": "Polygon",
           "arcs": [[515, 740]],
-          "id": "SGP",
+          "id": "sg",
           "properties": { "name": "Singapore" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[741]], [[742]], [[743]]],
-          "id": "TON",
+          "id": "to",
           "properties": { "name": "Tonga" }
         },
         {
@@ -1400,92 +1400,160 @@
             [[749]],
             [[750]]
           ],
-          "id": "TUV",
+          "id": "tv",
           "properties": { "name": "Tuvalu" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[751]], [[752]]],
-          "id": "ATG",
+          "id": "ag",
           "properties": { "name": "Antigua and Barbuda" }
         },
         {
           "type": "Polygon",
           "arcs": [[753]],
-          "id": "BRB",
+          "id": "bb",
           "properties": { "name": "Barbados" }
         },
         {
           "type": "Polygon",
           "arcs": [[754]],
-          "id": "DMA",
+          "id": "dm",
           "properties": { "name": "Dominica" }
         },
         {
           "type": "Polygon",
           "arcs": [[755]],
-          "id": "GRD",
+          "id": "gd",
           "properties": { "name": "Grenada" }
         },
         {
           "type": "MultiPolygon",
           "arcs": [[[756]], [[757]]],
-          "id": "KNA",
+          "id": "kn",
           "properties": { "name": "Saint Kitts and Nevis" }
         },
         {
           "type": "Polygon",
           "arcs": [[758]],
-          "id": "LCA",
+          "id": "lc",
           "properties": { "name": "Saint Lucia" }
         },
         {
           "type": "Polygon",
           "arcs": [[759]],
-          "id": "VCT",
+          "id": "vc",
           "properties": { "name": "Saint Vincent and the Grenadines" }
         },
         {
           "type": "Polygon",
           "arcs": [[760]],
-          "id": "AND",
+          "id": "ad",
           "properties": { "name": "Andorra" }
         },
         {
           "type": "Polygon",
           "arcs": [[-45, 761, -166, 762]],
-          "id": "LIE",
+          "id": "li",
           "properties": { "name": "Liechtenstein" }
         },
         {
           "type": "Polygon",
           "arcs": [[763]],
-          "id": "MLT",
+          "id": "mt",
           "properties": { "name": "Malta" }
         },
         {
           "type": "Polygon",
           "arcs": [[764]],
-          "id": "MCO",
+          "id": "mc",
           "properties": { "name": "Monaco" }
         },
         {
           "type": "Polygon",
           "arcs": [[765]],
-          "id": "SMR",
+          "id": "sm",
           "properties": { "name": "San Marino" }
         },
         {
           "type": "Polygon",
           "arcs": [[766]],
-          "id": "KIR",
+          "id": "ki",
           "properties": { "name": "Kiribati" }
         },
         {
           "type": "Polygon",
           "arcs": [[767]],
-          "id": "STP",
+          "id": "st",
           "properties": { "name": "Sao Tome and Principe" }
+        },
+        {
+          "type": "Point",
+          "coordinates": [-62.83, 17.9],
+          "id": "bl",
+          "properties": { "name": "Saint Barthélemy" }
+        },
+        {
+          "type": "Point",
+          "coordinates": [-68.26, 12.18],
+          "id": "bq",
+          "properties": { "name": "Bonaire, Sint Eustatius and Saba" }
+        },
+        {
+          "type": "Point",
+          "coordinates": [-68.99, 12.17],
+          "id": "cw",
+          "properties": { "name": "Curaçao" }
+        },
+        {
+          "type": "Point",
+          "coordinates": [-6.91, 61.89],
+          "id": "fo",
+          "properties": { "name": "Faroe Islands" }
+        },
+        {
+          "type": "Point",
+          "coordinates": [-61.55, 16.25],
+          "id": "gp",
+          "properties": { "name": "Guadeloupe" }
+        },
+        {
+          "type": "Point",
+          "coordinates": [114.17, 22.32],
+          "id": "hk",
+          "properties": {
+            "name": "China, Hong Kong Special Administrative Region"
+          }
+        },
+        {
+          "type": "Point",
+          "coordinates": [-4.55, 54.24],
+          "id": "im",
+          "properties": { "name": "Isle of Man" }
+        },
+        {
+          "type": "Point",
+          "coordinates": [72.42, -7.33],
+          "id": "io",
+          "properties": { "name": "British Indian Ocean Territory" }
+        },
+        {
+          "type": "Point",
+          "coordinates": [113.54, 22.19],
+          "id": "mo",
+          "properties": { "name": "China, Macao Special Administrative Region" }
+        },
+        {
+          "type": "Point",
+          "coordinates": [-61.02, 14.64],
+          "id": "mq",
+          "properties": { "name": "Martinique" }
+        },
+        {
+          "type": "Point",
+          "coordinates": [12.45, 41.9],
+          "id": "va",
+          "properties": { "name": "Holy See" }
         }
       ]
     }

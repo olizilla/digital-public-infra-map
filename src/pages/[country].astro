@@ -1,164 +1,142 @@
 ---
 import slug from 'slug'
 import Layout from '../layouts/Layout.astro'
-import Status from '../components/Status.astro'
-import Card from '../components/Card.astro'
-import DataIcon from '../components/icons/DataIcon.astro'
-import PaymentIcon from '../components/icons/PaymentIcon.astro'
-import IdentityIcon from '../components/icons/IdentityIcon.astro'
-import KeyLabel from '../components/KeyLabel.astro'
-import CodebookLabel from '../components/CodebookLabel.astro'
-import { DataExchanges, DataExchangeFlags, DataExchangeText } from '../DataExchange.js'
-import { IDs, IDFlags, IDText } from '../Identity.js'
-import { Payments, PaymentFlags, PaymentText } from '../Payment.js'
-import YesNo from '../components/YesNo.astro'
+import Footer from '../components/Footer.astro'
+import LocatorMap from '../components/LocatorMap.astro'
+import SystemCard from '../components/SystemCard.astro'
+import TypeIcon from '../components/TypeIcon.astro'
+import { nameOf, nouns, presence, valueOf } from '../DpiTest'
+import { records } from '../Records'
+import { parseDMY } from '../Util'
+import type { DPIType } from '../Schema'
 
 export async function getStaticPaths () {
-	const regionMap = new Map()
-	;[...Payments, ...IDs, ...DataExchanges].forEach(({Country}) => {
-		regionMap.set(Country, {
-			params: { country: slug(Country) },
-			props: { country: Country}
-		})
-	})
-	return [...regionMap.values()]
+	const countries = [...new Set(Object.values(records).flat().map(({ Country }) => Country as string))]
+		.sort((a, b) => a.localeCompare(b, 'en'))
+	return countries.map((country, i) => ({
+		params: { country: slug(country) },
+		props: {
+			country,
+			prev: countries[(i - 1 + countries.length) % countries.length],
+			next: countries[(i + 1) % countries.length],
+		}
+	}))
 }
 
-const country = Astro.props.country
+const { country, prev, next } = Astro.props
 
-const datas = DataExchanges.filter(x => x.Country === country) ?? {}
-const pays = Payments.filter(x => x.Country === country) ?? {}
-const ids = IDs.filter(x => x.Country === country) ?? {}
+type Status = 'DPI' | 'WIP' | 'NA'
+const statusOrder: Record<Status, number> = { DPI: 0, WIP: 1, NA: 2 }
+const lanes = ([
+	['id', 'Digital ID'],
+	['pay', 'Digital payment'],
+	['data', 'Data exchange'],
+] as [DPIType, string][]).map(([dpiType, title]) => {
+	const all = records[dpiType].filter(record => record.Country === country)
+	// rows where the research found no system don't get a card
+	const systems = all
+		.filter(record => presence(dpiType, record) !== 'not-found')
+		.sort((a, b) => statusOrder[a['DPI Status'] as Status] - statusOrder[b['DPI Status'] as Status])
+	return { dpiType, title, noun: nouns[dpiType], all, systems, researched: all.length > 0, best: systems[0]?.['DPI Status'] as Status | undefined }
+})
+const multi = lanes.some(lane => lane.systems.length > 1)
 
+// The summary sentence
+const escape = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+function phrase (keys: DPIType[], conj = 'and') {
+	const names = lanes.filter(lane => keys.includes(lane.dpiType)).map(lane => lane.noun)
+	const joined = names.length === 1 ? names[0] : `${names.slice(0, -1).join(', ')} ${conj} ${names.at(-1)}`
+	return `<b>${joined}</b>${names.length > 1 ? ' systems' : ' system'}`
+}
+const dpi = lanes.filter(lane => lane.best === 'DPI').map(lane => lane.dpiType)
+const wip = lanes.filter(lane => lane.best === 'WIP').map(lane => lane.dpiType)
+const none = lanes.filter(lane => !lane.best || lane.best === 'NA').map(lane => lane.dpiType)
+const sentences: string[] = []
+const name = escape(country)
+if (dpi.length) {
+	sentences.push(`Of the three DPI types the Map tracks, ${name}'s ${phrase(dpi)} ${dpi.length === 1 ? 'is' : 'are'} ${dpi.length === 3 ? 'all ' : ''}DPI-like.`)
+} else {
+	sentences.push(`None of the three DPI types the Map tracks is DPI-like in ${name} yet.`)
+}
+if (wip.length) sentences.push(`Its ${phrase(wip)} ${wip.length === 1 ? 'is' : 'are'} in progress.`)
+if (none.length) sentences.push(`No ${phrase(none, 'or').replace(' systems', ' system')} has been found yet.`)
+for (const lane of lanes) {
+	const others = lane.systems.filter(record => record['DPI Status'] !== lane.best)
+	if (others.length === 1 && others[0]['DPI Status'] === 'WIP') {
+		const other = nameOf(lane.dpiType, others[0]) ?? 'an unnamed system'
+		sentences.push(`One of its ${lane.systems.length} ${lane.noun} systems, ${escape(other)}, is still in progress.`)
+	}
+}
+const summary = sentences.join(' ')
+
+// cite the page by the date of its newest data
+const updated = lanes
+	.flatMap(lane => lane.all.map(record => parseDMY(valueOf(lane.dpiType, record, 'last_updated'))))
+	.filter(date => date !== undefined)
+	.sort((a, b) => b.getTime() - a.getTime())[0]
+const citedDate = updated ? updated.toISOString().slice(0, 10) : 'n.d.'
+const link = 'underline decoration-zinc-300 underline-offset-3 hover:text-blue-500'
 ---
 
 <Layout title={country}>
-  <h1 class="text-lg lg:text-2xl text-center pt-10 pb-8 font-sans font-bold">
-		<a href='../' class="hover:underline">{country}</a>
-	</h1>
-	<div class="grid grid-cols-1 md:grid-cols-3 sm:px-2 gap-x-3 gap-y-8">
-		{ ids.map((id, i) =>
-			<Card class:list={["bg-zinc-50", "md:col-start-1", `md:row-start-${i + 1}`]}>
-				<article>
-					<header class="text-zinc-600 pb-2 border-b border-zinc-100 mb-2 flex items-center">
-						<IdentityIcon class="flex-none text-zinc-400"/>
-						<div class="flex-grow px-1 text-zinc-600">Digital ID System</div>
-						<div class="flex-none"><Status status={id['DPI Status']} title='DPI status' /></div>
-					</header>
-					<h1 class="pb-2 font-semibold text-base">
-						{id['Name']}
-					</h1>
-					<dl>
-						{ IDText.map(key => (
-							<dt><CodebookLabel key={key} dpiType="id" class="inline-block" /></dt>
-							<dd>{id[key]}</dd>
-						))}
-						<dt><KeyLabel>URL</KeyLabel></dt>
-						<dd>
-							{ id['URL']?.startsWith('http')
-							? <a class="hover:underline" href={id['URL']}>{new URL(id['URL']).origin}</a>
-							: <span>{id['URL'] ?? 'NA'}</span>
+	<main class="max-w-[1240px] mx-auto px-4 pt-6 pb-12">
+		<!-- on desktop, the same three columns as the lanes below, so the map lines up with the data exchange lane -->
+		<section class="grid min-[901px]:grid-cols-3 gap-8 min-[901px]:gap-x-4 items-end pt-4 pb-7">
+			<div class="min-[901px]:col-span-2">
+				<nav class="text-[13px] leading-[18px] text-zinc-500" aria-label="Breadcrumb"><a class="hover:text-blue-500" href="/">Map</a> › {country}</nav>
+				<h1 class="mt-1.5 mb-2.5 text-[40px] leading-[44px] font-bold tracking-[-.01em]">{country}</h1>
+				<p class="max-w-[40rem] text-xl leading-7 text-zinc-700 [&_b]:font-semibold" set:html={summary} />
+				<p class="pt-3 text-sm text-zinc-500">
+					<a class:list={['text-zinc-700', link]} href="/methodology/">How we count DPI-like systems</a> ·
+					<a class:list={['text-zinc-700', link]} href="#cite">Cite this page</a>
+				</p>
+			</div>
+			<LocatorMap country={country} class="h-[170px] rounded-lg bg-zinc-50 border border-zinc-100" />
+		</section>
+
+		<div class="flex justify-end pb-4">
+			<label class="inline-flex items-center gap-2 text-sm text-zinc-600 cursor-pointer">
+				<input type="checkbox" id="hide-na" class="size-4 accent-zinc-700" /> Hide fields with no data
+			</label>
+		</div>
+
+		<section class:list={['lanes', { multi }]}>
+			{ lanes.map(lane => (
+				<div class="lane" data-type={lane.dpiType}>
+					<h2 class="lane-head flex items-center gap-2.5 px-0.5 text-lg leading-6 font-semibold text-zinc-700">
+						<TypeIcon dpiType={lane.dpiType} />
+						<span>{lane.title}</span>
+						{ lane.systems.length > 1 && <span class="ml-auto text-[13px] leading-[18px] font-normal text-zinc-500">{lane.systems.length} systems</span> }
+					</h2>
+					{ lane.systems.map(record => <SystemCard dpiType={lane.dpiType} record={record} collapsed={lane.systems.length > 1} />) }
+					{ lane.systems.length === 0 &&
+						<div class="sys-empty px-4 py-5 bg-white border border-dashed border-zinc-300 rounded-lg text-sm text-zinc-600">
+							{ lane.researched
+								? <Fragment><p>No {lane.noun} system found in public sources.</p><a class="inline-block mt-1.5 font-semibold text-zinc-700 hover:text-blue-500" href="/contribute/">Know of one? Propose it</a></Fragment>
+								: <Fragment><p>No {lane.noun} system recorded yet.</p><a class="inline-block mt-1.5 font-semibold text-zinc-700 hover:text-blue-500" href="/contribute/">Propose one</a></Fragment>
 							}
-						</dd>
-						<dt><KeyLabel>Last Updated</KeyLabel></dt>
-						<dd>{id['Last updated']}</dd>
-						<div class="pt-4">
-							{ IDFlags.map(key => (
-								<div class="flex flex-row-reverse items-baseline justify-items-start">
-									<dt class="grow pl-2"><CodebookLabel key={key} dpiType="id"/></dt>
-									<dd class="flex-none">
-										<YesNo status={id[key]} />
-									</dd>
-								</div>
-							))}
 						</div>
-					</dl>
-				</article>
-			</Card>
-		)}
-		{ pays.map((pay, i) =>
-			<Card class:list={["bg-zinc-50", "md:col-start-2", `md:row-start-${i + 1}`]}>
-				<article>
-					<header class="text-zinc-600 pb-2 border-b border-zinc-100 mb-2 flex items-center">
-						<PaymentIcon class="flex-none text-zinc-400"/>
-						<div class="flex-grow px-1 text-zinc-600">Digital Payment System</div>
-						<div class="flex-none"><Status status={pay['DPI Status']} title='DPI status' /></div>
-					</header>
-					<h1 class="pb-2 font-semibold text-base">
-						{pay['Name']}
-					</h1>
-					<dl>
-					{ PaymentText.map(key => (
-						<dt><CodebookLabel key={key} dpiType="pay" class="inline-block"/></dt>
-						<dd>{pay[key]}</dd>
-					))}
-					<dt><KeyLabel>URL</KeyLabel></dt>
-					<dd>
-						{ pay['URL']?.startsWith('http')
-						? <a class="hover:underline" href={pay['URL']}>{new URL(pay['URL']).origin}</a>
-						: <span>{pay['URL'] ?? 'NA'}</span>
-						}
-					</dd>
-					<dt><KeyLabel>Last Updated</KeyLabel></dt>
-					<dd>{pay['Last updated']}</dd>
-					<div class="pt-4">
-						{ PaymentFlags.map(key => (
-							<div class="flex flex-row-reverse items-baseline justify-items-start ">
-								<dt class="grow pl-2"><CodebookLabel key={key} dpiType="pay" /></dt>
-								<dd class="flex-none">
-									<YesNo status={pay[key]} />
-								</dd>
-							</div>
-						))}
-						</div>
-					</dl>
-				</article>
-			</Card>
-		)}
-		{ datas.map((data, i) =>
-			<Card class:list={["bg-zinc-50", "md:col-start-3", `md:row-start-${i + 1}`]}>
-				<article>
-					<header class="text-zinc-600 pb-2 border-b border-zinc-100 mb-2 flex items-center">
-						<DataIcon class="flex-none text-zinc-400 "/>
-						<div class="flex-grow px-1 text-zinc-600">Data Exchange System</div>
-						<div class="flex-none"><Status status={data['DPI Status']} title='DPI status' /></div>
-					</header>
-					<div class="pb-2 font-semibold text-base">
-						{data['Name']}
-					</div>
-					<dl>
-					{ DataExchangeText.map(key => (
-						<dt><CodebookLabel key={key} dpiType="data" class="inline-block"/></dt>
-						<dd>{data[key]}</dd>
-					))}
-						<dt><KeyLabel>URL</KeyLabel></dt>
-						<dd>
-							{ data['URL']?.startsWith('http')
-							? <a class="hover:underline" href={data['URL']}>{new URL(data['URL']).origin}</a>
-							: <span>{data['URL'] ?? 'NA'}</span>
-							}
-						</dd>
-						<dt><KeyLabel>Last Updated</KeyLabel></dt>
-						<dd>{data['Last updated']}</dd>
-					<div class="pt-4">
-						{ DataExchangeFlags.map(key => (
-								<div class="flex flex-row-reverse items-baseline justify-items-start ">
-									<dt class="grow pl-2"><CodebookLabel key={key} dpiType="data" /></dt>
-									<dd class="flex-none">
-										<YesNo status={data[key]} />
-									</dd>
-								</div>
-							))}
-						</div>
-					</dl>
-				</article>
-			</Card>
-		)}
-	</div>
-	<section class="max-w-xl mx-auto my-10 text-center">
-		<aside class="prose ">
-			<p class="">🔍 Found an error or something missing? <a href="/contribute/">Let us know</a>.</p>
-			<p>📧 <a href="https://forms.gle/dhoXGR9M6fVAoDKt7">Sign up here</a> for email updates about the DPI map.</p>
-		</aside>
-	</section>
+					}
+				</div>
+			))}
+		</section>
+
+		<nav class="flex justify-between pt-8 pb-2 text-sm font-semibold" aria-label="Countries">
+			<a class="hover:text-blue-500" href={`/${slug(prev)}/`}>← {prev}</a>
+			<a class="hover:text-blue-500" href="/">All countries</a>
+			<a class="hover:text-blue-500" href={`/${slug(next)}/`}>{next} →</a>
+		</nav>
+
+		<section class="grid min-[901px]:grid-cols-2 gap-6 mt-6 pt-5 border-t border-zinc-200 text-sm leading-[22px] text-zinc-600">
+			<div>
+				<h2 class="mb-1 font-semibold leading-5 text-zinc-700">Where this data comes from</h2>
+				<p>Desk research of public sources: government websites, laws, press releases, and reports from bodies like the World Bank and UN, plus validated submissions from country implementers.</p>
+			</div>
+			<div id="cite">
+				<h2 class="mb-1 font-semibold leading-5 text-zinc-700">Cite this page</h2>
+				<p class="font-mono text-xs leading-[18px]">DPI Map ({citedDate}). {country}. Institute for Innovation and Public Purpose, UCL. https://dpimap.org/{slug(country)}/</p>
+			</div>
+		</section>
+	</main>
+	<Footer />
 </Layout>

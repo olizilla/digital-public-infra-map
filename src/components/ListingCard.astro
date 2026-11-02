@@ -1,0 +1,52 @@
+---
+// A system's card in the homepage listings: the country, the system and its
+// DPI status, the DPI test, then all its fields behind a toggle.
+// The country link must stay the first link in the header: CardSection's
+// filter script reads the country name from it.
+import slug from 'slug'
+import Card from './Card.astro'
+import Status from './Status.astro'
+import DpiTestList from './DpiTestList.astro'
+import SystemFields from './SystemFields.astro'
+import { displayValues, nameOf, nouns, presence } from '../DpiTest'
+import type { DPIType } from '../Schema'
+
+interface Props {
+  dpiType: DPIType
+  record: Record<string, any>
+}
+const { dpiType, record } = Astro.props
+const state = presence(dpiType, record)
+const noun = nouns[dpiType]
+const title = state === 'named' ? nameOf(dpiType, record) : state === 'unnamed' ? `Unnamed ${noun} system` : 'Not Found'
+const { count } = displayValues(dpiType, record)
+---
+<Card class="p-0 w-full overflow-hidden border-zinc-200 bg-white leading-5">
+  <article data-type={dpiType}>
+    <header class="px-3.5 pt-2.5 pb-[11px] border-b border-zinc-200">
+      <a class="inline-block mb-0.5 text-[13px] leading-[18px] text-zinc-600 underline decoration-zinc-300 underline-offset-3 hover:text-blue-500" href={`/${slug(record.Country)}/`}>{record.Country}</a>
+      <div class="flex items-start gap-2">
+        <h3 class:list={['flex-1 min-w-0 text-[15px] leading-5', state === 'named' ? 'font-semibold' : 'font-medium italic text-zinc-600']}>{title}</h3>
+        <Status status={record['DPI Status']} title="DPI status" class="flex-none mt-0.5" />
+      </div>
+    </header>
+    { state === 'not-found'
+      ? <div class="bg-zinc-50 px-3.5 pt-[18px] pb-5 text-[13px] leading-[18px]">
+          <p class="mb-2.5 text-zinc-600">No {noun} system found in public sources.</p>
+          <a class="inline-block mt-1 font-medium text-zinc-700 underline decoration-zinc-300 underline-offset-3 hover:text-blue-500" href="/contribute/">Know of one? Propose it</a>
+        </div>
+      : <Fragment>
+          <div class="px-3.5 pt-[9px] pb-2">
+            <span class="block pb-[5px] text-xs font-semibold text-zinc-600">DPI test</span>
+            <DpiTestList dpiType={dpiType} record={record} size="sm" />
+          </div>
+          <details class="more group">
+            <summary class="px-3.5 pt-0.5 pb-3 group-open:pb-1.5 text-xs font-medium text-zinc-600">All {count} fields</summary>
+            <div class="px-3.5 pb-3.5">
+              <SystemFields dpiType={dpiType} record={record} size="sm" />
+            </div>
+          </details>
+        </Fragment>
+    }
+  </article>
+</Card>
