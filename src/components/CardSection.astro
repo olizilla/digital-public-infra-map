@@ -20,7 +20,7 @@
 <script>
   const collator = new Intl.Collator("en", {sensitivity: "base"})
   const filter = document.querySelector("#filter")
-  const cards = document.querySelectorAll("#cards .card")
+  const cards = document.querySelectorAll("#cards > article")
   const cardsByTitle = initCardsMap()
 
   function initCardsMap() {

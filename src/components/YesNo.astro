@@ -2,8 +2,8 @@
 let {status = '', class: className = ''} = Astro.props
 ---
 {status === 'Yes' &&
-  <span class:list={['pill border-green-300 bg-green-200', className]}>YES</span> }
+  <span class:list={['pill yes', className]}>YES</span> }
 {status === 'No' &&
-  <span class:list={['pill border-red-300 bg-red-200', className]}>NO</span> }
+  <span class:list={['pill no', className]}>NO</span> }
 {status === 'NA' &&
-  <span class:list={['pill border-zinc-300 bg-zinc-200', className]}>NA</span> }
+  <span class:list={['pill na', className]}>NA</span> }

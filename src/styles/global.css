@@ -220,7 +220,7 @@ details.more[open] > summary::before {
   2%, 100% { width: 20px; margin-right: 0; opacity: 1; }
 }
 /* "Hide fields with no data", no JS */
-body:has(#hide-na:checked) .field.na {
+body:has(#hide-na:checked) :is(.field-flags, .field-texts) > .na {
   display: none;
 }
 @media (max-width: 900px) {
@@ -245,5 +245,136 @@ body:has(#hide-na:checked) .field.na {
   .sys, .sys-head, .sys-foot, .sys-empty {
     border-radius: 0;
     border-inline-width: 0;
+  }
+}
+
+/* System cards. Their parts repeat thousands of times on the listing pages, so
+   each has one class here rather than a list of utilities on every element.
+   The country page's cards (SystemCard) use the default size; the homepage
+   listing cards (.card-id, .card-pay, .card-data) are smaller. In the
+   components layer, so utilities can still override them. */
+@layer components {
+  .pill.yes {
+    @apply border-green-300 bg-green-200;
+  }
+  .pill.no {
+    @apply border-red-300 bg-red-200;
+  }
+  .pill.na {
+    @apply border-zinc-300 bg-zinc-200;
+  }
+
+  /* DPI test */
+  .dpi-test {
+    @apply grid pb-0.5 gap-1 text-sm leading-5;
+  }
+  .dpi-test > li {
+    @apply flex items-baseline gap-2;
+  }
+  .dpi-test .pill {
+    @apply flex-none;
+  }
+  .dpi-test .note {
+    @apply text-zinc-500;
+  }
+
+  /* fields: yes/no flags, then text fields */
+  .field-flags {
+    @apply grid gap-1 pt-4 pb-1;
+  }
+  .field-flags > li {
+    @apply grid grid-cols-[auto_1fr] items-baseline gap-x-2.5;
+  }
+  .field-flags .pill {
+    @apply min-w-9;
+  }
+  .field-flags a {
+    @apply text-sm leading-5 hover:text-blue-500 hover:underline;
+  }
+  .field-texts {
+    @apply grid pb-1 pt-3.5 gap-2.5;
+  }
+  .field-flags + .field-texts {
+    @apply mt-2 pt-3;
+  }
+  .field-texts > div {
+    @apply pl-[6.5px];
+  }
+  .field-texts dt a {
+    @apply text-zinc-600 text-[13px] leading-[18px] hover:text-blue-500 hover:underline;
+  }
+  .field-texts dd {
+    @apply mt-px text-sm leading-5 font-medium;
+  }
+  .field-texts .na dd {
+    @apply text-[13px] leading-5 tracking-[.02em] text-zinc-500 font-normal;
+  }
+
+  /* homepage listing cards, one class per DPI type */
+  .card-id, .card-pay, .card-data {
+    @apply w-full overflow-hidden text-sm leading-5 bg-white border border-zinc-200 rounded-lg shadow outline-2 outline-transparent;
+    &:hover {
+      @apply outline-blue-200;
+    }
+    &[aria-hidden="false"] {
+      @apply outline-blue-300;
+    }
+    &[aria-hidden="true"] {
+      display: none;
+    }
+    & > header {
+      @apply grid grid-cols-[minmax(0,1fr)_auto] items-start gap-x-2 px-3.5 pt-2.5 pb-[11px] border-b border-zinc-200;
+    }
+    & > header > a {
+      @apply col-span-2 justify-self-start mb-0.5 text-[13px] leading-[18px] text-zinc-600 underline decoration-zinc-300 underline-offset-3 hover:text-blue-500;
+    }
+    & h3 {
+      @apply text-[15px] leading-5 font-semibold;
+    }
+    & h3.unnamed {
+      @apply font-medium italic text-zinc-600;
+    }
+    & > header > .pill {
+      @apply mt-0.5;
+    }
+    & > .test-label {
+      @apply block px-3.5 pt-[9px] pb-[5px] text-xs font-semibold text-zinc-600;
+    }
+    & .dpi-test {
+      @apply px-3.5 pb-2.5 gap-0.5 text-[13px] leading-[18px];
+    }
+    & .dpi-test .pill {
+      @apply text-[11px] leading-[15px] min-w-8;
+    }
+    & > details > summary {
+      @apply px-3.5 pt-0.5 pb-3 text-xs font-medium text-zinc-600;
+    }
+    & > details[open] > summary {
+      @apply pb-1.5;
+    }
+    & > details > div {
+      @apply px-3.5 pb-3.5;
+    }
+    & .field-flags {
+      @apply py-1;
+    }
+    & .field-flags a {
+      @apply text-[13px] leading-[18px];
+    }
+    & .field-texts {
+      @apply gap-3;
+    }
+    & .field-texts dt a {
+      @apply text-xs leading-[18px];
+    }
+    & > .none-found {
+      @apply bg-zinc-50 px-3.5 pt-[18px] pb-5 text-[13px] leading-[18px];
+    }
+    & > .none-found > p {
+      @apply mb-2.5 text-zinc-600;
+    }
+    & > .none-found > a {
+      @apply inline-block mt-1 font-medium text-zinc-700 underline decoration-zinc-300 underline-offset-3 hover:text-blue-500;
+    }
   }
 }

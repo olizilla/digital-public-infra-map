@@ -1,5 +1,6 @@
 ---
 // The DPI test criteria for a system, each with a YES/NO/NA pill.
+// Styled by .dpi-test in src/styles/global.css, smaller in a listing card (.card-id, .card-pay, .card-data).
 import YesNo from './YesNo.astro'
 import { dpiTest } from '../DpiTest'
 import type { DPIType } from '../Schema'
@@ -7,17 +8,14 @@ import type { DPIType } from '../Schema'
 interface Props {
   dpiType: DPIType
   record: Record<string, any>
-  /** `sm` for the homepage cards */
-  size?: 'sm' | 'md'
 }
-const { dpiType, record, size = 'md' } = Astro.props
-const sm = size === 'sm'
+const { dpiType, record } = Astro.props
 ---
-<ul class:list={['grid pb-0.5', sm ? 'gap-0.5 text-[13px] leading-[18px]' : 'gap-1 text-sm leading-5']}>
+<ul class="dpi-test">
   { dpiTest(dpiType, record).map(c => (
-    <li class="flex items-baseline gap-2">
-      <YesNo status={c.value} class:list={['flex-none', sm && 'text-[11px] leading-[15px] min-w-8']} />
-      <span>{c.label}{c.note && <span class="text-zinc-500"> ({c.note})</span>}</span>
+    <li>
+      <YesNo status={c.value} />
+      { c.note ? <span>{c.label}<span class="note"> ({c.note})</span></span> : c.label }
     </li>
   ))}
 </ul>
