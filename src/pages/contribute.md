@@ -21,7 +21,7 @@ Use the [Measuring DPI framework](https://docs.google.com/spreadsheets/d/1-G3Jmo
 
 ## Improve the framework
 
-[Book a meeting](https://calendly.com/ucbvkra-ucl/dpimap). Help us measure better. We are always interested in new and viable ways to measure DPI.
+[Book a meeting](https://calendar.app.google/8FxK8nqJudFhDEBu9). Help us measure better. We are always interested in new and viable ways to measure DPI.
 
 ## Build on the data
 
