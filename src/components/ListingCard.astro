@@ -1,0 +1,40 @@
+---
+// A system's card in the homepage listings: the country, the system and its
+// DPI status, the DPI test, then all its fields behind a toggle. Only for
+// systems: the listing pages leave out rows where research found none.
+// The country link must stay the first element in the header: CardSection's
+// filter script reads the country name from it. There are hundreds of these on
+// a page, so they're styled by .card-id, .card-pay and .card-data in
+// src/styles/global.css rather than with utility classes.
+import slug from 'slug'
+import Status from './Status.astro'
+import DpiTestList from './DpiTestList.astro'
+import SystemFields from './SystemFields.astro'
+import { displayValues, nameOf, nouns, presence } from '../DpiTest'
+import type { DPIType } from '../Schema'
+
+interface Props {
+  dpiType: DPIType
+  record: Record<string, any>
+}
+const { dpiType, record } = Astro.props
+const state = presence(dpiType, record)
+const noun = nouns[dpiType]
+const title = state === 'named' ? nameOf(dpiType, record) : `Unnamed ${noun} system`
+const { count } = displayValues(dpiType, record)
+---
+<article class={`card-${dpiType}`}>
+  <header>
+    <a href={`/${slug(record.Country)}/`}>{record.Country}</a>
+    <h3 class:list={{ unnamed: state !== 'named' }}>{title}</h3>
+    <Status status={record['DPI Status']} title="DPI status" />
+  </header>
+  <span class="test-label">DPI test</span>
+  <DpiTestList dpiType={dpiType} record={record} />
+  <details class="more">
+    <summary>All {count} fields</summary>
+    <div>
+      <SystemFields dpiType={dpiType} record={record} />
+    </div>
+  </details>
+</article>

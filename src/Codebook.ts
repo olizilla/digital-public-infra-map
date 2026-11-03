@@ -5,7 +5,7 @@ export type { DPIType }
 /** A codebook variable, as written by `npm run codebook:pull` */
 export type CodebookVariable = typeof codebook['id'][number]
 
-function findVariable (dpiType: DPIType, name: string) {
+export function findVariable (dpiType: DPIType, name: string) {
   return codebook[dpiType].find(variable => variable.name === name)
 }
 

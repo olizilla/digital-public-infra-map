@@ -1,6 +1,10 @@
-// log and try to fix bad urls
-export function fixURL(dpiType: string, country: string, url: string) {
-  if (url === 'NA') return 'NA'
+import { isRegion, placeNamed } from './Places'
+
+// log and try to fix bad urls. A cell should hold one URL; for one with several,
+// which npm run validate warns about, use the first and drop the others.
+export function fixURL(dpiType: string, country: string, value: string) {
+  if (value === 'NA') return 'NA'
+  const url = String(value).trim().split(/\s+/)[0]
   try {
     const ok = new URL(url)
     return ok.toString()
@@ -13,6 +17,13 @@ export function fixURL(dpiType: string, country: string, url: string) {
       return 'NA'
     }
   }
+}
+
+/** A "dd/mm/yy" date, as in the Last updated column, or undefined if it isn't one */
+export function parseDMY (date: string) {
+  const [d, m, y] = date.split('/').map(Number)
+  if (!d || !m || y === undefined || Number.isNaN(y)) return undefined
+  return new Date(Date.UTC(2000 + (y % 100), m - 1, d))
 }
 
 interface DPIData {
@@ -35,31 +46,15 @@ function mostDpiLike(a?: DPIData, b?: DPIData) {
 }
 
 /*
-Names (lowercase) of rows in the data that are regions rather than countries, so must not be counted as countries.
-Hand-maintained until the data has ISO country codes, which can replace this list.
-*/
-export const NonCountryRegions = [
-  'africa',
-  'asia',
-  'caribbean',
-  'central america, caribbean',
-  'eastern caribbean',
-  'europe',
-  'european union',
-  'middle east'
-]
-
-/*
 Takes an array of DPI system data.
 Returns an array with 1 item per Country; the most DPI-like where there is more than 1 system per country.
+Regions, like Europe, are skipped: they are not countries.
 */
 export function oneSystemPerCountry (arr: DPIData[]) {
   const map = arr.reduce((map, b) => {
-    const key = b.Country.trim().toLowerCase()
-    if (NonCountryRegions.includes(key)){
-      // skip regions. they are not countries.
-      return map
-    }
+    const place = placeNamed(b.Country)
+    if (place && isRegion(place)) return map
+    const key = place?.code ?? b.Country.trim().toLowerCase()
     const a = map.get(key)
     map.set(key, mostDpiLike(a, b))
     return map

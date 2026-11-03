@@ -1,0 +1,26 @@
+---
+// A system's implementation status on its own line, then the DPI test criteria, each with a YES/NO/NA pill.
+// The status is also the first criterion ('Active'), but "NO Active (pilot)" confused readers, so it's shown apart.
+// Styled by .dpi-test in src/styles/global.css, smaller in a listing card (.card-id, .card-pay, .card-data).
+import YesNo from './YesNo.astro'
+import { dpiTest, statusOf } from '../DpiTest'
+import type { DPIType } from '../Schema'
+
+interface Props {
+  dpiType: DPIType
+  record: Record<string, any>
+}
+const { dpiType, record } = Astro.props
+const { status, label } = statusOf(dpiType, record)
+/** the status's pill: YES for active, WIP for a pilot or plan, NO for suspended */
+const pill = { Active: ['yes', 'YES'], Pilot: ['wip', 'WIP'], Suspended: ['no', 'NO'], NA: ['na', 'NA'] }[status]
+const criteria = dpiTest(dpiType, record).filter(c => c.label !== 'Active')
+---
+<ul class="dpi-test">
+	<li><span class={`pill ${pill[0]}`}>{pill[1]}</span>Status: {label === 'NA' ? 'Unknown' : label}</li>
+  { criteria.map(c => (
+	  <li>
+	    <YesNo status={c.value} /> {c.label}
+	  </li>
+  ))}
+</ul>

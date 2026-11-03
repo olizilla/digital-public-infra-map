@@ -1,0 +1,39 @@
+---
+// All the fields of a system that the DPI test doesn't already show:
+// yes/no flags as a pill column, then text fields with the label above the value.
+// Labels link to the codebook. Fields with no data get the `na` class, so the
+// country page's "Hide fields with no data" checkbox can hide them.
+// Styled by .field-flags and .field-texts in src/styles/global.css, smaller in a listing card (.card-id, .card-pay, .card-data).
+import YesNo from './YesNo.astro'
+import { displayValues } from '../DpiTest'
+import { codebookAnchorForLabel } from '../Codebook'
+import type { DPIType } from '../Schema'
+
+interface Props {
+  dpiType: DPIType
+  record: Record<string, any>
+}
+const { dpiType, record } = Astro.props
+const { flags, texts } = displayValues(dpiType, record)
+const href = (label: string) => `/codebook/#${codebookAnchorForLabel(dpiType, label)}`
+---
+{ flags.length > 0 &&
+  <ul class="field-flags">
+    { flags.map(f => (
+      <li class:list={{ na: f.flag === 'NA' }}>
+        <YesNo status={f.flag} />
+        <a href={href(f.label)}>{f.label}</a>
+      </li>
+    ))}
+  </ul>
+}
+{ texts.length > 0 &&
+  <dl class="field-texts">
+    { texts.map(f => (
+      <div class:list={{ na: f.value === 'NA' }}>
+        <dt><a href={href(f.label)}>{f.label}</a></dt>
+        { f.value === 'NA' ? <dd title="No data">NA</dd> : <dd>{f.value}</dd> }
+      </div>
+    ))}
+  </dl>
+}

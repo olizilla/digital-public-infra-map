@@ -1,9 +1,19 @@
 ---
-import { getCollection, getEntry } from 'astro:content'
+import { getCollection } from 'astro:content'
 const {dpi} = Astro.props
 const collName = `${dpi}Indicators`
 const indicators = await getCollection(collName)
 const attrs = await getCollection('dpiAttributes')
+
+/*
+Indicator numbers are numbered per DPI type, so they don't always match the attribute ids.
+Data exchange has no "Non-discrimination and inclusion" indicators, so its 4.x indicators
+are "Capacity and coordination" (attribute 5) and its 5.x are "Scale of adoption" (attribute 6).
+*/
+const attributeForIndicator: Record<string, Record<string, string>> = {
+  data: { '4': '5', '5': '6' }
+}
+
 let lastAttributeID = null
 ---
 <div class="lg:-mx-12">
@@ -13,7 +23,8 @@ let lastAttributeID = null
     </thead>
     <tbody>
       { indicators.map(({data}) => {
-        const attributeId = data.id.split('.')[0]
+        const indicatorGroup = data.id.split('.')[0]
+        const attributeId = attributeForIndicator[dpi]?.[indicatorGroup] ?? indicatorGroup
         if (lastAttributeID === attributeId) {
           return <tr><td>{data.id}</td><td>{data.indicator}</td></tr>
         }

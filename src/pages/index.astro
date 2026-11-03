@@ -1,74 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import Status from '../components/Status.astro'
-import YesNo from '../components/YesNo.astro'
-import Card from '../components/Card.astro'
 import MapAndTabs from '../components/MapAndTabs.astro'
-import IdentityIcon from '../components/icons/IdentityIcon.astro'
-import { IDs, IDTextHeadlines, IDTextOtherText, IDFlags } from '../Identity.js'
-import KeyLabel from '../components/KeyLabel.astro'
-import CodebookLabel from '../components/CodebookLabel.astro'
+import TypeIcon from '../components/TypeIcon.astro'
+import { IDs } from '../Identity.js'
 import Footer from '../components/Footer.astro'
-import slug from 'slug'
 import CardSection from '../components/CardSection.astro'
+import ListingCard from '../components/ListingCard.astro'
+import { presence } from '../DpiTest'
 import StatusBar from '../components/StatusBar.astro'
 
 const items = IDs
 const dpiType = 'id'
+// the cards are for systems: places where research found none are on the map, not here
+const systems = items.filter(record => presence(dpiType, record) !== 'not-found')
 ---
-
 <Layout>
 	<MapAndTabs countryCount={items.length} dpiType={dpiType} />
 	<StatusBar items={items} />
-	<CardSection title="Digital ID Systems" items={items}>
-		<IdentityIcon class="inline" slot="icon" />
-		{ items.map(data => (
-			<Card>
-				<article>
-					<header class="text-zinc-700 pb-2 border-b border-zinc-100 mb-2 flex items-center">
-						<a class="text-base flex-grow px-1 hover:underline" href={slug(data.Country)}>{data.Country}</a>
-						<div class="flex-none"><Status status={data['DPI Status']} title='DPI status' /></div>
-					</header>
-					<details>
-						<summary>
-							<span title="Name" class="font-semibold cursor-pointer">
-								{data['Name']}
-							</span>
-							<dl>
-							{ IDTextHeadlines.map(key => (
-								<dt><CodebookLabel key={key} dpiType={dpiType} class="inline-block"/></dt>
-								<dd class="truncate">{data[key]}</dd>
-							))}
-							</dl>
-						</summary>
-						<dl>
-							{ IDTextOtherText.map(key => (
-								<dt><CodebookLabel key={key} dpiType={dpiType} class="inline-block"/></dt>
-								<dd>{data[key]}</dd>
-							))}
-								<dt><KeyLabel>URL</KeyLabel></dt>
-								<dd>
-									{ data['URL'].startsWith('http')
-									? <a class="hover:underline" href={data['URL']}>{new URL(data['URL']).origin}</a>
-									: <span>{data['URL']}</span>
-									}
-								</dd>
-						</dl>
-						<dl class="py-2">
-							{ IDFlags.map(key => (
-								<div class="flex flex-row-reverse items-baseline justify-items-start">
-									<dt class="grow pl-2">
-										<CodebookLabel key={key} dpiType={dpiType} /></dt>
-									<dd class="flex-none">
-										<YesNo status={data[key]} />
-									</dd>
-								</div>
-							))}
-						</dl>
-					</details>
-				</article>
-			</Card>
-		))}
+	<CardSection title="Digital ID Systems" items={systems}>
+		<TypeIcon dpiType="id" class="inline" slot="icon" />
+		{ systems.map(record => <ListingCard dpiType={dpiType} record={record} />) }
 	</CardSection>
 	<Footer />
 </Layout>

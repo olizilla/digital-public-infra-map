@@ -4,10 +4,17 @@
 @source "../components";
 @source "../layouts";
 @plugin "@tailwindcss/typography";
-@theme { 
+/* DPI status colours, declared once. Used by .status-*, the map and the map key. */
+@theme {
   --color-dpi: var(--color-green-200);
-  --color-wip: var(--color-yellow-200);
+  --color-dpi-line: var(--color-green-300);
+  --color-dpi-hover: var(--color-green-300);
+  --color-wip: var(--color-amber-200);
+  --color-wip-line: var(--color-amber-300);
+  --color-wip-hover: var(--color-amber-300);
   --color-na: var(--color-zinc-200);
+  --color-na-line: var(--color-zinc-300);
+  --color-na-hover: var(--color-zinc-300);
 }
 @source inline("md:row-start-{1,2,3}");
 @source inline("break-all");
@@ -23,55 +30,64 @@
     }
 }
 
-.status-na {
-  @apply fill-zinc-200 bg-zinc-200;
-}
-.status-wip {
-  @apply fill-amber-200 bg-amber-200;
-}
-.status-dpi {
-  @apply fill-green-200 bg-green-200;
-}
-.map .regions path.status-na:hover {
-  @apply fill-zinc-300;
-}
-.map .regions path.status-wip:hover {
-  @apply fill-amber-300;
-}
-.map .regions path.status-dpi:hover {
-  @apply fill-green-300;
-}
-.pill {
-  @apply text-center inline-block border px-1 text-xs rounded;
-  min-width: 33px;
-}
-.pill.status-na {
-  @apply border-zinc-300;
-}
-.pill.status-wip {
-  @apply border-amber-300;
-}
-.pill.status-dpi {
-  @apply border-green-300;
-}
+/* in the components layer, so utility classes can override them */
+@layer components {
+  .status-na {
+    @apply fill-na bg-na;
+  }
+  .status-wip {
+    @apply fill-wip bg-wip;
+  }
+  .status-dpi {
+    @apply fill-dpi bg-dpi;
+  }
+  .map .regions path.status-na:hover {
+    @apply fill-na-hover;
+  }
+  .map .regions path.status-wip:hover {
+    @apply fill-wip-hover;
+  }
+  .map .regions path.status-dpi:hover {
+    @apply fill-dpi-hover;
+  }
+  .pill {
+    @apply text-center inline-block border px-1 text-xs rounded;
+    min-width: 33px;
+  }
+  .pill.status-na {
+    @apply border-na-line;
+  }
+  .pill.status-wip {
+    @apply border-wip-line;
+  }
+  .pill.status-dpi {
+    @apply border-dpi-line;
+  }
 
-.card {
-  @apply text-sm rounded-lg shadow border border-teal-50 px-3 py-2 outline-2 outline-transparent;
-}
-.card.active {
-  @apply outline-blue-300;
-}
-.card[aria-hidden="false"] {
-  @apply outline-blue-300;
-}
-.card[aria-hidden="true"] {
-  display: none;
-}
-#cards .card {
-  @apply bg-white;
-}
-#cards .card:hover {
-  @apply outline-blue-200;
+  /* keyboard focus */
+  a:focus-visible,
+  summary:focus-visible {
+    @apply outline-2 outline-offset-2 outline-blue-300 rounded-sm;
+  }
+
+  .card {
+    @apply text-sm rounded-lg shadow border border-teal-50 px-3 py-2 outline-2 outline-transparent;
+  }
+  .card.active {
+    @apply outline-blue-300;
+  }
+  .card[aria-hidden="false"] {
+    @apply outline-blue-300;
+  }
+  .card[aria-hidden="true"] {
+    display: none;
+  }
+  #cards .card {
+    @apply bg-white;
+  }
+  #cards .card:hover {
+    @apply outline-blue-200;
+  }
 }
 
 .prose aside {
@@ -111,4 +127,253 @@
 .indicator-table td,
 .indicator-table th {
   @apply pl-2
+}
+/* "All N fields" toggles on system cards */
+details.more > summary {
+  @apply flex items-center gap-1.5 cursor-pointer list-none hover:text-black;
+}
+details.more > summary::-webkit-details-marker {
+  display: none;
+}
+details.more > summary::before {
+  content: "";
+  @apply size-1.5 border-r-[1.5px] border-b-[1.5px] border-current -rotate-45 transition-transform;
+}
+details.more[open] > summary::before {
+  @apply rotate-45;
+}
+
+/* Country page: three swim lanes of system cards. With one system per lane, the
+   cards' DPI test, fields and footer line up across the lanes (subgrid). */
+.lanes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(5, auto);
+  column-gap: 16px;
+}
+.lane {
+  display: grid;
+  grid-row: span 5;
+  grid-template-rows: subgrid;
+  min-width: 0;
+}
+.lane-head {
+  margin-bottom: 10px;
+}
+.sys {
+  @apply bg-zinc-50 border border-zinc-200 rounded-lg shadow text-sm leading-5;
+  view-timeline: --card block;
+}
+.lane > .sys {
+  display: grid;
+  grid-row: span 4;
+  grid-template-rows: subgrid;
+}
+.lane > .sys-empty {
+  grid-row: span 4;
+  align-self: start;
+}
+.sys-foot {
+  align-self: end;
+}
+.lanes.multi {
+  grid-template-rows: none;
+  align-items: start;
+}
+.lanes.multi .lane {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  grid-row: auto;
+}
+.lanes.multi .lane-head {
+  margin-bottom: -4px;
+}
+.lanes.multi .sys {
+  display: block;
+}
+/* the card header sticks while its card scrolls past */
+.sys-head {
+  @apply sticky top-0 z-[2] flex items-start gap-2 px-4 py-3 bg-white border-b border-zinc-200 rounded-t-lg text-zinc-600;
+  box-shadow: 0 -1px 0 var(--color-zinc-200);
+}
+/* the lane title scrolls away, so the stuck header shows the type icon.
+   Scroll-driven animation, no JS: browsers without it never show the icon. */
+.pin-ico {
+  display: inline-flex;
+  flex: none;
+  width: 0;
+  margin-right: -8px;
+  padding-top: 2px;
+  opacity: 0;
+  overflow: hidden;
+}
+@supports (animation-timeline: view()) {
+  .pin-ico {
+    animation: pin-show linear none;
+    animation-timeline: --card;
+    animation-range: exit-crossing 0% exit-crossing 100%;
+  }
+}
+@keyframes pin-show {
+  0% { width: 0; margin-right: -8px; opacity: 0; }
+  2%, 100% { width: 20px; margin-right: 0; opacity: 1; }
+}
+/* "Hide fields with no data", no JS */
+body:has(#hide-na:checked) :is(.field-flags, .field-texts) > .na {
+  display: none;
+}
+@media (max-width: 900px) {
+  .lanes {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    row-gap: 48px;
+  }
+  .lane, .lane > .sys {
+    display: block;
+    grid-row: auto;
+  }
+}
+/* portrait phones: cards run edge to edge */
+@media (max-width: 600px) and (orientation: portrait) {
+  .lanes {
+    margin-inline: -16px;
+  }
+  .lane-head {
+    padding-inline: 16px;
+  }
+  .sys, .sys-head, .sys-foot, .sys-empty {
+    border-radius: 0;
+    border-inline-width: 0;
+  }
+}
+
+/* System cards. Their parts repeat thousands of times on the listing pages, so
+   each has one class here rather than a list of utilities on every element.
+   The country page's cards (SystemCard) use the default size; the homepage
+   listing cards (.card-id, .card-pay, .card-data) are smaller. In the
+   components layer, so utilities can still override them. */
+@layer components {
+  .pill.yes {
+    @apply border-green-300 bg-green-200;
+  }
+  .pill.no {
+    @apply border-red-300 bg-red-200;
+  }
+  .pill.na {
+    @apply border-zinc-300 bg-zinc-200;
+  }
+  .pill.wip {
+    @apply border-wip-line bg-wip;
+  }
+
+  /* DPI test */
+  .dpi-test {
+    @apply grid pb-0.5 gap-1 text-sm leading-5;
+  }
+  .dpi-test > li {
+    @apply flex items-baseline gap-2;
+  }
+  .dpi-test .pill {
+    @apply flex-none;
+  }
+  .dpi-test .note {
+    @apply text-zinc-500;
+  }
+  /* implementation status: a dot the height of the text's x-height, then the status.
+     It sits at the pills' left edge, on the text baseline */
+
+  /* fields: yes/no flags, then text fields */
+  .field-flags {
+    @apply grid gap-1 pt-4 pb-1;
+  }
+  .field-flags > li {
+    @apply grid grid-cols-[auto_1fr] items-baseline gap-x-2.5;
+  }
+  .field-flags .pill {
+    @apply min-w-9;
+  }
+  .field-flags a {
+    @apply text-sm leading-5 hover:text-blue-500 hover:underline;
+  }
+  .field-texts {
+    @apply grid pb-1 pt-3.5 gap-2.5;
+  }
+  .field-flags + .field-texts {
+    @apply mt-2 pt-3;
+  }
+  .field-texts > div {
+    @apply pl-[6.5px];
+  }
+  .field-texts dt a {
+    @apply text-zinc-600 text-[13px] leading-[18px] hover:text-blue-500 hover:underline;
+  }
+  .field-texts dd {
+    @apply mt-px text-sm leading-5 font-medium;
+  }
+  .field-texts .na dd {
+    @apply text-[13px] leading-5 tracking-[.02em] text-zinc-500 font-normal;
+  }
+
+  /* homepage listing cards, one class per DPI type */
+  .card-id, .card-pay, .card-data {
+    @apply w-full overflow-hidden text-sm leading-5 bg-white border border-zinc-200 rounded-lg shadow outline-2 outline-transparent;
+    &:hover {
+      @apply outline-blue-200;
+    }
+    &[aria-hidden="false"] {
+      @apply outline-blue-300;
+    }
+    &[aria-hidden="true"] {
+      display: none;
+    }
+    & > header {
+      @apply grid grid-cols-[minmax(0,1fr)_auto] items-start gap-x-2 px-3.5 pt-2.5 pb-[11px] border-b border-zinc-200;
+    }
+    & > header > a {
+      @apply col-span-2 justify-self-start mb-0.5 text-[13px] leading-[18px] text-zinc-600;
+    }
+    & > header > a {
+      @apply underline decoration-zinc-300 underline-offset-3 hover:text-blue-500;
+    }
+    & h3 {
+      @apply text-[15px] leading-5 font-semibold;
+    }
+    & h3.unnamed {
+      @apply font-medium italic text-zinc-600;
+    }
+    & > header > .pill {
+      @apply mt-0.5;
+    }
+    & > .test-label {
+      @apply block px-3.5 pt-[9px] pb-[5px] text-xs font-semibold text-zinc-600;
+    }
+    & .dpi-test {
+      @apply px-3.5 pb-2.5 gap-0.5 text-[13px] leading-[18px];
+    }
+    & .dpi-test .pill {
+      @apply text-[11px] leading-[15px] min-w-8;
+    }
+    & > details > summary {
+      @apply px-3.5 pt-0.5 pb-3 text-xs font-medium text-zinc-600;
+    }
+    & > details[open] > summary {
+      @apply pb-1.5;
+    }
+    & > details > div {
+      @apply px-3.5 pb-3.5;
+    }
+    & .field-flags {
+      @apply py-1;
+    }
+    & .field-flags a {
+      @apply text-[13px] leading-[18px];
+    }
+    & .field-texts {
+      @apply gap-3;
+    }
+    & .field-texts dt a {
+      @apply text-xs leading-[18px];
+    }
+  }
 }

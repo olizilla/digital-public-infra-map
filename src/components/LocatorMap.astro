@@ -1,0 +1,131 @@
+---
+// A small map, cropped to a place and its neighbours, with the place highlighted.
+// Rendered at build time with the same projection as the world map. The view is
+// fitted to the place's main landmass, with nearby parts of it, and every part is
+// highlighted. The zoom is clamped, so small and medium places share the nearest
+// zoom and large ones zoom out no further than FURTHEST. Places too small to see,
+// and places the map only has a point for, get a dot in a ring. A region, like
+// Europe, isn't highlighted: the view is framed on the places in it, by `parent`
+// in public/data/places.csv, leaving out any that would stretch it a lot (Russia).
+// Places with neither a shape nor a point, like Antarctica, render nothing.
+// Every other place in view with a country page links to it.
+import features from '../../public/features.json'
+import topojson from 'topojson-client'
+import * as d3 from 'd3-geo'
+import * as d3p from 'd3-geo-projection'
+import { isIn, isRegion, placeByCode, placeNamed } from '../Places'
+import { pages } from '../Records'
+
+interface Props {
+  country: string
+  class?: string
+}
+const { country, class: className } = Astro.props
+
+/** The view's height in map units (the world is 800 wide), nearest and furthest. The view is twice as wide. */
+const NEAREST = 70
+const FURTHEST = 220
+/** Regions can zoom out further */
+const FURTHEST_REGION = 320
+/** A part of a place within this many map units of its main landmass is framed with it */
+const NEAR = 10
+/** The map's height on the page, in px, and the size in px below which a place gets a ring */
+const HEIGHT_PX = 170
+const SMALL_PX = 12
+
+const regions = topojson.feature(features as any, 'world').features as any[]
+const projection = d3p.geoNaturalEarth2()
+const outline = { type: 'Sphere' } as const
+// same fit as MapSvg.astro
+const [[x0, y0], [x1, y1]] = d3.geoPath(projection.fitWidth(800, outline)).bounds(outline)
+const l = Math.min(Math.ceil(x1 - x0), Math.ceil(y1 - y0))
+projection.scale(projection.scale() * (l - 1) / l).precision(0.2)
+const unclipped = d3.geoPath(projection)
+
+type Box = [[number, number], [number, number]]
+
+/**
+ * The bounds of a shape's largest part and the parts near it, so far-off parts,
+ * like Alaska, or Fiji's islands across the 180th meridian, don't widen the view.
+ */
+function frame (feature: any): Box {
+  const { type, coordinates } = feature.geometry
+  const parts = (type === 'MultiPolygon' ? coordinates : [coordinates])
+    .map((polygon: any) => ({ type: 'Polygon', coordinates: polygon }))
+    .map((part: any) => ({ box: unclipped.bounds(part) as Box, area: unclipped.area(part) }))
+    .sort((a: any, b: any) => b.area - a.area)
+  let [[fx0, fy0], [fx1, fy1]] = parts[0].box
+  let rest = parts.slice(1)
+  for (let grew = true; grew;) {
+    grew = false
+    rest = rest.filter(({ box: [[bx0, by0], [bx1, by1]] }: { box: Box }) => {
+      const near = bx0 <= fx1 + NEAR && bx1 >= fx0 - NEAR && by0 <= fy1 + NEAR && by1 >= fy0 - NEAR
+      if (near) {
+        [fx0, fy0, fx1, fy1] = [Math.min(fx0, bx0), Math.min(fy0, by0), Math.max(fx1, bx1), Math.max(fy1, by1)]
+        grew = true
+      }
+      return !near
+    })
+  }
+  return [[fx0, fy0], [fx1, fy1]]
+}
+
+const place = placeNamed(country)
+const region = place && isRegion(place)
+/** the map's shapes and points for the place, or for every place in the region */
+const here = new Set(place ? regions.filter(r => r.id === place.code || (region && isIn(placeByCode(r.id)!, place.code))) : [])
+const shapes = [...here].filter(r => r.geometry.type !== 'Point')
+const dots = [...here].filter(r => r.geometry.type === 'Point').map(r => projection(r.geometry.coordinates)!)
+const union = (boxes: Box[]): Box => [
+  [Math.min(...boxes.map(b => b[0][0])), Math.min(...boxes.map(b => b[0][1]))],
+  [Math.max(...boxes.map(b => b[1][0])), Math.max(...boxes.map(b => b[1][1]))],
+]
+const area = ([[ax0, ay0], [ax1, ay1]]: Box) => (ax1 - ax0) * (ay1 - ay0)
+const boxes: Box[] = [...shapes.map(frame), ...dots.map(at => [at, at] as Box)]
+/** a region's view leaves out a place that would more than double the area of the others' frame */
+const framed = boxes.filter((b, i) => !region || boxes.length < 3 || area(union([...boxes.slice(0, i), ...boxes.slice(i + 1), b])) <= 2 * area(union([...boxes.slice(0, i), ...boxes.slice(i + 1)])))
+const box: Box | undefined = framed.length ? union(framed) : undefined
+
+let view: { x: number, y: number, w: number, h: number } | undefined
+let ring: { cx: number, cy: number, r: number } | undefined
+let shown: { d: string, here: boolean, page?: { name: string, href: string } }[] = []
+if (box) {
+  const [[bx0, by0], [bx1, by1]] = box
+  const w = bx1 - bx0
+  const h = by1 - by0
+  const cx = bx0 + w / 2
+  const cy = by0 + h / 2
+  // room around the place, less for a region, between the nearest and furthest zoom
+  const H = region
+    ? Math.min(FURTHEST_REGION, Math.max(NEAREST, h * 1.3, w * 0.65))
+    : Math.min(FURTHEST, Math.max(NEAREST, h * 2.4, w * 1.2))
+  view = { x: cx - H, y: cy - H / 2, w: H * 2, h: H }
+  if (!region && Math.max(w, h) * HEIGHT_PX / H < SMALL_PX) ring = { cx, cy, r: H / 18 }
+  // only what's in view, to 0.1 map units
+  projection.clipExtent([[view.x, view.y], [view.x + view.w, view.y + view.h]])
+  const path = d3.geoPath(projection).digits(1)
+  shown = regions.filter(r => r.geometry.type !== 'Point').flatMap(r => {
+    const d = path(r)
+    // a region's places aren't highlighted, and are links like any other
+    const highlighted = !region && here.has(r)
+    return d ? [{ d, here: highlighted, page: highlighted ? undefined : pages.get(r.id) }] : []
+  })
+}
+const n = (v: number) => v.toFixed(1)
+---
+{ view &&
+  <svg class:list={['block size-full', className]} viewBox={`${n(view.x)} ${n(view.y)} ${n(view.w)} ${n(view.h)}`} preserveAspectRatio="xMidYMid slice" aria-labelledby="locator-title" xmlns="http://www.w3.org/2000/svg">
+    <title id="locator-title">Map showing where {country} is</title>
+    { shown.map(r => r.here
+      ? <path d={r.d} class="fill-zinc-700" />
+      : r.page
+        ? <a href={r.page.href}><title>{r.page.name}</title><path d={r.d} class="fill-zinc-200 hover:fill-zinc-300" stroke="#fff" stroke-width="1" vector-effect="non-scaling-stroke" /></a>
+        : <path d={r.d} class="fill-zinc-200" stroke="#fff" stroke-width="1" vector-effect="non-scaling-stroke" />) }
+    { ring &&
+      <Fragment>
+        <circle cx={n(ring.cx)} cy={n(ring.cy)} r={n(view.h / 70)} class="fill-zinc-700" />
+        <circle cx={n(ring.cx)} cy={n(ring.cy)} r={n(ring.r)} fill="none" class="stroke-zinc-700" stroke-width="1.5" vector-effect="non-scaling-stroke" />
+      </Fragment>
+    }
+  </svg>
+}

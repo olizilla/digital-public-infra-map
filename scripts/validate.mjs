@@ -10,7 +10,9 @@
 // public/data/places.csv: the id's place must be a code there, and the same
 // place as the row's Country / Region, which can be a name from places.csv or
 // public/data/place-names.csv.
-// Exits 1 if there are any errors. If the package is invalid, the CSVs aren't checked.
+// Exits 1 if there are any errors. Warnings, like a cell with several URLs where
+// the schema allows one, are printed and counted but don't fail.
+// If the package is invalid, the CSVs aren't checked.
 //
 // usage: npm run validate
 
@@ -161,8 +163,9 @@ function checkList (value, values) {
 }
 
 /**
- * The problems with one cell, as a list of `{ message, tally }`, where
- * `tally` is the values the summary counts, if any.
+ * The problems with one cell, as a list of `{ message, tally, warning }`, where
+ * `tally` is the values the summary counts, if any, and `warning` marks a
+ * problem that is reported but doesn't fail validation.
  * `missingValues` (like NA, for unknown) pass unless the field is required.
  * An empty cell is always a problem: it's not a missing value, just missing.
  */
@@ -182,7 +185,14 @@ function checkCell (field, value, missingValues) {
   if (allowed && !allowed.includes(typed)) {
     problems.push({ message: 'is not an allowed value', tally: [value] })
   }
-  if (pattern && !new RegExp(`^(?:${pattern})$`, 'u').test(value)) {
+  const matches = v => new RegExp(`^(?:${pattern})$`, 'u').test(v)
+  if (pattern && !matches(value)) {
+    // several values that each match, like two URLs on separate lines: the site shows the first
+    const parts = value.trim().split(/\s+/)
+    if (parts.length > 1 && parts.every(matches)) {
+      problems.push({ message: `has ${parts.length} values, which should be one: the site shows only the first`, tally: ['(several values)'], warning: true })
+      return problems
+    }
     const values = listValues(field)
     const problem = values && checkList(value, values)
     problems.push(problem ?? { message: `does not match the pattern ${pattern}` })
@@ -195,13 +205,14 @@ const primaryKeyOf = schema => [schema.primaryKey ?? []].flat()
 
 function validate ({ name: dataset, path, schema }) {
   const errors = []
-  const report = (row, country, column, value, message, tally = []) => {
-    errors.push({ column, tally })
-    console.log(`${dataset}\trow ${row}\t${country}\t${JSON.stringify(column)}\t${value === undefined ? '-' : JSON.stringify(value)} ${message}`)
+  const warnings = []
+  const report = (row, country, column, value, message, tally = [], warning = false) => {
+    (warning ? warnings : errors).push({ column, tally })
+    console.log(`${warning ? 'warning\t' : ''}${dataset}\trow ${row}\t${country}\t${JSON.stringify(column)}\t${value === undefined ? '-' : JSON.stringify(value)} ${message}`)
   }
   if (!fs.existsSync(new URL(path, root))) {
     report('-', '-', '-', undefined, `no CSV at ${path}`)
-    return { dataset, rows: 0, errors, schema }
+    return { dataset, rows: 0, errors, warnings, schema }
   }
   const csv = read(path).replace(/^\uFEFF/, '')
   const { data: rows, meta, errors: parseErrors } = Papa.parse(csv, { header: true, skipEmptyLines: true })
@@ -247,8 +258,8 @@ function validate ({ name: dataset, path, schema }) {
     const country = row[countryField?.name] || '-'
     for (const field of fields) {
       const checked = primaryKey.includes(field.name) ? { ...field, constraints: { ...field.constraints, required: true } } : field
-      for (const { message, tally } of checkCell(checked, row[field.name], missingValues)) {
-        report(rowNumber, country, field.name, row[field.name], message, tally)
+      for (const { message, tally, warning } of checkCell(checked, row[field.name], missingValues)) {
+        report(rowNumber, country, field.name, row[field.name], message, tally, warning)
       }
     }
     // an empty or missing value is already reported above, so only repeats and references are looked at here
@@ -283,7 +294,7 @@ function validate ({ name: dataset, path, schema }) {
     })
   })
 
-  return { dataset, rows: rows.length, errors, schema }
+  return { dataset, rows: rows.length, errors, warnings, schema }
 }
 
 const packageErrors = validatePackage()
@@ -296,8 +307,9 @@ const results = datapackage.resources.map(validate)
 
 console.log('\nSummary')
 console.log(`\npackage: ${packagePath}, with ${results.length} resources, OK`)
-for (const { dataset, rows, errors, schema } of results) {
-  console.log(`\n${dataset}: ${rows} rows, ${errors.length} error${errors.length === 1 ? '' : 's'}`)
+for (const { dataset, rows, errors, warnings, schema } of results) {
+  const warned = warnings.length ? `, ${warnings.length} warning${warnings.length === 1 ? '' : 's'}` : ''
+  console.log(`\n${dataset}: ${rows} rows, ${errors.length} error${errors.length === 1 ? '' : 's'}${warned}`)
   // column -> { count, tally: value -> count }
   const byColumn = new Map()
   for (const { column, tally } of errors) {
@@ -320,5 +332,7 @@ for (const { dataset, rows, errors, schema } of results) {
 }
 
 const total = results.reduce((sum, { errors }) => sum + errors.length, 0)
-console.log(`\n${total === 0 ? 'OK' : `${total} errors`}`)
+const warningTotal = results.reduce((sum, { warnings }) => sum + warnings.length, 0)
+const warned = warningTotal ? `, ${warningTotal} warning${warningTotal === 1 ? '' : 's'}` : ''
+console.log(`\n${total === 0 ? 'OK' : `${total} errors`}${warned}`)
 process.exitCode = total === 0 ? 0 : 1
