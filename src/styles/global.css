@@ -158,7 +158,14 @@ details.more[open] > summary::before {
   min-width: 0;
 }
 .lane-head {
+  @apply flex items-center gap-2.5 px-0.5 text-lg leading-6 font-semibold text-zinc-700;
   margin-bottom: 10px;
+}
+.lane-head > a {
+  @apply flex items-center gap-2.5 hover:text-blue-500 hover:underline;
+}
+.lane-count {
+  @apply ml-auto text-[13px] leading-[18px] font-normal text-zinc-500;
 }
 .sys {
   @apply bg-zinc-50 border border-zinc-200 rounded-lg shadow text-sm leading-5;
@@ -187,7 +194,7 @@ details.more[open] > summary::before {
   grid-row: auto;
 }
 .lanes.multi .lane-head {
-  margin-bottom: -4px;
+  margin-bottom: -6px; /* with the lane's 16px gap, the same 10px as every other lane head */
 }
 .lanes.multi .sys {
   display: block;
@@ -197,6 +204,29 @@ details.more[open] > summary::before {
   @apply sticky top-0 z-[2] flex items-start gap-2 px-4 py-3 bg-white border-b border-zinc-200 rounded-t-lg text-zinc-600;
   box-shadow: 0 -1px 0 var(--color-zinc-200);
 }
+/* the card's title: the system's name, its permanent address under it */
+.sys-title {
+  @apply text-lg leading-6 font-semibold text-black;
+  & a { @apply hover:text-blue-500 hover:underline; }
+}
+.sys-title.unnamed {
+  @apply italic font-medium text-zinc-600;
+}
+.sys-meta {
+  @apply flex items-center gap-2 mb-0.5;
+}
+/* the country's name stands in for the address on phones (see the 900px block below) */
+.sys-country {
+  display: none;
+}
+.sys-id {
+  @apply inline-block font-mono text-xs leading-[18px] tracking-[.01em] text-zinc-500;
+  &:is(a) { @apply hover:text-blue-500 hover:underline; }
+}
+/* on the system page the address is plain text, one click selects it all for copying */
+.sys-id-copy {
+  user-select: all;
+}
 /* the lane title scrolls away, so the stuck header shows the type icon.
    Scroll-driven animation, no JS: browsers without it never show the icon. */
 .pin-ico {
@@ -204,7 +234,6 @@ details.more[open] > summary::before {
   flex: none;
   width: 0;
   margin-right: -8px;
-  padding-top: 2px;
   opacity: 0;
   overflow: hidden;
 }
@@ -219,11 +248,26 @@ details.more[open] > summary::before {
   0% { width: 0; margin-right: -8px; opacity: 0; }
   2%, 100% { width: 20px; margin-right: 0; opacity: 1; }
 }
-/* "Hide fields with no data", no JS */
-body:has(#hide-na:checked) :is(.field-flags, .field-texts) > .na {
-  display: none;
-}
 @media (max-width: 900px) {
+  .sys-head {
+    @apply px-3.5;
+  }
+  .sys-title {
+    @apply text-[15px] leading-5;
+  }
+  .sys-id {
+    display: none;
+  }
+  .sys-country {
+    @apply block min-w-0 truncate text-[13px] leading-[18px] text-zinc-600;
+    &:is(a) { @apply underline decoration-zinc-300 underline-offset-3 hover:text-blue-500; }
+  }
+  .sys-test, .sys-fields, .fields-foot {
+    @apply px-3.5;
+  }
+  .sys {
+    @apply compact-card-parts;
+  }
   .lanes {
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: none;
@@ -253,6 +297,29 @@ body:has(#hide-na:checked) :is(.field-flags, .field-texts) > .na {
    The country page's cards (SystemCard) use the default size; the homepage
    listing cards (.card-id, .card-pay, .card-data) are smaller. In the
    components layer, so utilities can still override them. */
+/* The compact style of the card parts: the listing cards always, the system cards on phones.
+   Used as @apply compact-card-parts. */
+@utility compact-card-parts {
+  & .dpi-test {
+    @apply gap-0.5 text-[13px] leading-[18px];
+  }
+  & .dpi-test .pill {
+    @apply text-[11px] leading-[15px] min-w-8;
+  }
+  & .field-flags {
+    @apply py-1;
+  }
+  & .field-flags a {
+    @apply text-[13px] leading-[18px];
+  }
+  & .field-texts {
+    @apply gap-3;
+  }
+  & .field-texts dt a {
+    @apply text-xs leading-[18px];
+  }
+}
+
 @layer components {
   .pill.yes {
     @apply border-green-300 bg-green-200;
@@ -314,7 +381,6 @@ body:has(#hide-na:checked) :is(.field-flags, .field-texts) > .na {
   .field-texts .na dd {
     @apply text-[13px] leading-5 tracking-[.02em] text-zinc-500 font-normal;
   }
-
   /* homepage listing cards, one class per DPI type */
   .card-id, .card-pay, .card-data {
     @apply w-full overflow-hidden text-sm leading-5 bg-white border border-zinc-200 rounded-lg shadow outline-2 outline-transparent;
@@ -331,7 +397,7 @@ body:has(#hide-na:checked) :is(.field-flags, .field-texts) > .na {
       @apply grid grid-cols-[minmax(0,1fr)_auto] items-start gap-x-2 px-3.5 pt-2.5 pb-[11px] border-b border-zinc-200;
     }
     & > header > a {
-      @apply col-span-2 justify-self-start mb-0.5 text-[13px] leading-[18px] text-zinc-600;
+      @apply justify-self-start max-w-full mb-0.5 text-[13px] leading-[18px] text-zinc-600;
     }
     & > header > a {
       @apply underline decoration-zinc-300 underline-offset-3 hover:text-blue-500;
@@ -343,37 +409,287 @@ body:has(#hide-na:checked) :is(.field-flags, .field-texts) > .na {
       @apply font-medium italic text-zinc-600;
     }
     & > header > .pill {
-      @apply mt-0.5;
+      @apply self-center mb-0.5;
+    }
+    & > header > h3 {
+      @apply col-span-2;
     }
     & > .test-label {
       @apply block px-3.5 pt-[9px] pb-[5px] text-xs font-semibold text-zinc-600;
     }
+    @apply compact-card-parts;
     & .dpi-test {
-      @apply px-3.5 pb-2.5 gap-0.5 text-[13px] leading-[18px];
+      @apply px-3.5 pb-2.5;
     }
-    & .dpi-test .pill {
-      @apply text-[11px] leading-[15px] min-w-8;
-    }
-    & > details > summary {
-      @apply px-3.5 pt-0.5 pb-3 text-xs font-medium text-zinc-600;
-    }
-    & > details[open] > summary {
-      @apply pb-1.5;
-    }
-    & > details > div {
-      @apply px-3.5 pb-3.5;
-    }
-    & .field-flags {
-      @apply py-1;
-    }
-    & .field-flags a {
-      @apply text-[13px] leading-[18px];
-    }
-    & .field-texts {
-      @apply gap-3;
-    }
-    & .field-texts dt a {
-      @apply text-xs leading-[18px];
+    & > .card-more {
+      @apply flex items-center gap-1.5 px-3.5 pt-0.5 pb-3 text-xs font-medium text-zinc-600 hover:text-black;
+      &::after { content: "→"; }
     }
   }
+}
+
+/* A system's page, /<System ID> (src/pages/[system].astro): its country's header, then its
+   card in full (SystemCard): the DPI test and a <details> row per field (FieldRow); beside it
+   the change log (ChangeLog) and the country's other systems.
+   Colours: ink black, strong zinc-700, secondary zinc-600, muted zinc-500; lines zinc-200,
+   strong lines zinc-300, hairlines zinc-100; cards white over zinc-50. */
+@layer components {
+  /* the page container and header (CountryHeader) shared by the country page and the system page,
+     so clicking from one to the other moves nothing. On desktop the header is the same three columns
+     as the country page's lanes: the text spans two, the locator map takes the third. */
+  .page { @apply max-w-[1240px] mx-auto px-4 pt-4 md:pt-6 pb-12; }
+  .page-head { @apply grid min-[901px]:grid-cols-3 gap-8 min-[901px]:gap-x-4 items-start pt-0 md:pt-4 pb-7; }
+  .page-head-text { @apply min-[901px]:col-span-2; }
+  /* on mobile the map comes first, where the homepage map is */
+  .page-map { @apply order-first min-[901px]:order-none self-start h-[170px]! rounded-lg bg-zinc-50 border border-zinc-100; }
+  .page-crumbs {
+    @apply text-[13px] leading-[18px] text-zinc-500;
+    & a:hover { @apply text-blue-500; }
+  }
+  .page-title {
+    @apply mt-1.5 mb-2.5;
+    & a { @apply hover:text-blue-500; }
+  }
+  .page-h1 { @apply text-[32px] leading-tight font-bold tracking-[-.01em]; }
+  .page-summary { @apply max-w-[40rem] text-lg leading-[26px] md:text-xl md:leading-7 text-zinc-700 [&_b]:font-semibold; }
+  .page-links {
+    @apply pt-3 text-sm text-zinc-500;
+    & a { @apply text-zinc-700 underline decoration-zinc-300 underline-offset-3 hover:text-blue-500; }
+  }
+  .ul {
+    @apply underline decoration-zinc-300 underline-offset-3 hover:text-blue-500;
+  }
+  .mono {
+    @apply font-mono text-xs tracking-[.01em] text-zinc-600;
+  }
+  a.mono {
+    @apply hover:text-blue-500 hover:underline;
+  }
+  .sep {
+    @apply text-zinc-300 px-px;
+  }
+  /* external links: an arrow after the text */
+  :is(.src, .src-full, .val-link)::after {
+    /* a no-break space first, so the arrow does not wrap onto a line of its own */
+    content: "\00a0↗";
+    @apply text-[0.8em] leading-none;
+  }
+
+  /* the country page's three columns, with the same gap as its lanes: the card spans two, the
+     change log and the country's other systems take the third. On a phone they go after the card. */
+  .sp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-areas: "lane lane ." "card card side";
+    column-gap: 16px;
+    align-items: start;
+  }
+  .sp-lane { grid-area: lane; }
+  .sp-grid > .sys { grid-area: card; }
+  .sp-side { grid-area: side; @apply grid gap-4 content-start min-w-0; }
+  @media (max-width: 900px) {
+    .sp-grid {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas: "lane" "card" "side";
+    }
+    .sp-side { @apply pt-6; }
+  }
+  /* portrait phones: the card runs edge to edge, as on the country page */
+  @media (max-width: 600px) and (orientation: portrait) {
+    .sp-grid > .sys { margin-inline: -16px; }
+    /* the type heading starts where the country page's does: the page edge, in line with the card's text */
+    .sp-lane { padding-inline: 0; }
+    .sp-grid .fields-foot { border-radius: 0; }
+  }
+
+  /* the full card's DPI test, in two columns on desktop */
+  .sys-test {
+    @apply px-4 py-3 bg-white border-b border-zinc-200;
+    & .test-label { @apply block pb-2 text-xs font-semibold text-zinc-600; }
+    & .test-verdict { @apply pt-3 text-sm leading-5 text-zinc-700; }
+    & a { @apply hover:text-blue-500 hover:underline underline-offset-3; }
+  }
+  @media (min-width: 640px) {
+    .sys-test .dpi-test {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 24px;
+    }
+  }
+
+  /* side cards: white header, grey body */
+  .side-card {
+    @apply min-w-0 overflow-hidden bg-zinc-50 border border-zinc-200 rounded-lg shadow text-sm leading-5;
+  }
+  .side-h {
+    @apply block m-0 px-4 py-2.5 bg-white border-b border-zinc-200 text-[15px] leading-[22px] font-semibold text-zinc-700;
+  }
+  .side-body {
+    @apply px-4 pt-3 pb-3.5;
+  }
+  .log-item {
+    @apply py-2.5 border-t border-zinc-200;
+    &:first-child { @apply pt-0 border-t-0; }
+    &:last-child { @apply pb-0; }
+    & .h-top { @apply mb-0.5; }
+  }
+  .log-what { @apply text-black; }
+  .log-file { @apply mt-0.5; }
+  /* the country's systems, this page's own among them, marked and not a link */
+  .systems-list {
+    @apply grid gap-1;
+    & li { @apply grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 -mx-2 px-2 py-1 rounded; }
+    & li.current { @apply bg-zinc-100 font-medium; }
+    & a { @apply text-black hover:text-blue-500 hover:underline; }
+    & a.unnamed, & span.unnamed { @apply italic text-zinc-600; }
+    & .pill { @apply text-[11px] leading-[15px] min-w-8; }
+  }
+
+  /* the full card's fields: a hint, then the fields by attribute, then a white footer */
+  .sys-fields { @apply px-4 pt-3 pb-3; }
+  .fields-hint { @apply text-[13px] leading-[18px] text-zinc-500; }
+  .fields-foot {
+    @apply flex items-center gap-2.5 px-4 py-2.5 bg-white border-t border-zinc-200 rounded-b-lg text-xs leading-5 text-zinc-500;
+    & a { @apply ml-auto font-semibold text-zinc-700 hover:text-blue-500; }
+  }
+  .grp { @apply mt-[22px]; }
+  .grp:first-of-type { @apply mt-4; }
+  /* an attribute's title sits on a rule */
+  .divider {
+    @apply flex items-center gap-2.5 mb-[22px] text-[13px] leading-[18px] font-medium text-zinc-600 text-center;
+    &::before, &::after { content: ""; @apply h-px flex-1 bg-zinc-200; }
+    & span { @apply flex-none max-w-[78%]; }
+  }
+  .grp-empty { @apply pt-2 pb-0.5 text-[13px] leading-[18px] text-zinc-500 text-center; }
+
+  /* a field's row */
+  .fr {
+    @apply -mx-[9px] border border-transparent rounded-lg;
+    &:target { @apply outline-2 outline-offset-1 outline-blue-300; }
+    &[open] { @apply mt-1.5 mb-2 bg-white border-zinc-200 shadow; }
+  }
+  .fr > summary {
+    @apply grid grid-cols-[auto_minmax(0,1fr)_auto] gap-x-2.5 items-start px-2 py-[7px] rounded-[7px] cursor-pointer list-none;
+    &::-webkit-details-marker { display: none; }
+    &:hover { @apply bg-white; }
+  }
+  .fr.is-text > summary { @apply grid-cols-[minmax(0,1fr)_auto] pl-[14.5px]; }
+  .fr[open] > summary:hover { @apply bg-transparent; }
+  .fr-val .pill { @apply min-w-9; }
+  .fr-main { @apply flex flex-col min-w-0; }
+  .fr-l { @apply flex flex-wrap items-baseline gap-x-2 gap-y-0.5; }
+  .fr-flag-label { @apply text-sm leading-5 text-black; }
+  .fr-label { @apply text-[13px] leading-[18px] text-zinc-600; }
+  .fr-value { @apply mt-px text-sm leading-5 font-medium [overflow-wrap:anywhere]; }
+  .fr.is-na .fr-value { @apply font-normal; }
+  .na-text { @apply text-[13px] tracking-[.02em] text-zinc-500 font-normal; }
+  .val-link { @apply underline decoration-zinc-300 underline-offset-3 hover:text-blue-500; }
+  .src {
+    @apply text-zinc-600 underline decoration-zinc-300 underline-offset-3 whitespace-nowrap hover:text-blue-500;
+  }
+  .more-src { @apply font-medium text-zinc-600; }
+  .fr-end { @apply flex items-center gap-2 pt-px; }
+  /* when the current value was set: fixed width and tabular numbers, so every row has the same shape */
+  .fr-date { @apply w-[4.5rem] text-right text-xs leading-5 tabular-nums whitespace-nowrap text-zinc-500; }
+  .chev {
+    @apply size-[7px] mt-1.5 mr-1 ml-0.5 self-start border-r-[1.5px] border-b-[1.5px] border-zinc-500 rotate-45;
+  }
+  .fr[open] .chev { @apply -rotate-[135deg] mt-[9px]; }
+  @media (max-width: 900px) {
+    .fr-date { display: none; }
+    /* one step smaller, as the rest of the card */
+    .fr-val .pill { @apply text-[11px] leading-[15px] min-w-8; }
+    .fr-flag-label { @apply text-[13px] leading-[18px]; }
+    .fr-label { @apply text-xs leading-[18px]; }
+    .fr-value { @apply text-[13px] leading-[18px]; }
+    .na-text { @apply text-xs; }
+    .fr-more { @apply text-xs leading-[18px]; }
+    .def-meta, .h-by, .origin, .h-same { @apply text-[11px] leading-4; }
+    .h-top { @apply text-[11px] leading-4; }
+    .h-diff { @apply text-[13px] leading-5; }
+    .h-reason { @apply text-[13px] leading-5; }
+  }
+
+  /* an opened row: what the field means, its evidence and its history */
+  .meaning > summary { @apply cursor-pointer; }
+  .meaning[open] > summary { @apply mb-1; }
+  .fr-more {
+    @apply grid gap-4 mt-1 pt-3 pr-4 pb-4 pl-[54px] border-t border-zinc-100 text-[13px] leading-5 text-zinc-600;
+  }
+  .fr.is-text .fr-more { @apply pl-[14.5px]; }
+  /* a phone: opened details use the full width, with one left edge for pill and text fields */
+  @media (max-width: 900px) {
+    .fr-more { @apply pl-[14.5px]; }
+  }
+  .mini-h { @apply m-0 mb-1 text-xs leading-4 font-semibold text-zinc-600; }
+  .def-text { @apply max-w-[64ch] text-black; }
+  .codes {
+    @apply grid gap-1 mt-1.5 max-w-[64ch];
+    & dt { @apply inline font-semibold text-black; }
+    & dt::after { content: " — "; @apply font-normal text-zinc-500; }
+    & dd { @apply inline m-0; }
+  }
+  .def-meta { @apply mt-1.5 text-xs leading-[18px] text-zinc-500; }
+  .ev, .h-src { @apply grid gap-1 m-0 p-0 list-none; }
+  .ev li { @apply flex flex-wrap items-baseline gap-x-2; }
+  .src-full { @apply text-black underline decoration-zinc-300 underline-offset-3 [overflow-wrap:anywhere] hover:text-blue-500; }
+  .origin { @apply text-xs text-zinc-500; }
+  .hist { @apply mt-0.5 ml-1 pl-[18px] border-l-2 border-zinc-200 list-none; }
+  .h-item {
+    @apply relative pb-3.5;
+    &:last-child { @apply pb-0; }
+    &::before {
+      content: "";
+      @apply absolute -left-6 top-[5px] size-2.5 rounded-full bg-white border-2 border-zinc-700;
+    }
+    &.is-base::before { @apply bg-zinc-200 border-zinc-300; }
+  }
+  .h-top {
+    @apply text-xs leading-[18px] text-zinc-500;
+    & time { @apply font-semibold text-zinc-700 tabular-nums; }
+    & .sep { @apply px-1; }
+  }
+  .h-diff {
+    @apply flex flex-wrap items-baseline gap-x-1 mt-1 text-sm leading-[22px] text-black;
+    & del { @apply text-zinc-500 line-through; }
+    & ins { @apply px-0.5 bg-zinc-50 shadow-[inset_0_-2px_0_var(--color-zinc-700)] font-medium no-underline; }
+  }
+  .arr { @apply px-0.5 text-zinc-500; }
+  .h-same { @apply pl-1 text-xs text-zinc-500; }
+  .h-reason { @apply my-1.5 max-w-[62ch] text-sm leading-[22px] text-black; }
+  .h-src { @apply mb-1; }
+  .h-by { @apply text-xs leading-[18px] text-zinc-500; }
+
+  /* the footer blocks */
+  .about {
+    @apply grid min-[901px]:grid-cols-3 gap-6 mt-10 pt-5 border-t border-zinc-200;
+    & p { @apply text-sm leading-[22px] text-zinc-600; }
+    & a { @apply underline; }
+  }
+  .about-h { @apply mb-1 text-sm leading-5 font-semibold text-zinc-700; }
+  .cite-row { @apply mt-5 pt-4 border-t border-zinc-100; }
+  .cite-text { @apply font-mono text-xs leading-[18px] text-zinc-600; }
+}
+
+/* System page: the country header is for wide screens. On a phone the page starts at the type heading. */
+@media (max-width: 900px) {
+  .sp-country {
+    display: none;
+  }
+}
+
+/* System page, portrait phones: the type heading's icon starts in line with the card's text,
+   as on the country page. The country page's edge-to-edge .lane-head padding doesn't apply here. */
+@media (max-width: 600px) and (orientation: portrait) {
+  .lane-head.sp-lane { padding-inline: 0; }
+}
+
+/* Country page: previous / all / next. Names stay on one line, cut short with an ellipsis,
+   and the arrows sit centred beside them. On a phone the middle link goes, to give the names room. */
+.country-nav {
+  @apply grid grid-cols-2 md:grid-cols-3 items-center gap-4 pt-8 pb-2 text-sm font-semibold;
+  & a { @apply flex items-center gap-1.5 min-w-0 max-w-full hover:text-blue-500; }
+  & .name { @apply min-w-0 truncate; }
+  & .prev { @apply justify-self-start; }
+  & .all { @apply hidden md:flex justify-self-center; }
+  & .next { @apply justify-self-end; }
 }

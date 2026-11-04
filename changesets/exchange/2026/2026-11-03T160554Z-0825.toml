@@ -1,0 +1,34 @@
+[[changes]]
+type = "update"
+key = "dx-ge-01"
+as_of = 2026-10-15
+values.formal_mandate = "Yes"
+reason = "ON THE LEGAL ENTITY UNDER PUBLIC LAW CALLED THE DIGITAL GOVERNANCE AGENCY"
+sources = [
+  "https://matsne.gov.ge/en/document/view/4893222?publication=0",
+]
+
+[[changes]]
+type = "update"
+key = "dx-ge-01"
+as_of = 2026-10-15
+values.architecture = "Not Found"
+values.interoperability_level = "Syntactic"
+values.realtime_sharing = "Not Found"
+values.scalable_architecture = "Not Found"
+values.enrolment_info = "Not Found"
+values.audit_mechanism = "Not Found"
+values.data_management_rules = "Not Found"
+values.impact_metrics = "Not Found"
+values.once_only_principle = "Not Found"
+values.independent_audit = "Not Found"
+values.number_of_transactions = "Not Found"
+values.number_of_members = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-ge-01"
+as_of = 2026-10-15
+values.personal_data_protection = "Yes"
+reason = "Sourced from ID Data"

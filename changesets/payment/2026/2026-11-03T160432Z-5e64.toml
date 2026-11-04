@@ -1,0 +1,13 @@
+[[changes]]
+type = "update"
+key = "pay-sv-02"
+as_of = 2026-10-15
+values.clearing_infrastructure = "Other"
+reason = "Chivo is a government-backed digital wallet, not a CBDC; transfers within it are book entries on the provider’s ledger, so coded Other like other closed-loop wallets."
+
+[[changes]]
+type = "update"
+key = "pay-sv-02"
+as_of = 2026-10-15
+values.settlement_method = "NA"
+reason = "Searched: no source found on settlement. Q1 value (ACH) not carried over."

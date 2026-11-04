@@ -1,0 +1,65 @@
+# Proposals for changes to the codebook (decision D20). The fields mirror the old
+# "Codebook _ Proposals" tab of the research sheet. Accepted proposals become a PR to
+# datapackage.json, with a `retiredFields` rule where a variable is retired or remapped.
+#
+# Each variable's page on dpimap.org links here with `variable` filled in, as
+# `Title (field-id)`, and the DPI system in the issue title. GitHub fills in text fields
+# (input, textarea) from query parameters named by field `id`, but not dropdowns, so keep
+# the ids below stable: src/Codebook.ts `proposalUrl` uses them.
+name: Codebook proposal
+description: Propose a new variable or category, a change to a definition, or retiring a variable.
+title: "Codebook: "
+labels: ["codebook"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to propose a change to the [DPI Map codebook](https://dpimap.org/codebook/). We review each proposal and, if it's accepted, update the data package to match.
+  - type: dropdown
+    id: dpi-system
+    attributes:
+      label: DPI system
+      options:
+        - Digital ID
+        - Payment
+        - Data Exchange
+    validations:
+      required: true
+  - type: dropdown
+    id: change-type
+    attributes:
+      label: Type of change
+      options:
+        - New variable
+        - New category
+        - Definition change only
+        - Retire variable
+    validations:
+      required: true
+  - type: input
+    id: variable
+    attributes:
+      label: Variable
+      description: The variable's name and field id, like "Status of payment system implementation (status)". For a new variable, the name you propose.
+  - type: input
+    id: category
+    attributes:
+      label: Category name
+      description: For a new category, or a change to one, the category's name, like "Suspended".
+  - type: textarea
+    id: description
+    attributes:
+      label: Description of the change
+      description: What should change, and the definition of each new or changed variable or category.
+    validations:
+      required: true
+  - type: textarea
+    id: framework-indicator
+    attributes:
+      label: Framework indicator
+      description: The related indicator in the Measuring DPI framework, if there is one.
+  - type: textarea
+    id: notes
+    attributes:
+      label: Rationale and notes
+      description: Why the change is needed, with links to any evidence.

@@ -1,0 +1,10 @@
+[[changes]]
+type = "update"
+key = "pay-ma-01"
+as_of = 2026-10-15
+values.system_type = "Cross-domain"
+reason = "Miscoded as Mobile money. Switch Al Maghrib (SWAM, formerly HPS Switch) is the national switch for card payments, ATM withdrawals and mobile wallet payments between 48 participants, so it spans the card and mobile money domains. Secondary sources: TelQuel (2 Jul 2025); Finances News Hebdo (22 Feb 2021)."
+sources = [
+  "https://telquel.ma/2025/07/02/hps-switch-becomes-swam-the-new-face-of-moroccos-electronic-payment-infrastructure_1936857",
+  "https://fnh.ma/article/actualite-economique/hps-switch-une-plateforme-robuste-au-service-des-paiements-au-maroc",
+]

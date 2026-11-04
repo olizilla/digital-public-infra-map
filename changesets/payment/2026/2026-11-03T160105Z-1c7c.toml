@@ -1,0 +1,9 @@
+[[changes]]
+type = "update"
+key = "pay-no-01"
+as_of = 2026-10-15
+values.status = "Planned/Piloted"
+reason = "Will join TIPS in 2028"
+sources = [
+  "https://www.ecb.europa.eu/press/pr/date/2024/html/ecb.pr241129~e98f169ac2.en.html",
+]

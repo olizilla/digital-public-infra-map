@@ -1,0 +1,54 @@
+[[changes]]
+type = "update"
+key = "id-bi-01"
+as_of = 2026-09-16
+values.claim = "Yes"
+reason = "Government has announced a biometric national ID (planned for 2025, not yet delivered) and is exploring India Stack (Jun 2026)."
+sources = [
+  "https://www.burunditimes.com/burundi-unveils-biometric-national-id-system-awaits-law-before-full-rollout/",
+  "https://presidence.gov.bi/2021/10/25/vers-une-carte-nationale-didentite-biometrique-au-burundi/",
+]
+
+[[changes]]
+type = "update"
+key = "id-bi-01"
+as_of = 2026-09-16
+values.biometrics = "Yes"
+reason = "Planned system is biometric; biometric civil registration under way."
+sources = [
+  "https://idtechwire.com/burundi-extends-biometric-civil-registration-toward-national-digital-id/",
+  "https://www.burunditimes.com/burundi-unveils-biometric-national-id-system-awaits-law-before-full-rollout/",
+  "https://mininterinfos.gov.bi/bientot-une-carte-didentite-biometrique-au-burundi/",
+]
+
+[[changes]]
+type = "update"
+key = "id-bi-01"
+as_of = 2026-09-17
+values.status = "Planned/Piloted"
+reason = "Planned biometric systemm"
+sources = [
+  "https://www.burunditimes.com/burundi-unveils-biometric-national-id-system-awaits-law-before-full-rollout/",
+]
+
+[[changes]]
+type = "update"
+key = "id-bi-01"
+as_of = 2026-09-16
+values.name = "Biometric National ID"
+reason = ""
+sources = [
+  "https://www.burunditimes.com/burundi-unveils-biometric-national-id-system-awaits-law-before-full-rollout/",
+  "https://mininterinfos.gov.bi/bientot-une-carte-didentite-biometrique-au-burundi/",
+]
+
+[[changes]]
+type = "update"
+key = "id-bi-01"
+as_of = 2026-09-16
+values.governing_entity = "Ministry of Interior"
+reason = "Leads the DPI/digital ID talks."
+sources = [
+  "https://www.biometricupdate.com/202606/burundi-looks-to-india-stack-for-digital-id-and-payments-infrastructure",
+  "https://mininterinfos.gov.bi/bientot-une-carte-didentite-biometrique-au-burundi/",
+]

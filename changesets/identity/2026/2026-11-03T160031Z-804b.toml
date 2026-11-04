@@ -1,0 +1,10 @@
+[[changes]]
+type = "update"
+key = "id-zw-01"
+as_of = 2026-09-16
+values.governing_entity = "Ministry of Home Affairs and Cultural Heritage"
+reason = "Home Affairs and the Registrar-General lead the digital ID rollout (15 Jul 2025)."
+sources = [
+  "https://www.biometricupdate.com/202507/zimbabwe-looks-forward-to-digital-id-rollout-after-population-registry-reform",
+  "https://www.moha.gov.zw/en/departments",
+]

@@ -3,7 +3,7 @@
 // its DPI Status comes from these criteria. The data's 'Count for DPI' column must
 // agree, and checkDpiCounts, run at build start (astro.config.mjs), fails the build if not.
 import { schemas, fieldById, labelOf, type DPIType, type Field } from './Schema'
-import { findVariable } from './Codebook'
+import { codebookVariableOf } from './Codebook'
 import { normaliseImplementationStatus } from './Status'
 
 export type YesNoNA = 'Yes' | 'No' | 'NA'
@@ -16,6 +16,8 @@ export interface Criterion {
   value: YesNoNA
   /** shown after the label, e.g. "pilot" */
   note?: string
+  /** the id of the field the criterion reads */
+  field: string
 }
 
 /** Fields the DPI test already shows, so they are left out of the list of fields */
@@ -66,28 +68,29 @@ export function dpiTest (dpiType: DPIType, record: SystemRecord): Criterion[] {
   const active: Criterion = {
     label: 'Active',
     value: status === 'Active' ? 'Yes' : status === 'NA' ? 'NA' : 'No',
-    note: status === 'Pilot' ? 'pilot' : undefined
+    note: status === 'Pilot' ? 'pilot' : undefined,
+    field: 'status'
   }
   if (dpiType === 'id') {
     return [
       active,
-      { label: 'Claims a digital ID', value: yesNo(get('claim')) ?? 'NA' },
-      { label: 'Digital authentication', value: yesNo(get('digital_auth')) ?? 'NA' },
-      { label: 'Used across 2+ sectors', value: yesNo(get('sectoral_use_cases')) ?? 'NA' },
+      { label: 'Claims a digital ID', value: yesNo(get('claim')) ?? 'NA', field: 'claim' },
+      { label: 'Digital authentication', value: yesNo(get('digital_auth')) ?? 'NA', field: 'digital_auth' },
+      { label: 'Used across 2+ sectors', value: yesNo(get('sectoral_use_cases')) ?? 'NA', field: 'sectoral_use_cases' },
     ]
   }
   if (dpiType === 'pay') {
     const operator = get('operator')
     return [
       active,
-      { label: 'Real-time payments', value: yesNo(get('realtime_active')) ?? 'NA' },
-      { label: 'Operated by the central bank', value: operator === 'NA' ? 'NA' : /central/i.test(operator) ? 'Yes' : 'No' },
+      { label: 'Real-time payments', value: yesNo(get('realtime_active')) ?? 'NA', field: 'realtime_active' },
+      { label: 'Operated by the central bank', value: operator === 'NA' ? 'NA' : /central/i.test(operator) ? 'Yes' : 'No', field: 'operator' },
     ]
   }
   const sectoral = get('sectoral')
   return [
     active,
-    { label: 'Cross-sectoral', value: sectoral === 'NA' ? 'NA' : sectoral === 'Cross-sectoral' ? 'Yes' : 'No' },
+    { label: 'Cross-sectoral', value: sectoral === 'NA' ? 'NA' : sectoral === 'Cross-sectoral' ? 'Yes' : 'No', field: 'sectoral' },
   ]
 }
 
@@ -120,10 +123,13 @@ export function checkDpiCounts (records: Record<DPIType, SystemRecord[]>) {
   return problems
 }
 
-/** The attribute number of the codebook indicator a field measures, e.g. 3 for "3.2 ...", or 0 */
+/**
+ * The attribute number of the codebook indicator a field measures, e.g. 3 for "3.2 ...", or 0.
+ * The indicator is the field's `frameworkIndicator` in datapackage.json.
+ */
 function attributeOf (dpiType: DPIType, field: Field) {
-  const variable = findVariable(dpiType, field.title)
-  const match = variable?.indicator?.match(/^\s*(\d+)\./)
+  const variable = codebookVariableOf(dpiType, field)
+  const match = variable?.indicator.match(/^\s*(\d+)\./)
   return match ? Number(match[1]) : 0
 }
 
@@ -142,7 +148,7 @@ export function displayFields (dpiType: DPIType): Field[] {
     .map(({ field }) => field)
 }
 
-export interface DisplayValue { label: string, value: string, flag?: YesNoNA }
+export interface DisplayValue { label: string, value: string, flag?: YesNoNA, /** the field's id */ id: string }
 
 /** A system's display fields split into yes/no flags and text values */
 export function displayValues (dpiType: DPIType, record: SystemRecord) {
@@ -152,8 +158,8 @@ export function displayValues (dpiType: DPIType, record: SystemRecord) {
     const label = labelOf(field)
     const value = text(record[label])
     const flag = field.site.kind === 'flag' ? yesNo(value) : undefined
-    if (flag) flags.push({ label, value, flag })
-    else texts.push({ label, value })
+    if (flag) flags.push({ label, value, flag, id: field.id })
+    else texts.push({ label, value, id: field.id })
   }
   return { flags, texts, count: flags.length + texts.length }
 }

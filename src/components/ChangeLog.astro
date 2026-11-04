@@ -1,0 +1,39 @@
+---
+// A system's change log, for its page's sidebar: the changesets that touched it, newest
+// first, then the dataset snapshot it started from. Styled by .side-card and .log in src/styles/global.css.
+import { labelOf } from '../Schema'
+import { authorName, changeLogOf, changesetUrl, fieldAnchor, isListed, logTitle, monthYear, snapshotDate } from '../SystemPage'
+import type { System } from '../Systems'
+
+interface Props {
+  system: System
+}
+const { system } = Astro.props
+const { log, snapshot } = changeLogOf(system)
+---
+<section class="side-card" id="log" aria-labelledby="log-h">
+  <h2 class="side-h" id="log-h">Change log</h2>
+  <div class="side-body">
+    <ol class="log">
+      { log.map(item => {
+        const title = logTitle(item)
+        return (
+          <li class="log-item">
+            <p class="h-top"><time datetime={item.date}>{item.date}</time></p>
+            <p class="log-what">{title.text}{ title.field && (isListed(title.field)
+              ? <a class="ul" href={`#${fieldAnchor(title.field.id)}`}>{labelOf(title.field)}</a>
+              : labelOf(title.field)) }</p>
+            <p class="log-file"><a class="mono" href={changesetUrl(system.resource, item.changeset)}>{item.changeset}</a></p>
+            { authorName(item.author) && <p class="h-by">{authorName(item.author)}</p> }
+          </li>
+        )
+      })}
+      { snapshot &&
+        <li class="log-item is-base">
+          <p class="h-top"><time datetime={snapshotDate}>{snapshotDate}</time></p>
+          <p class="log-what">Imported from the {snapshotDate} dataset snapshot</p>
+          <p class="h-by">{snapshot.fields} field{snapshot.fields === 1 ? '' : 's'}{snapshot.researched && `, researched ${monthYear(snapshot.researched)}`}</p>
+        </li> }
+    </ol>
+  </div>
+</section>

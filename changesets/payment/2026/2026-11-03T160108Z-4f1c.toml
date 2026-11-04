@@ -1,0 +1,238 @@
+[[changes]]
+type = "create"
+key = "pay-pe-03"
+as_of = 2026-10-15
+values.country = "Peru"
+values.name = "Transferencias Inmediatas (CCE)"
+reason = "New row: Peru's national immediate transfer system, cleared by the Cámara de Compensación Electrónica (CCE) since July 2016. Primary source: BCRP (n.d.). Secondary source: CEMLA Payments Week 2017 (BCRP presentation) (2017-09)."
+sources = [
+  "https://www.bcrp.gob.pe/sistema-de-pagos/camara-de-compensacion-electronica.html",
+  "https://clon.cemla.org/forodepagos/pdf/week2017/2017-09-semanadepagos1.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pe-03"
+as_of = 2026-10-15
+values.url = "https://transferenciasinterbancarias.pe/"
+reason = "Operator's official website. Primary source: CCE (operator) (2023)."
+sources = [
+  "https://transferenciasinterbancarias.pe/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pe-03"
+as_of = 2026-10-15
+values.realtime_active = "Yes"
+reason = "Recipients receive funds in near real time, 24x7. Primary source: BCRP (n.d.). DPI count needs manual check."
+sources = [
+  "https://www.bcrp.gob.pe/sistema-de-pagos/camara-de-compensacion-electronica.html",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pe-03"
+as_of = 2026-10-15
+values.system_type = "Cross-domain"
+reason = "Participants include banks, cajas municipales, financieras and e-money issuers. Primary source: BCRP (2024-09); BCRP (2026-03)."
+sources = [
+  "https://www.bcrp.gob.pe/reporte-de-inflacion/142-sistemas-de-pagos.html",
+  "https://www.bcrp.gob.pe/docs/Publicaciones/reporte-del-sistema-nacional-de-pagos/2026/marzo/rspf-marzo-2026.html",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pe-03"
+as_of = 2026-10-15
+values.status = "Implemented"
+reason = "Live since July 2016; 24x7 service since November 2020. Primary source: BCRP (n.d.). Secondary source: CEMLA Payments Week 2017 (BCRP presentation) (2017-09). DPI count needs manual check."
+sources = [
+  "https://www.bcrp.gob.pe/sistema-de-pagos/camara-de-compensacion-electronica.html",
+  "https://clon.cemla.org/forodepagos/pdf/week2017/2017-09-semanadepagos1.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pe-03"
+as_of = 2026-10-15
+values.national_regional = "National"
+reason = "Domestic system: the CCE processes immediate transfers in soles and US dollars within Peru."
+sources = [
+  "https://www.bcrp.gob.pe/sistema-de-pagos/camara-de-compensacion-electronica.html",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pe-03"
+as_of = 2026-10-15
+values.cross_border = "Not Found"
+reason = "Information not found."
+
+[[changes]]
+type = "update"
+key = "pay-pe-03"
+as_of = 2026-10-15
+values.interoperability_policy = "Yes"
+reason = "BCRP retail payments interoperability strategy; Phase 2 runs mobile-number immediate transfers and QR payments through the CCE. Primary source: BCRP (n.d.); BCRP (2026-03)."
+sources = [
+  "https://www.bcrp.gob.pe/sistema-de-pagos/interoperabilidad/estrategia-de-interoperabilidad-de-los-pagos-minoristas.html",
+  "https://www.bcrp.gob.pe/docs/Publicaciones/reporte-del-sistema-nacional-de-pagos/2026/marzo/rspf-marzo-2026.html",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pe-03"
+as_of = 2026-10-15
+values.transaction_types = "P2P, P2M"
+reason = "Transfers between customers of different participants, and QR payments under Phase 2 of the interoperability strategy. Primary source: BCRP (n.d.); BCRP (n.d.)."
+sources = [
+  "https://www.bcrp.gob.pe/sistema-de-pagos/camara-de-compensacion-electronica.html",
+  "https://www.bcrp.gob.pe/sistema-de-pagos/interoperabilidad/estrategia-de-interoperabilidad-de-los-pagos-minoristas.html",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pe-03"
+as_of = 2026-10-15
+values.clearing_infrastructure = "ACH"
+reason = "The CCE is Peru's electronic clearing house; it clears immediate transfers and sends results to the BCRP for settlement in the LBTR. Primary source: BCRP (n.d.); BCRP (n.d.)."
+sources = [
+  "https://www.bcrp.gob.pe/sistema-de-pagos/camara-de-compensacion-electronica.html",
+  "https://www.bcrp.gob.pe/docs/Publicaciones/Revista-Moneda/Moneda-131/Revista-Moneda-131-04.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pe-03"
+as_of = 2026-10-15
+values.settlement_method = "DNS"
+reason = "One clearing process and one settlement process per business day; participants prefund specific-resources accounts twice daily to back transfers between settlements (decision rule 4). Final settlement location: BCRP LBTR. Primary source: BCRP (n.d.)."
+sources = [
+  "https://www.bcrp.gob.pe/sistema-de-pagos/camara-de-compensacion-electronica.html",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pe-03"
+as_of = 2026-10-15
+values.operator = "Bank association"
+reason = "CCE is a private company owned by the banks, regulated and supervised by the BCRP, which does not sit on its board. Primary source: BCRP (n.d.). Secondary source: CEMLA Payments Week 2008 (BCRP presentation) (2008). DPI count needs manual check."
+sources = [
+  "https://www.bcrp.gob.pe/docs/Publicaciones/Revista-Moneda/Moneda-131/Revista-Moneda-131-04.pdf",
+  "https://clon.cemla.org/forodepagos/pdf/week2008/pw2008-Peru.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pe-03"
+as_of = 2026-10-15
+values.bank_participation = "Yes"
+reason = "16 banks participate in the mobile-number immediate transfer service (September 2024). Primary source: BCRP (2024-09)."
+sources = [
+  "https://www.bcrp.gob.pe/reporte-de-inflacion/142-sistemas-de-pagos.html",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pe-03"
+as_of = 2026-10-15
+values.nonbank_participation = "Yes"
+reason = "Cajas municipales, financieras and e-money issuers participate; PDP, GMoney and TPP integrated in 2025. Primary source: BCRP (2024-09); BCRP (2026-03)."
+sources = [
+  "https://www.bcrp.gob.pe/reporte-de-inflacion/142-sistemas-de-pagos.html",
+  "https://www.bcrp.gob.pe/docs/Publicaciones/reporte-del-sistema-nacional-de-pagos/2026/marzo/rspf-marzo-2026.html",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pe-03"
+as_of = 2026-10-15
+values.participation_rules = "Yes"
+reason = "Service regulated by the BCRP, most recently Circular 030-2020-BCRP. Primary source: BCRP (n.d.)."
+sources = [
+  "https://www.bcrp.gob.pe/sistema-de-pagos/camara-de-compensacion-electronica.html",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pe-03"
+as_of = 2026-10-15
+values.participants = "2024- 29"
+reason = "16 banks, 8 cajas municipales, 3 financieras, 2 EEDEs. Participants in the mobile-number immediate transfer service. Primary source: BCRP (2024-09). Figure covers the mobile-number service as of September 2024; total immediate transfer participants may differ and e-money issuers have joined since."
+sources = [
+  "https://www.bcrp.gob.pe/reporte-de-inflacion/142-sistemas-de-pagos.html",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pe-03"
+as_of = 2026-10-15
+values.annual_value_usd = "2025- 74.70 B"
+reason = "Information not found in USD. 2025 value grew 40.7%; BCRPData publishes monthly series in soles. Primary source: BCRP (2026-03); BCRP (2026). Annual USD figure can be derived from the BCRPData value series."
+sources = [
+  "https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN42233EM/html/2025-1/2025-12/",
+  "https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN42234EM",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pe-03"
+as_of = 2026-10-15
+values.annual_volume = "2025- 542 M"
+reason = "Annual total not compiled. BCRPData monthly series available (e.g. 60.1 million in December 2025, 65.5 million in March 2026). Primary source: BCRP (2026). Sum the 2025 monthly series from BCRPData to complete."
+sources = [
+  "https://estadisticas.bcrp.gob.pe/estadisticas/series/mensuales/resultados/PN42234EM",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pe-03"
+as_of = 2026-10-15
+values.data_handling_rules = "Yes"
+reason = "Circular No. 0022-2025-BCRP, dated 5 December 2025, approves a new General Regulation of the National Payment System. It covers payment infrastructures such as the CCE and the entities that provide payment services, and it refers to the integrity and confidentiality of payment services."
+sources = [
+  "https://www.bcrp.gob.pe/docs/Transparencia/Normas-Legales/Circulares/2025/circular-0022-2025-bcrp.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pe-03"
+as_of = 2026-10-15
+values.reporting_forum = "No"
+reason = "Users can complain through their institution's user service platform under SBS Resolution 3274-2017, and escalate to the SBS and INDECOPI. That route is general financial consumer protection, not specific to the CCE. The SBS Market Conduct Regulation (Resolución SBS N° 3274-2017) requires financial institutions to handle users' complaints diligently. Each institution has a user service platform (Plataforma de Atención al Usuario) for this."
+sources = [
+  "https://www.bn.com.pe/transparenciabn/transparencia-financiera/Res-SBS-3274-2017-Reglamento-Gestion-Conducta-Mercado.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pe-03"
+as_of = 2026-10-15
+values.aml_law = "Yes"
+reason = "Law No. 27693 created Peru's Financial Intelligence Unit (UIF-Perú) to receive, analyse and pass on information to detect money laundering and terrorist financing. The UIF is now a specialised unit of the banking regulator, the SBS."
+sources = [
+  "https://www.icnl.org/wp-content/uploads/Ley27693.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pe-03"
+as_of = 2026-10-15
+values.transaction_cost = "Variable, free up to S/ 500 (US$ 140) at most entities"
+reason = "CCE states transfers are free up to S/ 500 or US$ 140 at most entities; participant fees apply above that. Primary source: CCE (operator) (2023). Source dates from 2023; confirm current threshold."
+sources = [
+  "https://transferenciasinterbancarias.pe/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pe-03"
+as_of = 2026-10-15
+values.qr_code = "Yes"
+reason = "QR interoperability is mandated by the BCRP (Circular 0024-2022-BCRP, Art. 11) and runs through the CCE: the CCE built the reader for existing Yape and Plin QR codes, new codes follow an interoperable format, and interoperable QR payments are sent to the CCE for clearing between institutions. Payments within one wallet (e.g. Yape to Yape) stay on that wallet. Secondary sources: El Comercio (15 Sep 2023), quoting the CCE general manager; TAYPI (29 Mar 2026). BCRP primary pages could not be reached; add a BCRP or CCE source before publication."
+sources = [
+  "https://elcomercio.pe/economia/interoperabilidad-en-el-peru-en-marcha-cuantas-transacciones-se-hicieron-y-como-funcionara-el-qr-entre-billeteras-digitales-yape-plin-qr-cce-depositos-pagos-noticia/",
+  "https://taypi.pe/blog/como-funciona-interoperabilidad-qr-bcrp/",
+  "https://busquedas.elperuano.pe/normaslegales/aprueban-el-reglamento-de-interoperabilidad-de-los-servicios-circular-n-0024-2022-bcrp-2113366-1/",
+]

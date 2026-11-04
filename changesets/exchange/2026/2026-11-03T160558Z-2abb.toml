@@ -1,0 +1,77 @@
+[[changes]]
+type = "update"
+key = "dx-hr-01"
+as_of = 2026-10-15
+values.once_only_principle = "Yes"
+reason = ""
+sources = [
+  "https://sredisnjikatalogrh.gov.hr/wh/sdurdd-pprh/narodne-novine.nn.hr/clanci/sluzbeni/full/2025_04_72_934.html",
+]
+
+[[changes]]
+type = "update"
+key = "dx-hr-01"
+as_of = 2026-10-15
+values.personal_data_protection = "Yes"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-hr-01"
+as_of = 2026-10-15
+values.formal_mandate = "Yes"
+reason = "New variable"
+sources = [
+  "https://sredisnjikatalogrh.gov.hr/srce-arhiva/263/168994/narodne-novine.nn.hr/clanci/sluzbeni/full/2017_06_60_1362.html",
+]
+
+[[changes]]
+type = "update"
+key = "dx-hr-01"
+as_of = 2026-10-15
+values.permitted_participants = "Public, Private"
+reason = ""
+sources = [
+  "https://sredisnjikatalogrh.gov.hr/srce-arhiva/263/168994/narodne-novine.nn.hr/clanci/sluzbeni/full/2017_06_60_1362.html",
+]
+
+[[changes]]
+type = "update"
+key = "dx-hr-01"
+as_of = 2026-10-15
+values.architecture = "WSO2"
+reason = "New information found"
+sources = [
+  "https://ssi.gov.hr/en/interoperability/government-service-bus-gsb",
+]
+
+[[changes]]
+type = "update"
+key = "dx-hr-01"
+as_of = 2026-10-15
+values.number_of_transactions = "2026 - 455 million"
+values.number_of_members = "2026 - 381"
+reason = "New variable"
+sources = [
+  "https://metaregistar.gov.hr/home",
+]
+
+[[changes]]
+type = "update"
+key = "dx-hr-01"
+as_of = 2026-10-15
+values.interoperability_level = "Semantic"
+reason = "Registry data shall contain semantic concept of term. https://sredisnjikatalogrh.gov.hr/srce-arhiva/263/168994/narodne-novine.nn.hr/clanci/sluzbeni/full/2017_06_60_1362.html"
+sources = [
+  "https://sredisnjikatalogrh.gov.hr/srce-arhiva/263/168994/narodne-novine.nn.hr/clanci/sluzbeni/full/2017_06_60_1362.html",
+]
+
+[[changes]]
+type = "update"
+key = "dx-hr-01"
+as_of = 2026-10-15
+values.independent_audit = "Not Found"
+reason = "Requirement of independent audit but not periodic. Also requires security testing in case of 'significant changes'"
+sources = [
+  "https://sredisnjikatalogrh.gov.hr/srce-arhiva/263/168994/narodne-novine.nn.hr/clanci/sluzbeni/full/2017_06_60_1362.html",
+]

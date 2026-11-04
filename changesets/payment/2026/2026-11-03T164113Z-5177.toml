@@ -1,0 +1,9 @@
+[[changes]]
+type = "update"
+key = "pay-lac-04"
+as_of = 2026-11-03
+values.country = "Latin America and the Caribbean"
+reason = "Use the UN M49 name for this region, as the place code in its System ID does."
+sources = [
+  "https://unstats.un.org/unsd/methodology/m49/overview/",
+]

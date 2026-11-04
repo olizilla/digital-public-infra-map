@@ -1,0 +1,98 @@
+---
+// One field on a system's page, as a <details>: the value, its source and where it came from,
+// and opened, what the field means, its evidence, and its history, newest first.
+// Styled by .fr and its parts in src/styles/global.css.
+import FieldValue from './FieldValue.astro'
+import { yesNo } from '../DpiTest'
+import { labelOf, type Field } from '../Schema'
+import { variablePath } from '../Codebook'
+import { authorName, changesetUrl, domainOf, fieldAnchor, meaningOf, monthYear, shortUrl, snapshotDate, storyOf } from '../SystemPage'
+import type { System } from '../Systems'
+
+interface Props {
+  system: System
+  field: Field
+}
+const { system, field } = Astro.props
+const value = system.values[field.id] ?? ''
+const flag = field.site.kind === 'flag' && yesNo(value) !== undefined
+const na = value.trim() === '' || value === 'NA'
+const { history, evidence } = storyOf(system, field.id)
+const meaning = meaningOf(system.dpiType, field)
+const label = labelOf(field)
+// when the current value was set or last restated: the newest change's as_of, or the snapshot's date
+const latest = history[0]
+const since = latest && (latest.type === 'snapshot' ? snapshotDate : latest.as_of)
+---
+<details class:list={['fr', flag ? 'is-flag' : 'is-text', { 'is-na': na }]} id={fieldAnchor(field.id)}>
+  <summary>
+    { flag && <span class="fr-val"><FieldValue field={field} value={value} /></span> }
+    <span class="fr-main">
+      <span class="fr-l">
+        <span class:list={[flag ? 'fr-flag-label' : 'fr-label']}>{label}</span>
+              </span>
+      { !flag && <span class="fr-value"><FieldValue field={field} value={value} /></span> }
+    </span>
+    <span class="fr-end">
+      { since && <time class="fr-date" datetime={since}>{monthYear(since)}</time> }
+      <span class="chev" aria-hidden="true" />
+    </span>
+  </summary>
+  <div class="fr-more">
+    <details class="meaning">
+      <summary class="mini-h">What this field means</summary>
+      { meaning.description
+        ? <p class="def-text">{meaning.description}</p>
+        : <p class="def-text">{meaning.codebook ? 'No definition recorded yet.' : 'Not a codebook variable.'}</p> }
+      { meaning.codes.length > 0 &&
+        <dl class="codes">{ meaning.codes.map(code => <div><dt>{code.value}</dt><dd>{code.meaning}</dd></div>) }</dl> }
+      { meaning.rule && <p class="def-meta">{meaning.rule}</p> }
+      { meaning.indicator && <p class="def-meta whitespace-pre-line">Indicator {meaning.indicator}</p> }
+      <p class="def-meta"><a class="ul" href={variablePath(system.dpiType, field)}>Read it in the codebook</a></p>
+    </details>
+    <section>
+      <h4 class="mini-h">Source</h4>
+      { evidence.length
+        ? <ul class="ev">
+            { evidence.map(({ url, from }) => (
+              <li>
+                <a class="src-full" href={url} rel="nofollow noopener">{shortUrl(url)}</a>
+                <span class="origin">{ from.type === 'snapshot'
+                  ? `from the ${snapshotDate} snapshot`
+                  : <Fragment>added in <a class="mono" href={changesetUrl(system.resource, from.changeset)}>{from.changeset}</a></Fragment> }</span>
+              </li>
+            ))}
+          </ul>
+        : <p class="nosrc-block">No source recorded yet. If you know where this is stated publicly, <a class="ul" href="/contribute/">propose an update</a> with a source.</p> }
+    </section>
+    <section>
+      <h4 class="mini-h">History</h4>
+      { history.length === 0
+        ? <p class="nosrc-block">No value has been recorded for this field yet.</p>
+        : <ol class="hist">
+            { history.map(item => item.type === 'snapshot'
+              ? <li class="h-item is-base">
+                  <p class="h-top"><time datetime={snapshotDate}>{snapshotDate}</time><span class="sep">·</span>Imported from the {snapshotDate} dataset snapshot</p>
+                  <p class="h-diff"><FieldValue field={field} value={item.value} />{item.as_of && <span class="h-same">as researched {monthYear(item.as_of)}</span>}</p>
+                  <p class="h-by">{ item.sources.length
+                    ? <Fragment>Source: { item.sources.map((url, i) => <Fragment>{i > 0 && ', '}<a class="src" href={url} title={url} rel="nofollow noopener">{domainOf(url)}</a></Fragment>) }</Fragment>
+                    : 'No source recorded' }</p>
+                </li>
+              : <li class="h-item">
+                  <p class="h-top"><time datetime={item.as_of}>{item.as_of}</time><span class="sep">·</span><a class="mono" href={changesetUrl(system.resource, item.changeset)}>{item.changeset}</a></p>
+                  <p class="h-diff">
+                    { item.previous !== undefined
+                      ? <Fragment><del><FieldValue field={field} value={item.previous} /></del><span class="arr">→</span><ins><FieldValue field={field} value={item.value} /></ins></Fragment>
+                      : <FieldValue field={field} value={item.value} /> }
+                    { !item.valueChanged && <span class="h-same">{item.sources.length ? 'value unchanged, source added' : 'value unchanged'}</span> }
+                  </p>
+                  { item.reason && <blockquote class="h-reason">“{item.reason}”</blockquote> }
+                  { item.sources.length > 0 &&
+                    <ul class="h-src">{ item.sources.map(url => <li><a class="src-full" href={url} rel="nofollow noopener">{shortUrl(url)}</a></li>) }</ul> }
+                  { authorName(item.author) && <p class="h-by">Proposed by {authorName(item.author)}</p> }
+                </li>
+            )}
+          </ol> }
+    </section>
+  </div>
+</details>

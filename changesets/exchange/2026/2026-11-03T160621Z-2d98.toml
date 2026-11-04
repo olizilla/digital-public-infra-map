@@ -1,0 +1,61 @@
+[[changes]]
+type = "update"
+key = "dx-qa-01"
+as_of = 2026-10-15
+values.url = "https://www.mcit.gov.qa/en/services/government-data-exchange-system"
+values.architecture = "Not Found"
+values.interoperability_level = "Syntactic"
+values.audit_mechanism = "Not Found"
+values.impact_metrics = "Not Found"
+values.formal_mandate = "No"
+values.personal_data_protection = "Yes"
+values.independent_audit = "No"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-qa-01"
+as_of = 2026-10-15
+values.enrolment_info = "Yes"
+reason = ""
+sources = [
+  "https://share.google/t1GpWr3uXHW15DL96",
+]
+
+[[changes]]
+type = "update"
+key = "dx-qa-01"
+as_of = 2026-10-15
+values.number_of_transactions = "Not Found"
+values.number_of_members = "Not Found"
+reason = "New framework variable not yet recorded for this country"
+
+[[changes]]
+type = "update"
+key = "dx-qa-01"
+as_of = 2026-10-15
+values.permitted_participants = "Public, Private"
+reason = ""
+sources = [
+  "https://hukoomi.gov.qa/en/digital-projects/government-data-exchange-system",
+]
+
+[[changes]]
+type = "update"
+key = "dx-qa-01"
+as_of = 2026-10-15
+values.once_only_principle = "Yes"
+reason = ""
+sources = [
+  "https://share.google/yMUlTrgotk0Wvn6Qd",
+]
+
+[[changes]]
+type = "update"
+key = "dx-qa-01"
+as_of = 2026-10-15
+values.data_management_rules = "Yes"
+reason = ""
+sources = [
+  "https://share.google/Dq4l5GMxPRMuEPULd",
+]

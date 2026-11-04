@@ -92,15 +92,14 @@ You need [node.js](https://nodejs.org). Clone the repo, then run `npm install` a
 | :----------------------- | :--------------------------------------------------------------------- |
 | `npm start`              | Start a dev server at `localhost:4321`                                 |
 | `npm run build`          | Build the site to `./dist/`                                            |
-| `npm test`               | Build the site and check its links                                     |
+| `npm test`               | Build the site and check its internal links                            |
 | `npm run validate`       | Check `datapackage.json` and the latest CSVs                           |
 | `npm run codebook:check` | Report where the codebook and the data disagree                        |
-| `npm run codebook:pull`  | Refresh `src/codebook.json` from the codebook sheet                    |
 | `npm run data`           | Save the data as JSON in `public/data/<date>/`, while `npm start` runs |
 
 Gotchas:
 
-- The codebook is a committed snapshot, `src/codebook.json`. Refresh it with `npm run codebook:pull` and commit the result.
+- The codebook is built from `datapackage.json`: each field's `title`, `description`, `categories` (or `codebookCategories`), `scope`, `variableType` and `frameworkIndicator`. See the README. Every field is in the codebook unless it's marked `codebook: false` in `src/SiteFields.ts`.
 - Code refers to fields by `id`, never by column header. Headers change; ids don't.
-- A renamed codebook variable fails the build. Each field's `title` in `datapackage.json` must be a codebook variable, unless the field is marked `codebook: false` in `src/SiteFields.ts`.
+- A codebook link's anchor comes from the field's `title`, so changing a title changes its `/codebook` anchor.
 - Tailwind only scans `src/pages`, `src/components` and `src/layouts` for class names, so classes used anywhere else aren't generated.

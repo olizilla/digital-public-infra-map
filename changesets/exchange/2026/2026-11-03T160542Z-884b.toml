@@ -1,0 +1,84 @@
+[[changes]]
+type = "create"
+key = "dx-ch-02"
+as_of = 2026-10-15
+values.country = "Switzerland"
+values.name = "Sedex"
+values.url = "https://www.sedex.swiss/"
+values.status = "Implemented"
+values.architecture = "API Gateway"
+values.national_regional = "National"
+values.sectoral = "Cross-sectoral"
+values.interoperability_level = "Semantic"
+values.scalable_architecture = "Not Found"
+values.ownership = "Public"
+values.data_management_rules = "Yes"
+values.coordination_unit = "Federal Statistical Office"
+values.multiple_public_entities = "Yes"
+values.impact_metrics = "No"
+values.personal_data_protection = "Yes"
+values.independent_audit = "Not Found"
+values.number_of_transactions = "Not Found"
+values.number_of_members = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-ch-02"
+as_of = 2026-10-15
+values.formal_mandate = "Yes"
+reason = ""
+sources = [
+  "https://dam-api.bfs.admin.ch/hub/api/dam/assets/36337954/master",
+]
+
+[[changes]]
+type = "update"
+key = "dx-ch-02"
+as_of = 2026-10-15
+values.once_only_principle = "Yes"
+reason = ""
+sources = [
+  "https://www.bfs.admin.ch/bfs/en/home/nadb/nadb.html",
+]
+
+[[changes]]
+type = "update"
+key = "dx-ch-02"
+as_of = 2026-10-15
+values.realtime_sharing = "Yes"
+reason = ""
+sources = [
+  "https://www.bfs.admin.ch/bfs/de/home/register/personenregister/sedex/webservices.html",
+]
+
+[[changes]]
+type = "update"
+key = "dx-ch-02"
+as_of = 2026-10-15
+values.governing_entity = "Federal Statistical Office"
+reason = "* Unclear"
+sources = [
+  "https://www.bfs.admin.ch/bfs/de/home/register/personenregister/sedex.html",
+]
+
+[[changes]]
+type = "update"
+key = "dx-ch-02"
+as_of = 2026-10-15
+values.enrolment_info = "Yes"
+reason = ""
+sources = [
+  "https://docs.sedex.admin.ch/",
+]
+
+[[changes]]
+type = "update"
+key = "dx-ch-02"
+as_of = 2026-10-15
+values.permitted_participants = "Public, Private"
+values.audit_mechanism = "Yes"
+reason = ""
+sources = [
+  "https://www.bfs.admin.ch/bfs/de/home/register/personenregister/sedex.html",
+]

@@ -1,0 +1,44 @@
+[[changes]]
+type = "update"
+key = "id-bf-01"
+as_of = 2026-09-16
+values.biometrics = "Yes"
+reason = "Iris, face and fingerprints to be captured."
+sources = [
+  "https://www.biometricupdate.com/202608/burkina-faso-approves-operational-framework-for-wuri-digital-id-rollout",
+  "https://www.presidencedufaso.bf/conseil-des-ministres-du-30-juillet-2026/",
+]
+
+[[changes]]
+type = "update"
+key = "id-bf-01"
+as_of = 2026-09-16
+values.name = "National biometric ID / Unique Identification Number (WURI)"
+reason = "New biometric ID system introduced Nov 2025 (AES biometric ID card, 2 Dec 2025); WURI mass-enrolment framework adopted by decree on 30 Jul 2026."
+sources = [
+  "https://www.biometricupdate.com/202608/burkina-faso-approves-operational-framework-for-wuri-digital-id-rollout",
+  "https://www.presidencedufaso.bf/conseil-des-ministres-du-30-juillet-2026/",
+]
+
+[[changes]]
+type = "update"
+key = "id-bf-01"
+as_of = 2026-09-16
+values.governing_entity = "Office National d'Identification (ONI) / Ministry of Digital Transition, Posts and Electronic Communications"
+reason = "No change to ONI; ministry leads WURI."
+sources = [
+  "https://www.biometricupdate.com/202608/burkina-faso-approves-operational-framework-for-wuri-digital-id-rollout",
+  "https://www.presidencedufaso.bf/conseil-des-ministres-du-30-juillet-2026/",
+]
+
+[[changes]]
+type = "update"
+key = "id-bf-01"
+as_of = 2026-09-16
+values.regulation = "Yes"
+reason = "Decree of 30 Jul 2026 sets the operational framework for mass registration and issuing personal ID numbers."
+sources = [
+  "https://www.biometricupdate.com/202608/burkina-faso-approves-operational-framework-for-wuri-digital-id-rollout",
+  "https://www.assembleenationale.bf/storage/libelrapportcagidh/8M3KuoK1JLJKtYcy8m0mVTujeRyPq6OuireR0RXo.pdf",
+  "https://www.presidencedufaso.bf/conseil-des-ministres-du-30-juillet-2026/",
+]

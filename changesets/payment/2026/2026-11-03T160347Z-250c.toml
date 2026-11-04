@@ -1,0 +1,19 @@
+[[changes]]
+type = "update"
+key = "pay-mx-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "RTGS"
+reason = "New field. CoDi is an overlay; SPEI is operated by Banco de México. Decide whether near-continuous offsetting remains MN."
+sources = [
+  "https://fastpayments.worldbank.org/sites/default/files/2023-05/Settlement%20Note_Final_April%2020.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-mx-01"
+as_of = 2026-10-15
+values.settlement_method = "Hybrid"
+reason = "CoDI payments settle through SPEI, which nets continuously every few seconds; coded Hybrid under the revised codebook, which replaces MN."
+sources = [
+  "https://fastpayments.worldbank.org/sites/default/files/2023-05/Settlement%20Note_Final_April%2020.pdf",
+]

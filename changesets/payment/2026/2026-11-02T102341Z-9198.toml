@@ -1,0 +1,36 @@
+[[changes]]
+type = "update"
+key = "pay-lac-01"
+as_of = 2026-11-02
+values.country = "Latin America and the Caribbean"
+reason = "Use the UN M49 name for this region, as the place code in its System ID does."
+sources = [
+  "https://unstats.un.org/unsd/methodology/m49/overview/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-lac-02"
+as_of = 2026-11-02
+values.country = "Latin America and the Caribbean"
+reason = "Use the UN M49 name for this region, as the place code in its System ID does."
+sources = [
+  "https://unstats.un.org/unsd/methodology/m49/overview/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-asia-02"
+as_of = 2026-11-02
+values.country = "Asia"
+reason = "Use the UN M49 name for this region, as the place code in its System ID does."
+sources = [
+  "https://unstats.un.org/unsd/methodology/m49/overview/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-kn-01"
+as_of = 2026-11-02
+values.country = "Saint Kitts and Nevis"
+reason = "Fix the spelling of Saint Kitts and Nevis."

@@ -1,0 +1,56 @@
+[[changes]]
+type = "update"
+key = "dx-az-01"
+as_of = 2026-10-15
+values.realtime_sharing = "No"
+values.permitted_participants = "Public, Private, Civil"
+values.number_of_transactions = "Not Found"
+values.number_of_members = "2026 - 71"
+reason = ""
+sources = [
+  "https://idda.az/en/digitalization/digitalbridge",
+]
+
+[[changes]]
+type = "update"
+key = "dx-az-01"
+as_of = 2026-10-15
+values.independent_audit = "Yes"
+reason = "Requires regular audits but doesn't specify if these are independent."
+sources = [
+  "https://e-qanun.az/framework/40020",
+]
+
+[[changes]]
+type = "update"
+key = "dx-az-01"
+as_of = 2026-10-15
+values.governing_entity = "State Agency for Public Service and Social Innovations; President of the Republic of Azerbaijan"
+values.audit_mechanism = "Yes"
+values.coordination_unit = "Ministry of Digital Development and Transport of the Republic of Azerbaijan"
+values.formal_mandate = "Yes"
+values.once_only_principle = "Yes"
+reason = ""
+sources = [
+  "https://e-qanun.az/framework/40020",
+]
+
+[[changes]]
+type = "update"
+key = "dx-az-01"
+as_of = 2026-10-15
+values.interoperability_level = "Syntactic"
+values.enrolment_info = "Not Found"
+values.personal_data_protection = "Yes"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-az-01"
+as_of = 2026-10-15
+values.data_management_rules = "Yes"
+reason = ""
+sources = [
+  "https://e-qanun.az/framework/40020",
+  "https://e-qanun.az/framework/40020#%C9%99lav%C9%99",
+]

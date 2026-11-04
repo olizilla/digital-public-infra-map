@@ -1,0 +1,9 @@
+[[changes]]
+type = "remove"
+key = "pay-co-01"
+as_of = 2026-10-15
+reason = "Transfiya stopped operating as a standalone instant transfer service on 6 October 2025, when its transfers moved under Bre-B with ACH Colombia as one of the clearing rails. The Transfiya name survives only as a request-money function. Colombia’s instant payments are recorded under Bre-B."
+sources = [
+  "https://www.valoraanalitik.com/?p=514064",
+  "https://www.eluniversal.com.co/colombia/2025/10/06/asi-funcionaran-las-transferencias-inmediatas-en-colombia-bre-b-reemplaza-a-transfiya/",
+]

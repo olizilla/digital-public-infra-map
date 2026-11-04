@@ -1,0 +1,19 @@
+[[changes]]
+type = "update"
+key = "pay-hk-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "RTGS"
+reason = "New field. FPS run by the HKMA; settles in HKMA FPS ledger accounts (RMB leg via BOCHK, noted)"
+sources = [
+  "https://fastpayments.worldbank.org/sites/default/files/2023-05/Settlement%20Note_Final_April%2020.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-hk-01"
+as_of = 2026-10-15
+values.settlement_method = "Gross"
+reason = "New field. Payments settle individually in real time"
+sources = [
+  "https://fastpayments.worldbank.org/sites/default/files/2023-05/Settlement%20Note_Final_April%2020.pdf",
+]

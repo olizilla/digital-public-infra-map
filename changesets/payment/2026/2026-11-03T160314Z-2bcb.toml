@@ -1,0 +1,17 @@
+[[changes]]
+type = "update"
+key = "pay-kw-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "Switch"
+reason = "New field. KNET built and operates WAMD's central infrastructure under CBK supervision. Sources: Fintech Futures: WAMD facilitated by KNET under CBK supervision (2024) (Secondary); ACI Worldwide / KNET press release (2025): KNET built WAMD central infrastructure (Secondary)."
+sources = [
+  "https://www.fintechfutures.com/instant-real-time-payments/kuwait-s-central-bank-approves-launch-of-new-wamd-instant-payments-system",
+  "https://www.businesswire.com/news/home/20250527732725/en/Kuwait%E2%80%99s-Real-Time-Payment-Scheme-WAMD-Surpasses-1-Million-Accounts-in-First-Year",
+]
+
+[[changes]]
+type = "update"
+key = "pay-kw-01"
+as_of = 2026-10-15
+values.settlement_method = "NA"
+reason = "New field. Information not found; previous settlement value (RTGS) not carried over under the evidence standard"

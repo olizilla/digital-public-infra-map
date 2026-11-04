@@ -1,0 +1,41 @@
+[[changes]]
+type = "update"
+key = "dx-no-01"
+as_of = 2026-10-15
+values.formal_mandate = "No"
+reason = "Digital Circular lays out requirements"
+sources = [
+  "https://www.regjeringen.no/no/dokumenter/digitaliseringsrundskrivet/id3103320/",
+  "https://www.regjeringen.no/no/dokumenter/digitaliseringsrundskrivet/id3103320/#_Toc199229521",
+]
+
+[[changes]]
+type = "update"
+key = "dx-no-01"
+as_of = 2026-10-15
+values.interoperability_level = "Semantic"
+values.permitted_participants = "Public, Private, Civil"
+values.once_only_principle = "Yes"
+values.personal_data_protection = "Yes"
+values.number_of_transactions = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-no-01"
+as_of = 2026-10-15
+values.number_of_members = "2025 - 75"
+reason = ""
+sources = [
+  "https://www.digdir.no/media/6966/download",
+]
+
+[[changes]]
+type = "update"
+key = "dx-no-01"
+as_of = 2026-10-15
+values.independent_audit = "Yes"
+reason = ""
+sources = [
+  "https://docs.altinn.studio/en/security/whitepaper/testing/",
+]

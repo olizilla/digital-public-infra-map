@@ -1,0 +1,51 @@
+[[changes]]
+type = "update"
+key = "dx-ua-01"
+as_of = 2026-10-15
+values.interoperability_level = "Semantic"
+values.formal_mandate = "Yes"
+values.independent_audit = "Not Found"
+reason = ""
+sources = [
+  "https://zakon.rada.gov.ua/laws/show/606-2016-%D0%BF",
+  "https://zakon.rada.gov.ua/laws/show/606-2016-%D0%BF#Text",
+]
+
+[[changes]]
+type = "update"
+key = "dx-ua-01"
+as_of = 2026-10-15
+values.personal_data_protection = "Yes"
+values.number_of_members = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-ua-01"
+as_of = 2026-10-15
+values.number_of_transactions = "2026 - 23 billion"
+reason = ""
+sources = [
+  "https://cyber.ee/resources/stories/trembita-interview/",
+]
+
+[[changes]]
+type = "update"
+key = "dx-ua-01"
+as_of = 2026-10-15
+values.once_only_principle = "Yes"
+reason = ""
+sources = [
+  "https://share.google/RtzcCPE3tOe6Wf4VN",
+]
+
+[[changes]]
+type = "update"
+key = "dx-ua-01"
+as_of = 2026-10-15
+values.permitted_participants = "Public, Private, Civil"
+reason = ""
+sources = [
+  "https://trembita.gov.ua/",
+  "https://portal.trembita.gov.ua/media/website-media/Reglament.pdf",
+]

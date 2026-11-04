@@ -1,0 +1,17 @@
+[[changes]]
+type = "update"
+key = "pay-za-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "ACH"
+reason = "New field. Cleared by PayInc (formerly BankservAfrica), the automated clearing house. Sources: SARB, NPS data poster: PayShap and RTC cleared by BankservAfrica, settled in SAMOS (Primary); Daily Investor: SARB has taken full control of BankservAfrica (now PayInc) (Secondary)."
+sources = [
+  "https://www.resbank.co.za/content/dam/sarb/what-we-do/payments-and-settlements/payments-insights/NPS%20Data%20Poster.pdf",
+  "https://dailyinvestor.com/?p=138605",
+]
+
+[[changes]]
+type = "update"
+key = "pay-za-01"
+as_of = 2026-10-15
+values.settlement_method = "NA"
+reason = "New field. Information not found; previous settlement value (RTGS) not carried over under the evidence standard"

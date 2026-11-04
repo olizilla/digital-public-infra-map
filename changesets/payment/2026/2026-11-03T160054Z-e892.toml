@@ -1,0 +1,10 @@
+[[changes]]
+type = "update"
+key = "pay-kh-01"
+as_of = 2026-10-15
+values.annual_volume = "2025- 1.3 B"
+reason = "2023 dataset figures don't seem in line with official figures."
+sources = [
+  "https://www.nbc.gov.kh/download_files/publication/fsr_eng/FSR2025_En.pdf",
+  "https://www.nbc.gov.kh%2Fdownload_files%2Fpublication%2Fannual_rep_kh%2FAnnual_Report_2025_K.pdf&h=AT35HBx7Q3ZYno1bxEWUGVcc92GCOCvHNqDMOrI7FR_1cvfqQi53mOtZiIy-SgqU06CQ1BeIPVPCfiK7B2-Y9Z5ZutyRlHTC1LATfBTsr8Wk-zQ99h8It4RZs6oneXc9IWC2Q5DdirmWaSaA&__tn__=-UK-R&c[0]=AT16pdKLS1tgyvvYquTCo_qPgMsLKx7QV_G6Eah8J-XSZ0AMEGt2f13KOktHEkWvrq9w9xLdjcjRBqf9-y7y_hdreGcPMz5vDhUefEw_32zzKYXFrxScmpbzQxk-iDzPwIErngdPF45wun6YPMXANjAkY_m-lyFI8F1rXE_0X-s_R-6lFqCvpHDAKZ7cC8U0BBNllLIKhQvhWWDKTc-1GVrQrg",
+]

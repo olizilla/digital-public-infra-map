@@ -1,0 +1,61 @@
+[[changes]]
+type = "update"
+key = "dx-lt-01"
+as_of = 2026-10-15
+values.formal_mandate = "Yes"
+reason = ""
+sources = [
+  "https://spp.epaslaugos.lt/lt/legislation",
+]
+
+[[changes]]
+type = "update"
+key = "dx-lt-01"
+as_of = 2026-10-15
+values.interoperability_level = "Semantic"
+values.independent_audit = "Yes"
+reason = ""
+sources = [
+  "https://e-seimas.lrs.lt/portal/legalActEditions/lt/TAD/TAIS.415499?faces-redirect=true",
+]
+
+[[changes]]
+type = "update"
+key = "dx-lt-01"
+as_of = 2026-10-15
+values.permitted_participants = "Public, Private"
+reason = ""
+sources = [
+  "https://spp.epaslaugos.lt/lt/information-for-institutions/viisp-platform",
+]
+
+[[changes]]
+type = "update"
+key = "dx-lt-01"
+as_of = 2026-10-15
+values.once_only_principle = "Yes"
+reason = ""
+sources = [
+  "https://interoperable-europe.ec.europa.eu/sites/default/files/custom-page/attachment/2026-06/iopeu-monitoring_2025-supporting-document_lithuania_vfinal.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "dx-lt-01"
+as_of = 2026-10-15
+values.personal_data_protection = "Yes"
+reason = "ID Dataset"
+
+[[changes]]
+type = "update"
+key = "dx-lt-01"
+as_of = 2026-10-15
+values.number_of_transactions = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-lt-01"
+as_of = 2026-10-15
+values.number_of_members = "Not Found"
+reason = "New Variable"

@@ -1,0 +1,1378 @@
+tab,row,place,variable,new value,reason
+Data Exchange_FinalLog,14,Cyprus,DPI-Like,0,derived field (dpi_count)
+Data Exchange_FinalLog,44,Israel,Data exchange system name,,no new value
+Data Exchange_FinalLog,45,Israel,Formal Mandate,,no new value
+Data Exchange_FinalLog,46,Israel,(Near) real-time sharing,,no new value
+Data Exchange_FinalLog,47,Israel,Personal Data Protection,,no new value
+Data Exchange_FinalLog,48,Israel,Once-Only Principle,,no new value
+Data Exchange_FinalLog,49,Israel,Independent audit,,no new value
+Data Exchange_FinalLog,50,Israel,URL,,no new value
+Data Exchange_FinalLog,51,Israel,Semantic interoperability,,no new value
+Data Exchange_FinalLog,52,Israel,DPI-Like,,no new value
+Data Exchange_FinalLog,53,Israel,Status of implementation,,no new value
+Data Exchange_FinalLog,54,Israel,Base technical architecture,,no new value
+Data Exchange_FinalLog,55,Israel,National / Regional,,no new value
+Data Exchange_FinalLog,56,Israel,Sector-specific/ Cross-sectoral,,no new value
+Data Exchange_FinalLog,57,Israel,Scalable technology architecture,,no new value
+Data Exchange_FinalLog,58,Israel,Governing entity,,no new value
+Data Exchange_FinalLog,59,Israel,Ownership,,no new value
+Data Exchange_FinalLog,60,Israel,Enrolment and participation information,,no new value
+Data Exchange_FinalLog,61,Israel,Permitted participants,,no new value
+Data Exchange_FinalLog,62,Israel,Audit mechanism,,no new value
+Data Exchange_FinalLog,63,Israel,Procedural rules for data mgmt.,,no new value
+Data Exchange_FinalLog,64,Israel,Coordination unit,,no new value
+Data Exchange_FinalLog,65,Israel,Used by more than one public entity,,no new value
+Data Exchange_FinalLog,66,Israel,Impact metrics,,no new value
+Data Exchange_FinalLog,67,Israel,Number of members,,no new value
+Data Exchange_FinalLog,68,Israel,Number of transactions,,no new value
+Data Exchange_FinalLog,78,Israel,DPI-Like,0,derived field (dpi_count)
+Data Exchange_FinalLog,116,United Arab Emirates,DPI-Like,1,derived field (dpi_count)
+Data Exchange_FinalLog,149,Qatar,DPI-Like,0,derived field (dpi_count)
+Data Exchange_FinalLog,150,Kuwait,Data exchange system name,,no new value
+Data Exchange_FinalLog,151,Kuwait,Formal Mandate,,no new value
+Data Exchange_FinalLog,152,Kuwait,Personal Data Protection,,no new value
+Data Exchange_FinalLog,153,Kuwait,Once-Only Principle,,no new value
+Data Exchange_FinalLog,154,Kuwait,Independent audit,,no new value
+Data Exchange_FinalLog,155,Kuwait,DPI-Like,,no new value
+Data Exchange_FinalLog,156,Kuwait,URL,,no new value
+Data Exchange_FinalLog,157,Kuwait,Status of implementation,,no new value
+Data Exchange_FinalLog,158,Kuwait,Base technical architecture,,no new value
+Data Exchange_FinalLog,159,Kuwait,National / Regional,,no new value
+Data Exchange_FinalLog,160,Kuwait,Sector-specific/ Cross-sectoral,,no new value
+Data Exchange_FinalLog,161,Kuwait,Semantic interoperability,,no new value
+Data Exchange_FinalLog,162,Kuwait,(Near) real-time sharing,,no new value
+Data Exchange_FinalLog,163,Kuwait,Scalable technology architecture,,no new value
+Data Exchange_FinalLog,164,Kuwait,Governing entity,,no new value
+Data Exchange_FinalLog,165,Kuwait,Ownership,,no new value
+Data Exchange_FinalLog,166,Kuwait,Enrolment and participation information,,no new value
+Data Exchange_FinalLog,167,Kuwait,Permitted participants,,no new value
+Data Exchange_FinalLog,168,Kuwait,Audit mechanism,,no new value
+Data Exchange_FinalLog,169,Kuwait,Procedural rules for data mgmt.,,no new value
+Data Exchange_FinalLog,170,Kuwait,Coordination unit,,no new value
+Data Exchange_FinalLog,171,Kuwait,Used by more than one public entity,,no new value
+Data Exchange_FinalLog,172,Kuwait,Impact metrics,,no new value
+Data Exchange_FinalLog,173,Kuwait,Number of members,,no new value
+Data Exchange_FinalLog,174,Kuwait,Number of transactions,,no new value
+Data Exchange_FinalLog,181,Kuwait,DPI-Like,0,derived field (dpi_count)
+Data Exchange_FinalLog,209,Saudi Arabia,DPI-Like,0,derived field (dpi_count)
+Data Exchange_FinalLog,210,Turkey,Data exchange system name,,no new value
+Data Exchange_FinalLog,211,Turkey,Semantic interoperability,,no new value
+Data Exchange_FinalLog,212,Turkey,Permitted participants,,no new value
+Data Exchange_FinalLog,213,Turkey,DPI-Like,,no new value
+Data Exchange_FinalLog,214,Turkey,URL,,no new value
+Data Exchange_FinalLog,215,Turkey,Status of implementation,,no new value
+Data Exchange_FinalLog,216,Turkey,Base technical architecture,,no new value
+Data Exchange_FinalLog,217,Turkey,National / Regional,,no new value
+Data Exchange_FinalLog,218,Turkey,Sector-specific/ Cross-sectoral,,no new value
+Data Exchange_FinalLog,219,Turkey,(Near) real-time sharing,,no new value
+Data Exchange_FinalLog,220,Turkey,Scalable technology architecture,,no new value
+Data Exchange_FinalLog,221,Turkey,Governing entity,,no new value
+Data Exchange_FinalLog,222,Turkey,Ownership,,no new value
+Data Exchange_FinalLog,223,Turkey,Enrolment and participation information,,no new value
+Data Exchange_FinalLog,224,Turkey,Audit mechanism,,no new value
+Data Exchange_FinalLog,225,Turkey,Procedural rules for data mgmt.,,no new value
+Data Exchange_FinalLog,226,Turkey,Coordination unit,,no new value
+Data Exchange_FinalLog,227,Turkey,Used by more than one public entity,,no new value
+Data Exchange_FinalLog,228,Turkey,Impact metrics,,no new value
+Data Exchange_FinalLog,229,Turkey,Number of members,,no new value
+Data Exchange_FinalLog,230,Turkey,Number of transactions,,no new value
+Data Exchange_FinalLog,231,Turkey,Independent audit,,no new value
+Data Exchange_FinalLog,240,Turkey,DPI-Like,1,derived field (dpi_count)
+Data Exchange_FinalLog,274,Andorra,DPI-Like,0,derived field (dpi_count)
+Data Exchange_FinalLog,275,Austria,Data exchange system name,,no new value
+Data Exchange_FinalLog,276,Austria,Number of members,,no new value
+Data Exchange_FinalLog,277,Austria,Number of transactions,,no new value
+Data Exchange_FinalLog,278,Austria,Once-Only Principle,,no new value
+Data Exchange_FinalLog,279,Austria,Personal Data Protection,,no new value
+Data Exchange_FinalLog,280,Austria,Formal Mandate,,no new value
+Data Exchange_FinalLog,281,Austria,Ownership,,no new value
+Data Exchange_FinalLog,282,Austria,URL,,no new value
+Data Exchange_FinalLog,283,Austria,Semantic interoperability,,no new value
+Data Exchange_FinalLog,284,Austria,Base technical architecture,,no new value
+Data Exchange_FinalLog,285,Austria,Independent audit,,no new value
+Data Exchange_FinalLog,286,Austria,Status of implementation,,no new value
+Data Exchange_FinalLog,287,Austria,National / Regional,,no new value
+Data Exchange_FinalLog,288,Austria,Sector-specific/ Cross-sectoral,,no new value
+Data Exchange_FinalLog,289,Austria,(Near) real-time sharing,,no new value
+Data Exchange_FinalLog,290,Austria,Scalable technology architecture,,no new value
+Data Exchange_FinalLog,291,Austria,Governing entity,,no new value
+Data Exchange_FinalLog,292,Austria,Enrolment and participation information,,no new value
+Data Exchange_FinalLog,293,Austria,Permitted participants,,no new value
+Data Exchange_FinalLog,294,Austria,Audit mechanism,,no new value
+Data Exchange_FinalLog,295,Austria,Procedural rules for data mgmt.,,no new value
+Data Exchange_FinalLog,296,Austria,Coordination unit,,no new value
+Data Exchange_FinalLog,297,Austria,Used by more than one public entity,,no new value
+Data Exchange_FinalLog,298,Austria,Impact metrics,,no new value
+Data Exchange_FinalLog,324,Austria,DPI-Like,1,derived field (dpi_count)
+Data Exchange_FinalLog,347,Belgium,DPI-Like,0,derived field (dpi_count)
+Data Exchange_FinalLog,367,Belgium,DPI-Like,1,derived field (dpi_count)
+Data Exchange_FinalLog,377,Bosnia and Herzegovina,Formal Mandate,,no new value
+Data Exchange_FinalLog,378,Bosnia and Herzegovina,Personal Data Protection,,no new value
+Data Exchange_FinalLog,379,Bosnia and Herzegovina,Independent audit,,no new value
+Data Exchange_FinalLog,380,Bosnia and Herzegovina,Impact metrics,,no new value
+Data Exchange_FinalLog,381,Bosnia and Herzegovina,Number of members,,no new value
+Data Exchange_FinalLog,382,Bosnia and Herzegovina,Data exchange system name,,no new value
+Data Exchange_FinalLog,383,Bosnia and Herzegovina,Permitted participants,,no new value
+Data Exchange_FinalLog,384,Bosnia and Herzegovina,Semantic interoperability,,no new value
+Data Exchange_FinalLog,385,Bosnia and Herzegovina,Once-Only Principle,,no new value
+Data Exchange_FinalLog,386,Bosnia and Herzegovina,Number of transactions,,no new value
+Data Exchange_FinalLog,387,Bosnia and Herzegovina,DPI-Like,,no new value
+Data Exchange_FinalLog,388,Bosnia and Herzegovina,URL,,no new value
+Data Exchange_FinalLog,389,Bosnia and Herzegovina,Status of implementation,,no new value
+Data Exchange_FinalLog,390,Bosnia and Herzegovina,Base technical architecture,,no new value
+Data Exchange_FinalLog,391,Bosnia and Herzegovina,National / Regional,,no new value
+Data Exchange_FinalLog,392,Bosnia and Herzegovina,Sector-specific/ Cross-sectoral,,no new value
+Data Exchange_FinalLog,393,Bosnia and Herzegovina,(Near) real-time sharing,,no new value
+Data Exchange_FinalLog,394,Bosnia and Herzegovina,Scalable technology architecture,,no new value
+Data Exchange_FinalLog,395,Bosnia and Herzegovina,Governing entity,,no new value
+Data Exchange_FinalLog,396,Bosnia and Herzegovina,Ownership,,no new value
+Data Exchange_FinalLog,397,Bosnia and Herzegovina,Enrolment and participation information,,no new value
+Data Exchange_FinalLog,398,Bosnia and Herzegovina,Audit mechanism,,no new value
+Data Exchange_FinalLog,399,Bosnia and Herzegovina,Procedural rules for data mgmt.,,no new value
+Data Exchange_FinalLog,400,Bosnia and Herzegovina,Coordination unit,,no new value
+Data Exchange_FinalLog,401,Bosnia and Herzegovina,Used by more than one public entity,,no new value
+Data Exchange_FinalLog,413,Bosnia and Herzegovina,DPI-Like,1,derived field (dpi_count)
+Data Exchange_FinalLog,455,Denmark,DPI-Like,0,derived field (dpi_count)
+Data Exchange_FinalLog,470,France,Formal Mandate,,no new value
+Data Exchange_FinalLog,471,France,Semantic interoperability,,no new value
+Data Exchange_FinalLog,472,France,Independent audit,,no new value
+Data Exchange_FinalLog,473,France,Data exchange system name,,no new value
+Data Exchange_FinalLog,474,France,Once-Only Principle,,no new value
+Data Exchange_FinalLog,475,France,DPI-Like,,no new value
+Data Exchange_FinalLog,476,France,Personal Data Protection,,no new value
+Data Exchange_FinalLog,477,France,URL,,no new value
+Data Exchange_FinalLog,478,France,Permitted participants,,no new value
+Data Exchange_FinalLog,479,France,Governing entity,,no new value
+Data Exchange_FinalLog,480,France,Coordination unit,,no new value
+Data Exchange_FinalLog,481,France,Impact metrics,,no new value
+Data Exchange_FinalLog,482,France,Base technical architecture,,no new value
+Data Exchange_FinalLog,483,France,(Near) real-time sharing,,no new value
+Data Exchange_FinalLog,484,France,Scalable technology architecture,,no new value
+Data Exchange_FinalLog,485,France,Audit mechanism,,no new value
+Data Exchange_FinalLog,486,France,National / Regional,,no new value
+Data Exchange_FinalLog,487,France,Enrolment and participation information,,no new value
+Data Exchange_FinalLog,488,France,Procedural rules for data mgmt.,,no new value
+Data Exchange_FinalLog,489,France,Used by more than one public entity,,no new value
+Data Exchange_FinalLog,490,France,Number of transactions,,no new value
+Data Exchange_FinalLog,491,France,Number of members,,no new value
+Data Exchange_FinalLog,492,France,Sector-specific/ Cross-sectoral,,no new value
+Data Exchange_FinalLog,493,France,Status of implementation,,no new value
+Data Exchange_FinalLog,494,France,Ownership,,no new value
+Data Exchange_FinalLog,500,France,DPI-Like,1,derived field (dpi_count)
+Data Exchange_FinalLog,521,Germany,Once-Only Principle,,no new value
+Data Exchange_FinalLog,522,Germany,Formal Mandate,,no new value
+Data Exchange_FinalLog,523,Germany,Data exchange system name,,no new value
+Data Exchange_FinalLog,524,Germany,Status of implementation,,no new value
+Data Exchange_FinalLog,525,Germany,Coordination unit,,no new value
+Data Exchange_FinalLog,526,Germany,URL,,no new value
+Data Exchange_FinalLog,527,Germany,Impact metrics,,no new value
+Data Exchange_FinalLog,528,Germany,Personal Data Protection,,no new value
+Data Exchange_FinalLog,529,Germany,Independent audit,,no new value
+Data Exchange_FinalLog,530,Germany,Semantic interoperability,,no new value
+Data Exchange_FinalLog,531,Germany,Number of transactions,,no new value
+Data Exchange_FinalLog,532,Germany,Number of members,,no new value
+Data Exchange_FinalLog,533,Germany,Base technical architecture,,no new value
+Data Exchange_FinalLog,534,Germany,DPI-Like,,no new value
+Data Exchange_FinalLog,535,Germany,National / Regional,,no new value
+Data Exchange_FinalLog,536,Germany,Sector-specific/ Cross-sectoral,,no new value
+Data Exchange_FinalLog,537,Germany,(Near) real-time sharing,,no new value
+Data Exchange_FinalLog,538,Germany,Scalable technology architecture,,no new value
+Data Exchange_FinalLog,539,Germany,Governing entity,,no new value
+Data Exchange_FinalLog,540,Germany,Ownership,,no new value
+Data Exchange_FinalLog,541,Germany,Enrolment and participation information,,no new value
+Data Exchange_FinalLog,542,Germany,Permitted participants,,no new value
+Data Exchange_FinalLog,543,Germany,Audit mechanism,,no new value
+Data Exchange_FinalLog,544,Germany,Procedural rules for data mgmt.,,no new value
+Data Exchange_FinalLog,545,Germany,Used by more than one public entity,,no new value
+Data Exchange_FinalLog,560,Germany,DPI-Like,0,derived field (dpi_count)
+Data Exchange_FinalLog,583,Greece,Once-Only Principle,Yes,repeats an earlier row of the same tab
+Data Exchange_FinalLog,605,Hungary,DPI-Like,0,derived field (dpi_count)
+Data Exchange_FinalLog,614,Ireland,Formal Mandate,,no new value
+Data Exchange_FinalLog,615,Ireland,Data exchange system name,,no new value
+Data Exchange_FinalLog,616,Ireland,Coordination unit,,no new value
+Data Exchange_FinalLog,617,Ireland,Status of implementation,,no new value
+Data Exchange_FinalLog,618,Ireland,Number of transactions,,no new value
+Data Exchange_FinalLog,619,Ireland,Permitted participants,,no new value
+Data Exchange_FinalLog,620,Ireland,National / Regional,,no new value
+Data Exchange_FinalLog,621,Ireland,Independent audit,,no new value
+Data Exchange_FinalLog,622,Ireland,Personal Data Protection,,no new value
+Data Exchange_FinalLog,623,Ireland,DPI-Like,,no new value
+Data Exchange_FinalLog,624,Ireland,URL,,no new value
+Data Exchange_FinalLog,625,Ireland,Base technical architecture,,no new value
+Data Exchange_FinalLog,626,Ireland,Sector-specific/ Cross-sectoral,,no new value
+Data Exchange_FinalLog,627,Ireland,Semantic interoperability,,no new value
+Data Exchange_FinalLog,628,Ireland,(Near) real-time sharing,,no new value
+Data Exchange_FinalLog,629,Ireland,Scalable technology architecture,,no new value
+Data Exchange_FinalLog,630,Ireland,Governing entity,,no new value
+Data Exchange_FinalLog,631,Ireland,Ownership,,no new value
+Data Exchange_FinalLog,632,Ireland,Enrolment and participation information,,no new value
+Data Exchange_FinalLog,633,Ireland,Audit mechanism,,no new value
+Data Exchange_FinalLog,634,Ireland,Procedural rules for data mgmt.,,no new value
+Data Exchange_FinalLog,635,Ireland,Used by more than one public entity,,no new value
+Data Exchange_FinalLog,636,Ireland,Impact metrics,,no new value
+Data Exchange_FinalLog,649,Ireland,DPI-Like,0,derived field (dpi_count)
+Data Exchange_FinalLog,696,Luxembourg,Data exchange system name,,no new value
+Data Exchange_FinalLog,697,Luxembourg,Once-Only Principle,,no new value
+Data Exchange_FinalLog,698,Luxembourg,Personal Data Protection,,no new value
+Data Exchange_FinalLog,699,Luxembourg,Number of members,,no new value
+Data Exchange_FinalLog,700,Luxembourg,Number of transactions,,no new value
+Data Exchange_FinalLog,701,Luxembourg,Permitted participants,,no new value
+Data Exchange_FinalLog,702,Luxembourg,Semantic interoperability,,no new value
+Data Exchange_FinalLog,703,Luxembourg,Formal Mandate,,no new value
+Data Exchange_FinalLog,704,Luxembourg,Independent audit,,no new value
+Data Exchange_FinalLog,705,Luxembourg,Enrolment and participation information,,no new value
+Data Exchange_FinalLog,706,Luxembourg,Base technical architecture,,no new value
+Data Exchange_FinalLog,707,Luxembourg,Governing entity,,no new value
+Data Exchange_FinalLog,708,Luxembourg,DPI-Like,,no new value
+Data Exchange_FinalLog,709,Luxembourg,URL,,no new value
+Data Exchange_FinalLog,710,Luxembourg,Status of implementation,,no new value
+Data Exchange_FinalLog,711,Luxembourg,National / Regional,,no new value
+Data Exchange_FinalLog,712,Luxembourg,Sector-specific/ Cross-sectoral,,no new value
+Data Exchange_FinalLog,713,Luxembourg,(Near) real-time sharing,,no new value
+Data Exchange_FinalLog,714,Luxembourg,Scalable technology architecture,,no new value
+Data Exchange_FinalLog,715,Luxembourg,Ownership,,no new value
+Data Exchange_FinalLog,716,Luxembourg,Audit mechanism,,no new value
+Data Exchange_FinalLog,717,Luxembourg,Procedural rules for data mgmt.,,no new value
+Data Exchange_FinalLog,718,Luxembourg,Coordination unit,,no new value
+Data Exchange_FinalLog,719,Luxembourg,Used by more than one public entity,,no new value
+Data Exchange_FinalLog,720,Luxembourg,Impact metrics,,no new value
+Data Exchange_FinalLog,734,Luxembourg,DPI-Like,0,derived field (dpi_count)
+Data Exchange_FinalLog,752,Montenegro,DPI-Like,0,derived field (dpi_count)
+Data Exchange_FinalLog,757,Netherlands,Data exchange system name,,no new value
+Data Exchange_FinalLog,758,Netherlands,Formal Mandate,,no new value
+Data Exchange_FinalLog,759,Netherlands,Number of members,,no new value
+Data Exchange_FinalLog,760,Netherlands,Number of transactions,,no new value
+Data Exchange_FinalLog,761,Netherlands,Once-Only Principle,,no new value
+Data Exchange_FinalLog,762,Netherlands,Independent audit,,no new value
+Data Exchange_FinalLog,763,Netherlands,Personal Data Protection,,no new value
+Data Exchange_FinalLog,764,Netherlands,DPI-Like,,no new value
+Data Exchange_FinalLog,765,Netherlands,URL,,no new value
+Data Exchange_FinalLog,766,Netherlands,Status of implementation,,no new value
+Data Exchange_FinalLog,767,Netherlands,Base technical architecture,,no new value
+Data Exchange_FinalLog,768,Netherlands,National / Regional,,no new value
+Data Exchange_FinalLog,769,Netherlands,Sector-specific/ Cross-sectoral,,no new value
+Data Exchange_FinalLog,770,Netherlands,Semantic interoperability,,no new value
+Data Exchange_FinalLog,771,Netherlands,(Near) real-time sharing,,no new value
+Data Exchange_FinalLog,772,Netherlands,Scalable technology architecture,,no new value
+Data Exchange_FinalLog,773,Netherlands,Governing entity,,no new value
+Data Exchange_FinalLog,774,Netherlands,Ownership,,no new value
+Data Exchange_FinalLog,775,Netherlands,Enrolment and participation information,,no new value
+Data Exchange_FinalLog,776,Netherlands,Permitted participants,,no new value
+Data Exchange_FinalLog,777,Netherlands,Audit mechanism,,no new value
+Data Exchange_FinalLog,778,Netherlands,Procedural rules for data mgmt.,,no new value
+Data Exchange_FinalLog,779,Netherlands,Coordination unit,,no new value
+Data Exchange_FinalLog,780,Netherlands,Used by more than one public entity,,no new value
+Data Exchange_FinalLog,781,Netherlands,Impact metrics,,no new value
+Data Exchange_FinalLog,790,Netherlands,DPI-Like,0,derived field (dpi_count)
+Data Exchange_FinalLog,816,Poland,Data exchange system name,,no new value
+Data Exchange_FinalLog,817,Poland,Formal Mandate,,no new value
+Data Exchange_FinalLog,818,Poland,Number of members,,no new value
+Data Exchange_FinalLog,819,Poland,Number of transactions,,no new value
+Data Exchange_FinalLog,820,Poland,URL,,no new value
+Data Exchange_FinalLog,821,Poland,Permitted participants,,no new value
+Data Exchange_FinalLog,822,Poland,Independent audit,,no new value
+Data Exchange_FinalLog,823,Poland,Once-Only Principle,,no new value
+Data Exchange_FinalLog,824,Poland,Personal Data Protection,,no new value
+Data Exchange_FinalLog,825,Poland,Semantic interoperability,,no new value
+Data Exchange_FinalLog,826,Poland,DPI-Like,,no new value
+Data Exchange_FinalLog,827,Poland,Status of implementation,,no new value
+Data Exchange_FinalLog,828,Poland,Base technical architecture,,no new value
+Data Exchange_FinalLog,829,Poland,National / Regional,,no new value
+Data Exchange_FinalLog,830,Poland,Sector-specific/ Cross-sectoral,,no new value
+Data Exchange_FinalLog,831,Poland,(Near) real-time sharing,,no new value
+Data Exchange_FinalLog,832,Poland,Scalable technology architecture,,no new value
+Data Exchange_FinalLog,833,Poland,Governing entity,,no new value
+Data Exchange_FinalLog,834,Poland,Ownership,,no new value
+Data Exchange_FinalLog,835,Poland,Enrolment and participation information,,no new value
+Data Exchange_FinalLog,836,Poland,Audit mechanism,,no new value
+Data Exchange_FinalLog,837,Poland,Procedural rules for data mgmt.,,no new value
+Data Exchange_FinalLog,838,Poland,Coordination unit,,no new value
+Data Exchange_FinalLog,839,Poland,Used by more than one public entity,,no new value
+Data Exchange_FinalLog,840,Poland,Impact metrics,,no new value
+Data Exchange_FinalLog,852,Poland,DPI-Like,1,derived field (dpi_count)
+Data Exchange_FinalLog,875,Slovakia,Data exchange system name,,no new value
+Data Exchange_FinalLog,876,Slovakia,Number of members,,no new value
+Data Exchange_FinalLog,877,Slovakia,Number of transactions,,no new value
+Data Exchange_FinalLog,878,Slovakia,Formal Mandate,,no new value
+Data Exchange_FinalLog,879,Slovakia,Semantic interoperability,,no new value
+Data Exchange_FinalLog,880,Slovakia,Personal Data Protection,,no new value
+Data Exchange_FinalLog,881,Slovakia,Independent audit,,no new value
+Data Exchange_FinalLog,882,Slovakia,Once-Only Principle,,no new value
+Data Exchange_FinalLog,883,Slovakia,Permitted participants,,no new value
+Data Exchange_FinalLog,884,Slovakia,DPI-Like,,no new value
+Data Exchange_FinalLog,885,Slovakia,URL,,no new value
+Data Exchange_FinalLog,886,Slovakia,Status of implementation,,no new value
+Data Exchange_FinalLog,887,Slovakia,Base technical architecture,,no new value
+Data Exchange_FinalLog,888,Slovakia,National / Regional,,no new value
+Data Exchange_FinalLog,889,Slovakia,Sector-specific/ Cross-sectoral,,no new value
+Data Exchange_FinalLog,890,Slovakia,(Near) real-time sharing,,no new value
+Data Exchange_FinalLog,891,Slovakia,Scalable technology architecture,,no new value
+Data Exchange_FinalLog,892,Slovakia,Governing entity,,no new value
+Data Exchange_FinalLog,893,Slovakia,Ownership,,no new value
+Data Exchange_FinalLog,894,Slovakia,Enrolment and participation information,,no new value
+Data Exchange_FinalLog,895,Slovakia,Audit mechanism,,no new value
+Data Exchange_FinalLog,896,Slovakia,Procedural rules for data mgmt.,,no new value
+Data Exchange_FinalLog,897,Slovakia,Coordination unit,,no new value
+Data Exchange_FinalLog,898,Slovakia,Used by more than one public entity,,no new value
+Data Exchange_FinalLog,899,Slovakia,Impact metrics,,no new value
+Data Exchange_FinalLog,910,Slovakia,DPI-Like,0,derived field (dpi_count)
+Data Exchange_FinalLog,926,Slovenia,Formal Mandate,,no new value
+Data Exchange_FinalLog,927,Slovenia,Data exchange system name,,no new value
+Data Exchange_FinalLog,928,Slovenia,Once-Only Principle,,no new value
+Data Exchange_FinalLog,929,Slovenia,Independent audit,,no new value
+Data Exchange_FinalLog,930,Slovenia,Governing entity,,no new value
+Data Exchange_FinalLog,931,Slovenia,Coordination unit,,no new value
+Data Exchange_FinalLog,932,Slovenia,Personal Data Protection,,no new value
+Data Exchange_FinalLog,933,Slovenia,Semantic interoperability,,no new value
+Data Exchange_FinalLog,934,Slovenia,Number of transactions,,no new value
+Data Exchange_FinalLog,935,Slovenia,Impact metrics,,no new value
+Data Exchange_FinalLog,936,Slovenia,URL,,no new value
+Data Exchange_FinalLog,937,Slovenia,Number of members,,no new value
+Data Exchange_FinalLog,938,Slovenia,DPI-Like,,no new value
+Data Exchange_FinalLog,939,Slovenia,Status of implementation,,no new value
+Data Exchange_FinalLog,940,Slovenia,Base technical architecture,,no new value
+Data Exchange_FinalLog,941,Slovenia,National / Regional,,no new value
+Data Exchange_FinalLog,942,Slovenia,Sector-specific/ Cross-sectoral,,no new value
+Data Exchange_FinalLog,943,Slovenia,(Near) real-time sharing,,no new value
+Data Exchange_FinalLog,944,Slovenia,Scalable technology architecture,,no new value
+Data Exchange_FinalLog,945,Slovenia,Ownership,,no new value
+Data Exchange_FinalLog,946,Slovenia,Enrolment and participation information,,no new value
+Data Exchange_FinalLog,947,Slovenia,Permitted participants,,no new value
+Data Exchange_FinalLog,948,Slovenia,Audit mechanism,,no new value
+Data Exchange_FinalLog,949,Slovenia,Procedural rules for data mgmt.,,no new value
+Data Exchange_FinalLog,950,Slovenia,Used by more than one public entity,,no new value
+Data Exchange_FinalLog,963,Slovenia,DPI-Like,0,derived field (dpi_count)
+Data Exchange_FinalLog,986,Sweden,Data exchange system name,,no new value
+Data Exchange_FinalLog,987,Sweden,Formal Mandate,,no new value
+Data Exchange_FinalLog,988,Sweden,Once-Only Principle,,no new value
+Data Exchange_FinalLog,989,Sweden,Impact metrics,,no new value
+Data Exchange_FinalLog,990,Sweden,Independent audit,,no new value
+Data Exchange_FinalLog,991,Sweden,Personal Data Protection,,no new value
+Data Exchange_FinalLog,992,Sweden,DPI-Like,,no new value
+Data Exchange_FinalLog,993,Sweden,URL,,no new value
+Data Exchange_FinalLog,994,Sweden,Status of implementation,,no new value
+Data Exchange_FinalLog,995,Sweden,Base technical architecture,,no new value
+Data Exchange_FinalLog,996,Sweden,National / Regional,,no new value
+Data Exchange_FinalLog,997,Sweden,Sector-specific/ Cross-sectoral,,no new value
+Data Exchange_FinalLog,998,Sweden,Semantic interoperability,,no new value
+Data Exchange_FinalLog,999,Sweden,(Near) real-time sharing,,no new value
+Data Exchange_FinalLog,1000,Sweden,Scalable technology architecture,,no new value
+Data Exchange_FinalLog,1001,Sweden,Governing entity,,no new value
+Data Exchange_FinalLog,1002,Sweden,Ownership,,no new value
+Data Exchange_FinalLog,1003,Sweden,Coordination unit,,no new value
+Data Exchange_FinalLog,1004,Sweden,Enrolment and participation information,,no new value
+Data Exchange_FinalLog,1005,Sweden,Permitted participants,,no new value
+Data Exchange_FinalLog,1006,Sweden,Used by more than one public entity,,no new value
+Data Exchange_FinalLog,1007,Sweden,Audit mechanism,,no new value
+Data Exchange_FinalLog,1008,Sweden,Procedural rules for data mgmt.,,no new value
+Data Exchange_FinalLog,1009,Sweden,Number of members,,no new value
+Data Exchange_FinalLog,1010,Sweden,Number of transactions,,no new value
+Data Exchange_FinalLog,1011,Sweden,DPI-Like,,no new value
+Data Exchange_FinalLog,1036,Sweden,DPI-Like,1,derived field (dpi_count)
+Data Exchange_FinalLog,1037,Switzerland,Data exchange system name,,no new value
+Data Exchange_FinalLog,1038,Switzerland,Formal Mandate,,no new value
+Data Exchange_FinalLog,1039,Switzerland,Once-Only Principle,,no new value
+Data Exchange_FinalLog,1040,Switzerland,Personal Data Protection,,no new value
+Data Exchange_FinalLog,1041,Switzerland,Independent audit,,no new value
+Data Exchange_FinalLog,1042,Switzerland,Semantic interoperability,,no new value
+Data Exchange_FinalLog,1043,Switzerland,DPI-Like,,no new value
+Data Exchange_FinalLog,1044,Switzerland,URL,,no new value
+Data Exchange_FinalLog,1045,Switzerland,Status of implementation,,no new value
+Data Exchange_FinalLog,1046,Switzerland,Base technical architecture,,no new value
+Data Exchange_FinalLog,1047,Switzerland,National / Regional,,no new value
+Data Exchange_FinalLog,1048,Switzerland,Sector-specific/ Cross-sectoral,,no new value
+Data Exchange_FinalLog,1049,Switzerland,(Near) real-time sharing,,no new value
+Data Exchange_FinalLog,1050,Switzerland,Scalable technology architecture,,no new value
+Data Exchange_FinalLog,1051,Switzerland,Governing entity,,no new value
+Data Exchange_FinalLog,1052,Switzerland,Ownership,,no new value
+Data Exchange_FinalLog,1053,Switzerland,Enrolment and participation information,,no new value
+Data Exchange_FinalLog,1054,Switzerland,Permitted participants,,no new value
+Data Exchange_FinalLog,1055,Switzerland,Audit mechanism,,no new value
+Data Exchange_FinalLog,1056,Switzerland,Procedural rules for data mgmt.,,no new value
+Data Exchange_FinalLog,1057,Switzerland,Coordination unit,,no new value
+Data Exchange_FinalLog,1058,Switzerland,Used by more than one public entity,,no new value
+Data Exchange_FinalLog,1059,Switzerland,Impact metrics,,no new value
+Data Exchange_FinalLog,1060,Switzerland,Number of members,,no new value
+Data Exchange_FinalLog,1061,Switzerland,Number of transactions,,no new value
+Data Exchange_FinalLog,1069,Switzerland,DPI-Like,1,derived field (dpi_count)
+Data Exchange_FinalLog,1132,Canada,DPI-Like,1,derived field (dpi_count)
+Data Exchange_NewVar_Log,2,Algeria,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,3,Algeria,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,4,Algeria,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,5,Algeria,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,6,Algeria,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,7,Algeria,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,8,Angola,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,9,Angola,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,10,Angola,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,11,Angola,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,12,Angola,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,13,Angola,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,14,Benin,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,15,Benin,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,16,Benin,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,17,Benin,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,18,Benin,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,19,Benin,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,20,Botswana,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,21,Botswana,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,22,Botswana,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,23,Botswana,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,24,Botswana,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,25,Botswana,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,26,Burkina Faso,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,27,Burkina Faso,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,28,Burkina Faso,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,29,Burkina Faso,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,30,Burkina Faso,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,31,Burkina Faso,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,32,Burundi,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,33,Burundi,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,34,Burundi,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,35,Burundi,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,36,Burundi,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,37,Burundi,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,38,Cabo Verde,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,39,Cabo Verde,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,40,Cabo Verde,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,41,Cabo Verde,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,42,Cabo Verde,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,43,Cabo Verde,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,44,Central African Republic,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,45,Central African Republic,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,46,Central African Republic,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,47,Central African Republic,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,48,Central African Republic,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,49,Central African Republic,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,50,Chad,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,51,Chad,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,52,Chad,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,53,Chad,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,54,Chad,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,55,Chad,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,56,Comoros,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,57,Comoros,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,58,Comoros,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,59,Comoros,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,60,Comoros,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,61,Comoros,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,62,Congo,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,63,Congo,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,64,Congo,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,65,Congo,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,66,Congo,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,67,Congo,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,68,Côte d’Ivoire,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,69,Côte d’Ivoire,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,70,Côte d’Ivoire,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,71,Côte d’Ivoire,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,72,Côte d’Ivoire,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,73,Côte d’Ivoire,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,74,Democratic Republic of the Congo,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,75,Democratic Republic of the Congo,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,76,Democratic Republic of the Congo,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,77,Democratic Republic of the Congo,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,78,Democratic Republic of the Congo,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,79,Democratic Republic of the Congo,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,80,Djibouti,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,81,Djibouti,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,82,Djibouti,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,83,Djibouti,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,84,Djibouti,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,85,Djibouti,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,86,Eswatini,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,87,Eswatini,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,88,Eswatini,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,89,Eswatini,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,90,Eswatini,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,91,Eswatini,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,92,Ethiopia,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,93,Ethiopia,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,94,Ethiopia,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,95,Ethiopia,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,96,Ethiopia,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,97,Ethiopia,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,98,Gabon,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,99,Gabon,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,100,Gabon,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,101,Gabon,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,102,Gabon,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,103,Gabon,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,104,Gambia,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,105,Gambia,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,106,Gambia,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,107,Gambia,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,108,Gambia,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,109,Gambia,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,110,Ghana,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,111,Ghana,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,112,Ghana,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,113,Ghana,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,114,Ghana,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,115,Ghana,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,116,Guinea,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,117,Guinea,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,118,Guinea,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,119,Guinea,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,120,Guinea,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,121,Guinea,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,122,Kenya,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,123,Kenya,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,124,Kenya,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,125,Kenya,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,126,Kenya,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,127,Kenya,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,128,Lesotho,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,129,Lesotho,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,130,Lesotho,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,131,Lesotho,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,132,Lesotho,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,133,Lesotho,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,134,Liberia,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,135,Liberia,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,136,Liberia,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,137,Liberia,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,138,Liberia,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,139,Liberia,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,140,Libya,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,141,Libya,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,142,Libya,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,143,Libya,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,144,Libya,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,145,Libya,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,146,Madagascar,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,147,Madagascar,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,148,Madagascar,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,149,Madagascar,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,150,Madagascar,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,151,Madagascar,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,152,Malawi,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,153,Malawi,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,154,Malawi,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,155,Malawi,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,156,Malawi,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,157,Malawi,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,158,Mauritania,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,159,Mauritania,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,160,Mauritania,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,161,Mauritania,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,162,Mauritania,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,163,Mauritania,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,164,Mauritius,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,165,Mauritius,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,166,Mauritius,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,167,Mauritius,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,168,Mauritius,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,169,Mauritius,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,170,Morocco,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,171,Morocco,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,172,Morocco,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,173,Morocco,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,174,Morocco,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,175,Morocco,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,176,Mozambique,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,177,Mozambique,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,178,Mozambique,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,179,Mozambique,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,180,Mozambique,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,181,Mozambique,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,182,Namibia,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,183,Namibia,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,184,Namibia,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,185,Namibia,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,186,Namibia,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,187,Namibia,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,188,Nigeria,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,189,Nigeria,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,190,Nigeria,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,191,Nigeria,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,192,Nigeria,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,193,Nigeria,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,194,Rwanda,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,195,Rwanda,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,196,Rwanda,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,197,Rwanda,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,198,Rwanda,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,199,Rwanda,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,200,Sao Tome and Principe,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,201,Sao Tome and Principe,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,202,Sao Tome and Principe,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,203,Sao Tome and Principe,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,204,Sao Tome and Principe,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,205,Sao Tome and Principe,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,206,Senegal,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,207,Senegal,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,208,Senegal,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,209,Senegal,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,210,Senegal,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,211,Senegal,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,212,Seychelles,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,213,Seychelles,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,214,Seychelles,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,215,Seychelles,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,216,Seychelles,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,217,Seychelles,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,218,Sierra Leone,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,219,Sierra Leone,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,220,Sierra Leone,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,221,Sierra Leone,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,222,Sierra Leone,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,223,Sierra Leone,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,224,Somalia,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,225,Somalia,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,226,Somalia,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,227,Somalia,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,228,Somalia,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,229,Somalia,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,230,South Africa,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,231,South Africa,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,232,South Africa,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,233,South Africa,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,234,South Africa,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,235,South Africa,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,236,South Sudan,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,237,South Sudan,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,238,South Sudan,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,239,South Sudan,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,240,South Sudan,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,241,South Sudan,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,242,Tanzania,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,243,Tanzania,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,244,Tanzania,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,245,Tanzania,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,246,Tanzania,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,247,Tanzania,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,248,Togo,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,249,Togo,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,250,Togo,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,251,Togo,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,252,Togo,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,253,Togo,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,254,Tunisia,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,255,Tunisia,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,256,Tunisia,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,257,Tunisia,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,258,Tunisia,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,259,Tunisia,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,260,Uganda,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,261,Uganda,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,262,Uganda,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,263,Uganda,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,264,Uganda,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,265,Uganda,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,266,Zambia,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,267,Zambia,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,268,Zambia,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,269,Zambia,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,270,Zambia,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,271,Zambia,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,272,Bangladesh,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,273,Bangladesh,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,274,Bangladesh,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,275,Bangladesh,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,276,Bangladesh,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,277,Bangladesh,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,278,Bhutan,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,279,Bhutan,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,280,Bhutan,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,281,Bhutan,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,282,Bhutan,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,283,Bhutan,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,284,Brunei,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,285,Brunei,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,286,Brunei,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,287,Brunei,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,288,Brunei,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,289,Brunei,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,290,Cambodia,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,291,Cambodia,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,292,Cambodia,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,293,Cambodia,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,294,Cambodia,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,295,Cambodia,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,296,China,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,297,China,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,298,China,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,299,China,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,300,China,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,301,China,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,302,"China, Hong Kong Special Administrative Region",Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,303,"China, Hong Kong Special Administrative Region",Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,304,"China, Hong Kong Special Administrative Region",Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,305,"China, Hong Kong Special Administrative Region",Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,306,"China, Hong Kong Special Administrative Region",Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,307,"China, Hong Kong Special Administrative Region",Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,308,India,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,309,India,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,310,India,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,311,India,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,312,India,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,313,India,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,314,Indonesia,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,315,Indonesia,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,316,Indonesia,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,317,Indonesia,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,318,Indonesia,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,319,Indonesia,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,320,Japan,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,321,Japan,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,322,Japan,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,323,Japan,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,324,Japan,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,325,Japan,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,326,Kazakhstan,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,327,Kazakhstan,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,328,Kazakhstan,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,329,Kazakhstan,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,330,Kazakhstan,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,331,Kazakhstan,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,332,Kyrgyzstan,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,333,Kyrgyzstan,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,334,Kyrgyzstan,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,335,Kyrgyzstan,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,336,Kyrgyzstan,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,337,Kyrgyzstan,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,338,Laos,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,339,Laos,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,340,Laos,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,341,Laos,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,342,Laos,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,343,Laos,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,344,Malaysia,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,345,Malaysia,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,346,Malaysia,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,347,Malaysia,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,348,Malaysia,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,349,Malaysia,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,350,Maldives,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,351,Maldives,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,352,Maldives,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,353,Maldives,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,354,Maldives,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,355,Maldives,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,356,Mongolia,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,357,Mongolia,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,358,Mongolia,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,359,Mongolia,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,360,Mongolia,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,361,Mongolia,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,362,Myanmar,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,363,Myanmar,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,364,Myanmar,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,365,Myanmar,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,366,Myanmar,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,367,Myanmar,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,368,Nepal,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,369,Nepal,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,370,Nepal,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,371,Nepal,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,372,Nepal,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,373,Nepal,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,374,Pakistan,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,375,Pakistan,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,376,Pakistan,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,377,Pakistan,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,378,Pakistan,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,379,Pakistan,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,380,Philippines,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,381,Philippines,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,382,Philippines,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,383,Philippines,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,384,Philippines,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,385,Philippines,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,386,Singapore,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,387,Singapore,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,388,Singapore,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,389,Singapore,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,390,Singapore,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,391,Singapore,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,392,South Korea,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,393,South Korea,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,394,South Korea,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,395,South Korea,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,396,South Korea,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,397,South Korea,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,398,Sri Lanka,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,399,Sri Lanka,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,400,Sri Lanka,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,401,Sri Lanka,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,402,Sri Lanka,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,403,Sri Lanka,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,404,Taiwan,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,405,Taiwan,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,406,Taiwan,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,407,Taiwan,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,408,Taiwan,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,409,Taiwan,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,410,Tajikistan,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,411,Tajikistan,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,412,Tajikistan,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,413,Tajikistan,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,414,Tajikistan,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,415,Tajikistan,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,416,Thailand,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,417,Thailand,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,418,Thailand,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,419,Thailand,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,420,Thailand,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,421,Thailand,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,422,Timor-Leste,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,423,Timor-Leste,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,424,Timor-Leste,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,425,Timor-Leste,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,426,Timor-Leste,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,427,Timor-Leste,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,428,Turkmenistan,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,429,Turkmenistan,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,430,Turkmenistan,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,431,Turkmenistan,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,432,Turkmenistan,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,433,Turkmenistan,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,434,Uzbekistan,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,435,Uzbekistan,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,436,Uzbekistan,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,437,Uzbekistan,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,438,Uzbekistan,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,439,Uzbekistan,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,440,Vietnam,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,441,Vietnam,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,442,Vietnam,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,443,Vietnam,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,444,Vietnam,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,445,Vietnam,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,446,Bahamas,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,447,Bahamas,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,448,Bahamas,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,449,Bahamas,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,450,Bahamas,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,451,Bahamas,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,452,Barbados,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,453,Barbados,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,454,Barbados,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,455,Barbados,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,456,Barbados,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,457,Barbados,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,458,"Bonaire, Sint Eustatius and Saba",Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,459,"Bonaire, Sint Eustatius and Saba",Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,460,"Bonaire, Sint Eustatius and Saba",Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,461,"Bonaire, Sint Eustatius and Saba",Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,462,"Bonaire, Sint Eustatius and Saba",Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,463,"Bonaire, Sint Eustatius and Saba",Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,464,Dominica,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,465,Dominica,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,466,Dominica,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,467,Dominica,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,468,Dominica,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,469,Dominica,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,470,Dominican Republic,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,471,Dominican Republic,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,472,Dominican Republic,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,473,Dominican Republic,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,474,Dominican Republic,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,475,Dominican Republic,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,476,Grenada,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,477,Grenada,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,478,Grenada,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,479,Grenada,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,480,Grenada,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,481,Grenada,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,482,Jamaica,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,483,Jamaica,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,484,Jamaica,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,485,Jamaica,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,486,Jamaica,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,487,Jamaica,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,488,Puerto Rico,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,489,Puerto Rico,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,490,Puerto Rico,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,491,Puerto Rico,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,492,Puerto Rico,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,493,Puerto Rico,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,494,Saint Lucia,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,495,Saint Lucia,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,496,Saint Lucia,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,497,Saint Lucia,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,498,Saint Lucia,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,499,Saint Lucia,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,500,Saint Vincent and the Grenadines,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,501,Saint Vincent and the Grenadines,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,502,Saint Vincent and the Grenadines,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,503,Saint Vincent and the Grenadines,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,504,Saint Vincent and the Grenadines,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,505,Saint Vincent and the Grenadines,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,506,Trinidad and Tobago,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,507,Trinidad and Tobago,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,508,Trinidad and Tobago,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,509,Trinidad and Tobago,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,510,Trinidad and Tobago,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,511,Trinidad and Tobago,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,512,Faroe Islands,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,513,Faroe Islands,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,514,Faroe Islands,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,515,Faroe Islands,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,516,Faroe Islands,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,517,Faroe Islands,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,518,North Macedonia,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,519,North Macedonia,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,520,North Macedonia,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,521,North Macedonia,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,522,North Macedonia,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,523,North Macedonia,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,524,Malta,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,525,Malta,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,526,Malta,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,527,Malta,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,528,Malta,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,529,Malta,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,530,Moldova,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,531,Moldova,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,532,Moldova,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,533,Moldova,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,534,Moldova,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,535,Moldova,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,536,Romania,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,537,Romania,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,538,Romania,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,539,Romania,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,540,Romania,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,541,Romania,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,542,Russian Federation,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,543,Russian Federation,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,544,Russian Federation,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,545,Russian Federation,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,546,Russian Federation,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,547,Russian Federation,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,548,United Kingdom of Great Britain and Northern Ireland,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,549,United Kingdom of Great Britain and Northern Ireland,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,550,United Kingdom of Great Britain and Northern Ireland,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,551,United Kingdom of Great Britain and Northern Ireland,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,552,United Kingdom of Great Britain and Northern Ireland,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,553,United Kingdom of Great Britain and Northern Ireland,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,554,Argentina,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,555,Argentina,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,556,Argentina,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,557,Argentina,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,558,Argentina,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,559,Argentina,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,560,Belize,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,561,Belize,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,562,Belize,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,563,Belize,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,564,Belize,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,565,Belize,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,566,Bolivia,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,567,Bolivia,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,568,Bolivia,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,569,Bolivia,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,570,Bolivia,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,571,Bolivia,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,572,Brazil,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,573,Brazil,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,574,Brazil,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,575,Brazil,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,576,Brazil,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,577,Brazil,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,578,Chile,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,579,Chile,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,580,Chile,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,581,Chile,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,582,Chile,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,583,Chile,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,584,Colombia,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,585,Colombia,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,586,Colombia,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,587,Colombia,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,588,Colombia,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,589,Colombia,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,590,Costa Rica,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,591,Costa Rica,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,592,Costa Rica,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,593,Costa Rica,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,594,Costa Rica,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,595,Costa Rica,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,596,Ecuador,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,597,Ecuador,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,598,Ecuador,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,599,Ecuador,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,600,Ecuador,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,601,Ecuador,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,602,El Salvador,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,603,El Salvador,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,604,El Salvador,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,605,El Salvador,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,606,El Salvador,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,607,El Salvador,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,608,Guatemala,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,609,Guatemala,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,610,Guatemala,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,611,Guatemala,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,612,Guatemala,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,613,Guatemala,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,614,Guyana,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,615,Guyana,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,616,Guyana,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,617,Guyana,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,618,Guyana,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,619,Guyana,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,620,Honduras,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,621,Honduras,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,622,Honduras,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,623,Honduras,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,624,Honduras,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,625,Honduras,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,626,Mexico,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,627,Mexico,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,628,Mexico,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,629,Mexico,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,630,Mexico,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,631,Mexico,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,632,Nicaragua,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,633,Nicaragua,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,634,Nicaragua,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,635,Nicaragua,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,636,Nicaragua,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,637,Nicaragua,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,638,Panama,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,639,Panama,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,640,Panama,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,641,Panama,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,642,Panama,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,643,Panama,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,644,Paraguay,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,645,Paraguay,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,646,Paraguay,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,647,Paraguay,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,648,Paraguay,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,649,Paraguay,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,650,Peru,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,651,Peru,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,652,Peru,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,653,Peru,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,654,Peru,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,655,Peru,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,656,Suriname,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,657,Suriname,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,658,Suriname,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,659,Suriname,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,660,Suriname,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,661,Suriname,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,662,Uruguay,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,663,Uruguay,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,664,Uruguay,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,665,Uruguay,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,666,Uruguay,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,667,Uruguay,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,668,Venezuela,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,669,Venezuela,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,670,Venezuela,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,671,Venezuela,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,672,Venezuela,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,673,Venezuela,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,674,Armenia,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,675,Armenia,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,676,Armenia,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,677,Armenia,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,678,Armenia,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,679,Armenia,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,680,Bahrain,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,681,Bahrain,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,682,Bahrain,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,683,Bahrain,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,684,Bahrain,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,685,Bahrain,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,686,Lebanon,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,687,Lebanon,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,688,Lebanon,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,689,Lebanon,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,690,Lebanon,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,691,Lebanon,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,692,State of Palestine,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,693,State of Palestine,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,694,State of Palestine,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,695,State of Palestine,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,696,State of Palestine,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,697,State of Palestine,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,698,Yemen,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,699,Yemen,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,700,Yemen,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,701,Yemen,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,702,Yemen,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,703,Yemen,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,704,Australia,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,705,Australia,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,706,Australia,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,707,Australia,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,708,Australia,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,709,Australia,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,710,Fiji,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,711,Fiji,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,712,Fiji,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,713,Fiji,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,714,Fiji,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,715,Fiji,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,716,New Zealand,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,717,New Zealand,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,718,New Zealand,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,719,New Zealand,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,720,New Zealand,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,721,New Zealand,Once-Only Policy,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,722,Papua New Guinea,Formal Mandate,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,723,Papua New Guinea,Semantic Interoperability,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,724,Papua New Guinea,Number of Members,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,725,Papua New Guinea,Number of transactions,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,726,Papua New Guinea,Personal Data Protection,N/A,default (N/A) for a new variable
+Data Exchange_NewVar_Log,727,Papua New Guinea,Once-Only Policy,N/A,default (N/A) for a new variable
+Payment_ChangeLog_New,32,Barbados,Type of settlement system,Removed (column deleted),retired field (settlement_type)
+Payment_ChangeLog_New,46,Algeria,Type of settlement system,Removed (column deleted),retired field (settlement_type)
+Payment_ChangeLog_New,61,Vietnam,Type of settlement system,Removed (column deleted),retired field (settlement_type)
+Payment_ChangeLog_New,88,Senegal,Type of settlement system,Removed (column deleted),retired field (settlement_type)
+Payment_ChangeLog_New,112,Mali,Type of settlement system,Removed (column deleted),retired field (settlement_type)
+Payment_ChangeLog_New,136,Niger,Type of settlement system,Removed (column deleted),retired field (settlement_type)
+Payment_ChangeLog_New,160,Togo,Type of settlement system,Removed (column deleted),retired field (settlement_type)
+Payment_ChangeLog_New,184,Guinea-Bissau,Type of settlement system,Removed (column deleted),retired field (settlement_type)
+Payment_ChangeLog_New,208,Côte d’Ivoire,Type of settlement system,Removed (column deleted),retired field (settlement_type)
+Payment_ChangeLog_New,232,Benin,Type of settlement system,Removed (column deleted),retired field (settlement_type)
+Payment_ChangeLog_New,256,Burkina Faso,Type of settlement system,Removed (column deleted),retired field (settlement_type)
+Payment_ChangeLog_New,279,Peru,Type of settlement system,Removed (column deleted),retired field (settlement_type)
+Payment_ChangeLog_New,288,Paraguay,Type of settlement system,Removed (column deleted),retired field (settlement_type)
+Payment_ChangeLog_New,300,Cabo Verde,Type of settlement system,Removed (column deleted),retired field (settlement_type)
+Payment_ChangeLog_New,316,India,Type of settlement system,Removed (column deleted),retired field (settlement_type)
+Payment_ChangeLog_New,321,Indonesia,Type of settlement system,Removed (column deleted),retired field (settlement_type)
+Payment_ChangeLog_New,333,Laos,Type of settlement system,Removed (column deleted),retired field (settlement_type)
+Payment_ChangeLog_New,357,Peru,Type of settlement system,Removed (column deleted),retired field (settlement_type)
+Payment_ChangeLog_New,385,Africa,Type of settlement system,Removed (column deleted),retired field (settlement_type)
+Payment_ChangeLog_New,406,United Kingdom of Great Britain and Northern Ireland,Type of settlement system,Removed (column deleted),retired field (settlement_type)
+Payment_ChangeLog_New,430,Hungary,Type of settlement system,Removed (column deleted),retired field (settlement_type)
+Payment_ChangeLog_New,454,Poland,Type of settlement system,Removed (column deleted),retired field (settlement_type)
+Payment_ChangeLog_New,478,Liechtenstein,Type of settlement system,Removed (column deleted),retired field (settlement_type)
+Payment_ChangeLog_New,494,Switzerland,Type of settlement system,Removed (column deleted),retired field (settlement_type)
+Payment_ChangeLog_New,512,Czech Republic,Type of settlement system,Removed (column deleted),retired field (settlement_type)
+Payment_ChangeLog_New,536,Romania,Type of settlement system,Removed (column deleted),retired field (settlement_type)
+Payment_ChangeLog_New,560,Ukraine,Type of settlement system,Removed (column deleted),retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,2,Africa,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,5,Africa,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,8,Africa,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,9,Africa,Clearing infrastructure,,no new value
+Payment_ChangeLog_New-Settlement,10,Africa,Settlement method,,no new value
+Payment_ChangeLog_New-Settlement,11,Africa,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,14,Botswana,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,17,Cameroon,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,20,Central African Republic,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,23,Chad,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,26,Congo,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,29,Democratic Republic of the Congo,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,32,Djibouti,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,35,Egypt,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,38,Equatorial Guinea,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,41,Eritrea,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,44,Eswatini,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,47,Ethiopia,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,50,Gabon,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,53,Gambia,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,56,Ghana,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,59,Kenya,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,62,Kenya,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,65,Libya,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,68,Madagascar,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,71,Malawi,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,74,Mauritius,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,77,Morocco,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,80,Mozambique,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,83,Mozambique,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,86,Namibia,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,89,Nigeria,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,92,Nigeria,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,95,Nigeria,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,98,Rwanda,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,101,Somalia,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,104,South Africa,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,107,South Africa,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,110,South Sudan,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,113,Tanzania,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,116,Tunisia,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,119,Uganda,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,122,Zambia,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,125,Zimbabwe,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,128,Asia,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,131,Bangladesh,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,134,Bangladesh,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,137,Cambodia,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,140,China,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,143,China,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,146,"China, Hong Kong Special Administrative Region",Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,149,"China, Hong Kong Special Administrative Region",Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,152,"China, Macao Special Administrative Region",Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,155,Iran,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,158,Kazakhstan,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,161,Kazakhstan,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,164,Kyrgyzstan,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,167,Kyrgyzstan,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,170,Kyrgyzstan,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,173,Malaysia,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,176,Maldives,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,179,Mongolia,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,182,Myanmar,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,185,Nepal,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,188,North Korea,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,191,Pakistan,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,194,Singapore,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,197,Sri Lanka,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,200,Thailand,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,203,Timor-Leste,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,206,Antigua and Barbuda,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,209,Bahamas,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,212,Barbados,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,215,"Bonaire, Sint Eustatius and Saba",Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,218,Caribbean,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,221,Cuba,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,224,Curaçao,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,227,Dominica,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,230,Dominican Republic,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,233,Guadeloupe,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,236,Haiti,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,239,Jamaica,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,242,Jamaica,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,245,Martinique,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,248,Puerto Rico,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,251,Saint Barthélemy,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,254,Saint Kitts and Nevis,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,257,Trinidad and Tobago,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,260,Andorra,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,263,Austria,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,266,Belgium,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,269,Bulgaria,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,272,Croatia,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,275,Denmark,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,278,Estonia,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,281,Europe,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,284,Finland,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,287,France,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,290,Germany,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,293,Greece,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,296,Ireland,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,299,Isle of Man,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,302,Italy,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,305,Latvia,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,308,Lithuania,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,311,Luxembourg,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,314,Malta,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,317,Moldova,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,320,Moldova,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,323,Monaco,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,326,Netherlands,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,329,Portugal,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,332,Russian Federation,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,335,San Marino,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,338,Serbia,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,341,Slovakia,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,344,Slovenia,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,347,Spain,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,350,Sweden,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,353,Vatican City,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,356,Argentina,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,359,Belize,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,362,Bolivia,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,365,Brazil,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,368,"Central America, Caribbean",Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,371,Chile,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,374,Colombia,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,377,Costa Rica,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,380,El Salvador,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,383,El Salvador,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,386,French Guiana,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,389,Guatemala,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,392,Guyana,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,395,Honduras,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,398,Mexico,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,401,Nicaragua,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,404,Panama,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,407,Suriname,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,410,Uruguay,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,413,Venezuela,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,416,Cyprus,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,419,Iraq,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,422,Jordan,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,425,Jordan,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,428,Kuwait,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,431,Middle East,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,434,Oman,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,437,Qatar,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,440,Saudi Arabia,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,443,Syria,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,446,Turkey,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,449,United Arab Emirates,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,452,Yemen,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,455,Antarctica,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,458,Canada,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,461,Canada,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,464,Greenland,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,467,United States of America,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,470,Australia,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,473,Kiribati,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,476,Marshall Islands,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,479,Micronesia (Federated States of),Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,482,Nauru,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,485,New Zealand,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,488,Palau,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,491,Samoa,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,494,Tonga,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,497,Tuvalu,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,500,Angola,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,503,Burundi,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,506,Comoros,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,509,Ghana,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,512,Guinea,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,515,Lesotho,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,518,Liberia,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,521,Madagascar,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,524,Mauritania,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,527,Mozambique,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,530,Sao Tome and Principe,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,533,Seychelles,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,536,Sierra Leone,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,539,Sudan,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,542,Tunisia,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,545,Uganda,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,548,Afghanistan,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,551,Bangladesh,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,554,Bhutan,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,557,Brunei,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,560,China,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,563,Japan,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,566,Mongolia,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,569,Philippines,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,572,South Korea,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,575,Taiwan,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,578,Tajikistan,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,581,Turkmenistan,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,584,Uzbekistan,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,587,Curaçao,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,590,Dominican Republic,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,593,Puerto Rico,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,596,Trinidad and Tobago,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,599,Albania,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,602,Belarus,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,605,Bosnia and Herzegovina,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,608,Faroe Islands,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,611,Iceland,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,614,Kosovo,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,617,Montenegro,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,620,North Macedonia,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,623,Norway,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,626,Belize,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,629,Ecuador,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,632,Guyana,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,635,Armenia,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,638,Azerbaijan,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,641,Bahrain,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,644,Georgia,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,647,Israel,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,650,Kuwait,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,653,Lebanon,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,656,Oman,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,659,State of Palestine,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,662,Greenland,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,665,Fiji,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,668,Papua New Guinea,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,671,Solomon Islands,Type of settlement system,Marked for removal,retired field (settlement_type)
+Payment_ChangeLog_New-Settlement,674,Vanuatu,Type of settlement system,Marked for removal,retired field (settlement_type)

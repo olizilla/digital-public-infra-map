@@ -4,7 +4,7 @@ const title = Astro.props.frontmatter?.title ?? Astro.props.title
 ---
 
 <Layout title={title} bodyClass={Astro.props.bodyClass}>
-	<article class="prose py-10 max-w-2xl mx-auto px-2 md:px-0">
+	<article class="prose pt-4 md:pt-10 pb-10 max-w-2xl mx-auto px-2 md:px-0">
 		<slot/>
 	</article>
 </Layout>

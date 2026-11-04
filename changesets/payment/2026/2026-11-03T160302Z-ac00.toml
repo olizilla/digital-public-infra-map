@@ -1,0 +1,7 @@
+[[changes]]
+type = "update"
+key = "pay-jp-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "NA"
+values.settlement_method = "NA"
+reason = "New field. Deferred to the next review cycle: the system needs a fuller review before clearing and settlement can be coded. Reason: Q1 names the wrong system; the instant system is Zengin System (Core Time and More Time). Correct the system name. Q1 value not carried over."

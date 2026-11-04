@@ -1,0 +1,19 @@
+[[changes]]
+type = "update"
+key = "pay-asia-02"
+as_of = 2026-10-15
+values.clearing_infrastructure = "RTGS"
+reason = "AFAQ, operated by Gulf Payments Company, is an interbank real-time gross settlement system connecting the RTGS systems of GCC member states. Primary source: Central Bank of Kuwait press release (13 Mar 2022)."
+sources = [
+  "https://cbk.gov.kw/en/cbk-news/announcements-and-press-releases/press-releases/2022/03/202203131300-cbk-joins-gcc-payments-system-afaq",
+]
+
+[[changes]]
+type = "update"
+key = "pay-asia-02"
+as_of = 2026-10-15
+values.settlement_method = "Gross"
+reason = "Real-time gross settlement. Q1 value (RTGS) consistent. Primary source: Central Bank of Kuwait press release (13 Mar 2022)."
+sources = [
+  "https://cbk.gov.kw/en/cbk-news/announcements-and-press-releases/press-releases/2022/03/202203131300-cbk-joins-gcc-payments-system-afaq",
+]

@@ -1,0 +1,113 @@
+[[changes]]
+type = "create"
+key = "dx-de-02"
+as_of = 2026-10-15
+values.country = "Germany"
+values.name = "National Once Only Technical System"
+values.once_only_principle = "Yes"
+values.personal_data_protection = "Yes"
+reason = ""
+sources = [
+  "https://interoperable-europe.ec.europa.eu/sites/default/files/custom-page/attachment/2026-04/iopeu-monitoring_2025-supporting-document_germany_vfinal.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "dx-de-02"
+as_of = 2026-10-15
+values.formal_mandate = "Yes"
+reason = "New Variable."
+sources = [
+  "https://www.gesetze-im-internet.de/nootsnetzv/BJNR0010A0026.html",
+]
+
+[[changes]]
+type = "update"
+key = "dx-de-02"
+as_of = 2026-10-15
+values.status = "Planned/Piloted"
+reason = ""
+sources = [
+  "https://www.fitko.de/presse/pressedetail/16-pilotprojekte-zum-anschluss-an-das-noots-ausgewaehlt",
+]
+
+[[changes]]
+type = "update"
+key = "dx-de-02"
+as_of = 2026-10-15
+values.governing_entity = "IT Planning Council, NOOTS Steering Committee"
+values.coordination_unit = "Federal IT Cooperation (FITKO)"
+reason = ""
+sources = [
+  "https://www.recht.bund.de/bgbl/1/2025/325/VO.html",
+]
+
+[[changes]]
+type = "update"
+key = "dx-de-02"
+as_of = 2026-10-15
+values.url = "https://noots.gov.de/"
+values.sectoral = "Cross-sectoral"
+values.realtime_sharing = "Not Found"
+values.scalable_architecture = "Not Found"
+values.ownership = "Public"
+values.permitted_participants = "Public, Private"
+values.audit_mechanism = "Not Found"
+values.impact_metrics = "NA"
+values.independent_audit = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-de-02"
+as_of = 2026-10-15
+values.interoperability_level = "Syntactic"
+reason = ""
+sources = [
+  "https://www.digitale-verwaltung.de/Webs/DV/DE/registermodernisierung/elemente/architektur-anschlussbedingungen/architektur-anschlussbedingungen-node.html",
+  "https://www.digitale-verwaltung.de/Webs/DV/DE/registermodernisierung/elemente/architektur-anschlussbedingungen/architektur-anschlussbedingungen-node.html#navPrimary",
+]
+
+[[changes]]
+type = "update"
+key = "dx-de-02"
+as_of = 2026-10-15
+values.number_of_transactions = "Not Found"
+values.number_of_members = "Not Found"
+reason = ""
+sources = [
+  "https://noots.gov.de/",
+]
+
+[[changes]]
+type = "update"
+key = "dx-de-02"
+as_of = 2026-10-15
+values.architecture = "Not Found"
+reason = "Change in system and no evidence of federal deployment of X Road in germany"
+sources = [
+  "https://noots.gov.de/",
+]
+
+[[changes]]
+type = "update"
+key = "dx-de-02"
+as_of = 2026-10-15
+values.national_regional = "National"
+values.data_management_rules = "Yes"
+values.multiple_public_entities = "Yes"
+reason = ""
+sources = [
+  "https://www.gesetze-im-internet.de/nootsnetzv/BJNR0010A0026.html",
+]
+
+[[changes]]
+type = "update"
+key = "dx-de-02"
+as_of = 2026-10-15
+values.enrolment_info = "Yes"
+reason = ""
+sources = [
+  "https://nova.noots.gov.de/startseite",
+  "https://noots.gov.de/aktuelles/neuigkeiten-und-veranstaltungen/neuigkeiten/detailansicht?tx_news_pi1%5Baction%5D=detail&tx_news_pi1%5Bcontroller%5D=News&tx_news_pi1%5Bnews%5D=58&cHash=a16f953cd075f04072b4ae2b02c2e9d1",
+]

@@ -1,12 +1,11 @@
 ---
 // All the fields of a system that the DPI test doesn't already show:
 // yes/no flags as a pill column, then text fields with the label above the value.
-// Labels link to the codebook. Fields with no data get the `na` class, so the
-// country page's "Hide fields with no data" checkbox can hide them.
+// Labels link to their variable's page in the codebook.
 // Styled by .field-flags and .field-texts in src/styles/global.css, smaller in a listing card (.card-id, .card-pay, .card-data).
 import YesNo from './YesNo.astro'
 import { displayValues } from '../DpiTest'
-import { codebookAnchorForLabel } from '../Codebook'
+import { codebookPathForLabel } from '../Codebook'
 import type { DPIType } from '../Schema'
 
 interface Props {
@@ -15,7 +14,7 @@ interface Props {
 }
 const { dpiType, record } = Astro.props
 const { flags, texts } = displayValues(dpiType, record)
-const href = (label: string) => `/codebook/#${codebookAnchorForLabel(dpiType, label)}`
+const href = (label: string) => codebookPathForLabel(dpiType, label)
 ---
 { flags.length > 0 &&
   <ul class="field-flags">

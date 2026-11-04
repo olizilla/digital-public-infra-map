@@ -1,0 +1,22 @@
+[[changes]]
+type = "update"
+key = "id-ba-01"
+as_of = 2026-09-16
+values.funders = "European Union (BiH/EU4DigitalSME Fund), Government of Germany"
+reason = "New Details Found about Specific Funders"
+sources = [
+  "https://www.biometricupdate.com/202507/bosnia-and-herzegovina-launches-national-digital-id-app",
+  "https://www.iddeea.gov.ba/en/digital-wallet/",
+  "https://www.iddeea.gov.ba/en/the-digital-id-wallet-will-soon-be-available-to-the-citizens-of-bosnia-and-herzegovina/",
+]
+
+[[changes]]
+type = "update"
+key = "id-ba-01"
+as_of = 2026-09-16
+values.technical_support = "Identyum, IDDEEA"
+reason = "Croatian firm that built the wallet."
+sources = [
+  "https://www.biometricupdate.com/202507/bosnia-and-herzegovina-launches-national-digital-id-app",
+  "https://www.iddeea.gov.ba/en/the-digital-id-wallet-will-soon-be-available-to-the-citizens-of-bosnia-and-herzegovina/",
+]

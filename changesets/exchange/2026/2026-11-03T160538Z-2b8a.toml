@@ -1,0 +1,72 @@
+[[changes]]
+type = "update"
+key = "dx-bg-01"
+as_of = 2026-10-15
+values.personal_data_protection = "Yes"
+values.number_of_transactions = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-bg-01"
+as_of = 2026-10-15
+values.independent_audit = "Yes"
+reason = ""
+sources = [
+  "https://www.bulstat.bg/uploaded/files/61-NAREDBA-ZA-OBShtITE-IZISKVANIYa-KAM-INFORMATsIONNITE-SISTEMI.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "dx-bg-01"
+as_of = 2026-10-15
+values.formal_mandate = "Yes"
+reason = ""
+sources = [
+  "https://e-gov.bg/wps/portal/agency-en/digital-government-infrastructure/information-systems-applications/regix",
+]
+
+[[changes]]
+type = "update"
+key = "dx-bg-01"
+as_of = 2026-10-15
+values.once_only_principle = "Yes"
+reason = "Access to the registers can be carried out directly or through a central component that ensures compliance with the requirements of this chapter and meets the requirements set by the Minister of e-Government. The central component, including rights to access resources through it, is managed by the Minister of e-Government. - https://www.lex.bg/bg/laws/ldoc/2136995819"
+
+[[changes]]
+type = "update"
+key = "dx-bg-01"
+as_of = 2026-10-15
+values.enrolment_info = "Yes"
+reason = ""
+sources = [
+  "https://unifiedmodel.egov.bg/wps/portal/unified-model/for-developers/tech-info-for-integration/tech-info-for-integration/",
+  "https://unifiedmodel.egov.bg/wps/portal/unified-model/for-developers/tech-info-for-integration/tech-info-for-integration/#anchor5",
+]
+
+[[changes]]
+type = "update"
+key = "dx-bg-01"
+as_of = 2026-10-15
+values.permitted_participants = "Public, Private"
+reason = "Not reported in required format (dashboard)"
+sources = [
+  "https://info-regix.egov.bg/public/statistics/hour",
+]
+
+[[changes]]
+type = "update"
+key = "dx-bg-01"
+as_of = 2026-10-15
+values.number_of_members = "Not Found"
+reason = "Log shows banks conducting transactions."
+
+[[changes]]
+type = "update"
+key = "dx-bg-01"
+as_of = 2026-10-15
+values.interoperability_level = "Syntactic"
+reason = "Not reported"
+sources = [
+  "https://info-regix.egov.bg/public",
+]

@@ -1,0 +1,248 @@
+[[changes]]
+type = "create"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.country = "Poland"
+values.name = "Express Elixir"
+reason = "New row for Poland's national instant payment system (replaces the TIPS entry, removal logged separately). Express Elixir is run by KIR (Krajowa Izba Rozliczeniowa). Primary source: KIR, Express Elixir system rules (Regulamin) v1.7, in force from 1 Mar 2023: participants are payment service providers with an NBP account; payments settled individually against a prefunded KIR trust account in SORBNET2; 24/7/365; PLN only; limits PLN 100,000 (PLN 250,000 for tax payments); instant transfer and phone-number transfer services; personal data chapter (§§ 43-50); NBP, Information on interbank clearing and settlement in Q2 2025: 160.83 million Express Elixir payments worth PLN 79.31 billion (Q1 2025: 144.51 million, PLN 72.21 billion); 22 banks including NBP; phone-number (BLIK) P2P payments 81.9% of transactions."
+sources = [
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf",
+  "https://nbp.pl/wp-content/uploads/2025/11/Informacja-o-rozliczeniach-i-rozrachunkach-miedzybankowych-w-II-kw.-2025.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.url = "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf"
+reason = "KIR system rules for Express Elixir; KIR site pages for the system were not reachable as standalone URLs. Primary source: KIR, Express Elixir system rules (Regulamin) v1.7, in force from 1 Mar 2023: participants are payment service providers with an NBP account; payments settled individually against a prefunded KIR trust account in SORBNET2; 24/7/365; PLN only; limits PLN 100,000 (PLN 250,000 for tax payments); instant transfer and phone-number transfer services; personal data chapter (§§ 43-50)."
+sources = [
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.realtime_active = "Yes"
+reason = "Operates continuously, 24 hours a day, every day of the year; payments settled immediately on receipt. Primary source: KIR, Express Elixir system rules (Regulamin) v1.7, in force from 1 Mar 2023: participants are payment service providers with an NBP account; payments settled individually against a prefunded KIR trust account in SORBNET2; 24/7/365; PLN only; limits PLN 100,000 (PLN 250,000 for tax payments); instant transfer and phone-number transfer services; personal data chapter (§§ 43-50); NBP, Information on interbank clearing and settlement in Q2 2025: 160.83 million Express Elixir payments worth PLN 79.31 billion (Q1 2025: 144.51 million, PLN 72.21 billion); 22 banks including NBP; phone-number (BLIK) P2P payments 81.9% of transactions. DPI count needs manual check."
+sources = [
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf",
+  "https://nbp.pl/wp-content/uploads/2025/11/Informacja-o-rozliczeniach-i-rozrachunkach-miedzybankowych-w-II-kw.-2025.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.system_type = "Interbank"
+reason = "Instant PLN credit transfers between accounts at participating payment service providers; all current participants are banks. Phone-number transfers between BLIK users also run on Express Elixir but settle between bank accounts. Primary source: KIR, Express Elixir system rules (Regulamin) v1.7, in force from 1 Mar 2023: participants are payment service providers with an NBP account; payments settled individually against a prefunded KIR trust account in SORBNET2; 24/7/365; PLN only; limits PLN 100,000 (PLN 250,000 for tax payments); instant transfer and phone-number transfer services; personal data chapter (§§ 43-50); NBP, Information on interbank clearing and settlement in Q2 2025: 160.83 million Express Elixir payments worth PLN 79.31 billion (Q1 2025: 144.51 million, PLN 72.21 billion); 22 banks including NBP; phone-number (BLIK) P2P payments 81.9% of transactions."
+sources = [
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf",
+  "https://nbp.pl/wp-content/uploads/2025/11/Informacja-o-rozliczeniach-i-rozrachunkach-miedzybankowych-w-II-kw.-2025.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.status = "Implemented"
+reason = "Live; 636 million transactions in 2025. In operation since 2012. Primary source: NBP, Information on interbank clearing and settlement in Q2 2025: 160.83 million Express Elixir payments worth PLN 79.31 billion (Q1 2025: 144.51 million, PLN 72.21 billion); 22 banks including NBP; phone-number (BLIK) P2P payments 81.9% of transactions. Secondary source: Telepolis (2022): Express Elixir marks 10 years of operation. DPI count needs manual check."
+sources = [
+  "https://nbp.pl/wp-content/uploads/2025/11/Informacja-o-rozliczeniach-i-rozrachunkach-miedzybankowych-w-II-kw.-2025.pdf",
+  "https://www.telepolis.pl/wiadomosci/express-elixir-przelewy-natychmiastowe-10-lat",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.national_regional = "National"
+reason = "Express Elixir is a national system; Q1 value described TIPS, the Eurosystem service."
+sources = [
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.cross_border = "No"
+reason = "Settles payment orders in Polish zloty only; domestic system. Primary source: KIR, Express Elixir system rules (Regulamin) v1.7, in force from 1 Mar 2023: participants are payment service providers with an NBP account; payments settled individually against a prefunded KIR trust account in SORBNET2; 24/7/365; PLN only; limits PLN 100,000 (PLN 250,000 for tax payments); instant transfer and phone-number transfer services; personal data chapter (§§ 43-50); NBP, Information on interbank clearing and settlement in Q2 2025: 160.83 million Express Elixir payments worth PLN 79.31 billion (Q1 2025: 144.51 million, PLN 72.21 billion); 22 banks including NBP; phone-number (BLIK) P2P payments 81.9% of transactions."
+sources = [
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf",
+  "https://nbp.pl/wp-content/uploads/2025/11/Informacja-o-rozliczeniach-i-rozrachunkach-miedzybankowych-w-II-kw.-2025.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.interoperability_policy = "Not Found"
+reason = "Searched: participation is voluntary and no policy found mandating participation or linking Express Elixir with the competing instant system BlueCash (Autopay). EU Instant Payments Regulation obligations cover euro transfers, not PLN. Primary source: KIR, Express Elixir system rules (Regulamin) v1.7, in force from 1 Mar 2023: participants are payment service providers with an NBP account; payments settled individually against a prefunded KIR trust account in SORBNET2; 24/7/365; PLN only; limits PLN 100,000 (PLN 250,000 for tax payments); instant transfer and phone-number transfer services; personal data chapter (§§ 43-50); NBP, Information on interbank clearing and settlement in Q2 2025: 160.83 million Express Elixir payments worth PLN 79.31 billion (Q1 2025: 144.51 million, PLN 72.21 billion); 22 banks including NBP; phone-number (BLIK) P2P payments 81.9% of transactions."
+sources = [
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf",
+  "https://nbp.pl/wp-content/uploads/2025/11/Informacja-o-rozliczeniach-i-rozrachunkach-miedzybankowych-w-II-kw.-2025.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.transaction_types = "P2P, P2M, B2B, Other"
+reason = "Four payment codes: general instant transfers (RTTR, used by individuals and businesses including payments to merchants), mobile phone-number transfers (MP2P, P2P), VAT split payment transfers (RTSP, business payments) and transfers to tax and customs authorities (RTUS). P2M is inferred from the general transfer code; no merchant-specific product found. Primary source: KIR, Express Elixir system rules (Regulamin) v1.7, in force from 1 Mar 2023: participants are payment service providers with an NBP account; payments settled individually against a prefunded KIR trust account in SORBNET2; 24/7/365; PLN only; limits PLN 100,000 (PLN 250,000 for tax payments); instant transfer and phone-number transfer services; personal data chapter (§§ 43-50); NBP, Information on interbank clearing and settlement in Q2 2025: 160.83 million Express Elixir payments worth PLN 79.31 billion (Q1 2025: 144.51 million, PLN 72.21 billion); 22 banks including NBP; phone-number (BLIK) P2P payments 81.9% of transactions. Confirm P2M coding."
+sources = [
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf",
+  "https://nbp.pl/wp-content/uploads/2025/11/Informacja-o-rozliczeniach-i-rozrachunkach-miedzybankowych-w-II-kw.-2025.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.clearing_infrastructure = "ACH"
+reason = "KIR, the national clearing house, processes and clears Express Elixir payments. Primary source: KIR, Express Elixir system rules (Regulamin) v1.7, in force from 1 Mar 2023: participants are payment service providers with an NBP account; payments settled individually against a prefunded KIR trust account in SORBNET2; 24/7/365; PLN only; limits PLN 100,000 (PLN 250,000 for tax payments); instant transfer and phone-number transfer services; personal data chapter (§§ 43-50); KIR, governance and PFMI disclosure report (Feb 2023): shareholders are NBP, commercial banks and the Polish Bank Association (ZBP); Express Elixir uses a deposit (prefunded) settlement model."
+sources = [
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf",
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/6f97ebab2b71f387d08e37f5686356e6/Raport%20ujawnieniowy%20dot.%20zasad%20zarz%C4%85dzania%20oraz%20przestrzegania%20Zasad%20PFMI.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.settlement_method = "Gross"
+reason = "Each payment is settled individually and immediately against funds prefunded in KIR's trust account at NBP (SORBNET2, now SORBNET3); only payments covered by those funds can be executed. Primary source: KIR, Express Elixir system rules (Regulamin) v1.7, in force from 1 Mar 2023: participants are payment service providers with an NBP account; payments settled individually against a prefunded KIR trust account in SORBNET2; 24/7/365; PLN only; limits PLN 100,000 (PLN 250,000 for tax payments); instant transfer and phone-number transfer services; personal data chapter (§§ 43-50); KIR, governance and PFMI disclosure report (Feb 2023): shareholders are NBP, commercial banks and the Polish Bank Association (ZBP); Express Elixir uses a deposit (prefunded) settlement model; KIR, General principles and criteria for access to KIR payment systems (2026): Express Elixir participants must be payment service providers and settlement system participants under the 2001 act, hold an NBP account in SORBNET3 and Ognivo status."
+sources = [
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf",
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/6f97ebab2b71f387d08e37f5686356e6/Raport%20ujawnieniowy%20dot.%20zasad%20zarz%C4%85dzania%20oraz%20przestrzegania%20Zasad%20PFMI.pdf",
+  "https://www.kir.pl/storage/file/core_files/2026/4/8/d6237c3bffbb6bff384aeba859e0b545/Og%C3%B3lne%20zasady%20i%20kryteria%20dost%C4%99pu%20do%20system%C3%B3w%20p%C5%82atno%C5%9Bci%20KIR.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.operator = "Bank association/Central bank"
+reason = "KIR operates Express Elixir. KIR is a joint-stock company owned by NBP, commercial banks and the Polish Bank Association (ZBP). Primary source: KIR, governance and PFMI disclosure report (Feb 2023): shareholders are NBP, commercial banks and the Polish Bank Association (ZBP); Express Elixir uses a deposit (prefunded) settlement model; KIR, Express Elixir system rules (Regulamin) v1.7, in force from 1 Mar 2023: participants are payment service providers with an NBP account; payments settled individually against a prefunded KIR trust account in SORBNET2; 24/7/365; PLN only; limits PLN 100,000 (PLN 250,000 for tax payments); instant transfer and phone-number transfer services; personal data chapter (§§ 43-50). DPI count needs manual check."
+sources = [
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/6f97ebab2b71f387d08e37f5686356e6/Raport%20ujawnieniowy%20dot.%20zasad%20zarz%C4%85dzania%20oraz%20przestrzegania%20Zasad%20PFMI.pdf",
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.bank_participation = "Yes"
+reason = "22 banks including NBP were participants at end June 2025. Many cooperative banks offer Express Elixir through their associating banks. Primary source: NBP, Information on interbank clearing and settlement in Q2 2025: 160.83 million Express Elixir payments worth PLN 79.31 billion (Q1 2025: 144.51 million, PLN 72.21 billion); 22 banks including NBP; phone-number (BLIK) P2P payments 81.9% of transactions. Secondary source: Bankier (Sep 2023): Express Elixir fees set individually by banks, typically PLN 0 to 5; 18 participating banks listed."
+sources = [
+  "https://nbp.pl/wp-content/uploads/2025/11/Informacja-o-rozliczeniach-i-rozrachunkach-miedzybankowych-w-II-kw.-2025.pdf",
+  "https://www.bankier.pl/smart/express-elixir-co-warto-wiedziec-o-tym-przelewie-natychmiastowym",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.nonbank_participation = "Yes"
+reason = "Since the Act of 23 January 2026 came into force in late March 2026, payment institutions and e-money institutions can become participants in Polish payment systems; KIR access criteria for Express Elixir admit any payment service provider under the Payment Services Act. No non-bank direct participant confirmed yet. Primary source: KIR, general access criteria for KIR payment systems (2026). Secondary source: Dudkowiak & Putyra (Mar 2026)."
+sources = [
+  "https://www.kir.pl/storage/file/core_files/2026/4/8/d6237c3bffbb6bff384aeba859e0b545/Og%C3%B3lne%20zasady%20i%20kryteria%20dost%C4%99pu%20do%20system%C3%B3w%20p%C5%82atno%C5%9Bci%20KIR.pdf",
+  "https://www.dudkowiak.com/blog/president-signs-new-amendment-payment-systems-open-to-fintechs-in-just-14-days/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.participation_rules = "Yes"
+reason = "Published access criteria: participation agreement, NBP account in SORBNET3, Ognivo status, technical tests and admission fee; detailed system rules. Primary source: KIR, General principles and criteria for access to KIR payment systems (2026): Express Elixir participants must be payment service providers and settlement system participants under the 2001 act, hold an NBP account in SORBNET3 and Ognivo status; KIR, Express Elixir system rules (Regulamin) v1.7, in force from 1 Mar 2023: participants are payment service providers with an NBP account; payments settled individually against a prefunded KIR trust account in SORBNET2; 24/7/365; PLN only; limits PLN 100,000 (PLN 250,000 for tax payments); instant transfer and phone-number transfer services; personal data chapter (§§ 43-50)."
+sources = [
+  "https://www.kir.pl/storage/file/core_files/2026/4/8/d6237c3bffbb6bff384aeba859e0b545/Og%C3%B3lne%20zasady%20i%20kryteria%20dost%C4%99pu%20do%20system%C3%B3w%20p%C5%82atno%C5%9Bci%20KIR.pdf",
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.participants = "2025- 22"
+reason = "22 banks including NBP at end June 2025, unchanged from the previous quarter. Primary source: NBP, Information on interbank clearing and settlement in Q2 2025: 160.83 million Express Elixir payments worth PLN 79.31 billion (Q1 2025: 144.51 million, PLN 72.21 billion); 22 banks including NBP; phone-number (BLIK) P2P payments 81.9% of transactions."
+sources = [
+  "https://nbp.pl/wp-content/uploads/2025/11/Informacja-o-rozliczeniach-i-rozrachunkach-miedzybankowych-w-II-kw.-2025.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.annual_value_usd = "2025- 89.01 Bn"
+reason = "KIR annual figure for 2025 in PLN, up 21% on 2024. Consistent with NBP quarterly data (Q1 PLN 72.21 billion, Q2 PLN 79.31 billion). Primary source: NBP, Information on interbank clearing and settlement in Q2 2025: 160.83 million Express Elixir payments worth PLN 79.31 billion (Q1 2025: 144.51 million, PLN 72.21 billion); 22 banks including NBP; phone-number (BLIK) P2P payments 81.9% of transactions. Secondary source: GSMONLINE (13 Jan 2026), reporting KIR annual data: Express Elixir settled 636.08 million transactions worth PLN 320.58 billion in 2025, up 21% on 2024. Convert to USD at the team standard rate; figure from secondary report of KIR data."
+sources = [
+  "https://gsmonline.pl/artykuly/elixir-w-2025-r-przetworzyl-224-mld-transakcji-na-kwote-957-bln-zl",
+  "https://nbp.pl/wp-content/uploads/2025/11/Informacja-o-rozliczeniach-i-rozrachunkach-miedzybankowych-w-II-kw.-2025.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.annual_volume = "2025- 636 M"
+reason = "KIR annual figure for 2025: 636.08 million transactions, up 21% on 2024 (526.91 million). Consistent with NBP quarterly data (Q1 144.51 million, Q2 160.83 million); breakdown in Payment_Notes. Primary source: NBP, Information on interbank clearing and settlement in Q2 2025: 160.83 million Express Elixir payments worth PLN 79.31 billion (Q1 2025: 144.51 million, PLN 72.21 billion); 22 banks including NBP; phone-number (BLIK) P2P payments 81.9% of transactions. Secondary source: GSMONLINE (13 Jan 2026), reporting KIR annual data: Express Elixir settled 636.08 million transactions worth PLN 320.58 billion in 2025, up 21% on 2024. Annual figure from secondary report of KIR data; NBP Q3 and Q4 2025 reports not yet located."
+sources = [
+  "https://gsmonline.pl/artykuly/elixir-w-2025-r-przetworzyl-224-mld-transakcji-na-kwote-957-bln-zl",
+  "https://nbp.pl/wp-content/uploads/2025/11/Informacja-o-rozliczeniach-i-rozrachunkach-miedzybankowych-w-II-kw.-2025.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.data_handling_rules = "Yes"
+reason = "System rules contain a personal data chapter (§§ 43-50): KIR processes personal data on behalf of participants as processor under GDPR Article 28, participants are controllers, breaches reported within 36 hours, archived data deleted after five years. Primary source: KIR, Express Elixir system rules (Regulamin) v1.7, in force from 1 Mar 2023: participants are payment service providers with an NBP account; payments settled individually against a prefunded KIR trust account in SORBNET2; 24/7/365; PLN only; limits PLN 100,000 (PLN 250,000 for tax payments); instant transfer and phone-number transfer services; personal data chapter (§§ 43-50)."
+sources = [
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.reporting_forum = "Yes"
+reason = "The EU Instant Payments Regulation amended the Settlement Finality Directive so that payment institutions and e-money institutions can participate directly in payment systems from 9 April 2025, with the stated aim of a level playing field between banks and non-bank providers; applies to Poland as an EU member. Secondary source: Worldline (13 Jun 2025). Poland's national transposition and Express Elixir's rules for non-banks not confirmed."
+sources = [
+  "https://worldline.com/en/home/main-navigation/resources/blogs/2025/settlement-finality-directive-direct-access-to-payment-systems-for-non-bank-psps",
+  "https://nbp.pl/wp-content/uploads/2025/11/Informacja-o-rozliczeniach-i-rozrachunkach-miedzybankowych-w-II-kw.-2025.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.aml_law = "Yes"
+reason = "Poland has AML legislation applying to payment service providers. Primary source: Act of 1 Mar 2018 on counteracting money laundering and terrorist financing."
+sources = [
+  "https://eli.gov.pl/eli/DU/2018/723/ogl/pol/pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.transaction_cost = "Variable"
+reason = "Fees set by each bank, typically PLN 0 to 5 per instant transfer in 2023; some banks free online or for the first transfers each month. Primary source: none found. Secondary source: Bankier (Sep 2023): Express Elixir fees set individually by banks, typically PLN 0 to 5; 18 participating banks listed. Fee data from 2023."
+sources = [
+  "https://www.bankier.pl/smart/express-elixir-co-warto-wiedziec-o-tym-przelewie-natychmiastowym",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.qr_code = "Not Found"
+reason = "Searched: no QR payment product on Express Elixir found in KIR rules or NBP reporting. Primary source: KIR, Express Elixir system rules (Regulamin) v1.7, in force from 1 Mar 2023: participants are payment service providers with an NBP account; payments settled individually against a prefunded KIR trust account in SORBNET2; 24/7/365; PLN only; limits PLN 100,000 (PLN 250,000 for tax payments); instant transfer and phone-number transfer services; personal data chapter (§§ 43-50); NBP, Information on interbank clearing and settlement in Q2 2025: 160.83 million Express Elixir payments worth PLN 79.31 billion (Q1 2025: 144.51 million, PLN 72.21 billion); 22 banks including NBP; phone-number (BLIK) P2P payments 81.9% of transactions."
+sources = [
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf",
+  "https://nbp.pl/wp-content/uploads/2025/11/Informacja-o-rozliczeniach-i-rozrachunkach-miedzybankowych-w-II-kw.-2025.pdf",
+]

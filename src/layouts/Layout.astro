@@ -2,8 +2,9 @@
 import '/src/styles/global.css'
 import Header from '../components/Header.astro';
 
+// `fullTitle` replaces the whole title, for pages that name the site their own way
 const {title} = Astro.props
-const fullTitle = title ? `${title} - DPI Map` : 'Digital Public Infrastructure Map - UCL IIPP'
+const fullTitle = Astro.props.fullTitle ?? (title ? `${title} - DPI Map` : 'Digital Public Infrastructure Map - UCL IIPP')
 const desc = 'The first global investigation of digital public infrastructure.'
 const pageUrl = Astro.url
 const rootUrl = Astro.site

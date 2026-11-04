@@ -1,50 +1,65 @@
 ---
-// A system's card on its country page: name, website and DPI status in a
+// A system's card on its country page: name, permanent address and DPI status in a
 // header that sticks while the card scrolls, the DPI test, all its fields,
 // and when it was last updated. With `collapsed`, the fields sit behind a toggle.
+// The name links to the system's page, at /<System ID>. Nothing links to the edit
+// pages yet (D59), so "Propose an update" goes to /contribute/.
+// With `full`, it's the card on the system's own page: the name is the page's h1, and the page
+// fills the body (the slot). The header is otherwise the same, so nothing moves between the pages.
 import Status from './Status.astro'
 import DpiTestList from './DpiTestList.astro'
 import SystemFields from './SystemFields.astro'
 import TypeIcon from './TypeIcon.astro'
 import { displayValues, nameOf, nouns, presence, valueOf } from '../DpiTest'
-import { parseDMY } from '../Util'
+import { parseDate } from '../Util'
+import { systemHref } from '../Systems'
+import slug from 'slug'
+import { placesWithPages } from '../Records'
 import type { DPIType } from '../Schema'
 
 interface Props {
   dpiType: DPIType
   record: Record<string, any>
   collapsed?: boolean
+  full?: boolean
 }
-const { dpiType, record, collapsed = false } = Astro.props
+const { dpiType, record, collapsed = false, full = false } = Astro.props
 const named = presence(dpiType, record) === 'named'
 const name = named ? nameOf(dpiType, record) : `Unnamed ${nouns[dpiType]} system`
-const url = valueOf(dpiType, record, 'url')
-const site = url.startsWith('http') ? new URL(url).hostname.replace(/^www\./, '') : undefined
 const { count } = displayValues(dpiType, record)
 
-/** "03/09/25" (day/month/year) as "Sep 2025" */
+/** "2025-09-03", or "03/09/25" (day/month/year) as before, as "Sep 2025" */
 function monthYear (date: string) {
-  return parseDMY(date)?.toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' }) ?? date
+  return parseDate(date)?.toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' }) ?? date
 }
 const updated = valueOf(dpiType, record, 'last_updated')
-const systemId = record['System ID']
+const systemId: string | undefined = record['System ID']
+const country: string | undefined = record.Country
+const CountryTag = country && placesWithPages.has(country) ? 'a' : 'span'
+const Title = full ? 'h1' : 'h3'
 ---
 <article class="sys" data-type={dpiType} id={systemId}>
   <header class="sys-head">
-    <span class="pin-ico" aria-hidden="true"><TypeIcon dpiType={dpiType} class="size-5!" /></span>
     <div class="flex-1 min-w-0">
-      <h3 class:list={['text-lg leading-6 font-semibold', named ? 'text-black' : 'italic font-medium text-zinc-600']}>{name}</h3>
-      { site &&
-        <a class="inline-block text-[13px] leading-[18px] text-zinc-500 underline decoration-zinc-300 underline-offset-3 hover:text-blue-500" href={url}>{site}<svg class="inline size-3 ml-0.5 align-[-1px]" viewBox="0 0 20 20" aria-hidden="true"><path d="M7 4h9v9M16 4 5 15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      }
+      <div class="sys-meta">
+        <span class="pin-ico" aria-hidden="true"><TypeIcon dpiType={dpiType} class="size-5!" /></span>
+        { country && <CountryTag class="sys-country" href={CountryTag === 'a' ? `/${slug(country)}/` : undefined} title={country}>{country}</CountryTag> }
+        { systemId && (full
+          ? <span class="sys-id sys-id-copy">dpimap.org/{systemId}</span>
+          : <a class="sys-id" href={systemHref(systemId)}>dpimap.org/{systemId}</a>) }
+        <Status status={record['DPI Status']} title="DPI status" class="flex-none ml-auto" />
+      </div>
+      <Title class:list={['sys-title', { unnamed: !named }]}>
+        { systemId && !full ? <a href={systemHref(systemId)}>{name}</a> : name }
+      </Title>
     </div>
-    <Status status={record['DPI Status']} title="DPI status" class="flex-none mt-[3px]" />
   </header>
-  <div class="flex flex-col px-4 py-3 bg-white border-b border-zinc-200">
+  { full ? <slot /> : <Fragment>
+  <div class="flex flex-col px-4 max-[900px]:px-3.5 py-3 bg-white border-b border-zinc-200">
     <span class="block pb-2 text-xs font-semibold text-zinc-600">DPI test</span>
     <DpiTestList dpiType={dpiType} record={record} />
   </div>
-  <div class="sys-body px-4 pt-1 pb-2 has-[details:not([open])]:pb-0">
+  <div class="sys-body px-4 max-[900px]:px-3.5 pt-1 pb-2 has-[details:not([open])]:pb-0">
     { collapsed
       ? <details class="more group">
           <summary class="py-3 group-open:pb-0 text-[13px] leading-5 font-medium text-zinc-600">All {count} fields</summary>
@@ -53,8 +68,9 @@ const systemId = record['System ID']
       : <SystemFields dpiType={dpiType} record={record} />
     }
   </div>
-  <footer class="sys-foot flex items-center gap-2.5 mt-2 px-4 py-2.5 bg-white border-t border-zinc-200 rounded-b-lg text-xs leading-5 text-zinc-500">
+  <footer class="sys-foot flex items-center gap-2.5 mt-2 px-4 max-[900px]:px-3.5 py-2.5 bg-white border-t border-zinc-200 rounded-b-lg text-xs leading-5 text-zinc-500">
     <span>Updated {monthYear(updated)}</span>
     <a class="ml-auto font-semibold text-zinc-700 hover:text-blue-500" href="/contribute/">Propose an update</a>
   </footer>
+  </Fragment> }
 </article>

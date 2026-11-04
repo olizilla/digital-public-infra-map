@@ -1,0 +1,9 @@
+[[changes]]
+type = "update"
+key = "id-rs-01"
+as_of = 2026-09-16
+values.governing_entity = "Ministry of Interior (MoI), Office for IT and eGovernment (ITE)"
+reason = "New information found."
+sources = [
+  "https://www.ite.gov.rs/tekst/en/1140/electronic-identification-eid.php",
+]

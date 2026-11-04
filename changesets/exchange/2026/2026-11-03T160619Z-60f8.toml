@@ -1,0 +1,73 @@
+[[changes]]
+type = "create"
+key = "dx-pl-02"
+as_of = 2026-10-15
+values.country = "Poland"
+values.name = "System of State Registers"
+values.url = "https://www.gov.pl/web/cyfryzacja/system-rejestrow-panstwowych"
+values.architecture = "Not Found"
+values.realtime_sharing = "Not Found"
+values.ownership = "Public"
+values.permitted_participants = "Public, Private"
+values.data_management_rules = "Yes"
+values.coordination_unit = "Not Found"
+values.impact_metrics = "No"
+values.once_only_principle = "No"
+values.personal_data_protection = "Yes"
+values.independent_audit = "Not Found"
+values.number_of_transactions = "Not Found"
+values.number_of_members = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-pl-02"
+as_of = 2026-10-15
+values.formal_mandate = "Yes"
+reason = "https://lexlege.pb.pl/ustawa-o-informatyzacji-dzialalnosci-podmiotow-realizujacych-zadania-publiczne Act on the computerization of the activities of entities performing public tasks"
+
+[[changes]]
+type = "update"
+key = "dx-pl-02"
+as_of = 2026-10-15
+values.sectoral = "Cross-sectoral"
+values.interoperability_level = "Syntactic"
+values.scalable_architecture = "Yes"
+values.audit_mechanism = "Yes"
+reason = ""
+sources = [
+  "https://www.gov.pl/attachment/4ac89dc1-c696-432c-8438-b1f2c9c840ef",
+]
+
+[[changes]]
+type = "update"
+key = "dx-pl-02"
+as_of = 2026-10-15
+values.status = "Implemented"
+values.national_regional = "National"
+reason = ""
+sources = [
+  "https://www.gov.pl/web/cyfryzacja/rozwoj-systemu-rejestrow-panstwowych",
+]
+
+[[changes]]
+type = "update"
+key = "dx-pl-02"
+as_of = 2026-10-15
+values.governing_entity = "Ministry of digital affair"
+values.multiple_public_entities = "Yes"
+reason = ""
+sources = [
+  "https://www.gov.pl/web/cyfryzacja/jak-uzyskac-dostep-do-danych-z-rejestrow",
+]
+
+[[changes]]
+type = "update"
+key = "dx-pl-02"
+as_of = 2026-10-15
+values.enrolment_info = "Yes"
+reason = ""
+sources = [
+  "https://www.gov.pl/web/cyfryzacja/jak-uzyskac-dostep-do-danych-z-rejestrow",
+  "https://www.gov.pl/attachment/4ac89dc1-c696-432c-8438-b1f2c9c840ef",
+]

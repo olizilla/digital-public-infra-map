@@ -1,0 +1,637 @@
+tab,row,system id,field id,value
+Digital ID_ChangeLog,4,id-af-01,legal_redress,Not Found
+Digital ID_ChangeLog,6,id-af-01,gov_portal_auth,Not Found
+Digital ID_ChangeLog,24,id-bz-01,url,Not Found
+Digital ID_ChangeLog,28,id-bz-01,name,National Digital ID
+Digital ID_ChangeLog,29,id-bz-01,governing_entity,Ministry of E-Governance (e-Government and Digitalization Unit)
+Digital ID_ChangeLog,42,id-bi-01,name,Biometric National ID
+Digital ID_ChangeLog,48,id-cm-01,sectoral_use_cases,Yes
+Digital ID_ChangeLog,49,id-cm-01,gov_portal_auth,No
+Digital ID_ChangeLog,57,id-cu-01,name,Identidad Digital
+Digital ID_ChangeLog,62,id-cy-01,url,https://www.idme.gov.cy/chrisi-e-id/pos-mporo-na-apoktiso-e-id/
+Digital ID_ChangeLog,63,id-cy-01,governing_entity,"Deputy Ministry of Research, Innovation and Digital Policy"
+Digital ID_ChangeLog,71,id-ci-01,url,https://identite.ci/fr
+Digital ID_ChangeLog,76,id-dj-01,governing_entity,Ministry of Interior
+Digital ID_ChangeLog,78,id-dj-01,status,Implemented
+Digital ID_ChangeLog,87,id-hn-01,url,https://tech5.ai/honduras-launches-national-digital-id-and-trust-framework-on-tech5s-dpi-platform-setting-a-replicable-model-for-latin-america/
+Digital ID_ChangeLog,88,id-hu-01,name,Digitális Állampolgár (DÁP) mobile application
+Digital ID_ChangeLog,90,id-hu-01,funders,Government of Hungary; European Union (DIMOP Plus)
+Digital ID_ChangeLog,91,id-hu-01,governing_entity,"Digital Hungary Agency (Digitális Magyarország Ügynökség, DHA)"
+Digital ID_ChangeLog,95,id-hu-01,url,https://play.google.com/store/apps/details?id=hu.gov.dap.app
+Digital ID_ChangeLog,101,id-ke-01,enrolment_rules,Yes
+Digital ID_ChangeLog,102,id-ke-01,sectoral_use_cases,Not Found
+Digital ID_ChangeLog,107,id-xk-01,regulation,Yes
+Digital ID_ChangeLog,113,id-la-01,name,LAeID
+Digital ID_ChangeLog,114,id-la-01,governing_entity,Ministry of Public Security (Census Management and Grassroots Development Department)
+Digital ID_ChangeLog,116,id-la-01,status,Implemented
+Digital ID_ChangeLog,117,id-la-01,technical_support,Government of Vietnam
+Digital ID_ChangeLog,119,id-la-01,url,https://apps.apple.com/la/app/laeid/id6759642580
+Data Exchange_FinalLog,9,dx-cy-01,url,https://dsf.dmrid.gov.cy/2024/10/08/connecting-digital-services/#cy-connect
+Data Exchange_FinalLog,11,dx-cy-01,permitted_participants,Public
+Data Exchange_FinalLog,12,dx-cy-01,audit_mechanism,Yes
+Data Exchange_FinalLog,13,dx-cy-01,impact_metrics,No
+Data Exchange_FinalLog,15,dx-cy-01,scalable_architecture,Not Found
+Data Exchange_FinalLog,16,dx-az-01,permitted_participants,"Public, Private, Civil"
+Data Exchange_FinalLog,18,dx-az-01,audit_mechanism,Yes
+Data Exchange_FinalLog,19,dx-az-01,number_of_members,2026 - 71
+Data Exchange_FinalLog,20,dx-az-01,number_of_transactions,Not Found
+Data Exchange_FinalLog,21,dx-az-01,once_only_principle,Yes
+Data Exchange_FinalLog,22,dx-az-01,formal_mandate,Yes
+Data Exchange_FinalLog,23,dx-az-01,realtime_sharing,No
+Data Exchange_FinalLog,24,dx-az-01,coordination_unit,Ministry of Digital Development and Transport of the Republic of Azerbaijan
+Data Exchange_FinalLog,25,dx-az-01,governing_entity,State Agency for Public Service and Social Innovations; President of the Republic of Azerbaijan
+Data Exchange_FinalLog,26,dx-az-01,interoperability_level,Syntactic
+Data Exchange_FinalLog,27,dx-az-01,data_management_rules,Yes
+Data Exchange_FinalLog,28,dx-az-01,personal_data_protection,Yes
+Data Exchange_FinalLog,29,dx-az-01,enrolment_info,Not Found
+Data Exchange_FinalLog,31,dx-ge-01,interoperability_level,Syntactic
+Data Exchange_FinalLog,33,dx-ge-01,once_only_principle,Not Found
+Data Exchange_FinalLog,34,dx-ge-01,number_of_members,Not Found
+Data Exchange_FinalLog,35,dx-ge-01,number_of_transactions,Not Found
+Data Exchange_FinalLog,36,dx-ge-01,architecture,Not Found
+Data Exchange_FinalLog,37,dx-ge-01,realtime_sharing,Not Found
+Data Exchange_FinalLog,38,dx-ge-01,scalable_architecture,Not Found
+Data Exchange_FinalLog,39,dx-ge-01,enrolment_info,Not Found
+Data Exchange_FinalLog,40,dx-ge-01,audit_mechanism,Not Found
+Data Exchange_FinalLog,41,dx-ge-01,data_management_rules,Not Found
+Data Exchange_FinalLog,42,dx-ge-01,impact_metrics,Not Found
+Data Exchange_FinalLog,43,dx-ge-01,independent_audit,Not Found
+Data Exchange_FinalLog,72,dx-il-02,realtime_sharing,Yes
+Data Exchange_FinalLog,73,dx-il-02,personal_data_protection,Yes
+Data Exchange_FinalLog,74,dx-il-02,once_only_principle,Yes
+Data Exchange_FinalLog,75,dx-il-02,independent_audit,Not Found
+Data Exchange_FinalLog,76,dx-il-02,url,https://www.oecd.org/en/publications/digital-government-outlook-2026_d46c0555-en/israel_6ab992f0-en.html
+Data Exchange_FinalLog,77,dx-il-02,interoperability_level,Syntactic
+Data Exchange_FinalLog,79,dx-il-02,status,Implemented
+Data Exchange_FinalLog,80,dx-il-02,architecture,API Gateway
+Data Exchange_FinalLog,81,dx-il-02,national_regional,National
+Data Exchange_FinalLog,82,dx-il-02,sectoral,Cross-sectoral
+Data Exchange_FinalLog,83,dx-il-02,scalable_architecture,Not Found
+Data Exchange_FinalLog,84,dx-il-02,governing_entity,Government ICT Authority
+Data Exchange_FinalLog,85,dx-il-02,ownership,Public
+Data Exchange_FinalLog,86,dx-il-02,enrolment_info,Not Found
+Data Exchange_FinalLog,87,dx-il-02,permitted_participants,"Public, Civil"
+Data Exchange_FinalLog,88,dx-il-02,audit_mechanism,Not Found
+Data Exchange_FinalLog,89,dx-il-02,data_management_rules,Yes
+Data Exchange_FinalLog,90,dx-il-02,coordination_unit,Not Found
+Data Exchange_FinalLog,91,dx-il-02,multiple_public_entities,Not Found
+Data Exchange_FinalLog,92,dx-il-02,impact_metrics,No
+Data Exchange_FinalLog,93,dx-il-02,number_of_members,Not Found
+Data Exchange_FinalLog,94,dx-il-02,number_of_transactions,Not Found
+Data Exchange_FinalLog,95,dx-eg-01,formal_mandate,Not Found
+Data Exchange_FinalLog,97,dx-eg-01,once_only_principle,Yes
+Data Exchange_FinalLog,98,dx-eg-01,personal_data_protection,Yes
+Data Exchange_FinalLog,99,dx-eg-01,architecture,Not Found
+Data Exchange_FinalLog,100,dx-eg-01,interoperability_level,Not Found
+Data Exchange_FinalLog,101,dx-eg-01,realtime_sharing,Not Found
+Data Exchange_FinalLog,102,dx-eg-01,enrolment_info,Not Found
+Data Exchange_FinalLog,103,dx-eg-01,audit_mechanism,Not Found
+Data Exchange_FinalLog,104,dx-eg-01,data_management_rules,Not Found
+Data Exchange_FinalLog,106,dx-eg-01,number_of_members,Not Found
+Data Exchange_FinalLog,107,dx-eg-01,number_of_transactions,Not Found
+Data Exchange_FinalLog,108,dx-eg-01,independent_audit,Not Found
+Data Exchange_FinalLog,109,dx-ae-01,permitted_participants,"Public, Private"
+Data Exchange_FinalLog,112,dx-ae-01,number_of_members,2021 - 144
+Data Exchange_FinalLog,113,dx-ae-01,personal_data_protection,Yes
+Data Exchange_FinalLog,114,dx-ae-01,independent_audit,Not Found
+Data Exchange_FinalLog,115,dx-ae-01,interoperability_level,Syntactic
+Data Exchange_FinalLog,117,dx-ae-01,audit_mechanism,Not Found
+Data Exchange_FinalLog,118,dx-ae-01,data_management_rules,Not Found
+Data Exchange_FinalLog,120,dx-om-01,formal_mandate,Yes
+Data Exchange_FinalLog,121,dx-om-01,interoperability_level,Syntactic
+Data Exchange_FinalLog,122,dx-om-01,independent_audit,Not Found
+Data Exchange_FinalLog,123,dx-om-01,once_only_principle,Yes
+Data Exchange_FinalLog,124,dx-om-01,data_management_rules,Yes
+Data Exchange_FinalLog,125,dx-om-01,personal_data_protection,Yes
+Data Exchange_FinalLog,126,dx-om-01,audit_mechanism,Yes
+Data Exchange_FinalLog,127,dx-om-01,permitted_participants,"Public, Private"
+Data Exchange_FinalLog,128,dx-om-01,architecture,Not Found
+Data Exchange_FinalLog,129,dx-om-01,realtime_sharing,Not Found
+Data Exchange_FinalLog,130,dx-om-01,scalable_architecture,Not Found
+Data Exchange_FinalLog,131,dx-om-01,enrolment_info,Not Found
+Data Exchange_FinalLog,132,dx-om-01,impact_metrics,No
+Data Exchange_FinalLog,135,dx-qa-01,architecture,Not Found
+Data Exchange_FinalLog,136,dx-qa-01,enrolment_info,Yes
+Data Exchange_FinalLog,137,dx-qa-01,audit_mechanism,Not Found
+Data Exchange_FinalLog,138,dx-qa-01,impact_metrics,Not Found
+Data Exchange_FinalLog,141,dx-qa-01,formal_mandate,No
+Data Exchange_FinalLog,142,dx-qa-01,permitted_participants,"Public, Private"
+Data Exchange_FinalLog,143,dx-qa-01,once_only_principle,Yes
+Data Exchange_FinalLog,144,dx-qa-01,personal_data_protection,Yes
+Data Exchange_FinalLog,145,dx-qa-01,independent_audit,No
+Data Exchange_FinalLog,146,dx-qa-01,interoperability_level,Syntactic
+Data Exchange_FinalLog,147,dx-qa-01,url,https://www.mcit.gov.qa/en/services/government-data-exchange-system
+Data Exchange_FinalLog,148,dx-qa-01,data_management_rules,Yes
+Data Exchange_FinalLog,176,dx-kw-02,name,Apigee
+Data Exchange_FinalLog,177,dx-kw-02,formal_mandate,Not Found
+Data Exchange_FinalLog,178,dx-kw-02,personal_data_protection,No
+Data Exchange_FinalLog,179,dx-kw-02,once_only_principle,No
+Data Exchange_FinalLog,180,dx-kw-02,independent_audit,Not Found
+Data Exchange_FinalLog,182,dx-kw-02,url,https://documents1.worldbank.org/curated/en/099703212012571773/pdf/IDU-25e71676-54fb-43fd-b763-66a5b6b568fa.pdf
+Data Exchange_FinalLog,183,dx-kw-02,status,Implemented
+Data Exchange_FinalLog,184,dx-kw-02,architecture,Not Found
+Data Exchange_FinalLog,185,dx-kw-02,national_regional,National
+Data Exchange_FinalLog,186,dx-kw-02,sectoral,Cross-sectoral
+Data Exchange_FinalLog,187,dx-kw-02,interoperability_level,Syntactic
+Data Exchange_FinalLog,188,dx-kw-02,realtime_sharing,Not Found
+Data Exchange_FinalLog,189,dx-kw-02,scalable_architecture,Not Found
+Data Exchange_FinalLog,190,dx-kw-02,governing_entity,Not Found
+Data Exchange_FinalLog,191,dx-kw-02,ownership,Private
+Data Exchange_FinalLog,192,dx-kw-02,enrolment_info,Not Found
+Data Exchange_FinalLog,193,dx-kw-02,permitted_participants,Public
+Data Exchange_FinalLog,194,dx-kw-02,audit_mechanism,Not Found
+Data Exchange_FinalLog,195,dx-kw-02,data_management_rules,Not Found
+Data Exchange_FinalLog,196,dx-kw-02,coordination_unit,Central Agency for Information Technology
+Data Exchange_FinalLog,197,dx-kw-02,multiple_public_entities,Yes
+Data Exchange_FinalLog,198,dx-kw-02,impact_metrics,Not Found
+Data Exchange_FinalLog,199,dx-kw-02,number_of_members,Not Found
+Data Exchange_FinalLog,200,dx-kw-02,number_of_transactions,Not Found
+Data Exchange_FinalLog,201,dx-sa-01,architecture,Not Found
+Data Exchange_FinalLog,202,dx-sa-01,interoperability_level,Semantic
+Data Exchange_FinalLog,203,dx-sa-01,formal_mandate,No
+Data Exchange_FinalLog,204,dx-sa-01,once_only_principle,Yes
+Data Exchange_FinalLog,206,dx-sa-01,independent_audit,Not Found
+Data Exchange_FinalLog,207,dx-sa-01,number_of_members,2026 - 243
+Data Exchange_FinalLog,208,dx-sa-01,number_of_transactions,Not Found
+Data Exchange_FinalLog,233,dx-tr-02,formal_mandate,Yes
+Data Exchange_FinalLog,234,dx-tr-02,personal_data_protection,Yes
+Data Exchange_FinalLog,235,dx-tr-02,number_of_transactions,Not Found
+Data Exchange_FinalLog,237,dx-tr-02,interoperability_level,Syntactic
+Data Exchange_FinalLog,241,dx-tr-02,url,https://www.turkiye.gov.tr/non-citizens
+Data Exchange_FinalLog,242,dx-tr-02,status,Implemented
+Data Exchange_FinalLog,243,dx-tr-02,architecture,Not Found
+Data Exchange_FinalLog,244,dx-tr-02,national_regional,National
+Data Exchange_FinalLog,245,dx-tr-02,sectoral,Cross-sectoral
+Data Exchange_FinalLog,246,dx-tr-02,realtime_sharing,Not Found
+Data Exchange_FinalLog,247,dx-tr-02,scalable_architecture,Not Found
+Data Exchange_FinalLog,248,dx-tr-02,governing_entity,Cybersecurity presidency
+Data Exchange_FinalLog,249,dx-tr-02,ownership,Public
+Data Exchange_FinalLog,250,dx-tr-02,enrolment_info,No
+Data Exchange_FinalLog,251,dx-tr-02,audit_mechanism,Yes
+Data Exchange_FinalLog,252,dx-tr-02,data_management_rules,Yes
+Data Exchange_FinalLog,253,dx-tr-02,coordination_unit,"Ministry of Transport, Maritime Affairs and Communications"
+Data Exchange_FinalLog,254,dx-tr-02,multiple_public_entities,Yes
+Data Exchange_FinalLog,255,dx-tr-02,impact_metrics,Yes
+Data Exchange_FinalLog,256,dx-tr-02,number_of_members,2026 - 1135
+Data Exchange_FinalLog,257,dx-tr-02,independent_audit,Yes
+Data Exchange_FinalLog,258,dx-al-01,number_of_transactions,2024 - 290 million
+Data Exchange_FinalLog,260,dx-al-01,once_only_principle,Yes
+Data Exchange_FinalLog,262,dx-al-01,interoperability_level,Syntactic
+Data Exchange_FinalLog,263,dx-al-01,number_of_members,2026 - 63
+Data Exchange_FinalLog,264,dx-al-01,independent_audit,Not Found
+Data Exchange_FinalLog,266,dx-ad-01,formal_mandate,Yes
+Data Exchange_FinalLog,267,dx-ad-01,once_only_principle,Yes
+Data Exchange_FinalLog,268,dx-ad-01,personal_data_protection,Yes
+Data Exchange_FinalLog,269,dx-ad-01,number_of_members,Not Found
+Data Exchange_FinalLog,270,dx-ad-01,number_of_transactions,Not Found
+Data Exchange_FinalLog,271,dx-ad-01,independent_audit,Not Found
+Data Exchange_FinalLog,273,dx-ad-01,ownership,Public
+Data Exchange_FinalLog,301,dx-at-02,once_only_principle,Yes
+Data Exchange_FinalLog,302,dx-at-02,personal_data_protection,Yes
+Data Exchange_FinalLog,303,dx-at-02,formal_mandate,Yes
+Data Exchange_FinalLog,308,dx-at-02,independent_audit,Not Found
+Data Exchange_FinalLog,309,dx-at-02,status,Implemented
+Data Exchange_FinalLog,310,dx-at-02,national_regional,National
+Data Exchange_FinalLog,311,dx-at-02,sectoral,Cross-sectoral
+Data Exchange_FinalLog,312,dx-at-02,realtime_sharing,Not Found
+Data Exchange_FinalLog,313,dx-at-02,scalable_architecture,Not Found
+Data Exchange_FinalLog,314,dx-at-02,governing_entity,Federal Minister of Digitalisation and Business location
+Data Exchange_FinalLog,315,dx-at-02,enrolment_info,Not Found
+Data Exchange_FinalLog,316,dx-at-02,permitted_participants,"Public, Private, Civil"
+Data Exchange_FinalLog,317,dx-at-02,audit_mechanism,Not Found
+Data Exchange_FinalLog,318,dx-at-02,data_management_rules,Yes
+Data Exchange_FinalLog,319,dx-at-02,coordination_unit,Austrian Federal Computing Centre (BRZ)
+Data Exchange_FinalLog,320,dx-at-02,multiple_public_entities,Yes
+Data Exchange_FinalLog,321,dx-at-02,impact_metrics,No
+Data Exchange_FinalLog,322,dx-at-02,number_of_members,Not Found
+Data Exchange_FinalLog,323,dx-at-02,number_of_transactions,Not Found
+Data Exchange_FinalLog,325,dx-by-01,enrolment_info,Yes
+Data Exchange_FinalLog,327,dx-by-01,url,https://account.gov.by/
+Data Exchange_FinalLog,328,dx-by-01,formal_mandate,Yes
+Data Exchange_FinalLog,332,dx-by-01,coordination_unit,NCEU
+Data Exchange_FinalLog,333,dx-by-01,number_of_members,Not Found
+Data Exchange_FinalLog,334,dx-by-01,number_of_transactions,Not Found
+Data Exchange_FinalLog,335,dx-by-01,governing_entity,OAC
+Data Exchange_FinalLog,336,dx-by-01,permitted_participants,"Public, Private, Civil"
+Data Exchange_FinalLog,337,dx-by-01,audit_mechanism,Yes
+Data Exchange_FinalLog,338,dx-by-01,independent_audit,Not Found
+Data Exchange_FinalLog,339,dx-be-01,governing_entity,Yes
+Data Exchange_FinalLog,340,dx-be-01,coordination_unit,Not Found
+Data Exchange_FinalLog,341,dx-be-01,formal_mandate,Not Found
+Data Exchange_FinalLog,342,dx-be-01,permitted_participants,Public
+Data Exchange_FinalLog,344,dx-be-01,independent_audit,Not Found
+Data Exchange_FinalLog,345,dx-be-01,impact_metrics,Not Found
+Data Exchange_FinalLog,346,dx-be-01,interoperability_level,Semantic
+Data Exchange_FinalLog,348,dx-be-01,personal_data_protection,Yes
+Data Exchange_FinalLog,350,dx-be-02,name,CrossRoads Bank of Social Security (KSZ)
+Data Exchange_FinalLog,352,dx-be-02,independent_audit,Yes
+Data Exchange_FinalLog,354,dx-be-02,multiple_public_entities,Yes
+Data Exchange_FinalLog,355,dx-be-02,impact_metrics,Yes
+Data Exchange_FinalLog,356,dx-be-02,number_of_transactions,2026 - 2.149 billion
+Data Exchange_FinalLog,357,dx-be-02,number_of_members,2026 - 3000
+Data Exchange_FinalLog,358,dx-be-02,governing_entity,Management Committee
+Data Exchange_FinalLog,359,dx-be-02,sectoral,Cross-sectoral
+Data Exchange_FinalLog,360,dx-be-02,data_management_rules,Yes
+Data Exchange_FinalLog,361,dx-be-02,permitted_participants,"Public, Private, Civil"
+Data Exchange_FinalLog,362,dx-be-02,interoperability_level,Semantic
+Data Exchange_FinalLog,363,dx-be-02,ownership,Public
+Data Exchange_FinalLog,364,dx-be-02,formal_mandate,Yes
+Data Exchange_FinalLog,368,dx-bg-01,personal_data_protection,Yes
+Data Exchange_FinalLog,369,dx-bg-01,independent_audit,Yes
+Data Exchange_FinalLog,370,dx-bg-01,formal_mandate,Yes
+Data Exchange_FinalLog,372,dx-bg-01,enrolment_info,Yes
+Data Exchange_FinalLog,373,dx-bg-01,number_of_transactions,Not Found
+Data Exchange_FinalLog,405,dx-ba-02,personal_data_protection,Yes
+Data Exchange_FinalLog,406,dx-ba-02,independent_audit,No
+Data Exchange_FinalLog,407,dx-ba-02,impact_metrics,No
+Data Exchange_FinalLog,408,dx-ba-02,number_of_members,2025 - 55
+Data Exchange_FinalLog,410,dx-ba-02,interoperability_level,Syntactic
+Data Exchange_FinalLog,414,dx-ba-02,url,https://www.iddeea.gov.ba/en/information-system-for-registers/
+Data Exchange_FinalLog,415,dx-ba-02,status,Implemented
+Data Exchange_FinalLog,417,dx-ba-02,national_regional,National
+Data Exchange_FinalLog,418,dx-ba-02,sectoral,Cross-sectoral
+Data Exchange_FinalLog,419,dx-ba-02,realtime_sharing,Not Found
+Data Exchange_FinalLog,420,dx-ba-02,scalable_architecture,Not Found
+Data Exchange_FinalLog,421,dx-ba-02,governing_entity,"Agency for Identification Documents, Registers and Data
+Exchange of Bosnia and Herzegovina"
+Data Exchange_FinalLog,422,dx-ba-02,ownership,Public
+Data Exchange_FinalLog,423,dx-ba-02,enrolment_info,No
+Data Exchange_FinalLog,424,dx-ba-02,audit_mechanism,No
+Data Exchange_FinalLog,425,dx-ba-02,data_management_rules,Yes
+Data Exchange_FinalLog,426,dx-ba-02,coordination_unit,"Agency for Identification Documents, Registers and Data
+Exchange of Bosnia and Herzegovina"
+Data Exchange_FinalLog,427,dx-ba-02,multiple_public_entities,Yes
+Data Exchange_FinalLog,428,dx-hr-01,once_only_principle,Yes
+Data Exchange_FinalLog,429,dx-hr-01,personal_data_protection,Yes
+Data Exchange_FinalLog,431,dx-hr-01,permitted_participants,"Public, Private"
+Data Exchange_FinalLog,437,dx-cz-01,once_only_principle,Yes
+Data Exchange_FinalLog,439,dx-cz-01,personal_data_protection,Yes
+Data Exchange_FinalLog,441,dx-cz-01,coordination_unit,Digital and Information Agency
+Data Exchange_FinalLog,444,dx-cz-01,number_of_members,Not Found
+Data Exchange_FinalLog,445,dx-cz-01,number_of_transactions,Not Found
+Data Exchange_FinalLog,447,dx-dk-01,independent_audit,Yes
+Data Exchange_FinalLog,448,dx-dk-01,personal_data_protection,Yes
+Data Exchange_FinalLog,449,dx-dk-01,number_of_members,Not Found
+Data Exchange_FinalLog,450,dx-dk-01,number_of_transactions,Not Found
+Data Exchange_FinalLog,451,dx-dk-01,coordination_unit,Danish Council for Climate Data (KDS)
+Data Exchange_FinalLog,452,dx-dk-01,once_only_principle,Yes
+Data Exchange_FinalLog,453,dx-dk-01,interoperability_level,Semantic
+Data Exchange_FinalLog,456,dx-ee-01,formal_mandate,Yes
+Data Exchange_FinalLog,457,dx-ee-01,once_only_principle,Yes
+Data Exchange_FinalLog,458,dx-ee-01,personal_data_protection,Yes
+Data Exchange_FinalLog,459,dx-ee-01,number_of_members,2026 - 2139
+Data Exchange_FinalLog,460,dx-ee-01,number_of_transactions,2026 - 3.7 billion
+Data Exchange_FinalLog,461,dx-ee-01,interoperability_level,Semantic
+Data Exchange_FinalLog,462,dx-ee-01,independent_audit,Yes
+Data Exchange_FinalLog,465,dx-fi-01,personal_data_protection,Yes
+Data Exchange_FinalLog,466,dx-fi-01,once_only_principle,Yes
+Data Exchange_FinalLog,468,dx-fi-01,number_of_members,2026 - 596
+Data Exchange_FinalLog,469,dx-fi-01,number_of_transactions,Not Found
+Data Exchange_FinalLog,496,dx-fr-02,formal_mandate,Yes
+Data Exchange_FinalLog,497,dx-fr-02,interoperability_level,Syntactic
+Data Exchange_FinalLog,498,dx-fr-02,name,State Exchange Hub (HubEE)
+Data Exchange_FinalLog,501,dx-fr-02,personal_data_protection,Yes
+Data Exchange_FinalLog,502,dx-fr-02,url,https://www.hubee.numerique.gouv.fr/
+Data Exchange_FinalLog,506,dx-fr-02,impact_metrics,Yes
+Data Exchange_FinalLog,507,dx-fr-02,architecture,Not Found
+Data Exchange_FinalLog,508,dx-fr-02,realtime_sharing,Not Found
+Data Exchange_FinalLog,509,dx-fr-02,scalable_architecture,Not Found
+Data Exchange_FinalLog,510,dx-fr-02,audit_mechanism,Yes
+Data Exchange_FinalLog,511,dx-fr-02,national_regional,National
+Data Exchange_FinalLog,512,dx-fr-02,enrolment_info,Yes
+Data Exchange_FinalLog,513,dx-fr-02,data_management_rules,Yes
+Data Exchange_FinalLog,514,dx-fr-02,multiple_public_entities,Yes
+Data Exchange_FinalLog,515,dx-fr-02,number_of_transactions,Not Found
+Data Exchange_FinalLog,516,dx-fr-02,number_of_members,2024 - 12100
+Data Exchange_FinalLog,517,dx-fr-02,sectoral,Cross-sectoral
+Data Exchange_FinalLog,518,dx-fr-02,status,Implemented
+Data Exchange_FinalLog,519,dx-fr-02,ownership,Public
+Data Exchange_FinalLog,520,dx-fr-02,independent_audit,No
+Data Exchange_FinalLog,547,dx-de-02,once_only_principle,Yes
+Data Exchange_FinalLog,549,dx-de-02,name,National Once Only Technical System
+Data Exchange_FinalLog,550,dx-de-02,status,Planned/Piloted
+Data Exchange_FinalLog,551,dx-de-02,coordination_unit,Federal IT Cooperation (FITKO)
+Data Exchange_FinalLog,552,dx-de-02,url,https://noots.gov.de/
+Data Exchange_FinalLog,553,dx-de-02,impact_metrics,NA
+Data Exchange_FinalLog,554,dx-de-02,personal_data_protection,Yes
+Data Exchange_FinalLog,555,dx-de-02,independent_audit,Not Found
+Data Exchange_FinalLog,556,dx-de-02,interoperability_level,Syntactic
+Data Exchange_FinalLog,557,dx-de-02,number_of_transactions,Not Found
+Data Exchange_FinalLog,558,dx-de-02,number_of_members,Not Found
+Data Exchange_FinalLog,561,dx-de-02,national_regional,National
+Data Exchange_FinalLog,562,dx-de-02,sectoral,Cross-sectoral
+Data Exchange_FinalLog,563,dx-de-02,realtime_sharing,Not Found
+Data Exchange_FinalLog,564,dx-de-02,scalable_architecture,Not Found
+Data Exchange_FinalLog,565,dx-de-02,governing_entity,"IT Planning Council, NOOTS Steering Committee"
+Data Exchange_FinalLog,566,dx-de-02,ownership,Public
+Data Exchange_FinalLog,567,dx-de-02,enrolment_info,Yes
+Data Exchange_FinalLog,568,dx-de-02,permitted_participants,"Public, Private"
+Data Exchange_FinalLog,569,dx-de-02,audit_mechanism,Not Found
+Data Exchange_FinalLog,570,dx-de-02,data_management_rules,Yes
+Data Exchange_FinalLog,571,dx-de-02,multiple_public_entities,Yes
+Data Exchange_FinalLog,573,dx-gr-01,number_of_transactions,Not Found
+Data Exchange_FinalLog,574,dx-gr-01,number_of_members,Not Found
+Data Exchange_FinalLog,575,dx-gr-01,interoperability_level,Semantic
+Data Exchange_FinalLog,576,dx-gr-01,independent_audit,No
+Data Exchange_FinalLog,577,dx-gr-01,once_only_principle,Yes
+Data Exchange_FinalLog,579,dx-gr-02,once_only_principle,Yes
+Data Exchange_FinalLog,580,dx-gr-02,impact_metrics,Yes
+Data Exchange_FinalLog,584,dx-gr-02,interoperability_level,Semantic
+Data Exchange_FinalLog,585,dx-gr-02,independent_audit,No
+Data Exchange_FinalLog,586,dx-gr-02,number_of_members,Not Found
+Data Exchange_FinalLog,587,dx-gr-02,number_of_transactions,2025 - 772 million
+Data Exchange_FinalLog,588,dx-gr-02,permitted_participants,"Public, Private, Civil"
+Data Exchange_FinalLog,589,dx-gr-02,audit_mechanism,Yes
+Data Exchange_FinalLog,590,dx-gr-02,ownership,Public
+Data Exchange_FinalLog,591,dx-gr-02,coordination_unit,"General Directorate of
+Information and Communication Technology (G.G.P.S.D.),"
+Data Exchange_FinalLog,592,dx-gr-02,governing_entity,"General Directorate of
+Information and Communication Technology (G.G.P.S.D.),"
+Data Exchange_FinalLog,594,dx-gr-02,scalable_architecture,Not Found
+Data Exchange_FinalLog,595,dx-gr-02,enrolment_info,Yes
+Data Exchange_FinalLog,597,dx-gr-02,data_management_rules,Yes
+Data Exchange_FinalLog,598,dx-hu-01,formal_mandate,Yes
+Data Exchange_FinalLog,599,dx-hu-01,once_only_principle,Yes
+Data Exchange_FinalLog,601,dx-hu-01,interoperability_level,Syntactic
+Data Exchange_FinalLog,602,dx-hu-01,number_of_transactions,Not Found
+Data Exchange_FinalLog,603,dx-hu-01,number_of_members,Not Found
+Data Exchange_FinalLog,606,dx-is-01,formal_mandate,Not Found
+Data Exchange_FinalLog,607,dx-is-01,independent_audit,Not Found
+Data Exchange_FinalLog,608,dx-is-01,personal_data_protection,Yes
+Data Exchange_FinalLog,609,dx-is-01,interoperability_level,Semantic
+Data Exchange_FinalLog,610,dx-is-01,number_of_transactions,Not Found
+Data Exchange_FinalLog,611,dx-is-01,number_of_members,Not Found
+Data Exchange_FinalLog,612,dx-is-01,once_only_principle,Yes
+Data Exchange_FinalLog,613,dx-is-01,permitted_participants,"Public, Private, Civil"
+Data Exchange_FinalLog,639,dx-ie-02,coordination_unit,Not Found
+Data Exchange_FinalLog,640,dx-ie-02,once_only_principle,Yes
+Data Exchange_FinalLog,641,dx-ie-02,formal_mandate,No
+Data Exchange_FinalLog,642,dx-ie-02,status,Planned/Piloted
+Data Exchange_FinalLog,645,dx-ie-02,permitted_participants,"Public, Civil"
+Data Exchange_FinalLog,646,dx-ie-02,national_regional,National
+Data Exchange_FinalLog,647,dx-ie-02,independent_audit,Not Found
+Data Exchange_FinalLog,648,dx-ie-02,personal_data_protection,Yes
+Data Exchange_FinalLog,650,dx-ie-02,url,https://www.gov.ie/en/govie-team/publications/information-mediator/
+Data Exchange_FinalLog,651,dx-ie-02,architecture,API Gateway
+Data Exchange_FinalLog,652,dx-ie-02,sectoral,Cross-sectoral
+Data Exchange_FinalLog,653,dx-ie-02,interoperability_level,Syntactic
+Data Exchange_FinalLog,654,dx-ie-02,realtime_sharing,Yes
+Data Exchange_FinalLog,655,dx-ie-02,scalable_architecture,No
+Data Exchange_FinalLog,656,dx-ie-02,governing_entity,Office of the Government Chief Information Officer (OGCIO)
+Data Exchange_FinalLog,657,dx-ie-02,ownership,Public
+Data Exchange_FinalLog,658,dx-ie-02,enrolment_info,No
+Data Exchange_FinalLog,659,dx-ie-02,audit_mechanism,Yes
+Data Exchange_FinalLog,660,dx-ie-02,data_management_rules,Not Found
+Data Exchange_FinalLog,661,dx-ie-02,multiple_public_entities,Yes
+Data Exchange_FinalLog,662,dx-ie-02,impact_metrics,No
+Data Exchange_FinalLog,663,dx-it-01,once_only_principle,Yes
+Data Exchange_FinalLog,664,dx-it-01,number_of_members,2026 - 9723
+Data Exchange_FinalLog,665,dx-it-01,number_of_transactions,2026 - 1.8 billion
+Data Exchange_FinalLog,666,dx-it-01,url,https://www.interop.pagopa.it/
+Data Exchange_FinalLog,667,dx-it-01,interoperability_level,Semantic
+Data Exchange_FinalLog,668,dx-it-01,formal_mandate,Yes
+Data Exchange_FinalLog,669,dx-it-01,independent_audit,Yes
+Data Exchange_FinalLog,670,dx-it-01,personal_data_protection,Yes
+Data Exchange_FinalLog,672,dx-lv-01,personal_data_protection,Yes
+Data Exchange_FinalLog,673,dx-lv-01,once_only_principle,Yes
+Data Exchange_FinalLog,675,dx-lv-01,independent_audit,Not Found
+Data Exchange_FinalLog,676,dx-lv-01,number_of_members,Not Found
+Data Exchange_FinalLog,677,dx-lv-01,number_of_transactions,Not Found
+Data Exchange_FinalLog,678,dx-lv-01,interoperability_level,Semantic
+Data Exchange_FinalLog,679,dx-lv-01,architecture,API Gateway
+Data Exchange_FinalLog,682,dx-li-01,personal_data_protection,Yes
+Data Exchange_FinalLog,683,dx-li-01,interoperability_level,Syntactic
+Data Exchange_FinalLog,684,dx-li-01,independent_audit,Not Found
+Data Exchange_FinalLog,685,dx-li-01,number_of_members,Not Found
+Data Exchange_FinalLog,686,dx-li-01,number_of_transactions,Not Found
+Data Exchange_FinalLog,687,dx-li-01,once_only_principle,Yes
+Data Exchange_FinalLog,688,dx-lt-01,formal_mandate,Yes
+Data Exchange_FinalLog,689,dx-lt-01,interoperability_level,Semantic
+Data Exchange_FinalLog,690,dx-lt-01,permitted_participants,"Public, Private"
+Data Exchange_FinalLog,691,dx-lt-01,once_only_principle,Yes
+Data Exchange_FinalLog,692,dx-lt-01,independent_audit,Yes
+Data Exchange_FinalLog,694,dx-lt-01,number_of_transactions,Not Found
+Data Exchange_FinalLog,723,dx-lu-02,number_of_members,Not Found
+Data Exchange_FinalLog,724,dx-lu-02,once_only_principle,Yes
+Data Exchange_FinalLog,725,dx-lu-02,personal_data_protection,Yes
+Data Exchange_FinalLog,726,dx-lu-02,number_of_transactions,Not Found
+Data Exchange_FinalLog,727,dx-lu-02,permitted_participants,"Public, Private, Civil"
+Data Exchange_FinalLog,728,dx-lu-02,interoperability_level,Syntactic
+Data Exchange_FinalLog,729,dx-lu-02,formal_mandate,Not Found
+Data Exchange_FinalLog,730,dx-lu-02,independent_audit,Not Found
+Data Exchange_FinalLog,731,dx-lu-02,enrolment_info,Yes
+Data Exchange_FinalLog,732,dx-lu-02,architecture,API Gateway
+Data Exchange_FinalLog,733,dx-lu-02,governing_entity,Centre des technologies de l'information de l'Etat (CTIE)
+Data Exchange_FinalLog,735,dx-lu-02,url,https://api.public.lu/en/api-gateway.html
+Data Exchange_FinalLog,736,dx-lu-02,status,Implemented
+Data Exchange_FinalLog,737,dx-lu-02,national_regional,National
+Data Exchange_FinalLog,738,dx-lu-02,sectoral,Cross-sectoral
+Data Exchange_FinalLog,739,dx-lu-02,realtime_sharing,Not Found
+Data Exchange_FinalLog,740,dx-lu-02,scalable_architecture,Not Found
+Data Exchange_FinalLog,741,dx-lu-02,ownership,Public
+Data Exchange_FinalLog,742,dx-lu-02,audit_mechanism,Not Found
+Data Exchange_FinalLog,743,dx-lu-02,data_management_rules,Not Found
+Data Exchange_FinalLog,744,dx-lu-02,coordination_unit,Centre des technologies de l'information de l'Etat (CTIE)
+Data Exchange_FinalLog,745,dx-lu-02,multiple_public_entities,Not Found
+Data Exchange_FinalLog,746,dx-lu-02,impact_metrics,Not Found
+Data Exchange_FinalLog,747,dx-me-01,formal_mandate,Yes
+Data Exchange_FinalLog,748,dx-me-01,interoperability_level,Semantic
+Data Exchange_FinalLog,749,dx-me-01,personal_data_protection,Yes
+Data Exchange_FinalLog,750,dx-me-01,once_only_principle,No
+Data Exchange_FinalLog,751,dx-me-01,independent_audit,No
+Data Exchange_FinalLog,753,dx-me-01,audit_mechanism,Yes
+Data Exchange_FinalLog,754,dx-me-01,number_of_members,Not Found
+Data Exchange_FinalLog,755,dx-me-01,permitted_participants,Public
+Data Exchange_FinalLog,756,dx-me-01,number_of_transactions,Not Found
+Data Exchange_FinalLog,784,dx-nl-02,formal_mandate,No
+Data Exchange_FinalLog,785,dx-nl-02,number_of_members,Not Found
+Data Exchange_FinalLog,786,dx-nl-02,number_of_transactions,Not Found
+Data Exchange_FinalLog,787,dx-nl-02,once_only_principle,Yes
+Data Exchange_FinalLog,788,dx-nl-02,independent_audit,No
+Data Exchange_FinalLog,789,dx-nl-02,personal_data_protection,Yes
+Data Exchange_FinalLog,791,dx-nl-02,url,https://www.logius.nl/onze-dienstverlening/gegevensuitwisseling/digikoppeling/wat-is-het
+Data Exchange_FinalLog,792,dx-nl-02,status,Implemented
+Data Exchange_FinalLog,793,dx-nl-02,architecture,Not Found
+Data Exchange_FinalLog,794,dx-nl-02,national_regional,National
+Data Exchange_FinalLog,795,dx-nl-02,sectoral,Cross-sectoral
+Data Exchange_FinalLog,796,dx-nl-02,interoperability_level,Syntactic
+Data Exchange_FinalLog,797,dx-nl-02,realtime_sharing,Not Found
+Data Exchange_FinalLog,798,dx-nl-02,scalable_architecture,Not Found
+Data Exchange_FinalLog,799,dx-nl-02,governing_entity,Logius
+Data Exchange_FinalLog,800,dx-nl-02,ownership,Public
+Data Exchange_FinalLog,801,dx-nl-02,enrolment_info,Yes
+Data Exchange_FinalLog,802,dx-nl-02,permitted_participants,Public
+Data Exchange_FinalLog,803,dx-nl-02,audit_mechanism,Yes
+Data Exchange_FinalLog,804,dx-nl-02,data_management_rules,Not Found
+Data Exchange_FinalLog,805,dx-nl-02,coordination_unit,Logius
+Data Exchange_FinalLog,806,dx-nl-02,multiple_public_entities,Yes
+Data Exchange_FinalLog,807,dx-nl-02,impact_metrics,Not Found
+Data Exchange_FinalLog,809,dx-no-01,permitted_participants,"Public, Private, Civil"
+Data Exchange_FinalLog,810,dx-no-01,once_only_principle,Yes
+Data Exchange_FinalLog,811,dx-no-01,number_of_members,2025 - 75
+Data Exchange_FinalLog,812,dx-no-01,independent_audit,Yes
+Data Exchange_FinalLog,813,dx-no-01,number_of_transactions,Not Found
+Data Exchange_FinalLog,814,dx-no-01,personal_data_protection,Yes
+Data Exchange_FinalLog,815,dx-no-01,interoperability_level,Semantic
+Data Exchange_FinalLog,842,dx-pl-02,name,System of State Registers
+Data Exchange_FinalLog,844,dx-pl-02,number_of_members,Not Found
+Data Exchange_FinalLog,845,dx-pl-02,number_of_transactions,Not Found
+Data Exchange_FinalLog,846,dx-pl-02,url,https://www.gov.pl/web/cyfryzacja/system-rejestrow-panstwowych
+Data Exchange_FinalLog,847,dx-pl-02,permitted_participants,"Public, Private"
+Data Exchange_FinalLog,848,dx-pl-02,independent_audit,Not Found
+Data Exchange_FinalLog,849,dx-pl-02,once_only_principle,No
+Data Exchange_FinalLog,850,dx-pl-02,personal_data_protection,Yes
+Data Exchange_FinalLog,851,dx-pl-02,interoperability_level,Syntactic
+Data Exchange_FinalLog,853,dx-pl-02,status,Implemented
+Data Exchange_FinalLog,854,dx-pl-02,architecture,Not Found
+Data Exchange_FinalLog,855,dx-pl-02,national_regional,National
+Data Exchange_FinalLog,856,dx-pl-02,sectoral,Cross-sectoral
+Data Exchange_FinalLog,857,dx-pl-02,realtime_sharing,Not Found
+Data Exchange_FinalLog,858,dx-pl-02,scalable_architecture,Yes
+Data Exchange_FinalLog,859,dx-pl-02,governing_entity,Ministry of digital affair
+Data Exchange_FinalLog,860,dx-pl-02,ownership,Public
+Data Exchange_FinalLog,861,dx-pl-02,enrolment_info,Yes
+Data Exchange_FinalLog,862,dx-pl-02,audit_mechanism,Yes
+Data Exchange_FinalLog,863,dx-pl-02,data_management_rules,Yes
+Data Exchange_FinalLog,864,dx-pl-02,coordination_unit,Not Found
+Data Exchange_FinalLog,865,dx-pl-02,multiple_public_entities,Yes
+Data Exchange_FinalLog,866,dx-pl-02,impact_metrics,No
+Data Exchange_FinalLog,867,dx-pt-01,interoperability_level,Syntactic
+Data Exchange_FinalLog,868,dx-pt-01,number_of_members,2026 - 124
+Data Exchange_FinalLog,869,dx-pt-01,number_of_transactions,2026 - 1.02 billion
+Data Exchange_FinalLog,870,dx-pt-01,independent_audit,Not Found
+Data Exchange_FinalLog,871,dx-pt-01,audit_mechanism,Yes
+Data Exchange_FinalLog,872,dx-pt-01,once_only_principle,Yes
+Data Exchange_FinalLog,874,dx-pt-01,formal_mandate,Yes
+Data Exchange_FinalLog,901,dx-sk-02,name,The Common Module for Data and Process Integration
+Data Exchange_FinalLog,902,dx-sk-02,personal_data_protection,Yes
+Data Exchange_FinalLog,903,dx-sk-02,number_of_members,Not Found
+Data Exchange_FinalLog,904,dx-sk-02,number_of_transactions,Not Found
+Data Exchange_FinalLog,905,dx-sk-02,formal_mandate,Yes
+Data Exchange_FinalLog,907,dx-sk-02,independent_audit,Not Found
+Data Exchange_FinalLog,908,dx-sk-02,once_only_principle,Yes
+Data Exchange_FinalLog,911,dx-sk-02,url,https://interoperable-europe.ec.europa.eu/sites/default/files/custom-page/attachment/2026-06/iopeu-monitoring_2025-supporting-document_slovakia_vfinal.pdf
+Data Exchange_FinalLog,912,dx-sk-02,status,Implemented
+Data Exchange_FinalLog,913,dx-sk-02,architecture,Not Found
+Data Exchange_FinalLog,914,dx-sk-02,national_regional,National
+Data Exchange_FinalLog,915,dx-sk-02,sectoral,Cross-sectoral
+Data Exchange_FinalLog,916,dx-sk-02,realtime_sharing,No
+Data Exchange_FinalLog,917,dx-sk-02,scalable_architecture,Not Found
+Data Exchange_FinalLog,918,dx-sk-02,governing_entity,"Ministry of Investments, Regional Development and Informatization"
+Data Exchange_FinalLog,919,dx-sk-02,ownership,Public
+Data Exchange_FinalLog,920,dx-sk-02,enrolment_info,Yes
+Data Exchange_FinalLog,921,dx-sk-02,audit_mechanism,Yes
+Data Exchange_FinalLog,922,dx-sk-02,data_management_rules,Yes
+Data Exchange_FinalLog,924,dx-sk-02,multiple_public_entities,Yes
+Data Exchange_FinalLog,925,dx-sk-02,impact_metrics,No
+Data Exchange_FinalLog,956,dx-si-02,coordination_unit,Ministry of Digital Transformation
+Data Exchange_FinalLog,957,dx-si-02,personal_data_protection,Yes
+Data Exchange_FinalLog,958,dx-si-02,interoperability_level,Syntactic
+Data Exchange_FinalLog,959,dx-si-02,number_of_transactions,Not Found
+Data Exchange_FinalLog,960,dx-si-02,impact_metrics,Yes
+Data Exchange_FinalLog,961,dx-si-02,url,https://nio.gov.si/en/products/interoperabilnostna%2Bkomponenta%2Bpladenj-288?release=2.0
+Data Exchange_FinalLog,962,dx-si-02,number_of_members,2025 - 31
+Data Exchange_FinalLog,964,dx-si-02,status,Implemented
+Data Exchange_FinalLog,965,dx-si-02,architecture,Not Found
+Data Exchange_FinalLog,966,dx-si-02,national_regional,National
+Data Exchange_FinalLog,967,dx-si-02,sectoral,Cross-sectoral
+Data Exchange_FinalLog,968,dx-si-02,realtime_sharing,Yes
+Data Exchange_FinalLog,969,dx-si-02,scalable_architecture,Yes
+Data Exchange_FinalLog,970,dx-si-02,ownership,Public
+Data Exchange_FinalLog,971,dx-si-02,enrolment_info,Yes
+Data Exchange_FinalLog,973,dx-si-02,audit_mechanism,Yes
+Data Exchange_FinalLog,974,dx-si-02,data_management_rules,Yes
+Data Exchange_FinalLog,975,dx-si-02,independent_audit,Not Found
+Data Exchange_FinalLog,976,dx-si-02,multiple_public_entities,Yes
+Data Exchange_FinalLog,977,dx-es-01,personal_data_protection,Yes
+Data Exchange_FinalLog,980,dx-es-01,number_of_transactions,2025 - 585 million
+Data Exchange_FinalLog,981,dx-es-01,number_of_members,2026 - 3289
+Data Exchange_FinalLog,982,dx-es-01,independent_audit,Not Found
+Data Exchange_FinalLog,985,dx-es-01,interoperability_level,Semantic
+Data Exchange_FinalLog,1012,dx-se-02,name,Secure Digital Communication
+Data Exchange_FinalLog,1013,dx-se-02,formal_mandate,Yes
+Data Exchange_FinalLog,1014,dx-se-02,once_only_principle,Yes
+Data Exchange_FinalLog,1015,dx-se-02,impact_metrics,Yes
+Data Exchange_FinalLog,1016,dx-se-02,independent_audit,No
+Data Exchange_FinalLog,1017,dx-se-02,personal_data_protection,Yes
+Data Exchange_FinalLog,1018,dx-se-02,url,https://sdk.digg.se
+Data Exchange_FinalLog,1019,dx-se-02,status,Implemented
+Data Exchange_FinalLog,1020,dx-se-02,architecture,Not Found
+Data Exchange_FinalLog,1021,dx-se-02,national_regional,National
+Data Exchange_FinalLog,1022,dx-se-02,sectoral,Cross-sectoral
+Data Exchange_FinalLog,1023,dx-se-02,interoperability_level,Syntactic
+Data Exchange_FinalLog,1024,dx-se-02,realtime_sharing,Yes
+Data Exchange_FinalLog,1025,dx-se-02,scalable_architecture,Yes
+Data Exchange_FinalLog,1026,dx-se-02,governing_entity,Agency for Digital Government (Digg)
+Data Exchange_FinalLog,1027,dx-se-02,ownership,Public
+Data Exchange_FinalLog,1028,dx-se-02,coordination_unit,Agency for Digital Government (Digg)
+Data Exchange_FinalLog,1029,dx-se-02,enrolment_info,Yes
+Data Exchange_FinalLog,1031,dx-se-02,multiple_public_entities,Yes
+Data Exchange_FinalLog,1032,dx-se-02,audit_mechanism,Yes
+Data Exchange_FinalLog,1033,dx-se-02,data_management_rules,Yes
+Data Exchange_FinalLog,1034,dx-se-02,number_of_members,2025 - 139
+Data Exchange_FinalLog,1035,dx-se-02,number_of_transactions,2025 - 42700
+Data Exchange_FinalLog,1063,dx-ch-02,name,Sedex
+Data Exchange_FinalLog,1064,dx-ch-02,formal_mandate,Yes
+Data Exchange_FinalLog,1065,dx-ch-02,once_only_principle,Yes
+Data Exchange_FinalLog,1066,dx-ch-02,personal_data_protection,Yes
+Data Exchange_FinalLog,1067,dx-ch-02,independent_audit,Not Found
+Data Exchange_FinalLog,1068,dx-ch-02,interoperability_level,Semantic
+Data Exchange_FinalLog,1070,dx-ch-02,url,https://www.sedex.swiss/
+Data Exchange_FinalLog,1071,dx-ch-02,status,Implemented
+Data Exchange_FinalLog,1072,dx-ch-02,architecture,API Gateway
+Data Exchange_FinalLog,1073,dx-ch-02,national_regional,National
+Data Exchange_FinalLog,1074,dx-ch-02,sectoral,Cross-sectoral
+Data Exchange_FinalLog,1075,dx-ch-02,realtime_sharing,Yes
+Data Exchange_FinalLog,1076,dx-ch-02,scalable_architecture,Not Found
+Data Exchange_FinalLog,1078,dx-ch-02,ownership,Public
+Data Exchange_FinalLog,1079,dx-ch-02,enrolment_info,Yes
+Data Exchange_FinalLog,1080,dx-ch-02,permitted_participants,"Public, Private"
+Data Exchange_FinalLog,1081,dx-ch-02,audit_mechanism,Yes
+Data Exchange_FinalLog,1082,dx-ch-02,data_management_rules,Yes
+Data Exchange_FinalLog,1083,dx-ch-02,coordination_unit,Federal Statistical Office
+Data Exchange_FinalLog,1084,dx-ch-02,multiple_public_entities,Yes
+Data Exchange_FinalLog,1085,dx-ch-02,impact_metrics,No
+Data Exchange_FinalLog,1086,dx-ch-02,number_of_members,Not Found
+Data Exchange_FinalLog,1087,dx-ch-02,number_of_transactions,Not Found
+Data Exchange_FinalLog,1088,dx-ua-01,formal_mandate,Yes
+Data Exchange_FinalLog,1089,dx-ua-01,independent_audit,Not Found
+Data Exchange_FinalLog,1090,dx-ua-01,personal_data_protection,Yes
+Data Exchange_FinalLog,1091,dx-ua-01,number_of_members,Not Found
+Data Exchange_FinalLog,1092,dx-ua-01,number_of_transactions,2026 - 23 billion
+Data Exchange_FinalLog,1093,dx-ua-01,once_only_principle,Yes
+Data Exchange_FinalLog,1094,dx-ua-01,interoperability_level,Semantic
+Data Exchange_FinalLog,1095,dx-ua-01,permitted_participants,"Public, Private, Civil"
+Data Exchange_FinalLog,1096,dx-rs-01,once_only_principle,Yes
+Data Exchange_FinalLog,1097,dx-rs-01,number_of_members,Not Found
+Data Exchange_FinalLog,1098,dx-rs-01,number_of_transactions,Not Found
+Data Exchange_FinalLog,1099,dx-rs-01,personal_data_protection,Yes
+Data Exchange_FinalLog,1100,dx-rs-01,formal_mandate,Yes
+Data Exchange_FinalLog,1101,dx-rs-01,interoperability_level,Semantic
+Data Exchange_FinalLog,1102,dx-rs-01,independent_audit,Not Found
+Data Exchange_FinalLog,1103,dx-rs-01,permitted_participants,"Public, Private, Civil"
+Data Exchange_FinalLog,1104,dx-rs-01,url,https://euprava.gov.rs/usluge/5224
+Data Exchange_FinalLog,1105,dx-xk-01,formal_mandate,Not Found
+Data Exchange_FinalLog,1106,dx-xk-01,independent_audit,No
+Data Exchange_FinalLog,1107,dx-xk-01,once_only_principle,Not Found
+Data Exchange_FinalLog,1108,dx-xk-01,number_of_members,2024 - 50
+Data Exchange_FinalLog,1109,dx-xk-01,number_of_transactions,2023 - 16 million
+Data Exchange_FinalLog,1110,dx-xk-01,personal_data_protection,Yes
+Data Exchange_FinalLog,1111,dx-xk-01,interoperability_level,Syntactic
+Data Exchange_FinalLog,1112,dx-gl-01,formal_mandate,Not Found
+Data Exchange_FinalLog,1113,dx-gl-01,enrolment_info,Yes
+Data Exchange_FinalLog,1115,dx-gl-01,number_of_transactions,Not Found
+Data Exchange_FinalLog,1116,dx-gl-01,number_of_members,Not Found
+Data Exchange_FinalLog,1117,dx-gl-01,independent_audit,Not Found
+Data Exchange_FinalLog,1118,dx-gl-01,personal_data_protection,Yes
+Data Exchange_FinalLog,1119,dx-gl-01,once_only_principle,No
+Data Exchange_FinalLog,1120,dx-us-01,once_only_principle,No
+Data Exchange_FinalLog,1121,dx-us-01,formal_mandate,No
+Data Exchange_FinalLog,1122,dx-us-01,interoperability_level,Not Found
+Data Exchange_FinalLog,1123,dx-us-01,personal_data_protection,No
+Data Exchange_FinalLog,1127,dx-ca-01,once_only_principle,Yes
+Data Exchange_FinalLog,1128,dx-ca-01,personal_data_protection,Yes
+Data Exchange_FinalLog,1130,dx-ca-01,independent_audit,Not Found
+Data Exchange_FinalLog,1131,dx-ca-01,interoperability_level,Syntactic
+Data Exchange_FinalLog,1133,dx-ca-01,number_of_members,Not Found
+Data Exchange_FinalLog,1134,dx-ca-01,number_of_transactions,Not Found

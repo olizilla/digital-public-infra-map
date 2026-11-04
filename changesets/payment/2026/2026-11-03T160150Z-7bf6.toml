@@ -1,0 +1,21 @@
+[[changes]]
+type = "update"
+key = "pay-br-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "RTGS"
+reason = "New field. Pix clears in the central bank SPI"
+sources = [
+  "https://fastpayments.worldbank.org/sites/default/files/2023-05/Settlement%20Note_Final_April%2020.pdf",
+  "https://fastpayments.worldbank.org/sites/default/files/2022-05/Brazil_Pix_Case_Study_May_2022_0.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-br-01"
+as_of = 2026-10-15
+values.settlement_method = "Gross"
+reason = "New field. Each Pix payment settles individually in prefunded SPI accounts at the central bank, with no overdraft"
+sources = [
+  "https://fastpayments.worldbank.org/sites/default/files/2023-05/Settlement%20Note_Final_April%2020.pdf",
+  "https://fastpayments.worldbank.org/sites/default/files/2022-05/Brazil_Pix_Case_Study_May_2022_0.pdf",
+]

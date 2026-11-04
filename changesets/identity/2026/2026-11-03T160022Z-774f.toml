@@ -1,0 +1,77 @@
+[[changes]]
+type = "update"
+key = "id-hn-01"
+as_of = 2026-09-16
+values.gov_portal_auth = "Yes"
+reason = "Single sign-on for government and private services."
+sources = [
+  "https://www.biometricupdate.com/202512/tech5-dpi-platform-powers-new-honduras-digital-id-system",
+  "https://www.diger.gob.hn/identidad-digital/preguntas-frecuentes",
+]
+
+[[changes]]
+type = "update"
+key = "id-hn-01"
+as_of = 2026-09-16
+values.name = "National Digital ID System / Bien"
+reason = "Launched 1 Dec 2025 on Tech5's DPI platform with a trust framework."
+sources = [
+  "https://tech5.ai/honduras-launches-national-digital-id-and-trust-framework-on-tech5s-dpi-platform-setting-a-replicable-model-for-latin-america/",
+  "https://www.diger.gob.hn/identidad-digital/preguntas-frecuentes",
+  "https://sep.gob.hn/publicaciones/noticias/gobierno-oficializa-el-dni-digital-de-bien-como-documento-con-plena-validez-legal/",
+]
+
+[[changes]]
+type = "update"
+key = "id-hn-01"
+as_of = 2026-09-16
+values.kyc = "Yes"
+reason = "eKYC is a stated use case."
+sources = [
+  "https://tech5.ai/honduras-launches-national-digital-id-and-trust-framework-on-tech5s-dpi-platform-setting-a-replicable-model-for-latin-america/",
+  "https://www.diger.gob.hn/identidad-digital/preguntas-frecuentes",
+]
+
+[[changes]]
+type = "update"
+key = "id-hn-01"
+as_of = 2026-09-16
+values.status = "Implemented"
+reason = "Live since Dec 2025. Local press raised data-control concerns about the wallet contract (Sep 2026)."
+sources = [
+  "https://contracorriente.red/2026/09/14/el-gobierno-de-xiomara-castro-contrato-la-billetera-electronica-con-empresa-vinculada-a-contratacion-investigada-por-irregularidades/",
+  "https://www.diger.gob.hn/identidad-digital",
+]
+
+[[changes]]
+type = "update"
+key = "id-hn-01"
+as_of = 2026-09-16
+values.technical_support = "Tech5; International Technology Group (ITG); UNDP; Thales"
+reason = "Adds Tech5 and ITG."
+sources = [
+  "https://www.biometricupdate.com/202512/tech5-dpi-platform-powers-new-honduras-digital-id-system",
+  "https://www.diger.gob.hn/identidad-digital",
+]
+
+[[changes]]
+type = "update"
+key = "id-hn-01"
+as_of = 2026-09-16
+values.sectoral_use_cases = "Yes"
+reason = "ID, residence, driving and firearms permits; eKYC; e-signing."
+sources = [
+  "https://www.biometricupdate.com/202512/tech5-dpi-platform-powers-new-honduras-digital-id-system",
+  "https://www.diger.gob.hn/identidad-digital",
+]
+
+[[changes]]
+type = "update"
+key = "id-hn-01"
+as_of = 2026-09-16
+values.url = "https://tech5.ai/honduras-launches-national-digital-id-and-trust-framework-on-tech5s-dpi-platform-setting-a-replicable-model-for-latin-america/"
+reason = ""
+sources = [
+  "https://tech5.ai/honduras-launches-national-digital-id-and-trust-framework-on-tech5s-dpi-platform-setting-a-replicable-model-for-latin-america/",
+  "https://www.diger.gob.hn/identidad-digital",
+]

@@ -1,0 +1,9 @@
+[[changes]]
+type = "update"
+key = "dx-europe-01"
+as_of = 2026-11-02
+values.country = "Europe"
+reason = "Use the UN M49 name for this region, as the place code in its System ID does."
+sources = [
+  "https://unstats.un.org/unsd/methodology/m49/overview/",
+]

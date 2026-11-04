@@ -1,0 +1,28 @@
+{
+  "name": "toy",
+  "resources": [
+    {
+      "name": "things",
+      "path": "things.csv",
+      "schema": {
+        "missingValues": ["NA"],
+        "primaryKey": ["Thing ID"],
+        "fields": [
+          { "id": "thing_id", "name": "Thing ID", "type": "string", "constraints": { "required": true, "unique": true } },
+          { "id": "place", "name": "Place", "type": "string", "constraints": { "required": true } },
+          { "id": "name", "name": "Name", "type": "string" },
+          { "id": "colour", "name": "Colour", "type": "string" },
+          { "id": "updated", "name": "Updated", "type": "date" }
+        ]
+      }
+    },
+    {
+      "name": "places",
+      "path": "places.csv",
+      "schema": {
+        "primaryKey": ["code"],
+        "fields": [{ "name": "code", "type": "string" }]
+      }
+    }
+  ]
+}

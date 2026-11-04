@@ -1,0 +1,117 @@
+[[changes]]
+type = "create"
+key = "dx-ba-02"
+as_of = 2026-10-15
+values.country = "Bosnia and Herzegovina"
+values.name = "Data Exchange System"
+reason = "Changing name to placeholder?"
+
+[[changes]]
+type = "update"
+key = "dx-ba-02"
+as_of = 2026-10-15
+values.formal_mandate = "Yes"
+reason = "Authorises a 'communication network' for data exchange, requires standards/'technical preconditions' to be followed."
+sources = [
+  "https://www.iddeea.gov.ba/wp-content/uploads/WEB/ZAKONODAVSTVO/PODZAKONSKI%20AKTI/Evidencija%20sigurnost%20i%20razmjena%20podataka/2/rulebook_on_manner_of_access_to_registers_and_data_exchange_35_09.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "dx-ba-02"
+as_of = 2026-10-16
+values.personal_data_protection = "Yes"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-ba-02"
+as_of = 2026-10-17
+values.independent_audit = "No"
+reason = ""
+sources = [
+  "https://www.iddeea.gov.ba/en/internal-audit/",
+]
+
+[[changes]]
+type = "update"
+key = "dx-ba-02"
+as_of = 2026-10-15
+values.status = "Implemented"
+values.impact_metrics = "No"
+values.number_of_members = "2025 - 55"
+reason = ""
+sources = [
+  "https://www.iddeea.gov.ba/en/information-system-for-registers/",
+]
+
+[[changes]]
+type = "update"
+key = "dx-ba-02"
+as_of = 2026-10-15
+values.permitted_participants = "Public, Private, Civil"
+reason = "E-services use data from registries - serving private and civil society/individual actors."
+sources = [
+  "https://www.iddeea.gov.ba/en/linked-e-services-for-citizens/",
+]
+
+[[changes]]
+type = "update"
+key = "dx-ba-02"
+as_of = 2026-10-15
+values.url = "https://www.iddeea.gov.ba/en/information-system-for-registers/"
+values.national_regional = "National"
+values.interoperability_level = "Syntactic"
+values.realtime_sharing = "Not Found"
+values.scalable_architecture = "Not Found"
+values.enrolment_info = "No"
+values.audit_mechanism = "No"
+values.coordination_unit = "Agency for Identification Documents, Registers and Data\nExchange of Bosnia and Herzegovina"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-ba-02"
+as_of = 2026-10-15
+values.once_only_principle = "No"
+reason = "It does not have a once only policy"
+sources = [
+  "https://www.iddeea.gov.ba/wp-content/uploads/WEB/ZAKONODAVSTVO/PODZAKONSKI%20AKTI/Evidencija%20sigurnost%20i%20razmjena%20podataka/2/rulebook_on_manner_of_access_to_registers_and_data_exchange_35_09.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "dx-ba-02"
+as_of = 2026-10-15
+values.number_of_transactions = "No"
+reason = "Data has not been released"
+
+[[changes]]
+type = "update"
+key = "dx-ba-02"
+as_of = 2026-10-15
+values.architecture = "Not Found"
+reason = "System uses web services -which is different from API"
+
+[[changes]]
+type = "update"
+key = "dx-ba-02"
+as_of = 2026-10-15
+values.sectoral = "Cross-sectoral"
+values.multiple_public_entities = "Yes"
+reason = ""
+sources = [
+  "https://www.iddeea.gov.ba/en/linked-e-services-for-citizens/",
+]
+
+[[changes]]
+type = "update"
+key = "dx-ba-02"
+as_of = 2026-10-15
+values.governing_entity = "Agency for Identification Documents, Registers and Data\nExchange of Bosnia and Herzegovina"
+values.ownership = "Public"
+values.data_management_rules = "Yes"
+reason = ""
+sources = [
+  "https://www.iddeea.gov.ba/wp-content/uploads/WEB/ZAKONODAVSTVO/PODZAKONSKI%20AKTI/Evidencija%20sigurnost%20i%20razmjena%20podataka/2/rulebook_on_manner_of_access_to_registers_and_data_exchange_35_09.pdf",
+]

@@ -1,0 +1,21 @@
+[[changes]]
+type = "update"
+key = "pay-cl-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "ACH"
+reason = "New field. TEF cleared through CCA / Combanc. Cycle detail from 2021 data."
+sources = [
+  "https://fastpayments.worldbank.org/sites/default/files/2023-05/Settlement%20Note_Final_April%2020.pdf",
+  "https://fastpayments.worldbank.org/sites/default/files/2021-09/World_Bank_FPS_Chile_TEF_Case_Study.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-cl-01"
+as_of = 2026-10-15
+values.settlement_method = "DNS"
+reason = "New field. Intraday cycles or end of day in LBTR. Cycle detail from 2021 data."
+sources = [
+  "https://fastpayments.worldbank.org/sites/default/files/2023-05/Settlement%20Note_Final_April%2020.pdf",
+  "https://fastpayments.worldbank.org/sites/default/files/2021-09/World_Bank_FPS_Chile_TEF_Case_Study.pdf",
+]

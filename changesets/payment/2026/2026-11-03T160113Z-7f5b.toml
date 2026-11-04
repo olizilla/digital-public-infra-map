@@ -1,0 +1,242 @@
+[[changes]]
+type = "create"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.country = "Romania"
+values.name = "Plăți Instant"
+reason = "Replaces TIPS, the Eurosystem service, which was named in error. Romania's instant payment service in lei is the instant component of SENT, run by Transfond, live since 2019. Primary source: Transfond, Instant Payments service page: operated by Transfond, settlement ensured by BNR, 24/7, payments below RON 50,000; AliasPay phone-number payments since 2020; Transfond, SENT system rules v28 (from 1 Feb 2026): instant component CPI Lei runs 24/7/365; participants may include credit institutions, payment institutions, e-money institutions, BNR and the State Treasury; transactions cleared in real time against reserved positions, net positions settled in ReGIS against guarantee funds blocked in ReGIS; personal data processing agreement (Annex 2C)."
+sources = [
+  "https://www.platiinstant.ro/en/the-service",
+  "https://www.transfond.ro/pdf/Reguli_SENT%20v28r00.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.url = "https://www.platiinstant.ro/en/the-service"
+reason = "Transfond instant payments service page. Primary source: Transfond, Instant Payments service page: operated by Transfond, settlement ensured by BNR, 24/7, payments below RON 50,000; AliasPay phone-number payments since 2020."
+sources = [
+  "https://www.platiinstant.ro/en/the-service",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.realtime_active = "Yes"
+reason = "Runs 24/7/365; payments credited within 10 seconds. Primary source: Transfond, SENT system rules v28 (from 1 Feb 2026): instant component CPI Lei runs 24/7/365; participants may include credit institutions, payment institutions, e-money institutions, BNR and the State Treasury; transactions cleared in real time against reserved positions, net positions settled in ReGIS against guarantee funds blocked in ReGIS; personal data processing agreement (Annex 2C); Transfond press release (28 Nov 2024): Revolut joins; 18 participating institutions; limit RON 50,000; credited within 10 seconds, 24/7."
+sources = [
+  "https://www.transfond.ro/en/services/automated-clearing-house-sent",
+  "https://www.transfond.ro/pdf/Comunicat%20de%20presa%20Revolut%20-%20Plati%20Instant%20FINAL.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.system_type = "Interbank"
+reason = "Instant RON credit transfers between accounts at participating institutions; a few non-bank payment institutions participate but no mobile money, card or CBDC domain is connected. Primary source: Transfond, SENT system rules v28 (from 1 Feb 2026): instant component CPI Lei runs 24/7/365; participants may include credit institutions, payment institutions, e-money institutions, BNR and the State Treasury; transactions cleared in real time against reserved positions, net positions settled in ReGIS against guarantee funds blocked in ReGIS; personal data processing agreement (Annex 2C); Transfond, Annual Report 2025: instant payments (CPI Lei) 215,561,142 transactions worth RON 306,337.6 million in 2025 (2024: 138,563,309; RON 199,620.3 million); 20 participants at end 2025; RoPay 10 participants and 8.3 million aliases."
+sources = [
+  "https://www.transfond.ro/en/services/automated-clearing-house-sent",
+  "https://www.transfond.ro/pdf/Raport%20Anual%20Transfond%202025%20Compressed%202.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.national_regional = "National"
+reason = "Plăți Instant is a national system; Q1 value described TIPS, the Eurosystem service."
+sources = [
+  "https://www.platiinstant.ro/en/the-service",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.status = "Implemented"
+reason = "Live since 2019 with four banks; 20 participants at end 2025. Primary source: Transfond press release (28 Nov 2024): Revolut joins; 18 participating institutions; limit RON 50,000; credited within 10 seconds, 24/7; Transfond, Annual Report 2025: instant payments (CPI Lei) 215,561,142 transactions worth RON 306,337.6 million in 2025 (2024: 138,563,309; RON 199,620.3 million); 20 participants at end 2025; RoPay 10 participants and 8.3 million aliases."
+sources = [
+  "https://www.transfond.ro/en/services/automated-clearing-house-sent",
+  "https://www.transfond.ro/pdf/Raport%20Anual%20Transfond%202025%20Compressed%202.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.cross_border = "No"
+reason = "Instant component processes lei payments (CPI Lei) between domestic participants. Primary source: Transfond, SENT system rules v28 (from 1 Feb 2026): instant component CPI Lei runs 24/7/365; participants may include credit institutions, payment institutions, e-money institutions, BNR and the State Treasury; transactions cleared in real time against reserved positions, net positions settled in ReGIS against guarantee funds blocked in ReGIS; personal data processing agreement (Annex 2C)."
+sources = [
+  "https://www.transfond.ro/en/services/automated-clearing-house-sent",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.interoperability_policy = "No"
+reason = "Searched: participation is voluntary; the national SCT Inst RON scheme is set by the Romanian Association of Banks and the shared RoPay and AliasPay services run on the same infrastructure. No policy mandating participation found. Primary source: Transfond, SENT system rules v28 (from 1 Feb 2026): instant component CPI Lei runs 24/7/365; participants may include credit institutions, payment institutions, e-money institutions, BNR and the State Treasury; transactions cleared in real time against reserved positions, net positions settled in ReGIS against guarantee funds blocked in ReGIS; personal data processing agreement (Annex 2C); Transfond, Instant Payments service page: operated by Transfond, settlement ensured by BNR, 24/7, payments below RON 50,000; AliasPay phone-number payments since 2020. Team to decide whether the shared national scheme and alias service count as an interoperability policy."
+sources = [
+  "https://www.transfond.ro/en/services/automated-clearing-house-sent",
+  "https://www.platiinstant.ro/en/the-service",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.transaction_types = "P2P, P2M, B2B"
+reason = "Instant credit transfers between individuals and businesses; RoPay mobile payments, including QR payments to merchants, run on the instant infrastructure since October 2024. Primary source: Transfond, Instant Payments service page: operated by Transfond, settlement ensured by BNR, 24/7, payments below RON 50,000; AliasPay phone-number payments since 2020; Transfond, Annual Report 2025: instant payments (CPI Lei) 215,561,142 transactions worth RON 306,337.6 million in 2025 (2024: 138,563,309; RON 199,620.3 million); 20 participants at end 2025; RoPay 10 participants and 8.3 million aliases. Secondary source: Agerpres (9 Nov 2024), citing Transfond: RoPay launched 14 October 2024 on the instant payment infrastructure; 15 banks covering over 80% of the market."
+sources = [
+  "https://www.platiinstant.ro/en/the-service",
+  "https://www.transfond.ro/pdf/Raport%20Anual%20Transfond%202025%20Compressed%202.pdf",
+  "https://agerpres.ro/economic/2024/11/09/transfond-volumul-platilor-instant-a-inregistrat-o-crestere-de-aproape-93-in-romania-in-primele-zece--1384411",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.clearing_infrastructure = "ACH"
+reason = "Transfond runs SENT, the automated clearing house; the instant component clears each payment in real time against reserved positions. Primary source: Transfond, SENT page: automated clearing house processing about 95% of interbank payments; net positions settled in ReGIS; Transfond, SENT system rules v28 (from 1 Feb 2026): instant component CPI Lei runs 24/7/365; participants may include credit institutions, payment institutions, e-money institutions, BNR and the State Treasury; transactions cleared in real time against reserved positions, net positions settled in ReGIS against guarantee funds blocked in ReGIS; personal data processing agreement (Annex 2C)."
+sources = [
+  "https://www.transfond.ro/en/services/automated-clearing-house-sent",
+  "https://www.transfond.ro/pdf/Reguli_SENT%20v28r00.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.settlement_method = "DNS"
+reason = "Net positions from the instant component are settled in ReGIS, the BNR RTGS, against guarantee funds blocked in ReGIS; customers are credited immediately, interbank settlement happens later. Same model as UK Faster Payments and Peru CCE. Primary source: Transfond, SENT system rules v28 (from 1 Feb 2026): instant component CPI Lei runs 24/7/365; participants may include credit institutions, payment institutions, e-money institutions, BNR and the State Treasury; transactions cleared in real time against reserved positions, net positions settled in ReGIS against guarantee funds blocked in ReGIS; personal data processing agreement (Annex 2C); Transfond, SENT page: automated clearing house processing about 95% of interbank payments; net positions settled in ReGIS."
+sources = [
+  "https://www.transfond.ro/en/services/automated-clearing-house-sent",
+  "https://www.transfond.ro/servicii/sistemul-electronic-de-plati/sent",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.operator = "Bank association/Central bank"
+reason = "Transfond operates SENT and the instant service; its shareholders are the BNR and 16 banks. BNR stake not published on the shareholders page. Primary source: Transfond, shareholders page: BNR and 16 banks; Transfond, SENT system rules v28 (from 1 Feb 2026): instant component CPI Lei runs 24/7/365; participants may include credit institutions, payment institutions, e-money institutions, BNR and the State Treasury; transactions cleared in real time against reserved positions, net positions settled in ReGIS against guarantee funds blocked in ReGIS; personal data processing agreement (Annex 2C). DPI count needs manual check."
+sources = [
+  "https://www.transfond.ro/despre-noi/actionariat",
+  "https://www.transfond.ro/pdf/Reguli_SENT%20v28r00.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.bank_participation = "Yes"
+reason = "20 participants at end 2025, mostly banks, including Revolut Bank (branch). Primary source: Transfond, Annual Report 2025: instant payments (CPI Lei) 215,561,142 transactions worth RON 306,337.6 million in 2025 (2024: 138,563,309; RON 199,620.3 million); 20 participants at end 2025; RoPay 10 participants and 8.3 million aliases; Transfond press release (28 Nov 2024): Revolut joins; 18 participating institutions; limit RON 50,000; credited within 10 seconds, 24/7."
+sources = [
+  "https://www.transfond.ro/pdf/Raport%20Anual%20Transfond%202025%20Compressed%202.pdf",
+  "https://www.transfond.ro/pdf/Comunicat%20de%20presa%20Revolut%20-%20Plati%20Instant%20FINAL.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.nonbank_participation = "Yes"
+reason = "SENT rules admit payment institutions and e-money institutions; Smith&Smith became the first non-bank payment institution offering instant payments in November 2024. Primary source: Transfond, SENT system rules v28 (from 1 Feb 2026): instant component CPI Lei runs 24/7/365; participants may include credit institutions, payment institutions, e-money institutions, BNR and the State Treasury; transactions cleared in real time against reserved positions, net positions settled in ReGIS against guarantee funds blocked in ReGIS; personal data processing agreement (Annex 2C). Secondary source: Economedia (15 Nov 2024): Smith&Smith, first non-bank payment institution in Romania offering instant payments, joins the network. Confirm whether Smith&Smith participates directly or through a bank."
+sources = [
+  "https://www.transfond.ro/pdf/Reguli_SENT%20v28r00.pdf",
+  "https://economedia.ro/transfond-smithsmith-prima-institutie-de-plata-nebancara-din-romania-care-face-plati-instant.html",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.participation_rules = "Yes"
+reason = "Published SENT system rules with participation categories and requirements, approved with BNR opinion. Primary source: Transfond, SENT system rules v28 (from 1 Feb 2026): instant component CPI Lei runs 24/7/365; participants may include credit institutions, payment institutions, e-money institutions, BNR and the State Treasury; transactions cleared in real time against reserved positions, net positions settled in ReGIS against guarantee funds blocked in ReGIS; personal data processing agreement (Annex 2C)."
+sources = [
+  "https://www.transfond.ro/pdf/Reguli_SENT%20v28r00.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.participants = "2025- 20"
+reason = "20 participants in the instant component at end 2025. Primary source: Transfond, Annual Report 2025: instant payments (CPI Lei) 215,561,142 transactions worth RON 306,337.6 million in 2025 (2024: 138,563,309; RON 199,620.3 million); 20 participants at end 2025; RoPay 10 participants and 8.3 million aliases."
+sources = [
+  "https://www.transfond.ro/pdf/Raport%20Anual%20Transfond%202025%20Compressed%202.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.annual_value_usd = "2025- 70.56 B"
+reason = "RON 306,337.6 million in 2025, up about 53% on 2024, converted at the BNR reference rate of 31 Dec 2025 (USD 1 = RON 4.3417). Primary source: Transfond, Annual Report 2025: instant payments (CPI Lei) 215,561,142 transactions worth RON 306,337.6 million in 2025 (2024: 138,563,309; RON 199,620.3 million); 20 participants at end 2025; RoPay 10 participants and 8.3 million aliases. Secondary source: Curs BNR archive: BNR reference rate 31 Dec 2025, USD 1 = RON 4.3417."
+sources = [
+  "https://www.transfond.ro/pdf/Raport%20Anual%20Transfond%202025%20Compressed%202.pdf",
+  "https://cursbnr.nxm.ro/data/31-12-2025",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.annual_volume = "2025- 215.6 M"
+reason = "215,561,142 instant payments in 2025, up from 138,563,309 in 2024. Primary source: Transfond, Annual Report 2025: instant payments (CPI Lei) 215,561,142 transactions worth RON 306,337.6 million in 2025 (2024: 138,563,309; RON 199,620.3 million); 20 participants at end 2025; RoPay 10 participants and 8.3 million aliases. Report text states volume grew over 85%, but its table implies about 56%; table figures used."
+sources = [
+  "https://www.transfond.ro/pdf/Raport%20Anual%20Transfond%202025%20Compressed%202.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.data_handling_rules = "Yes"
+reason = "SENT rules require each participant to sign a personal data processing agreement (Annex 2C) and contain a personal data protection section (15.3). Primary source: Transfond, SENT system rules v28 (from 1 Feb 2026): instant component CPI Lei runs 24/7/365; participants may include credit institutions, payment institutions, e-money institutions, BNR and the State Treasury; transactions cleared in real time against reserved positions, net positions settled in ReGIS against guarantee funds blocked in ReGIS; personal data processing agreement (Annex 2C)."
+sources = [
+  "https://www.transfond.ro/pdf/Reguli_SENT%20v28r00.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.reporting_forum = "Yes"
+reason = "SENT rules admit payment institutions and e-money institutions as participants, and the EU Instant Payments Regulation amended the Settlement Finality Directive so that non-bank providers can join payment systems directly from 9 April 2025, to create a level playing field with banks. Primary source: Transfond, SENT rules v28. Secondary source: Worldline (13 Jun 2025)."
+sources = [
+  "https://www.transfond.ro/pdf/Reguli_SENT%20v28r00.pdf",
+  "https://worldline.com/en/home/main-navigation/resources/blogs/2025/settlement-finality-directive-direct-access-to-payment-systems-for-non-bank-psps",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.aml_law = "Yes"
+reason = "Law No. 129/2019 on preventing and combating money laundering and terrorist financing applies to banks and payment institutions."
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.transaction_cost = "Not Found"
+reason = "Searched: customer fees are set by banks; no primary source on instant payment fees found. Primary source: Transfond, Annual Report 2025: instant payments (CPI Lei) 215,561,142 transactions worth RON 306,337.6 million in 2025 (2024: 138,563,309; RON 199,620.3 million); 20 participants at end 2025; RoPay 10 participants and 8.3 million aliases."
+sources = [
+  "https://www.transfond.ro/pdf/Raport%20Anual%20Transfond%202025%20Compressed%202.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.qr_code = "Yes"
+reason = "RoPay, launched October 2024 by Transfond and the Romanian Association of Banks, runs QR and phone-number payments on the instant infrastructure. Primary source: Transfond, Annual Report 2025: instant payments (CPI Lei) 215,561,142 transactions worth RON 306,337.6 million in 2025 (2024: 138,563,309; RON 199,620.3 million); 20 participants at end 2025; RoPay 10 participants and 8.3 million aliases. Secondary source: Agerpres (9 Nov 2024), citing Transfond: RoPay launched 14 October 2024 on the instant payment infrastructure; 15 banks covering over 80% of the market."
+sources = [
+  "https://www.transfond.ro/pdf/Raport%20Anual%20Transfond%202025%20Compressed%202.pdf",
+  "https://agerpres.ro/economic/2024/11/09/transfond-volumul-platilor-instant-a-inregistrat-o-crestere-de-aproape-93-in-romania-in-primele-zece--1384411",
+]

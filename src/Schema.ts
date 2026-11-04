@@ -23,8 +23,13 @@ export interface Field<Id extends string = string> {
   site: SiteField
 }
 
+/** A missing value, like `NA`: Data Package v2 allows text, or text with a label that says what it means */
+export type MissingValue = string | { value: string, label?: string }
+
 export interface Schema<Id extends string = string> {
-  missingValues?: string[]
+  missingValues?: MissingValue[]
+  /** column headers (field names) that together identify a row */
+  primaryKey?: string[]
   fields: Field<Id>[]
 }
 
@@ -36,6 +41,13 @@ export const resourceNames = {
 } as const satisfies Record<string, ResourceName>
 
 export type DPIType = keyof typeof resourceNames
+
+/** How a system's type is named on its page */
+export const typeLabels: Record<DPIType, string> = {
+  id: 'Digital ID',
+  pay: 'Payment',
+  data: 'Data Exchange'
+}
 type IdOf<D extends DPIType> = FieldId<typeof resourceNames[D]>
 
 /** Where a dpiType's schema lives, for error messages */
@@ -75,6 +87,23 @@ export const schemas = {
   pay: schemaOf('pay'),
   data: schemaOf('data')
 }
+
+/** The schema's missing values as text, like `NA`. The default is `[""]`, as in Data Package (D38). */
+export const missingValuesOf = (schema: Schema) =>
+  (schema.missingValues ?? ['']).map(missing => typeof missing === 'string' ? missing : missing.value)
+
+/** What a missing value means, from its label in the schema, if it has one */
+export function missingLabelOf (schema: Schema, value: string) {
+  for (const missing of schema.missingValues ?? []) {
+    if (typeof missing !== 'string' && missing.value === value) return missing.label
+  }
+}
+
+/**
+ * Whether a cell has no value: it's one of the schema's missing values, like `NA` (D36, D38).
+ * An empty cell is missing only if the schema says so: with `["NA"]`, `""` is an empty string.
+ */
+export const isMissing = (schema: Schema, value?: string) => value === undefined || missingValuesOf(schema).includes(value)
 
 /** The label the site shows for a field */
 export const labelOf = (field: Field) => field.site.label ?? field.title

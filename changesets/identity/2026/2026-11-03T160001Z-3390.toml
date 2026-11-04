@@ -1,0 +1,10 @@
+[[changes]]
+type = "update"
+key = "id-ad-01"
+as_of = 2026-09-17
+values.sectoral_use_cases = "Yes"
+reason = "Sectors in use: Government services, Social protection, Tax. Government digital certificate is required for the e-tramits portal since Nov 2025, accepted for CASS Online social security, and linked for online IRPF tax filing."
+sources = [
+  "https://andorra-digital.com/en/lines/digital-identity",
+  "https://www.cass.ad/acces-cass-online",
+]

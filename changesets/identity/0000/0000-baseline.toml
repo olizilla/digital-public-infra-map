@@ -1,0 +1,5 @@
+[[changes]]
+type = "snapshot"
+reason = "The data as published on dpimap.org: public/data/latest on 2026-10-29, which is the 2026-03-31 release plus System IDs. Each cell's date is its row's Last updated."
+table = "identity.csv"
+sources_file = "sources.csv"

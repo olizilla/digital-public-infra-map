@@ -1,0 +1,7 @@
+[[changes]]
+type = "update"
+key = "pay-ba-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "NA"
+values.settlement_method = "NA"
+reason = "New field. Deferred to the next review cycle: the system needs a fuller review before clearing and settlement can be coded. Reason: Generic system name; identify the specific system before coding. Q1 value not carried over."

@@ -1,0 +1,21 @@
+[[changes]]
+type = "update"
+key = "dx-xk-01"
+as_of = 2026-10-15
+values.interoperability_level = "Syntactic"
+values.formal_mandate = "Not Found"
+values.once_only_principle = "Not Found"
+values.personal_data_protection = "Yes"
+values.independent_audit = "No"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-xk-01"
+as_of = 2026-10-15
+values.number_of_transactions = "2023 - 16 million"
+values.number_of_members = "2024 - 50"
+reason = ""
+sources = [
+  "https://interoperable-europe.ec.europa.eu/sites/default/files/inline-files/NIFO_2024%20Supporting%20Document_Kosovo_vFinal_rev.pdf",
+]

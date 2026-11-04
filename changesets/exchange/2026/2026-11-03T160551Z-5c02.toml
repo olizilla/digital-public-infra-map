@@ -1,0 +1,54 @@
+[[changes]]
+type = "update"
+key = "dx-fi-01"
+as_of = 2026-10-15
+values.formal_mandate = "Yes"
+reason = "Act on Shared E-Service Support Services for Administration 571/2016"
+sources = [
+  "https://kehittajille.suomi.fi/palvelut/suomifi/mita-ovat-suomi-fi-palvelut/tukipalvelulaki",
+]
+
+[[changes]]
+type = "update"
+key = "dx-fi-01"
+as_of = 2026-10-15
+values.independent_audit = "Not Found"
+reason = "New Variable"
+sources = [
+  "https://www.finlex.fi/en/legislation/collection/2016/571",
+]
+
+[[changes]]
+type = "update"
+key = "dx-fi-01"
+as_of = 2026-10-15
+values.personal_data_protection = "Yes"
+values.number_of_transactions = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-fi-01"
+as_of = 2026-10-15
+values.once_only_principle = "Yes"
+reason = ""
+sources = [
+  "https://kehittajille.suomi.fi/guides/sharing-data",
+]
+
+[[changes]]
+type = "update"
+key = "dx-fi-01"
+as_of = 2026-10-15
+values.interoperability_level = "Syntactic"
+reason = "Cleaning variable"
+
+[[changes]]
+type = "update"
+key = "dx-fi-01"
+as_of = 2026-10-15
+values.number_of_members = "2026 - 596"
+reason = ""
+sources = [
+  "https://liityntakatalogi.suomi.fi/en_GB/",
+]

@@ -1,0 +1,5 @@
+[[changes]]
+type = "remove"
+key = "dx-se-01"
+as_of = 2026-11-03
+reason = "Replaced by Secure Digital Communication (dx-se-02), as the research team confirmed."

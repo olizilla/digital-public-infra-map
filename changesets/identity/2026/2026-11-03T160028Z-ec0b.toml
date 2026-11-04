@@ -1,0 +1,97 @@
+[[changes]]
+type = "update"
+key = "id-la-01"
+as_of = 2026-09-16
+values.gov_portal_auth = "Yes"
+reason = "Used to access digital public services."
+sources = [
+  "https://play.google.com/store/apps/details?id=com.laeid&hl=en_US",
+  "https://kpl.gov.la/En/detail.aspx/detail.aspx?id=92907",
+]
+
+[[changes]]
+type = "update"
+key = "id-la-01"
+as_of = 2026-09-16
+values.claim = "Yes"
+reason = "Nationwide digital ID (LAeID) issued since Dec 2025; wallet app launched Jul 2026."
+sources = [
+  "https://play.google.com/store/apps/details?id=com.laeid&hl=en_GB",
+  "https://kpl.gov.la/En/detail.aspx/detail.aspx?id=92907",
+]
+
+[[changes]]
+type = "update"
+key = "id-la-01"
+as_of = 2026-09-16
+values.name = "LAeID"
+reason = ""
+sources = [
+  "https://play.google.com/store/apps/details?id=com.laeid&hl=en_GB",
+  "https://kpl.gov.la/En/detail.aspx/detail.aspx?id=92907",
+]
+
+[[changes]]
+type = "update"
+key = "id-la-01"
+as_of = 2026-09-16
+values.governing_entity = "Ministry of Public Security (Census Management and Grassroots Development Department)"
+reason = ""
+sources = [
+  "https://www.biometricupdate.com/202608/laos-rolls-out-digital-id-wallet-as-paper-credentials-phased-out",
+  "https://kpl.gov.la/En/detail.aspx/detail.aspx?id=92907",
+]
+
+[[changes]]
+type = "update"
+key = "id-la-01"
+as_of = 2026-09-16
+values.regulation = "Not Found"
+reason = "Government directive phasing out paper identity documents; confirm formal instrument."
+sources = [
+  "https://www.biometricupdate.com/202608/laos-rolls-out-digital-id-wallet-as-paper-credentials-phased-out",
+  "https://kpl.gov.la/En/detail.aspx/detail.aspx?id=92907",
+]
+
+[[changes]]
+type = "update"
+key = "id-la-01"
+as_of = 2026-09-16
+values.status = "Implemented"
+reason = ""
+sources = [
+  "https://www.biometricupdate.com/202608/laos-rolls-out-digital-id-wallet-as-paper-credentials-phased-out",
+  "https://kpl.gov.la/En/detail.aspx?id=91202",
+]
+
+[[changes]]
+type = "update"
+key = "id-la-01"
+as_of = 2026-09-16
+values.technical_support = "Government of Vietnam"
+reason = ""
+sources = [
+  "https://idtechwire.com/laos-launches-national-digital-id-system-backed-by-vietnam/",
+  "https://kpl.gov.la/En/detail.aspx/detail.aspx?id=92907",
+]
+
+[[changes]]
+type = "update"
+key = "id-la-01"
+as_of = 2026-09-16
+values.sectoral_use_cases = "Yes"
+reason = "Wallet holds ID, passport, education, health, driving credentials."
+sources = [
+  "https://idtechwire.com/laos-mandates-nationwide-digital-id-rollout-under-new-government-order/",
+  "https://kpl.gov.la/En/detail.aspx/detail.aspx?id=92907",
+]
+
+[[changes]]
+type = "update"
+key = "id-la-01"
+as_of = 2026-09-17
+values.url = "https://apps.apple.com/la/app/laeid/id6759642580"
+reason = ""
+sources = [
+  "https://apps.apple.com/la/app/laeid/id6759642580",
+]

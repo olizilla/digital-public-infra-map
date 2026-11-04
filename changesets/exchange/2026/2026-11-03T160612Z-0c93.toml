@@ -1,0 +1,60 @@
+[[changes]]
+type = "update"
+key = "dx-lv-01"
+as_of = 2026-10-15
+values.formal_mandate = "Yes"
+reason = "State Information Systems Law, 2002"
+sources = [
+  "https://likumi.lv/ta/en/en/id/62324-law-on-state-information-systems",
+  "https://www.varam.gov.lv/en/state-information-system-sis",
+]
+
+[[changes]]
+type = "update"
+key = "dx-lv-01"
+as_of = 2026-10-15
+values.interoperability_level = "Semantic"
+values.personal_data_protection = "Yes"
+values.independent_audit = "Not Found"
+values.number_of_transactions = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-lv-01"
+as_of = 2026-10-15
+values.once_only_principle = "Yes"
+reason = ""
+sources = [
+  "https://interoperable-europe.ec.europa.eu/sites/default/files/custom-page/attachment/2026-06/iopeu-monitoring_2025-supporting-document_latvia_vfinal.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "dx-lv-01"
+as_of = 2026-10-15
+values.permitted_participants = "Public, Private, Civil"
+reason = "VISS provides access to administrative services portal"
+sources = [
+  "https://www.vdaa.gov.lv/en/national-information-system-integrator",
+]
+
+[[changes]]
+type = "update"
+key = "dx-lv-01"
+as_of = 2026-10-15
+values.number_of_members = "Not Found"
+reason = ""
+sources = [
+  "https://likumi.lv/ta/id/282915-valsts-informacijas-sistemu-savietotaja-noteikumi",
+]
+
+[[changes]]
+type = "update"
+key = "dx-lv-01"
+as_of = 2026-10-15
+values.architecture = "API Gateway"
+reason = ""
+sources = [
+  "https://viss.gov.lv/lv/Informacijai/Produkti/~/link.aspx?_id=9783AD9EE7494227811167116E72B002&_z=z",
+]

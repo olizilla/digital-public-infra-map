@@ -1,0 +1,19 @@
+[[changes]]
+type = "update"
+key = "pay-us-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "RTGS"
+reason = "New field. FedNow is a Federal Reserve service"
+sources = [
+  "https://app.frbservices.org/news/fed360/issues/081519/081519-federal-reserve-announces-rtgs-service.html",
+]
+
+[[changes]]
+type = "update"
+key = "pay-us-01"
+as_of = 2026-10-15
+values.settlement_method = "Gross"
+reason = "New field. Each payment settles in Federal Reserve master accounts in real time, 24x7x365"
+sources = [
+  "https://app.frbservices.org/news/fed360/issues/081519/081519-federal-reserve-announces-rtgs-service.html",
+]

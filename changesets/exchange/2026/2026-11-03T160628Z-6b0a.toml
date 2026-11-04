@@ -1,0 +1,86 @@
+[[changes]]
+type = "create"
+key = "dx-sk-02"
+as_of = 2026-10-15
+values.country = "Slovakia"
+values.name = "The Common Module for Data and Process Integration"
+reason = ""
+sources = [
+  "https://interoperable-europe.ec.europa.eu/sites/default/files/custom-page/attachment/2026-06/iopeu-monitoring_2025-supporting-document_slovakia_vfinal.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "dx-sk-02"
+as_of = 2026-10-15
+values.url = "https://interoperable-europe.ec.europa.eu/sites/default/files/custom-page/attachment/2026-06/iopeu-monitoring_2025-supporting-document_slovakia_vfinal.pdf"
+values.status = "Implemented"
+values.architecture = "Not Found"
+values.national_regional = "National"
+values.sectoral = "Cross-sectoral"
+values.scalable_architecture = "Not Found"
+values.multiple_public_entities = "Yes"
+values.impact_metrics = "No"
+values.personal_data_protection = "Yes"
+values.independent_audit = "Not Found"
+values.number_of_transactions = "Not Found"
+values.number_of_members = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-sk-02"
+as_of = 2026-10-15
+values.governing_entity = "Ministry of Investments, Regional Development and Informatization"
+values.ownership = "Public"
+values.audit_mechanism = "Yes"
+values.data_management_rules = "Yes"
+values.formal_mandate = "Yes"
+values.once_only_principle = "Yes"
+reason = ""
+sources = [
+  "https://www.slov-lex.sk/ezbierky/pravne-predpisy/SK/ZZ/2013/305/20201230",
+  "https://www.slov-lex.sk/ezbierky/pravne-predpisy/SK/ZZ/2013/305/20201230#poznamky.poznamka-3",
+]
+
+[[changes]]
+type = "update"
+key = "dx-sk-02"
+as_of = 2026-10-15
+values.interoperability_level = "Semantic"
+reason = "New variable"
+sources = [
+  "https://www.slov-lex.sk/ezbierky/pravne-predpisy/SK/ZZ/2013/305/20201230#poznamky.poznamka-4",
+]
+
+[[changes]]
+type = "update"
+key = "dx-sk-02"
+as_of = 2026-10-15
+values.permitted_participants = "Public"
+reason = "Permitted participants are limited to public"
+sources = [
+  "https://www.slov-lex.sk/ezbierky/pravne-predpisy/SK/ZZ/2013/305/20201230",
+  "https://www.slov-lex.sk/ezbierky/pravne-predpisy/SK/ZZ/2013/305/20201230#poznamky.poznamka-3",
+]
+
+[[changes]]
+type = "update"
+key = "dx-sk-02"
+as_of = 2026-10-15
+values.realtime_sharing = "No"
+values.enrolment_info = "Yes"
+reason = ""
+sources = [
+  "https://stopbyrokracii.sk/ziadost-o-pripojenie-do-portalu-oversi-gov-sk/",
+]
+
+[[changes]]
+type = "update"
+key = "dx-sk-02"
+as_of = 2026-10-15
+values.coordination_unit = "Ministry of Investments, Regional Development and Informatization"
+reason = "UPPVI has been renamed to Ministry of Investments, Regional Development and Informatization"
+sources = [
+  "https://kohesio.ec.europa.eu/en/projects/Q3102581",
+]

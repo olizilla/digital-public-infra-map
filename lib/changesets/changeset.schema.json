@@ -1,0 +1,301 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Changeset",
+  "description": "One changeset file, changesets/<resource>/<yyyy>/<UTC timestamp>-<4 hex>.toml, whose filename is its id. The path says which table it applies to, and the timestamp is when it was created. See D7, D31, D33, D35, D39 and D53 in docs/design/data-entry.md. The author is the changeset's author if it has one, or else the commit's author. Latest as_of wins, with ties broken by changeset id. This schema checks the parsed TOML, once as_of has been turned from a TOML date into a string.",
+  "type": "object",
+  "properties": {
+    "summary": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Optional: why a set of changes belongs together, if a person wants to say so (D30)."
+    },
+    "author": {
+      "type": "string",
+      "pattern": "^[^<>]+ <[^<>]+>$",
+      "description": "Optional: who made the changes, as in git: \"Name <identifier>\", where the identifier may be an email, URL or DID. When it is missing, the commit's author is the author (D53)."
+    },
+    "changes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/change"
+      }
+    }
+  },
+  "required": [
+    "changes"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "date": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+      "description": "The date the finding is about, as YYYY-MM-DD. In the file it is a bare TOML date."
+    },
+    "reason": {
+      "type": "string",
+      "description": "Why: the rationale for the finding. Required, but may be \"\", which records that none was given (D27)."
+    },
+    "sources": {
+      "type": "array",
+      "uniqueItems": true,
+      "description": "Evidence links. None is allowed (D10).",
+      "items": {
+        "type": "string",
+        "pattern": "^https?://\\S+$"
+      }
+    },
+    "values": {
+      "type": "object",
+      "minProperties": 1,
+      "description": "Field id -> the exact text of the cell. Any text, including \"\" (D36).",
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9_]*$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "changesetId": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{6}Z-[0-9a-f]{4}$"
+    },
+    "change": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "create",
+            "update",
+            "remove",
+            "revert",
+            "snapshot"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "create"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/create"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "update"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/update"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "remove"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/remove"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "revert"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/revert"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "snapshot"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/snapshot"
+          }
+        }
+      ]
+    },
+    "create": {
+      "description": "A new row. The row must not exist, and values must include every required field.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "create"
+        },
+        "key": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The row's primary key, like a System ID."
+        },
+        "as_of": {
+          "$ref": "#/$defs/date"
+        },
+        "reason": {
+          "$ref": "#/$defs/reason"
+        },
+        "sources": {
+          "$ref": "#/$defs/sources"
+        },
+        "values": {
+          "$ref": "#/$defs/values"
+        }
+      },
+      "required": [
+        "type",
+        "key",
+        "as_of",
+        "reason",
+        "values"
+      ],
+      "additionalProperties": false
+    },
+    "update": {
+      "description": "New values for an existing row: at least one.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "update"
+        },
+        "key": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The row's primary key, like a System ID."
+        },
+        "as_of": {
+          "$ref": "#/$defs/date"
+        },
+        "reason": {
+          "$ref": "#/$defs/reason"
+        },
+        "sources": {
+          "$ref": "#/$defs/sources"
+        },
+        "values": {
+          "$ref": "#/$defs/values"
+        }
+      },
+      "required": [
+        "type",
+        "key",
+        "as_of",
+        "reason",
+        "values"
+      ],
+      "additionalProperties": false
+    },
+    "remove": {
+      "description": "Remove an existing row, optionally as a duplicate of another.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "remove"
+        },
+        "key": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The row's primary key, like a System ID."
+        },
+        "as_of": {
+          "$ref": "#/$defs/date"
+        },
+        "reason": {
+          "$ref": "#/$defs/reason"
+        },
+        "sources": {
+          "$ref": "#/$defs/sources"
+        },
+        "duplicate_of": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The key of the row this one duplicates."
+        }
+      },
+      "required": [
+        "type",
+        "key",
+        "as_of",
+        "reason"
+      ],
+      "additionalProperties": false
+    },
+    "revert": {
+      "description": "Leave out the changes of a whole, earlier changeset when building.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "revert"
+        },
+        "changeset": {
+          "$ref": "#/$defs/changesetId"
+        },
+        "as_of": {
+          "$ref": "#/$defs/date"
+        },
+        "reason": {
+          "$ref": "#/$defs/reason"
+        },
+        "sources": {
+          "$ref": "#/$defs/sources"
+        }
+      },
+      "required": [
+        "type",
+        "changeset",
+        "as_of",
+        "reason"
+      ],
+      "additionalProperties": false
+    },
+    "snapshot": {
+      "description": "The baseline only: the published table, and its evidence. Each cell's date comes from its row's Last updated.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "snapshot"
+        },
+        "reason": {
+          "$ref": "#/$defs/reason"
+        },
+        "table": {
+          "type": "string",
+          "minLength": 1,
+          "description": "CSV of the resource's rows, relative to this file."
+        },
+        "sources_file": {
+          "type": "string",
+          "minLength": 1,
+          "description": "CSV of evidence links (resource, key, field, url), relative to this file."
+        }
+      },
+      "required": [
+        "type",
+        "table"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

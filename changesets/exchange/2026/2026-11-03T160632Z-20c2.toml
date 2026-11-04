@@ -1,0 +1,27 @@
+[[changes]]
+type = "update"
+key = "dx-us-01"
+as_of = 2026-10-15
+values.interoperability_level = "Not Found"
+values.formal_mandate = "No"
+values.once_only_principle = "No"
+values.personal_data_protection = "No"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-us-01"
+as_of = 2026-10-15
+values.number_of_members = "2026 - 25"
+reason = "New framework variable not yet recorded for this country"
+sources = [
+  "http://api.data.gov",
+]
+
+[[changes]]
+type = "update"
+key = "dx-us-01"
+as_of = 2026-10-15
+values.independent_audit = "Not Found"
+values.number_of_transactions = "Not Found"
+reason = "New framework variable not yet recorded for this country"

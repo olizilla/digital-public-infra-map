@@ -1,0 +1,21 @@
+[[changes]]
+type = "update"
+key = "pay-ke-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "Switch"
+reason = "New field. IPSL operates the PesaLink switch. Cycle count may have changed since 2021."
+sources = [
+  "https://fastpayments.worldbank.org/sites/default/files/2023-05/Settlement%20Note_Final_April%2020.pdf",
+  "https://fastpayments.worldbank.org/sites/default/files/2021-09/World_Bank_FPS_Kenya_PesaLink_Case_Study.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ke-01"
+as_of = 2026-10-15
+values.settlement_method = "DNS"
+reason = "New field. 2 settlement cycles per working day in KEPSS (2021 data). Cycle count may have changed since 2021."
+sources = [
+  "https://fastpayments.worldbank.org/sites/default/files/2023-05/Settlement%20Note_Final_April%2020.pdf",
+  "https://fastpayments.worldbank.org/sites/default/files/2021-09/World_Bank_FPS_Kenya_PesaLink_Case_Study.pdf",
+]

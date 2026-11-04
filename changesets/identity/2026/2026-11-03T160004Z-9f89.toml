@@ -1,0 +1,10 @@
+[[changes]]
+type = "update"
+key = "id-at-01"
+as_of = 2026-09-16
+values.governing_entity = "Federal Chancellery"
+reason = "Since the 2025 government, ID Austria sits with the Federal Chancellery. State Secretary Alexander Proell is responsible (18 Jun 2026). The former Ministry for Digital and Economic Affairs no longer runs it."
+sources = [
+  "https://digital-strategy.ec.europa.eu/en/policies/digital-connectivity-austria",
+  "https://www.bundeskanzleramt.gv.at/bundeskanzleramt/nachrichten-der-bundesregierung/2026/06/proell-ab-sommer-2026-bekommt-jeder-buerger-seinen-digitalen-assistenten-in-seiner-id-austria.html",
+]

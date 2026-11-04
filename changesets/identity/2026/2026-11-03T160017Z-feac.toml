@@ -1,0 +1,64 @@
+[[changes]]
+type = "update"
+key = "id-cm-01"
+as_of = 2026-09-16
+values.biometrics = "Yes"
+reason = "Biometric card."
+sources = [
+  "https://www.wearetech.africa/fr/fils/actualites/tech/cameroun-la-nouvelle-cni-ouvre-la-voie-a-l-identite-numerique",
+  "https://www.idcam.cm/nouvelles",
+]
+
+[[changes]]
+type = "update"
+key = "id-cm-01"
+as_of = 2026-09-17
+values.sectoral_use_cases = "Yes"
+reason = ""
+sources = [
+  "https://www.wearetech.africa/en/fils-uk/news/tech/cameroon-new-national-id-paves-way-for-digital-identity-system",
+]
+
+[[changes]]
+type = "update"
+key = "id-cm-01"
+as_of = 2026-10-15
+values.gov_portal_auth = "No"
+reason = ""
+sources = [
+  "https://www.wearetech.africa/en/fils-uk/news/tech/cameroon-new-national-id-paves-way-for-digital-identity-system",
+]
+
+[[changes]]
+type = "update"
+key = "id-cm-01"
+as_of = 2026-09-16
+values.status = "Implemented"
+reason = "Card issuance under way since early 2025. The wider digital ID layer is still being built, so 'Planned/Piloted' is also defensible."
+sources = [
+  "https://www.biometricupdate.com/202503/cameroonians-ecstatic-as-issuance-of-new-national-id-card-takes-off",
+  "https://www.idcam.cm/nouvelles",
+]
+
+[[changes]]
+type = "update"
+key = "id-cm-01"
+as_of = 2026-09-16
+values.technical_support = "Augentic"
+reason = "15-year contract (May 2024) replaces Thales."
+sources = [
+  "https://www.biometricupdate.com/202405/cameroon-hands-15-year-biometric-id-card-contract-to-augentic",
+  "https://idcam.cm/nouvelles/AUGENTIC-in-collaboration-with-Cameroon%E2%80%99s-DGSN-Officially-Launch-New-Secure-Identification-System-for-the-New-Identity-Cards",
+]
+
+[[changes]]
+type = "update"
+key = "id-cm-01"
+as_of = 2026-09-16
+values.url = "https://idcam.cm"
+reason = "Enrolment portal."
+sources = [
+  "https://idcam.cm/nouvelles/AUGENTIC-in-collaboration-with-Cameroon%E2%80%99s-DGSN-Officially-Launch-New-Secure-Identification-System-for-the-New-Identity-Cards",
+  "https://www.idcam.cm/nouvelles",
+  "https://documents1.worldbank.org/curated/en/099012324023052410/pdf/P1795471b60b614c14d0214b971aed2105a95cebf79b.pdf",
+]

@@ -1,0 +1,30 @@
+[[changes]]
+type = "update"
+key = "dx-ca-01"
+as_of = 2026-10-15
+values.once_only_principle = "Yes"
+reason = ""
+sources = [
+  "https://www.tbs-sct.canada.ca/report-on-service/report-on-service/digital-services-en.html",
+]
+
+[[changes]]
+type = "update"
+key = "dx-ca-01"
+as_of = 2026-10-15
+values.interoperability_level = "Syntactic"
+values.personal_data_protection = "Yes"
+values.independent_audit = "Not Found"
+values.number_of_transactions = "Not Found"
+values.number_of_members = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-ca-01"
+as_of = 2026-10-15
+values.formal_mandate = "Yes"
+reason = "This is a guidance from the treasury board, to another policy directive on digital government. This is only binding on certain entities - is this a yes?>"
+sources = [
+  "https://www.canada.ca/en/government/system/digital-government/guideline-service-digital.html",
+]

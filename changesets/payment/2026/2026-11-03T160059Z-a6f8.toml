@@ -1,0 +1,78 @@
+[[changes]]
+type = "create"
+key = "pay-lac-04"
+as_of = 2026-10-15
+values.country = "Caribbean"
+values.name = "CAPSS (CARICOM Payment and Settlement System)"
+reason = "New regional entry for instant cross-border payments in local currencies, modelled on PAPSS. New Country / Region label; confirm before publication."
+sources = [
+  "https://www.centralbank.org.bz/detail-pages/news/2026/05/22/central-bank-of-belize-hosts-the-66th-bi-annual-meeting-of-caricom-governors",
+]
+
+[[changes]]
+type = "update"
+key = "pay-lac-04"
+as_of = 2026-10-15
+values.url = "https://www.centralbank.org.bz/detail-pages/news/2026/05/22/central-bank-of-belize-hosts-the-66th-bi-annual-meeting-of-caricom-governors"
+reason = "Central Bank of Belize communique, 66th CARICOM Governors meeting. New Country / Region label; confirm before publication."
+
+[[changes]]
+type = "update"
+key = "pay-lac-04"
+as_of = 2026-10-15
+values.realtime_active = "Yes"
+reason = "Pilot phase for instant cross-border payments (May 2026); pilot counts as live. New Country / Region label; confirm before publication. DPI count needs manual check."
+sources = [
+  "https://www.centralbank.org.bz/detail-pages/news/2026/05/22/central-bank-of-belize-hosts-the-66th-bi-annual-meeting-of-caricom-governors",
+]
+
+[[changes]]
+type = "update"
+key = "pay-lac-04"
+as_of = 2026-10-15
+values.system_type = "Interbank"
+reason = "Central bank settlement platform. New Country / Region label; confirm before publication."
+sources = [
+  "https://www.centralbank.org.bz/detail-pages/news/2026/05/22/central-bank-of-belize-hosts-the-66th-bi-annual-meeting-of-caricom-governors",
+]
+
+[[changes]]
+type = "update"
+key = "pay-lac-04"
+as_of = 2026-10-15
+values.status = "Planned/Piloted"
+reason = "Pilot with The Bahamas, Barbados, Trinidad and Tobago and the ECCU. New Country / Region label; confirm before publication. DPI count needs manual check."
+sources = [
+  "https://www.centralbank.org.bz/detail-pages/news/2026/05/22/central-bank-of-belize-hosts-the-66th-bi-annual-meeting-of-caricom-governors",
+  "https://www.curacaochronicle.com/post/local/65th-bi-annual-meeting-of-caricom-central-bank-governors",
+]
+
+[[changes]]
+type = "update"
+key = "pay-lac-04"
+as_of = 2026-10-15
+values.national_regional = "Regional"
+reason = "CARICOM-wide. New Country / Region label; confirm before publication."
+sources = [
+  "https://www.centralbank.org.bz/detail-pages/news/2026/05/22/central-bank-of-belize-hosts-the-66th-bi-annual-meeting-of-caricom-governors",
+]
+
+[[changes]]
+type = "update"
+key = "pay-lac-04"
+as_of = 2026-10-15
+values.cross_border = "Yes"
+reason = "Cross-border, multi-currency. New Country / Region label; confirm before publication."
+sources = [
+  "https://www.centralbank.org.bz/detail-pages/news/2026/05/22/central-bank-of-belize-hosts-the-66th-bi-annual-meeting-of-caricom-governors",
+]
+
+[[changes]]
+type = "update"
+key = "pay-lac-04"
+as_of = 2026-10-15
+values.operator = "Central bank"
+reason = "CARICOM central banks. New Country / Region label; confirm before publication. DPI count needs manual check."
+sources = [
+  "https://www.centralbank.org.bz/detail-pages/news/2026/05/22/central-bank-of-belize-hosts-the-66th-bi-annual-meeting-of-caricom-governors",
+]

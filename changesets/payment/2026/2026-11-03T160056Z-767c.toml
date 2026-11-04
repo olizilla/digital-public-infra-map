@@ -1,0 +1,231 @@
+[[changes]]
+type = "update"
+key = "pay-la-01"
+as_of = 2026-10-15
+values.name = "LMPS (LAPNet mobile interbank payment system)"
+reason = "Missing from dataset; LAPNet names its mobile interbank payment system LMPS and extends it to QR payments. BOT/BOL release confirms LAPNet as operator of the Lao instant payment system. Lao QR is the QR standard, not the system name. Primary source: LAPNet (operator) (2026). Secondary source: Jclao (news) (2020)."
+sources = [
+  "https://www.lapnet.com.la/product/lapnet-crossborder-qrpay",
+  "https://jclao.com/laos-banks-linked-for-money-transfers-via-mobile-app/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-la-01"
+as_of = 2026-10-15
+values.url = "https://www.lapnet.com.la/"
+reason = "New webpage. Operator's official website. Primary source: LAPNet (operator) (2026)."
+
+[[changes]]
+type = "update"
+key = "pay-la-01"
+as_of = 2026-10-15
+values.realtime_active = "Yes"
+reason = "LMPS is implemented and processes mobile interbank transfers in real time. Q1 value No reflected the absence of a listed system."
+sources = [
+  "https://www.lapnet.com.la/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-la-01"
+as_of = 2026-10-15
+values.system_type = "Cross-domain"
+reason = "Members are commercial banks and 2 fintechs; MmoneyX became the first e-wallet to join in July 2025. Primary source: LAPNet (operator) (2026). Secondary source: Greater Mekong Subregion portal (2025-01)."
+sources = [
+  "https://www.lapnet.com.la/",
+  "https://greatermekong.org/g/laos-viet-nam-launch-cross-border-qr-code-payment-system",
+]
+
+[[changes]]
+type = "update"
+key = "pay-la-01"
+as_of = 2026-10-15
+values.status = "Implemented"
+reason = "Live; interbank mobile transfers via LAPNet since 2020 and cross-border linkages since 2024. Primary source: Bank of Thailand and Bank of the Lao PDR (2024-04). Secondary source: Jclao (news) (2020). DPI count needs manual check."
+sources = [
+  "https://www.bot.or.th/en/news-and-media/news/news-20240403.html",
+  "https://jclao.com/laos-banks-linked-for-money-transfers-via-mobile-app/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-la-01"
+as_of = 2026-10-15
+values.national_regional = "National"
+reason = "Unchanged from Q1."
+sources = [
+  "https://www.lapnet.com.la/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-la-01"
+as_of = 2026-10-15
+values.cross_border = "Yes"
+reason = "LAPNet reports QR linkages with Cambodia (2023), Thailand (2024), China via UnionPay (2024) and Vietnam (2025). Primary source: LAPNet (operator) (2026). Secondary source: Greater Mekong Subregion portal (2025-01)."
+sources = [
+  "https://www.lapnet.com.la/product/lapnet-crossborder-qrpay",
+  "https://greatermekong.org/g/laos-viet-nam-launch-cross-border-qr-code-payment-system",
+]
+
+[[changes]]
+type = "update"
+key = "pay-la-01"
+as_of = 2026-10-15
+values.interoperability_policy = "Not Found"
+reason = "Searched: the Law on Payment System (Amended) No. 45/NA (in force 15 Jan 2024) defines interoperability and makes a connection to other payment systems in Laos a licensing condition for non-bank payment service providers (Art. 32(2.3)), but no rule requiring banks or providers to join LMPS or LAPNet was found. Secondary source: RegAlert, English text of the law. Team to decide whether the licensing condition counts as an interoperability policy."
+sources = [
+  "https://regalert.today/document/law-on-payment-system-amended-737af38b-f653-407e-ba64-25c36dd86a30/text",
+]
+
+[[changes]]
+type = "update"
+key = "pay-la-01"
+as_of = 2026-10-15
+values.transaction_types = "P2P, P2M"
+reason = "Account transfers and Lao QR merchant payments; no evidence found for B2B. Primary source: Lao News Agency (KPL), state news agency (2025-07). Secondary source: Jclao (news) (2020)."
+sources = [
+  "https://kpl.gov.la/en/detail.aspx?id=92282",
+  "https://jclao.com/laos-banks-linked-for-money-transfers-via-mobile-app/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-la-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "Switch"
+reason = "LMPS is LAPNet's own switching hub linking participant banks' mobile banking apps for interbank transfers. Primary source: LAPNet (operator) (2026). Secondary source: World Bank (2022-06)."
+sources = [
+  "https://www.lapnet.com.la/product/lapnet-crossborder-qrpay",
+  "https://documents1.worldbank.org/curated/en/099445010192229771/pdf/P177067071faad02c0b7ec0ec39157cfae9.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-la-01"
+as_of = 2026-10-15
+values.settlement_method = "DNS"
+reason = "LAPNet settles net positions daily on T+1 in LaPASS, the RTGS of the Bank of the Lao PDR (final settlement location recorded here per decision rule 8). Secondary source: World Bank (2022-06). No primary source for the settlement arrangement and the World Bank report dates from 2022; confirm the cycle is still T+1."
+sources = [
+  "https://documents1.worldbank.org/curated/en/099445010192229771/pdf/P177067071faad02c0b7ec0ec39157cfae9.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-la-01"
+as_of = 2026-10-15
+values.operator = "Bank association/Central bank"
+reason = "LAPNet is a company that took over operation of the LAPS system from the Bank of the Lao PDR and operates under BOL supervision (BOL joint venture). Primary source: LAPNet (operator) (2026). Secondary source: Jclao (news) (2020). Operator category needs review. DPI count needs manual check."
+sources = [
+  "https://www.lapnet.com.la/product/fund-transfer-interbank",
+  "https://jclao.com/laos-banks-linked-for-money-transfers-via-mobile-app/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-la-01"
+as_of = 2026-10-15
+values.bank_participation = "Yes"
+reason = "LAPNet lists 24 commercial bank members; 13 offer interbank ATM transfers. Primary source: LAPNet (operator) (2026). Secondary source: Greater Mekong Subregion portal (2025-01); World Bank (n.d.)."
+sources = [
+  "https://www.lapnet.com.la/",
+  "https://greatermekong.org/g/laos-viet-nam-launch-cross-border-qr-code-payment-system",
+  "https://documents1.worldbank.org/curated/en/099745004122238218/pdf/P17208907873640020aeb007b4553342298.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-la-01"
+as_of = 2026-10-15
+values.nonbank_participation = "Yes"
+reason = "LAPNet lists 2 participating fintechs; MmoneyX (Lao Mobile Money) joined in July 2025 for transfers and settlement with banks. Primary source: LAPNet (operator) (2026). Secondary source: Greater Mekong Subregion portal (2025-01)."
+sources = [
+  "https://www.lapnet.com.la/",
+  "https://greatermekong.org/g/laos-viet-nam-launch-cross-border-qr-code-payment-system",
+]
+
+[[changes]]
+type = "update"
+key = "pay-la-01"
+as_of = 2026-10-15
+values.participation_rules = "Yes"
+reason = "Law on Payment System (Amended) No. 45/NA sets the member categories of retail payment systems (commercial banks, microfinance institutions and authorised non-bank payment service providers, Art. 10) and requires operators to define membership requirements, rights, duties, suspension and termination (Art. 28(3)). LAPNet's own member rules are not published. Secondary source: RegAlert, English text of the law."
+sources = [
+  "https://regalert.today/document/law-on-payment-system-amended-737af38b-f653-407e-ba64-25c36dd86a30/text",
+]
+
+[[changes]]
+type = "update"
+key = "pay-la-01"
+as_of = 2026-10-15
+values.participants = "2026- 26"
+reason = "LAPNet homepage lists 24 commercial banks and 2 fintechs as members (checked on the live site during review). BCEL page naming 14 members reflects the older ATM network. Primary source: LAPNet (operator) (2026). Secondary source: Fintech News Singapore (2023)."
+sources = [
+  "https://www.lapnet.com.la/",
+  "https://fintechnews.sg/68354/laos/laos-fintech-revolution-is-still-bank-led-for-now/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-la-01"
+as_of = 2026-10-15
+values.annual_value_usd = "Not Found"
+values.annual_volume = "Not Found"
+reason = "Searched: LAPNet publishes no annual transaction figures. The Bank of the Lao PDR Annual Economic Report may report payment system statistics but the BOL site blocks automated access; check manually."
+sources = [
+  "https://www.lapnet.com.la/",
+  "https://www.bol.gov.la/en/fileupload/28-06-2024_1719576615.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-la-01"
+as_of = 2026-10-15
+values.data_handling_rules = "Yes"
+reason = "Law on Electronic Data Protection No. 25/NA (12 May 2017) governs collection, processing and cross-border transfer of electronic data. The Bank of the Lao PDR's Decree on Financial Consumer Protection (April 2020)"
+sources = [
+  "https://dig.watch/resource/laos-law-on-electronic-data-protection-no-25-na",
+  "https://www.multilaw.com/Multilaw/Data_Protection_Laws_Guide/DataProtection_Guide_Laos.aspx",
+]
+
+[[changes]]
+type = "update"
+key = "pay-la-01"
+as_of = 2026-10-15
+values.reporting_forum = "Yes"
+reason = "The Law on Payment System (Amended) No. 45/NA (in force 15 January 2024) defines interoperability, admits authorised non-bank payment service providers as retail payment system members (Art. 10) and requires them to connect with other payment systems in Laos as a licensing condition (Art. 32(2.3)). Secondary source: RegAlert, English text of the law."
+sources = [
+  "https://regalert.today/document/law-on-payment-system-amended-737af38b-f653-407e-ba64-25c36dd86a30/text",
+]
+
+[[changes]]
+type = "update"
+key = "pay-la-01"
+as_of = 2026-10-15
+values.aml_law = "Yes"
+reason = "Law on AML/CFT (Amended) No. 64/NA, July 2024; replaces Law No. 49/NA (2014). Primary source: Lao Official Gazette (2024-07)."
+sources = [
+  "https://laoofficialgazette.gov.la/kcfinder/upload/files/01%20JULY%202024%20Law%20on%20AML%20-%20CFT%20(Amended)%20-%20No%2064%20-%20NA.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-la-01"
+as_of = 2026-10-15
+values.transaction_cost = "Variable, not free"
+reason = "Unchanged from Q1; recorded against LMPS (LAPNet mobile interbank payment system) and its source."
+sources = [
+  "https://www.lapnet.com.la/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-la-01"
+as_of = 2026-10-15
+values.qr_code = "Yes"
+reason = "Lao QR used for merchant payments, including by e-wallet users on LAPNet. Primary source: Lao News Agency (KPL), state news agency (2025-07). Secondary source: Greater Mekong Subregion portal (2025-01)."
+sources = [
+  "https://kpl.gov.la/en/detail.aspx?id=92282",
+  "https://greatermekong.org/g/laos-viet-nam-launch-cross-border-qr-code-payment-system",
+]

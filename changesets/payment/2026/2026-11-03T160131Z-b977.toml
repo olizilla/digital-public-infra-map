@@ -1,0 +1,19 @@
+[[changes]]
+type = "update"
+key = "pay-ar-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "ACH"
+reason = "Low-value electronic payments are cleared by COELSA, an electronic clearing house. Primary source: BCRA, Electronic low-value clearing houses (2016)."
+sources = [
+  "https://www.bcra.gob.ar/archivos/Pdfs/Medios_pago/SNP0125.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ar-01"
+as_of = 2026-10-15
+values.settlement_method = "DNS"
+reason = "Resulting net balances are settled through MEP, the BCRA RTGS, via COELSA’s accounts at the BCRA: net debtor banks pay COELSA, which pays net creditor banks. Primary source: BCRA, Electronic low-value clearing houses (2016)."
+sources = [
+  "https://www.bcra.gob.ar/archivos/Pdfs/Medios_pago/SNP0125.pdf",
+]

@@ -1,0 +1,32 @@
+[[changes]]
+type = "update"
+key = "dx-me-01"
+as_of = 2026-10-15
+values.interoperability_level = "Semantic"
+values.audit_mechanism = "Yes"
+values.formal_mandate = "Yes"
+values.independent_audit = "No"
+reason = ""
+sources = [
+  "https://www.gov.me/en/documents/fe7c3124-0e67-45ea-836a-3f0a1a421536",
+]
+
+[[changes]]
+type = "update"
+key = "dx-me-01"
+as_of = 2026-10-15
+values.permitted_participants = "Public"
+values.once_only_principle = "No"
+values.personal_data_protection = "Yes"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-me-01"
+as_of = 2026-10-15
+values.number_of_transactions = "Not Found"
+values.number_of_members = "Not Found"
+reason = ""
+sources = [
+  "https://www.gov.me/clanak/jedinstveni-sistem-za-elektronsku-razmjenu-podataka-jserp",
+]

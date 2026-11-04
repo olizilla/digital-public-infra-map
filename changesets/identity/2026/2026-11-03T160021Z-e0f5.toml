@@ -1,0 +1,100 @@
+[[changes]]
+type = "update"
+key = "id-dj-01"
+as_of = 2026-09-16
+values.gov_portal_auth = "Yes"
+reason = "Used for online public services, permits and taxes."
+sources = [
+  "https://www.wearetech.africa/en/fils-uk/news/tech/djibouti-officially-launches-mobile-id-digital-identity-platform",
+  "https://interieur.gouv.dj/forum-sur-lidentite-numerique-et-lancement-du-projet-mobile-id/",
+]
+
+[[changes]]
+type = "update"
+key = "id-dj-01"
+as_of = 2026-09-16
+values.biometrics = "Yes"
+reason = "Biometric mobile ID."
+sources = [
+  "https://www.wearetech.africa/en/fils-uk/news/tech/djibouti-officially-launches-mobile-id-digital-identity-platform",
+  "https://interieur.gouv.dj/forum-sur-lidentite-numerique-et-lancement-du-projet-mobile-id/",
+]
+
+[[changes]]
+type = "update"
+key = "id-dj-01"
+as_of = 2026-09-16
+values.name = "Djibouti Mobile ID"
+reason = "Launched 9 Feb 2026; stored in the national Smart Wallet."
+sources = [
+  "https://www.wearetech.africa/en/fils-uk/news/tech/djibouti-officially-launches-mobile-id-digital-identity-platform",
+  "https://play.google.com/store/apps/details?id=com.mobileid.dj&hl=en_GB",
+  "https://interieur.gouv.dj/forum-sur-lidentite-numerique-et-lancement-du-projet-mobile-id/",
+]
+
+[[changes]]
+type = "update"
+key = "id-dj-01"
+as_of = 2026-09-16
+values.digital_auth = "Yes"
+reason = "Citizens prove identity from their phone for online public services."
+sources = [
+  "https://www.wearetech.africa/en/fils-uk/news/tech/djibouti-officially-launches-mobile-id-digital-identity-platform",
+  "https://interieur.gouv.dj/forum-sur-lidentite-numerique-et-lancement-du-projet-mobile-id/",
+]
+
+[[changes]]
+type = "update"
+key = "id-dj-01"
+as_of = 2026-09-16
+values.governing_entity = "Ministry of Interior"
+reason = ""
+sources = [
+  "https://www.wearetech.africa/en/fils-uk/news/tech/djibouti-officially-launches-mobile-id-digital-identity-platform",
+  "https://interieur.gouv.dj/forum-sur-lidentite-numerique-et-lancement-du-projet-mobile-id/",
+]
+
+[[changes]]
+type = "update"
+key = "id-dj-01"
+as_of = 2026-09-16
+values.regulation = "Yes"
+reason = "Minister cites legislation making digital identity, e-signature and data exchange legal. Confirm the act's name."
+sources = [
+  "https://www.journalofficiel.dj/wp-content/uploads/2025/09/code-numerique.pdf",
+  "https://interieur.gouv.dj/forum-sur-lidentite-numerique-et-lancement-du-projet-mobile-id/",
+]
+
+[[changes]]
+type = "update"
+key = "id-dj-01"
+as_of = 2026-09-16
+values.status = "Implemented"
+reason = ""
+sources = [
+  "https://www.wearetech.africa/en/fils-uk/news/tech/djibouti-officially-launches-mobile-id-digital-identity-platform",
+  "https://play.google.com/store/apps/details?id=com.mobileid.dj&hl=en_GB",
+  "https://interieur.gouv.dj/forum-sur-lidentite-numerique-et-lancement-du-projet-mobile-id/",
+]
+
+[[changes]]
+type = "update"
+key = "id-dj-01"
+as_of = 2026-09-16
+values.technical_support = "Tech5; Visa"
+reason = "2025 MoU for the national digital wallet."
+sources = [
+  "https://www.biometricupdate.com/202602/djibouti-unveils-biometric-mobile-id-to-enhance-access-to-public-services",
+  "https://interieur.gouv.dj/forum-sur-lidentite-numerique-et-lancement-du-projet-mobile-id/",
+]
+
+[[changes]]
+type = "update"
+key = "id-dj-01"
+as_of = 2026-09-17
+values.sectoral_use_cases = "Yes"
+reason = "Sectors in use: Government services, Tax, Banking and finance. Mobile ID launched Feb 2026 for online public services (civil status, permits), tax procedures, bank account opening and e-signature; linked to Smart Wallet."
+sources = [
+  "https://www.agenceecofin.com/actualites-numerique/1102-135697-djibouti-revolution-de-l-identite-numerique-avec-la-plateforme-mobile-id",
+  "https://interieur.gouv.dj/forum-sur-lidentite-numerique-et-lancement-du-projet-mobile-id/",
+]

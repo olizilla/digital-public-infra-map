@@ -1,6 +1,6 @@
 ---
 // A system's card in the homepage listings: the country, the system and its
-// DPI status, the DPI test, then all its fields behind a toggle. Only for
+// DPI status, the DPI test, then a link to its lane on the country page. Only for
 // systems: the listing pages leave out rows where research found none.
 // The country link must stay the first element in the header: CardSection's
 // filter script reads the country name from it. There are hundreds of these on
@@ -9,8 +9,8 @@
 import slug from 'slug'
 import Status from './Status.astro'
 import DpiTestList from './DpiTestList.astro'
-import SystemFields from './SystemFields.astro'
-import { displayValues, nameOf, nouns, presence } from '../DpiTest'
+import { nameOf, nouns, presence } from '../DpiTest'
+import { laneAnchors } from '../CountryPage'
 import type { DPIType } from '../Schema'
 
 interface Props {
@@ -21,20 +21,16 @@ const { dpiType, record } = Astro.props
 const state = presence(dpiType, record)
 const noun = nouns[dpiType]
 const title = state === 'named' ? nameOf(dpiType, record) : `Unnamed ${noun} system`
-const { count } = displayValues(dpiType, record)
+const country = `/${slug(record.Country)}/`
 ---
 <article class={`card-${dpiType}`}>
   <header>
-    <a href={`/${slug(record.Country)}/`}>{record.Country}</a>
-    <h3 class:list={{ unnamed: state !== 'named' }}>{title}</h3>
+    <a class="min-w-0 truncate" href={country} title={record.Country}>{record.Country}</a>
     <Status status={record['DPI Status']} title="DPI status" />
+    <h3 class:list={{ unnamed: state !== 'named' }}>{title}</h3>
   </header>
   <span class="test-label">DPI test</span>
   <DpiTestList dpiType={dpiType} record={record} />
-  <details class="more">
-    <summary>All {count} fields</summary>
-    <div>
-      <SystemFields dpiType={dpiType} record={record} />
-    </div>
-  </details>
+  <!-- more detail is one level down: the country page, scrolled to this type's lane -->
+  <a class="card-more" href={`${country}#${laneAnchors[dpiType]}`}>More details</a>
 </article>

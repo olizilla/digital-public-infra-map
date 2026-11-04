@@ -1,0 +1,7 @@
+[[changes]]
+type = "update"
+key = "pay-gm-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "NA"
+values.settlement_method = "NA"
+reason = "Searched: No source found. Q1 value not carried over."

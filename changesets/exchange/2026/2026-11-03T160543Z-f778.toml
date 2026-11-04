@@ -1,0 +1,95 @@
+[[changes]]
+type = "update"
+key = "dx-cy-01"
+as_of = 2026-10-15
+values.once_only_principle = "Yes"
+values.personal_data_protection = "Yes"
+reason = "New variable"
+sources = [
+  "https://interoperable-europe.ec.europa.eu/sites/default/files/custom-page/attachment/2026-06/iopeu-monitoring_2025-supporting-document_cyprus_final.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "dx-cy-01"
+as_of = 2026-10-15
+values.name = "CY Connect"
+reason = "CY Connect is the specific data exchange building block; Ariadni Gateway is a public services portal"
+sources = [
+  "https://dsf.dmrid.gov.cy/2024/10/08/connecting-digital-services/#cy-connect",
+  "https://interoperable-europe.ec.europa.eu/sites/default/files/custom-page/attachment/2026-06/iopeu-monitoring_2025-supporting-document_cyprus_final.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "dx-cy-01"
+as_of = 2026-10-15
+values.formal_mandate = "Yes"
+reason = "New variable"
+sources = [
+  "https://dsf.dmrid.gov.cy/operational-service-delivery-model/",
+]
+
+[[changes]]
+type = "update"
+key = "dx-cy-01"
+as_of = 2026-10-15
+values.interoperability_level = "Syntactic"
+reason = "Implemented API Standards"
+sources = [
+  "https://dev.azure.com/cyprus-gov-cds/Documentation/_wiki/wikis/Documentation/146/Versioning",
+]
+
+[[changes]]
+type = "update"
+key = "dx-cy-01"
+as_of = 2026-10-15
+values.independent_audit = "Not Found"
+reason = "No formal mandate"
+
+[[changes]]
+type = "update"
+key = "dx-cy-01"
+as_of = 2026-10-15
+values.number_of_transactions = "Not Found"
+values.number_of_members = "Not Found"
+reason = "New Variable"
+
+[[changes]]
+type = "update"
+key = "dx-cy-01"
+as_of = 2026-10-15
+values.url = "https://dsf.dmrid.gov.cy/2024/10/08/connecting-digital-services/#cy-connect"
+values.impact_metrics = "No"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-cy-01"
+as_of = 2026-10-15
+values.permitted_participants = "Public"
+reason = ""
+sources = [
+  "https://www.gov.cy/oikonomia/anakoinosi-pros-oikonomikous-foreis-ypochreotiki-metavasi-ton-ypiresion-uccb2g-apo-to-messagegateway-sto-cyconnect/",
+]
+
+[[changes]]
+type = "update"
+key = "dx-cy-01"
+as_of = 2026-10-15
+values.audit_mechanism = "Yes"
+reason = ""
+sources = [
+  "https://dev.azure.com/cyprus-gov-cds/Documentation/_wiki/wikis/Documentation/74/CY-Connect",
+  "https://dev.azure.com/cyprus-gov-cds/Documentation/_wiki/wikis/Documentation/128/CY-Connect-OAuth-2.0",
+]
+
+[[changes]]
+type = "update"
+key = "dx-cy-01"
+as_of = 2026-10-15
+values.scalable_architecture = "Not Found"
+reason = ""
+sources = [
+  "https://dev.azure.com/cyprus-gov-cds/Documentation/_wiki/wikis/Documentation/146/Versioning",
+]

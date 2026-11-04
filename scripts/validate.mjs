@@ -14,19 +14,34 @@
 // the schema allows one, are printed and counted but don't fail.
 // If the package is invalid, the CSVs aren't checked.
 //
-// usage: npm run validate
+// usage: npm run validate [-- <datapackage.json>] [--json]
+//
+// The package defaults to the repo's datapackage.json. Resource paths are
+// relative to the package's folder, so a release folder's package checks the
+// release's CSVs. With --json, it prints one JSON object instead of text:
+// { errors, problems: [{ resource, row, key, country, column, value, message }] },
+// where the problems are the errors: warnings are left out.
 
 import fs from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 import Papa from 'papaparse'
-import { listSeparator, listValues } from './fields.mjs'
+import { listSeparator, listValues, missingValueStrings } from './fields.mjs'
 
-const root = new URL('../', import.meta.url)
+const args = process.argv.slice(2)
+const asJSON = args.includes('--json')
+const packageArg = args.find(arg => !arg.startsWith('--'))
+const packageFile = path.resolve(packageArg ?? fileURLToPath(new URL('../datapackage.json', import.meta.url)))
+const root = pathToFileURL(path.dirname(packageFile) + path.sep)
 
 const read = path => fs.readFileSync(new URL(path, root), 'utf8')
-const readJSON = path => JSON.parse(read(path))
 
-const packagePath = 'datapackage.json'
-const datapackage = readJSON(packagePath)
+const packagePath = packageArg ?? 'datapackage.json'
+const datapackage = JSON.parse(fs.readFileSync(packageFile, 'utf8'))
+
+// what's found, for --json
+const problems = []
+const print = asJSON ? () => {} : console.log
 
 /** The resource name and field id a path in the package is about, like `(payment, "operator")` */
 function whereIs (path) {
@@ -77,7 +92,8 @@ function checkPackage () {
 function validatePackage () {
   const problems = checkPackage()
   for (const [path, message] of problems) {
-    console.log(`${packagePath}\t${path}${whereIs(path)}\t${message}`)
+    problems.push({ resource: packagePath, column: path, message })
+    print(`${packagePath}\t${path}${whereIs(path)}\t${message}`)
   }
   return problems.length
 }
@@ -206,9 +222,13 @@ const primaryKeyOf = schema => [schema.primaryKey ?? []].flat()
 function validate ({ name: dataset, path, schema }) {
   const errors = []
   const warnings = []
+  // the primary key of the row being checked, if it has one field
+  let rowKey
+  // a warning is printed and counted, but isn't a problem: it doesn't fail validation
   const report = (row, country, column, value, message, tally = [], warning = false) => {
     (warning ? warnings : errors).push({ column, tally })
-    console.log(`${warning ? 'warning\t' : ''}${dataset}\trow ${row}\t${country}\t${JSON.stringify(column)}\t${value === undefined ? '-' : JSON.stringify(value)} ${message}`)
+    if (!warning) problems.push({ resource: dataset, row, key: rowKey, country, column, value, message })
+    print(`${warning ? 'warning\t' : ''}${dataset}\trow ${row}\t${country}\t${JSON.stringify(column)}\t${value === undefined ? '-' : JSON.stringify(value)} ${message}`)
   }
   if (!fs.existsSync(new URL(path, root))) {
     report('-', '-', '-', undefined, `no CSV at ${path}`)
@@ -230,7 +250,7 @@ function validate ({ name: dataset, path, schema }) {
   }
 
   // Table Schema's default is [''], but here an empty cell is an error, see checkCell
-  const missingValues = schema.missingValues ?? []
+  const missingValues = missingValueStrings(schema) ?? []
   const countryField = schema.fields.find(field => field.id === 'country')
   const fields = schema.fields.filter(field => meta.fields.includes(field.name))
   const primaryKey = primaryKeyOf(schema)
@@ -255,6 +275,7 @@ function validate ({ name: dataset, path, schema }) {
   rows.forEach((row, i) => {
     // the sheet's row number: row 1 is the header
     const rowNumber = i + 2
+    rowKey = primaryKey.length === 1 ? row[primaryKey[0]] : undefined
     const country = row[countryField?.name] || '-'
     for (const field of fields) {
       const checked = primaryKey.includes(field.name) ? { ...field, constraints: { ...field.constraints, required: true } } : field
@@ -299,17 +320,18 @@ function validate ({ name: dataset, path, schema }) {
 
 const packageErrors = validatePackage()
 if (packageErrors > 0) {
-  console.log(`\n${packageErrors} error${packageErrors === 1 ? '' : 's'} in ${packagePath}. Fix them to check the CSVs.`)
+  print(`\n${packageErrors} error${packageErrors === 1 ? '' : 's'} in ${packagePath}. Fix them to check the CSVs.`)
+  if (asJSON) console.log(JSON.stringify({ errors: packageErrors, problems }))
   process.exit(1)
 }
 
 const results = datapackage.resources.map(validate)
 
-console.log('\nSummary')
-console.log(`\npackage: ${packagePath}, with ${results.length} resources, OK`)
+print('\nSummary')
+print(`\npackage: ${packagePath}, with ${results.length} resources, OK`)
 for (const { dataset, rows, errors, warnings, schema } of results) {
   const warned = warnings.length ? `, ${warnings.length} warning${warnings.length === 1 ? '' : 's'}` : ''
-  console.log(`\n${dataset}: ${rows} rows, ${errors.length} error${errors.length === 1 ? '' : 's'}${warned}`)
+  print(`\n${dataset}: ${rows} rows, ${errors.length} error${errors.length === 1 ? '' : 's'}${warned}`)
   // column -> { count, tally: value -> count }
   const byColumn = new Map()
   for (const { column, tally } of errors) {
@@ -323,10 +345,10 @@ for (const { dataset, rows, errors, warnings, schema } of results) {
     const { enum: allowed, pattern } = field?.constraints ?? {}
     const values = allowed ?? (field && listValues(field))
     const hint = values ? ` (allowed: ${values.join(', ')})` : pattern ? ` (pattern: ${pattern})` : ''
-    console.log(`  ${JSON.stringify(column)}: ${count}${hint}`)
+    print(`  ${JSON.stringify(column)}: ${count}${hint}`)
     // the values found instead, most common first
     for (const [value, n] of [...tally].sort((a, b) => b[1] - a[1])) {
-      console.log(`    ${n}\t${value.startsWith('(') ? value : JSON.stringify(value)}`)
+      print(`    ${n}\t${value.startsWith('(') ? value : JSON.stringify(value)}`)
     }
   }
 }
@@ -334,5 +356,6 @@ for (const { dataset, rows, errors, warnings, schema } of results) {
 const total = results.reduce((sum, { errors }) => sum + errors.length, 0)
 const warningTotal = results.reduce((sum, { warnings }) => sum + warnings.length, 0)
 const warned = warningTotal ? `, ${warningTotal} warning${warningTotal === 1 ? '' : 's'}` : ''
-console.log(`\n${total === 0 ? 'OK' : `${total} errors`}${warned}`)
+print(`\n${total === 0 ? 'OK' : `${total} errors`}${warned}`)
+if (asJSON) console.log(JSON.stringify({ errors: total, problems }))
 process.exitCode = total === 0 ? 0 : 1

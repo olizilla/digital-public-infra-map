@@ -1,0 +1,19 @@
+[[changes]]
+type = "update"
+key = "pay-africa-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "ACH"
+reason = "New field. REPSS (Regional Payment and Settlement System) is operated by the COMESA Clearing House, which receives payment instructions from participating central banks and nets them. Commercial banks access it through their national central bank. Primary source: Bank of Mauritius communique (3 Oct 2012): REPSS introduced by the COMESA Clearing House; Bank of Mauritius is settlement bank. Secondary source: MCCI REPSS brochure: system operated by the COMESA Clearing House together with the Bank of Mauritius; REPSS nets the payments."
+sources = [
+  "https://www.mcci.org/media/1274/repss2.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-africa-01"
+as_of = 2026-10-15
+values.settlement_method = "DNS"
+reason = "New field. Payments are netted and net positions settled at the end of the day on central bank accounts held at the Bank of Mauritius, in US dollars and euros; central banks pre-fund to guarantee payment. Q1 value (DNS) confirmed. Primary source: Bank of Mauritius communique (3 Oct 2012): same-day settlement, pre-funding, Bank of Mauritius holds participating central banks’ accounts. Secondary source: MCCI REPSS brochure: REPSS nets the payments at end of day and settles on central bank accounts."
+sources = [
+  "https://www.mcci.org/media/1274/repss2.pdf",
+]

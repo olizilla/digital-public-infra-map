@@ -1,0 +1,21 @@
+[[changes]]
+type = "update"
+key = "pay-sg-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "ACH"
+reason = "New field. PayNow is an overlay on FAST; SACH clears and prepares net files. Cycle count may have changed since 2021."
+sources = [
+  "https://fastpayments.worldbank.org/sites/default/files/2023-05/Settlement%20Note_Final_April%2020.pdf",
+  "https://fastpayments.worldbank.org/sites/default/files/2021-10/World_Bank_FPS_Singapore_FAST_Case_Study.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-sg-01"
+as_of = 2026-10-15
+values.settlement_method = "DNS"
+reason = "New field. 2 settlement cycles per business day in MEPS+ (2021 data). Cycle count may have changed since 2021."
+sources = [
+  "https://fastpayments.worldbank.org/sites/default/files/2023-05/Settlement%20Note_Final_April%2020.pdf",
+  "https://fastpayments.worldbank.org/sites/default/files/2021-10/World_Bank_FPS_Singapore_FAST_Case_Study.pdf",
+]
