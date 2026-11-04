@@ -1,0 +1,42 @@
+---
+// A system's card on a changelog page: the system card's header (type icon, address, DPI status,
+// "WIP → DPI-like" if it changes, then the name), then its changes, with its wording fixes folded.
+// A removed system has no page, so its address isn't a link, and its one change is its removal.
+// The type icon is the page's #type-icon symbol, as there are hundreds of cards.
+import Status from './Status.astro'
+import ChangeGroups from './ChangeGroups.astro'
+import { systemHref } from '../Systems'
+import { plural, type SystemChanges } from '../Changes'
+
+interface Props {
+  changes: SystemChanges
+}
+const { changes } = Astro.props
+const { id, title, named, isNew, removed, before, after, groups, wording } = changes
+const statusChanged = !isNew && !removed && before !== after
+const wordingCount = wording.reduce((n, group) => n + group.changes.length, 0)
+---
+<article class="sys chg-sys" id={id} data-dpi={statusChanged ? '' : undefined}>
+  <header class="sys-head">
+    <div class="flex-1 min-w-0">
+      <div class="sys-meta">
+        <svg class="size-5 flex-none" aria-hidden="true"><use href="#type-icon" /></svg>
+        { removed ? <span class="sys-id">dpimap.org/{id}</span> : <a class="sys-id" href={systemHref(id)}>dpimap.org/{id}</a> }
+        { isNew && <span class="chg-new">New</span> }
+        { removed && <span class="chg-gone">Removed</span> }
+        <span class="chg-status">{ removed
+          ? <Status status={before} title="DPI status before" />
+          : <Fragment>{ statusChanged && <Fragment><Status status={before} title="DPI status before" /><span class="arr">→</span></Fragment> }<Status status={after} title="DPI status" /></Fragment> }</span>
+      </div>
+      <h3 class:list={['sys-title', { unnamed: !named }]} title={title}>{ removed ? title : <a href={systemHref(id)}>{title}</a> }</h3>
+    </div>
+  </header>
+  <div class="chg-sys-body">
+    { groups.length > 0 && <ChangeGroups groups={groups} isNew={isNew} successor={removed?.successor} /> }
+    { wordingCount > 0 &&
+      <details class="chg-wf more">
+        <summary>{plural(wordingCount, 'wording fix', 'wording fixes')}</summary>
+        <ChangeGroups groups={wording} isNew={isNew} />
+      </details> }
+  </div>
+</article>

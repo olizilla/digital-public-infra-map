@@ -1,5 +1,0 @@
-[[changes]]
-type = "snapshot"
-reason = "The toy table as published."
-table = "things.csv"
-sources_file = "sources.csv"

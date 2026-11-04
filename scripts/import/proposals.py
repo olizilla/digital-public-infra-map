@@ -20,20 +20,21 @@ a time far enough back that the last id isn't in the future.
 With --previous, the report also compares this export with an older one:
 tabs added and removed, where the rows of removed tabs went, and row counts.
 
+The baseline is the latest release: the newest public/data/<date>/ with
+<date>-<resource>.json for every table, whose rows have System IDs (D66).
+
 Writes, under <repo-root>:
 - lib/changesets/changeset.schema.json, the JSON Schema for a changeset
-- changesets/<resource>/0000/0000-baseline.toml and the table's CSV, if they
-  don't exist yet (sources.csv is written by the snapshot evidence importer,
-  not here)
-- changesets/<resource>/<yyyy>/<UTC timestamp>-<4 hex>.toml, one per system per tab,
-  and one wording changeset per table that puts published values into the
-  agreed wording (D54, D55; see WORDING)
+- changesets/next/<resource>/<UTC timestamp>-<4 hex>.toml, pending changesets:
+  one per system per tab, and one wording changeset per table that puts
+  published values into the agreed wording (D54, D55; see WORDING)
 - reports/import-proposals.md, its CSVs, and reports/draft-schema-changes.json
 
 It is deterministic: the same workbook, baseline and --created-at give the same
 files. Changesets it wrote on an earlier run (listed in
-reports/import-proposals-changesets.csv) are deleted first, so it can be
-re-run after the sheets are locked.
+reports/import-proposals-changesets.csv) are deleted first, if they're still
+pending in changesets/next/, so it can be re-run after the sheets are locked.
+Released changesets, in changesets/<date>/, are never touched.
 
 Rows are only attributed to a system by the rules below. A row that can't be
 attributed is reported, never guessed.
@@ -50,7 +51,6 @@ import datetime as dt
 import hashlib
 import json
 import re
-import shutil
 import sys
 import tomllib
 from collections import Counter, defaultdict
@@ -341,11 +341,13 @@ def row_date(text):
 
 
 def baseline_date(text):
-    """A baseline row's Last updated, which is written dd/mm/yy, as YYYY-MM-DD or None"""
-    try:
-        return dt.datetime.strptime(text.strip(), '%d/%m/%y').date().isoformat()
-    except ValueError:
-        return None
+    """A baseline row's Last updated, written dd/mm/yy up to 2026-03-31 and YYYY-MM-DD since (D49), as YYYY-MM-DD or None"""
+    for fmt in ('%d/%m/%y', '%Y-%m-%d'):
+        try:
+            return dt.datetime.strptime(text.strip(), fmt).date().isoformat()
+        except ValueError:
+            pass
+    return None
 
 
 def write_csv(path, header, rows):
@@ -452,11 +454,11 @@ def changeset_schema():
         '$schema': 'https://json-schema.org/draft/2020-12/schema',
         'title': 'Changeset',
         'description': (
-            'One changeset file, changesets/<resource>/<yyyy>/<UTC timestamp>-<4 hex>.toml, whose filename is its id. '
+            'One changeset file, changesets/<release>/<resource>/<UTC timestamp>-<4 hex>.toml, or changesets/next/<resource>/… while it is pending, whose filename is its id. '
             'The path says which table it applies to, and the timestamp is when it was created. '
-            'See D7, D31, D33, D35, D39 and D53 in docs/design/data-entry.md. '
+            'See D7, D31, D33, D35, D39, D53 and D66 in docs/design/data-entry.md. '
             "The author is the changeset's author if it has one, or else the commit's author. "
-            f'Latest {DATE_FIELD} wins, with ties broken by changeset id. '
+            f'A change replaces the value in the previous release. Among the changes in one release, latest {DATE_FIELD} wins, with ties broken by changeset id. '
             f'This schema checks the parsed TOML, once {DATE_FIELD} has been turned from a TOML date into a string.'
         ),
         'type': 'object',
@@ -515,7 +517,7 @@ def changeset_schema():
                 'additionalProperties': False,
             },
             'snapshot': {
-                'description': "The baseline only: the published table, and its evidence. Each cell's date comes from its row's Last updated.",
+                'description': "Not used any more: the baseline was a snapshot like this until D66, and is now the previous release's tables. The build skips a changeset that has one.",
                 'type': 'object',
                 'properties': {
                     'type': {'const': 'snapshot'},
@@ -944,28 +946,40 @@ def load_csv(path):
         return list(csv.DictReader(f))
 
 
-def ensure_baseline(root, schema):
-    """One baseline per table (D31), written if it isn't there yet. Returns each table's rows."""
+DATE_FOLDER = re.compile(r'\d{4}-\d{2}-\d{2}')
+PENDING = 'next'
+
+
+def latest_release(root, schema):
+    """The newest release folder with JSON for every table, whose rows have System IDs"""
+    data = root / 'public' / 'data'
+    for folder in sorted((p for p in data.iterdir() if p.is_dir() and DATE_FOLDER.fullmatch(p.name)), reverse=True):
+        files = [folder / f'{folder.name}-{name}.json' for name in schema.resources]
+        if all(f.exists() for f in files) and all(
+                all('System ID' in r for r in json.loads(f.read_text(encoding='utf-8'))) for f in files):
+            return folder.name
+    raise SystemExit('no release in public/data/ has JSON with System IDs for every table')
+
+
+def load_baseline(root, schema):
+    """The latest release's rows (D66), each table's as text, like its CSV. Returns (release, tables)."""
+    release = latest_release(root, schema)
+    text = lambda v: '' if v is None else str(v)
     tables = {}
-    for name, r in schema.resources.items():
-        folder = root / 'changesets' / name / '0000'
-        table = folder / f'{name}.csv'
-        if not table.exists():
-            folder.mkdir(parents=True, exist_ok=True)
-            shutil.copyfile(root / r['path'], table)
-        path = folder / '0000-baseline.toml'
-        if not path.exists():
-            write_toml(path, {'changes': [{
-                'type': 'snapshot',
-                'reason': (
-                    'The data as published on dpimap.org: public/data/latest on 2026-10-29, which is the 2026-03-31 '
-                    "release plus System IDs. Each cell's date is its row's Last updated."
-                ),
-                'table': table.name,
-                'sources_file': 'sources.csv',
-            }]})
-        tables[name] = load_csv(table)
-    return tables
+    for name in schema.resources:
+        rows = json.loads((root / 'public' / 'data' / release / f'{release}-{name}.json').read_text(encoding='utf-8'))
+        tables[name] = [{k: text(v) for k, v in r.items()} for r in rows]
+    return release, tables
+
+
+def pending_paths(root, resource, after):
+    """The changesets the next release applies to the baseline: those in release folders after it, then the pending ones"""
+    log = root / 'changesets'
+    folders = sorted(p for p in log.iterdir() if p.is_dir() and DATE_FOLDER.fullmatch(p.name) and p.name > after) if log.exists() else []
+    paths = []
+    for folder in [*folders, log / PENDING]:
+        paths += sorted((folder / resource).glob('*.toml'))
+    return sorted(paths, key=lambda p: p.stem)
 
 
 # ---------------------------------------------------------------------------
@@ -1057,7 +1071,7 @@ def main(xlsx, root, created_at, previous=None):
     schema = Schema(datapackage)
     write_json(root / 'lib/changesets/changeset.schema.json', changeset_schema())
     write_json(root / 'reports/draft-schema-changes.json', DRAFT)
-    baseline = ensure_baseline(root, schema)
+    release, baseline = load_baseline(root, schema)
     places = load_places(root, baseline)
 
     by_id = {name: {r['System ID']: r for r in rows} for name, rows in baseline.items()}
@@ -1514,7 +1528,7 @@ def main(xlsx, root, created_at, previous=None):
     # Wording changesets (D54, D55): one per table, after this round's changes from the sheets
     manifest = root / 'reports' / 'import-proposals-changesets.csv'
     ours = {r['changeset'] for r in load_csv(manifest)} if manifest.exists() else set()
-    removed_by_others, set_by_others = others_in_log(root, schema, ours)
+    removed_by_others, set_by_others = others_in_log(root, schema, ours, release)
     set_by_sheets = {(x.resource, x.key, x.fid) for x in kept}
     last_updated = {resource: schema.header(resource, 'last_updated') for resource in schema.resources}
     for resource in schema.resources:
@@ -1575,20 +1589,21 @@ def main(xlsx, root, created_at, previous=None):
     if last > dt.datetime.now(dt.timezone.utc):
         raise SystemExit(f'the last of {len(changesets)} changeset ids would be {last}, in the future: choose an earlier --created-at')
 
-    # Write: delete what the last run wrote, then write this run's changesets, and say which they are
-    folder = root / 'changesets'
+    # Write: delete what the last run wrote, if it's still pending, then write this run's changesets
+    # as pending ones (D66), and say which they are
+    folder = root / 'changesets' / PENDING
     if manifest.exists():
         for r in load_csv(manifest):
-            p = folder / r['resource'] / r['changeset'][:4] / f"{r['changeset']}.toml"
+            p = folder / r['resource'] / f"{r['changeset']}.toml"
             if p.exists():
                 p.unlink()
     for cid, c in sorted(changesets.items()):
-        write_toml(folder / c['resource'] / cid[:4] / f'{cid}.toml', c['data'])
+        write_toml(folder / c['resource'] / f'{cid}.toml', c['data'])
     write_csv(manifest, ['changeset', 'resource', 'key', 'kind', 'tab', 'rows'],
               [(cid, c['resource'], c['key'], c['kind'], c['tab'], ', '.join(map(str, c['rows']))) for cid, c in sorted(changesets.items())])
 
     # Validate every changeset, and the baseline
-    errors = validate(root, schema, by_id, changesets)
+    errors = validate(root, schema, by_id, changesets, release)
     if errors:
         for e in errors:
             print(e, file=sys.stderr)
@@ -1697,14 +1712,14 @@ def sources_for(row, report):
     return out
 
 
-def others_in_log(root, schema, ours):
-    """For changesets this importer didn't write, like a hand-written remove or region rename:
+def others_in_log(root, schema, ours, release):
+    """For changesets after the baseline release that this importer didn't write, like a hand-written remove or region rename:
     (resource -> key -> the changeset that removes it, resource -> (key, field id) -> the last changeset that sets it)"""
     removes = {resource: {} for resource in schema.resources}
     sets = {resource: {} for resource in schema.resources}
     for resource in schema.resources:
-        for path in sorted((root / 'changesets' / resource).glob('*/*.toml')):
-            if path.parent.name == '0000' or path.stem in ours:
+        for path in pending_paths(root, resource, release):
+            if path.stem in ours:
                 continue
             for change in read_changeset(path.read_text(encoding='utf-8')).get('changes', []):
                 if change.get('type') == 'remove':
@@ -1715,7 +1730,9 @@ def others_in_log(root, schema, ours):
 
 
 def snapshot_as_of(text):
-    """A baseline row's Last updated, dd/mm/yy, as YYYY-MM-DD: the as_of the build gives its cells (D7), or None"""
+    """A baseline row's Last updated, dd/mm/yy or YYYY-MM-DD, as YYYY-MM-DD: the as_of the build gives its cells (D7), or None"""
+    if re.fullmatch(r'\d{4}-\d{2}-\d{2}', text):
+        return text
     m = re.fullmatch(r'(\d{2})/(\d{2})/(\d{2})', text)
     return f'20{m[3]}-{m[2]}-{m[1]}' if m else None
 
@@ -1724,29 +1741,31 @@ def snapshot_as_of(text):
 # Validation
 
 
-def validate(root, schema, by_id, changesets):
+def validate(root, schema, by_id, changesets, release):
+    """Check the changesets the next release applies to the baseline release (D66)"""
     errors = []
     validator = jsonschema.Draft202012Validator(changeset_schema())
     folder = root / 'changesets'
     now = dt.datetime.now(dt.timezone.utc)
-    for path in sorted(folder.iterdir()):
-        if path.is_dir() and path.name not in schema.resources:
-            errors.append(f'{path.relative_to(root)}: is not the folder of a resource')
+    for top in sorted(folder.iterdir()):
+        if not top.is_dir():
+            continue
+        if not (DATE_FOLDER.fullmatch(top.name) or top.name == PENDING):
+            errors.append(f'{top.relative_to(root)}: is not a release folder or {PENDING}/')
+            continue
+        for path in sorted(top.iterdir()):
+            if path.is_dir() and path.name not in schema.resources:
+                errors.append(f'{path.relative_to(root)}: is not the folder of a resource')
     ids_seen = set()
     # each log is its own (D31). Replay it in id order: rows must exist (or not) when each change applies
     for resource in schema.resources:
-        log = folder / resource
+        paths = pending_paths(root, resource, release)
+        in_log = {p.stem for p in paths}
         live = set(by_id[resource])
-        for path in sorted(log.glob('*/*.toml')):
+        for path in paths:
             data = read_changeset(path.read_text(encoding='utf-8'))
             for e in validator.iter_errors(data):
                 errors.append(f'{path.relative_to(root)}: {"/".join(map(str, e.absolute_path))}: {e.message}')
-            if path.parent.name == '0000':
-                for change in data.get('changes', []):
-                    for name in ('table', 'sources_file'):
-                        if name in change and not (path.parent / change[name]).exists():
-                            errors.append(f'{path.relative_to(root)}: {name} {change[name]} does not exist')
-                continue
             cid = path.stem
             if not CHANGESET_ID.match(cid):
                 errors.append(f'{path.relative_to(root)}: the filename is not <UTC timestamp>-<4 hex>')
@@ -1757,14 +1776,12 @@ def validate(root, schema, by_id, changesets):
             when = dt.datetime.strptime(cid[:18], '%Y-%m-%dT%H%M%SZ').replace(tzinfo=dt.timezone.utc)
             if when > now:
                 errors.append(f'{path.relative_to(root)}: the timestamp is in the future')
-            if path.parent.name != cid[:4]:
-                errors.append(f'{path.relative_to(root)}: is not in the folder for its year')
             for i, change in enumerate(data.get('changes', [])):
                 at = f'{path.relative_to(root)}: changes/{i}'
                 if change.get('type') == 'revert':
                     target = change.get('changeset', '')
-                    if not (log / target[:4] / f'{target}.toml').exists():
-                        errors.append(f'{at}: reverts {target}, which is not in this log')
+                    if target not in in_log:
+                        errors.append(f'{at}: reverts {target}, which is not pending in this log')
                     elif target >= cid:
                         errors.append(f'{at}: reverts {target}, which does not come earlier')
                     continue
@@ -2004,7 +2021,7 @@ def write_reports(root, report, changesets, removed, new_systems, fills, schema,
     L.append('# Proposal logs import report\n')
     L.append(f'Generated by `scripts/import/proposals.py` from `proposals.xlsx` (sha256 `{digest}…`). '
              f"Each finding is dated by its row's Date Edited if that's a specific date, otherwise {DATE_FIELD} = {DEFAULT_AS_OF} (D34). "
-             "Each table has its own log, and its baseline is in `changesets/<resource>/0000/`. "
+             "Each table has its own log. The baseline is the latest release, and the changesets are written as pending ones, in `changesets/next/<resource>/` (D66). "
              f'Changeset ids start from `--created-at {created_at.strftime("%Y-%m-%dT%H:%M:%SZ")}`: re-run this export with the same time to get the same ids. '
              'This run is from the frozen export: the sheets froze on 2026-11-02 (D63).\n')
     L.append('A changeset holds one system from one tab. Its changes hold no sheet references or summaries, '

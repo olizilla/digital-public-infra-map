@@ -16,14 +16,15 @@ export const BLOCKING: Record<ReportKind, boolean> = {
   'missing-row': true,
   check: true,
   legacy: false,
+  'older-change': false,
   'unknown-table': false,
-  'pending-field': false,
+  'legacy-field': false,
+  'unknown-field': false,
   'derived-value': false,
   'key-value': false,
   'create-exists': false,
   'no-effect': false,
   'revert-unknown': false,
-  misplaced: false,
   'future-id': false,
   'snapshot-row': false
 }
@@ -35,16 +36,17 @@ export const KIND_TITLES: Record<ReportKind, string> = {
   'missing-row': 'Updates and removes for rows that do not exist at that point',
   check: 'Values that fail a check',
   legacy: 'Legacy warnings: values from the baseline that fail a check',
+  'older-change': 'Changes dated before their row\'s Last updated in the previous release, which still replace its values',
   'unknown-table': 'Folders for tables that are not in the package',
-  'pending-field': 'Pending fields: values for field ids that are not in the package',
+  'legacy-field': 'Legacy fields: values for fields from an earlier release that are not in the package',
+  'unknown-field': 'Unknown fields: values for field ids that have never been in the package',
   'derived-value': 'Values for derived fields, which the build computes',
   'key-value': 'Values for the key field, which a change cannot set',
   'create-exists': 'Creates for rows that already exist',
   'no-effect': 'Creates and removes that lose to a newer one',
-  'revert-unknown': 'Reverts of changesets that are not earlier in the same log',
-  misplaced: 'Changesets outside the folder for their year',
+  'revert-unknown': 'Reverts of changesets that are not earlier in the same set',
   'future-id': 'Changeset ids with a timestamp in the future',
-  'snapshot-row': 'Snapshot rows that were skipped or have no date'
+  'snapshot-row': 'Baseline rows that were skipped or have no date'
 }
 
 export function reportItem (kind: ReportKind, message: string, about: Omit<ReportItem, 'kind' | 'blocking' | 'message'> = {}): ReportItem {
@@ -83,11 +85,13 @@ export function formatReport (report: ReportItem[], title = 'Build report'): str
   for (const { kind } of counts) {
     lines.push(`## ${KIND_TITLES[kind]}`, '')
     const items = report.filter(item => item.kind === kind)
-    if (kind === 'pending-field') {
-      lines.push('| Table | Field id | Values | Changesets |', '|---|---|---|---|')
-      for (const item of items) lines.push(`| ${item.resource} | \`${item.field}\` | ${item.count} | ${item.changesets?.length} |`)
-      lines.push('', 'The changesets that set them:', '')
-      for (const item of items) lines.push(`- ${item.resource}, \`${item.field}\`: ${item.changesets?.join(', ')}`)
+    if (kind === 'legacy-field' || kind === 'unknown-field') {
+      const legacy = kind === 'legacy-field'
+      lines.push(`| Table | Field | Values | Changesets |${legacy ? ' Last in |' : ''}`, `|---|---|---|---|${legacy ? '---|' : ''}`)
+      for (const item of items) lines.push(`| ${item.resource} | \`${item.field}\` | ${item.count} | ${item.changesets?.length ?? 0} |${legacy ? ` ${item.release} |` : ''}`)
+      const set = items.filter(item => item.changesets?.length)
+      if (set.length) lines.push('', 'The changesets that set them:', '')
+      for (const item of set) lines.push(`- ${item.resource}, \`${item.field}\`: ${item.changesets!.join(', ')}`)
     } else {
       for (const item of items) lines.push(`- ${where(item)}: ${item.message}`)
     }

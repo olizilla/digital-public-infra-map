@@ -1,7 +1,8 @@
 // The DPI test: the criteria a system must meet to count as DPI-like, per DPI type.
 // See /methodology/. This is the one place that decides whether a system is DPI:
 // its DPI Status comes from these criteria. The data's 'Count for DPI' column must
-// agree, and checkDpiCounts, run at build start (astro.config.mjs), fails the build if not.
+// agree: `npm run data:build` derives it from these criteria, and `npm run data:check` (D48)
+// fails if the release's files don't match a rebuild.
 import { schemas, fieldById, labelOf, type DPIType, type Field } from './Schema'
 import { codebookVariableOf } from './Codebook'
 import { normaliseImplementationStatus } from './Status'
@@ -101,26 +102,6 @@ export function dpiStatus (dpiType: DPIType, record: SystemRecord): DpiStatus {
   if (passesDpiTest(dpiTest(dpiType, record))) return 'DPI'
   const status = implementationStatus(valueOf(dpiType, record, 'status'))
   return status === 'NA' || status === 'Suspended' ? 'NA' : 'WIP'
-}
-
-/** A message for each system whose 'Count for DPI' disagrees with the DPI test. There's no good reason for any. */
-export function checkDpiCounts (records: Record<DPIType, SystemRecord[]>) {
-  const problems: string[] = []
-  for (const dpiType of Object.keys(records) as DPIType[]) {
-    const countLabel = labelOf(fieldById(schemas[dpiType], 'dpi_count'))
-    for (const record of records[dpiType]) {
-      const criteria = dpiTest(dpiType, record)
-      const passes = passesDpiTest(criteria)
-      if (passes === (record[countLabel] === 1)) continue
-      const id = record['System ID'] ?? `${record.Country} / ${nameOf(dpiType, record) ?? 'unnamed'}`
-      problems.push(
-        `${dpiType} system "${id}": 'Count for DPI' is ${record[countLabel]}, ` +
-        `but the DPI test says it ${passes ? 'passes' : 'fails'}: ` +
-        criteria.map(c => `${c.label}=${c.value}`).join(', ')
-      )
-    }
-  }
-  return problems
 }
 
 /**

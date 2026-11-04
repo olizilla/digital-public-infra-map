@@ -1,22 +1,24 @@
-// Replay a log of changesets into tables (D46, D47).
+// Replay changesets onto a baseline, the previous release, to build tables (D46, D47, D66).
 //
-// - Reverted changesets are dropped first, resolving reverts in id order.
-// - A cell's value comes from the change with the latest `as_of`, with ties
-//   broken by changeset id, then by the change's place in its changeset.
-// - Whether a row exists comes from its latest create, remove or snapshot, in
-//   the same order. An update or remove needs the row to exist at that point:
-//   after the changes that come before it in the log.
-// - Rows keep the order of their snapshot. A new row goes after the last row in
-//   its group, removed or not, so a replacement takes the place of the system it
+// - The changesets come in layers: the data build has one, the release's
+//   changesets and the pending ones, and history has one per release.
+// - Reverted changesets are dropped first, within each layer, resolving reverts
+//   in id order.
+// - A change always replaces the value in the layers below it, and the
+//   baseline's. Within a layer, a cell's value comes from the change with the
+//   latest `as_of`, with ties broken by changeset id, then by the change's place
+//   in its changeset. A change older than its row's date in the baseline is
+//   reported, but still applies.
+// - Whether a row exists comes from its latest create or remove, in the same
+//   order, or else from the baseline. An update or remove needs the row to exist
+//   at that point: after the changes that come before it.
+// - Rows keep the baseline's order. A new row goes after the last row in its
+//   group, removed or not, so a replacement takes the place of the system it
 //   replaces. Removed rows are dropped.
 //
 // Nothing here knows about any particular package: the caller says which
-// fields are derived, how rows group, and what date a snapshot row has.
+// fields are derived, how rows group, and what date a baseline row has.
 
-import fs from 'node:fs'
-import path from 'node:path'
-import { parseCSVRecords } from './csv.ts'
-import { readLog } from './log.ts'
 import { reportItem } from './report.ts'
 import type { BuildOptions, BuildResult, Change, Changeset, Field, HistoryEntry, Provenance, ReportItem, Resource, Row, Table } from './types.ts'
 
@@ -39,11 +41,14 @@ export function keyField (resource: Resource): Field {
   return field
 }
 
-/** Where a change sits in the log: compared by as_of, then changeset id, then index */
-interface Point { as_of: string, changeset: string, change: number }
+/** A release's cell as text: its JSON has numbers for integer and number fields */
+const cellText = (value: unknown) => value === null || value === undefined ? '' : String(value)
+
+/** Where a change sits: compared by layer (0 is the baseline), then as_of, then changeset id, then index */
+interface Point { layer: number, as_of: string, changeset: string, change: number }
 
 const after = (a: Point, b: Point) =>
-  a.as_of !== b.as_of ? a.as_of > b.as_of : a.changeset !== b.changeset ? a.changeset > b.changeset : a.change > b.change
+  a.layer !== b.layer ? a.layer > b.layer : a.as_of !== b.as_of ? a.as_of > b.as_of : a.changeset !== b.changeset ? a.changeset > b.changeset : a.change > b.change
 
 /**
  * The changesets left once reverts are applied (D47). A changeset counts if no
@@ -73,31 +78,34 @@ export function unreverted (changesets: Changeset[], report: ReportItem[]): Chan
 
 interface Cell { value: string, point: Point, provenance: Provenance }
 
-/** Replay one resource's log */
-function replay (resource: Resource, changesets: Changeset[], options: BuildOptions, report: ReportItem[]) {
+/** Replay one resource's layers of changesets onto its baseline rows */
+function replay (resource: Resource, baselineRows: Record<string, unknown>[], layers: Changeset[][], options: BuildOptions, report: ReportItem[]) {
   const name = resource.name
   const key = keyField(resource)
   const keyId = fieldId(key)
   const byId = new Map(resource.schema.fields.map(field => [fieldId(field), field]))
   const byName = new Map(resource.schema.fields.map(field => [field.name, field]))
   const derived = new Set(options.derive?.fields[name] ?? [])
+  const baseline = options.baseline
 
-  // key -> the latest create, remove or snapshot, and whether it says the row exists
+  // key -> the latest create or remove, or the baseline, and whether it says the row exists
   const existence = new Map<string, Point & { exists: boolean }>()
   // key -> field id -> the latest value
   const cells = new Map<string, Map<string, Cell>>()
   // key -> field id -> every value, in log order
   const changes = new Map<string, Map<string, Cell[]>>()
-  // the snapshots' rows in order, then new rows in the order they were created
-  const snapshotOrder: string[] = []
+  // the baseline's rows in order, then new rows in the order they were created
+  const baselineOrder: string[] = []
   const created: string[] = []
-  const inSnapshot = new Set<string>()
+  const inBaseline = new Set<string>()
+  // key -> the as_of of the row's cells in the baseline
+  const baselineAsOf = new Map<string, string>()
   // field id -> the changesets that set it, and how many values, for fields not in the package
-  const pending = new Map<string, { changesets: Set<string>, count: number }>()
+  const notInPackage = new Map<string, { changesets: Set<string>, count: number }>()
 
   const exists = (k: string) => existence.get(k)?.exists ?? false
 
-  /** Record that a row exists, or not. Returns false if a newer create, remove or snapshot already decided it. */
+  /** Record that a row exists, or not. Returns false if a newer create or remove already decided it. */
   const setExistence = (k: string, point: Point, value: boolean) => {
     const current = existence.get(k)
     if (current && !after(point, current)) return false
@@ -116,11 +124,11 @@ function replay (resource: Resource, changesets: Changeset[], options: BuildOpti
     all.set(id, [...(all.get(id) ?? []), cell])
   }
 
-  const addPending = (id: string, changeset: string) => {
-    const entry = pending.get(id) ?? { changesets: new Set(), count: 0 }
+  const addNotInPackage = (id: string, changeset: string) => {
+    const entry = notInPackage.get(id) ?? { changesets: new Set(), count: 0 }
     entry.changesets.add(changeset)
     entry.count++
-    pending.set(id, entry)
+    notInPackage.set(id, entry)
   }
 
   const provenanceOf = (c: Changeset, i: number, change: Change): Provenance => ({
@@ -144,104 +152,102 @@ function replay (resource: Resource, changesets: Changeset[], options: BuildOpti
       } else if (derived.has(id)) {
         report.push(reportItem('derived-value', `sets a derived field, which the build computes, so the value ${JSON.stringify(value)} is skipped`, { ...about, field: id }))
       } else if (!byId.has(id)) {
-        addPending(id, c.id)
+        addNotInPackage(id, c.id)
       } else {
         setCell(change.key!, id, value, point, provenance)
       }
     }
   }
 
-  const applySnapshot = (c: Changeset, i: number, change: Change) => {
-    const dir = path.dirname(c.path)
-    const about = { resource: name, changeset: c.id, change: i }
-    const tablePath = path.join(dir, change.table!)
-    if (!fs.existsSync(tablePath)) {
-      report.push(reportItem('invalid-changeset', `its table, ${change.table}, does not exist, so the snapshot is skipped`, about))
-      return
-    }
-    // key -> field id -> the evidence links
+  // the baseline: the previous release's rows, keyed by field name
+  if (baseline) {
     const sources = new Map<string, Map<string, string[]>>()
-    if (change.sources_file) {
-      const sourcesPath = path.join(dir, change.sources_file)
-      if (!fs.existsSync(sourcesPath)) {
-        report.push(reportItem('invalid-changeset', `its sources_file, ${change.sources_file}, does not exist, so the snapshot has no sources`, about))
-      } else {
-        for (const s of parseCSVRecords(fs.readFileSync(sourcesPath, 'utf8')).records) {
-          if (s.resource !== undefined && s.resource !== name) continue
-          const byField = sources.get(s.key) ?? new Map<string, string[]>()
-          sources.set(s.key, byField)
-          byField.set(s.field, [...(byField.get(s.field) ?? []), s.url])
-        }
-      }
+    for (const s of baseline.sources ?? []) {
+      if (s.resource !== name) continue
+      const byField = sources.get(s.key) ?? new Map<string, string[]>()
+      sources.set(s.key, byField)
+      byField.set(s.field, [...(byField.get(s.field) ?? []), s.url])
     }
-    const { header, records } = parseCSVRecords(fs.readFileSync(tablePath, 'utf8'))
-    // each column's field id: by its name in the package, or else its id
-    const columns = header.map(h => fieldId(byName.get(h) ?? byId.get(h) ?? { name: h }))
-    for (const record of records) {
-      const row: Row = Object.fromEntries(header.map((h, n) => [columns[n], record[h]]))
+    const about = { resource: name, changeset: baseline.id }
+    const dropped = new Map<string, number>()
+    for (const record of baselineRows) {
+      const row: Row = {}
+      for (const [header, value] of Object.entries(record)) {
+        const field = byName.get(header)
+        if (field) row[fieldId(field)] = cellText(value)
+        else dropped.set(header, (dropped.get(header) ?? 0) + 1)
+      }
       const k = row[keyId]
       if (k === undefined || k === '') {
         report.push(reportItem('snapshot-row', `has a row with no ${key.name}, so the row is skipped`, about))
         continue
       }
-      const asOf = options.snapshotAsOf?.(name, row) ?? ''
-      if (asOf === '') report.push(reportItem('snapshot-row', 'has no date, so its values lose to any change', { ...about, key: k }))
-      const point = { as_of: asOf, changeset: c.id, change: i }
+      const asOf = options.baselineAsOf?.(name, row) ?? ''
+      if (asOf === '') report.push(reportItem('snapshot-row', 'has no date', { ...about, key: k }))
+      baselineAsOf.set(k, asOf)
+      const point = { layer: 0, as_of: asOf, changeset: baseline.id, change: 0 }
       setExistence(k, point, true)
-      if (!inSnapshot.has(k)) { inSnapshot.add(k); snapshotOrder.push(k) }
-      const author = c.author ? { author: c.author } : {}
-      for (const id of columns) {
-        // a snapshot is a published table, so it has derived columns: they're not reported
+      if (!inBaseline.has(k)) { inBaseline.add(k); baselineOrder.push(k) }
+      for (const id of Object.keys(row)) {
+        // a release has derived columns: they're computed again
         if (derived.has(id)) continue
-        if (!byId.has(id)) { addPending(id, c.id); continue }
-        const provenance: Provenance = { changeset: c.id, change: i, type: 'snapshot', as_of: asOf, reason: change.reason ?? '', sources: sources.get(k)?.get(id) ?? [], ...author }
+        const provenance: Provenance = { changeset: baseline.id, change: 0, type: 'snapshot', as_of: asOf, reason: baseline.reason ?? '', sources: sources.get(k)?.get(id) ?? [] }
         setCell(k, id, row[id], point, provenance)
       }
     }
+    for (const [header, count] of dropped) {
+      report.push(reportItem('legacy-field', `is a column of the baseline, ${baseline.id}, but not a field in the package, so its ${count} value${count === 1 ? ' is' : 's are'} dropped`, {
+        resource: name, field: header, count, release: baseline.id
+      }))
+    }
   }
 
-  for (const c of changesets) {
-    c.changes.forEach((change, i) => {
-      const point = { as_of: change.as_of ?? '', changeset: c.id, change: i }
-      const about = { resource: name, changeset: c.id, change: i, key: change.key }
-      switch (change.type) {
-        case 'snapshot':
-          applySnapshot(c, i, change)
-          break
-        case 'create':
-          if (exists(change.key!)) report.push(reportItem('create-exists', 'creates a row that already exists, so it acts as an update', about))
-          if (!setExistence(change.key!, point, true)) report.push(reportItem('no-effect', 'creates a row, but a newer remove says it does not exist', about))
-          if (!inSnapshot.has(change.key!) && !created.includes(change.key!)) created.push(change.key!)
-          applyValues(c, i, change, point)
-          break
-        case 'update':
-          if (!exists(change.key!)) {
-            report.push(reportItem('missing-row', 'updates a row that does not exist at that point, so it is skipped', about))
+  layers.forEach((changesets, n) => {
+    for (const c of unreverted(changesets, report)) {
+      c.changes.forEach((change, i) => {
+        const point = { layer: n + 1, as_of: change.as_of ?? '', changeset: c.id, change: i }
+        const about = { resource: name, changeset: c.id, change: i, key: change.key }
+        if (change.type !== 'revert' && inBaseline.has(change.key!) && change.as_of! < baselineAsOf.get(change.key!)!) {
+          report.push(reportItem('older-change', `is dated ${change.as_of}, before the row's Last updated in ${baseline!.id}, ${baselineAsOf.get(change.key!)}, and still replaces its values (D46)`, about))
+        }
+        switch (change.type) {
+          case 'create':
+            if (exists(change.key!)) report.push(reportItem('create-exists', 'creates a row that already exists, so it acts as an update', about))
+            if (!setExistence(change.key!, point, true)) report.push(reportItem('no-effect', 'creates a row, but a newer remove says it does not exist', about))
+            if (!inBaseline.has(change.key!) && !created.includes(change.key!)) created.push(change.key!)
+            applyValues(c, i, change, point)
             break
-          }
-          applyValues(c, i, change, point)
-          break
-        case 'remove':
-          if (!exists(change.key!)) {
-            report.push(reportItem('missing-row', 'removes a row that does not exist at that point, so it is skipped', about))
+          case 'update':
+            if (!exists(change.key!)) {
+              report.push(reportItem('missing-row', 'updates a row that does not exist at that point, so it is skipped', about))
+              break
+            }
+            applyValues(c, i, change, point)
             break
-          }
-          if (!setExistence(change.key!, point, false)) report.push(reportItem('no-effect', 'removes a row, but a newer create or snapshot says it exists', about))
-          break
-        case 'revert':
-          // applied before the replay, in unreverted()
-          break
-      }
-    })
+          case 'remove':
+            if (!exists(change.key!)) {
+              report.push(reportItem('missing-row', 'removes a row that does not exist at that point, so it is skipped', about))
+              break
+            }
+            if (!setExistence(change.key!, point, false)) report.push(reportItem('no-effect', 'removes a row, but a newer create says it exists', about))
+            break
+          case 'revert':
+            // applied before the replay, in unreverted()
+            break
+        }
+      })
+    }
+  })
+
+  for (const [id, { changesets: ids, count }] of notInPackage) {
+    const release = options.earlierFields?.[name]?.[id]
+    const values = `${count} value${count === 1 ? '' : 's'}`
+    report.push(release
+      ? reportItem('legacy-field', `has ${values} for a field that was in the ${release} release but is not in the package, so they are skipped`, { resource: name, field: id, count, changesets: [...ids], release })
+      : reportItem('unknown-field', `has ${values} for a field id that has never been in the package, perhaps a typo, so they are skipped`, { resource: name, field: id, count, changesets: [...ids] }))
   }
 
-  for (const [id, { changesets: ids, count }] of pending) {
-    report.push(reportItem('pending-field', `has ${count} value${count === 1 ? '' : 's'} for a field id that is not in the package, so they are skipped until the field is added`, {
-      resource: name, field: id, count, changesets: [...ids]
-    }))
-  }
-
-  return { existence, cells, changes, inSnapshot, order: [...snapshotOrder, ...created] }
+  return { existence, cells, changes, inBaseline, order: [...baselineOrder, ...created] }
 }
 
 /** A cell's history, from its values in log order: sorted by what decides the value, so the last is current */
@@ -250,21 +256,25 @@ function historyOf (cells: Cell[]): HistoryEntry[] {
   return sorted.map((cell, n) => ({ ...cell.provenance, value: cell.value, valueChanged: n === 0 || cell.value !== sorted[n - 1].value }))
 }
 
-/** Replay the log onto its baseline, and build each table that has a folder in the log */
+/** Replay the layers of changesets onto the baseline, and build each table in either */
 export function build (options: BuildOptions): BuildResult {
-  const { datapackage, log, derive, rowGroup } = options
-  const report: ReportItem[] = []
-  const logs = readLog(log, datapackage, report, options.now)
+  const { datapackage, baseline, derive, rowGroup } = options
+  const report: ReportItem[] = [...(options.report ?? [])]
   const tables: Record<string, Table> = {}
   const provenance: BuildResult['provenance'] = {}
   const history: BuildResult['history'] = {}
+  const replayed: BuildResult['changesets'] = {}
+  const names = [...new Set([...Object.keys(baseline?.tables ?? {}), ...options.layers.flatMap(Object.keys)])].sort()
 
-  for (const [name, changesets] of Object.entries(logs)) {
-    const resource = datapackage.resources.find(r => r.name === name)!
+  for (const name of names) {
+    const resource = datapackage.resources.find(r => r.name === name)
+    if (!resource) continue
     const fields = resource.schema.fields
     const missing = missingValue(resource)
     const derived = new Set(derive?.fields[name] ?? [])
-    const { existence, cells, changes, order, inSnapshot } = replay(resource, unreverted(changesets, report), options, report)
+    const layers = options.layers.map(layer => layer[name] ?? [])
+    replayed[name] = layers.flat()
+    const { existence, cells, changes, order, inBaseline } = replay(resource, baseline?.tables[name] ?? [], layers, options, report)
     const tableProvenance: Record<string, Record<string, Provenance>> = {}
     const tableHistory: Record<string, Record<string, HistoryEntry[]>> = {}
 
@@ -308,13 +318,13 @@ export function build (options: BuildOptions): BuildResult {
       }
     }
 
-    // snapshot rows keep their order, and each new row goes after the last row in its group,
+    // baseline rows keep their order, and each new row goes after the last row in its group,
     // counting removed rows, then removed rows are dropped
     const keys: string[] = []
     const groups: (string | undefined)[] = []
     for (const k of order) {
       const group = groupOf.get(k)
-      const at = !inSnapshot.has(k) && group !== undefined ? groups.lastIndexOf(group) : -1
+      const at = !inBaseline.has(k) && group !== undefined ? groups.lastIndexOf(group) : -1
       if (at === -1) {
         keys.push(k)
         groups.push(group)
@@ -328,5 +338,5 @@ export function build (options: BuildOptions): BuildResult {
     provenance[name] = tableProvenance
     history[name] = tableHistory
   }
-  return { tables, provenance, history, changesets: logs, report }
+  return { tables, provenance, history, changesets: replayed, report, ...(baseline ? { baseline: { id: baseline.id, reason: baseline.reason ?? '' } } : {}) }
 }

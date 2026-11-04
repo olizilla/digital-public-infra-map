@@ -1,43 +1,58 @@
-// Build a data release from the changeset log (D45, D50).
+// Build a data release (D45, D50, D66).
 //
-// Replays changesets/<resource>/ onto its baseline with lib/changesets, for
-// each table in the root datapackage.json that has a log, and writes
-// public/data/<release>/:
+// Release N+1 is release N's tables, public/data/<N>/<N>-<resource>.json, plus
+// the changesets in changesets/<N+1>/ (when re-cutting a release that isn't
+// published yet) and changesets/next/, replayed with lib/changesets. A change
+// always replaces the value in release N, and one dated before its row's Last
+// updated there is reported (D46). Release N is the newest release folder before
+// this one with JSON for every table, or --previous. It writes public/data/<release>/:
 // - <resource>.csv, and <release>-<resource>.json in the earlier releases' format
 // - places.csv and place-names.csv, copied
 // - datapackage.json: the root one, with paths to the files in this folder
-// It writes every cell's history, for the site's system pages, to
-// src/data/history-<release>.json, which isn't published.
 //
-// The DPI layer (D48): Last updated is the row's newest as_of, as YYYY-MM-DD
-// (D49), Count for DPI is from the DPI test in src/DpiTest.ts, the same code
-// the site uses, and a new system goes below the last system for its place,
+// The DPI layer (D48, src/DpiLayer.ts): Last updated is the row's newest as_of, as
+// YYYY-MM-DD (D49), Count for DPI is from the DPI test in src/DpiTest.ts, the same
+// code the site uses, and a new system goes below the last system for its place,
 // by src/Places.ts.
 //
 // It then checks the release with scripts/validate.mjs. A failing value blocks
-// only if a changeset introduced it, and one from the baseline is a legacy
+// only if a changeset introduced it, and one from release N is a legacy
 // warning (D60). It writes a report of everything it skipped or found, and of
-// every system whose DPI status changed since the previous release, to
-// reports/data-build-<release>.md, which isn't published.
+// every system whose DPI status changed since release N, to
+// reports/data-build-<release>.md, which isn't published. Values for fields that
+// aren't in the root datapackage.json are reported as legacy, if an earlier
+// release had the field, or else as unknown (D51).
 //
-// Removed systems have no page, so it redirects each System ID that was in the
-// baseline and isn't in the release to its country page (D64), in public/_redirects
-// between marker comments.
+// Removed systems have no page, so it redirects each System ID that was in an
+// earlier release and isn't in this one to its country page (D64), in
+// public/_redirects between marker comments.
+//
+// Cutting a release moves changesets/next/* into changesets/<release>/. This script doesn't
+// move them. Until they're moved it reads both folders, so the release includes them.
 //
 // It always writes the release, and exits 1 if anything blocks a merge (D51).
 //
 // usage: npm run data:build -- --release 2026-11-06 [--previous 2026-03-31]
+//
+// --check (npm run data:check) writes nothing in the repo. It rebuilds the release that
+// src/Release.ts points at, or --release, in a temporary folder, from the previous release and
+// the changesets in changesets/<release>/ only, as they were when it was cut, so pending
+// changesets in changesets/next/ don't count. It compares the result with public/data/<release>/
+// and exits 1 on any difference, or if anything blocks a merge. This catches a DPI test
+// changed without a rebuild, a released changeset edited after the cut, and other drift.
 
 import './site-modules.ts'
 import { spawnSync } from 'node:child_process'
 import fs from 'node:fs'
+import os from 'node:os'
 import path from 'node:path'
 import { parseArgs } from 'node:util'
 import slug from 'slug'
 import {
-  build, checkItem, countByKind, fieldId, formatReport, historyJSON, keyField, KIND_TITLES, missingValue, missingValues, parseCSVRecords, tableCSV
+  build, checkItem, countByKind, fieldId, formatReport, keyField, KIND_TITLES, missingValue, missingValues, parseCSVRecords, PENDING_FOLDER, readFolders, RELEASE_FOLDER, tableCSV
 } from '../lib/changesets/index.ts'
-import type { DataPackage, Field, Row, Table } from '../lib/changesets/index.ts'
+import type { Baseline, DataPackage, Field, ReportItem, Row, Table } from '../lib/changesets/index.ts'
+import { baselineReason, derivedFields, lastUpdatedAsOf } from '../src/DpiLayer.ts'
 
 // the site's modules, which need ./site-modules.ts to load in Node
 const { dpiStatus, dpiTest, implementationStatus, nameOf, passesDpiTest, presence, valueOf } = await import('../src/DpiTest.ts')
@@ -48,18 +63,21 @@ const { oneSystemPerCountry } = await import('../src/Util.ts')
 type DPIType = keyof typeof resourceNames
 
 const root = path.resolve(import.meta.dirname, '..')
-const { values: args } = parseArgs({ options: { release: { type: 'string' }, previous: { type: 'string' } } })
-const release = args.release
+const { values: args } = parseArgs({ options: { release: { type: 'string' }, previous: { type: 'string' }, check: { type: 'boolean' } } })
+const check = !!args.check
+// in check mode the release defaults to the one the site shows (src/Release.ts)
+const release = args.release ?? (check ? fs.readFileSync(path.join(root, 'src', 'Release.ts'), 'utf8').match(/export const release = '([^']+)'/)?.[1] : undefined)
 const isDate = (s?: string) => !!s && /^\d{4}-\d{2}-\d{2}$/.test(s)
 if (!isDate(release) || (args.previous && !isDate(args.previous))) {
-  console.error('usage: npm run data:build -- --release YYYY-MM-DD [--previous YYYY-MM-DD]')
+  console.error('usage: npm run data:build -- --release YYYY-MM-DD [--previous YYYY-MM-DD] [--check]')
   process.exit(2)
 }
 
 const datapackage: DataPackage = JSON.parse(fs.readFileSync(path.join(root, 'datapackage.json'), 'utf8'))
 const dataDir = path.join(root, 'public', 'data')
-const out = path.join(dataDir, release!)
-const historyPath = path.join(root, 'src', 'data', `history-${release}.json`)
+const releaseDir = path.join(dataDir, release!)
+// check mode builds into a temporary folder, to compare with the release and to run scripts/validate.mjs on
+const out = check ? fs.mkdtempSync(path.join(os.tmpdir(), 'data-check-')) : releaseDir
 const reportPath = path.join(root, 'reports', `data-build-${release}.md`)
 // files that are copied into the release as they are
 const copied = ['public/data/places.csv', 'public/data/place-names.csv']
@@ -77,19 +95,62 @@ function recordOf (dpiType: DPIType, row: Record<string, unknown>) {
   return record
 }
 
-/** A baseline row's Last updated, dd/mm/yy, as YYYY-MM-DD: the as_of of its cells (D7) */
-function lastUpdated (_resource: string, row: Row): string | undefined {
-  const [, d, m, y] = row.last_updated?.match(/^(\d{2})\/(\d{2})\/(\d{2})$/) ?? []
-  return y ? `20${y}-${m}-${d}` : undefined
+/** The release folders before this one, oldest first */
+const earlierReleases = fs.readdirSync(dataDir).filter(d => RELEASE_FOLDER.test(d) && d < release!).sort()
+
+/** The latest release folder before this one with JSON for every table */
+function previousRelease () {
+  return earlierReleases.filter(d => Object.keys(dpiTypeOf).every(name => fs.existsSync(path.join(dataDir, d, `${d}-${name}.json`)))).at(-1)
+}
+const previous = args.previous ?? previousRelease()
+const readJSON = (file: string) => JSON.parse(fs.readFileSync(file, 'utf8'))
+
+// release N: its tables, and the evidence for its values if it has a file of them
+let baseline: Baseline | undefined
+if (previous) {
+  const sourcesPath = path.join(dataDir, previous, `${previous}-sources.json`)
+  baseline = {
+    id: previous,
+    reason: baselineReason(previous),
+    tables: Object.fromEntries(datapackage.resources
+      .map(r => [r.name, path.join(dataDir, previous, `${previous}-${r.name}.json`)])
+      .filter(([, file]) => fs.existsSync(file))
+      .map(([name, file]) => [name, readJSON(file)])),
+    ...(fs.existsSync(sourcesPath) ? { sources: readJSON(sourcesPath) } : {})
+  }
 }
 
-const derived = ['last_updated', 'dpi_count']
+// each field an earlier release had, by id and by name, with the newest release that had it,
+// from the releases' datapackage.json and the keys of their JSON (the 2024-11-19 release names it <date>.<resource>.json)
+const earlierFields: Record<string, Record<string, string>> = {}
+for (const d of earlierReleases) {
+  const had = (name: string, field: string) => { (earlierFields[name] ??= {})[field] = d }
+  const packagePath = path.join(dataDir, d, 'datapackage.json')
+  if (fs.existsSync(packagePath)) {
+    for (const r of (readJSON(packagePath) as DataPackage).resources) for (const f of r.schema?.fields ?? []) [fieldId(f), f.name].forEach(id => had(r.name, id))
+  }
+  for (const r of datapackage.resources) {
+    const file = [`${d}-${r.name}.json`, `${d}.${r.name}.json`].map(f => path.join(dataDir, d, f)).find(f => fs.existsSync(f))
+    if (!file) continue
+    const rows = readJSON(file)
+    if (!Array.isArray(rows)) continue
+    for (const row of rows) for (const key of Object.keys(row)) had(r.name, key)
+  }
+}
+
+// the changesets: this release's folder, if it isn't published yet, and the pending ones, as one set
+const readReport: ReportItem[] = []
+const changesets = readFolders(path.join(root, 'changesets'), check ? [release!] : [release!, PENDING_FOLDER], datapackage, readReport)
+
 const result = build({
   datapackage,
-  log: path.join(root, 'changesets'),
-  snapshotAsOf: lastUpdated,
+  baseline,
+  layers: [changesets],
+  report: readReport,
+  baselineAsOf: lastUpdatedAsOf,
+  earlierFields,
   derive: {
-    fields: Object.fromEntries(Object.keys(dpiTypeOf).map(name => [name, derived])),
+    fields: Object.fromEntries(Object.keys(dpiTypeOf).map(name => [name, derivedFields])),
     values: (name, row, { asOf }) => {
       const record = toRecord(schemas[dpiTypeOf[name]], byName(resourceOf(name).schema.fields, row))
       return {
@@ -138,27 +199,24 @@ for (const resource of releasePackage.resources) {
   resource.path = file
 }
 write('datapackage.json', JSON.stringify(releasePackage, null, 2) + '\n')
-// the history isn't published: it's for the site build (D45)
-fs.rmSync(path.join(out, 'history.json'), { force: true })
-fs.mkdirSync(path.dirname(historyPath), { recursive: true })
-fs.writeFileSync(historyPath, JSON.stringify(Object.fromEntries(Object.keys(result.tables).map(name => [name, historyJSON(result, name)]))))
 
 // --- redirects for removed systems (D64) ---
 
-/** The keys of the rows in a resource's baseline snapshots, with each row's place, in order */
-function baselineRows (name: string) {
+/** Every System ID in an earlier release's table, with its place in the newest release that has it */
+function earlierRows (name: string) {
   const resource = resourceOf(name)
   const key = keyField(resource).name
   const country = resource.schema.fields.find(f => fieldId(f) === 'country')?.name
-  const rows: { key: string, country: string }[] = []
-  for (const changeset of result.changesets[name] ?? []) {
-    for (const change of changeset.changes) {
-      if (change.type !== 'snapshot' || !change.table) continue
-      const { records } = parseCSVRecords(fs.readFileSync(path.join(path.dirname(changeset.path), change.table), 'utf8'))
-      for (const record of records) if (record[key]) rows.push({ key: record[key], country: country ? record[country] : '' })
+  const rows = new Map<string, string>()
+  for (const d of earlierReleases.toReversed()) {
+    const file = path.join(dataDir, d, `${d}-${name}.json`)
+    if (!fs.existsSync(file)) continue
+    for (const row of readJSON(file) as Record<string, unknown>[]) {
+      const id = row[key]
+      if (typeof id === 'string' && id && !rows.has(id)) rows.set(id, country ? String(row[country] ?? '') : '')
     }
   }
-  return rows
+  return [...rows].map(([key, country]) => ({ key, country }))
 }
 
 // each place's country page, as src/Records.ts names it: after the first row for the place,
@@ -178,7 +236,7 @@ for (const [name, table] of Object.entries(result.tables)) {
   if (!dpiTypeOf[name]) continue
   const keyId = fieldId(keyField(table.resource))
   const built = new Set(table.rows.map(row => row[keyId]))
-  for (const { key, country } of baselineRows(name)) {
+  for (const { key, country } of earlierRows(name)) {
     if (built.has(key)) continue
     const target = countryPages.get(placeNamed(country)?.code ?? '') ?? '/'
     redirects.push(`/${key} ${target} 302`, `/${key}/ ${target} 302`)
@@ -192,7 +250,7 @@ const [start, end] = markers.map(marker => before.indexOf(marker))
 const after = start !== -1 && end > start
   ? before.slice(0, start) + block + before.slice(end + markers[1].length)
   : before.replace(/\n*$/, before ? '\n' : '') + block + '\n'
-fs.writeFileSync(redirectsPath, after)
+if (!check) fs.writeFileSync(redirectsPath, after)
 
 // check the release. A failing value blocks if a changeset introduced it, and is a legacy warning if it's from the baseline (D60)
 const validate = (...flags: string[]) => spawnSync(process.execPath, [path.join(root, 'scripts', 'validate.mjs'), path.join(out, 'datapackage.json'), ...flags], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 })
@@ -233,33 +291,12 @@ const legacyLines = [
 
 // --- DPI status changes since the previous release ---
 
-/** The latest release folder before this one with JSON for every table */
-function previousRelease () {
-  return fs.readdirSync(dataDir)
-    .filter(d => isDate(d) && d < release! && Object.keys(dpiTypeOf).every(name => fs.existsSync(path.join(dataDir, d, `${d}-${name}.json`))))
-    .sort().at(-1)
-}
-const previous = args.previous ?? previousRelease()
-
-/**
- * The previous release's records, by System ID. A release from before System IDs (like 2026-03-31)
- * gets them from the baseline snapshot, which is that release plus System IDs, row for row.
- */
+/** Release N's records, by System ID */
 function previousRecords (name: string): Map<string, Record<string, any>> {
   const dpiType = dpiTypeOf[name]
-  const rows: Record<string, any>[] = JSON.parse(fs.readFileSync(path.join(dataDir, previous!, `${previous}-${name}.json`), 'utf8'))
-  if (rows.every(row => row['System ID'] === undefined)) {
-    const baseline = `changesets/${name}/0000/${name}.csv`
-    const { records } = parseCSVRecords(fs.readFileSync(path.join(root, baseline), 'utf8'))
-    const fields = resourceOf(name).schema.fields
-    const header = (id: string) => fields.find(f => fieldId(f) === id)!.name
-    rows.forEach((row, i) => {
-      const same = records[i] && ['country', 'name'].every(id => String(row[header(id)]) === records[i][header(id)])
-      if (!same || rows.length !== records.length) throw new Error(`${previous}-${name}.json is not ${baseline} row for row, so its rows have no System IDs`)
-      row['System ID'] = records[i][header('system_id')]
-    })
-  }
-  return new Map(rows.map(row => [row['System ID'], recordOf(dpiType, row)]))
+  const rows = (baseline?.tables[name] ?? []) as Record<string, any>[]
+  if (rows.some(row => row['System ID'] === undefined)) throw new Error(`${previous}-${name}.json has rows with no System ID`)
+  return new Map(rows.map(row => [row['System ID'], recordOf(dpiType, { ...row })]))
 }
 
 interface StatusChange { dpiType: DPIType, id: string, name: string, old?: string, new?: string, criteria: string }
@@ -335,9 +372,9 @@ const tableLines = Object.entries(result.tables).map(([name, table]) => `- ${nam
 
 const body = formatReport(result.report, `Data build: the ${release} release`)
 const firstSection = body.indexOf('\n## ')
-fs.mkdirSync(path.dirname(reportPath), { recursive: true })
-fs.writeFileSync(reportPath, [
-  body.slice(0, firstSection).replace('\n\n', `\n\nBuilt by \`npm run data:build -- --release ${release}\` into \`public/data/${release}/\`.\n\n${tableLines.join('\n')}\n\n`),
+if (!check) fs.mkdirSync(path.dirname(reportPath), { recursive: true })
+const reportText = [
+  body.slice(0, firstSection).replace('\n\n', `\n\nBuilt by \`npm run data:build -- --release ${release}\` into \`public/data/${release}/\`, from ${previous ? `the ${previous} release` : 'no earlier release'} and the changesets in \`changesets/${release}/\` and \`changesets/${PENDING_FOLDER}/\`.\n\n${tableLines.join('\n')}\n\n`),
   ...statusLines,
   ...legacyLines,
   body.slice(firstSection + 1),
@@ -349,10 +386,68 @@ fs.writeFileSync(reportPath, [
   validateSummary.trimEnd(),
   '```',
   ''
-].join('\n'))
+].join('\n')
+if (!check) fs.writeFileSync(reportPath, reportText)
+
+if (check) {
+  const LIMIT = 20
+  const problems: string[] = []
+  const show = (v: unknown) => { const t = JSON.stringify(v) ?? 'undefined'; return t.length > 80 ? t.slice(0, 77) + '...' : t }
+  /** Rows keyed by System ID: the rows only one side has, and the cells that differ */
+  const compareRows = (file: string, key: string, disk: Record<string, unknown>[], rebuilt: Record<string, unknown>[]) => {
+    const index = (rows: Record<string, unknown>[]) => new Map(rows.map((row, i) => [String(row[key] ?? `(row ${i + 1})`), row]))
+    const a = index(disk)
+    const b = index(rebuilt)
+    for (const id of b.keys()) if (!a.has(id)) problems.push(`${file}: ${id} is missing on disk, and the rebuild has it`)
+    for (const id of a.keys()) if (!b.has(id)) problems.push(`${file}: ${id} is on disk, and the rebuild doesn't have it`)
+    for (const [id, was] of a) {
+      const now = b.get(id)
+      if (!now) continue
+      for (const column of new Set([...Object.keys(was), ...Object.keys(now)])) {
+        if (was[column] !== now[column]) problems.push(`${file}: ${id}, "${column}": on disk ${show(was[column])}, rebuilt ${show(now[column])}`)
+      }
+    }
+  }
+  const readText = (dir: string, name: string) => fs.existsSync(path.join(dir, name)) ? fs.readFileSync(path.join(dir, name), 'utf8') : undefined
+  for (const name of fs.readdirSync(out).sort()) {
+    const file = `public/data/${release}/${name}`
+    const was = readText(releaseDir, name)
+    const now = readText(out, name)!
+    if (was === undefined) { problems.push(`${file}: is missing on disk`); continue }
+    if (was === now) continue
+    const before = problems.length
+    const table = result.tables[name.replace(/\.csv$/, '').replace(`${release}-`, '').replace(/\.json$/, '')]
+    const key = table && keyField(table.resource).name
+    try {
+      if (name.endsWith('.csv') && table) compareRows(file, key!, parseCSVRecords(was).records, parseCSVRecords(now).records)
+      else if (name.endsWith('.json') && table) compareRows(file, key!, JSON.parse(was), JSON.parse(now))
+    } catch (e) {
+      problems.push(`${file}: can't be compared (${(e as Error).message})`)
+    }
+    // the same rows and columns, but the file's text differs (formatting, order, or another file)
+    if (problems.length === before) problems.push(`${file}: differs from the rebuild${table ? ' in its formatting or the order of its rows' : ''}`)
+  }
+  const blockers = result.report.filter(item => item.blocking)
+  fs.rmSync(out, { recursive: true, force: true })
+
+  const lines: string[] = []
+  const list = (title: string, items: string[]) => {
+    if (!items.length) return
+    lines.push('', `${title}: ${items.length}`, ...items.slice(0, LIMIT).map(l => `  ${l}`))
+    if (items.length > LIMIT) lines.push(`  ...and ${items.length - LIMIT} more`)
+  }
+  list(`public/data/${release}/ differs from the rebuild`, problems)
+  list('Blocking items in the build', blockers.map(item => `${item.resource ?? ''} ${item.key ?? ''} ${item.field ?? ''}: ${item.message}`.replace(/\s+/g, ' ').trim()))
+  if (lines.length) {
+    console.log(`data:check FAILED: public/data/${release}/ is not what the previous release (${previous ?? 'none'}) and changesets/${release}/ build.${lines.join('\n')}`)
+    console.log(`\nRebuild it with: npm run data:build -- --release ${release}`)
+    process.exit(1)
+  }
+  console.log(`data:check passed: public/data/${release}/ is what the previous release (${previous ?? 'none'}) and changesets/${release}/ build.`)
+  process.exit(0)
+}
 
 console.log(`Wrote public/data/${release}/: ${written.join(', ')}`)
-console.log(`Wrote ${path.relative(root, historyPath)}`)
 console.log(`Wrote ${redirects.length / 2} removed systems' redirects to ${path.relative(root, redirectsPath)}`)
 for (const line of tableLines) console.log(line)
 console.log(`\n${blocking} blocking item${blocking === 1 ? '' : 's'}, ${result.report.length - blocking} not blocking`)

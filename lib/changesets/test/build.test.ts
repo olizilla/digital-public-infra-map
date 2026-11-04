@@ -5,21 +5,29 @@ import path from 'node:path'
 import { describe, it } from 'node:test'
 import {
   build, changesetTOML, CHANGESET_ID, checkItem, draftChangeset, formatReport, historyJSON, parseCSV,
-  readChangeset, tableCSV, validateChangeset, writeCSV
+  readChangeset, readFolders, releaseFolders, tableCSV, validateChangeset, writeCSV
 } from '../index.ts'
-import type { BuildOptions, DataPackage, ReportItem } from '../index.ts'
+import type { Baseline, BuildOptions, DataPackage, ReportItem } from '../index.ts'
 
 const here = path.dirname(new URL(import.meta.url).pathname)
-const datapackage: DataPackage = JSON.parse(fs.readFileSync(path.join(here, 'datapackage.json'), 'utf8'))
+const readJSON = (file: string) => JSON.parse(fs.readFileSync(path.join(here, file), 'utf8'))
+const datapackage: DataPackage = readJSON('datapackage.json')
 const log = path.join(here, 'log')
 const now = new Date('2026-03-01T00:00:00Z')
 
+// the previous release
+const baseline: Baseline = {
+  id: '2026-01-31',
+  reason: 'The toy table as published.',
+  tables: { things: readJSON('baseline/things.json') },
+  sources: readJSON('baseline/sources.json')
+}
+
 // the toy package's derived field: the row's newest as_of
-const options: BuildOptions = {
+const options: Omit<BuildOptions, 'layers'> = {
   datapackage,
-  log,
-  now,
-  snapshotAsOf: (_, row) => row.updated,
+  baseline,
+  baselineAsOf: (_, row) => row.updated,
   rowGroup: (_, row) => row.place,
   derive: {
     fields: { things: ['updated'] },
@@ -27,22 +35,25 @@ const options: BuildOptions = {
   }
 }
 
+/** Build from a log's release folders and next/, as one set */
+function buildLog (dir: string, more: Partial<BuildOptions> = {}) {
+  const report: ReportItem[] = []
+  const layer = readFolders(dir, [...releaseFolders(dir), 'next'], datapackage, report, { now })
+  return build({ ...options, layers: [layer], report, ...more })
+}
+
 const byKey = (rows: Record<string, string>[]) => Object.fromEntries(rows.map(row => [row.thing_id, row]))
 const kinds = (report: ReportItem[]) => report.map(item => `${item.kind}${item.changeset ? ` ${item.changeset}` : ''}${item.file && !item.changeset ? ` ${item.file}` : ''}`).sort()
 
-/** A log folder in a temp dir with the toy baseline, for writing changesets into */
-function tempLog () {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'changesets-'))
-  fs.cpSync(path.join(log, 'things', '0000'), path.join(dir, 'things', '0000'), { recursive: true })
-  return dir
-}
+/** An empty log folder in a temp dir, for writing changesets into */
+const tempLog = () => fs.mkdtempSync(path.join(os.tmpdir(), 'changesets-'))
 
 describe('build', () => {
-  const result = build(options)
+  const result = buildLog(log)
   const things = result.tables.things
   const rows = byKey(things.rows)
 
-  it('builds the tables that have a folder in the log', () => {
+  it('builds the tables in the baseline or the log', () => {
     assert.deepEqual(Object.keys(result.tables), ['things'])
   })
 
@@ -55,8 +66,23 @@ describe('build', () => {
     assert.equal(rows['t-b-1'].colour, 'spotty')
   })
 
-  it('keeps a baseline value over a back-fill older than it', () => {
-    assert.equal(rows['t-a-1'].colour, 'red')
+  it('replaces a baseline value with a change older than it, and reports the change (D46)', () => {
+    assert.equal(rows['t-a-1'].colour, 'green')
+    const older = result.report.filter(item => item.kind === 'older-change')
+    assert.deepEqual(older.map(item => [item.changeset, item.key, item.blocking]), [['2026-02-01T000000Z-0001', 't-a-1', false]])
+  })
+
+  it('lets a change in a later set replace a newer one in an earlier set', () => {
+    const dir = tempLog()
+    const first = draftChangeset([{ type: 'update', key: 't-a-2', as_of: '2026-09-01', values: { colour: 'black' }, reason: '' }], { log: dir, resource: 'things', folder: '2026-04-01', now })
+    draftChangeset([{ type: 'update', key: 't-a-2', as_of: '2026-08-01', values: { colour: 'brown' }, reason: '' }], { log: dir, resource: 'things', now })
+    const report: ReportItem[] = []
+    const layers = [['2026-04-01'], ['next']].map(folders => readFolders(dir, folders, datapackage, report, { now }))
+    const built = build({ ...options, layers })
+    assert.equal(byKey(built.tables.things.rows)['t-a-2'].colour, 'brown')
+    assert.deepEqual(built.history.things['t-a-2'].colour.map(e => e.value), ['green', 'black', 'brown'])
+    assert.equal(built.changesets.things[0].id, first.id)
+    assert.equal(built.changesets.things[0].folder, '2026-04-01')
   })
 
   it('keeps the baseline order, puts a new row after the last of its group, and drops removed rows', () => {
@@ -70,7 +96,7 @@ describe('build', () => {
   it('reads missingValues in the labelled form too', () => {
     const labelled = structuredClone(datapackage)
     labelled.resources[0].schema.missingValues = [{ value: 'NA', label: 'Not yet researched' }]
-    assert.equal(byKey(build({ ...options, datapackage: labelled }).tables.things.rows)['t-a-3'].colour, 'NA')
+    assert.equal(byKey(buildLog(log, { datapackage: labelled }).tables.things.rows)['t-a-3'].colour, 'NA')
   })
 
   it('derives fields from the row, with its newest as_of', () => {
@@ -84,67 +110,73 @@ describe('build', () => {
     assert.deepEqual(provenance['t-b-1'].colour, {
       changeset: '2026-02-03T000000Z-0003', change: 0, type: 'update', as_of: '2026-05-01', reason: 'Same day, later changeset.', sources: []
     })
-    assert.deepEqual(provenance['t-a-1'].colour, {
-      changeset: '0000-baseline',
+    assert.deepEqual(provenance['t-a-2'].colour, {
+      changeset: '2026-01-31',
       change: 0,
       type: 'snapshot',
-      as_of: '2026-01-01',
+      as_of: '2026-03-01',
       reason: 'The toy table as published.',
-      sources: ['https://example.org/apple', 'https://example.org/apple-2']
+      sources: ['https://example.org/avocado', 'https://example.org/avocado-2']
     })
     assert.equal(provenance['t-d-1'].colour.change, 1)
     assert.equal(provenance['t-a-1'].updated, undefined, 'derived cells have no provenance')
   })
 
   it('records the author, if the changeset has one', () => {
-    const baseline = build({ ...options, log: tempLog() })
-    assert.equal(baseline.provenance.things['t-a-1'].name.author, undefined)
+    assert.equal(buildLog(tempLog()).provenance.things['t-a-1'].name.author, undefined)
     const dir = tempLog()
     draftChangeset([{ type: 'update', key: 't-a-1', as_of: '2026-06-01', values: { name: 'Crab apple' }, reason: '' }],
       { log: dir, resource: 'things', author: 'Ada <ada@example.org>', now })
-    assert.equal(build({ ...options, log: dir }).provenance.things['t-a-1'].name.author, 'Ada <ada@example.org>')
+    assert.equal(buildLog(dir).provenance.things['t-a-1'].name.author, 'Ada <ada@example.org>')
   })
 
   it('skips and reports what it cannot use, and says what blocks', () => {
     assert.deepEqual(kinds(result.report), [
       'derived-value 2026-02-02T000000Z-0002',
-      'invalid-changeset things/2026/2026-02-08T000000Z-0008.toml',
-      'invalid-toml things/2026/2026-02-07T000000Z-0007.toml',
+      'invalid-changeset 2026-03-01/things/2026-02-08T000000Z-0008.toml',
+      'invalid-toml 2026-03-01/things/2026-02-07T000000Z-0007.toml',
       'missing-row 2026-02-06T000000Z-0006',
-      'pending-field',
-      'unknown-table ghosts/'
+      'older-change 2026-02-01T000000Z-0001',
+      'unknown-field',
+      'unknown-table 2026-03-01/ghosts/'
     ])
     const blocking = result.report.filter(item => item.blocking).map(item => item.kind).sort()
     assert.deepEqual(blocking, ['invalid-changeset', 'invalid-toml', 'missing-row'])
   })
 
-  it('lists a pending field with the changesets that set it', () => {
-    const pending = result.report.find(item => item.kind === 'pending-field')!
-    assert.equal(pending.field, 'weight')
-    assert.equal(pending.count, 2)
-    assert.deepEqual(pending.changesets, ['2026-02-02T000000Z-0002', '2026-02-09T000000Z-0009'])
+  it('lists an unknown field with the changesets that set it', () => {
+    const unknown = result.report.find(item => item.kind === 'unknown-field')!
+    assert.equal(unknown.field, 'weight')
+    assert.equal(unknown.count, 2)
+    assert.deepEqual(unknown.changesets, ['2026-02-02T000000Z-0002', '2026-02-09T000000Z-0009'])
     assert.match(formatReport(result.report), /weight/)
   })
 
-  it('writes the baseline back byte for byte when nothing changed it', () => {
-    const dir = tempLog()
-    const { tables } = build({ ...options, log: dir, derive: undefined })
-    assert.equal(tableCSV(tables.things), fs.readFileSync(path.join(log, 'things', '0000', 'things.csv'), 'utf8'))
+  it('reports a field an earlier release had as legacy, with the release', () => {
+    const { report } = buildLog(log, { earlierFields: { things: { weight: '2025-06-30' } } })
+    const legacy = report.find(item => item.kind === 'legacy-field')!
+    assert.deepEqual([legacy.field, legacy.release, legacy.blocking], ['weight', '2025-06-30', false])
+    assert.equal(report.some(item => item.kind === 'unknown-field'), false)
+  })
+
+  it('writes the baseline back as it was when nothing changed it', () => {
+    const { tables } = buildLog(tempLog(), { derive: undefined })
+    assert.equal(tableCSV(tables.things), 'Thing ID,Place,Name,Colour,Updated\nt-a-1,A,Apple,red,2026-01-01\nt-b-1,B,Banana,yellow,2026-01-01\nt-a-2,A,Avocado,green,2026-03-01\nt-c-1,C,Cherry,"dark, red",2026-02-01\n')
   })
 
   it('records every change to a cell, in the order that decides its value', () => {
     const colour = result.history.things['t-b-1'].colour
     assert.deepEqual(colour.map(e => [e.changeset, e.value, e.valueChanged]), [
-      ['0000-baseline', 'yellow', true],
+      ['2026-01-31', 'yellow', true],
       ['2026-02-02T000000Z-0002', 'brown', true],
       ['2026-02-03T000000Z-0003', 'spotty', true]
     ])
     assert.deepEqual(colour[1].sources, ['https://example.org/banana'])
     assert.equal(colour[1].reason, 'Bananas go brown.')
-    // a back-fill older than the baseline comes first, and the baseline's value is current
+    // a change older than the baseline still comes after it, and its value is current
     assert.deepEqual(result.history.things['t-a-1'].colour.map(e => [e.changeset, e.value]), [
-      ['2026-02-01T000000Z-0001', 'green'],
-      ['0000-baseline', 'red']
+      ['2026-01-31', 'red'],
+      ['2026-02-01T000000Z-0001', 'green']
     ])
     assert.equal(result.history.things['t-a-1'].updated, undefined, 'derived cells have no history')
     assert.equal(result.history.things['t-c-1'], undefined, 'removed rows have no history')
@@ -154,7 +186,7 @@ describe('build', () => {
     const dir = tempLog()
     draftChangeset([{ type: 'update', key: 't-a-1', as_of: '2026-06-01', values: { colour: 'red' }, reason: 'Better evidence.', sources: ['https://example.org/red'] }],
       { log: dir, resource: 'things', now })
-    const colour = build({ ...options, log: dir }).history.things['t-a-1'].colour
+    const colour = buildLog(dir).history.things['t-a-1'].colour
     assert.deepEqual(colour.map(e => [e.type, e.value, e.valueChanged]), [['snapshot', 'red', true], ['update', 'red', false]])
   })
 
@@ -164,6 +196,7 @@ describe('build', () => {
     assert.equal(colour.at(-1)!.changeset, '2026-02-03T000000Z-0003')
     assert.deepEqual(colour[1], { changeset: '2026-02-02T000000Z-0002', change: 0, type: 'update', as_of: '2026-05-01', value: 'brown', valueChanged: true, sources: ['https://example.org/banana'] })
     assert.deepEqual(history.changesets['2026-02-03T000000Z-0003'], { reasons: ['Same day, later changeset.'] })
+    assert.deepEqual(history.changesets['2026-01-31'], { reasons: ['The toy table as published.'] })
     assert.equal(history.changesets['2026-02-06T000000Z-0006'], undefined, 'no cell has its value')
   })
 })
@@ -172,7 +205,7 @@ describe('checkItem (D60)', () => {
   const failure = (key: string, fields: string[]) => ({ resource: 'things', key, fields, message: 'fails' })
 
   it('blocks on a value a change introduced', () => {
-    const result = build(options)
+    const result = buildLog(log)
     const item = checkItem(result, failure('t-b-1', ['colour']), 'thing_id')
     assert.equal(item.kind, 'check')
     assert.equal(item.blocking, true)
@@ -180,23 +213,23 @@ describe('checkItem (D60)', () => {
   })
 
   it('warns, without blocking, on a value from the baseline', () => {
-    const item = checkItem(build(options), failure('t-a-2', ['colour']), 'thing_id')
+    const item = checkItem(buildLog(log), failure('t-a-2', ['colour']), 'thing_id')
     assert.equal(item.kind, 'legacy')
     assert.equal(item.blocking, false)
-    assert.equal(item.changeset, '0000-baseline')
+    assert.equal(item.changeset, '2026-01-31')
   })
 
   it('treats a restated baseline value as legacy, and a check on several fields as introduced if any is', () => {
     const dir = tempLog()
     draftChangeset([{ type: 'update', key: 't-a-2', as_of: '2026-06-01', values: { colour: 'green', name: 'Avocado pear' }, reason: '' }],
       { log: dir, resource: 'things', now })
-    const result = build({ ...options, log: dir })
+    const result = buildLog(dir)
     assert.equal(checkItem(result, failure('t-a-2', ['colour']), 'thing_id').kind, 'legacy')
     assert.equal(checkItem(result, failure('t-a-2', ['colour', 'name']), 'thing_id').kind, 'check')
   })
 
   it('counts a field with no value as introduced with its row', () => {
-    const result = build(options)
+    const result = buildLog(log)
     assert.equal(checkItem(result, failure('t-a-3', ['colour']), 'thing_id').kind, 'check', 'a created row')
   })
 })
@@ -210,7 +243,7 @@ describe('revert', () => {
     const dir = tempLog()
     const first = draftChangeset([update], { log: dir, resource: 'things', now: at(1) })
     draftChangeset([revert(first.id)], { log: dir, resource: 'things', now: at(2) })
-    assert.equal(byKey(build({ ...options, log: dir }).tables.things.rows)['t-a-1'].colour, 'red')
+    assert.equal(byKey(buildLog(dir).tables.things.rows)['t-a-1'].colour, 'red')
   })
 
   it('restores the original when a revert is reverted', () => {
@@ -218,13 +251,13 @@ describe('revert', () => {
     const first = draftChangeset([update], { log: dir, resource: 'things', now: at(1) })
     const second = draftChangeset([revert(first.id)], { log: dir, resource: 'things', now: at(2) })
     draftChangeset([revert(second.id)], { log: dir, resource: 'things', now: at(3) })
-    assert.equal(byKey(build({ ...options, log: dir }).tables.things.rows)['t-a-1'].colour, 'blue')
+    assert.equal(byKey(buildLog(dir).tables.things.rows)['t-a-1'].colour, 'blue')
   })
 
   it('reports a revert of a changeset that is not earlier in the log', () => {
     const dir = tempLog()
     draftChangeset([revert('2026-01-01T000000Z-ffff')], { log: dir, resource: 'things', now: at(1) })
-    const { report } = build({ ...options, log: dir })
+    const { report } = buildLog(dir)
     assert.deepEqual(report.map(item => [item.kind, item.blocking]), [['revert-unknown', false]])
   })
 })
@@ -236,7 +269,7 @@ describe('rows that do or do not exist', () => {
     const dir = tempLog()
     draftChangeset([{ type: 'remove', key: 't-a-1', as_of: '2026-06-01', reason: '' }], { log: dir, resource: 'things', now: at(1) })
     draftChangeset([{ type: 'update', key: 't-a-1', as_of: '2026-06-02', values: { colour: 'blue' }, reason: '' }], { log: dir, resource: 'things', now: at(2) })
-    const { report, tables } = build({ ...options, log: dir })
+    const { report, tables } = buildLog(dir)
     assert.deepEqual(report.map(item => [item.kind, item.blocking]), [['missing-row', true]])
     assert.equal(byKey(tables.things.rows)['t-a-1'], undefined)
   })
@@ -247,7 +280,7 @@ describe('rows that do or do not exist', () => {
       { type: 'create', key: 't-e-1', as_of: '2026-06-01', values: { place: 'E' }, reason: '' },
       { type: 'update', key: 't-e-1', as_of: '2026-06-01', values: { name: 'Elderberry' }, reason: '' }
     ], { log: dir, resource: 'things', now: at(1) })
-    const { report, tables } = build({ ...options, log: dir })
+    const { report, tables } = buildLog(dir)
     assert.deepEqual(report, [])
     assert.equal(byKey(tables.things.rows)['t-e-1'].name, 'Elderberry')
   })
@@ -257,16 +290,16 @@ describe('rows that do or do not exist', () => {
     draftChangeset([{ type: 'remove', key: 't-c-1', as_of: '2026-06-01', reason: '' }], { log: dir, resource: 'things', now: at(1) })
     draftChangeset([{ type: 'create', key: 't-x-1', as_of: '2026-06-01', values: { place: 'X' }, reason: '' }], { log: dir, resource: 'things', now: at(2) })
     draftChangeset([{ type: 'create', key: 't-c-2', as_of: '2026-06-01', values: { place: 'C' }, reason: '' }], { log: dir, resource: 'things', now: at(3) })
-    const { tables } = build({ ...options, log: dir })
+    const { tables } = buildLog(dir)
     assert.deepEqual(tables.things.rows.map(row => row.thing_id), ['t-a-1', 't-b-1', 't-a-2', 't-c-2', 't-x-1'])
   })
 
-  it('reports a remove older than the row\'s snapshot, which has no effect', () => {
+  it('applies a remove older than the row\'s date in the baseline, and reports it', () => {
     const dir = tempLog()
     draftChangeset([{ type: 'remove', key: 't-a-2', as_of: '2026-02-01', reason: '' }], { log: dir, resource: 'things', now: at(1) })
-    const { report, tables } = build({ ...options, log: dir })
-    assert.deepEqual(report.map(item => item.kind), ['no-effect'])
-    assert.ok(byKey(tables.things.rows)['t-a-2'])
+    const { report, tables } = buildLog(dir)
+    assert.deepEqual(report.map(item => item.kind), ['older-change'])
+    assert.equal(byKey(tables.things.rows)['t-a-2'], undefined)
   })
 })
 
@@ -299,7 +332,7 @@ describe('changesets', () => {
     assert.match(a.id, CHANGESET_ID)
     assert.ok(a.id.startsWith('2026-11-02T142205Z-'))
     assert.notEqual(a.id, b.id)
-    assert.equal(a.path, path.join(dir, 'things', '2026', `${a.id}.toml`))
+    assert.equal(a.path, path.join(dir, 'next', 'things', `${a.id}.toml`))
     assert.deepEqual(readChangeset(fs.readFileSync(a.path, 'utf8')), { summary: 'Why', changes })
   })
 

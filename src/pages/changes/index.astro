@@ -1,0 +1,55 @@
+---
+// The changelog's hub, /changes/: a card per DPI type with its counts and the change in DPI-like
+// countries, each linking to its type's page. Built by src/Changes.ts. Nothing links here yet.
+import Layout from '../../layouts/Layout.astro'
+import Footer from '../../components/Footer.astro'
+import TypeIcon from '../../components/TypeIcon.astro'
+import { dpiTypes } from '../../Systems'
+import { changelog, changesHref, changeTitles, n, previousRelease, releaseDate, upcoming } from '../../Changes'
+
+const cards = dpiTypes.map(dpiType => {
+  const { counts, dpiCountries, dpiLike } = changelog(dpiType)
+  const gains = dpiCountries.filter(d => d.gains).length
+  return {
+    dpiType,
+    title: changeTitles[dpiType],
+    href: changesHref(dpiType),
+    rows: [
+      ['Changes', counts.changes],
+      ['Systems', counts.systems],
+      ['New', counts.new],
+      ['Removed', counts.removed],
+      ['Renamed', counts.renamed],
+      ['DPI status changes', counts.dpi],
+    ] as [string, number][],
+    dpiLike,
+    gains,
+    losses: dpiCountries.length - gains,
+  }
+})
+---
+
+<Layout fullTitle={`Changes in the ${releaseDate} release · DPI Map`}>
+  <main class="page chg">
+    <header class="chg-head">
+      <nav class="page-crumbs" aria-label="Breadcrumb"><a href="/">Map</a> › Changes</nav>
+      <h1 class="page-title page-h1">Changes in the {releaseDate} release</h1>
+      <p class:list={['chg-label', { upcoming }]}>{ upcoming ? 'Upcoming: not yet published' : `Published ${releaseDate}` }</p>
+      <p class="chg-summary">Every change to the Map’s data since the {previousRelease} release, with its reason and sources. Each DPI type has its own page.</p>
+    </header>
+
+    <div class="chg-hub">
+      { cards.map(card => (
+        <article class="chg-hub-card">
+          <h2><a href={card.href}><TypeIcon dpiType={card.dpiType} class="size-5" /><span>{card.title}</span></a></h2>
+          <dl>
+            { card.rows.map(([label, count]) => <div><dt>{label}</dt><dd>{n(count)}</dd></div>) }
+          </dl>
+          <p class="chg-hub-dpi"><span>DPI-like countries</span><b>{n(card.dpiLike.before)} → {n(card.dpiLike.after)}</b><span class="chg-hub-net">{card.gains} upgraded, {card.losses} downgraded</span></p>
+          <a class="card-more" href={card.href}>See the changes</a>
+        </article>
+      ))}
+    </div>
+  </main>
+  <Footer />
+</Layout>

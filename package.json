@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "start": "astro dev",
-    "test": "astro build && npm run links",
+    "test": "npm run data:check && astro build && npm run links",
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
@@ -15,6 +15,7 @@
     "data:payment": "DATE=${DATE:=$(date +'%Y-%m-%d')} && curl -Ss --output ./public/data/$DATE/$DATE-payment.json http://localhost:4321/api/payment.json",
     "data:exchange": "DATE=${DATE:=$(date +'%Y-%m-%d')} && curl -Ss --output ./public/data/$DATE/$DATE-exchange.json http://localhost:4321/api/exchange.json",
     "data:build": "node scripts/data-build.ts",
+    "data:check": "node scripts/data-build.ts --check",
     "validate": "node scripts/validate.mjs",
     "codebook:check": "node scripts/codebook-check.mjs",
     "test:changesets": "node --test lib/changesets/test/"

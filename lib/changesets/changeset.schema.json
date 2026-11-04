@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Changeset",
-  "description": "One changeset file, changesets/<resource>/<yyyy>/<UTC timestamp>-<4 hex>.toml, whose filename is its id. The path says which table it applies to, and the timestamp is when it was created. See D7, D31, D33, D35, D39 and D53 in docs/design/data-entry.md. The author is the changeset's author if it has one, or else the commit's author. Latest as_of wins, with ties broken by changeset id. This schema checks the parsed TOML, once as_of has been turned from a TOML date into a string.",
+  "description": "One changeset file, changesets/<release>/<resource>/<UTC timestamp>-<4 hex>.toml, or changesets/next/<resource>/… while it is pending, whose filename is its id. The path says which table it applies to, and the timestamp is when it was created. See D7, D31, D33, D35, D39, D53 and D66 in docs/design/data-entry.md. The author is the changeset's author if it has one, or else the commit's author. A change replaces the value in the previous release. Among the changes in one release, latest as_of wins, with ties broken by changeset id. This schema checks the parsed TOML, once as_of has been turned from a TOML date into a string.",
   "type": "object",
   "properties": {
     "summary": {
@@ -271,7 +271,7 @@
       "additionalProperties": false
     },
     "snapshot": {
-      "description": "The baseline only: the published table, and its evidence. Each cell's date comes from its row's Last updated.",
+      "description": "Not used any more: the baseline was a snapshot like this until D66, and is now the previous release's tables. The build skips a changeset that has one.",
       "type": "object",
       "properties": {
         "type": {

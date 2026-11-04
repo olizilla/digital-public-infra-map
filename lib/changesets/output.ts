@@ -49,12 +49,14 @@ export function historyJSON (result: BuildResult, resource: string): HistoryJSON
       })
     }
   }
-  const changesets = Object.fromEntries((result.changesets[resource] ?? [])
+  const changesets: HistoryJSON['changesets'] = Object.fromEntries((result.changesets[resource] ?? [])
     .filter(c => used.has(c.id))
     .map(c => [c.id, {
       ...(c.author ? { author: c.author } : {}),
       ...(c.summary ? { summary: c.summary } : {}),
       reasons: c.changes.map(change => change.reason ?? '')
     }]))
+  // the baseline's values have its id as their changeset
+  if (result.baseline && used.has(result.baseline.id)) changesets[result.baseline.id] = { reasons: [result.baseline.reason] }
   return { changesets, rows }
 }

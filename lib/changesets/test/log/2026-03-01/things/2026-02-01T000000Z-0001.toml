@@ -3,4 +3,4 @@ type = "update"
 key = "t-a-1"
 as_of = 2025-12-01
 values.colour = "green"
-reason = "A back-fill, older than the baseline's date for this row."
+reason = "A back-fill, older than the row's date in the baseline."

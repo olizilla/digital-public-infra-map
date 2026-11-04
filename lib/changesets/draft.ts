@@ -5,7 +5,7 @@
 import crypto from 'node:crypto'
 import fs from 'node:fs'
 import path from 'node:path'
-import { readChangeset, validateChangeset } from './log.ts'
+import { PENDING_FOLDER, readChangeset, validateChangeset } from './log.ts'
 import type { Change } from './types.ts'
 
 const ESCAPES: Record<string, string> = { '\\': '\\\\', '"': '\\"', '\n': '\\n', '\t': '\\t', '\r': '\\r' }
@@ -76,13 +76,15 @@ export interface DraftOptions {
   log: string
   /** The table the changes apply to */
   resource: string
+  /** The folder in the log: `next`, for pending changesets, unless it says otherwise */
+  folder?: string
   author?: string
   summary?: string
   now?: Date
 }
 
 /**
- * Write a changeset of `changes` to the log, at <log>/<resource>/<yyyy>/<id>.toml,
+ * Write a changeset of `changes` to the log, as a pending one, at <log>/next/<resource>/<id>.toml,
  * with a new id that isn't already used. Returns its id and path.
  */
 export function draftChangeset (changes: Change[], options: DraftOptions): { id: string, path: string, text: string } {
@@ -93,7 +95,7 @@ export function draftChangeset (changes: Change[], options: DraftOptions): { id:
   })
   for (let attempt = 0; attempt < 100; attempt++) {
     const id = changesetId(options.now)
-    const file = path.join(options.log, options.resource, id.slice(0, 4), `${id}.toml`)
+    const file = path.join(options.log, options.folder ?? PENDING_FOLDER, options.resource, `${id}.toml`)
     if (fs.existsSync(file)) continue
     fs.mkdirSync(path.dirname(file), { recursive: true })
     fs.writeFileSync(file, text, { flag: 'wx' })

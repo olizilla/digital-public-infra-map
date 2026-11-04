@@ -2,13 +2,13 @@
 # requires-python = ">=3.11"
 # dependencies = ["openpyxl==3.1.5"]
 # ///
-"""Extract evidence links from a published snapshot workbook into sources.csv.
+"""Extract evidence links from a published snapshot workbook into the release's sources JSON.
 
 In the snapshot workbook many cells are hyperlinks: the cell text is the value
 and the link is the evidence for it. The CSV and JSON exports lose the links,
 so this script reads them from the .xlsx and writes:
 
-  <out-dir>/changesets/<resource>/0000/sources.csv   resource,key,field,url
+  <out-dir>/public/data/2026-03-31/2026-03-31-sources.json   [{resource, key, field, url}], one per line
   <out-dir>/reports/na-with-evidence.csv             NA / Not Found cells that carry a link
   <out-dir>/reports/snapshot-sources.md              counts, and everything not handled cleanly
 
@@ -45,6 +45,9 @@ SHEETS = {
     "Payment- data contributions": "payment",
     "DES- data contributions": "exchange",
 }
+
+# The published release the workbook is
+SNAPSHOT = "2026-03-31"
 
 # Field ids with a special role.
 KEY = "system_id"
@@ -277,14 +280,12 @@ def main(argv=None) -> int:
     out = args.out_dir
     (out / "reports").mkdir(parents=True, exist_ok=True)
 
-    # One log per table, so one file per table.
-    for rname in SHEETS.values():
-        folder = out / "changesets" / rname / "0000"
-        folder.mkdir(parents=True, exist_ok=True)
-        with open(folder / "sources.csv", "w", newline="", encoding="utf-8") as fh:
-            w = csv.writer(fh, lineterminator="\n")
-            w.writerow(["resource", "key", "field", "url"])
-            w.writerows(sorted(s for s in sources if s[0] == rname))
+    # The evidence for the snapshot's values, beside its tables, the baseline for history (D66)
+    folder = out / "public" / "data" / SNAPSHOT
+    folder.mkdir(parents=True, exist_ok=True)
+    lines = [json.dumps(dict(zip(("resource", "key", "field", "url"), s)), ensure_ascii=False, separators=(",", ":"))
+             for s in sorted(sources)]
+    (folder / f"{SNAPSHOT}-sources.json").write_text("[\n" + ",\n".join(lines) + "\n]\n", encoding="utf-8")
 
     order = {rn: {f["id"]: i for i, f in enumerate(r.fields)} for rn, r in resources.items()}
     rorder = {rn: i for i, rn in enumerate(SHEETS.values())}
@@ -343,7 +344,7 @@ def render_report(args, resources, stats, sources, na_rows, url_fixes, placehold
 
     p.append("## Links per field\n")
     p.append("Every hyperlink on a snapshot row, by what happened to it. `evidence` links are in "
-             "`changesets/<resource>/0000/sources.csv`.\n")
+             f"`public/data/{SNAPSHOT}/{SNAPSHOT}-sources.json`.\n")
     for rn in rnames:
         res = resources[rn]
         outcomes = sorted({o for (r, _, o) in stats.links if r == rn}, key=lambda o: (o != "evidence", o))

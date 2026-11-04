@@ -1,6 +1,7 @@
 import { defineCollection, z } from 'astro:content'
 import { glob } from 'astro/loaders'
 import { csvLoader } from "@ascorbic/csv-loader"
+import { changesetLoader } from './ChangesetLoader'
 
 const blog = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/pages/blog" }),
@@ -66,11 +67,17 @@ const dataIndicators = defineCollection({
   })
 })
 
+// every changeset, released or pending (D66), checked against the changeset schema by lib/changesets
+const changesets = defineCollection({
+  loader: changesetLoader()
+})
+
 export const collections = { 
   blog, 
   cop, 
   dpiAttributes, 
   idIndicators,
   payIndicators,
-  dataIndicators
+  dataIndicators,
+  changesets
 }

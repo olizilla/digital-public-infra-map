@@ -1,0 +1,37 @@
+---
+// A country in the changelog's DPI-like countries: the country, then each system that made it gain
+// or lose a DPI-like system, with its DPI status now and the DPI test items that changed, old → new.
+// A new system says so instead, and a removed one says what took its place, if anything.
+import Status from './Status.astro'
+import YesNo from './YesNo.astro'
+import { systemHref } from '../Systems'
+import type { DpiCountry } from '../Changes'
+
+interface Props {
+  country: DpiCountry
+}
+const { country } = Astro.props
+/** the implementation status's pill, as in the DPI test (src/components/DpiTestList.astro) */
+const statusPill: Record<string, string> = { Active: 'yes', 'Pilot/Planned': 'wip', Suspended: 'no', NA: 'na' }
+---
+<li>
+  <a class="chg-dpi-c" href={`#${country.slug}`}>{country.country}</a>
+  <div class="chg-dpi-why">
+    { country.systems.map(s => s.removed
+      ? <Fragment>
+          <p class="chg-dpi-sys"><span class="chg-gone">Removed</span><span class="nm">{s.title}</span></p>
+          { s.removed.successor &&
+            <p class="chg-succ">{ s.removed.successor.how === 'duplicate' ? 'a duplicate of' : 'replaced by' } <Status status={s.removed.successor.system.dpiStatus} title="DPI status" /> <a class="ul nm" href={systemHref(s.removed.successor.system.id)}>{s.removed.successor.system.title}</a></p> }
+        </Fragment>
+      : <Fragment>
+          <p class="chg-dpi-sys"><Status status={s.after} title="DPI status" /><a class="ul nm" href={systemHref(s.id)} title={s.title}>{s.title}</a></p>
+          { s.isNew
+            ? <p class="chg-crits">New system</p>
+            : <ul class="chg-crits">{ s.criteria.map(c => (
+                <li>{ c.kind === 'status'
+                  ? <Fragment><span class={`pill ${statusPill[c.was] ?? 'na'}`}>{c.was}</span><span class="arr">→</span><span class={`pill ${statusPill[c.now] ?? 'na'}`}>{c.now}</span></Fragment>
+                  : <Fragment><YesNo status={c.was} /><span class="arr">→</span><YesNo status={c.now} /></Fragment> }<span class="lbl">{c.label}</span></li>
+              ))}</ul> }
+        </Fragment>) }
+  </div>
+</li>

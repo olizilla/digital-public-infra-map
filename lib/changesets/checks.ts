@@ -2,7 +2,7 @@
 //
 // Only values that change are checked: a failing value blocks a merge if a
 // changeset introduced it, and is a legacy warning if it was already in the
-// baseline snapshot. A changeset that only restates a value, say with new
+// baseline, the previous release. A changeset that only restates a value, say with new
 // sources, doesn't introduce it.
 
 import { reportItem } from './report.ts'
@@ -25,8 +25,8 @@ export interface Failure {
 /**
  * A report item for a failed check: blocking (`check`) if any of the fields'
  * values was introduced by a change, or a `legacy` warning if they all come
- * from a snapshot. A field with no history, like one with no value, counts as
- * introduced by whatever introduced the row's key: a snapshot, or a create.
+ * from the baseline (type `snapshot`). A field with no history, like one with no value, counts as
+ * introduced by whatever introduced the row's key: the baseline, or a create.
  * The item points at the change that introduced the failing field's value.
  */
 export function checkItem (result: BuildResult, failure: Failure, keyField: string): ReportItem {

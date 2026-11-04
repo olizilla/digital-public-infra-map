@@ -1,17 +1,17 @@
 # Data build: the 2026-11-06 release
 
-Built by `npm run data:build -- --release 2026-11-06` into `public/data/2026-11-06/`.
+Built by `npm run data:build -- --release 2026-11-06` into `public/data/2026-11-06/`, from the 2026-03-31 release and the changesets in `changesets/2026-11-06/` and `changesets/next/`.
 
-- exchange: 215 rows, from 69 changesets
-- identity: 212 rows, from 33 changesets
-- payment: 260 rows, from 299 changesets
+- exchange: 215 rows, from 68 changesets
+- identity: 212 rows, from 32 changesets
+- payment: 260 rows, from 298 changesets
 
 0 blocking items, 37 not blocking.
 
 | Kind | Blocks a merge | Items |
 |---|---|---|
 | Legacy warnings: values from the baseline that fail a check | no | 35 |
-| Pending fields: values for field ids that are not in the package | no | 2 |
+| Legacy fields: values for fields from an earlier release that are not in the package | no | 2 |
 
 ## DPI status changes since 2026-03-31
 
@@ -136,53 +136,48 @@ The headline count on the home page: places that are countries, not regions, wit
 
 ## Legacy warnings: values from the baseline that fail a check
 
-- identity, 0000-baseline change 0, id-ls-01, `legal_redress`: "Legally established mechanism" is not an allowed value
-- identity, 0000-baseline change 0, id-sc-01, `legal_redress`: "Legally established mechanism" is not an allowed value
-- identity, 0000-baseline change 0, id-so-01, `legal_redress`: "Legally established mechanism" is not an allowed value
-- identity, 0000-baseline change 0, id-tg-01, `legal_redress`: "Legally established mechanism" is not an allowed value
-- identity, 0000-baseline change 0, id-th-01, `legal_redress`: "Legally established mechanism" is not an allowed value
-- identity, 0000-baseline change 0, id-th-02, `legal_redress`: "Legally established mechanism" is not an allowed value
-- identity, 0000-baseline change 0, id-cu-01, `legal_redress`: "Legally established mechanism" is not an allowed value
-- identity, 0000-baseline change 0, id-jm-01, `legal_redress`: "Legally established mechanism" is not an allowed value
-- identity, 0000-baseline change 0, id-ad-01, `legal_redress`: "Legally established mechanism" is not an allowed value
-- identity, 0000-baseline change 0, id-at-01, `legal_redress`: "Legally established mechanism" is not an allowed value
-- identity, 0000-baseline change 0, id-ba-01, `legal_redress`: "Legally established mechanism" is not an allowed value
-- identity, 0000-baseline change 0, id-bg-01, `legal_redress`: "Legally established mechanism" is not an allowed value
-- identity, 0000-baseline change 0, id-fi-01, `legal_redress`: "Legally established mechanism" is not an allowed value
-- identity, 0000-baseline change 0, id-de-01, `legal_redress`: "Legally established mechanism" is not an allowed value
-- identity, 0000-baseline change 0, id-gr-01, `legal_redress`: "Legally established mechanism" is not an allowed value
-- identity, 0000-baseline change 0, id-hu-01, `legal_redress`: "Legally established mechanism" is not an allowed value
-- identity, 0000-baseline change 0, id-lv-01, `legal_redress`: "Legally established mechanism" is not an allowed value
-- identity, 0000-baseline change 0, id-lt-01, `legal_redress`: "Legally established mechanism" is not an allowed value
-- identity, 0000-baseline change 0, id-lu-01, `legal_redress`: "Legally established mechanism" is not an allowed value
-- identity, 0000-baseline change 0, id-mk-01, `legal_redress`: "Legally established mechanism" is not an allowed value
-- identity, 0000-baseline change 0, id-md-01, `legal_redress`: "Legally established mechanism" is not an allowed value
-- identity, 0000-baseline change 0, id-me-01, `legal_redress`: "Legally established mechanism" is not an allowed value
-- identity, 0000-baseline change 0, id-es-01, `legal_redress`: "Legally established mechanism" is not an allowed value
-- identity, 0000-baseline change 0, id-se-01, `legal_redress`: "Legally established mechanism" is not an allowed value
-- identity, 0000-baseline change 0, id-gy-01, `legal_redress`: "Legally established mechanism" is not an allowed value
-- identity, 0000-baseline change 0, id-nz-01, `legal_redress`: "Legally established mechanism" is not an allowed value
-- identity, 0000-baseline change 0, id-ws-01, `legal_redress`: "Legally established mechanism" is not an allowed value
-- identity, 0000-baseline change 0, id-to-01, `legal_redress`: "Yes" is not an allowed value
-- payment, 0000-baseline change 0, pay-ng-02, `operator`: "Central bank/Other" is not an allowed value
-- payment, 0000-baseline change 0, pay-om-01, `system_type`: "Interbank payment system, Mobile wallet" is not an allowed value
-- payment, 0000-baseline change 0, pay-om-02, `system_type`: "Interbank payment system, Mobile wallet" is not an allowed value
-- exchange, 0000-baseline change 0, dx-bb-01, `ownership`: "Public, Private" is not an allowed value
-- exchange, 0000-baseline change 0, dx-li-01, `ownership`: "Public, Private" is not an allowed value
-- exchange, 0000-baseline change 0, dx-mx-01, `ownership`: "Public, Private" is not an allowed value
-- exchange, 0000-baseline change 0, dx-pa-01, `ownership`: "Public, Private" is not an allowed value
+- identity, 2026-03-31 change 0, id-ls-01, `legal_redress`: "Legally established mechanism" is not an allowed value
+- identity, 2026-03-31 change 0, id-sc-01, `legal_redress`: "Legally established mechanism" is not an allowed value
+- identity, 2026-03-31 change 0, id-so-01, `legal_redress`: "Legally established mechanism" is not an allowed value
+- identity, 2026-03-31 change 0, id-tg-01, `legal_redress`: "Legally established mechanism" is not an allowed value
+- identity, 2026-03-31 change 0, id-th-01, `legal_redress`: "Legally established mechanism" is not an allowed value
+- identity, 2026-03-31 change 0, id-th-02, `legal_redress`: "Legally established mechanism" is not an allowed value
+- identity, 2026-03-31 change 0, id-cu-01, `legal_redress`: "Legally established mechanism" is not an allowed value
+- identity, 2026-03-31 change 0, id-jm-01, `legal_redress`: "Legally established mechanism" is not an allowed value
+- identity, 2026-03-31 change 0, id-ad-01, `legal_redress`: "Legally established mechanism" is not an allowed value
+- identity, 2026-03-31 change 0, id-at-01, `legal_redress`: "Legally established mechanism" is not an allowed value
+- identity, 2026-03-31 change 0, id-ba-01, `legal_redress`: "Legally established mechanism" is not an allowed value
+- identity, 2026-03-31 change 0, id-bg-01, `legal_redress`: "Legally established mechanism" is not an allowed value
+- identity, 2026-03-31 change 0, id-fi-01, `legal_redress`: "Legally established mechanism" is not an allowed value
+- identity, 2026-03-31 change 0, id-de-01, `legal_redress`: "Legally established mechanism" is not an allowed value
+- identity, 2026-03-31 change 0, id-gr-01, `legal_redress`: "Legally established mechanism" is not an allowed value
+- identity, 2026-03-31 change 0, id-hu-01, `legal_redress`: "Legally established mechanism" is not an allowed value
+- identity, 2026-03-31 change 0, id-lv-01, `legal_redress`: "Legally established mechanism" is not an allowed value
+- identity, 2026-03-31 change 0, id-lt-01, `legal_redress`: "Legally established mechanism" is not an allowed value
+- identity, 2026-03-31 change 0, id-lu-01, `legal_redress`: "Legally established mechanism" is not an allowed value
+- identity, 2026-03-31 change 0, id-mk-01, `legal_redress`: "Legally established mechanism" is not an allowed value
+- identity, 2026-03-31 change 0, id-md-01, `legal_redress`: "Legally established mechanism" is not an allowed value
+- identity, 2026-03-31 change 0, id-me-01, `legal_redress`: "Legally established mechanism" is not an allowed value
+- identity, 2026-03-31 change 0, id-es-01, `legal_redress`: "Legally established mechanism" is not an allowed value
+- identity, 2026-03-31 change 0, id-se-01, `legal_redress`: "Legally established mechanism" is not an allowed value
+- identity, 2026-03-31 change 0, id-gy-01, `legal_redress`: "Legally established mechanism" is not an allowed value
+- identity, 2026-03-31 change 0, id-nz-01, `legal_redress`: "Legally established mechanism" is not an allowed value
+- identity, 2026-03-31 change 0, id-ws-01, `legal_redress`: "Legally established mechanism" is not an allowed value
+- identity, 2026-03-31 change 0, id-to-01, `legal_redress`: "Yes" is not an allowed value
+- payment, 2026-03-31 change 0, pay-ng-02, `operator`: "Central bank/Other" is not an allowed value
+- payment, 2026-03-31 change 0, pay-om-01, `system_type`: "Interbank payment system, Mobile wallet" is not an allowed value
+- payment, 2026-03-31 change 0, pay-om-02, `system_type`: "Interbank payment system, Mobile wallet" is not an allowed value
+- exchange, 2026-03-31 change 0, dx-bb-01, `ownership`: "Public, Private" is not an allowed value
+- exchange, 2026-03-31 change 0, dx-li-01, `ownership`: "Public, Private" is not an allowed value
+- exchange, 2026-03-31 change 0, dx-mx-01, `ownership`: "Public, Private" is not an allowed value
+- exchange, 2026-03-31 change 0, dx-pa-01, `ownership`: "Public, Private" is not an allowed value
 
-## Pending fields: values for field ids that are not in the package
+## Legacy fields: values for fields from an earlier release that are not in the package
 
-| Table | Field id | Values | Changesets |
-|---|---|---|---|
-| exchange | `Semantic interoperability` | 213 | 1 |
-| payment | `Type of settlement system` | 259 | 1 |
-
-The changesets that set them:
-
-- exchange, `Semantic interoperability`: 0000-baseline
-- payment, `Type of settlement system`: 0000-baseline
+| Table | Field | Values | Changesets | Last in |
+|---|---|---|---|---|
+| exchange | `Semantic interoperability` | 213 | 0 | 2026-03-31 |
+| payment | `Type of settlement system` | 259 | 0 | 2026-03-31 |
 
 ## scripts/validate.mjs on the release
 

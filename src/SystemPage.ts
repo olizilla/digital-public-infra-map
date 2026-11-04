@@ -6,11 +6,12 @@ import { schemas, missingLabelOf, missingValuesOf, type DPIType, type Field } fr
 import { codebookVariableOf, meaningsOf } from './Codebook'
 import { dpiTest, statusOf, type Criterion } from './DpiTest'
 import { historyFor, sourcesFor, type System } from './Systems'
+import { baselineRelease, changesetRelease } from './Release'
 import { parseDate } from './Util'
 import { listValues } from '../scripts/fields.mjs'
 
-/** The dataset snapshot the log starts from: the baseline changeset, `0000-baseline` */
-export const snapshotDate = '2026-03-31'
+/** The dataset snapshot the history starts from: the 2026-03-31 release (src/Release.ts) */
+export const snapshotDate = baselineRelease
 
 /** "2025-09-03" as "Sep 2025", or the text as it is if it isn't a date */
 export function monthYear (date: string) {
@@ -23,9 +24,12 @@ export function monthYear (date: string) {
  */
 const sourceBranch = process.env.CF_PAGES_BRANCH || 'main'
 
-/** A changeset file on GitHub: changesets/<resource>/<yyyy>/<id>.toml, or 0000/ for the baseline */
-export const changesetUrl = (resource: string, id: string) =>
-  `https://github.com/olizilla/digital-public-infra-map/blob/${sourceBranch}/changesets/${resource}/${id.slice(0, 4)}/${id}.toml`
+/** A released changeset's file on GitHub: changesets/<release>/<resource>/<id>.toml */
+export function changesetUrl (resource: string, id: string) {
+  const release = changesetRelease(resource, id)
+  if (!release) throw new Error(`${resource} changeset ${id} is not in a release, so it has no link`)
+  return `https://github.com/olizilla/digital-public-infra-map/blob/${sourceBranch}/changesets/${release}/${resource}/${id}.toml`
+}
 
 /** An author in git's format, `Name <email>`, as the name alone */
 export const authorName = (author?: string) => author?.replace(/\s*<[^>]*>\s*$/, '').trim() || undefined
