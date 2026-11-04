@@ -18,7 +18,7 @@
     "data:check": "node scripts/data-build.ts --check",
     "validate": "node scripts/validate.mjs",
     "codebook:check": "node scripts/codebook-check.mjs",
-    "test:changesets": "node --test lib/changesets/test/"
+    "test:changesets": "node --test 'lib/changesets/test/*.test.ts'"
   },
   "dependencies": {
     "@ascorbic/csv-loader": "^2.0.3",
