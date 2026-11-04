@@ -2,7 +2,7 @@
 type = "create"
 key = "pay-lac-04"
 as_of = 2026-10-15
-values.country = "Caribbean"
+values.country = "Latin America and the Caribbean"
 values.name = "CAPSS (CARICOM Payment and Settlement System)"
 reason = "New regional entry for instant cross-border payments in local currencies, modelled on PAPSS. New Country / Region label; confirm before publication."
 sources = [

@@ -25,7 +25,7 @@ Use the [Measuring DPI framework](https://docs.google.com/spreadsheets/d/1-G3Jmo
 
 ## Build on the data
 
-[Download and review the raw data](/data). Contribute to the state of DPI by deriving insights from the data.
+[Download and review the raw data](/data/). Contribute to the state of DPI by deriving insights from the data.
 
 
 ---

@@ -17,9 +17,15 @@ export function monthYear (date: string) {
   return parseDate(date)?.toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' }) ?? date
 }
 
+/**
+ * The branch the changeset links point at: the one Cloudflare Pages is building, so a
+ * preview links to files on its own branch, which may not be on main yet.
+ */
+const sourceBranch = process.env.CF_PAGES_BRANCH || 'main'
+
 /** A changeset file on GitHub: changesets/<resource>/<yyyy>/<id>.toml, or 0000/ for the baseline */
 export const changesetUrl = (resource: string, id: string) =>
-  `https://github.com/olizilla/digital-public-infra-map/blob/main/changesets/${resource}/${id.slice(0, 4)}/${id}.toml`
+  `https://github.com/olizilla/digital-public-infra-map/blob/${sourceBranch}/changesets/${resource}/${id.slice(0, 4)}/${id}.toml`
 
 /** An author in git's format, `Name <email>`, as the name alone */
 export const authorName = (author?: string) => author?.replace(/\s*<[^>]*>\s*$/, '').trim() || undefined

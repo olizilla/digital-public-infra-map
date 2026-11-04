@@ -709,16 +709,29 @@ def same_value(f, a, b):
 # (a) on every value read from the sheets, before normalise_value, and so before
 #     it's emitted;
 # (b) on the published data: a wording changeset per table, with an update for
-#     each baseline cell a rule rewrites, unless this round's sheet changes set
-#     that cell. Its reason is "Use the agreed wording for <field title>" (D54).
+#     each baseline cell a rule rewrites, unless this round's sheet changes or a
+#     changeset we didn't write (like a region rename) set that cell. Its reason
+#     is "Use the agreed wording for <field title>" (D54).
 #
 # A rule that maps values matches them by canon(), so case, spacing and
 # punctuation don't matter. normalise_value's older rules only reach a value
 # after these, and agree with them: every value a rule writes is the codebook's
 # own wording. Rewording a value twice changes nothing, and the checks require
 # every value in a changeset to be in the agreed wording already.
+#
+# A rewording is a mechanical edit, so its change inherits the as_of of the value
+# it rewrites (D65): for a published cell, its row's Last updated. When it was
+# made is in its changeset's id (D33). The wording changesets come after the
+# baseline and this round's changes, so on a tie of as_of the rewrite wins (D46).
 
-WORDING_AS_OF = '2026-11-03'
+# Region aliases -> their UN M49 names, from public/data/place-names.csv: the rows
+# whose code is a region (not a two-letter country code). Filled in by main().
+REGION_NAMES = {}
+
+
+def region_name(value):
+    """A region alias, like Caribbean or European Union, as its UN M49 name"""
+    return REGION_NAMES.get(canon(value), value)
 
 
 def codes_separated(value):
@@ -757,16 +770,19 @@ WORDING = [
     ('payment', 'transaction_types', 'P2B -> P2M', {'P2B': 'P2M'}),
     ('payment', 'transaction_types', 'no repeats', without_repeats),
     (None, 'url', 'trim whitespace', str.strip),
+    (None, 'country', 'region aliases -> UN M49 names (place-names.csv)', region_name),
 ]
 
 # Fields whose values may be ", " lists: a dict rule rewrites each item.
 WORDING_LISTS = {('payment', 'system_type'), ('payment', 'transaction_types')}
 
 # One-off fixes to published cells, each its own change with its own reason:
-# (resource, key, field id, the value we expect, the agreed value, reason)
+# (resource, key, field id, the value we expect, the agreed value, reason, as_of).
+# as_of is None for a mechanical fix, which inherits the published cell's date
+# (D65), and the date of the research for one that is research.
 WORDING_ONE_OFF = [
-    ('identity', 'id-ps-01', 'url', 'sa/sso', 'NA', 'Not a URL.'),
-    ('payment', 'pay-bt-01', 'operator', 'Central bank, Private PSP', 'Central bank', 'Confirmed by the research team.'),
+    ('identity', 'id-ps-01', 'url', 'sa/sso', 'NA', 'Not a URL.', None),
+    ('payment', 'pay-bt-01', 'operator', 'Central bank, Private PSP', 'Central bank', 'Confirmed by the research team.', '2026-11-03'),
 ]
 
 # Published cells the rules would rewrite, but that are decided next round (D60):
@@ -963,6 +979,9 @@ def load_places(root, baseline):
         names[place_key(r['name'])] = r['code']
     for r in load_csv(root / 'public/data/place-names.csv'):
         names[place_key(r['dpimap_name'])] = r['code']
+        if len(r['code']) > 2:
+            # a region: the WORDING rule for country writes its UN M49 name
+            REGION_NAMES[canon(r['dpimap_name'])] = r['name_in_source']
     for name, rows in baseline.items():
         for r in rows:
             code = r['System ID'].split('-', 1)[1].rsplit('-', 1)[0]
@@ -1028,7 +1047,7 @@ class Report:
     not_found_cells: Counter = field(default_factory=Counter)  # (resource, field) -> cells
     grouping: Counter = field(default_factory=Counter)    # values and changes in changes made from rows
     reworded: Counter = field(default_factory=Counter)    # (resource, field id, rule) -> sheet rows the rule rewrote
-    wording: list = field(default_factory=list)           # (resource, key, field id, published, agreed, rules or one-off, reason)
+    wording: list = field(default_factory=list)           # (resource, key, field id, published, agreed, rules or one-off, reason, as_of)
     wording_skipped: list = field(default_factory=list)   # (resource, key, field id, published, agreed, why)
 
 
@@ -1224,7 +1243,12 @@ def main(xlsx, root, created_at, previous=None):
                                                      '; '.join(f"{c['System ID']} {c[name_header[resource]] or '(blank)'}" for c in existing)))
                 sid = mint(resource, code)
                 name = normalise_value(schema.field(resource, 'name'), named[0].new)[0]
-                new_systems[sid] = {'code': code, 'country': country, 'name': name, 'group': g, 'tab': tab.title,
+                # the place as the sheet or baseline writes it stays the row's label for matching later
+                # rows; the create's value is in the agreed wording
+                agreed_country, rules = reword(resource, 'country', country)
+                for rule in rules:
+                    report.reworded[(resource, 'country', rule)] += 1
+                new_systems[sid] = {'code': code, 'country': agreed_country, 'name': name, 'group': g, 'tab': tab.title,
                                     'row': {'System ID': sid, name_header[resource]: name, 'Country / Region': country},
                                     'rows': (grows[0].n, grows[-1].n),
                                     'others': [f"{c['System ID']} {c[name_header[resource]]}"
@@ -1490,22 +1514,27 @@ def main(xlsx, root, created_at, previous=None):
     # Wording changesets (D54, D55): one per table, after this round's changes from the sheets
     manifest = root / 'reports' / 'import-proposals-changesets.csv'
     ours = {r['changeset'] for r in load_csv(manifest)} if manifest.exists() else set()
-    removed_by_others = removes_in_log(root, schema, ours)
+    removed_by_others, set_by_others = others_in_log(root, schema, ours)
     set_by_sheets = {(x.resource, x.key, x.fid) for x in kept}
+    last_updated = {resource: schema.header(resource, 'last_updated') for resource in schema.resources}
     for resource in schema.resources:
-        one_off = {(k, fid): (expect, agreed, reason) for res, k, fid, expect, agreed, reason in WORDING_ONE_OFF if res == resource}
+        one_off = {(k, fid): (expect, agreed, reason, as_of)
+                   for res, k, fid, expect, agreed, reason, as_of in WORDING_ONE_OFF if res == resource}
         missing = {k for k, _ in one_off} - set(by_id[resource])
         if missing:
             raise SystemExit(f'WORDING_ONE_OFF: {sorted(missing)} not in the {resource} baseline')
         changes = []
         for row in baseline[resource]:
             sid = row['System ID']
+            # the cell's value is the baseline's: the sheets, a hand-written changeset or a remove would
+            # be skipped below. So the rewrite inherits the baseline cell's as_of (D65).
+            inherited = snapshot_as_of(row.get(last_updated[resource], ''))
             for fid, f in schema.fields[resource].items():
                 published = row.get(f['name'])
                 if f.get('draft') or published is None:
                     continue
                 if (sid, fid) in one_off:
-                    expect, agreed, reason = one_off[(sid, fid)]
+                    expect, agreed, reason, as_of = one_off[(sid, fid)]
                     rules = ['one-off']
                     if published != expect:
                         report.wording_skipped.append((resource, sid, fid, published, agreed, f'the one-off fix expects {expect!r}'))
@@ -1515,15 +1544,22 @@ def main(xlsx, root, created_at, previous=None):
                     if not rules:
                         continue
                     reason = wording_reason(schema, resource, fid)
+                    as_of = None
                 why = ('decided next round (D60)' if (resource, sid, fid) in WORDING_LEAVE_ALONE else
                        "set by this round's changes from the sheets" if (resource, sid, fid) in set_by_sheets else
                        f'removed by {removed[sid][0]}' if sid in removed else
-                       f'removed by changeset {removed_by_others[resource][sid]}' if sid in removed_by_others[resource] else None)
+                       f'removed by changeset {removed_by_others[resource][sid]}' if sid in removed_by_others[resource] else
+                       f'set by changeset {set_by_others[resource][(sid, fid)]}' if (sid, fid) in set_by_others[resource] else None)
                 if why:
                     report.wording_skipped.append((resource, sid, fid, published, agreed, why))
                     continue
-                changes.append({'type': 'update', 'key': sid, DATE_FIELD: WORDING_AS_OF, 'values': {fid: agreed}, 'reason': reason})
-                report.wording.append((resource, sid, fid, published, agreed, rules, reason))
+                if as_of is None:
+                    if inherited is None:
+                        raise SystemExit(f'{resource} {sid}: Last updated {row.get(last_updated[resource])!r} is not dd/mm/yy, '
+                                         f'so the rewrite of {fid} has no date to inherit (D65)')
+                    as_of = inherited
+                changes.append({'type': 'update', 'key': sid, DATE_FIELD: as_of, 'values': {fid: agreed}, 'reason': reason})
+                report.wording.append((resource, sid, fid, published, agreed, rules, reason, as_of))
         if not changes:
             continue
         n = len(changesets) + 1
@@ -1661,17 +1697,27 @@ def sources_for(row, report):
     return out
 
 
-def removes_in_log(root, schema, ours):
-    """resource -> key -> the changeset that removes it, for changesets this importer didn't write, like a hand-written remove"""
-    found = {resource: {} for resource in schema.resources}
+def others_in_log(root, schema, ours):
+    """For changesets this importer didn't write, like a hand-written remove or region rename:
+    (resource -> key -> the changeset that removes it, resource -> (key, field id) -> the last changeset that sets it)"""
+    removes = {resource: {} for resource in schema.resources}
+    sets = {resource: {} for resource in schema.resources}
     for resource in schema.resources:
         for path in sorted((root / 'changesets' / resource).glob('*/*.toml')):
             if path.parent.name == '0000' or path.stem in ours:
                 continue
             for change in read_changeset(path.read_text(encoding='utf-8')).get('changes', []):
                 if change.get('type') == 'remove':
-                    found[resource][change.get('key', '')] = path.stem
-    return found
+                    removes[resource][change.get('key', '')] = path.stem
+                for fid in change.get('values', {}):
+                    sets[resource][(change.get('key', ''), fid)] = path.stem
+    return removes, sets
+
+
+def snapshot_as_of(text):
+    """A baseline row's Last updated, dd/mm/yy, as YYYY-MM-DD: the as_of the build gives its cells (D7), or None"""
+    m = re.fullmatch(r'(\d{2})/(\d{2})/(\d{2})', text)
+    return f'20{m[3]}-{m[2]}-{m[1]}' if m else None
 
 
 # ---------------------------------------------------------------------------
@@ -1950,9 +1996,9 @@ def write_reports(root, report, changesets, removed, new_systems, fills, schema,
               [(res, sid, fid, t, n, v) for res, sid, fid, xs in sorted(report.conflicts) for t, n, v in xs])
     write_csv(rdir / f'{prefix}-newvar-overwrites.csv', ['tab', 'row', 'system', 'field', 'baseline value', 'log value'],
               sorted(report.overwrites, key=lambda r: (r[0], r[1])))
-    write_csv(rdir / f'{prefix}-wording.csv', ['table', 'system', 'field', 'published', 'agreed', 'rules', 'reason', 'skipped because'],
-              [(r, k, f, a, b, '; '.join(rules), reason, '') for r, k, f, a, b, rules, reason in report.wording]
-              + [(r, k, f, a, b, '', '', why) for r, k, f, a, b, why in report.wording_skipped])
+    write_csv(rdir / f'{prefix}-wording.csv', ['table', 'system', 'field', 'published', 'agreed', 'rules', 'reason', DATE_FIELD, 'skipped because'],
+              [(r, k, f, a, b, '; '.join(rules), reason, as_of, '') for r, k, f, a, b, rules, reason, as_of in report.wording]
+              + [(r, k, f, a, b, '', '', '', why) for r, k, f, a, b, why in report.wording_skipped])
 
     L = []
     L.append('# Proposal logs import report\n')
@@ -2063,18 +2109,21 @@ def write_reports(root, report, changesets, removed, new_systems, fills, schema,
 
     L.append('## Agreed wording (D54, D55)\n')
     L.append(f'The rules in `WORDING` rewrite values from the sheets before they are emitted, and the published data in one wording changeset per table, '
-             f'with {DATE_FIELD} = {WORDING_AS_OF} and the reason "Use the agreed wording for <field title>". '
+             'with the reason "Use the agreed wording for <field title>". '
              'Each rewritten cell is its own change; the rules that hit one cell share its change. '
-             "A published cell that this round's changes from the sheets set is left to them. "
+             f"A rewording is mechanical, so each change's {DATE_FIELD} is the published cell's, its row's Last updated (D65), "
+             'and the wording changeset comes after the baseline, so the rewrite wins the tie. '
+             "A published cell that this round's changes from the sheets, or a changeset we didn't write, set is left to them. "
              f'Every published cell, rewritten or skipped, is in [`{prefix}-wording.csv`]({prefix}-wording.csv).\n')
-    published = Counter((r, f, rule) for r, k, f, a, b, rules, reason in report.wording for rule in rules if rule != 'one-off')
+    published = Counter((r, f, rule) for r, k, f, a, b, rules, reason, as_of in report.wording for rule in rules if rule != 'one-off')
     L.append(md_table(['table', 'field', 'rule', 'sheet rows', 'published cells'],
                       [(r, f, rule, report.reworded[(r, f, rule)], published[(r, f, rule)])
                        for r in schema.resources for res, f, rule, how in WORDING if res in (None, r) and f in schema.fields[r]]))
     L.append('')
     one_offs = [x for x in report.wording if 'one-off' in x[5]]
     L.append(f'One-off fixes ({len(one_offs)}):\n')
-    L.append(md_table(['system', 'field', 'published', 'agreed', 'reason'], [(k, f, a, b, reason) for r, k, f, a, b, rules, reason in one_offs]))
+    L.append(md_table(['system', 'field', 'published', 'agreed', 'reason', DATE_FIELD],
+                      [(k, f, a, b, reason, as_of) for r, k, f, a, b, rules, reason, as_of in one_offs]))
     L.append('')
     if report.wording_skipped:
         L.append(f'Published cells not rewritten ({len(report.wording_skipped)}):\n')

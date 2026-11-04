@@ -36,7 +36,7 @@ The following includes some of the added information to the latest dataset.
 
 <aside>
 
-All these updates have been recorded in the new dataset (accessible under ‘Version Management’ on the front page. Read about them [here](/data).
+All these updates have been recorded in the new dataset (accessible under ‘Version Management’ on the front page. Read about them [here](/data/).
 
 </aside>
 

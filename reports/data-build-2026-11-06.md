@@ -4,7 +4,7 @@ Built by `npm run data:build -- --release 2026-11-06` into `public/data/2026-11-
 
 - exchange: 215 rows, from 69 changesets
 - identity: 212 rows, from 33 changesets
-- payment: 260 rows, from 300 changesets
+- payment: 260 rows, from 299 changesets
 
 0 blocking items, 37 not blocking.
 
@@ -191,7 +191,7 @@ Its failures are listed above, as values that fail a check or as legacy warnings
 ```
 Summary
 
-package: /Users/oli/Code/olizilla/digital-public-infra-map/.claude/worktrees/agent-a073690fb01beec10/public/data/2026-11-06/datapackage.json, with 5 resources, OK
+package: /Users/oli/Code/olizilla/digital-public-infra-map/.claude/worktrees/ucl-iipp-project-review-a8f0bf/public/data/2026-11-06/datapackage.json, with 5 resources, OK
 
 identity: 212 rows, 28 errors, 1 warning
   "Legally binding redress mechanism ": 28 (allowed: Customer service mechanism, Legally binding mechanism, Both, Not Found)

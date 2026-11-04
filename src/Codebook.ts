@@ -84,8 +84,8 @@ for (const dpiType of Object.keys(codebook) as DPIType[]) {
   }
 }
 
-/** The path of a field's variable page, like `/codebook/payment/status` */
-export const variablePath = (dpiType: DPIType, field: Field) => `/codebook/${resourceNames[dpiType]}/${field.id}`
+/** The path of a field's variable page, like `/codebook/payment/status/` */
+export const variablePath = (dpiType: DPIType, field: Field) => `/codebook/${resourceNames[dpiType]}/${field.id}/`
 
 function findVariable (dpiType: DPIType, name: string) {
   return codebook[dpiType].find(variable => variable.name === name)

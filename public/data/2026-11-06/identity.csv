@@ -194,7 +194,7 @@ id-lb-01,Lebanon,2024-10-01,0,Yes,NA,NA,No,Planned/Piloted,Yes,No,No,No,No,No,Of
 id-om-01,Oman,2024-10-01,0,Yes,National digital identity,https://oman.om/en/pki,Yes,NA,Yes,No,Yes,NA,Yes,No,National Digital Certification Center,NA,No,Yes,No,Yes,No,No,No,NA,"Thales, Uqudo"
 id-qa-01,Qatar,2025-02-20,0,Yes,Tawtheeq,https://www.mcit.gov.qa/en/services/national-authentication-service,Yes,Implemented,Yes,No,Yes,NA,Yes,No,Ministry of the Interior,NA,No,Yes,NA,Yes,No,No,NA,NA,Thales
 id-sa-01,Saudi Arabia,2025-12-01,1,Yes,Digital identity/ Nafath App,https://www.iam.gov.sa/authservice/userauthservice?lang=ar,Yes,Implemented,Yes,NA,Yes,Yes,Yes,Yes,National Information Center,Both,Yes,Yes,NA,Yes,Yes,NA,Yes,Ministry of Finance,NA
-id-ps-01,State of Palestine,2026-11-03,0,No,NA,NA,No,NA,NA,No,No,No,No,No,NA,NA,No,No,No,No,No,No,No,No,Cybernetica
+id-ps-01,State of Palestine,2025-12-01,0,No,NA,NA,No,NA,NA,No,No,No,No,No,NA,NA,No,No,No,No,No,No,No,No,Cybernetica
 id-sy-01,Syria,2024-10-01,0,No,NA,NA,No,NA,Yes,No,No,No,No,No,NA,NA,No,Yes,No,Yes,No,No,No,NA,NA
 id-tr-01,Turkey,2024-10-01,1,Yes,e-Devlet Kapısı,https://giris.turkiye.gov.tr/Giris/,NA,Implemented,Yes,No,Yes,NA,Yes,No,Digital Transformation Office (CBDDO),Customer service mechanism,No,Yes,No,No,Yes,No,Yes,NA,NA
 id-ae-01,United Arab Emirates,2024-10-01,1,Yes,UAE Pass,https://uaepass.ae/,Yes,Implemented,Yes,Yes,Yes,Yes,Yes,Yes,Telecommunications and Digital Government Regulatory Authority,Both,No,Yes,No,Yes,No,No,Yes,NA,"Grabba, Visiomed"
