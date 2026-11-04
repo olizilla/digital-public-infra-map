@@ -33,7 +33,7 @@ const parts = [
   `${n(counts.renamed)} renamed`,
   plural(counts.dpi, 'DPI status change'),
 ]
-const summary = `${plural(counts.changes, 'change')} to ${plural(counts.systems, 'system')} in ${plural(counts.countries, 'country', 'countries')}: ${parts.join(', ')}.`
+const summary = `${plural(counts.changes, 'change')} to ${plural(counts.systems, 'system')} in ${plural(counts.countries, 'country', 'countries')}`
 ---
 
 <Layout fullTitle={`${title} changes · DPI Map`}>
@@ -43,8 +43,9 @@ const summary = `${plural(counts.changes, 'change')} to ${plural(counts.systems,
     <header class="chg-head">
       <nav class="page-crumbs" aria-label="Breadcrumb"><a href="/">Map</a> › <a href="/changes/">Changes</a> › {title}</nav>
       <h1 class="page-title chg-h1">{title} changes</h1>
-      <p class:list={['chg-label', { upcoming }]}>{ upcoming ? `Upcoming: the ${releaseDate} release, not yet published` : `Published ${releaseDate}` }</p>
+      <p class:list={['chg-label', { upcoming }]}>{ upcoming ? `Upcoming: not yet published` : `Published ${releaseDate}` }</p>
       <p class="chg-summary">{summary}</p>
+      <p class="chg-summary">{parts.join(', ')}</p>
       <details class="chg-about more">
         <summary>About this page</summary>
         <p>Every change researchers have made to the {noun} data since the {previousRelease} release, by country and system. Each shows the old value and the new, the reason and the sources given for it, and the changeset it’s in. Changes that only bring a value into the codebook’s agreed wording are folded under each system. Open a system’s page to see all its values and their history.</p>
@@ -53,7 +54,7 @@ const summary = `${plural(counts.changes, 'change')} to ${plural(counts.systems,
     </header>
 
     <section class="chg-dpi" aria-labelledby="dpi-h">
-      <h2 class="chg-h2" id="dpi-h"><span>DPI-like countries</span><span class="chg-h2-note">{n(dpiLike.before)} → {n(dpiLike.after)}</span></h2>
+      <h2 class="chg-h4" id="dpi-h"><span>DPI-like countries</span><span class="chg-h2-note"> {n(dpiLike.before)} → {n(dpiLike.after)}</span></h2>
       { dpiCountries.length === 0 && <p class="chg-lede">No country gains or loses a DPI-like {noun} system.</p> }
       { [{ head: 'Upgraded', dir: 'up', list: gains }, { head: 'Downgraded', dir: 'down', list: losses }].filter(g => g.list.length).map(g => (
         <Fragment>

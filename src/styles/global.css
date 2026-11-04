@@ -705,7 +705,7 @@ details.more[open] > summary::before {
     @apply inline-block mb-3 px-2 py-0.5 rounded border border-zinc-300 bg-zinc-50 text-xs leading-5 font-semibold text-zinc-600;
     &.upcoming { @apply border-wip-line bg-wip text-zinc-800; }
   }
-  .chg-summary { @apply max-w-[44rem] text-lg leading-[26px] md:text-xl md:leading-7 text-zinc-700; }
+  .chg-summary { @apply max-w-[44rem] leading-[26px] text-lg md:leading-7 text-zinc-700; }
   .chg-about {
     @apply mt-3 max-w-[44rem] text-sm leading-[22px] text-zinc-600;
     & > summary { @apply text-[13px] font-medium; }

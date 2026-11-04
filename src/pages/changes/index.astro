@@ -33,9 +33,8 @@ const cards = dpiTypes.map(dpiType => {
   <main class="page chg">
     <header class="chg-head">
       <nav class="page-crumbs" aria-label="Breadcrumb"><a href="/">Map</a> › Changes</nav>
-      <h1 class="page-title page-h1">Changes in the {releaseDate} release</h1>
+      <h1 class="page-title chg-h1">Changes since {releaseDate}</h1>
       <p class:list={['chg-label', { upcoming }]}>{ upcoming ? 'Upcoming: not yet published' : `Published ${releaseDate}` }</p>
-      <p class="chg-summary">Every change to the Map’s data since the {previousRelease} release, with its reason and sources. Each DPI type has its own page.</p>
     </header>
 
     <div class="chg-hub">
