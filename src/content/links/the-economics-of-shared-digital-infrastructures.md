@@ -3,8 +3,7 @@
 # abstract and PDF and page link from a Zotero capture of the IIPP page and its UCL Discovery record, 2026-11-05
 # links, full author names, date and description (David's own summary) from his library, library.eaves.ca/publications.json, read 2026-11-05
 title: "The Economics of Shared Digital Infrastructures: A framework for assessing societal value"
-# the profile gives 1 March 2025
-date: 2025-03-01
+date: 2025-03
 kind: report
 url: https://www.ucl.ac.uk/bartlett/publications/2025/mar/economics-shared-digital-infrastructures
 publisher: UCL IIPP

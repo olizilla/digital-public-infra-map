@@ -5,6 +5,13 @@ import { changesetLoader } from './ChangesetLoader'
 
 // Insights (/blog/): posts hosted here, entries that live elsewhere, and the Community of Practice
 // sessions, merged and ordered by src/Insights.ts. Dates are the original publication dates.
+// A date is only what is known: a year (2025), a month (2025-03), a day (2025-03-12), or absent.
+// Never a guess. A YAML date (2025-03-12) arrives as a Date and a year as a number; both become a string,
+// so the precision survives to the page. See formatDate in src/Insights.ts.
+const partialDate = z.union([z.date(), z.number(), z.string()])
+  .transform(v => v instanceof Date ? v.toISOString().slice(0, 10) : String(v))
+  .pipe(z.string().regex(/^\d{4}(-\d{2}(-\d{2})?)?$/, 'a date is YYYY, YYYY-MM or YYYY-MM-DD'))
+
 const kind = z.enum(['post', 'article', 'talk', 'paper', 'case', 'session', 'report'])
 
 // posts hosted on this site, each a page at /blog/<file name>/. A post first published
@@ -14,7 +21,7 @@ const blog = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/pages/blog" }),
   schema: z.object({
     title: z.string(),
-    date: z.date(),
+    date: partialDate.optional(),
     description: z.string().optional(),
     authors: z.array(z.string()).optional(),
     kind: kind.optional().default('post'),
@@ -35,7 +42,7 @@ const links = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/links" }),
   schema: z.object({
     title: z.string(),
-    date: z.date(),
+    date: partialDate.optional(),
     kind,
     url: z.string(),
     publisher: z.string().optional(),

@@ -12,13 +12,12 @@ const insights = await getInsights()
 const pinned = insights.filter(i => i.pinned)
 const entries = insights.filter(i => !i.pinned)
 const ext = (external: boolean) => external ? { rel: 'external' } : {}
-const isoDate = (d: Date) => d.toISOString().slice(0, 10)
-const month = (d: Date) => d.toLocaleDateString('en', { month: 'short', timeZone: 'UTC' })
 
 // entries by year, newest first (entries are already newest first)
-const years: { year: number, entries: typeof entries }[] = []
+// (undated entries are last, in a group of their own)
+const years: { year?: string, entries: typeof entries }[] = []
 for (const e of entries) {
-  const year = e.date.getUTCFullYear()
+  const year = e.date?.slice(0, 4)
   if (years.at(-1)?.year !== year) years.push({ year, entries: [] })
   years.at(-1)!.entries.push(e)
 }
@@ -49,7 +48,7 @@ const tabs = [
           <p class="ins-meta">
             <span class="ins-kind" data-kind={p.kind}>{kindLabels[p.kind]}</span>
             <span class="sep" aria-hidden="true">·</span>
-            <time datetime={isoDate(p.date)}>{formatDate(p.date)}</time>
+            { p.date ? <time datetime={p.date}>{formatDate(p.date)}</time> : <span class="ins-undated">{formatDate()}</span> }
           </p>
           <h2><a href={p.href}>{p.title}</a></h2>
           { p.description && <p class="ins-hero-desc">{p.description}</p> }
@@ -73,8 +72,8 @@ const tabs = [
 
     <div class="ins-years">
       { years.map(y => (
-        <section class="ins-year" aria-labelledby={`y${y.year}`}>
-          <h2 id={`y${y.year}`} class="ins-year-label">{y.year}</h2>
+        <section class="ins-year" aria-labelledby={`y${y.year ?? 'unknown'}`}>
+          <h2 id={`y${y.year ?? 'unknown'}`} class="ins-year-label">{y.year ?? 'Date unknown'}</h2>
           <ol class="ins-list">
             { y.entries.map(e => e.kind === 'session' ? (
               <li class="ins-entry ins-session" data-kind="session">
@@ -82,7 +81,7 @@ const tabs = [
                   <span class="ins-kind" data-kind="session">{kindLabels.session}{e.number !== undefined && ` ${e.number}`}</span>
                   <span class="sep" aria-hidden="true">·</span>
                   <span class="ins-pub">Community of Practice</span>
-                  <time datetime={isoDate(e.date)}>{month(e.date)}</time>
+                  { e.date ? <time datetime={e.date}>{formatDate(e.date, true)}</time> : <span class="ins-undated">{formatDate()}</span> }
                 </p>
                 <h3><a href={e.href}>{e.title}</a></h3>
               </li>
@@ -92,7 +91,7 @@ const tabs = [
                   <span class="ins-kind" data-kind={e.kind}>{kindLabels[e.kind]}</span>
                   <span class="sep" aria-hidden="true">·</span>
                   <span class="ins-pub">{e.source ? `First published on ${e.publisher}` : e.publisher}{ e.external && <span class="ins-arrow" aria-hidden="true">&nbsp;↗</span> }</span>
-                  <time datetime={isoDate(e.date)}>{month(e.date)}</time>
+                  { e.date ? <time datetime={e.date}>{formatDate(e.date, true)}</time> : <span class="ins-undated">{formatDate()}</span> }
                 </p>
                 <h3><a href={e.href} {...ext(e.external)}>{e.title}</a></h3>
                 { e.authors.length > 0 && <p class="ins-authors">{e.authors.join(', ')}</p> }

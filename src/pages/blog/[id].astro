@@ -21,7 +21,6 @@ const { entry } = Astro.props
 const { Content } = await render(entry)
 const d = entry.data
 const authors = d.authors ?? []
-const iso = d.date.toISOString().slice(0, 10)
 
 // `places` are System IDs or country names; a name that is neither fails the build
 const countries = new Map([...pages.values()].map(p => [p.name, p.href]))
@@ -42,7 +41,7 @@ const citeName = (name: string) => {
 const names = authors.map(citeName)
 const authorList = names.length > 1 ? `${names.slice(0, -1).join(', ')} & ${names.at(-1)}` : names[0] ?? ''
 const citation = [
-  `${authorList} (${d.date.getUTCFullYear()}).`,
+  `${authorList} (${d.date ? d.date.slice(0, 4) : 'n.d.'}).`,
   `${d.title}.`,
   d.publication ? `${d.publication}.` : `${d.publisher ?? ''}.`,
   d.doi ? `https://doi.org/${d.doi}` : d.url
@@ -60,7 +59,7 @@ const recordLabel = d.urlLabel ?? d.publisher ?? 'the source'
         <span aria-hidden="true">·</span>
         <span>{d.publisher}</span>
         <span aria-hidden="true">·</span>
-        <time datetime={iso}>{formatDate(d.date)}</time>
+        { d.date ? <time datetime={d.date}>{formatDate(d.date)}</time> : <span class="ins-undated">{formatDate()}</span> }
       </p>
       { authors.length > 0 && <p class="paper-authors">{authors.join(', ')}</p> }
       <p class="ins-actions">

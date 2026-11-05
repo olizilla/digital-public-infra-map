@@ -3,8 +3,7 @@
 # PDF and page link from a Zotero capture of the IIPP page and its UCL Discovery record, 2026-11-05
 # links, full author names, date and description (David's own summary) from his library, library.eaves.ca/publications.json, read 2026-11-05
 title: "India's National Urban Governance Platform: Leveraging digital infrastructure thinking to build smart city capabilities at scale"
-# the profile gives 1 January 2025, which may stand for the year only
-date: 2025-01-01
+date: 2025
 kind: case
 url: https://www.ucl.ac.uk/bartlett/publications/2025/jan/indias-national-urban-governance-platform
 publisher: UCL IIPP

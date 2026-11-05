@@ -26,7 +26,8 @@ export interface Insight {
   id: string
   kind: Kind
   title: string
-  date: Date
+  // YYYY, YYYY-MM or YYYY-MM-DD as known, or absent: shown as "Date unknown"
+  date?: string
   description: string
   authors: string[]
   // where the entry's card goes: its page here, or its source when it has no page here
@@ -80,8 +81,23 @@ export function excerpt (body = '', max = 300) {
   return cut.slice(0, cut.lastIndexOf(' ')).replace(/[\s,;:.\-–—]+$/, '') + '…'
 }
 
-export function formatDate (date: Date) {
-  return date.toLocaleDateString('en', { month: 'short', year: 'numeric', timeZone: 'UTC' })
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+// a date at the precision it's known: "2025", "Mar 2025", "12 Mar 2025"; "Date unknown" for none.
+// `short` leaves out the year, for a list already under its year's heading: "2025" stays, "Mar", "12 Mar".
+export function formatDate (date?: string, short = false) {
+  if (!date) return 'Date unknown'
+  const [y, m, d] = date.split('-')
+  if (!m) return y
+  const month = MONTHS[Number(m) - 1]
+  const day = d ? `${Number(d)} ` : ''
+  return short ? `${day}${month}` : `${day}${month} ${y}`
+}
+
+// frontmatter in a post's own page (the Post layout reads it raw): a YAML date is a Date, a year a number
+export function normDate (value: unknown): string | undefined {
+  if (value instanceof Date) return value.toISOString().slice(0, 10)
+  return value === undefined || value === null || value === '' ? undefined : String(value)
 }
 
 // every published entry, newest first. The pinned report is in the list; the index shows it on its own.
@@ -125,7 +141,7 @@ export async function getInsights (): Promise<Insight[]> {
       id: s.id,
       kind: 'session' as const,
       ...sessionTitle(s.id, s.data.title),
-      date: s.data.date,
+      date: s.data.date.toISOString().slice(0, 10),
       description: excerpt(s.body),
       authors: [],
       href: `/measurement-community/${s.id}/`,
@@ -135,5 +151,7 @@ export async function getInsights (): Promise<Insight[]> {
       links: []
     }))
   ]
-  return insights.sort((a, b) => b.date.valueOf() - a.date.valueOf())
+  // newest first by the date string, which is right at equal precision; a year alone sorts after that
+  // year's dated entries. Undated entries come last.
+  return insights.sort((a, b) => (b.date ?? '').localeCompare(a.date ?? ''))
 }

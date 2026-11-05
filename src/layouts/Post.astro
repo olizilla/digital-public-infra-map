@@ -6,10 +6,10 @@
 import Layout from './Layout.astro'
 import Footer from '../components/Footer.astro'
 import MoreInsights from '../components/MoreInsights.astro'
-import { formatDate, kindLabels, type Kind } from '../Insights'
+import { formatDate, normDate, kindLabels, type Kind } from '../Insights'
 
 const fm = Astro.props.frontmatter
-const date = fm.date ? new Date(fm.date) : undefined
+const date = normDate(fm.date)
 const authors: string[] = fm.authors ?? []
 const kind: Kind = fm.kind ?? 'post'
 const sourceText = fm.source?.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')
@@ -22,7 +22,7 @@ const sourceText = fm.source?.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/,
       <h1 class="page-title page-h1">{fm.title}</h1>
       <p class="post-meta">
         <span class="ins-kind" data-kind={kind}>{kindLabels[kind]}</span>
-        { date && <><span aria-hidden="true">·</span> <time datetime={date.toISOString().slice(0, 10)}>{formatDate(date)}</time></> }
+        <span aria-hidden="true">·</span> { date ? <time datetime={date}>{formatDate(date)}</time> : <span class="ins-undated">{formatDate()}</span> }
         { authors.length > 0 && <><span aria-hidden="true">·</span> <span>{authors.join(', ')}</span></> }
       </p>
       { fm.source && (

@@ -1,8 +1,9 @@
 ---
 import { getCollection } from 'astro:content'
+import { formatDate } from '../Insights'
 const posts = await getCollection('blog', ({data}) => data.published)
 posts.sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+  (a, b) => (b.data.date ?? '').localeCompare(a.data.date ?? ''),
 )
 
 ---
@@ -10,7 +11,7 @@ posts.sort(
 <ul>
   { posts.map(p => (
     <li>
-      <span class="font-bold">{p.data.date.toLocaleDateString('en', {month: "short", year: 'numeric'})}</span> - 
+      <span class="font-bold">{formatDate(p.data.date)}</span> - 
       <a href={`/blog/${p.id}`}>
         {p.data.title}
       </a>

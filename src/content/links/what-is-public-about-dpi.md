@@ -1,7 +1,7 @@
 ---
 title: "Digital public infrastructure and public value: What is 'public' about DPI?"
-# IIPP Working Paper 2024/05, March 2024
-date: 2024-03-01
+# IIPP Working Paper 2024/05, March 2024: the month only
+date: 2024-03
 kind: paper
 url: https://www.ucl.ac.uk/bartlett/public-purpose/publications/2024/mar/digital-public-infrastructure-and-public-value-what-public-about-dpi
 publisher: UCL IIPP

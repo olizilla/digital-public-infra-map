@@ -4,7 +4,7 @@
 # the source abstract repeats the sentence "Second, it offers a measurement framework..."; it appears once here
 # links, full author names, date and description (David's own summary) from his library, library.eaves.ca/publications.json, read 2026-11-05
 title: "Digital Public Infrastructure: a framework for conceptualisation and measurement"
-date: 2025-01-27
+date: 2025-01
 kind: paper
 url: https://www.ucl.ac.uk/bartlett/publications/2025/jan/digital-public-infrastructure-framework-conceptualisation-and-measurement
 publisher: UCL IIPP
