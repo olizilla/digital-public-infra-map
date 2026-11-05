@@ -3,11 +3,53 @@ import { glob } from 'astro/loaders'
 import { csvLoader } from "@ascorbic/csv-loader"
 import { changesetLoader } from './ChangesetLoader'
 
+// Insights (/blog/): posts hosted here, entries that live elsewhere, and the Community of Practice
+// sessions, merged and ordered by src/Insights.ts. Dates are the original publication dates.
+const kind = z.enum(['post', 'article', 'talk', 'paper', 'case', 'session', 'report'])
+
+// posts hosted on this site, each a page at /blog/<file name>/. A post first published
+// elsewhere names its `source` URL and that site's name as `publisher`, for the
+// "First published on" line (src/layouts/Post.astro).
 const blog = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/pages/blog" }),
   schema: z.object({
     title: z.string(),
     date: z.date(),
+    description: z.string().optional(),
+    authors: z.array(z.string()).optional(),
+    kind: kind.optional().default('post'),
+    source: z.string().url().optional(),
+    publisher: z.string().optional(),
+    published: z.boolean().optional().default(true)
+  })
+})
+
+// entries that live on other sites: talks, papers and articles, and the pinned report. One with
+// neither a body nor a `pdf` links straight to `url`. One with a body, a paper's abstract verbatim,
+// or a `pdf` has a landing page at /blog/<id>/ (src/pages/blog/[id].astro): the abstract, or the
+// `description` as a summary where there's no abstract, a button to download `pdf`, a link to the
+// record at `url` named by `urlLabel`, a citation from `publication` and `doi`, the `licence` the
+// abstract is shared under, and `places` on the map it's about (System IDs or country names).
+// The pinned card's button downloads `pdf`, and its `links` sit beside the button.
+const links = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/links" }),
+  schema: z.object({
+    title: z.string(),
+    date: z.date(),
+    kind,
+    url: z.string(),
+    publisher: z.string().optional(),
+    description: z.string().optional(),
+    authors: z.array(z.string()).optional(),
+    image: z.string().optional(),
+    pdf: z.string().optional(),
+    urlLabel: z.string().optional(),
+    publication: z.string().optional(),
+    doi: z.string().optional(),
+    licence: z.string().optional(),
+    places: z.array(z.string()).optional(),
+    links: z.array(z.object({ label: z.string(), href: z.string() })).optional(),
+    pinned: z.boolean().optional().default(false),
     published: z.boolean().optional().default(true)
   })
 })
@@ -74,6 +116,7 @@ const changesets = defineCollection({
 
 export const collections = { 
   blog, 
+  links,
   cop, 
   dpiAttributes, 
   idIndicators,

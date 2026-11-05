@@ -1,2 +1,4 @@
 User-agent: *
 Disallow: /edit/
+
+Sitemap: https://dpimap.org/sitemap-index.xml

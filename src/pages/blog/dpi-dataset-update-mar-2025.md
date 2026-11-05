@@ -1,10 +1,8 @@
 ---
-layout: ../../layouts/Standard.astro
+layout: ../../layouts/Post.astro
 title: 'DPI Dataset Update'
 date: 2025-03-31
 ---
-
-# DPI Dataset Update
 
 The DPI Map Team is delighted to share that a new dataset update is [now live](https://dpimap.org/dpimap) on our website. Since our initial launch in October 2024, our team captured a first glance of government efforts to deploy federal level DPI systems: digital identity, digital payment, and data exchange systems across 210 countries. Our latest update offers new insights into the evolving landscape of digital public infrastructure worldwide and what you can find with our latest changes.
 

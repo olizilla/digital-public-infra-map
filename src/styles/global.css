@@ -852,6 +852,153 @@ details.more[open] > summary::before {
 @layer components {
 }
 
+/* Insights, /blog/ (src/pages/blog/index.astro): a typeset publications list rather than a card
+   feed. The pinned report as a hero, the cover shown like a printed document; tabs to filter by
+   kind; then the entries by year, the year in a gutter on the left that stays in view while its
+   entries scroll past, hairlines between entries; Community of Practice sessions are compact rows.
+   The meta line leads with the kind and where the entry is published, an arrow if the link leaves
+   the site. And a post's header and footer (src/layouts/Post.astro), and a paper's landing page
+   (src/pages/blog/[id].astro). Colours as the system pages: ink zinc-900, secondary zinc-600, muted
+   zinc-500, lines zinc-200, hairlines zinc-100. */
+@layer components {
+  .ins { @apply max-w-4xl; }
+  .ins-head { @apply pt-0 md:pt-4 pb-8; }
+  .ins-summary {
+    @apply max-w-[40rem] text-lg leading-[26px] md:text-xl md:leading-7 text-zinc-700;
+    & a { @apply underline decoration-zinc-300 underline-offset-4 hover:text-blue-500; }
+  }
+
+  /* the kind, then where it's published, then the date; on the hero, the full date */
+  .ins-meta {
+    @apply flex flex-wrap items-baseline gap-x-1.5 text-[13px] leading-5 text-zinc-500;
+    & time { @apply tabular-nums; }
+  }
+  /* each kind takes the colour of its family: research (papers, reports, case studies), writing (posts,
+     articles) and conversation (talks, sessions), set as --kind on anything with a data-kind,
+     for its label and its tab's dot. The colours share a lightness and a low chroma, so only
+     the hue changes, and keep clear of the map's green and amber. All pass 4.5:1 on white. */
+  [data-kind="paper"], [data-kind="report"], [data-kind="case"] { --kind: var(--k-research); }
+  [data-kind="post"], [data-kind="article"] { --kind: var(--k-writing); }
+  [data-kind="talk"], [data-kind="session"] { --kind: var(--k-talk); }
+  /* Dusk: periwinkle, rosewood, sea green-grey */
+  :root { --k-research: oklch(0.46 0.08 280); --k-writing: oklch(0.48 0.07 10); --k-talk: oklch(0.50 0.05 190); }
+  .ins-kind { @apply text-[11px] font-semibold uppercase tracking-[.08em]; color: var(--kind, var(--color-zinc-500)); }
+  .ins-pub { @apply font-medium text-zinc-700; }
+  .ins-arrow { @apply text-zinc-400; }
+
+  /* the pinned report: the cover, large, with the shadow of a page lifted off the table */
+  .ins-hero {
+    @apply grid md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-6 md:gap-10 items-center pb-10 mb-2 border-b border-zinc-200;
+    & h2 { @apply mt-2 text-[28px] leading-9 md:text-[32px] md:leading-10 font-bold tracking-[-.015em] text-zinc-900; }
+    & h2 a { @apply hover:text-blue-500; }
+  }
+  .ins-hero-img {
+    @apply block rounded-[3px] overflow-hidden ring-1 ring-black/5 transition-transform duration-300 ease-out hover:-translate-y-0.5;
+    box-shadow: 0 1px 2px rgb(0 0 0 / .06), 0 12px 32px -12px rgb(0 0 0 / .28);
+    & img { @apply block w-full h-auto; }
+  }
+  .ins-hero-desc { @apply mt-3 max-w-[30rem] text-lg leading-7 text-zinc-700; }
+  .ins-actions {
+    @apply flex flex-wrap items-center gap-x-5 gap-y-3 mt-6;
+    & .button-blue { @apply mx-0! py-2.5 text-sm; }
+  }
+  .ins-more { @apply text-sm font-medium text-zinc-700 underline decoration-zinc-300 underline-offset-3 hover:text-blue-500; }
+
+  /* the kind tabs: quiet text, the chosen one underlined */
+  .ins-tabs {
+    @apply flex flex-wrap gap-x-5 gap-y-1 mt-6 mb-2 md:pl-[7.5rem] text-sm;
+    & button { @apply py-1.5 border-b-2 border-transparent text-zinc-500 cursor-pointer hover:text-zinc-900; }
+    & button[aria-pressed="true"] { @apply border-zinc-900 text-zinc-900 font-medium; }
+    & button:not([data-kind="all"])::before {
+      content: "";
+      @apply inline-block size-1.5 mr-1.5 mb-px rounded-full align-middle;
+      background: var(--kind);
+    }
+  }
+  .ins-count { @apply ml-0.5 text-xs tabular-nums text-zinc-400; }
+
+  /* a year: the numeral in the gutter, the entries beside it */
+  .ins-year { @apply grid md:grid-cols-[6rem_minmax(0,1fr)] md:gap-x-6; }
+  /* a line between years, so none over the first one shown, whichever the filter leaves */
+  .ins-year:not([hidden]) ~ .ins-year { @apply border-t border-zinc-200; }
+  .ins-year-label {
+    @apply pt-6 pb-1 md:pb-0 md:pt-[22px] md:sticky md:top-4 self-start text-sm md:text-[28px] md:leading-8 font-semibold md:font-light tracking-tight tabular-nums text-zinc-500;
+  }
+  .ins-list { @apply list-none p-0 divide-y divide-zinc-100; }
+  .ins-entry {
+    @apply relative py-5;
+    & h3 { @apply mt-1 text-lg leading-[26px] font-semibold tracking-[-.005em] text-zinc-900 max-w-[44rem] text-pretty; }
+    & h3 a { @apply underline decoration-transparent decoration-1 underline-offset-[5px] transition-colors hover:decoration-zinc-400; }
+    & .ins-meta time { @apply ml-auto pl-3 text-zinc-400; }
+  }
+  .ins-authors { @apply mt-1 text-sm leading-5 text-zinc-600; }
+  .ins-desc { @apply mt-2 max-w-[42rem] text-[15px] leading-6 text-zinc-600; }
+  .ins-links {
+    @apply flex flex-wrap gap-x-4 mt-2.5 text-[13px] leading-5;
+    & a { @apply font-medium text-zinc-700 underline decoration-zinc-300 underline-offset-3 hover:text-blue-500; }
+  }
+  /* a Community of Practice session: the meta line and the title, a size down */
+  .ins-session {
+    @apply py-3.5;
+    & h3 { @apply mt-0.5 text-[15px] leading-[22px] font-medium; }
+  }
+
+  /* the filter: hide what isn't chosen. Years with nothing to show are hidden by the script. */
+  .ins[data-filter="post"] .ins-entry:not([data-kind="post"]),
+  .ins[data-filter="article"] .ins-entry:not([data-kind="article"]),
+  .ins[data-filter="talk"] .ins-entry:not([data-kind="talk"]),
+  .ins[data-filter="paper"] .ins-entry:not([data-kind="paper"]),
+  .ins[data-filter="report"] .ins-entry:not([data-kind="report"]),
+  .ins[data-filter="case"] .ins-entry:not([data-kind="case"]),
+  .ins[data-filter="session"] .ins-entry:not([data-kind="session"]) { @apply hidden; }
+
+  /* a post: its header, and the entries after it */
+  .post-head {
+    @apply mb-8 pb-6 border-b border-zinc-200;
+    & h1 { @apply text-zinc-900; }
+  }
+  .post-meta {
+    @apply flex flex-wrap items-baseline gap-x-1.5 text-sm leading-5 text-zinc-600;
+    & time { @apply tabular-nums; }
+  }
+  .post-source {
+    @apply mt-2 text-[13px] leading-5 text-zinc-500;
+    & a { @apply text-zinc-700 underline decoration-zinc-300 underline-offset-3 hover:text-blue-500 break-all; }
+  }
+  .post-more {
+    @apply mt-14 pt-6 border-t border-zinc-200;
+    & h2 { @apply text-[11px] font-semibold uppercase tracking-[.08em] text-zinc-500; }
+    & ol { @apply mt-2 list-none p-0 divide-y divide-zinc-100; }
+    & li { @apply py-3.5; }
+    & h3 { @apply mt-0.5 text-base leading-6 font-semibold text-zinc-900; }
+    & h3 a { @apply hover:text-blue-500; }
+  }
+  .post-all { @apply inline-block mt-3 text-sm font-medium text-zinc-700 underline decoration-zinc-300 underline-offset-3 hover:text-blue-500; }
+
+  /* a paper's landing page: the header and its buttons, then the abstract, the places on the map
+     and the citation, each under a small-caps label */
+  .paper .post-head .ins-actions { @apply mt-5; }
+  .paper-authors { @apply mt-1.5 text-[15px] leading-6 text-zinc-700; }
+  .paper-section {
+    @apply mt-9;
+    & > h2 { @apply mb-3 text-[11px] font-semibold uppercase tracking-[.08em] text-zinc-500; }
+    & .prose p { @apply text-[17px] leading-7 text-zinc-800; }
+    & .prose > :first-child { @apply mt-0; }
+  }
+  .paper-licence { @apply mt-3 text-[13px] leading-5 text-zinc-500; }
+  .paper-places {
+    @apply list-none p-0 divide-y divide-zinc-100 border-y border-zinc-100;
+    & li { @apply flex items-baseline justify-between gap-3 py-2.5 text-[15px] leading-6; }
+    & a { @apply font-medium text-zinc-900 hover:text-blue-500 hover:underline; }
+    & span { @apply text-[13px] text-zinc-500; }
+  }
+  .paper-cite {
+    @apply flex items-start gap-4 px-4 py-3 rounded-md bg-zinc-50 border border-zinc-200 text-sm leading-6 text-zinc-700;
+    & p { @apply flex-1 min-w-0 break-words; }
+  }
+  .paper-copy { @apply shrink-0 px-2.5 py-1 rounded border border-zinc-300 bg-white text-xs font-medium text-zinc-700 cursor-pointer hover:border-zinc-400 hover:text-zinc-900; }
+}
+
 /* Changelog overrides of the card and lane styles above, which aren't in a layer, so these aren't either:
    the card header doesn't stick (the filter bar does), the address shows on phones too, as the country
    is the heading above, and the country heading sits closer to its cards. */
