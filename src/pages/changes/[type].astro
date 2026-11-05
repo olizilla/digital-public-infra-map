@@ -1,8 +1,8 @@
 ---
 // One DPI type's changes in the current release, /changes/<lane anchor>/, for the researcher who
-// owns the type to check every change: the countries that gain or lose a DPI-like system, then
-// filters, then every change by country and system. Built from the release's history by
-// src/Changes.ts. Nothing links here yet. The filters are a little plain JS that toggles `hidden`
+// owns the type to check every change: the countries that gain or lose a DPI-like system, the
+// codebook's changes, then filters, then every change by country and system. Built from the
+// release's history and its datapackage.json by src/Changes.ts. Nothing links here yet. The filters are a little plain JS that toggles `hidden`
 // and keeps its state in the query (?country=benin&kind=dpi,new), so a view can be shared.
 // Without JS everything shows, with the wording fixes folded.
 import Layout from '../../layouts/Layout.astro'
@@ -10,11 +10,12 @@ import Footer from '../../components/Footer.astro'
 import TypeIcon from '../../components/TypeIcon.astro'
 import ChangeCard from '../../components/ChangeCard.astro'
 import DpiChange from '../../components/DpiChange.astro'
+import CodebookChanges from '../../components/CodebookChanges.astro'
 import { laneAnchors } from '../../CountryPage'
 import { nouns } from '../../DpiTest'
 import { dpiTypes } from '../../Systems'
 import type { DPIType } from '../../Schema'
-import { changelog, changeTitles, kindLabels, kinds, n, plural, previousRelease, releaseDate, upcoming } from '../../Changes'
+import { changelog, codebookChangesOf, changeTitles, kindLabels, kinds, n, plural, previousRelease, releaseDate, upcoming } from '../../Changes'
 
 export function getStaticPaths () {
   return dpiTypes.map(dpiType => ({ params: { type: laneAnchors[dpiType] }, props: { dpiType } }))
@@ -26,6 +27,7 @@ const { countries, dpiCountries, dpiLike, counts } = changelog(dpiType)
 const gains = dpiCountries.filter(d => d.gains)
 const losses = dpiCountries.filter(d => !d.gains)
 const noun = nouns[dpiType]
+const codebookChanges = codebookChangesOf(dpiType)
 
 const parts = [
   `${n(counts.new)} new`,
@@ -49,6 +51,7 @@ const summary = `${plural(counts.changes, 'change')} to ${plural(counts.systems,
       <details class="chg-about more">
         <summary>About this page</summary>
         <p>Every change researchers have made to the {noun} data since the {previousRelease} release, by country and system. Each shows the old value and the new, the reason and the sources given for it, and the changeset it’s in. Changes that only bring a value into the codebook’s agreed wording are folded under each system. Open a system’s page to see all its values and their history.</p>
+        <p>The codebook changes compare the variables, allowed values and definitions with those the {previousRelease} release was published with.</p>
         <p>DPI-like countries are counted as on the map: countries, not regions, with at least one system that passes the DPI test.</p>
       </details>
     </header>
@@ -65,6 +68,8 @@ const summary = `${plural(counts.changes, 'change')} to ${plural(counts.systems,
         </Fragment>
       ))}
     </section>
+
+    { codebookChanges && <CodebookChanges dpiType={dpiType} changes={codebookChanges} /> }
 
     <!-- the filters need JS, so they're hidden until the script shows them -->
     <div class="chg-bar" hidden>

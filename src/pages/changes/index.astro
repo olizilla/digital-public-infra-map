@@ -1,11 +1,12 @@
 ---
-// The changelog's hub, /changes/: a card per DPI type with its counts and the change in DPI-like
-// countries, each linking to its type's page. Built by src/Changes.ts. Nothing links here yet.
+// The changelog's hub, /changes/: a card per DPI type with its counts, the change in DPI-like
+// countries and in the codebook, each linking to its type's page. Built by src/Changes.ts. Nothing
+// links here yet.
 import Layout from '../../layouts/Layout.astro'
 import Footer from '../../components/Footer.astro'
 import TypeIcon from '../../components/TypeIcon.astro'
 import { dpiTypes } from '../../Systems'
-import { changelog, changesHref, changeTitles, n, previousRelease, releaseDate, upcoming } from '../../Changes'
+import { changelog, codebookChangesOf, codebookSummary, changesHref, changeTitles, n, previousRelease, releaseDate, upcoming } from '../../Changes'
 
 const cards = dpiTypes.map(dpiType => {
   const { counts, dpiCountries, dpiLike } = changelog(dpiType)
@@ -25,6 +26,7 @@ const cards = dpiTypes.map(dpiType => {
     dpiLike,
     gains,
     losses: dpiCountries.length - gains,
+    codebook: codebookChangesOf(dpiType),
   }
 })
 ---
@@ -44,6 +46,7 @@ const cards = dpiTypes.map(dpiType => {
             { card.rows.map(([label, count]) => <div><dt>{label}</dt><dd>{n(count)}</dd></div>) }
           </dl>
           <p class="chg-hub-dpi"><span>DPI-like countries</span><b>{n(card.dpiLike.before)} → {n(card.dpiLike.after)}</b><span class="chg-hub-net">{card.gains} upgraded, {card.losses} downgraded</span></p>
+          { card.codebook && <p class="chg-hub-dpi"><span>Codebook fields</span><b>{n(card.codebook.fields.before)} → {n(card.codebook.fields.after)}</b><span class="chg-hub-net">{codebookSummary(card.codebook)}</span></p> }
           <a class="card-more" href={card.href}>See the changes</a>
         </article>
       ))}

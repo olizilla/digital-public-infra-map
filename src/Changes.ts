@@ -5,14 +5,13 @@
 // build's order (lib/changesets/build.ts): by as_of, then changeset id, then place in the
 // changeset, all on top of the previous release. So each change's old value is the previous
 // release's, or that of the change before it. The DPI status before is the DPI test's on the
-// previous release's row.
+// previous release's row. The codebook's changes are the previous release's datapackage.json
+// against this one's, by src/CodebookChanges.ts.
 import slug from 'slug'
 import { getCollection } from 'astro:content'
 import { unreverted } from '../lib/changesets/build.ts'
 import type { Changeset } from '../lib/changesets/types.ts'
-import previousIdentity from '../public/data/2026-03-31/2026-03-31-identity.json'
-import previousPayment from '../public/data/2026-03-31/2026-03-31-payment.json'
-import previousExchange from '../public/data/2026-03-31/2026-03-31-exchange.json'
+import rootPackage from '../datapackage.json'
 import { schemas, labelOf, resourceNames, toRecord, type DPIType, type Field } from './Schema'
 import { dpiStatus, dpiTest, nameOf, nouns, statusOf, type DpiStatus } from './DpiTest'
 import { normaliseImplementationStatus } from './Status'
@@ -23,10 +22,41 @@ import { systems, type System } from './Systems'
 import { laneAnchors } from './CountryPage'
 import { changesetUrl } from './SystemPage'
 import { release } from './Release'
+import { codebookChanges, type Package, type ResourceChanges } from './CodebookChanges'
 
-/** The release before this one, whose rows the changes apply to. Change it with src/Release.ts. */
-export const previousRelease = '2026-03-31'
-const previousRows: Record<DPIType, Record<string, any>[]> = { id: previousIdentity, pay: previousPayment, data: previousExchange }
+// The release folders' JSON files, by path, loaded only when needed
+const releaseFiles = import.meta.glob<{ default: any }>('../public/data/*/*.json')
+const fileOf = (folder: string, file: string) => `../public/data/${folder}/${file}`
+const load = async (path: string) => (await releaseFiles[path]()).default
+/** A release folder's name, its date, as RELEASE_FOLDER in lib/changesets/log.ts */
+const releaseFolder = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/
+
+/**
+ * The release before this one, whose rows the changes apply to: the latest release folder before
+ * src/Release.ts's with JSON for every table, as `npm run data:build` finds it.
+ */
+export const previousRelease = [...new Set(Object.keys(releaseFiles).map(path => path.split('/')[3]))]
+  .filter(folder => releaseFolder.test(folder) && folder < release)
+  .sort()
+  .filter(folder => Object.values(resourceNames).every(name => fileOf(folder, `${folder}-${name}.json`) in releaseFiles))
+  .at(-1)!
+if (!previousRelease) throw new Error(`No release folder before ${release} in public/data/ has JSON for every table`)
+const previousRows = Object.fromEntries(await Promise.all((Object.keys(resourceNames) as DPIType[])
+  .map(async dpiType => [dpiType, await load(fileOf(previousRelease, `${previousRelease}-${resourceNames[dpiType]}.json`))]))) as Record<DPIType, Record<string, any>[]>
+
+/**
+ * What changed in the codebook since the previous release, by resource: its datapackage.json against
+ * this release's, or the repo's if the release has none yet. Undefined if the previous release has
+ * no datapackage.json.
+ */
+const previousPackagePath = fileOf(previousRelease, 'datapackage.json')
+const releasePackagePath = fileOf(release, 'datapackage.json')
+export const codebookChangesByResource = previousPackagePath in releaseFiles
+  ? codebookChanges(await load(previousPackagePath) as Package, (releasePackagePath in releaseFiles ? await load(releasePackagePath) : rootPackage) as Package)
+  : undefined
+
+/** The codebook's changes for a DPI type, or undefined if there's no previous codebook to compare with */
+export const codebookChangesOf = (dpiType: DPIType) => codebookChangesByResource?.[resourceNames[dpiType]]
 
 /** How each type's page names the type, as in "Payments: changes in the 6 Nov 2026 release" */
 export const changeTitles: Record<DPIType, string> = { id: 'Digital ID', pay: 'Payments', data: 'Data exchange' }
@@ -356,3 +386,20 @@ export function changelog (dpiType: DPIType) {
 export const n = (count: number) => count.toLocaleString('en-GB')
 /** "1 change", "3 changes" */
 export const plural = (count: number, noun: string, nouns = `${noun}s`) => `${n(count)} ${count === 1 ? noun : nouns}`
+
+/** The codebook's changes in a line, like "2 fields added, 1 removed, 15 fields gain new allowed values, 6 definitions reworded" */
+export function codebookSummary (c: ResourceChanges) {
+  const fields = (count: number, verb: string) => `${plural(count, 'field')} ${count === 1 ? `${verb}s` : verb}`
+  const parts = [
+    c.added.length ? `${plural(c.added.length, 'field')} added` : '',
+    c.removed.length ? `${n(c.removed.length)} removed` : '',
+    c.fieldsGaining ? `${fields(c.fieldsGaining, 'gain')} new allowed values` : '',
+    c.fieldsLosing ? `${fields(c.fieldsLosing, 'lose')} allowed values` : '',
+    c.definitions.length ? `${plural(c.definitions.length, 'definition')} reworded` : '',
+    c.meanings.length ? `${plural(c.meanings.length, 'value meaning')} reworded` : '',
+    c.missing.length ? `${plural(c.missing.length, 'missing value')} changed` : '',
+  ].filter(Boolean)
+  // "2 fields added, 1 removed": the second "removed" reads as fields too, unless nothing was added
+  if (!c.added.length && c.removed.length) parts[0] = `${plural(c.removed.length, 'field')} removed`
+  return parts.length ? parts.join(', ') : 'No changes to the codebook'
+}

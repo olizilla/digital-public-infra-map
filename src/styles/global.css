@@ -754,6 +754,35 @@ details.more[open] > summary::before {
   .chg-gone { @apply flex-none px-1.5 rounded bg-red-50 border border-red-200 text-[11px] leading-[15px] font-semibold text-red-700; }
   .chg-pending { @apply ml-1.5 px-1 rounded bg-wip border border-wip-line text-[11px] font-semibold text-zinc-800; }
 
+  /* the codebook's changes (src/components/CodebookChanges.astro), in the DPI-like countries' box:
+     a fold per kind of change, each a list of fields or values */
+  .chg-cb-group {
+    @apply mt-3 pt-3 border-t border-zinc-200;
+    & > summary h3 { @apply text-base leading-6 font-semibold text-black; }
+    & > summary h3 span { @apply pl-0.5 font-normal text-zinc-500 tabular-nums; }
+  }
+  .chg-cb-list {
+    @apply grid gap-3 mt-2 mb-1 text-sm leading-[22px];
+    & > li { @apply min-w-0; }
+  }
+  .chg-cb-field {
+    @apply flex flex-wrap items-baseline gap-x-2 gap-y-0.5;
+    & .chg-new, & .chg-gone { @apply self-center; }
+  }
+  .chg-cb-name { @apply font-semibold text-black; }
+  a.chg-cb-name { @apply hover:text-blue-500 hover:underline; }
+  .chg-cb-col { @apply text-xs text-zinc-500; }
+  .chg-cb-v { @apply px-1.5 rounded border border-zinc-300 bg-white text-[13px] leading-5 font-semibold text-zinc-800; }
+  .chg-cb-mean { @apply text-[13px] leading-5 text-zinc-600; }
+  .chg-cb-note { @apply text-[13px] leading-5 text-zinc-700; }
+  .chg-cb-def, .chg-cb-on { @apply mt-0.5 max-w-[64ch] text-[13px] leading-5 text-zinc-600; }
+  .chg-cb-diff {
+    @apply mt-0.5 max-w-[64ch] text-[13px] leading-5 text-zinc-600 [overflow-wrap:anywhere];
+    & del { @apply text-zinc-400 line-through; }
+    & ins { @apply text-black no-underline; }
+  }
+  .chg-cb-long > summary { @apply mt-0.5 text-[13px] leading-5 font-medium text-zinc-600; }
+
   /* the filter bar: a country menu and chips, which scroll sideways on a phone */
   .chg-bar {
     @apply sticky top-0 z-10 flex items-center gap-2 -mx-4 mb-4 px-4 py-2 bg-white/95 backdrop-blur border-b border-zinc-200;

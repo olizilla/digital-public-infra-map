@@ -1,0 +1,12 @@
+---
+// A field's name in the changelog's codebook changes (CodebookChanges.astro): its codebook title, a
+// link to its codebook page if the release has the field, and its column if that's named differently.
+import type { FieldRef } from '../CodebookChanges'
+
+interface Props {
+  field: FieldRef
+  href?: string
+}
+const { field, href } = Astro.props
+---
+{ href ? <a class="chg-cb-name" href={href}>{field.title}</a> : <span class="chg-cb-name">{field.title}</span> }{ field.name !== field.title && <span class="chg-cb-col">column “{field.name}”</span> }
