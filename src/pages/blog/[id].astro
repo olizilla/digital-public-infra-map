@@ -4,6 +4,7 @@
 // abstract, or a PDF (src/content.config.ts). The title, kind, venue and authors; a button to
 // download the PDF and a link to the record; the abstract, or the description as a summary; the
 // places on the map it's about; a citation to copy. Entries with neither link straight to their source.
+import CiteBox from '../../components/CiteBox.astro'
 import { getCollection, render } from 'astro:content'
 import Layout from '../../layouts/Layout.astro'
 import Footer from '../../components/Footer.astro'
@@ -94,27 +95,10 @@ const recordLabel = d.urlLabel ?? d.publisher ?? 'the source'
 
     <section class="paper-section" aria-labelledby="cite">
       <h2 id="cite">Cite</h2>
-      <div class="paper-cite">
-        <p data-citation>{citation}</p>
-        <button type="button" class="paper-copy" hidden>Copy</button>
-      </div>
+      <CiteBox citation={citation} />
     </section>
 
     <MoreInsights />
   </article>
   <Footer />
 </Layout>
-
-<script>
-  // the citation's copy button, shown only where the clipboard can be written
-  const button = document.querySelector<HTMLButtonElement>('.paper-copy')
-  const text = document.querySelector('[data-citation]')?.textContent ?? ''
-  if (button && navigator.clipboard) {
-    button.hidden = false
-    button.addEventListener('click', async () => {
-      await navigator.clipboard.writeText(text)
-      button.textContent = 'Copied'
-      setTimeout(() => { button.textContent = 'Copy' }, 2000)
-    })
-  }
-</script>

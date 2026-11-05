@@ -1,0 +1,29 @@
+---
+// A citation in a box, with a Copy button where the clipboard can be written.
+// Used on Insights paper pages and the Data page.
+interface Props {
+  citation: string
+}
+const { citation } = Astro.props
+---
+<div class="paper-cite not-prose">
+  <p data-citation>{citation}</p>
+  <button type="button" class="paper-copy" hidden>Copy</button>
+</div>
+
+<script>
+  // each box's copy button, shown only where the clipboard can be written
+  if (navigator.clipboard) {
+    for (const box of document.querySelectorAll('.paper-cite')) {
+      const button = box.querySelector<HTMLButtonElement>('.paper-copy')
+      const text = box.querySelector('[data-citation]')?.textContent ?? ''
+      if (!button) continue
+      button.hidden = false
+      button.addEventListener('click', async () => {
+        await navigator.clipboard.writeText(text)
+        button.textContent = 'Copied'
+        setTimeout(() => { button.textContent = 'Copy' }, 2000)
+      })
+    }
+  }
+</script>
