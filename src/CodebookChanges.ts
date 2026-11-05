@@ -117,14 +117,24 @@ function replaces (added: PackageField, removed: PackageField) {
   return said.includes(removed.title) || (/\bof the same name\b/.test(said) && added.title === removed.title)
 }
 
-/** Group fields' values by value and meaning, in the order first seen */
+/**
+ * Group fields' values by value, in the order first seen. A field that gives the value no meaning
+ * (such as URL, whose "Not Found" is allowed by a pattern) joins the group for that value and takes
+ * its meaning. Only two different meanings for the same value make separate groups.
+ */
 function group (entries: { field: FieldRef, value: string, meaning?: string }[]): ValueGroup[] {
-  const groups = new Map<string, ValueGroup>()
+  const groups: ValueGroup[] = []
+  const unmeant: { field: FieldRef, value: string }[] = []
   for (const { field, value, meaning } of entries) {
-    const key = JSON.stringify([value, meaning ?? null])
-    const found = groups.get(key)
+    if (meaning === undefined) { unmeant.push({ field, value }); continue }
+    const found = groups.find(g => g.value === value && g.meaning === meaning)
     if (found) found.fields.push(field)
-    else groups.set(key, { value, ...(meaning !== undefined ? { meaning } : {}), fields: [field] })
+    else groups.push({ value, meaning, fields: [field] })
+  }
+  for (const { field, value } of unmeant) {
+    const found = groups.find(g => g.value === value)
+    if (found) found.fields.push(field)
+    else groups.push({ value, fields: [field] })
   }
   // the values on the most fields first
   return [...groups.values()].sort((a, b) => b.fields.length - a.fields.length)
