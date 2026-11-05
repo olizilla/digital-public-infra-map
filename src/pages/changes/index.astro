@@ -29,14 +29,13 @@ const cards = dpiTypes.map(dpiType => {
 })
 ---
 
-<Layout fullTitle={`Changes in the ${releaseDate} release · DPI Map`}>
+<Layout fullTitle="Changelog · DPI Map">
   <main class="page chg">
     <header class="chg-head">
       <nav class="page-crumbs" aria-label="Breadcrumb"><a href="/">Map</a> › Changes</nav>
-      <h1 class="page-title chg-h1">Changes since {releaseDate}</h1>
+      <h1 class="page-title chg-h1">Changelog</h1>
       <p class:list={['chg-label', { upcoming }]}>{ upcoming ? 'Upcoming: not yet published' : `Published ${releaseDate}` }</p>
     </header>
-
     <div class="chg-hub">
       { cards.map(card => (
         <article class="chg-hub-card">

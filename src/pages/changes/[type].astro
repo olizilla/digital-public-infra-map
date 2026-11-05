@@ -41,7 +41,7 @@ const summary = `${plural(counts.changes, 'change')} to ${plural(counts.systems,
     <!-- the type icon, once, for the cards' headers -->
     <svg hidden><symbol id="type-icon" viewBox="0 0 24 24"><TypeIcon dpiType={dpiType} /></symbol></svg>
     <header class="chg-head">
-      <nav class="page-crumbs" aria-label="Breadcrumb"><a href="/">Map</a> › <a href="/changes/">Changes</a> › {title}</nav>
+      <nav class="page-crumbs" aria-label="Breadcrumb"><a href="/">Map</a> › <a href="/changes/">Changelog</a> › {title}</nav>
       <h1 class="page-title chg-h1">{title} changes</h1>
       <p class:list={['chg-label', { upcoming }]}>{ upcoming ? `Upcoming: not yet published` : `Published ${releaseDate}` }</p>
       <p class="chg-summary">{summary}</p>
