@@ -16,9 +16,10 @@
 //
 // usage: npm run validate [-- <datapackage.json>] [--json]
 //
-// The package defaults to the repo's datapackage.json. Resource paths are
-// relative to the package's folder, so a release folder's package checks the
-// release's CSVs. With --json, it prints one JSON object instead of text:
+// The package defaults to the datapackage.json of the release the site shows,
+// set in src/ReleaseFiles.ts, as the root one is the next release's codebook (D71)
+// and has no CSVs of its own. Resource paths are relative to the package's folder,
+// so a release folder's package checks the release's CSVs. With --json, it prints one JSON object instead of text:
 // { errors, problems: [{ resource, row, key, country, column, value, message }] },
 // where the problems are the errors: warnings are left out.
 
@@ -31,12 +32,13 @@ import { listSeparator, listValues, missingValueStrings } from './fields.mjs'
 const args = process.argv.slice(2)
 const asJSON = args.includes('--json')
 const packageArg = args.find(arg => !arg.startsWith('--'))
-const packageFile = path.resolve(packageArg ?? fileURLToPath(new URL('../datapackage.json', import.meta.url)))
+const shown = () => fs.readFileSync(new URL('../src/ReleaseFiles.ts', import.meta.url), 'utf8').match(/export const release = '([^']+)'/)[1]
+const packageFile = path.resolve(packageArg ?? fileURLToPath(new URL(`../public/data/${shown()}/datapackage.json`, import.meta.url)))
 const root = pathToFileURL(path.dirname(packageFile) + path.sep)
 
 const read = path => fs.readFileSync(new URL(path, root), 'utf8')
 
-const packagePath = packageArg ?? 'datapackage.json'
+const packagePath = packageArg ?? path.relative(process.cwd(), packageFile)
 const datapackage = JSON.parse(fs.readFileSync(packageFile, 'utf8'))
 
 // what's found, for --json

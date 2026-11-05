@@ -1,12 +1,13 @@
 {
   "$schema": "https://datapackage.org/profiles/2.0/datapackage.json",
+  "$comment": "This root file describes the next release (D71): npm run data:build writes it from the latest release and the pending changesets. Each published release carries its own copy, without this comment, in public/data/<date>/; https://dpimap.org/data/latest/datapackage.json is the current one.",
   "name": "dpi-map",
   "title": "Digital Public Infrastructure Map",
   "description": "Data on national-scale digital public infrastructure (DPI) around the world, collected by researchers at UCL IIPP and shown at https://dpimap.org: digital identity, payment and data exchange systems, by country or region.",
   "resources": [
     {
       "name": "identity",
-      "path": "public/data/latest/identity.csv",
+      "path": "public/data/next/identity.csv",
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
@@ -480,7 +481,7 @@
     },
     {
       "name": "payment",
-      "path": "public/data/latest/payment.csv",
+      "path": "public/data/next/payment.csv",
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
@@ -832,7 +833,7 @@
             "description": "Indicates the type of operator of the payment system, referring to institutional arranagement of the payment system. This is inferred from the payment system website, specifically through a scan of the governance structure.",
             "type": "string",
             "constraints": {
-              "enum": ["Central bank", "Commercial bank/Private PSP", "Bank association", "Bank association/Central bank", "Private PSP", "Other", "Not Found"]
+              "enum": ["Central bank", "Commercial bank/Private PSP", "Bank association", "Bank association/Central bank", "Other", "Not Found"]
             },
             "codebookCategories": [
               {
@@ -1076,7 +1077,7 @@
     },
     {
       "name": "exchange",
-      "path": "public/data/latest/exchange.csv",
+      "path": "public/data/next/exchange.csv",
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",

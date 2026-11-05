@@ -32,7 +32,7 @@ Updates to the site are deployed to dpimap.org automatically when changes are me
 
 ## Data package
 
-[./datapackage.json](./datapackage.json) describes the CSVs in [./public/data/latest](./public/data/latest). It's an Open Knowledge Foundation [Data Package](https://datapackage.org/standard/data-package/) (v2) file, that documents the shapes of the dpimap.org data, to aid reuse.
+[./datapackage.json](./datapackage.json) is the codebook for the next release. Each release folder, `public/data/<date>/`, has its own `datapackage.json`, which describes its CSVs, and https://dpimap.org/data/latest/ redirects to the current release's files, like `/data/latest/datapackage.json` and `/data/latest/identity.csv`. Each is an Open Knowledge Foundation [Data Package](https://datapackage.org/standard/data-package/) (v2) file, that documents the shapes of the dpimap.org data, to aid reuse.
 
 ### The codebook
 

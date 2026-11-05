@@ -11,7 +11,6 @@ import slug from 'slug'
 import { getCollection } from 'astro:content'
 import { unreverted } from '../lib/changesets/build.ts'
 import type { Changeset } from '../lib/changesets/types.ts'
-import rootPackage from '../datapackage.json'
 import { schemas, labelOf, resourceNames, toRecord, type DPIType, type Field } from './Schema'
 import { dpiStatus, dpiTest, nameOf, nouns, statusOf, type DpiStatus } from './DpiTest'
 import { normaliseImplementationStatus } from './Status'
@@ -22,6 +21,7 @@ import { systems, type System } from './Systems'
 import { laneAnchors } from './CountryPage'
 import { changesetUrl } from './SystemPage'
 import { release } from './Release'
+import { releasePackage } from './ReleaseFiles'
 import { codebookChanges, type Package, type ResourceChanges } from './CodebookChanges'
 
 // The release folders' JSON files, by path, loaded only when needed
@@ -46,13 +46,11 @@ const previousRows = Object.fromEntries(await Promise.all((Object.keys(resourceN
 
 /**
  * What changed in the codebook since the previous release, by resource: its datapackage.json against
- * this release's, or the repo's if the release has none yet. Undefined if the previous release has
- * no datapackage.json.
+ * this release's (D71). Undefined if the previous release has no datapackage.json.
  */
 const previousPackagePath = fileOf(previousRelease, 'datapackage.json')
-const releasePackagePath = fileOf(release, 'datapackage.json')
 export const codebookChangesByResource = previousPackagePath in releaseFiles
-  ? codebookChanges(await load(previousPackagePath) as Package, (releasePackagePath in releaseFiles ? await load(releasePackagePath) : rootPackage) as Package)
+  ? codebookChanges(await load(previousPackagePath) as Package, releasePackage as unknown as Package)
   : undefined
 
 /** The codebook's changes for a DPI type, or undefined if there's no previous codebook to compare with */

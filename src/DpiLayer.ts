@@ -2,7 +2,10 @@
 // replay changesets onto a release, shared by the data build (scripts/data-build.ts)
 // and the history on system pages (src/Release.ts). No imports, so both can load it.
 
-/** The fields the build computes, never taken from a changeset: Last updated, from the row's newest as_of, and Count for DPI, from the DPI test */
+/**
+ * The fields the build computes, never taken from a changeset: Last updated, from the row's newest as_of,
+ * Count for DPI, from the DPI test, and the ISO 3166-1 codes, from the row's place in public/data/places.csv (D68)
+ */
 export const derivedFields = ['last_updated', 'dpi_count']
 
 /**

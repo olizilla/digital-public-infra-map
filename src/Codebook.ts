@@ -1,5 +1,5 @@
 import slug from 'slug'
-import datapackage from '../datapackage.json'
+import { releasePackage as datapackage } from './ReleaseFiles'
 import { schemas, schemaSource, labelOf, codebookNameOf, resourceNames, typeLabels, type DPIType, type Field } from './Schema'
 import { listValues } from '../scripts/fields.mjs'
 
@@ -64,7 +64,7 @@ function variableOf (dpiType: DPIType, field: CodebookField): CodebookVariable {
 
 /**
  * The codebook variables for each dpiType, in the schema's field order, built
- * from datapackage.json. Fields marked `codebook: false` in src/SiteFields.ts are left out.
+ * from the release's datapackage.json (D71, src/ReleaseFiles.ts). Fields marked `codebook: false` in src/SiteFields.ts are left out.
  */
 export const codebook = Object.fromEntries(
   (Object.keys(schemas) as DPIType[]).map(dpiType => [

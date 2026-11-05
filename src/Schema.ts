@@ -1,4 +1,6 @@
-import datapackage from '../datapackage.json'
+// The schema of each DPI table, from the datapackage.json of the release the site shows (D71, src/ReleaseFiles.ts)
+import rootPackage from '../datapackage.json'
+import { release, releasePackage as datapackage } from './ReleaseFiles'
 import { siteFields, type SiteField, type ResourceName, type FieldId } from './SiteFields'
 
 export type { Kind } from './SiteFields'
@@ -51,11 +53,12 @@ export const typeLabels: Record<DPIType, string> = {
 type IdOf<D extends DPIType> = FieldId<typeof resourceNames[D]>
 
 /** Where a dpiType's schema lives, for error messages */
-export const schemaSource = (dpiType: DPIType) => `datapackage.json resource "${resourceNames[dpiType]}"`
+export const schemaSource = (dpiType: DPIType) => `public/data/${release}/datapackage.json resource "${resourceNames[dpiType]}"`
 
 /**
  * The resource's schema, with each field's entry from src/SiteFields.ts.
- * Throws if the two don't have the same field ids, or flag and text fields don't have a unique order.
+ * Throws if a field has no entry, or an entry is for a field that's in neither the release's datapackage.json
+ * nor the root one, the next release's (D71), or flag and text fields don't have a unique order.
  */
 function schemaOf<D extends DPIType> (dpiType: D) {
   const name = resourceNames[dpiType]
@@ -69,7 +72,11 @@ function schemaOf<D extends DPIType> (dpiType: D) {
   }
   const orders = new Set<string>()
   for (const [id, entry] of Object.entries(site)) {
-    if (!fields.some(field => field.id === id)) throw new Error(`${where} has "${id}", which is not a field id in ${schemaSource(dpiType)}`)
+    // an entry may be for a field of the next release, which only the root datapackage.json has yet
+    const next = rootPackage.resources.find(resource => resource.name === name)?.schema.fields ?? []
+    if (!fields.some(field => field.id === id) && !next.some(field => field.id === id)) {
+      throw new Error(`${where} has "${id}", which is not a field id in ${schemaSource(dpiType)} or the root datapackage.json`)
+    }
     if (entry.kind === 'flag' || entry.kind === 'text') {
       const key = `${entry.kind} ${entry.order}`
       if (!Number.isInteger(entry.order) || orders.has(key)) throw new Error(`${where}.${id} needs an order that no other ${entry.kind} field has`)

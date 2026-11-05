@@ -6,11 +6,11 @@ Built by `npm run data:build -- --release 2026-11-06` into `public/data/2026-11-
 - identity: 212 rows, from 32 changesets
 - payment: 260 rows, from 298 changesets
 
-0 blocking items, 37 not blocking.
+0 blocking items, 47 not blocking.
 
 | Kind | Blocks a merge | Items |
 |---|---|---|
-| Legacy warnings: values from the baseline that fail a check | no | 35 |
+| Legacy warnings: values from the baseline that fail a check | no | 45 |
 | Legacy fields: values for fields from an earlier release that are not in the package | no | 2 |
 
 ## DPI status changes since 2026-03-31
@@ -125,14 +125,14 @@ The headline count on the home page: places that are countries, not regions, wit
 
 ## Legacy warnings by field
 
-35 values from the baseline fail a check. They don't block a merge (D60), and each release reports how many are left.
+45 values from the baseline fail a check. They don't block a merge (D60), and each release reports how many are left.
 
 | Table | Field | Values |
 |---|---|---|
 | identity | `legal_redress` | 28 |
+| payment | `operator` | 11 |
 | exchange | `ownership` | 4 |
 | payment | `system_type` | 2 |
-| payment | `operator` | 1 |
 
 ## Legacy warnings: values from the baseline that fail a check
 
@@ -165,8 +165,18 @@ The headline count on the home page: places that are countries, not regions, wit
 - identity, 2026-03-31 change 0, id-ws-01, `legal_redress`: "Legally established mechanism" is not an allowed value
 - identity, 2026-03-31 change 0, id-to-01, `legal_redress`: "Yes" is not an allowed value
 - payment, 2026-03-31 change 0, pay-ng-02, `operator`: "Central bank/Other" is not an allowed value
+- payment, 2026-03-31 change 0, pay-mn-02, `operator`: "Private PSP" is not an allowed value
+- payment, 2026-03-31 change 0, pay-cw-02, `operator`: "Private PSP" is not an allowed value
+- payment, 2026-03-31 change 0, pay-do-02, `operator`: "Private PSP" is not an allowed value
+- payment, 2026-03-31 change 0, pay-pr-02, `operator`: "Private PSP" is not an allowed value
+- payment, 2026-03-31 change 0, pay-tt-02, `operator`: "Private PSP" is not an allowed value
+- payment, 2026-03-31 change 0, pay-bz-02, `operator`: "Private PSP" is not an allowed value
+- payment, 2026-03-31 change 0, pay-gy-02, `operator`: "Private PSP" is not an allowed value
+- payment, 2026-03-31 change 0, pay-iq-01, `operator`: "Private PSP" is not an allowed value
 - payment, 2026-03-31 change 0, pay-om-01, `system_type`: "Interbank payment system, Mobile wallet" is not an allowed value
 - payment, 2026-03-31 change 0, pay-om-02, `system_type`: "Interbank payment system, Mobile wallet" is not an allowed value
+- payment, 2026-03-31 change 0, pay-om-02, `operator`: "Private PSP" is not an allowed value
+- payment, 2026-03-31 change 0, pay-sy-01, `operator`: "Private PSP" is not an allowed value
 - exchange, 2026-03-31 change 0, dx-bb-01, `ownership`: "Public, Private" is not an allowed value
 - exchange, 2026-03-31 change 0, dx-li-01, `ownership`: "Public, Private" is not an allowed value
 - exchange, 2026-03-31 change 0, dx-mx-01, `ownership`: "Public, Private" is not an allowed value
@@ -193,8 +203,9 @@ identity: 212 rows, 28 errors, 1 warning
     27	"Legally established mechanism"
     1	"Yes"
 
-payment: 260 rows, 3 errors
-  "Operator": 1 (allowed: Central bank, Commercial bank/Private PSP, Bank association, Bank association/Central bank, Private PSP, Other, Not Found)
+payment: 260 rows, 13 errors
+  "Operator": 11 (allowed: Central bank, Commercial bank/Private PSP, Bank association, Bank association/Central bank, Other, Not Found)
+    10	"Private PSP"
     1	"Central bank/Other"
   "Payment system type": 2 (allowed: Cross-domain, Interbank, Mobile money, Mobile money system, CBDC, Card Payment, Not Found)
     2	"Interbank payment system, Mobile wallet"
@@ -207,5 +218,5 @@ places: 258 rows, 0 errors
 
 place_names: 23 rows, 0 errors
 
-35 errors, 1 warning
+45 errors, 1 warning
 ```

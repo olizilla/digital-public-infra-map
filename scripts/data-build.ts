@@ -12,8 +12,9 @@
 //
 // The DPI layer (D48, src/DpiLayer.ts): Last updated is the row's newest as_of, as
 // YYYY-MM-DD (D49), Count for DPI is from the DPI test in src/DpiTest.ts, the same
-// code the site uses, and a new system goes below the last system for its place,
-// by src/Places.ts.
+// code the site uses, the ISO 3166-1 codes are from the row's place in
+// public/data/places.csv (D68), and a new system goes below the last system for its
+// place, by src/Places.ts.
 //
 // It then checks the release with scripts/validate.mjs. A failing value blocks
 // only if a changeset introduced it, and one from release N is a legacy
@@ -23,9 +24,14 @@
 // aren't in the root datapackage.json are reported as legacy, if an earlier
 // release had the field, or else as unknown (D51).
 //
+// The root datapackage.json is the next release's codebook (D71), so the build reads it
+// and writes it into the release. The site's modules it uses for the DPI test and places
+// read the codebook of the release the site shows (src/ReleaseFiles.ts).
+//
 // Removed systems have no page, so it redirects each System ID that was in an
 // earlier release and isn't in this one to its country page (D64), in
-// public/_redirects between marker comments.
+// public/_redirects between marker comments. Another block there redirects
+// /data/latest/<file> to the newest release's files (D71).
 //
 // Cutting a release moves changesets/next/* into changesets/<release>/. This script doesn't
 // move them. Until they're moved it reads both folders, so the release includes them.
@@ -35,9 +41,10 @@
 // usage: npm run data:build -- --release 2026-11-06 [--previous 2026-03-31]
 //
 // --check (npm run data:check) writes nothing in the repo. It rebuilds the release that
-// src/Release.ts points at, or --release, in a temporary folder, from the previous release and
+// src/ReleaseFiles.ts points at, or --release, in a temporary folder, from the previous release and
 // the changesets in changesets/<release>/ only, as they were when it was cut, so pending
-// changesets in changesets/next/ don't count. It compares the result with public/data/<release>/
+// changesets in changesets/next/ don't count, and with the release's own datapackage.json, not
+// the root one, which may have moved on to the next release (D71). It compares the result with public/data/<release>/
 // and exits 1 on any difference, or if anything blocks a merge. This catches a DPI test
 // changed without a rebuild, a released changeset edited after the cut, and other drift.
 
@@ -65,17 +72,18 @@ type DPIType = keyof typeof resourceNames
 const root = path.resolve(import.meta.dirname, '..')
 const { values: args } = parseArgs({ options: { release: { type: 'string' }, previous: { type: 'string' }, check: { type: 'boolean' } } })
 const check = !!args.check
-// in check mode the release defaults to the one the site shows (src/Release.ts)
-const release = args.release ?? (check ? fs.readFileSync(path.join(root, 'src', 'Release.ts'), 'utf8').match(/export const release = '([^']+)'/)?.[1] : undefined)
+// in check mode the release defaults to the one the site shows (src/ReleaseFiles.ts)
+const release = args.release ?? (check ? fs.readFileSync(path.join(root, 'src', 'ReleaseFiles.ts'), 'utf8').match(/export const release = '([^']+)'/)?.[1] : undefined)
 const isDate = (s?: string) => !!s && /^\d{4}-\d{2}-\d{2}$/.test(s)
 if (!isDate(release) || (args.previous && !isDate(args.previous))) {
   console.error('usage: npm run data:build -- --release YYYY-MM-DD [--previous YYYY-MM-DD] [--check]')
   process.exit(2)
 }
 
-const datapackage: DataPackage = JSON.parse(fs.readFileSync(path.join(root, 'datapackage.json'), 'utf8'))
 const dataDir = path.join(root, 'public', 'data')
 const releaseDir = path.join(dataDir, release!)
+// the codebook: the root one, the next release's, or in check mode the release's own (D71)
+const datapackage: DataPackage = JSON.parse(fs.readFileSync(check ? path.join(releaseDir, 'datapackage.json') : path.join(root, 'datapackage.json'), 'utf8'))
 // check mode builds into a temporary folder, to compare with the release and to run scripts/validate.mjs on
 const out = check ? fs.mkdtempSync(path.join(os.tmpdir(), 'data-check-')) : releaseDir
 const reportPath = path.join(root, 'reports', `data-build-${release}.md`)
@@ -193,6 +201,8 @@ for (const file of copied) write(path.basename(file), fs.readFileSync(path.join(
 
 // the release's own datapackage.json, whose paths are the files in this folder (D50)
 const releasePackage = structuredClone(datapackage)
+// the root's $comment says it describes the next release, which isn't true of a release's copy
+delete (releasePackage as { $comment?: string }).$comment
 for (const resource of releasePackage.resources) {
   const file = path.basename(resource.path!)
   if (!written.includes(file)) throw new Error(`resource "${resource.name}" has no file in the release: ${file}`)
@@ -242,14 +252,40 @@ for (const [name, table] of Object.entries(result.tables)) {
     redirects.push(`/${key} ${target} 302`, `/${key}/ ${target} 302`)
   }
 }
+// --- /data/latest/, a stable address for the current release's files (D71) ---
+
+// The block points at the release data:build built, so building a release is the only step: the
+// release PR builds it and points the site at it (src/ReleaseFiles.ts), and both go live when it
+// merges. If the block followed the release the site shows, switching the site would need another
+// data:build to move it, and /data/latest/ would stay on the old release until then. Rebuilding an
+// older release doesn't move it back: it points at the newest release folder, which is this one
+// unless a later release has been built. Its files take stable names, without the date, like
+// latest/identity.json for <date>/<date>-identity.json. 302s, as the target moves with each release.
+const latest = fs.readdirSync(dataDir)
+  .filter(d => RELEASE_FOLDER.test(d) && d >= release! && fs.existsSync(path.join(dataDir, d, 'datapackage.json')))
+  .sort().at(-1) ?? release!
+const latestFiles = latest === release && !check ? written : fs.readdirSync(path.join(dataDir, latest))
+const latestRedirects = latestFiles
+  .filter(file => file === 'datapackage.json' || file.endsWith('.csv') || file.startsWith(`${latest}-`))
+  .map(file => ({ file, name: file.replace(`${latest}-`, '') }))
+  .sort((a, b) => a.name < b.name ? -1 : a.name > b.name ? 1 : 0)
+  .map(({ file, name }) => `/data/latest/${name} /data/${latest}/${file} 302`)
+
 const redirectsPath = path.join(root, 'public', '_redirects')
-const markers = ['# removed systems (generated by data:build)', '# end removed systems']
+/** `text` with the lines between `markers` replaced by `lines`, or with them added at the end */
+function replaceBlock (text: string, markers: [string, string], lines: string[]) {
+  const block = [markers[0], ...lines, markers[1]].join('\n')
+  const [start, end] = markers.map(marker => text.indexOf(marker))
+  return start !== -1 && end > start
+    ? text.slice(0, start) + block + text.slice(end + markers[1].length)
+    : text.replace(/\n*$/, text ? '\n' : '') + block + '\n'
+}
 const before = fs.existsSync(redirectsPath) ? fs.readFileSync(redirectsPath, 'utf8') : ''
-const block = [markers[0], ...redirects, markers[1]].join('\n')
-const [start, end] = markers.map(marker => before.indexOf(marker))
-const after = start !== -1 && end > start
-  ? before.slice(0, start) + block + before.slice(end + markers[1].length)
-  : before.replace(/\n*$/, before ? '\n' : '') + block + '\n'
+const after = replaceBlock(
+  replaceBlock(before, ['# removed systems (generated by data:build)', '# end removed systems'], redirects),
+  ['# latest release (generated by data:build)', '# end latest release'],
+  [`# /data/latest/ is the ${latest} release`, ...latestRedirects]
+)
 if (!check) fs.writeFileSync(redirectsPath, after)
 
 // check the release. A failing value blocks if a changeset introduced it, and is a legacy warning if it's from the baseline (D60)
@@ -449,6 +485,7 @@ if (check) {
 
 console.log(`Wrote public/data/${release}/: ${written.join(', ')}`)
 console.log(`Wrote ${redirects.length / 2} removed systems' redirects to ${path.relative(root, redirectsPath)}`)
+console.log(`Wrote ${latestRedirects.length} redirects from /data/latest/ to the ${latest} release to ${path.relative(root, redirectsPath)}`)
 for (const line of tableLines) console.log(line)
 console.log(`\n${blocking} blocking item${blocking === 1 ? '' : 's'}, ${result.report.length - blocking} not blocking`)
 for (const { kind, blocking, count } of counts) console.log(`  ${blocking ? 'blocks' : 'note  '}  ${String(count).padStart(5)}  ${KIND_TITLES[kind]}`)
