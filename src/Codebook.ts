@@ -18,8 +18,10 @@ type CodebookField = Field & {
   /** Table Schema v2: the field's values, each with its meaning as the `label` */
   categories?: Category[]
   /**
-   * The codebook's own list of values and their meanings, kept verbatim where
-   * it doesn't match the field's values, so it can't be `categories`.
+   * The old codebook's own list of values and their meanings, kept verbatim where it didn't match
+   * the field's values. The current datapackage.json no longer uses it (every field has one
+   * `categories` list), but the 2026-03-31 release's package does, so codebook changes can still
+   * read what its meanings were.
    */
   codebookCategories?: Category[]
   /** "System" or "Subsystem": whether the variable describes the whole system or one of its parts */

@@ -2,7 +2,7 @@
 
 Built by `npm run data:build -- --release 2026-11-06` into `public/data/2026-11-06/`, from the 2026-03-31 release and the changesets in `changesets/2026-11-06/` and `changesets/next/`.
 
-- exchange: 215 rows, from 70 changesets
+- exchange: 215 rows, from 71 changesets
 - identity: 212 rows, from 33 changesets
 - payment: 260 rows, from 300 changesets
 
@@ -207,7 +207,7 @@ payment: 260 rows, 13 errors
   "Operator": 11 (allowed: Central bank, Commercial bank/Private PSP, Bank association, Bank association/Central bank, Other, Not Found)
     10	"Private PSP"
     1	"Central bank/Other"
-  "Payment system type": 2 (allowed: Cross-domain, Interbank, Mobile money, Mobile money system, CBDC, Card Payment, Not Found)
+  "Payment system type": 2 (allowed: Cross-domain, Interbank, Mobile money system, CBDC, Card Payment, Not Found)
     2	"Interbank payment system, Mobile wallet"
 
 exchange: 215 rows, 4 errors

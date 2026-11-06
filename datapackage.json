@@ -301,13 +301,13 @@
             "constraints": {
               "enum": ["Customer service mechanism", "Legally binding mechanism", "Both", "Not Found"]
             },
-            "codebookCategories": [
+            "categories": [
               {
                 "value": "Customer service mechanism",
                 "label": "Refers to helpdesks, phone contact, email, digital questionnaires, or any other methods for users to get in touch or raise questions about the digital ID system."
               },
               {
-                "value": "Legally bindind mechanism",
+                "value": "Legally binding mechanism",
                 "label": "Involves explicit mentions of redress mechanisms either in the digital ID regulation or the Data Protection Act."
               },
               {
@@ -607,9 +607,9 @@
             "description": "Refers to the domain in which the payment system operates. This is inferred based on the key channel of transactions highlighted on payment system documentations and its list of participants.",
             "type": "string",
             "constraints": {
-              "enum": ["Cross-domain", "Interbank", "Mobile money", "Mobile money system", "CBDC", "Card Payment", "Not Found"]
+              "enum": ["Cross-domain", "Interbank", "Mobile money system", "CBDC", "Card Payment", "Not Found"]
             },
-            "codebookCategories": [
+            "categories": [
               {
                 "value": "Cross-domain",
                 "label": "The system connects two or more payment domains: interbank, mobile money, card or CBDC. Non-bank participants such as payment or e-money institutions do not by themselves make a system cross-domain."
@@ -619,16 +619,12 @@
                 "label": "The system transfers funds between payment accounts, whether held at banks or at non-bank providers such as payment or e-money institutions."
               },
               {
-                "value": "Mobile money",
-                "label": "payment system allows only non-bank mobile wallet providers, either interoperably or in closed-loop systems."
-              },
-              {
                 "value": "Mobile money system",
                 "label": "payment system typically allows only non-bank mobile wallet providers, either interoperably or in closed-loop systems."
               },
               {
-                "value": "Central bank digital currencies (CBDC)",
-                "label": "Payment systems that support transactions in that country or region's CBDC."
+                "value": "CBDC",
+                "label": "Central bank digital currencies: payment systems that support transactions in that country or region's CBDC."
               },
               {
                 "value": "Card Payment",
@@ -743,35 +739,35 @@
             "id": "transaction_types",
             "name": "Types of transactions supported",
             "title": "Types of transactions supported",
-            "description": "Indicates the type of transactions supported between individuals and businesses. Inferred through a keyword search on the payment system documentation, as well as a review of its participant types.",
+            "description": "Indicates the type of transactions supported between individuals and businesses. Inferred through a keyword search on the payment system documentation, as well as a review of its participant types. A system can support several types: a cell holds each of them, separated by commas, such as \"P2P, G2P\".",
             "type": "string",
             "constraints": {
               "pattern": "(P2P|B2B|P2M|B2P|G2P|B2G|Other)(, (P2P|B2B|P2M|B2P|G2P|B2G|Other))*|Not Found"
             },
-            "codebookCategories": [
+            "categories": [
               {
-                "value": "(P2P) Person-to-Person",
-                "label": "Transactions between two individuals, typically for personal or non-commercial purposes."
+                "value": "P2P",
+                "label": "Person-to-Person: Transactions between two individuals, typically for personal or non-commercial purposes."
               },
               {
-                "value": "(B2B) Business-to-Business",
-                "label": "Transactions between two businesses, generally involving the exchange of goods, services, or contractual obligations."
+                "value": "B2B",
+                "label": "Business-to-Business: Transactions between two businesses, generally involving the exchange of goods, services, or contractual obligations."
               },
               {
-                "value": "(P2M) Person-to-Merchant",
-                "label": "Transactions where an individual makes a payment to a merchant or service provider."
+                "value": "P2M",
+                "label": "Person-to-Merchant: Transactions where an individual makes a payment to a merchant or service provider."
               },
               {
-                "value": "(B2P) Business-to-Person",
-                "label": "Transactions where a business transfers funds to an individual, often as part of compensation or reimbursement."
+                "value": "B2P",
+                "label": "Business-to-Person: Transactions where a business transfers funds to an individual, often as part of compensation or reimbursement."
               },
               {
-                "value": "(G2P) Government-to-Person",
-                "label": "Payments made by a government entity to individuals, usually as part of social, welfare, or support programs."
+                "value": "G2P",
+                "label": "Government-to-Person: Payments made by a government entity to individuals, usually as part of social, welfare, or support programs."
               },
               {
-                "value": "(B2G) Business-to-Government",
-                "label": "Transactions where businesses make payments to government entities, often in the form of taxes, fees, or regulatory charges."
+                "value": "B2G",
+                "label": "Business-to-Government: Transactions where businesses make payments to government entities, often in the form of taxes, fees, or regulatory charges."
               },
               {
                 "value": "Other",
@@ -857,32 +853,31 @@
             "description": "Indicates the type of operator of the payment system, referring to institutional arranagement of the payment system. This is inferred from the payment system website, specifically through a scan of the governance structure.",
             "type": "string",
             "constraints": {
-              "enum": ["Central bank", "Commercial bank/Private PSP", "Bank association", "Bank association/Central bank", "Other", "Not Found"]
+              "enum": [
+                "Central bank",
+                "Commercial bank/Private PSP",
+                "Bank association",
+                "Bank association/Central bank",
+                "Other",
+                "Not Found"
+              ]
             },
-            "codebookCategories": [
-              {
-                "value": "Bank association",
-                "label": "Association or consortium of banks who collectively operate the payment system."
-              },
+            "categories": [
               {
                 "value": "Central bank",
                 "label": "A public authority responsible for managing a country’s currency, money supply, and interest rates. In payment systems, the central bank often acts as the regulator, operator, and settlement agent for national payment infrastructure."
-              },
-              {
-                "value": "Bank association/ Central bank",
-                "label": "refers to operating model where the central bank is one of the operators, among as association of private banks, operating the system"
-              },
-              {
-                "value": "Commercial bank",
-                "label": "A privately or publicly owned financial institution that accepts deposits, offers loans, and provides various financial services to individuals and businesses."
               },
               {
                 "value": "Commercial bank/Private PSP",
                 "label": "Operating model where commercial banks and private PSPs operate the system together, or where the system is run by several providers of both types."
               },
               {
-                "value": "Private PSP (Payment Service Provider)",
-                "label": "A non-bank entity that offers payment services to end-users, such as facilitating money transfers, processing cards, or enabling mobile/digital wallets."
+                "value": "Bank association",
+                "label": "Association or consortium of banks who collectively operate the payment system."
+              },
+              {
+                "value": "Bank association/Central bank",
+                "label": "refers to operating model where the central bank is one of the operators, among as association of private banks, operating the system"
               },
               {
                 "value": "Other",
@@ -1256,9 +1251,13 @@
             "constraints": {
               "pattern": "(Cross-sectoral|Sectoral \\(.+\\))|Not Found"
             },
-            "codebookCategories": [
+            "categories": [
               {
-                "value": "Sectoral and in brackets the specific sector. ie. Sectoral (Trade).\nCross-sectoral",
+                "value": "Sectoral (…)",
+                "label": "The data exchange serves one sector, named in brackets, for example Sectoral (Trade)."
+              },
+              {
+                "value": "Cross-sectoral",
                 "label": "Sufficient information was found to determine the data exchange operates accross multiple sectors."
               },
               {
@@ -1393,14 +1392,10 @@
             "constraints": {
               "enum": ["Yes", "No", "Not Found"]
             },
-            "codebookCategories": [
+            "categories": [
               {
                 "value": "Yes",
                 "label": "The data exchange system has documented and publicly accessible information on enrollment and participation. This can include official guidelines, step-by-step procedures, or accessible web pages where users can register or log in."
-              },
-              {
-                "value": "NA",
-                "label": "There is no publicly available information or documentation found on how entities can enroll or participate in the data exchange. This indicates either the absence of such documentation or that it is not accessible to the public."
               },
               {
                 "value": "Not Found",
@@ -1418,9 +1413,15 @@
             "description": "This indicator captures the types of entities that are allowed or documented to use the data exchange system, where public entities are always included by default. It assesses whether the system is also accessible to private sector entities and civil society organizations based on documented evidence such as user registrations or usage reports. The default assumption is that public sector entities are always included, as the system is a Digital Public Infrastructure (DPI). Therefore, the range categorization reflects the additional inclusion of private and/or civil society entities.",
             "type": "string",
             "constraints": {
-              "pattern": "(Public|Private|Civil)(, (Public|Private|Civil))*|Not Found"
+              "enum": [
+                "Public",
+                "Public, Private",
+                "Public, Civil",
+                "Public, Private, Civil",
+                "Not Found"
+              ]
             },
-            "codebookCategories": [
+            "categories": [
               {
                 "value": "Public",
                 "label": "The data exchange is used exclusively by public sector entities. No evidence of participation by private or civil society entities."
@@ -1431,11 +1432,11 @@
               },
               {
                 "value": "Public, Civil",
-                "label": "The data exchange is used by public sector entities and civil society organizations. Evidence includes civil society organizations registered as users or reports on their involvement."
+                "label": "The data exchange is used by public sector entities and civil society organizations and individuals. Evidence includes civil society organizations and individuals registered as users or reports on their involvement."
               },
               {
                 "value": "Public, Private, Civil",
-                "label": "The data exchange system is used by public sector entities, private sector organizations, and civil society organizations. Documented evidence shows participation or engagement from all these types of entities."
+                "label": "The data exchange system is used by public sector entities, private sector organizations, civil society organizations, and individuals. Documented evidence shows participation or engagement from all these types of entities."
               },
               {
                 "value": "Not Found",
