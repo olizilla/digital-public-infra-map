@@ -7,6 +7,7 @@
     {
       "name": "identity",
       "path": "2026-03-31-identity.json",
+      "type": "table",
       "format": "json",
       "mediatype": "application/json",
       "encoding": "utf-8",
@@ -412,6 +413,7 @@
     {
       "name": "payment",
       "path": "2026-03-31-payment.json",
+      "type": "table",
       "format": "json",
       "mediatype": "application/json",
       "encoding": "utf-8",
@@ -914,6 +916,7 @@
     {
       "name": "exchange",
       "path": "2026-03-31-exchange.json",
+      "type": "table",
       "format": "json",
       "mediatype": "application/json",
       "encoding": "utf-8",
@@ -1358,6 +1361,7 @@
     {
       "name": "sources",
       "path": "2026-03-31-sources.json",
+      "type": "table",
       "format": "json",
       "mediatype": "application/json",
       "encoding": "utf-8",

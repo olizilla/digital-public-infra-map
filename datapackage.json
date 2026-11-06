@@ -1,16 +1,18 @@
 {
   "$schema": "https://datapackage.org/profiles/2.0/datapackage.json",
-  "$comment": "This root file describes the next release (D71): npm run data:build writes it from the latest release and the pending changesets. Each published release carries its own copy, without this comment, in public/data/<date>/; https://dpimap.org/data/latest/datapackage.json is the current one.",
+  "$comment": "This describes the next release: npm run data:build writes it from the latest release and the pending changesets. Each release carries its own datapackage.json in public/data/<date>/",
   "name": "dpi-map",
   "title": "Digital Public Infrastructure Map",
   "description": "Data on national-scale digital public infrastructure (DPI) around the world, collected by researchers at UCL IIPP and shown at https://dpimap.org: digital identity, payment and data exchange systems, by country or region.",
   "resources": [
     {
       "name": "identity",
-      "path": "public/data/next/identity.csv",
-      "format": "csv",
-      "mediatype": "text/csv",
+      "path": "public/data/next/identity.json",
+      "type": "table",
+      "format": "json",
+      "mediatype": "application/json",
       "encoding": "utf-8",
+      "dialect": { "itemType": "object" },
       "schema": {
         "missingValues": [{ "value": "NA", "label": "Not yet researched, or it can't exist yet." }],
         "primaryKey": ["System ID"],
@@ -491,10 +493,12 @@
     },
     {
       "name": "payment",
-      "path": "public/data/next/payment.csv",
-      "format": "csv",
-      "mediatype": "text/csv",
+      "path": "public/data/next/payment.json",
+      "type": "table",
+      "format": "json",
+      "mediatype": "application/json",
       "encoding": "utf-8",
+      "dialect": { "itemType": "object" },
       "schema": {
         "missingValues": [{ "value": "NA", "label": "Not yet researched, or it can't exist yet." }],
         "primaryKey": ["System ID"],
@@ -1097,10 +1101,12 @@
     },
     {
       "name": "exchange",
-      "path": "public/data/next/exchange.csv",
-      "format": "csv",
-      "mediatype": "text/csv",
+      "path": "public/data/next/exchange.json",
+      "type": "table",
+      "format": "json",
+      "mediatype": "application/json",
       "encoding": "utf-8",
+      "dialect": { "itemType": "object" },
       "schema": {
         "missingValues": [{ "value": "NA", "label": "Not yet researched, or it can't exist yet." }],
         "primaryKey": ["System ID"],

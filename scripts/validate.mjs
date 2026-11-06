@@ -1,5 +1,8 @@
-// Check the shape of datapackage.json, then each resource's CSV, at its
-// `path`, against the resource's schema.
+// Check the shape of datapackage.json, then each resource's table, at its
+// `path`, against the resource's schema. A table is JSON, an array of objects
+// keyed by field name, if the resource's `format` is json (the release tables, D67),
+// or else CSV (places and place-names). A JSON value that isn't a string, like
+// Count for DPI's 0 or 1, is checked as its text, as it would be in a CSV.
 // Prints one line per problem, tab separated, then a summary per resource
 // that counts, for each column, the values found that aren't allowed.
 // A cell in the schema's `missingValues` (NA) is unknown, which is fine unless
@@ -12,14 +15,14 @@
 // public/data/place-names.csv.
 // Exits 1 if there are any errors. Warnings, like a cell with several URLs where
 // the schema allows one, are printed and counted but don't fail.
-// If the package is invalid, the CSVs aren't checked.
+// If the package is invalid, the tables aren't checked.
 //
 // usage: npm run validate [-- <datapackage.json>] [--json]
 //
 // The package defaults to the datapackage.json of the release the site shows,
 // set in src/ReleaseFiles.ts, as the root one is the next release's codebook (D71)
-// and has no CSVs of its own. Resource paths are relative to the package's folder,
-// so a release folder's package checks the release's CSVs. With --json, it prints one JSON object instead of text:
+// and has no tables of its own. Resource paths are relative to the package's folder,
+// so a release folder's package checks the release's tables. With --json, it prints one JSON object instead of text:
 // { errors, problems: [{ resource, row, key, country, column, value, message }] },
 // where the problems are the errors: warnings are left out.
 
@@ -56,7 +59,7 @@ function whereIs (path) {
 
 /**
  * What the site and this script rely on, beyond the standard: each resource has
- * a CSV at a relative path inside the repo and its schema inline, and each field
+ * a table at a relative path inside the repo and its schema inline, and each field
  * has a unique snake_case `id` and a `title`. As [path, message]
  */
 function checkPackage () {
@@ -92,12 +95,12 @@ function checkPackage () {
 
 /** Check the package's shape. Prints the problems and returns how many. */
 function validatePackage () {
-  const problems = checkPackage()
-  for (const [path, message] of problems) {
+  const shape = checkPackage()
+  for (const [path, message] of shape) {
     problems.push({ resource: packagePath, column: path, message })
     print(`${packagePath}\t${path}${whereIs(path)}\t${message}`)
   }
-  return problems.length
+  return shape.length
 }
 
 /** Parse `value` as a date in a strptime-style format like `%d/%m/%y` */
@@ -128,14 +131,41 @@ function cast (field, value) {
   }
 }
 
-/** The rows of a resource's CSV, or undefined if the package has no such resource or its CSV is missing */
+const isJSON = resource => resource.format === 'json' || (!resource.format && /\.json$/i.test(resource.path))
+
+/** A JSON value as a cell's text: strings as they are, other values as JSON, and null or a missing key as undefined */
+const cellText = value => value === null || value === undefined ? undefined : typeof value === 'string' ? value : JSON.stringify(value)
+
+/**
+ * A resource's table: `rows` keyed by field name, each cell as text, `fields`, its column names, in order, and
+ * `errors`, its parse errors as { row, message }. For JSON the columns are every row's keys, in the order first seen.
+ */
+function readTable (resource) {
+  if (!isJSON(resource)) {
+    const { data: rows, meta, errors } = Papa.parse(read(resource.path).replace(/^\uFEFF/, ''), { header: true, skipEmptyLines: true })
+    // Papa's row is the data row's index; the sheet's row number adds 2, as row 1 is the header
+    return { rows, fields: meta.fields, errors: errors.map(e => ({ row: e.row === undefined ? '-' : e.row + 2, message: `CSV parse error: ${e.message}` })) }
+  }
+  let data
+  try {
+    data = JSON.parse(read(resource.path))
+  } catch (e) {
+    return { rows: [], fields: [], errors: [{ row: '-', message: `JSON parse error: ${e.message}` }] }
+  }
+  if (!Array.isArray(data) || !data.every(row => row && typeof row === 'object' && !Array.isArray(row))) {
+    return { rows: [], fields: [], errors: [{ row: '-', message: 'is not a JSON array of objects' }] }
+  }
+  const fields = [...new Set(data.flatMap(row => Object.keys(row)))]
+  return { rows: data.map(row => Object.fromEntries(Object.entries(row).map(([key, value]) => [key, cellText(value)]))), fields, errors: [] }
+}
+
+/** The rows of a resource's table, or undefined if the package has no such resource or its file is missing */
 const tables = new Map()
 function rowsOf (name) {
   if (!tables.has(name)) {
     const resource = datapackage.resources.find(resource => resource.name === name)
     const found = resource && fs.existsSync(new URL(resource.path, root))
-    const csv = found && read(resource.path).replace(/^\uFEFF/, '')
-    tables.set(name, found ? Papa.parse(csv, { header: true, skipEmptyLines: true }).data : undefined)
+    tables.set(name, found ? readTable(resource).rows : undefined)
   }
   return tables.get(name)
 }
@@ -221,7 +251,8 @@ function checkCell (field, value, missingValues) {
 /** The names of the schema's `primaryKey` fields. Table Schema allows a single name or a list. */
 const primaryKeyOf = schema => [schema.primaryKey ?? []].flat()
 
-function validate ({ name: dataset, path, schema }) {
+function validate (resource) {
+  const { name: dataset, path, schema } = resource
   const errors = []
   const warnings = []
   // the primary key of the row being checked, if it has one field
@@ -233,14 +264,14 @@ function validate ({ name: dataset, path, schema }) {
     print(`${warning ? 'warning\t' : ''}${dataset}\trow ${row}\t${country}\t${JSON.stringify(column)}\t${value === undefined ? '-' : JSON.stringify(value)} ${message}`)
   }
   if (!fs.existsSync(new URL(path, root))) {
-    report('-', '-', '-', undefined, `no CSV at ${path}`)
+    report('-', '-', '-', undefined, `no ${isJSON(resource) ? 'JSON' : 'CSV'} at ${path}`)
     return { dataset, rows: 0, errors, warnings, schema }
   }
-  const csv = read(path).replace(/^\uFEFF/, '')
-  const { data: rows, meta, errors: parseErrors } = Papa.parse(csv, { header: true, skipEmptyLines: true })
+  const { rows, fields: columns, errors: parseErrors } = readTable(resource)
+  const meta = { fields: columns }
 
   for (const e of parseErrors) {
-    report(e.row === undefined ? '-' : e.row + 2, '-', '-', undefined, `CSV parse error: ${e.message}`)
+    report(e.row, '-', '-', undefined, e.message)
   }
 
   const names = schema.fields.map(field => field.name)
@@ -267,7 +298,7 @@ function validate ({ name: dataset, path, schema }) {
   // for each foreign key, the values its referenced fields have
   const referenced = foreignKeys.map(({ reference }) => {
     const rows = rowsOf(reference.resource)
-    if (!rows) report('-', '-', '-', undefined, `foreignKeys refers to resource "${reference.resource}", which is not in the package or has no CSV`)
+    if (!rows) report('-', '-', '-', undefined, `foreignKeys refers to resource "${reference.resource}", which is not in the package or has no table`)
     return new Set((rows ?? []).map(row => JSON.stringify([reference.fields].flat().map(name => row[name]))))
   })
   const systemIdField = schema.fields.find(field => field.id === 'system_id')
@@ -275,7 +306,7 @@ function validate ({ name: dataset, path, schema }) {
   // for each of uniques, value -> the row it was first seen in
   const firstSeen = uniques.map(() => new Map())
   rows.forEach((row, i) => {
-    // the sheet's row number: row 1 is the header
+    // the sheet's row number: row 1 is the header. In a release's JSON, written one row per line after [, it's the line number
     const rowNumber = i + 2
     rowKey = primaryKey.length === 1 ? row[primaryKey[0]] : undefined
     const country = row[countryField?.name] || '-'
@@ -322,7 +353,7 @@ function validate ({ name: dataset, path, schema }) {
 
 const packageErrors = validatePackage()
 if (packageErrors > 0) {
-  print(`\n${packageErrors} error${packageErrors === 1 ? '' : 's'} in ${packagePath}. Fix them to check the CSVs.`)
+  print(`\n${packageErrors} error${packageErrors === 1 ? '' : 's'} in ${packagePath}. Fix them to check the tables.`)
   if (asJSON) console.log(JSON.stringify({ errors: packageErrors, problems }))
   process.exit(1)
 }

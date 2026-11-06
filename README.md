@@ -32,7 +32,7 @@ Updates to the site are deployed to dpimap.org automatically when changes are me
 
 ## Data package
 
-[./datapackage.json](./datapackage.json) is the codebook for the next release. Each release folder, `public/data/<date>/`, has its own `datapackage.json`, which describes its CSVs, and https://dpimap.org/data/latest/ redirects to the current release's files, like `/data/latest/datapackage.json` and `/data/latest/identity.csv`. Each is an Open Knowledge Foundation [Data Package](https://datapackage.org/standard/data-package/) (v2) file, that documents the shapes of the dpimap.org data, to aid reuse.
+[./datapackage.json](./datapackage.json) describes the shape of the data. Each release folder has its own `datapackage.json`, which describes the JSON format for each table. Each is an Open Knowledge Foundation [Data Package](https://datapackage.org/standard/data-package/) (v2) file, that documents the shapes of the dpimap.org data, to aid reuse.
 
 ### The codebook
 
@@ -79,7 +79,7 @@ All commands are run from the root of the project, from a terminal:
 | `npm start`               | Starts local dev server at `localhost:4321`      |
 | `npm run build`           | Build your production site to `./dist/`          |
 | `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run validate`        | Check `datapackage.json` and the latest CSVs     |
+| `npm run validate`        | Check `datapackage.json` and the latest tables   |
 | `npm run codebook:check`  | Report where the codebook and the data disagree  |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |

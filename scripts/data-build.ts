@@ -6,9 +6,10 @@
 // always replaces the value in release N, and one dated before its row's Last
 // updated there is reported (D46). Release N is the newest release folder before
 // this one with JSON for every table, or --previous. It writes public/data/<release>/:
-// - <resource>.csv, and <release>-<resource>.json in the earlier releases' format
+// - <release>-<resource>.json, the canonical tables (D67), one row per line
 // - places.csv and place-names.csv, copied
 // - datapackage.json: the root one, with paths to the files in this folder
+// No table CSVs: the site makes /data/latest/<resource>.csv from the JSON (src/pages/data/latest/[name].csv.ts).
 //
 // The DPI layer (D48, src/DpiLayer.ts): Last updated is the row's newest as_of, as
 // YYYY-MM-DD (D49), Count for DPI is from the DPI test in src/DpiTest.ts, the same
@@ -56,7 +57,7 @@ import path from 'node:path'
 import { parseArgs } from 'node:util'
 import slug from 'slug'
 import {
-  build, checkItem, countByKind, fieldId, formatReport, keyField, KIND_TITLES, missingValue, missingValues, parseCSVRecords, PENDING_FOLDER, readFolders, RELEASE_FOLDER, tableCSV
+  build, checkItem, countByKind, fieldId, formatReport, keyField, KIND_TITLES, missingValue, missingValues, PENDING_FOLDER, readFolders, RELEASE_FOLDER
 } from '../lib/changesets/index.ts'
 import type { Baseline, DataPackage, Field, ReportItem, Row, Table } from '../lib/changesets/index.ts'
 import { baselineReason, derivedFields, lastUpdatedAsOf } from '../src/DpiLayer.ts'
@@ -196,8 +197,11 @@ function tableRecords (table: Table) {
   return table.rows.map(row => Object.fromEntries(table.fields.map(field => [field.name, jsonValue(field, row[fieldId(field)], missing)])))
 }
 
-// the earlier releases' CSVs are Google Sheets exports: \r\n between rows, and none at the end
-const csvStyle = { eol: '\r\n', finalEol: false }
+/**
+ * A table's JSON, one row per line, so a diff of two releases reads like a CSV's: [ on its own line,
+ * then each row as compact JSON, then ]. From the 2026-11-06 release on; earlier releases keep their bytes.
+ */
+const tableJSON = (records: Record<string, unknown>[]) => `[\n${records.map(record => JSON.stringify(record)).join(',\n')}\n]\n`
 
 fs.mkdirSync(out, { recursive: true })
 const written: string[] = []
@@ -206,19 +210,25 @@ const write = (name: string, text: string) => {
   written.push(name)
 }
 
+// each resource's file in the release: a table's dated JSON, or a copied file's name
+const releasePaths: Record<string, string> = {}
 for (const [name, table] of Object.entries(result.tables)) {
-  write(`${name}.csv`, tableCSV(table, csvStyle))
-  write(`${release}-${name}.json`, JSON.stringify(tableRecords(table)))
+  write(releasePaths[name] = `${release}-${name}.json`, tableJSON(tableRecords(table)))
 }
-for (const file of copied) write(path.basename(file), fs.readFileSync(path.join(root, file), 'utf8'))
+for (const file of copied) {
+  write(path.basename(file), fs.readFileSync(path.join(root, file), 'utf8'))
+  const resource = datapackage.resources.find(r => path.basename(r.path ?? '') === path.basename(file))
+  if (resource) releasePaths[resource.name] = path.basename(file)
+}
 
-// the release's own datapackage.json, whose paths are the files in this folder (D50)
+// the release's own datapackage.json, whose paths are the files in this folder (D50). The root's table paths
+// are the next release's draft, public/data/next/<resource>.json, so each path is set here, not taken from the root's
 const releasePackage = structuredClone(datapackage)
 // the root's $comment says it describes the next release, which isn't true of a release's copy
 delete (releasePackage as { $comment?: string }).$comment
 for (const resource of releasePackage.resources) {
-  const file = path.basename(resource.path!)
-  if (!written.includes(file)) throw new Error(`resource "${resource.name}" has no file in the release: ${file}`)
+  const file = releasePaths[resource.name]
+  if (!file || !written.includes(file)) throw new Error(`resource "${resource.name}" has no file in the release`)
   resource.path = file
 }
 write('datapackage.json', JSON.stringify(releasePackage, null, 2) + '\n')
@@ -274,12 +284,16 @@ for (const [name, table] of Object.entries(result.tables)) {
 // older release doesn't move it back: it points at the newest release folder, which is this one
 // unless a later release has been built. Its files take stable names, without the date, like
 // latest/identity.json for <date>/<date>-identity.json. 302s, as the target moves with each release.
+// The tables' CSVs, /data/latest/<resource>.csv, are made by the site (src/pages/data/latest/[name].csv.ts),
+// so they're never redirected: a redirect there would shadow the site's file.
 const latest = fs.readdirSync(dataDir)
   .filter(d => RELEASE_FOLDER.test(d) && d >= release! && fs.existsSync(path.join(dataDir, d, 'datapackage.json')))
   .sort().at(-1) ?? release!
 const latestFiles = latest === release && !check ? written : fs.readdirSync(path.join(dataDir, latest))
+const generated = new Set(Object.keys(result.tables).map(name => `${name}.csv`))
 const latestRedirects = latestFiles
   .filter(file => file === 'datapackage.json' || file.endsWith('.csv') || file.startsWith(`${latest}-`))
+  .filter(file => !generated.has(file))
   .map(file => ({ file, name: file.replace(`${latest}-`, '') }))
   .sort((a, b) => a.name < b.name ? -1 : a.name > b.name ? 1 : 0)
   .map(({ file, name }) => `/data/latest/${name} /data/${latest}/${file} 302`)
@@ -465,16 +479,19 @@ if (check) {
     if (was === undefined) { problems.push(`${file}: is missing on disk`); continue }
     if (was === now) continue
     const before = problems.length
-    const table = result.tables[name.replace(/\.csv$/, '').replace(`${release}-`, '').replace(/\.json$/, '')]
+    const table = result.tables[name.replace(`${release}-`, '').replace(/\.json$/, '')]
     const key = table && keyField(table.resource).name
     try {
-      if (name.endsWith('.csv') && table) compareRows(file, key!, parseCSVRecords(was).records, parseCSVRecords(now).records)
-      else if (name.endsWith('.json') && table) compareRows(file, key!, JSON.parse(was), JSON.parse(now))
+      if (name.endsWith('.json') && table) compareRows(file, key!, JSON.parse(was), JSON.parse(now))
     } catch (e) {
       problems.push(`${file}: can't be compared (${(e as Error).message})`)
     }
     // the same rows and columns, but the file's text differs (formatting, order, or another file)
     if (problems.length === before) problems.push(`${file}: differs from the rebuild${table ? ' in its formatting or the order of its rows' : ''}`)
+  }
+  // a file the rebuild doesn't write, like a table's CSV, which releases no longer carry (D67)
+  for (const name of fs.readdirSync(releaseDir).sort()) {
+    if (!written.includes(name)) problems.push(`public/data/${release}/${name}: is on disk, and the rebuild doesn't write it`)
   }
   const blockers = result.report.filter(item => item.blocking)
   fs.rmSync(out, { recursive: true, force: true })
