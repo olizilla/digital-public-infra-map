@@ -1,6 +1,7 @@
 // The schema of each DPI table, from the datapackage.json of the release the site shows (D71, src/ReleaseFiles.ts)
 import rootPackage from '../datapackage.json'
 import { release, releasePackage as datapackage } from './ReleaseFiles'
+import { placeLabel } from './Places'
 import { siteFields, type SiteField, type ResourceName, type FieldId } from './SiteFields'
 
 export type { Kind } from './SiteFields'
@@ -112,8 +113,12 @@ export function missingLabelOf (schema: Schema, value: string) {
  */
 export const isMissing = (schema: Schema, value?: string) => value === undefined || missingValuesOf(schema).includes(value)
 
-/** The label the site shows for a field */
-export const labelOf = (field: Field) => field.site.label ?? field.title
+/**
+ * The label the site shows for a field, outside the changelog, which uses the codebook's `title`.
+ * The Country / Region field is "Region" or "Country" by the system's `place`, its value in that field.
+ */
+export const labelOf = (field: Field, place?: string) =>
+  field.site.kind === 'country' ? placeLabel(place ?? '') : field.site.label ?? field.title
 
 /** The field's variable name in the codebook, or undefined if the codebook doesn't cover it */
 export const codebookNameOf = (field: Field) => field.site.codebook === false ? undefined : field.title
@@ -131,7 +136,7 @@ export function fieldById<Id extends string> (schema: Schema<Id>, id: NoInfer<Id
 type Transforms<Id extends string> = Partial<Record<Id, (value: any, get: (id: Id) => any) => unknown>>
 
 /**
- * Turn a row keyed by raw column header into a record keyed by field label.
+ * Turn a row keyed by raw column header into a record keyed by field id, like `record.country`.
  * `transforms` maps a field id to a function that fixes up its value. It is
  * passed `get`, to read another field of the same row by id.
  */
@@ -143,7 +148,7 @@ export function toRecord<Id extends string> (schema: Schema<Id>, row: Record<str
     const value = row[field.name]
     // the site's data may predate the System ID column
     if (field.site.kind === 'hidden' && value === undefined) continue
-    record[labelOf(field)] = transform ? transform(value, get) : value
+    record[field.id] = transform ? transform(value, get) : value
   }
-  return record
+  return record as Partial<Record<Id, any>> & Record<string, any>
 }

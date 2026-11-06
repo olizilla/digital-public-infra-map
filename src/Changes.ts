@@ -11,7 +11,7 @@ import slug from 'slug'
 import { getCollection } from 'astro:content'
 import { unreverted } from '../lib/changesets/build.ts'
 import type { Changeset } from '../lib/changesets/types.ts'
-import { schemas, labelOf, resourceNames, toRecord, type DPIType, type Field } from './Schema'
+import { schemas, resourceNames, toRecord, type DPIType, type Field } from './Schema'
 import { dpiStatus, dpiTest, nameOf, nouns, statusOf, type DpiStatus } from './DpiTest'
 import { normaliseImplementationStatus } from './Status'
 import { derivedFields } from './DpiLayer'
@@ -91,6 +91,7 @@ const changesetLink = (resource: string, id: string, pending: boolean) => pendin
 /** One cell a change set: the value before it, if the cell had one, and after */
 export interface Cell {
   field: Field
+  /** the field's codebook title: the changelog doesn't use the site's labels */
   label: string
   before?: string
   after: string
@@ -280,7 +281,7 @@ function changelogOf (dpiType: DPIType) {
         const before = running.get(id)
         running.set(id, value)
         if (!field || derivedFields.includes(id) || field.site.kind === 'hidden' || (isNew && field.site.kind === 'country')) continue
-        cells.push({ field, label: labelOf(field), ...(before !== undefined ? { before } : {}), after: value, valueChanged: before !== value })
+        cells.push({ field, label: field.title, ...(before !== undefined ? { before } : {}), after: value, valueChanged: before !== value })
       }
       if (!cells.length) continue
       const renames = !isNew && cells.some(cell => cell.field.site.kind === 'name' && cell.valueChanged)
@@ -298,7 +299,7 @@ function changelogOf (dpiType: DPIType) {
       // removed: its last remove, its reason, and what takes its place
       const remove = ordered.findLast(entry => entry.type === 'remove')
       if (!remove || !old || !oldRecord) continue
-      const code = placeNamed(String(oldRecord.Country))?.code
+      const code = placeNamed(String(oldRecord.country))?.code
       const named = remove.reason.match(/\b(?:id|pay|dx)-[a-z]+-\d+\b/g)?.map(id => current.get(id)).find(Boolean)
       const successor: Successor | undefined = remove.duplicate_of && current.get(remove.duplicate_of)
         ? { how: 'duplicate', system: current.get(remove.duplicate_of)! }
@@ -307,7 +308,7 @@ function changelogOf (dpiType: DPIType) {
       const removal: Change = { changeset: remove.changeset, index: remove.index, kind: 'removed', as_of: remove.as_of, reason: remove.reason, sources: remove.sources, cells: [] }
       const name = nameOf(dpiType, oldRecord)
       changed.push({
-        id: key, dpiType, title: name ?? `Unnamed ${nouns[dpiType]} system`, named: !!name, country: String(oldRecord.Country),
+        id: key, dpiType, title: name ?? `Unnamed ${nouns[dpiType]} system`, named: !!name, country: String(oldRecord.country),
         isNew: false, removed: { reason: remove.reason, as_of: remove.as_of, sources: remove.sources, ...(successor ? { successor } : {}) },
         before: oldRecord['DPI Status'], criteria: [], renamed: false,
         groups: groupsOf([removal], resource, pending), wording: [], count: 1,
@@ -341,7 +342,7 @@ function changelogOf (dpiType: DPIType) {
     })
 
   // DPI-like countries, counted as the homepage counts them: places that aren't regions, with a system that passes the DPI test
-  const dpiBefore = new Set([...previous.values()].map(toPreviousRecord).filter(r => r['DPI Status'] === 'DPI').map(r => countryKey(String(r.Country))).filter(k => k !== undefined))
+  const dpiBefore = new Set([...previous.values()].map(toPreviousRecord).filter(r => r['DPI Status'] === 'DPI').map(r => countryKey(String(r.country))).filter(k => k !== undefined))
   const dpiAfter = new Set([...current.values()].filter(s => s.dpiStatus === 'DPI').map(s => countryKey(s.country)).filter(k => k !== undefined))
   const dpiCountries: DpiCountry[] = [...new Set([...dpiBefore, ...dpiAfter])]
     .filter(key => dpiBefore.has(key) !== dpiAfter.has(key))

@@ -21,8 +21,8 @@ const { log, snapshot } = changeLogOf(system)
           <li class="log-item">
             <p class="h-top"><time datetime={item.date}>{item.date}</time></p>
             <p class="log-what">{title.text}{ title.field && (isListed(title.field)
-              ? <a class="ul" href={`#${fieldAnchor(title.field.id)}`}>{labelOf(title.field)}</a>
-              : labelOf(title.field)) }</p>
+              ? <a class="ul" href={`#${fieldAnchor(title.field.id)}`}>{labelOf(title.field, system.country)}</a>
+              : labelOf(title.field, system.country)) }</p>
             <p class="log-file"><a class="mono" href={changesetUrl(system.resource, item.changeset)}>{item.changeset}</a></p>
             { authorName(item.author) && <p class="h-by">{authorName(item.author)}</p> }
           </li>

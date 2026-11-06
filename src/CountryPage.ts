@@ -17,7 +17,7 @@ export const laneAnchors: Record<DPIType, string> = { id: 'digital-id', pay: 'di
 /** The country's three lanes: its rows of each DPI type, and the systems among them, best first */
 export function lanesOf (country: string) {
 	return (Object.entries(laneTitles) as [DPIType, string][]).map(([dpiType, title]) => {
-		const all = records[dpiType].filter(record => record.Country === country)
+		const all = records[dpiType].filter(record => record.country === country)
 		// rows where the research found no system don't get a card
 		const systems = all
 			.filter(record => presence(dpiType, record) !== 'not-found')

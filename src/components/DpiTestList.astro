@@ -24,7 +24,7 @@ const href = (field: string) => links ? `#f-${field}` : undefined
 	<li><span class={`pill ${pill[0]}`}>{pill[1]}</span><Label href={href('status')}>Status: {label === 'NA' ? 'Unknown' : label}</Label></li>
   { criteria.map(c => (
 	  <li>
-	    <YesNo status={c.value} /> <Label href={href(c.field)}>{c.label}</Label>
+	    <YesNo status={c.value} /> <Label href={href(c.field)} title={c.label}>{c.label}</Label>
 	  </li>
   ))}
 </ul>

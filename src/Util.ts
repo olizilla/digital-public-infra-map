@@ -38,7 +38,7 @@ export function parseDate (date: string) {
 }
 
 interface DPIData {
-  Country: string,
+  country: string,
   'DPI Status': 'DPI' | 'WIP' | 'NA'
 }
 
@@ -63,9 +63,9 @@ Regions, like Europe, are skipped: they are not countries.
 */
 export function oneSystemPerCountry (arr: DPIData[]) {
   const map = arr.reduce((map, b) => {
-    const place = placeNamed(b.Country)
+    const place = placeNamed(b.country)
     if (place && isRegion(place)) return map
-    const key = place?.code ?? b.Country.trim().toLowerCase()
+    const key = place?.code ?? b.country.trim().toLowerCase()
     const a = map.get(key)
     map.set(key, mostDpiLike(a, b))
     return map

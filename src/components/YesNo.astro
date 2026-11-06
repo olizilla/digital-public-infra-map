@@ -5,5 +5,7 @@ let {status = '', class: className = ''} = Astro.props
   <span class:list={['pill yes', className]}>YES</span> }
 {status === 'No' &&
   <span class:list={['pill no', className]}>NO</span> }
+{status === 'Not Found' &&
+  <span class:list={['pill nf', className]} title="Not Found: insufficient information, including where the system is not yet live">NF</span> }
 {status === 'NA' &&
   <span class:list={['pill na', className]}>NA</span> }

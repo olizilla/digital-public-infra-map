@@ -5,7 +5,7 @@
 // Styled by .field-flags and .field-texts in src/styles/global.css, smaller in a listing card (.card-id, .card-pay, .card-data).
 import YesNo from './YesNo.astro'
 import { displayValues } from '../DpiTest'
-import { codebookPathForLabel } from '../Codebook'
+import { codebookPathFor } from '../Codebook'
 import type { DPIType } from '../Schema'
 
 interface Props {
@@ -14,14 +14,14 @@ interface Props {
 }
 const { dpiType, record } = Astro.props
 const { flags, texts } = displayValues(dpiType, record)
-const href = (label: string) => codebookPathForLabel(dpiType, label)
+const href = (id: string) => codebookPathFor(dpiType, id)
 ---
 { flags.length > 0 &&
   <ul class="field-flags">
     { flags.map(f => (
       <li class:list={{ na: f.flag === 'NA' }}>
         <YesNo status={f.flag} />
-        <a href={href(f.label)}>{f.label}</a>
+        <a href={href(f.id)}>{f.label}</a>
       </li>
     ))}
   </ul>
@@ -30,7 +30,7 @@ const href = (label: string) => codebookPathForLabel(dpiType, label)
   <dl class="field-texts">
     { texts.map(f => (
       <div class:list={{ na: f.value === 'NA' }}>
-        <dt><a href={href(f.label)}>{f.label}</a></dt>
+        <dt><a href={href(f.id)}>{f.label}</a></dt>
         { f.value === 'NA' ? <dd title="No data">NA</dd> : <dd>{f.value}</dd> }
       </div>
     ))}

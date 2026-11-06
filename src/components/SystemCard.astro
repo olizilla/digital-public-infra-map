@@ -33,8 +33,8 @@ function monthYear (date: string) {
   return parseDate(date)?.toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' }) ?? date
 }
 const updated = valueOf(dpiType, record, 'last_updated')
-const systemId: string | undefined = record['System ID']
-const country: string | undefined = record.Country
+const systemId: string | undefined = record.system_id
+const country: string | undefined = record.country
 const CountryTag = country && placesWithPages.has(country) ? 'a' : 'span'
 const Title = full ? 'h1' : 'h3'
 ---

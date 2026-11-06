@@ -25,7 +25,7 @@ function height () {
   return dy;
 }
 
-const codeOf = (row: Record<string, any>) => placeNamed(row.Country)?.code
+const codeOf = (row: Record<string, any>) => placeNamed(row.country)?.code
 // each place's system of this DPI type: the first, as the data is sorted most DPI-like first
 const systems = new Map<string, Record<string, any>>()
 for (const row of records[dpiType as keyof typeof records]) {
@@ -65,7 +65,7 @@ const cropBottom = 60
       // a place without a page gets no link
       return page
         ? <a href={page.href}><title>{page.name}
-{dpi?.Name}</title>{shape}</a>
+{dpi?.name}</title>{shape}</a>
         : <g><title>{region.properties.name}</title>{shape}</g>
     })}
     </g>

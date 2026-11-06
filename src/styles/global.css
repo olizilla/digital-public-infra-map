@@ -327,6 +327,10 @@ details.more[open] > summary::before {
   .pill.no {
     @apply border-red-300 bg-red-200;
   }
+  /* Not Found: insufficient information, including where the system isn't live yet (D61), a lighter red than No */
+  .pill.nf {
+    @apply border-red-200 bg-red-50;
+  }
   .pill.na {
     @apply border-zinc-300 bg-zinc-200;
   }
@@ -339,7 +343,11 @@ details.more[open] > summary::before {
     @apply grid pb-0.5 gap-1 text-sm leading-5;
   }
   .dpi-test > li {
-    @apply flex items-baseline gap-2;
+    @apply flex items-baseline gap-2 min-w-0;
+  }
+  /* a criterion's name is a codebook title, which can be long: one line, cut short */
+  .dpi-test > li > :not(.pill) {
+    @apply min-w-0 truncate;
   }
   .dpi-test .pill {
     @apply flex-none;
@@ -740,10 +748,10 @@ details.more[open] > summary::before {
   }
   .chg-crits {
     @apply grid gap-0.5 pl-4 text-[13px] leading-5 text-zinc-600;
-    & li { @apply flex flex-wrap items-baseline gap-x-1; }
+    & li { @apply flex items-baseline gap-x-1 min-w-0; }
     & li::before { content: "–"; @apply -ml-3.5 w-2.5 text-zinc-400; }
     & .pill { @apply text-[11px] leading-[15px] min-w-8 px-1.5; }
-    & .lbl { @apply pl-1.5; }
+    & .lbl { @apply pl-1.5 min-w-0 truncate; }
   }
   p.chg-crits { @apply italic; }
   .chg-succ {

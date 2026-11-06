@@ -14,7 +14,7 @@
       "encoding": "utf-8",
       "dialect": { "itemType": "object" },
       "schema": {
-        "missingValues": [{ "value": "NA", "label": "Not yet researched, or it can't exist yet." }],
+        "missingValues": [{ "value": "NA", "label": "No answer. Not researched yet." }],
         "primaryKey": ["System ID"],
         "fields": [
           {
@@ -84,7 +84,7 @@
               { "value": "No" },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -122,7 +122,7 @@
               { "value": "No" },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "Subsystem",
@@ -152,7 +152,7 @@
               },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -172,7 +172,7 @@
               { "value": "No" },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -192,7 +192,7 @@
               { "value": "No" },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -212,7 +212,7 @@
               { "value": "No" },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -233,7 +233,7 @@
               { "value": "No" },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -254,7 +254,7 @@
               { "value": "No" },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -275,7 +275,7 @@
               { "value": "No" },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -316,7 +316,7 @@
               },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -337,7 +337,7 @@
               { "value": "No" },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -358,7 +358,7 @@
               { "value": "No" },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -379,7 +379,7 @@
               { "value": "No" },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -400,7 +400,7 @@
               { "value": "No" },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -421,7 +421,7 @@
               { "value": "No" },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -442,7 +442,7 @@
               { "value": "No" },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -463,7 +463,7 @@
               { "value": "No" },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -500,7 +500,7 @@
       "encoding": "utf-8",
       "dialect": { "itemType": "object" },
       "schema": {
-        "missingValues": [{ "value": "NA", "label": "Not yet researched, or it can't exist yet." }],
+        "missingValues": [{ "value": "NA", "label": "No answer. Not researched yet." }],
         "primaryKey": ["System ID"],
         "fields": [
           {
@@ -577,7 +577,7 @@
           {
             "id": "realtime_active",
             "name": "Active real-time payment system present",
-            "title": "Active-real time payment system present",
+            "title": "Active real-time payment system present",
             "description": "Given that a country can have multiple payment systems at distinct stages of deployment, this filters for those countries with at least one payment system that is in operation. The status of the payment system is inferred based on the volume and value of transactions, as well as its mention on the country's central bank website.",
             "type": "string",
             "constraints": {
@@ -594,7 +594,7 @@
               },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -632,7 +632,7 @@
               },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "Subsystem",
@@ -662,7 +662,7 @@
               },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "Subsystem",
@@ -688,7 +688,7 @@
               },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -708,7 +708,7 @@
               { "value": "No" },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -728,7 +728,7 @@
               { "value": "No" },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -775,7 +775,7 @@
               },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -810,7 +810,7 @@
               },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "variableType": "Categorical",
@@ -840,7 +840,7 @@
               },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "variableType": "Categorical",
@@ -885,7 +885,7 @@
               },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "Subsystem",
@@ -906,7 +906,7 @@
               { "value": "No" },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "Subsystem",
@@ -927,7 +927,7 @@
               { "value": "No" },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "Subsystem",
@@ -948,7 +948,7 @@
               { "value": "No" },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "Subsystem",
@@ -988,7 +988,7 @@
           {
             "id": "data_handling_rules",
             "name": "Data-handing rules for payment system",
-            "title": "Data-handing rules for payment system",
+            "title": "Data-handling rules for payment system",
             "description": "Indicates if there if the payment system guidelines or central bank rules offer specific regulations for handling personal data relevant to payment systems",
             "type": "string",
             "constraints": {
@@ -999,7 +999,7 @@
               { "value": "No" },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -1026,7 +1026,7 @@
               },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -1047,7 +1047,7 @@
               { "value": "No" },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -1084,7 +1084,7 @@
               },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -1103,7 +1103,7 @@
       "encoding": "utf-8",
       "dialect": { "itemType": "object" },
       "schema": {
-        "missingValues": [{ "value": "NA", "label": "Not yet researched, or it can't exist yet." }],
+        "missingValues": [{ "value": "NA", "label": "No answer. Not researched yet." }],
         "primaryKey": ["System ID"],
         "fields": [
           {
@@ -1201,7 +1201,7 @@
               },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "Subsystem",
@@ -1236,7 +1236,7 @@
               },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -1262,7 +1262,7 @@
               },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -1288,7 +1288,7 @@
               },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "variableType": "Categorical",
@@ -1311,7 +1311,7 @@
               { "value": "No" },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -1335,7 +1335,7 @@
               { "value": "No" },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "Subsystem",
@@ -1376,7 +1376,7 @@
               },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "Subsystem",
@@ -1399,7 +1399,7 @@
               },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "Subsystem",
@@ -1440,7 +1440,7 @@
               },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "Subsystem",
@@ -1464,7 +1464,7 @@
               { "value": "No" },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -1488,7 +1488,7 @@
               { "value": "No" },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -1522,7 +1522,7 @@
               { "value": "No" },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -1546,7 +1546,7 @@
               { "value": "No" },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "scope": "System",
@@ -1572,7 +1572,7 @@
               },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "variableType": "Binary",
@@ -1595,7 +1595,7 @@
               { "value": "No" },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "variableType": "Binary",
@@ -1621,7 +1621,7 @@
               },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "variableType": "Binary",
@@ -1644,7 +1644,7 @@
               { "value": "No" },
               {
                 "value": "Not Found",
-                "label": "We looked and found nothing"
+                "label": "Insufficient information, including where the system is not yet live."
               }
             ],
             "variableType": "Binary",

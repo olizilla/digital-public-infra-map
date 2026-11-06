@@ -97,7 +97,7 @@ const resourceOf = (name: string) => datapackage.resources.find(r => r.name === 
 /** A row keyed by column header, as the site's JSON has it */
 const byName = (fields: Field[], row: Row) => Object.fromEntries(fields.map(field => [field.name, row[fieldId(field)]]))
 
-/** A row as the site's record for it, keyed by label, with its 'DPI Status' (see src/Identity.ts) */
+/** A row as the site's record for it, keyed by field id, with its 'DPI Status' (see src/Identity.ts) */
 function recordOf (dpiType: DPIType, row: Record<string, unknown>) {
   const record = toRecord(schemas[dpiType], row, { status: normaliseImplementationStatus })
   record['DPI Status'] = dpiStatus(dpiType, record)
@@ -260,8 +260,8 @@ for (const [name, table] of Object.entries(result.tables)) {
   if (!dpiType) continue
   const records = tableRecords(table).map(row => recordOf(dpiType, row)).sort(statusSort)
   for (const record of records) {
-    const code = placeNamed(record.Country)?.code
-    if (code && presence(dpiType, record) !== 'not-found' && !countryPages.has(code)) countryPages.set(code, `/${slug(record.Country)}/`)
+    const code = placeNamed(record.country)?.code
+    if (code && presence(dpiType, record) !== 'not-found' && !countryPages.has(code)) countryPages.set(code, `/${slug(record.country)}/`)
   }
 }
 const redirects: string[] = []
@@ -367,8 +367,7 @@ const changes: StatusChange[] = []
 const added: StatusChange[] = []
 const removed: StatusChange[] = []
 const headline: { dpiType: DPIType, old: number, new: number }[] = []
-const countLabel = 'Count for DPI'
-const statusText = (record?: Record<string, any>) => record && `${record['DPI Status']} (${record[countLabel]})`
+const statusText = (record?: Record<string, any>) => record && `${record['DPI Status']} (${record.dpi_count})`
 
 if (previous) {
   for (const [name, table] of Object.entries(result.tables)) {
@@ -383,7 +382,7 @@ if (previous) {
         added.push({ dpiType, id, name: nameFor(now), new: statusText(now), criteria: '' })
         continue
       }
-      if (then['DPI Status'] === now['DPI Status'] && then[countLabel] === now[countLabel]) continue
+      if (then['DPI Status'] === now['DPI Status'] && then.dpi_count === now.dpi_count) continue
       const was = new Map(dpiTest(dpiType, then).map(c => [c.label, c.value]))
       const criteria = dpiTest(dpiType, now).filter(c => was.get(c.label) !== c.value).map(c => `${c.label}: ${was.get(c.label)} → ${c.value}`)
       const status = [implementationStatus(valueOf(dpiType, then, 'status')), implementationStatus(valueOf(dpiType, now, 'status'))]

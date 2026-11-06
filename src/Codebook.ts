@@ -1,6 +1,6 @@
 import slug from 'slug'
 import { releasePackage as datapackage } from './ReleaseFiles'
-import { schemas, schemaSource, labelOf, codebookNameOf, resourceNames, typeLabels, type DPIType, type Field } from './Schema'
+import { schemas, schemaSource, codebookNameOf, resourceNames, typeLabels, type DPIType, type Field } from './Schema'
 import { listValues } from '../scripts/fields.mjs'
 
 export type { DPIType }
@@ -100,19 +100,19 @@ export function codebookVariableOf (dpiType: DPIType, field: Field) {
 }
 
 /**
- * The path of the variable page for a card label, like `/codebook/payment/status`, via the schema field with that label.
+ * The path of the variable page for the field with this id, like `/codebook/payment/status`, for a card label's link.
  * @throws if the field has no codebook variable
  */
-export function codebookPathForLabel (dpiType: DPIType, label: string) {
-  const field = (schemas[dpiType]?.fields as Field[] | undefined)?.find(field => labelOf(field) === label)
+export function codebookPathFor (dpiType: DPIType, id: string) {
+  const field = (schemas[dpiType]?.fields as Field[] | undefined)?.find(field => field.id === id)
   const variable = field && codebookVariableOf(dpiType, field)
   if (!variable) {
     const source = dpiType in schemas ? schemaSource(dpiType) : 'datapackage.json'
     throw new Error(
-      `Broken codebook link: dpiType "${dpiType}", label "${label}" has no codebook variable. ` +
+      `Broken codebook link: dpiType "${dpiType}", field "${id}" has no codebook variable. ` +
       (field
-        ? `Field "${field.id}" is marked \`codebook: false\` in src/SiteFields.ts. Remove that if the codebook covers it, or don't link this label.`
-        : `No field in ${source} has that label.`)
+        ? `It is marked \`codebook: false\` in src/SiteFields.ts. Remove that if the codebook covers it, or don't link its label.`
+        : `No field in ${source} has that id.`)
     )
   }
   return variablePath(dpiType, field)

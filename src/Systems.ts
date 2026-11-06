@@ -29,7 +29,7 @@ export interface System {
   dpiStatus: DpiStatus
   /** each cell's text, by field id */
   values: Record<string, string>
-  /** the row keyed by field label, with 'DPI Status', as the cards take it (src/Identity.ts etc) */
+  /** the row keyed by field id, with 'DPI Status', as the cards take it (src/Identity.ts etc) */
   record: Record<string, any>
 }
 

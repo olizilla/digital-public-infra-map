@@ -21,11 +21,11 @@ const { dpiType, record } = Astro.props
 const state = presence(dpiType, record)
 const noun = nouns[dpiType]
 const title = state === 'named' ? nameOf(dpiType, record) : `Unnamed ${noun} system`
-const country = `/${slug(record.Country)}/`
+const country = `/${slug(record.country)}/`
 ---
 <article class={`card-${dpiType}`}>
   <header>
-    <a class="min-w-0 truncate" href={country} title={record.Country}>{record.Country}</a>
+    <a class="min-w-0 truncate" href={country} title={record.country}>{record.country}</a>
     <Status status={record['DPI Status']} title="DPI status" />
     <h3 class:list={{ unnamed: state !== 'named' }}>{title}</h3>
   </header>

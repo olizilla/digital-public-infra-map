@@ -10,7 +10,7 @@ import { placesWithPages, records } from '../Records'
 import { systemHref } from '../Systems'
 
 export async function getStaticPaths () {
-	const countries = [...new Set(Object.values(records).flat().map(({ Country }) => Country as string))]
+	const countries = [...new Set(Object.values(records).flat().map(({ country }) => country as string))]
 		.filter(country => placesWithPages.has(country))
 		.sort((a, b) => a.localeCompare(b, 'en'))
 	return countries.map((country, i) => ({
@@ -39,8 +39,8 @@ const citedDate = citedDateOf(lanes)
 			{ lanes.map(lane => (
 				<div class="lane" data-type={lane.dpiType} id={laneAnchors[lane.dpiType]}>
 					<h2 class="lane-head">
-						{ lane.systems[0]?.['System ID']
-							? <a href={systemHref(lane.systems[0]['System ID'])}><TypeIcon dpiType={lane.dpiType} /><span>{lane.title}</span></a>
+						{ lane.systems[0]?.system_id
+							? <a href={systemHref(lane.systems[0].system_id)}><TypeIcon dpiType={lane.dpiType} /><span>{lane.title}</span></a>
 							: <Fragment><TypeIcon dpiType={lane.dpiType} /><span>{lane.title}</span></Fragment> }
 						{ lane.systems.length > 1 && <span class="lane-count">{lane.systems.length} systems</span> }
 					</h2>

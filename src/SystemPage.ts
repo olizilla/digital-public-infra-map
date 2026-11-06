@@ -2,7 +2,7 @@
 // the fields grouped by attribute, each value's evidence and history, the change log,
 // and the verdict sentence from the DPI test. All of it comes from the release and its
 // per-cell history (src/Release.ts), through src/Systems.ts.
-import { schemas, missingLabelOf, missingValuesOf, type DPIType, type Field } from './Schema'
+import { schemas, fieldById, labelOf, missingLabelOf, missingValuesOf, type DPIType, type Field } from './Schema'
 import { codebookVariableOf, meaningsOf } from './Codebook'
 import { dpiTest, statusOf, type Criterion } from './DpiTest'
 import { historyFor, sourcesFor, type System } from './Systems'
@@ -95,7 +95,7 @@ export function meaningOf (dpiType: DPIType, field: Field) {
   const { meaningOf } = meaningsOf(field)
   const or = (values: string[]) => values.length === 1 ? values[0] : `${values.slice(0, -1).join(', ')} or ${values.at(-1)}`
   // D37, D61: NA is the missing value, and Not Found is a value
-  const missingMeaning = meaningOf(missing) ?? missingLabelOf(schemas[dpiType], missing) ?? 'not yet researched, or it can’t exist yet'
+  const missingMeaning = meaningOf(missing) ?? missingLabelOf(schemas[dpiType], missing) ?? 'no answer: not researched yet'
   const rule = allowed && `Coded ${listed ? 'one or more of ' : ''}${or(allowed)}; ${missing}: ${missingMeaning.replace(/\.$/, '')}.`
   const codes = (allowed ?? []).flatMap(value => {
     const meaning = meaningOf(value)
@@ -216,13 +216,6 @@ export function logTitle (item: LogItem) {
 /** The page's anchor for a field's row */
 export const fieldAnchor = (fieldId: string) => `f-${fieldId}`
 
-/** How the verdict names each criterion */
-const phrases: Record<DPIType, Record<string, string>> = {
-  id: { claim: 'the claim of a digital ID', digital_auth: 'digital authentication', sectoral_use_cases: 'use across two or more sectors' },
-  pay: { realtime_active: 'real-time payments', operator: 'operation by the central bank' },
-  data: { sectoral: 'cross-sectoral use' },
-}
-
 /**
  * The DPI test as a sentence: "DPI-like", or "Not yet DPI-like" with the reasons, each
  * linking to the field it's about. The implementation status comes first.
@@ -235,9 +228,13 @@ export function verdictOf (dpiType: DPIType, record: Record<string, any>) {
   if (status === 'Pilot') reasons.push({ text: 'it isn’t active yet', field: 'status', after: '' })
   if (status === 'Suspended') reasons.push({ text: 'it’s suspended', field: 'status', after: '' })
   if (status === 'NA') reasons.push({ text: 'its status', field: 'status', after: ' isn’t recorded' })
+  // each failing criterion by its field's name, as in the codebook, and what the field says: "is No" for
+  // a Yes/No answer, or the value itself where the test reads a value (Operator, Sector-specific / Cross-sectoral)
   for (const c of criteria.filter((c: Criterion) => c.field !== 'status' && c.value !== 'Yes')) {
-    const phrase = phrases[dpiType][c.field] ?? c.label.toLowerCase()
-    reasons.push({ text: phrase, field: c.field, after: c.value === 'No' ? ' is No' : ' isn’t recorded' })
+    const field = fieldById(schemas[dpiType], c.field as never)
+    const value = String(record[c.field] ?? '')
+    const after = !value || value === 'NA' ? ' isn’t recorded' : /^no\b/i.test(value) ? ' is No' : ` is ${value}`
+    reasons.push({ text: labelOf(field), field: c.field, after })
   }
   return { passes: false, reasons }
 }
