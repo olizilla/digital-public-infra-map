@@ -65,7 +65,7 @@ import { baselineReason, derivedFields, lastUpdatedAsOf } from '../src/DpiLayer.
 const { dpiStatus, dpiTest, implementationStatus, nameOf, passesDpiTest, presence, valueOf } = await import('../src/DpiTest.ts')
 const { resourceNames, schemas, toRecord } = await import('../src/Schema.ts')
 const { normaliseImplementationStatus, statusSort } = await import('../src/Status.js')
-const { placeNamed } = await import('../src/Places.ts')
+const { isRegion, placeNamed } = await import('../src/Places.ts')
 const { oneSystemPerCountry } = await import('../src/Util.ts')
 type DPIType = keyof typeof resourceNames
 
@@ -150,6 +150,18 @@ for (const d of earlierReleases) {
 const readReport: ReportItem[] = []
 const changesets = readFolders(path.join(root, 'changesets'), check ? [release!] : [release!, PENDING_FOLDER], datapackage, readReport)
 
+/**
+ * A row's ISO 3166-1 alpha-3 code, from its place's iso3 in public/data/places.csv, as src/Places.ts matches it (D68).
+ * Only alpha-3: it's what other datasets join on, and three letters can't be mistaken for the missing value, NA. The
+ * alpha-2 code is already the place part of each country's System ID. A region has none. Kosovo's XKX is user-assigned,
+ * not official ISO, and matches the World Bank's. A code left out is the missing value, so a place that isn't matched has none.
+ */
+function isoCodes (country: string) {
+  const place = placeNamed(country)
+  if (!place || isRegion(place)) return {}
+  return place.iso3 ? { iso3: place.iso3.toUpperCase() } : {}
+}
+
 const result = build({
   datapackage,
   baseline,
@@ -163,7 +175,8 @@ const result = build({
       const record = toRecord(schemas[dpiTypeOf[name]], byName(resourceOf(name).schema.fields, row))
       return {
         ...(asOf ? { last_updated: asOf } : {}),
-        dpi_count: passesDpiTest(dpiTest(dpiTypeOf[name], record)) ? '1' : '0'
+        dpi_count: passesDpiTest(dpiTest(dpiTypeOf[name], record)) ? '1' : '0',
+        ...isoCodes(row.country)
       }
     }
   },

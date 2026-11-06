@@ -40,6 +40,16 @@
             "variableType": "Nominal"
           },
           {
+            "id": "iso3",
+            "name": "ISO3",
+            "title": "ISO country code",
+            "description": "The country's three-letter code from ISO 3166-1, filled in from Country / Region, for joining with other data that uses ISO codes. It is NA for regional systems. Kosovo is XKX, a user-assigned code rather than an official ISO one; it matches the World Bank's code and our place code xk. Other sources may differ (the IMF uses UVK). Each country's two-letter code is the place part of its System ID.",
+            "type": "string",
+            "constraints": {
+              "pattern": "[A-Z]{3}"
+            }
+          },
+          {
             "id": "last_updated",
             "name": "Last updated",
             "title": "Last updated",
@@ -512,6 +522,16 @@
             },
             "scope": "NA",
             "variableType": "Nominal"
+          },
+          {
+            "id": "iso3",
+            "name": "ISO3",
+            "title": "ISO country code",
+            "description": "The country's three-letter code from ISO 3166-1, filled in from Country / Region, for joining with other data that uses ISO codes. It is NA for regional systems. Kosovo is XKX, a user-assigned code rather than an official ISO one; it matches the World Bank's code and our place code xk. Other sources may differ (the IMF uses UVK). Each country's two-letter code is the place part of its System ID.",
+            "type": "string",
+            "constraints": {
+              "pattern": "[A-Z]{3}"
+            }
           },
           {
             "id": "last_updated",
@@ -1108,6 +1128,16 @@
             },
             "scope": "NA",
             "variableType": "Nominal"
+          },
+          {
+            "id": "iso3",
+            "name": "ISO3",
+            "title": "ISO country code",
+            "description": "The country's three-letter code from ISO 3166-1, filled in from Country / Region, for joining with other data that uses ISO codes. It is NA for regional systems. Kosovo is XKX, a user-assigned code rather than an official ISO one; it matches the World Bank's code and our place code xk. Other sources may differ (the IMF uses UVK). Each country's two-letter code is the place part of its System ID.",
+            "type": "string",
+            "constraints": {
+              "pattern": "[A-Z]{3}"
+            }
           },
           {
             "id": "last_updated",

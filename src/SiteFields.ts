@@ -23,6 +23,7 @@ export const siteFields = {
   identity: {
     system_id: { kind: 'hidden', codebook: false },
     country: { label: 'Country', kind: 'country' },
+    iso3: { kind: 'hidden', codebook: false },
     last_updated: { kind: 'updated', codebook: false },
     dpi_count: { label: 'Count for DPI', kind: 'count' },
     claim: { kind: 'flag', order: 1 },
@@ -51,6 +52,7 @@ export const siteFields = {
   payment: {
     system_id: { kind: 'hidden', codebook: false },
     country: { label: 'Country', kind: 'country' },
+    iso3: { kind: 'hidden', codebook: false },
     last_updated: { kind: 'updated', codebook: false },
     dpi_count: { kind: 'count', codebook: false },
     name: { label: 'Name', kind: 'name' },
@@ -80,6 +82,7 @@ export const siteFields = {
   exchange: {
     system_id: { kind: 'hidden', codebook: false },
     country: { label: 'Country', kind: 'country' },
+    iso3: { kind: 'hidden', codebook: false },
     last_updated: { kind: 'updated', codebook: false },
     dpi_count: { kind: 'count', codebook: false },
     name: { label: 'Name', kind: 'name' },
