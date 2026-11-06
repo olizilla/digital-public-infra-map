@@ -66,6 +66,8 @@ export interface ResourceChanges {
   definitions: Reworded[]
   meanings: Reworded[]
   missing: MissingChange[]
+  /** fields in both whose other codebook properties changed: title, column, type, format, check, scope, variable type or indicator */
+  other: { field: FieldRef, what: string[] }[]
   /** whether anything changed */
   any: boolean
 }
@@ -158,6 +160,7 @@ export function resourceChanges (before: PackageResource | undefined, after: Pac
   const lost: typeof gained = []
   const definitions: Reworded[] = []
   const meanings: Reworded[] = []
+  const other: { field: FieldRef, what: string[] }[] = []
   for (const f of now) {
     const o = oldById.get(f.id)
     if (!o) continue
@@ -173,6 +176,26 @@ export function resourceChanges (before: PackageResource | undefined, after: Pac
       const [then, nowMeaning] = [meaningThen(value) ?? '', meaningNow(value) ?? '']
       if (then !== nowMeaning) meanings.push({ field: ref, value, before: then, after: nowMeaning })
     }
+    // values a field explains without listing them as allowed, like "Sectoral (…)" on a pattern: compare
+    // their meanings too, so a field whose check has no fixed list still shows its reworded meanings
+    const explained = (f as { categories?: { value: string | number }[] }).categories?.map(c => String(c.value)) ?? []
+    for (const value of explained) {
+      if (is.includes(value)) continue
+      const [then, nowMeaning] = [meaningThen(value) ?? '', meaningNow(value) ?? '']
+      if (then !== nowMeaning) meanings.push({ field: ref, value, before: then, after: nowMeaning })
+    }
+    // explanations the old codebook had for values it didn't allow, which the new one has dropped
+    for (const { value, label } of meaningsOf(o as Field).unmatched) {
+      if (label === undefined || explained.includes(String(value)) || is.includes(String(value))) continue
+      meanings.push({ field: ref, value: String(value), before: label, after: '' })
+    }
+    // anything else about the field
+    const what = ([
+      ['title', 'title'], ['name', 'column'], ['type', 'type'], ['format', 'format'], ['scope', 'scope'],
+      ['variableType', 'variable type'], ['frameworkIndicator', 'indicator']
+    ] as const).filter(([key]) => String((o as Record<string, unknown>)[key] ?? '') !== String((f as Record<string, unknown>)[key] ?? '')).map(([, label]) => label)
+    if ((o.constraints?.pattern ?? '') !== (f.constraints?.pattern ?? '') && was.join('\n') === is.join('\n')) what.push('check')
+    if (what.length) other.push({ field: ref, what })
   }
 
   const [missingThen, missingNow] = [missingOf(before?.schema?.missingValues), missingOf(after?.schema?.missingValues)]
@@ -189,8 +212,8 @@ export function resourceChanges (before: PackageResource | undefined, after: Pac
     added, removed,
     valuesAdded: group(gained), valuesRemoved: group(lost),
     fieldsGaining, fieldsLosing,
-    definitions, meanings, missing,
-    any: added.length + removed.length + gained.length + lost.length + definitions.length + meanings.length + missing.length > 0,
+    definitions, meanings, missing, other,
+    any: added.length + removed.length + gained.length + lost.length + definitions.length + meanings.length + missing.length + other.length > 0,
   }
 }
 

@@ -396,6 +396,7 @@ export function codebookSummary (c: ResourceChanges) {
     c.definitions.length ? `${plural(c.definitions.length, 'definition')} reworded` : '',
     c.meanings.length ? `${plural(c.meanings.length, 'value meaning')} reworded` : '',
     c.missing.length ? `${plural(c.missing.length, 'missing value')} changed` : '',
+    c.other.length ? `${plural(c.other.length, 'field')} otherwise changed` : '',
   ].filter(Boolean)
   // "2 fields added, 1 removed": the second "removed" reads as fields too, unless nothing was added
   if (!c.added.length && c.removed.length) parts[0] = `${plural(c.removed.length, 'field')} removed`

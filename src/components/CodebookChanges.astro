@@ -112,4 +112,15 @@ const valueGroups: { head: string, on: string, list: ValueGroup[] }[] = [
       </ul>
     </details>
   )}
+
+  { c.other.length > 0 && (
+    <details class="chg-cb-group more" open>
+      <summary><h3>Other changes <span>{c.other.length}</span></h3></summary>
+      <ul class="chg-cb-list">
+        { c.other.map(o => (
+          <li><p class="chg-cb-field">{ hrefOf(o.field) ? <a class="ul" href={hrefOf(o.field)}>{o.field.title}</a> : <span>{o.field.title}</span> }<span class="chg-cb-mean">{o.what.join(', ')} changed</span></p></li>
+        ))}
+      </ul>
+    </details>
+  )}
 </section>
