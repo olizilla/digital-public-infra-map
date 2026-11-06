@@ -3,7 +3,7 @@ type = "update"
 key = "id-la-01"
 as_of = 2026-09-16
 values.gov_portal_auth = "Yes"
-reason = "Used to access digital public services."
+reason = "LAeID is used to authenticate access to digital public services."
 sources = [
   "https://play.google.com/store/apps/details?id=com.laeid&hl=en_US",
   "https://kpl.gov.la/En/detail.aspx/detail.aspx?id=92907",
@@ -14,7 +14,7 @@ type = "update"
 key = "id-la-01"
 as_of = 2026-09-16
 values.claim = "Yes"
-reason = "Nationwide digital ID (LAeID) issued since Dec 2025; wallet app launched Jul 2026."
+reason = "LAeID issuance reportedly began nationwide in December 2025, followed by a wallet application in July 2026."
 sources = [
   "https://play.google.com/store/apps/details?id=com.laeid&hl=en_GB",
   "https://kpl.gov.la/En/detail.aspx/detail.aspx?id=92907",
@@ -47,7 +47,7 @@ type = "update"
 key = "id-la-01"
 as_of = 2026-09-16
 values.regulation = "Not Found"
-reason = "Government directive phasing out paper identity documents; confirm formal instrument."
+reason = "A government directive reportedly phases out paper identity documents, but the formal legal instrument requires confirmation."
 sources = [
   "https://www.biometricupdate.com/202608/laos-rolls-out-digital-id-wallet-as-paper-credentials-phased-out",
   "https://kpl.gov.la/En/detail.aspx/detail.aspx?id=92907",
@@ -80,7 +80,7 @@ type = "update"
 key = "id-la-01"
 as_of = 2026-09-16
 values.sectoral_use_cases = "Yes"
-reason = "Wallet holds ID, passport, education, health, driving credentials."
+reason = "The LAeID wallet includes identity, passport, education, health and driving credentials, indicating multiple application areas."
 sources = [
   "https://idtechwire.com/laos-mandates-nationwide-digital-id-rollout-under-new-government-order/",
   "https://kpl.gov.la/En/detail.aspx/detail.aspx?id=92907",

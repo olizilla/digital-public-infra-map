@@ -4,7 +4,7 @@ key = "dx-si-02"
 as_of = 2026-10-15
 values.country = "Slovenia"
 values.name = "Tray (Pladenj)"
-reason = "Changing a framework to tray, which is described as a layer for transporting data (https://nio.gov.si/en/products/interoperabilnostna%2Bkomponenta%2Bpladenj-288?release=2.0) as well as managing data loads during peak times. https://www.interregeurope.eu/good-practices/pladenj-tray-predicting-data-load-using-machine-learning"
+reason = ""
 sources = [
   "https://www.oecd.org/en/publications/digital-government-scan-of-slovenia_d22179d2-en/full-report/service-design-and-delivery_9651e525.html",
   "https://www.oecd.org/en/publications/digital-government-scan-of-slovenia_d22179d2-en/full-report/service-design-and-delivery_9651e525.html#back-endnote320231172016",
@@ -36,7 +36,7 @@ type = "update"
 key = "dx-si-02"
 as_of = 2026-10-15
 values.governing_entity = "Ministry of Justice"
-reason = "Have not been able to look but it is not the NIO"
+reason = ""
 sources = [
   "https://nio.gov.si/api/files/31e37efd-8dca-4370-93fe-e2f0539bc5fa/file?download=true",
 ]
@@ -115,7 +115,7 @@ type = "update"
 key = "dx-si-02"
 as_of = 2026-10-15
 values.permitted_participants = "Public"
-reason = "Information unclear, changing this to default"
+reason = "Information unclear but includes public participants"
 sources = [
   "https://www.oecd.org/en/publications/digital-government-review-of-slovenia_954b0e74-en/full-report/component-9.html",
 ]

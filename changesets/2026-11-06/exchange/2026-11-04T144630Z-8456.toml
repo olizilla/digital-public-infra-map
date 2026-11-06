@@ -15,7 +15,7 @@ key = "dx-al-01"
 as_of = 2026-10-15
 values.formal_mandate = "Yes"
 values.personal_data_protection = "Yes"
-reason = "New Variable"
+reason = "Law No. 43/2023 On Electronic Governance"
 sources = [
   "https://akshi.gov.al/wp-content/uploads/2025/09/ligj-2023-06-15-43-eng.pdf",
 ]

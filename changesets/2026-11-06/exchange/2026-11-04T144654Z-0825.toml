@@ -31,4 +31,4 @@ type = "update"
 key = "dx-ge-01"
 as_of = 2026-10-15
 values.personal_data_protection = "Yes"
-reason = "Sourced from ID Data"
+reason = "General Data Protection Regulation"

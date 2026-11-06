@@ -54,7 +54,7 @@ type = "update"
 key = "pay-cv-01"
 as_of = 2026-10-15
 values.status = "Planned/Piloted"
-reason = "BCV set the project governance and strategic objectives in 2025; launch planned for 2026 and implementation ongoing in September 2026. Primary source: Banco de Cabo Verde (2026-09). Secondary source: Expresso das Ilhas (2026-09). DPI count needs manual check."
+reason = "BCV set the project governance and strategic objectives in 2025; launch planned for 2026 and implementation ongoing in September 2026. Primary source: Banco de Cabo Verde (2026-09). Secondary source: Expresso das Ilhas (2026-09)."
 sources = [
   "https://expressodasilhas.cv/economia/2026/09/25/mais-cabo-verdianos-com-contas-bancarias-e-maior-uso-de-pagamentos-digitais/104797",
   "https://www.bcv.cv/pt/O%20Banco/Sala%20de%20Imprensa/Arquivo/Paginas/NoticiasArquivo.aspx",
@@ -89,7 +89,7 @@ type = "update"
 key = "pay-cv-01"
 as_of = 2026-10-15
 values.operator = "Central bank"
-reason = "Banco de Cabo Verde is implementing STII as national public infrastructure. Primary source: Banco de Cabo Verde (2026-09). Secondary source: Expresso das Ilhas (2026-09). Operating arrangement (BCV-run or outsourced, e.g. to SISP) not confirmed. DPI count needs manual check."
+reason = "Banco de Cabo Verde is implementing STII as national public infrastructure. Primary source: Banco de Cabo Verde (2026-09). Secondary source: Expresso das Ilhas (2026-09). Operating arrangement (BCV-run or outsourced, e.g. to SISP) not confirmed."
 sources = [
   "https://www.bcv.cv/pt/O%20Banco/Sala%20de%20Imprensa/Arquivo/Paginas/NoticiasArquivo.aspx",
   "https://expressodasilhas.cv/economia/2026/09/25/mais-cabo-verdianos-com-contas-bancarias-e-maior-uso-de-pagamentos-digitais/104797",

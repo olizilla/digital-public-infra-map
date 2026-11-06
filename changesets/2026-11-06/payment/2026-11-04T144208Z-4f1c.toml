@@ -25,7 +25,7 @@ type = "update"
 key = "pay-pe-03"
 as_of = 2026-10-15
 values.realtime_active = "Yes"
-reason = "Recipients receive funds in near real time, 24x7. Primary source: BCRP (n.d.). DPI count needs manual check."
+reason = "Recipients receive funds in near real time, 24x7. Primary source: BCRP (n.d.)."
 sources = [
   "https://www.bcrp.gob.pe/sistema-de-pagos/camara-de-compensacion-electronica.html",
 ]
@@ -46,7 +46,7 @@ type = "update"
 key = "pay-pe-03"
 as_of = 2026-10-15
 values.status = "Implemented"
-reason = "Live since July 2016; 24x7 service since November 2020. Primary source: BCRP (n.d.). Secondary source: CEMLA Payments Week 2017 (BCRP presentation) (2017-09). DPI count needs manual check."
+reason = "Live since July 2016; 24x7 service since November 2020. Primary source: BCRP (n.d.). Secondary source: CEMLA Payments Week 2017 (BCRP presentation) (2017-09)."
 sources = [
   "https://www.bcrp.gob.pe/sistema-de-pagos/camara-de-compensacion-electronica.html",
   "https://clon.cemla.org/forodepagos/pdf/week2017/2017-09-semanadepagos1.pdf",
@@ -117,7 +117,7 @@ type = "update"
 key = "pay-pe-03"
 as_of = 2026-10-15
 values.operator = "Bank association"
-reason = "CCE is a private company owned by the banks, regulated and supervised by the BCRP, which does not sit on its board. Primary source: BCRP (n.d.). Secondary source: CEMLA Payments Week 2008 (BCRP presentation) (2008). DPI count needs manual check."
+reason = "CCE is a private company owned by the banks, regulated and supervised by the BCRP, which does not sit on its board. Primary source: BCRP (n.d.). Secondary source: CEMLA Payments Week 2008 (BCRP presentation) (2008)."
 sources = [
   "https://www.bcrp.gob.pe/docs/Publicaciones/Revista-Moneda/Moneda-131/Revista-Moneda-131-04.pdf",
   "https://clon.cemla.org/forodepagos/pdf/week2008/pw2008-Peru.pdf",

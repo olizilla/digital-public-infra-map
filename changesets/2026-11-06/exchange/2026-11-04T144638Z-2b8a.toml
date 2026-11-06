@@ -49,7 +49,7 @@ type = "update"
 key = "dx-bg-01"
 as_of = 2026-10-15
 values.permitted_participants = "Public, Private"
-reason = "Not reported in required format (dashboard)"
+reason = "Log shows banks conducting transactions."
 sources = [
   "https://info-regix.egov.bg/public/statistics/hour",
 ]
@@ -59,14 +59,14 @@ type = "update"
 key = "dx-bg-01"
 as_of = 2026-10-15
 values.number_of_members = "Not Found"
-reason = "Log shows banks conducting transactions."
+reason = "Not reported in required format (dashboard)"
 
 [[changes]]
 type = "update"
 key = "dx-bg-01"
 as_of = 2026-10-15
 values.interoperability_level = "Syntactic"
-reason = "Not reported"
+reason = "Service level semantics exist but not shared semantics. This is why it is coded as a no"
 sources = [
   "https://info-regix.egov.bg/public",
 ]

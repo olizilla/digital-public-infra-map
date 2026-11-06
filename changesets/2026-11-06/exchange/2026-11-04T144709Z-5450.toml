@@ -44,7 +44,7 @@ type = "update"
 key = "dx-lt-01"
 as_of = 2026-10-15
 values.personal_data_protection = "Yes"
-reason = "ID Dataset"
+reason = "General Data Protection Regulation"
 
 [[changes]]
 type = "update"
@@ -58,4 +58,4 @@ type = "update"
 key = "dx-lt-01"
 as_of = 2026-10-15
 values.number_of_members = "Not Found"
-reason = "New Variable"
+reason = ""

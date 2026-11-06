@@ -3,7 +3,7 @@ type = "update"
 key = "id-br-01"
 as_of = 2026-09-16
 values.url = "https://www.gov.br/governodigital/pt-br/identidade/cinl"
-reason = "Current page for the digital CIN."
+reason = "An updated official page for the digital CIN is identified."
 sources = [
   "https://www.gov.br/governodigital/pt-br/identidade/cin",
   "https://www.gov.br/gestao/pt-br/carteira-da-identidade-nacional",

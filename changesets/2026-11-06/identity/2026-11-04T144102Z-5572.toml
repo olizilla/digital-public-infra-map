@@ -30,7 +30,7 @@ type = "update"
 key = "id-af-01"
 as_of = 2026-09-16
 values.url = "https://nid.nsia.gov.af/home"
-reason = "NSIA runs a national ID site at nid.nsia.gov.af. Seen in search results only; the site could not be opened. Confirm the link works."
+reason = "NSIA national ID website identified, but accessibility and validity of the URL remain unverified."
 sources = [
   "https://nid.nsia.gov.af/home",
 ]

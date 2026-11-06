@@ -3,7 +3,7 @@ type = "update"
 key = "dx-li-01"
 as_of = 2026-10-15
 values.formal_mandate = "No"
-reason = "New Variable"
+reason = "Formal Mandate does not exist"
 sources = [
   "https://interoperable-europe.ec.europa.eu/sites/default/files/custom-page/attachment/2026-04/iopeu-monitoring_2025-supporting-document_liechtenstein_vfinal.pdf",
 ]

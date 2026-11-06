@@ -4,7 +4,7 @@ key = "dx-tr-02"
 as_of = 2026-10-15
 values.country = "Turkey"
 values.name = "eGovernment Gateway"
-reason = "KAYSIS is a catalogue for mapping out public administration in Turkey, including entities part of the government, their legal basis, services, contact details, etc. It works with the egovernment gaetway but doesn't become the layer to share data itself. eGovernment gateway, on the other hand, is explicitly described as a 'network' but for data exchange. It uses KAYSIS as a service catalogue and public applications centre as a mediation component."
+reason = ""
 sources = [
   "https://www.oecd.org/content/dam/oecd/en/publications/reports/2023/05/digital-government-review-of-turkiye_69ffd9d4/3958d102-en.pdf",
 ]

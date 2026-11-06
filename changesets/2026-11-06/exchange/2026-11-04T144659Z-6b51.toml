@@ -51,4 +51,4 @@ type = "update"
 key = "dx-hu-01"
 as_of = 2026-10-15
 values.personal_data_protection = "Yes"
-reason = "From ID dataset"
+reason = "General Data Protection Regulation"

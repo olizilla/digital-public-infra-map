@@ -12,7 +12,7 @@ type = "update"
 key = "dx-es-01"
 as_of = 2026-10-15
 values.formal_mandate = "Yes"
-reason = "https://www.boe.es/buscar/act.php?id=BOE-A-2015-10565"
+reason = "Law 39/2015, of October 1, on the Common Administrative Procedure of Public Administrations. https://www.boe.es/buscar/act.php?id=BOE-A-2015-10565"
 
 [[changes]]
 type = "update"

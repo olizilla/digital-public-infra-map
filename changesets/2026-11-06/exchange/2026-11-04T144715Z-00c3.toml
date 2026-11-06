@@ -4,7 +4,7 @@ key = "dx-nl-02"
 as_of = 2026-10-15
 values.country = "Netherlands"
 values.name = "Digital Link (Digikoppelling)"
-reason = "Diginetwerk is more of an intranet-like infrastructure"
+reason = ""
 sources = [
   "https://www.nldigitalgovernment.nl/overview/mido/generic-digital-infrastructure-gdi/",
 ]

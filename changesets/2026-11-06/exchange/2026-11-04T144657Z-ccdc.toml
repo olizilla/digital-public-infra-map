@@ -4,7 +4,7 @@ key = "dx-gr-02"
 as_of = 2026-10-15
 values.country = "Greece"
 values.name = "Interoperability Centre (KED)"
-reason = "New System"
+reason = ""
 
 [[changes]]
 type = "update"
@@ -33,7 +33,7 @@ type = "update"
 key = "dx-gr-02"
 as_of = 2026-10-15
 values.formal_mandate = "Yes"
-reason = "New Variable"
+reason = "Operation of the Interoperability Center of the General Secretariat of Public Administration Information Systems of the Ministry of Digital Governance."
 sources = [
   "https://www.gsis.gr/sites/default/files/2019-11/%CE%9B%CE%95%CE%99%CE%A4%CE%9F%CE%A5%CE%A1%CE%93%CE%99%CE%91%20%CE%9A%CE%95%CE%9D%CE%A4%CE%A1%CE%9F%CE%A5%20%CE%94%CE%99%CE%91%CE%9B%CE%95%CE%99%CE%A4%CE%9F%CE%A5%CE%A1%CE%93%CE%99%CE%9A%CE%9F%CE%A4%CE%97%CE%A4%CE%91%CE%A3.pdf",
 ]
@@ -67,7 +67,7 @@ type = "update"
 key = "dx-gr-02"
 as_of = 2026-10-15
 values.architecture = "Custom ESB"
-reason = "Allows for the"
+reason = ""
 sources = [
   "https://www.gsis.gr/sites/default/files/2019-11/%CE%9B%CE%95%CE%99%CE%A4%CE%9F%CE%A5%CE%A1%CE%93%CE%99%CE%91%20%CE%9A%CE%95%CE%9D%CE%A4%CE%A1%CE%9F%CE%A5%20%CE%94%CE%99%CE%91%CE%9B%CE%95%CE%99%CE%A4%CE%9F%CE%A5%CE%A1%CE%93%CE%99%CE%9A%CE%9F%CE%A4%CE%97%CE%A4%CE%91%CE%A3.pdf",
 ]
@@ -87,4 +87,4 @@ type = "update"
 key = "dx-gr-02"
 as_of = 2026-10-15
 values.personal_data_protection = "Yes"
-reason = "From ID dataset"
+reason = "General Data Protection Regulation"

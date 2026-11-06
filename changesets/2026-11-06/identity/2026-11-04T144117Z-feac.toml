@@ -3,7 +3,7 @@ type = "update"
 key = "id-cm-01"
 as_of = 2026-09-16
 values.biometrics = "Yes"
-reason = "Biometric card."
+reason = "The national identity card incorporates biometric functionality."
 sources = [
   "https://www.wearetech.africa/fr/fils/actualites/tech/cameroun-la-nouvelle-cni-ouvre-la-voie-a-l-identite-numerique",
   "https://www.idcam.cm/nouvelles",
@@ -56,7 +56,7 @@ type = "update"
 key = "id-cm-01"
 as_of = 2026-09-16
 values.url = "https://idcam.cm"
-reason = "Enrolment portal."
+reason = "An enrolment portal is identified."
 sources = [
   "https://idcam.cm/nouvelles/AUGENTIC-in-collaboration-with-Cameroon%E2%80%99s-DGSN-Officially-Launch-New-Secure-Identification-System-for-the-New-Identity-Cards",
   "https://www.idcam.cm/nouvelles",

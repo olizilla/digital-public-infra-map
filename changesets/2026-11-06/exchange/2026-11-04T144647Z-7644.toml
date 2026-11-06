@@ -3,7 +3,7 @@ type = "update"
 key = "dx-dk-01"
 as_of = 2026-10-15
 values.formal_mandate = "Not Found"
-reason = "New variable/ Need to source text of the agreement"
+reason = "An agreement governs the exchange however, its text is not accessible"
 sources = [
   "https://datafordeler.dk/vejledning/",
 ]
@@ -62,4 +62,4 @@ type = "update"
 key = "dx-dk-01"
 as_of = 2026-10-15
 values.impact_metrics = "No"
-reason = "No impact metrics/ dashboard found"
+reason = "No published impact metrics were available"

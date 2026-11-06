@@ -3,7 +3,7 @@ type = "update"
 key = "id-am-01"
 as_of = 2026-09-17
 values.sectoral_use_cases = "Yes"
-reason = "Sectors in use: Government services, Tax. EsEm (YesEm) login via ID card or mobile ID is the sole access route to online public services since 2024 and is used for the annual income tax declaration."
+reason = "EsEm enables access to government e-services and annual income tax declarations through ID-card or mobile-ID login."
 sources = [
   "https://isaa.am/en/digital-identification",
   "https://src.am/en/getNews/467",

@@ -3,7 +3,7 @@ type = "update"
 key = "id-zw-01"
 as_of = 2026-09-16
 values.governing_entity = "Ministry of Home Affairs and Cultural Heritage"
-reason = "Home Affairs and the Registrar-General lead the digital ID rollout (15 Jul 2025)."
+reason = "The Ministry of Home Affairs and Registrar-General are identified as leading the national digital ID rollout."
 sources = [
   "https://www.biometricupdate.com/202507/zimbabwe-looks-forward-to-digital-id-rollout-after-population-registry-reform",
   "https://www.moha.gov.zw/en/departments",

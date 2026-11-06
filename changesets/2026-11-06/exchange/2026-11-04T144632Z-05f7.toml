@@ -4,7 +4,7 @@ key = "dx-at-02"
 as_of = 2026-10-15
 values.country = "Austria"
 values.name = "dadeX"
-reason = "Changed because Elak is a document managemenet platform"
+reason = ""
 sources = [
   "https://www.digitalaustria.gv.at/verwaltung/egovernment/dadex.html",
 ]
@@ -60,7 +60,7 @@ type = "update"
 key = "dx-at-02"
 as_of = 2026-10-15
 values.url = "https://www.digitalaustria.gv.at/verwaltung/egovernment/dadex.html"
-reason = "Changed system"
+reason = ""
 sources = [
   "https://www.digitalaustria.gv.at/verwaltung/egovernment/dadex.html",
 ]
@@ -80,7 +80,7 @@ type = "update"
 key = "dx-at-02"
 as_of = 2026-10-15
 values.architecture = "NA"
-reason = "Changed system"
+reason = ""
 sources = [
   "https://www.brz.gv.at/was-wir-tun/services-produkte/registersystemverbund/bausteine-der-once-only-plattform.html",
 ]

@@ -2,9 +2,9 @@
 
 Built by `npm run data:build -- --release 2026-11-06` into `public/data/2026-11-06/`, from the 2026-03-31 release and the changesets in `changesets/2026-11-06/` and `changesets/next/`.
 
-- exchange: 215 rows, from 68 changesets
-- identity: 212 rows, from 32 changesets
-- payment: 260 rows, from 298 changesets
+- exchange: 215 rows, from 70 changesets
+- identity: 212 rows, from 33 changesets
+- payment: 260 rows, from 300 changesets
 
 0 blocking items, 47 not blocking.
 
@@ -60,8 +60,8 @@ The headline count on the home page: places that are countries, not regions, wit
 | pay-bb-01 | BimPay | WIP (0) | DPI (1) | Active: No → Yes; Status: Pilot → Active |
 | pay-lac-01 | DCash 2.0 | WIP (0) | NA (0) | Status: Pilot → Suspended |
 | pay-kn-01 | D-Cash (CBDC) | WIP (0) | NA (0) | Real-time payments: Yes → No; Status: Pilot → Suspended |
-| pay-is-01 | TIPS (Target Instant Payment Settlement) | DPI (1) | WIP (0) | Active: Yes → No; Status: Active → Pilot |
-| pay-no-01 | TIPS (Target Instant Payment Settlement) | DPI (1) | WIP (0) | Active: Yes → No; Status: Active → Pilot |
+| pay-is-01 | TIPS (Target Instant Payment Settlement) | DPI (1) | WIP (0) | Active: Yes → No; Real-time payments: Yes → No; Status: Active → Pilot |
+| pay-no-01 | TIPS (Target Instant Payment Settlement) | DPI (1) | WIP (0) | Active: Yes → No; Real-time payments: Yes → No; Status: Active → Pilot |
 | pay-pe-02 | BCRP digital money (CBDC pilot via BiPay) | DPI (1) | WIP (0) | Active: Yes → No; Status: Active → Pilot |
 
 ### New systems: 28
@@ -71,7 +71,7 @@ The headline count on the home page: places that are countries, not regions, wit
 - dx-ba-02, Data Exchange System: DPI (1)
 - dx-fr-02, State Exchange Hub (HubEE): DPI (1)
 - dx-de-02, National Once Only Technical System: WIP (0)
-- dx-gr-02, Interoperability Centre (KED): NA (0)
+- dx-gr-02, Interoperability Centre (KED): DPI (1)
 - dx-ie-02, Information Mediator: WIP (0)
 - dx-lu-02, API Gateway Portal: DPI (1)
 - dx-nl-02, Digital Link (Digikoppelling): DPI (1)

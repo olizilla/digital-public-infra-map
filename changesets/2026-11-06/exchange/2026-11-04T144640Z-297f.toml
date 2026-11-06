@@ -24,7 +24,7 @@ type = "update"
 key = "dx-ca-01"
 as_of = 2026-10-15
 values.formal_mandate = "Yes"
-reason = "This is a guidance from the treasury board, to another policy directive on digital government. This is only binding on certain entities - is this a yes?>"
+reason = "Guideline on Service and Digital"
 sources = [
   "https://www.canada.ca/en/government/system/digital-government/guideline-service-digital.html",
 ]

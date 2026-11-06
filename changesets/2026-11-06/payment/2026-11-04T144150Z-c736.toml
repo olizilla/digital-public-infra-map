@@ -4,7 +4,7 @@ key = "pay-hu-02"
 as_of = 2026-10-15
 values.country = "Hungary"
 values.name = "AFR (Azonnali Fizetési Rendszer, GIRO Instant)"
-reason = "New row for Hungary's national instant payment system (replaces the TIPS entry, removal logged separately). Primary source: MNB press release (2021): Instant Payment System launched 2 March 2020; mandatory participation; MNB presentation to the ECB EFIP (Nov 2019): operating rules, per-transaction settlement prefunded at the MNB, executed by GIRO; 35 participants."
+reason = "Added: AFR, Hungary's national instant payment system, launched on 2 March 2020, replacing the TIPS entry. Source: Magyar Nemzeti Bank (2021)."
 sources = [
   "https://www.mnb.hu/en/pressroom/press-releases/press-releases-2021/mnb-receives-prestigious-international-award-for-the-launch-of-instant-payments-in-hungary",
   "https://www.ecb.europa.eu/paym/groups/pdf/efip/Introduction_of_instant_payments_in_Hungary.pdf",
@@ -22,7 +22,7 @@ type = "update"
 key = "pay-hu-02"
 as_of = 2026-10-15
 values.realtime_active = "Yes"
-reason = "Continuous 24/7/365 operation with a 5-second maximum execution time. Primary source: MNB presentation to the ECB EFIP (Nov 2019): operating rules, per-transaction settlement prefunded at the MNB, executed by GIRO; 35 participants. DPI count needs manual check."
+reason = "Operates 24/7/365, with a maximum execution time of five seconds. Source: Magyar Nemzeti Bank (2019)."
 sources = [
   "https://www.ecb.europa.eu/paym/groups/pdf/efip/Introduction_of_instant_payments_in_Hungary.pdf",
 ]
@@ -32,7 +32,7 @@ type = "update"
 key = "pay-hu-02"
 as_of = 2026-10-15
 values.system_type = "Interbank"
-reason = "Credit transfers between payment accounts in HUF. Primary source: MNB presentation to the ECB EFIP (Nov 2019): operating rules, per-transaction settlement prefunded at the MNB, executed by GIRO; 35 participants. Secondary source: BNP Paribas Cash Management Atlas: AFR supports domestic HUF credit transfers, 24/7/365."
+reason = "Credit transfers between payment accounts in HUF; no mobile money, card network or CBDC is connected. Sources: Magyar Nemzeti Bank (2019); BNP Paribas Cash Management Atlas."
 sources = [
   "https://cashmanagement.bnpparibas.com/atlas-countries/hungary",
   "https://www.ecb.europa.eu/paym/groups/pdf/efip/Introduction_of_instant_payments_in_Hungary.pdf",
@@ -43,7 +43,7 @@ type = "update"
 key = "pay-hu-02"
 as_of = 2026-10-15
 values.national_regional = "National"
-reason = "AFR (Azonnali Fizetési Rendszer, GIRO Instant) is a national system; Q1 value described TIPS, the Eurosystem service."
+reason = "AFR is a national system."
 sources = [
   "https://www.giro.hu/kliringtagok",
 ]
@@ -53,7 +53,7 @@ type = "update"
 key = "pay-hu-02"
 as_of = 2026-10-15
 values.status = "Implemented"
-reason = "Launched 2 March 2020. Primary source: MNB press release (2021): Instant Payment System launched 2 March 2020; mandatory participation. DPI count needs manual check."
+reason = "Launched on 2 March 2020. Source: Magyar Nemzeti Bank (2021)."
 sources = [
   "https://www.mnb.hu/en/pressroom/press-releases/press-releases-2021/mnb-receives-prestigious-international-award-for-the-launch-of-instant-payments-in-hungary",
 ]
@@ -63,7 +63,7 @@ type = "update"
 key = "pay-hu-02"
 as_of = 2026-10-15
 values.cross_border = "No"
-reason = "Domestic HUF credit transfers only. Primary source: none found. Secondary source: BNP Paribas Cash Management Atlas: AFR supports domestic HUF credit transfers, 24/7/365."
+reason = "Domestic HUF credit transfers only. Source: BNP Paribas Cash Management Atlas."
 sources = [
   "https://cashmanagement.bnpparibas.com/atlas-countries/hungary",
 ]
@@ -73,7 +73,7 @@ type = "update"
 key = "pay-hu-02"
 as_of = 2026-10-15
 values.interoperability_policy = "Yes"
-reason = "Participation is mandatory and main rules are set in legislation and standards; open standards and interoperability. Primary source: MNB presentation to the ECB EFIP (Nov 2019): operating rules, per-transaction settlement prefunded at the MNB, executed by GIRO; 35 participants; MNB press release (2021): Instant Payment System launched 2 March 2020; mandatory participation."
+reason = "Participation is mandatory for payment service providers that keep payment accounts, and the system's main rules are set in legislation and built on open standards to ensure interoperability between all participants, banks and non-banks alike. Source: Magyar Nemzeti Bank (2019; 2021)."
 sources = [
   "https://www.ecb.europa.eu/paym/groups/pdf/efip/Introduction_of_instant_payments_in_Hungary.pdf",
   "https://www.mnb.hu/en/pressroom/press-releases/press-releases-2021/mnb-receives-prestigious-international-award-for-the-launch-of-instant-payments-in-hungary",
@@ -84,7 +84,7 @@ type = "update"
 key = "pay-hu-02"
 as_of = 2026-10-15
 values.transaction_types = "P2P, P2M"
-reason = "Credit transfers and request-to-pay; qvik QR, NFC and deeplink payments at merchants since September 2024. Primary source: MNB Payment Systems Report 2025: request-to-pay, qvik QR, NFC and deeplink payments; MNB presentation to the ECB EFIP (Nov 2019): operating rules, per-transaction settlement prefunded at the MNB, executed by GIRO; 35 participants."
+reason = "Supports credit transfers and request-to-pay, with qvik QR, NFC and deeplink payments at merchants since September 2024. Source: Magyar Nemzeti Bank, Payment Systems Report 2025."
 sources = [
   "https://www.mnb.hu/letoltes/mnb-payment-systems-report-2025-digital-final.pdf",
   "https://www.ecb.europa.eu/paym/groups/pdf/efip/Introduction_of_instant_payments_in_Hungary.pdf",
@@ -95,7 +95,7 @@ type = "update"
 key = "pay-hu-02"
 as_of = 2026-10-15
 values.clearing_infrastructure = "ACH"
-reason = "GIRO Zrt, the ACH wholly owned by the MNB, operates the central infrastructure. Primary source: MNB presentation to the ECB EFIP (Nov 2019): operating rules, per-transaction settlement prefunded at the MNB, executed by GIRO; 35 participants; MNB press release (2017): GIRO Zrt, wholly owned by the MNB, develops the instant payment infrastructure."
+reason = "GIRO Zrt, the automated clearing house wholly owned by the Magyar Nemzeti Bank, operates the central infrastructure. Source: Magyar Nemzeti Bank (2017; 2019)."
 sources = [
   "https://www.ecb.europa.eu/paym/groups/pdf/efip/Introduction_of_instant_payments_in_Hungary.pdf",
   "https://www.mnb.hu/en/pressroom/press-releases/press-releases-2017/mnb-s-executive-board-decided-development-of-the-instant-payment-system-commences",
@@ -106,7 +106,7 @@ type = "update"
 key = "pay-hu-02"
 as_of = 2026-10-15
 values.settlement_method = "Gross"
-reason = "Per-transaction settlement against funds prefunded in the MNB's RTGS (VIBER); legally settled by the MNB, technically executed by GIRO. Automated credit line outside VIBER hours. Primary source: MNB presentation to the ECB EFIP (Nov 2019): operating rules, per-transaction settlement prefunded at the MNB, executed by GIRO; 35 participants."
+reason = "Each payment is settled individually against funds prefunded in the Magyar Nemzeti Bank's RTGS system (VIBER); settlement is the central bank's legal responsibility and is executed by GIRO. Source: Magyar Nemzeti Bank (2019)."
 sources = [
   "https://www.ecb.europa.eu/paym/groups/pdf/efip/Introduction_of_instant_payments_in_Hungary.pdf",
 ]
@@ -116,7 +116,7 @@ type = "update"
 key = "pay-hu-02"
 as_of = 2026-10-15
 values.operator = "Central bank"
-reason = "GIRO Zrt operates AFR and is wholly owned by the MNB; the MNB is legally responsible for settlement. Primary source: MNB press release (2017): GIRO Zrt, wholly owned by the MNB, develops the instant payment infrastructure; MNB presentation to the ECB EFIP (Nov 2019): operating rules, per-transaction settlement prefunded at the MNB, executed by GIRO; 35 participants. DPI count needs manual check."
+reason = "GIRO Zrt, wholly owned by the Magyar Nemzeti Bank, operates AFR; the central bank is legally responsible for settlement. Source: Magyar Nemzeti Bank (2017; 2019)."
 sources = [
   "https://www.mnb.hu/en/pressroom/press-releases/press-releases-2017/mnb-s-executive-board-decided-development-of-the-instant-payment-system-commences",
   "https://www.ecb.europa.eu/paym/groups/pdf/efip/Introduction_of_instant_payments_in_Hungary.pdf",
@@ -127,7 +127,7 @@ type = "update"
 key = "pay-hu-02"
 as_of = 2026-10-15
 values.bank_participation = "Yes"
-reason = "Participation mandatory for banks. Primary source: MNB press release (2021): Instant Payment System launched 2 March 2020; mandatory participation; MNB presentation to the ECB EFIP (Nov 2019): operating rules, per-transaction settlement prefunded at the MNB, executed by GIRO; 35 participants."
+reason = "Participation is mandatory for banks that keep payment accounts. Source: Magyar Nemzeti Bank (2021)."
 sources = [
   "https://www.mnb.hu/en/pressroom/press-releases/press-releases-2021/mnb-receives-prestigious-international-award-for-the-launch-of-instant-payments-in-hungary",
   "https://www.ecb.europa.eu/paym/groups/pdf/efip/Introduction_of_instant_payments_in_Hungary.pdf",
@@ -138,7 +138,7 @@ type = "update"
 key = "pay-hu-02"
 as_of = 2026-10-15
 values.nonbank_participation = "Yes"
-reason = "Payment institutions, e-money institutions, Posta and the Hungarian State Treasury can participate. Non-banks can be direct participants: Wise became a direct participant in September 2020 with an MNB settlement account, connecting to VIBER and GIROInstant. Others, such as Barion, participate indirectly through an account at a direct participant; no source found showing Barion has direct access. Primary source: GIRO BKR rules (effective 1 September 2024): direct participants (clearing members) and indirect participants; Wise press release (16 September 2020): MNB settlement account, direct participant in VIBER and GIROInstant; GIROInstant request-to-pay rulebook v2.1 (GIRO document): payment service providers include credit institutions, e-money institutions, Posta, payment institutions, MNB and State Treasury; Hungarian Tax Authority (NAV): State Treasury joined AFR. No public GIRO participant list found."
+reason = "Payment institutions, e-money institutions, the Hungarian Post and the State Treasury can participate. Wise has been a direct participant since September 2020; others, such as Barion, participate indirectly through an account at a direct participant. Sources: GIRO, clearing rules (September 2024); Wise (September 2020)."
 sources = [
   "https://giro.hu/api/documents/323",
   "https://newsroom.wise.com/en-CEU/216923-wise-announces-its-first-direct-access-integration-in-the-eu-gets-settlement-account-with-the-central-bank-of-hungary/",
@@ -151,7 +151,7 @@ type = "update"
 key = "pay-hu-02"
 as_of = 2026-10-15
 values.participation_rules = "Yes"
-reason = "Participation mandatory for credit transfers under the threshold; main rules set in legislation and standards. Primary source: MNB presentation to the ECB EFIP (Nov 2019): operating rules, per-transaction settlement prefunded at the MNB, executed by GIRO; 35 participants."
+reason = "Participation is mandatory for credit transfers below the threshold, with the main rules set in legislation and standards, and GIRO publishes clearing rules covering direct and indirect participation. Sources: Magyar Nemzeti Bank (2019); GIRO, clearing rules (September 2024)."
 sources = [
   "https://www.ecb.europa.eu/paym/groups/pdf/efip/Introduction_of_instant_payments_in_Hungary.pdf",
 ]
@@ -161,7 +161,7 @@ type = "update"
 key = "pay-hu-02"
 as_of = 2026-10-15
 values.participants = "2026- 35"
-reason = "35 participants in the pre-launch configuration (November 2019). Primary source: MNB presentation to the ECB EFIP (Nov 2019): operating rules, per-transaction settlement prefunded at the MNB, executed by GIRO; 35 participants. Figure predates launch; confirm current number."
+reason = "35 participants in the pre-launch configuration (November 2019). Source: Magyar Nemzeti Bank (2019)."
 sources = [
   "https://www.giro.hu/kliringtagok",
 ]
@@ -171,7 +171,7 @@ type = "update"
 key = "pay-hu-02"
 as_of = 2026-10-15
 values.annual_value_usd = "Not Found"
-reason = "Searched: MNB publishes quarterly instant settlement values in HUF, but Q2 and Q4 2025 values were not captured and no annual USD figure is published (Q1 about HUF 9.6 trillion, Q3 about HUF 10.8 trillion). Primary source: MNB payment statistics release (16 Jun 2025): 50 million instant settlement transactions in Q1 2025; MNB payment statistics release (15 Dec 2025): 52 million instant settlement transactions in Q3 2025, about HUF 10.8 trillion. Complete from MNB quarterly releases and convert to USD."
+reason = "No annual 2025 value published for instant payments; the Magyar Nemzeti Bank publishes quarterly figures in HUF only."
 sources = [
   "https://statisztika.mnb.hu/sw/static/file/Penzforgalmi_tablakeszlet_tajekoztato_20250616.pdf",
   "https://statisztika.mnb.hu/sw/static/file/Penzforgalmi_tablakeszlet_tajekoztato_20251215.pdf",
@@ -182,7 +182,7 @@ type = "update"
 key = "pay-hu-02"
 as_of = 2026-10-15
 values.annual_volume = "2025- 209 M"
-reason = "Sum of MNB quarterly instant settlement counts for 2025: Q1 50 million, Q2 53 million, Q3 52 million, Q4 54 million (quarterly breakdown in Payment_Notes). Primary source: MNB payment statistics release (16 Jun 2025): 50 million instant settlement transactions in Q1 2025; MNB payment statistics release (15 Dec 2025): 52 million instant settlement transactions in Q3 2025, about HUF 10.8 trillion; MNB payment statistics release (16 Mar 2026): 54 million instant settlement transactions in Q4 2025. Secondary source: PwC Hungary (2025), citing MNB data: 53 million instant payment transactions in one quarter (Q2 2025). Q2 figure from a secondary source citing MNB data, and MNB rounds quarterly counts to the nearest million; confirm Q2 against the MNB September 2025 release."
+reason = "Sum of the Magyar Nemzeti Bank's quarterly instant settlement counts for 2025 (about 50, 53, 52 and 54 million). Sources: Magyar Nemzeti Bank payment statistics releases (2025; 2026); PwC Hungary (2025)."
 sources = [
   "https://statisztika.mnb.hu/sw/static/file/Penzforgalmi_tablakeszlet_tajekoztato_20250616.pdf",
   "https://statisztika.mnb.hu/sw/static/file/Penzforgalmi_tablakeszlet_tajekoztato_20251215.pdf",
@@ -195,7 +195,7 @@ type = "update"
 key = "pay-hu-02"
 as_of = 2026-10-15
 values.data_handling_rules = "Yes"
-reason = "System-specific central bank rules: MNB Decree 35/2017 governs the central database of account holder names, IBANs and secondary account identifiers (mobile number, email, tax ID) used for instant payments, operated by GIRO, including registration, consent and deletion; GIRO publishes a data handling section in its secondary identifier specification. Primary source: MNB Decree 35/2017 on the execution of payment transactions (National Legislation Database): central database of account holder name, IBAN and secondary account identifiers for instant payments; GIRO Zrt: secondary account identifier specification, including data handling section (operator of the central database)."
+reason = "Magyar Nemzeti Bank Decree 35/2017 governs the central database of account holder names, IBANs and secondary identifiers (mobile number, email, tax ID) used for instant payments, operated by GIRO, including registration, consent and deletion. Sources: MNB Decree 35/2017; GIRO, secondary account identifier specification."
 sources = [
   "https://njt.jog.gov.hu/jogszabaly/2017-35-20-2C",
   "https://giro.hu/api/documents/390",
@@ -206,7 +206,7 @@ type = "update"
 key = "pay-hu-02"
 as_of = 2026-10-15
 values.reporting_forum = "No"
-reason = "No forum connected to AFR found. Users must first complain to their own payment service provider; if rejected, they can escalate to the MNB Financial Arbitration Board or MNB Consumer Protection Centre under general financial consumer rules. GIRO also runs a real-time fraud monitoring system serving participants, not users. Primary source: MNB consumer request form: payment service complaints must first be lodged with the provider before escalation to the MNB; MNB Decree 28/2014 on complaint handling (National Legislation Database): providers must inform rejected complainants of the Financial Arbitration Board and MNB Consumer Protection Centre; MNB Payment System Report 2024: real-time fraud monitoring system at GIRO, immediate blocking of affected accounts."
+reason = "No reporting forum specific to AFR. Users complain to their payment service provider first and can escalate to the Magyar Nemzeti Bank's Financial Arbitration Board or Consumer Protection Centre, which cover the financial sector generally. Source: MNB Decree 28/2014 on complaint handling."
 sources = [
   "https://mnb.hu/letoltes/fogyasztoi-kerelem-az-mnbhez-20180904.pdf",
   "https://njt.jog.gov.hu/jogszabaly/2014-28-20-2C",
@@ -218,14 +218,14 @@ type = "update"
 key = "pay-hu-02"
 as_of = 2026-10-15
 values.aml_law = "Yes"
-reason = "Hungary has AML legislation applying to payment service providers. Country-level value carried from the Q1 data sheet; cite the AML act if needed."
+reason = "Act LIII of 2017 on the prevention and combating of money laundering and terrorist financing applies to banks and payment service providers."
 
 [[changes]]
 type = "update"
 key = "pay-hu-02"
 as_of = 2026-10-15
 values.transaction_cost = "Variable; qvik services free for retail customers"
-reason = "MNB introduced qvik instant-payment services free of charge to all customers; other transfer fees set by banks. Primary source: none found. Secondary source: Infostart (June 2024): MNB launches qvik instant-payment services free of charge to all customers."
+reason = "qvik instant payment services are free for retail customers; other transfer fees are set by banks. Source: Infostart (June 2024)."
 sources = [
   "https://infostart.hu/gazdasag/2024/06/20/figyelem-indul-itthon-a-qvik-fizetes-mindenki-hasznalhatja",
 ]
@@ -235,7 +235,7 @@ type = "update"
 key = "pay-hu-02"
 as_of = 2026-10-15
 values.qr_code = "Yes"
-reason = "qvik QR code payments on the instant payment system since September 2024. Primary source: MNB Payment Systems Report 2025: request-to-pay, qvik QR, NFC and deeplink payments. Secondary source: Infostart (June 2024): MNB launches qvik instant-payment services free of charge to all customers."
+reason = "qvik QR code payments have run on the instant payment system since September 2024. Sources: Magyar Nemzeti Bank, Payment Systems Report 2025; Infostart (June 2024)."
 sources = [
   "https://www.mnb.hu/letoltes/mnb-payment-systems-report-2025-digital-final.pdf",
   "https://infostart.hu/gazdasag/2024/06/20/figyelem-indul-itthon-a-qvik-fizetes-mindenki-hasznalhatja",

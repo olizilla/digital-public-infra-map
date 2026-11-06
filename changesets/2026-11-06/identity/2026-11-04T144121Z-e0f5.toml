@@ -3,7 +3,7 @@ type = "update"
 key = "id-dj-01"
 as_of = 2026-09-16
 values.gov_portal_auth = "Yes"
-reason = "Used for online public services, permits and taxes."
+reason = "Mobile ID is used to access online government services, including permits and tax procedures."
 sources = [
   "https://www.wearetech.africa/en/fils-uk/news/tech/djibouti-officially-launches-mobile-id-digital-identity-platform",
   "https://interieur.gouv.dj/forum-sur-lidentite-numerique-et-lancement-du-projet-mobile-id/",
@@ -82,7 +82,7 @@ type = "update"
 key = "id-dj-01"
 as_of = 2026-09-16
 values.technical_support = "Tech5; Visa"
-reason = "2025 MoU for the national digital wallet."
+reason = "A 2025 memorandum of understanding supports development of the national digital wallet."
 sources = [
   "https://www.biometricupdate.com/202602/djibouti-unveils-biometric-mobile-id-to-enhance-access-to-public-services",
   "https://interieur.gouv.dj/forum-sur-lidentite-numerique-et-lancement-du-projet-mobile-id/",

@@ -14,7 +14,7 @@ type = "update"
 key = "id-cl-01"
 as_of = 2026-09-16
 values.governing_entity = "Secretaría de Gobierno Digital"
-reason = "Also fixes typo 'Secrariat'."
+reason = "The entry includes a correction to the governing entity's name; no substantive governance change is described."
 sources = [
   "https://wikiguias.digital.gob.cl/Estrategias/identidad-digital",
 ]

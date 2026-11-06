@@ -34,4 +34,4 @@ type = "update"
 key = "dx-pt-01"
 as_of = 2026-10-15
 values.personal_data_protection = "Yes"
-reason = "From the ID Dataset"
+reason = "General Data Protection Regulation (Regulation (EU) 2016/679) (GDPR)"

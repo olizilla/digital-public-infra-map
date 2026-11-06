@@ -3,7 +3,7 @@ type = "update"
 key = "id-bf-01"
 as_of = 2026-09-16
 values.biometrics = "Yes"
-reason = "Iris, face and fingerprints to be captured."
+reason = "Biometric enrolment includes iris, facial and fingerprint data collection."
 sources = [
   "https://www.biometricupdate.com/202608/burkina-faso-approves-operational-framework-for-wuri-digital-id-rollout",
   "https://www.presidencedufaso.bf/conseil-des-ministres-du-30-juillet-2026/",
@@ -25,7 +25,7 @@ type = "update"
 key = "id-bf-01"
 as_of = 2026-09-16
 values.governing_entity = "Office National d'Identification (ONI) / Ministry of Digital Transition, Posts and Electronic Communications"
-reason = "No change to ONI; ministry leads WURI."
+reason = "ONI remains associated with national identity administration, while the responsible ministry leads WURI."
 sources = [
   "https://www.biometricupdate.com/202608/burkina-faso-approves-operational-framework-for-wuri-digital-id-rollout",
   "https://www.presidencedufaso.bf/conseil-des-ministres-du-30-juillet-2026/",
@@ -36,7 +36,7 @@ type = "update"
 key = "id-bf-01"
 as_of = 2026-09-16
 values.regulation = "Yes"
-reason = "Decree of 30 Jul 2026 sets the operational framework for mass registration and issuing personal ID numbers."
+reason = "July 2026 decree establishes an operational framework for mass registration and issuance of unique identification numbers."
 sources = [
   "https://www.biometricupdate.com/202608/burkina-faso-approves-operational-framework-for-wuri-digital-id-rollout",
   "https://www.assembleenationale.bf/storage/libelrapportcagidh/8M3KuoK1JLJKtYcy8m0mVTujeRyPq6OuireR0RXo.pdf",

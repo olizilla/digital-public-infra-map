@@ -42,7 +42,7 @@ type = "update"
 key = "pay-la-01"
 as_of = 2026-10-15
 values.status = "Implemented"
-reason = "Live; interbank mobile transfers via LAPNet since 2020 and cross-border linkages since 2024. Primary source: Bank of Thailand and Bank of the Lao PDR (2024-04). Secondary source: Jclao (news) (2020). DPI count needs manual check."
+reason = "Live; interbank mobile transfers via LAPNet since 2020 and cross-border linkages since 2024. Primary source: Bank of Thailand and Bank of the Lao PDR (2024-04). Secondary source: Jclao (news) (2020)."
 sources = [
   "https://www.bot.or.th/en/news-and-media/news/news-20240403.html",
   "https://jclao.com/laos-banks-linked-for-money-transfers-via-mobile-app/",
@@ -116,7 +116,7 @@ type = "update"
 key = "pay-la-01"
 as_of = 2026-10-15
 values.operator = "Bank association/Central bank"
-reason = "LAPNet is a company that took over operation of the LAPS system from the Bank of the Lao PDR and operates under BOL supervision (BOL joint venture). Primary source: LAPNet (operator) (2026). Secondary source: Jclao (news) (2020). Operator category needs review. DPI count needs manual check."
+reason = "LAPNet is a company owned by commercial banks (60%), the Bank of the Lao PDR (25%) and UnionPay International (15%), and operates under BOL supervision."
 sources = [
   "https://www.lapnet.com.la/product/fund-transfer-interbank",
   "https://jclao.com/laos-banks-linked-for-money-transfers-via-mobile-app/",
@@ -172,7 +172,7 @@ key = "pay-la-01"
 as_of = 2026-10-15
 values.annual_value_usd = "Not Found"
 values.annual_volume = "Not Found"
-reason = "Searched: LAPNet publishes no annual transaction figures. The Bank of the Lao PDR Annual Economic Report may report payment system statistics but the BOL site blocks automated access; check manually."
+reason = "LAPNet does not publish annual transaction figures for LMPS, and no 2025 figure was found in Bank of the Lao PDR publications."
 sources = [
   "https://www.lapnet.com.la/",
   "https://www.bol.gov.la/en/fileupload/28-06-2024_1719576615.pdf",

@@ -35,7 +35,7 @@ type = "update"
 key = "id-cy-01"
 as_of = 2026-09-17
 values.funders = "Government of the Republic of Cyprus"
-reason = "Insufficient Evidence Regarding EU financial support"
+reason = "Insufficient evidence regarding EU financial support."
 
 [[changes]]
 type = "update"

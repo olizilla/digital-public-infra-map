@@ -28,7 +28,7 @@ key = "dx-qa-01"
 as_of = 2026-10-15
 values.number_of_transactions = "Not Found"
 values.number_of_members = "Not Found"
-reason = "New framework variable not yet recorded for this country"
+reason = "Data not found"
 
 [[changes]]
 type = "update"

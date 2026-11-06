@@ -26,7 +26,7 @@ type = "update"
 key = "id-bi-01"
 as_of = 2026-09-17
 values.status = "Planned/Piloted"
-reason = "Planned biometric systemm"
+reason = "National biometric ID remains planned according to the available evidence"
 sources = [
   "https://www.burunditimes.com/burundi-unveils-biometric-national-id-system-awaits-law-before-full-rollout/",
 ]
@@ -47,7 +47,7 @@ type = "update"
 key = "id-bi-01"
 as_of = 2026-09-16
 values.governing_entity = "Ministry of Interior"
-reason = "Leads the DPI/digital ID talks."
+reason = "The responsible institution participates in digital ID and DPI discussions."
 sources = [
   "https://www.biometricupdate.com/202606/burundi-looks-to-india-stack-for-digital-id-and-payments-infrastructure",
   "https://mininterinfos.gov.bi/bientot-une-carte-didentite-biometrique-au-burundi/",

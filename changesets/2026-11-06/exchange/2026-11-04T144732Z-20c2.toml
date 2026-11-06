@@ -13,7 +13,7 @@ type = "update"
 key = "dx-us-01"
 as_of = 2026-10-15
 values.number_of_members = "2026 - 25"
-reason = "New framework variable not yet recorded for this country"
+reason = ""
 sources = [
   "http://api.data.gov",
 ]
@@ -24,4 +24,4 @@ key = "dx-us-01"
 as_of = 2026-10-15
 values.independent_audit = "Not Found"
 values.number_of_transactions = "Not Found"
-reason = "New framework variable not yet recorded for this country"
+reason = "Data not found"

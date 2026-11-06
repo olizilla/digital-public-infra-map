@@ -34,4 +34,4 @@ type = "update"
 key = "dx-sa-01"
 as_of = 2026-10-15
 values.personal_data_protection = "Yes"
-reason = "ID Dataset"
+reason = "Personal Data Protection Law"

@@ -4,7 +4,7 @@ key = "dx-ie-02"
 as_of = 2026-10-15
 values.country = "Ireland"
 values.name = "Information Mediator"
-reason = "No data exchange infrastructure exists"
+reason = ""
 sources = [
   "https://interoperable-europe.ec.europa.eu/sites/default/files/file-visibility/resource/2026-05/national-policy-brief-api-gateway-enablers_1.pdf",
 ]
@@ -63,7 +63,7 @@ key = "dx-ie-02"
 as_of = 2026-10-15
 values.number_of_transactions = "Not Found"
 values.number_of_members = "Not Found"
-reason = "Still in pilot stage"
+reason = "Exchange is still in pilot stage"
 sources = [
   "https://interoperable-europe.ec.europa.eu/sites/default/files/file-visibility/resource/2026-05/national-policy-brief-api-gateway-enablers_1.pdf",
 ]

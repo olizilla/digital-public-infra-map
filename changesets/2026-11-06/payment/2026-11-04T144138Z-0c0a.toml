@@ -20,7 +20,7 @@ type = "update"
 key = "pay-ci-01"
 as_of = 2026-10-15
 values.realtime_active = "Yes"
-reason = "Live 24/7 instant payments. DPI count needs manual check."
+reason = "Live 24/7 instant payments."
 sources = [
   "https://www.bceao.int/fr/content/lancement-officiel-de-la-plateforme-interoperable-du-systeme-de-paiement-instantane-pi-spi",
 ]
@@ -40,7 +40,7 @@ type = "update"
 key = "pay-ci-01"
 as_of = 2026-10-15
 values.status = "Implemented"
-reason = "Launched 30 Sep 2025. DPI count needs manual check."
+reason = "Launched 30 Sep 2025."
 sources = [
   "https://www.bceao.int/fr/content/lancement-officiel-de-la-plateforme-interoperable-du-systeme-de-paiement-instantane-pi-spi",
 ]
@@ -90,7 +90,7 @@ type = "update"
 key = "pay-ci-01"
 as_of = 2026-10-15
 values.operator = "Central bank"
-reason = "Built and operated by BCEAO. DPI count needs manual check."
+reason = "Built and operated by (Central Bank of West African States) BCEAO."
 sources = [
   "https://www.bceao.int/fr/content/lancement-officiel-de-la-plateforme-interoperable-du-systeme-de-paiement-instantane-pi-spi",
 ]

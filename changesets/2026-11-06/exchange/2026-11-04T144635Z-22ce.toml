@@ -11,7 +11,7 @@ type = "update"
 key = "dx-ba-02"
 as_of = 2026-10-15
 values.formal_mandate = "Yes"
-reason = "Authorises a 'communication network' for data exchange, requires standards/'technical preconditions' to be followed."
+reason = "Authorises a 'communication network' for data exchange, requires standards/'technical preconditions' to be followed - Rulebook On Manner Of Access To Registers And Data Exchange (Official Gazette Of Bih No. 35/09)"
 sources = [
   "https://www.iddeea.gov.ba/wp-content/uploads/WEB/ZAKONODAVSTVO/PODZAKONSKI%20AKTI/Evidencija%20sigurnost%20i%20razmjena%20podataka/2/rulebook_on_manner_of_access_to_registers_and_data_exchange_35_09.pdf",
 ]

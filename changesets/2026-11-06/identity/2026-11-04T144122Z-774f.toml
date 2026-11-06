@@ -59,7 +59,7 @@ type = "update"
 key = "id-hn-01"
 as_of = 2026-09-16
 values.sectoral_use_cases = "Yes"
-reason = "ID, residence, driving and firearms permits; eKYC; e-signing."
+reason = "Multiple sectoral use cases identified, including identity and permit services, eKYC, and e-signing."
 sources = [
   "https://www.biometricupdate.com/202512/tech5-dpi-platform-powers-new-honduras-digital-id-system",
   "https://www.diger.gob.hn/identidad-digital",

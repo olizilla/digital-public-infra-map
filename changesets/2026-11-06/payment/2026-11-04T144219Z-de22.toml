@@ -20,7 +20,7 @@ type = "update"
 key = "pay-vn-01"
 as_of = 2026-10-15
 values.realtime_active = "Yes"
-reason = "24/7 instant interbank transfers. DPI count needs manual check."
+reason = "24/7 instant interbank transfers."
 sources = [
   "https://en.napas.com.vn/napas-fastfund-247-service-featured-service",
 ]
@@ -40,7 +40,7 @@ type = "update"
 key = "pay-vn-01"
 as_of = 2026-10-15
 values.status = "Implemented"
-reason = "Live; NAPAS reports continued volume growth in 2025. DPI count needs manual check."
+reason = "Live; NAPAS reports continued volume growth in 2025."
 sources = [
   "https://en.napas.com.vn/napas-fastfund-247-service-featured-service",
   "https://en.napas.com.vn/napas-successfully-holds-the-2026-task-deployment-conference-18426031710042133.htm",

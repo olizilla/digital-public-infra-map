@@ -3,7 +3,7 @@ type = "update"
 key = "id-az-01"
 as_of = 2026-09-16
 values.legal_status = "Yes"
-reason = "Government said ID data in the mygov app is as legal as a physical ID card. Physical IDs no longer mandatory (18 Jul 2024). Confirm the law or decree."
+reason = "Government recognises digital ID data in the mygov app as equivalent to physical ID; the legal instrument requires verification."
 sources = [
   "https://idda.az/en/news/the-updated-mygov-platform-celebrates-its-first-anniversary",
 ]
@@ -13,7 +13,7 @@ type = "update"
 key = "id-az-01"
 as_of = 2026-09-16
 values.name = "mygov ID / Asan Imza"
-reason = "The Digital Login portal now redirects to the mygov ID service (checked 16 Sep 2026)."
+reason = "Digital Login now directs users to the mygov ID service, reflecting an updated service name."
 sources = [
   "https://mygovid.gov.az/",
 ]
@@ -23,7 +23,7 @@ type = "update"
 key = "id-az-01"
 as_of = 2026-09-16
 values.url = "https://mygovid.gov.az/"
-reason = "Old URL digital.login.gov.az now redirects to mygovid.gov.az (checked 16 Sep 2026)."
+reason = "Former Digital Login URL redirects to mygovid.gov.az, indicating a change in the official service address."
 sources = [
   "https://mygovid.gov.az/",
 ]

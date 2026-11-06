@@ -14,7 +14,7 @@ type = "update"
 key = "dx-il-02"
 as_of = 2026-10-15
 values.formal_mandate = "Not Found"
-reason = "New Variable. Formal Mandate does not exist."
+reason = "Formal Mandate was not found"
 sources = [
   "https://www.gov.il/he/pages/2016_dec1933",
 ]

@@ -24,7 +24,7 @@ type = "update"
 key = "dx-pl-02"
 as_of = 2026-10-15
 values.formal_mandate = "Yes"
-reason = "https://lexlege.pb.pl/ustawa-o-informatyzacji-dzialalnosci-podmiotow-realizujacych-zadania-publiczne Act on the computerization of the activities of entities performing public tasks"
+reason = "Act on the computerization of the activities of entities performing public task https://lexlege.pb.pl/ustawa-o-informatyzacji-dzialalnosci-podmiotow-realizujacych-zadania-publiczne"
 
 [[changes]]
 type = "update"

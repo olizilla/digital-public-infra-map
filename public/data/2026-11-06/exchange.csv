@@ -141,7 +141,7 @@ dx-fr-02,France,2026-10-15,1,State Exchange Hub (HubEE),https://www.hubee.numeri
 dx-de-02,Germany,2026-10-15,0,National Once Only Technical System,https://noots.gov.de/,Planned/Piloted,Not Found,National,Cross-sectoral,Syntactic,Not Found,Not Found,"IT Planning Council, NOOTS Steering Committee",Public,Yes,"Public, Private",Not Found,Yes,Federal IT Cooperation (FITKO),Yes,NA,Yes,Yes,Yes,Not Found,Not Found,Not Found
 dx-gr-01,Greece,2026-10-15,1,Govhub,https://govhub.gr/home,Implemented,API Gateway,National,Cross-sectoral,Semantic,Yes,Yes,KEDE - Central Union of Municipalities of Greece,Public,Yes,Public,Yes,Yes,"General Secretariat of Information Systems an d Digital Governance of the Ministry
 of Digital Governance",Yes,No,No,Yes,NA,No,Not Found,Not Found
-dx-gr-02,Greece,2026-10-15,0,Interoperability Centre (KED),NA,NA,Custom ESB,NA,NA,Semantic,NA,Not Found,"General Directorate of
+dx-gr-02,Greece,2026-11-06,1,Interoperability Centre (KED),NA,Implemented,Custom ESB,NA,Cross-sectoral,Semantic,NA,Not Found,"General Directorate of
 Information and Communication Technology (G.G.P.S.D.),",Public,Yes,"Public, Private, Civil",Yes,Yes,"General Directorate of
 Information and Communication Technology (G.G.P.S.D.),",NA,Yes,Yes,Yes,Yes,No,2025 - 772 million,Not Found
 dx-hu-01,Hungary,2026-10-15,1,Központi Kormányzati Szolgáltatás Busz (KKSZB),https://idomsoft.hu/wp-content/uploads/KKSZB_Szabalyzat_v2.0.1_v2.pdf,Implemented,ESB,National,Cross-sectoral,Syntactic,Yes,Yes,Digital Hungary Agency,Public,Yes,Public,Yes,Yes,IdomSoft,Yes,NA,Yes,Yes,Yes,No,Not Found,Not Found

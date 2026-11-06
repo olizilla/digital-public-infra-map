@@ -36,7 +36,7 @@ type = "update"
 key = "id-jm-01"
 as_of = 2026-09-16
 values.url = "https://nira.gov.jm/"
-reason = "Current URL is a 2020 policy PDF."
+reason = "The previous link points to a 2020 policy document rather than a current system page."
 sources = [
   "https://nira.gov.jm/",
   "https://nira.gov.jm/national-identification/",

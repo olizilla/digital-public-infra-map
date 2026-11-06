@@ -48,7 +48,7 @@ type = "update"
 key = "dx-sk-02"
 as_of = 2026-10-15
 values.interoperability_level = "Semantic"
-reason = "New variable"
+reason = "Registries are obliged to use basic code lists who are, in turn, obliged to use the data module."
 sources = [
   "https://www.slov-lex.sk/ezbierky/pravne-predpisy/SK/ZZ/2013/305/20201230#poznamky.poznamka-4",
 ]

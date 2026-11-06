@@ -20,7 +20,7 @@ type = "update"
 key = "dx-hr-01"
 as_of = 2026-10-15
 values.formal_mandate = "Yes"
-reason = "New variable"
+reason = "Act on State Information Infrastructure (OG 072/2025)"
 sources = [
   "https://sredisnjikatalogrh.gov.hr/srce-arhiva/263/168994/narodne-novine.nn.hr/clanci/sluzbeni/full/2017_06_60_1362.html",
 ]

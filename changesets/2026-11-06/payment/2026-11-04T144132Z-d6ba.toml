@@ -90,7 +90,7 @@ type = "update"
 key = "pay-africa-02"
 as_of = 2026-10-15
 values.operator = "Central bank"
-reason = "Built and operated by BCEAO."
+reason = "Built and operated by (Central Bank of West African States) BCEAO."
 sources = [
   "https://www.bceao.int/fr/content/lancement-officiel-de-la-plateforme-interoperable-du-systeme-de-paiement-instantane-pi-spi",
 ]

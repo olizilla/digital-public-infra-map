@@ -13,7 +13,7 @@ type = "update"
 key = "dx-fi-01"
 as_of = 2026-10-15
 values.independent_audit = "Not Found"
-reason = "New Variable"
+reason = ""
 sources = [
   "https://www.finlex.fi/en/legislation/collection/2016/571",
 ]
@@ -41,7 +41,7 @@ type = "update"
 key = "dx-fi-01"
 as_of = 2026-10-15
 values.interoperability_level = "Syntactic"
-reason = "Cleaning variable"
+reason = ""
 
 [[changes]]
 type = "update"

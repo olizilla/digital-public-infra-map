@@ -16,7 +16,7 @@ type = "update"
 key = "dx-de-02"
 as_of = 2026-10-15
 values.formal_mandate = "Yes"
-reason = "New Variable."
+reason = "Regulation on the designation of an alternative federal network for data exchange via the national once-only technical system within the scope of the Online Access Act (NOOTS Network Regulation - NOOTSNetzV)"
 sources = [
   "https://www.gesetze-im-internet.de/nootsnetzv/BJNR0010A0026.html",
 ]
