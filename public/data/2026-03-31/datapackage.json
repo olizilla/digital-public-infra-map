@@ -1,8 +1,17 @@
 {
   "$schema": "https://datapackage.org/profiles/2.0/datapackage.json",
-  "name": "dpi-map",
+  "name": "dpimap",
   "title": "Digital Public Infrastructure Map",
+  "homepage": "https://dpimap.org",
+  "version": "2026-03-31",
   "description": "Data on national-scale digital public infrastructure (DPI) around the world, collected by researchers at UCL IIPP and shown at https://dpimap.org: digital identity, payment and data exchange systems, by country or region. This file was written in November 2026, after the release: it records the codebook as published with this release (its fields, allowed values and definitions), not a check of the data. Some values in this release use wording that predates or differs from the codebook, so they fall outside the allowed values; `npm run codebook:check` in the repository lists the differences.",
+  "licenses": [
+    {
+      "name": "CC-BY-4.0",
+      "path": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "Creative Commons Attribution 4.0 International"
+    }
+  ],
   "resources": [
     {
       "name": "identity",

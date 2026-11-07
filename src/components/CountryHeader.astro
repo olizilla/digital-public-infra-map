@@ -21,7 +21,8 @@ const Name = step === undefined ? 'h1' : 'p'
 <!-- on desktop, the same three columns as the lanes below, so the map lines up with the third column -->
 <section class="page-head">
 	<div class="page-head-text">
-		<nav class="page-crumbs" aria-label="Breadcrumb"><a href="/">Map</a> › { step === undefined
+		<!-- on a place page, phones leave out the breadcrumb: the map link is in the site header -->
+		<nav class:list={['page-crumbs', { 'max-sm:hidden': step === undefined }]} aria-label="Breadcrumb"><a href="/">Map</a> › { step === undefined
 			? country
 			: <Fragment>{ countryHref ? <a href={countryHref}>{country}</a> : country } › {step}</Fragment> }</nav>
 		<Name class="page-title page-h1">{ step !== undefined && countryHref ? <a href={countryHref}>{country}</a> : country }</Name>

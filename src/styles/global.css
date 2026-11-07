@@ -711,7 +711,6 @@ details.more[open] > summary::before {
   .chg-head { @apply pt-0 md:pt-4 pb-6; }
   .chg-label {
     @apply inline-block mb-3 px-2 py-0.5 rounded border border-zinc-300 bg-zinc-50 text-xs leading-5 font-semibold text-zinc-600;
-    &.upcoming { @apply border-wip-line bg-wip text-zinc-800; }
   }
   .chg-summary { @apply max-w-[44rem] leading-[26px] text-lg md:leading-7 text-zinc-700; }
   .chg-about {

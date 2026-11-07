@@ -31,38 +31,38 @@ The headline count on the home page: places that are countries, not regions, wit
 
 | System ID | Name | Was | Now | What changed |
 |---|---|---|---|---|
-| id-ci-01 | National Registry of Natural Persons (RNPP) + CI Identité app | WIP (0) | DPI (1) | Used across 2+ sectors: No → Yes |
-| id-dj-01 | Djibouti Mobile ID | WIP (0) | DPI (1) | Active: No → Yes; Digital authentication: NA → Yes; Used across 2+ sectors: No → Yes; Status: Pilot → Active |
-| id-la-01 | LAeID | NA (0) | WIP (0) | Active: NA → Yes; Claims a digital ID: No → Yes; Used across 2+ sectors: No → Yes; Status: NA → Active |
-| id-cu-01 | Identidad Digital | NA (0) | WIP (0) | Active: NA → No; Claims a digital ID: No → Yes; Status: NA → Pilot |
-| id-jm-01 | National identity (NIDS) | WIP (0) | DPI (1) | Active: No → Yes; Used across 2+ sectors: NA → Yes; Status: Pilot → Active |
-| id-ad-01 | Electronic certificate | WIP (0) | DPI (1) | Used across 2+ sectors: NA → Yes |
-| id-hu-01 | Digitális Állampolgár (DÁP) mobile application | WIP (0) | DPI (1) | Active: No → Yes; Digital authentication: NA → Yes; Used across 2+ sectors: NA → Yes; Status: Pilot → Active |
-| id-bz-01 | National Digital ID | WIP (0) | NA (0) | Active: No → NA; Claims a digital ID: No → Yes; Used across 2+ sectors: No → NA; Status: Pilot → NA |
-| id-hn-01 | National Digital ID System / Bien | WIP (0) | DPI (1) | Active: No → Yes; Used across 2+ sectors: NA → Yes; Status: Pilot → Active |
-| id-am-01 | EsEm | WIP (0) | DPI (1) | Used across 2+ sectors: NA → Yes |
-| id-bh-01 | eKey 2.0 | WIP (0) | DPI (1) | Digital authentication: NA → Yes; Used across 2+ sectors: NA → Yes |
-| id-cy-01 | Cypriot National eID (IDMe.cy) / eID card | WIP (0) | DPI (1) | Active: No → Yes; Used across 2+ sectors: NA → Yes; Status: Pilot → Active |
+| id-ci-01 | National Registry of Natural Persons (RNPP) + CI Identité app | WIP (0) | DPI (1) | Two or more sectoral use cases enabled: No → Yes |
+| id-dj-01 | Djibouti Mobile ID | WIP (0) | DPI (1) | Active: No → Yes; Digital authentication function: NA → Yes; Two or more sectoral use cases enabled: No → Yes; Status: Pilot → Active |
+| id-la-01 | LAeID | NA (0) | WIP (0) | Active: NA → Yes; Claim of digital ID: No → Yes; Two or more sectoral use cases enabled: No → Yes; Status: NA → Active |
+| id-cu-01 | Identidad Digital | NA (0) | WIP (0) | Active: NA → No; Claim of digital ID: No → Yes; Status: NA → Pilot |
+| id-jm-01 | National identity (NIDS) | WIP (0) | DPI (1) | Active: No → Yes; Two or more sectoral use cases enabled: NA → Yes; Status: Pilot → Active |
+| id-ad-01 | Electronic certificate | WIP (0) | DPI (1) | Two or more sectoral use cases enabled: NA → Yes |
+| id-hu-01 | Digitális Állampolgár (DÁP) mobile application | WIP (0) | DPI (1) | Active: No → Yes; Digital authentication function: NA → Yes; Two or more sectoral use cases enabled: NA → Yes; Status: Pilot → Active |
+| id-bz-01 | National Digital ID | WIP (0) | NA (0) | Active: No → NA; Claim of digital ID: No → Yes; Two or more sectoral use cases enabled: No → Not Found; Status: Pilot → NA |
+| id-hn-01 | National Digital ID System / Bien | WIP (0) | DPI (1) | Active: No → Yes; Two or more sectoral use cases enabled: NA → Yes; Status: Pilot → Active |
+| id-am-01 | EsEm | WIP (0) | DPI (1) | Two or more sectoral use cases enabled: NA → Yes |
+| id-bh-01 | eKey 2.0 | WIP (0) | DPI (1) | Digital authentication function: NA → Yes; Two or more sectoral use cases enabled: NA → Yes |
+| id-cy-01 | Cypriot National eID (IDMe.cy) / eID card | WIP (0) | DPI (1) | Active: No → Yes; Two or more sectoral use cases enabled: NA → Yes; Status: Pilot → Active |
 | id-kw-01 | Kuwait Mobile ID | NA (0) | DPI (1) | Active: NA → Yes; Status: NA → Active |
-| pay-africa-02 | PI-SPI (Plateforme Interopérable du Système de Paiement Instantané) | WIP (0) | DPI (1) | Active: No → Yes; Status: Pilot → Active |
-| pay-bj-01 | PI-SPI (Plateforme Interopérable du Système de Paiement Instantané) | WIP (0) | DPI (1) | Active: No → Yes; Real-time payments: No → Yes; Operated by the central bank: NA → Yes; Status: Pilot → Active |
-| pay-cv-01 | STII (Sistema de Transferências Imediatas e Inclusivas) | NA (0) | WIP (0) | Active: NA → No; Operated by the central bank: NA → Yes; Status: NA → Pilot |
-| pay-ci-01 | PI-SPI (Plateforme Interopérable du Système de Paiement Instantané) | NA (0) | DPI (1) | Active: NA → Yes; Real-time payments: No → Yes; Operated by the central bank: NA → Yes; Status: NA → Active |
-| pay-gw-01 | PI-SPI (Plateforme Interopérable du Système de Paiement Instantané) | NA (0) | DPI (1) | Active: NA → Yes; Real-time payments: No → Yes; Operated by the central bank: NA → Yes; Status: NA → Active |
-| pay-ml-01 | PI-SPI (Plateforme Interopérable du Système de Paiement Instantané) | NA (0) | DPI (1) | Active: NA → Yes; Real-time payments: No → Yes; Operated by the central bank: NA → Yes; Status: NA → Active |
-| pay-ne-01 | PI-SPI (Plateforme Interopérable du Système de Paiement Instantané) | NA (0) | DPI (1) | Active: NA → Yes; Real-time payments: No → Yes; Operated by the central bank: NA → Yes; Status: NA → Active |
-| pay-sn-01 | PI-SPI (Plateforme Interopérable du Système de Paiement Instantané) | NA (0) | DPI (1) | Active: NA → Yes; Real-time payments: No → Yes; Operated by the central bank: NA → Yes; Status: NA → Active |
-| pay-tg-01 | PI-SPI (Plateforme Interopérable du Système de Paiement Instantané) | NA (0) | DPI (1) | Active: NA → Yes; Real-time payments: No → Yes; Operated by the central bank: NA → Yes; Status: NA → Active |
-| pay-id-01 | BI-FAST | WIP (0) | DPI (1) | Operated by the central bank: NA → Yes |
-| pay-la-01 | LMPS (LAPNet mobile interbank payment system) | NA (0) | DPI (1) | Active: NA → Yes; Real-time payments: No → Yes; Operated by the central bank: NA → Yes; Status: NA → Active |
-| pay-vn-01 | NAPAS 247 (NAPAS FastFund 247) | NA (0) | DPI (1) | Active: NA → Yes; Real-time payments: No → Yes; Operated by the central bank: NA → Yes; Status: NA → Active |
+| pay-africa-02 | PI-SPI (Plateforme Interopérable du Système de Paiement Instantané) | WIP (0) | DPI (1) | Active: No → Yes; Operator: Central bank: undefined → Yes; Status: Pilot → Active |
+| pay-bj-01 | PI-SPI (Plateforme Interopérable du Système de Paiement Instantané) | WIP (0) | DPI (1) | Active: No → Yes; Active real-time payment system present: No → Yes; Operator: Central bank: undefined → Yes; Status: Pilot → Active |
+| pay-cv-01 | STII (Sistema de Transferências Imediatas e Inclusivas) | NA (0) | WIP (0) | Active: NA → No; Operator: Central bank: undefined → Yes; Status: NA → Pilot |
+| pay-ci-01 | PI-SPI (Plateforme Interopérable du Système de Paiement Instantané) | NA (0) | DPI (1) | Active: NA → Yes; Active real-time payment system present: No → Yes; Operator: Central bank: undefined → Yes; Status: NA → Active |
+| pay-gw-01 | PI-SPI (Plateforme Interopérable du Système de Paiement Instantané) | NA (0) | DPI (1) | Active: NA → Yes; Active real-time payment system present: No → Yes; Operator: Central bank: undefined → Yes; Status: NA → Active |
+| pay-ml-01 | PI-SPI (Plateforme Interopérable du Système de Paiement Instantané) | NA (0) | DPI (1) | Active: NA → Yes; Active real-time payment system present: No → Yes; Operator: Central bank: undefined → Yes; Status: NA → Active |
+| pay-ne-01 | PI-SPI (Plateforme Interopérable du Système de Paiement Instantané) | NA (0) | DPI (1) | Active: NA → Yes; Active real-time payment system present: No → Yes; Operator: Central bank: undefined → Yes; Status: NA → Active |
+| pay-sn-01 | PI-SPI (Plateforme Interopérable du Système de Paiement Instantané) | NA (0) | DPI (1) | Active: NA → Yes; Active real-time payment system present: No → Yes; Operator: Central bank: undefined → Yes; Status: NA → Active |
+| pay-tg-01 | PI-SPI (Plateforme Interopérable du Système de Paiement Instantané) | NA (0) | DPI (1) | Active: NA → Yes; Active real-time payment system present: No → Yes; Operator: Central bank: undefined → Yes; Status: NA → Active |
+| pay-id-01 | BI-FAST | WIP (0) | DPI (1) | Operator: Central bank: undefined → Yes |
+| pay-la-01 | LMPS (LAPNet mobile interbank payment system) | NA (0) | DPI (1) | Active: NA → Yes; Active real-time payment system present: No → Yes; Operator: Bank association/Central bank: undefined → Yes; Status: NA → Active |
+| pay-vn-01 | NAPAS 247 (NAPAS FastFund 247) | NA (0) | DPI (1) | Active: NA → Yes; Active real-time payment system present: No → Yes; Operator: Bank association/Central bank: undefined → Yes; Status: NA → Active |
 | pay-ag-01 | D-Cash (CBDC) | WIP (0) | NA (0) | Status: Pilot → Suspended |
-| pay-bb-01 | BimPay | WIP (0) | DPI (1) | Active: No → Yes; Status: Pilot → Active |
-| pay-lac-01 | DCash 2.0 | WIP (0) | NA (0) | Status: Pilot → Suspended |
-| pay-kn-01 | D-Cash (CBDC) | WIP (0) | NA (0) | Real-time payments: Yes → No; Status: Pilot → Suspended |
-| pay-is-01 | TIPS (Target Instant Payment Settlement) | DPI (1) | WIP (0) | Active: Yes → No; Real-time payments: Yes → No; Status: Active → Pilot |
-| pay-no-01 | TIPS (Target Instant Payment Settlement) | DPI (1) | WIP (0) | Active: Yes → No; Real-time payments: Yes → No; Status: Active → Pilot |
-| pay-pe-02 | BCRP digital money (CBDC pilot via BiPay) | DPI (1) | WIP (0) | Active: Yes → No; Status: Active → Pilot |
+| pay-bb-01 | BimPay | WIP (0) | DPI (1) | Active: No → Yes; Operator: Central bank: undefined → Yes; Status: Pilot → Active |
+| pay-lac-01 | DCash 2.0 | WIP (0) | NA (0) | Operator: Central bank: undefined → Yes; Status: Pilot → Suspended |
+| pay-kn-01 | D-Cash (CBDC) | WIP (0) | NA (0) | Active real-time payment system present: Yes → No; Status: Pilot → Suspended |
+| pay-is-01 | TIPS (Target Instant Payment Settlement) | DPI (1) | WIP (0) | Active: Yes → No; Active real-time payment system present: Yes → No; Operator: Central bank: undefined → Yes; Status: Active → Pilot |
+| pay-no-01 | TIPS (Target Instant Payment Settlement) | DPI (1) | WIP (0) | Active: Yes → No; Active real-time payment system present: Yes → No; Operator: Central bank: undefined → Yes; Status: Active → Pilot |
+| pay-pe-02 | BCRP digital money (CBDC pilot via BiPay) | DPI (1) | WIP (0) | Active: Yes → No; Operator: Central bank: undefined → Yes; Status: Active → Pilot |
 
 ### New systems: 28
 

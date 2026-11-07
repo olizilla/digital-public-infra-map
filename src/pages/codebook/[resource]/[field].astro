@@ -9,7 +9,7 @@ import PaymentIcon from '../../../components/icons/PaymentIcon.astro'
 import DataIcon from '../../../components/icons/DataIcon.astro'
 import { systems, dpiTypes, type System } from '../../../Systems'
 import { schemas, resourceNames, typeLabels, isMissing, missingLabelOf, missingValuesOf, type DPIType, type Schema, type Field } from '../../../Schema'
-import { codebookVariableOf, meaningsOf, proposalUrl, historyOf } from '../../../Codebook'
+import { codebookVariableOf, meaningsOf, historyOf } from '../../../Codebook'
 import { listValues, listSeparator } from '../../../../scripts/fields.mjs'
 
 export async function getStaticPaths () {
@@ -22,7 +22,6 @@ export async function getStaticPaths () {
 const { dpiType, field } = Astro.props as { dpiType: DPIType, field: Field }
 const schema = schemas[dpiType] as Schema
 const Icon = { id: IdentityIcon, pay: PaymentIcon, data: DataIcon }[dpiType]
-const isKey = schema.primaryKey?.includes(field.name) ?? false
 
 const variable = codebookVariableOf(dpiType, field)
 const description = variable?.description || (field as Field & { description?: string }).description
@@ -70,9 +69,6 @@ const history = historyOf(dpiType, field)
       </div>
       <h1 class="pt-3 text-2xl lg:text-3xl font-sans font-bold">{field.title}</h1>
       <div class="pt-4 flex items-center gap-4 text-sm">
-        { !isKey && (
-          <a class="px-3 py-1.5 bg-zinc-700 hover:bg-black text-white rounded-2xl font-semibold" href={proposalUrl(dpiType, field)}>Propose a change</a>
-        )}
         <span class="font-mono text-xs text-zinc-500" title="Field id">{resourceNames[dpiType]}/{field.id}</span>
       </div>
     </header>

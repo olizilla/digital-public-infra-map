@@ -1,9 +1,17 @@
 {
   "$schema": "https://datapackage.org/profiles/2.0/datapackage.json",
   "$comment": "This describes the next release: npm run data:build writes it from the latest release and the pending changesets. Each release carries its own datapackage.json in public/data/<date>/",
-  "name": "dpi-map",
+  "name": "dpimap",
   "title": "Digital Public Infrastructure Map",
+  "homepage": "https://dpimap.org",
   "description": "Data on national-scale digital public infrastructure (DPI) around the world, collected by researchers at UCL IIPP and shown at https://dpimap.org: digital identity, payment and data exchange systems, by country or region.",
+  "licenses": [
+    {
+      "name": "CC-BY-4.0",
+      "path": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "Creative Commons Attribution 4.0 International"
+    }
+  ],
   "resources": [
     {
       "name": "identity",

@@ -11,6 +11,7 @@ import Status from './Status.astro'
 import DpiTestList from './DpiTestList.astro'
 import { nameOf, nouns, presence } from '../DpiTest'
 import { laneAnchors } from '../CountryPage'
+import { systemHref } from '../Systems'
 import type { DPIType } from '../Schema'
 
 interface Props {
@@ -31,6 +32,8 @@ const country = `/${slug(record.country)}/`
   </header>
   <span class="test-label">DPI test</span>
   <DpiTestList dpiType={dpiType} record={record} />
-  <!-- more detail is one level down: the country page, scrolled to this type's lane -->
-  <a class="card-more" href={`${country}#${laneAnchors[dpiType]}`}>More details</a>
+  <!-- more detail: on screens wide enough for the system page's columns, the system's own page;
+       on narrower ones, one level down, the country page scrolled to this type's lane -->
+  <a class="card-more min-[901px]:hidden" href={`${country}#${laneAnchors[dpiType]}`}>More details</a>
+  <a class="card-more max-[900px]:hidden" href={systemHref(record.system_id)}>More details</a>
 </article>

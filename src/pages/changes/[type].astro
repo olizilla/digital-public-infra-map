@@ -15,7 +15,7 @@ import { laneAnchors } from '../../CountryPage'
 import { nouns } from '../../DpiTest'
 import { dpiTypes } from '../../Systems'
 import type { DPIType } from '../../Schema'
-import { changelog, codebookChangesOf, changeTitles, kindLabels, kinds, n, plural, previousRelease, releaseDate, upcoming } from '../../Changes'
+import { changelog, codebookChangesOf, changeTitles, kindLabels, kinds, n, plural, previousRelease, releaseDate, previousReleaseDate } from '../../Changes'
 
 export function getStaticPaths () {
   return dpiTypes.map(dpiType => ({ params: { type: laneAnchors[dpiType] }, props: { dpiType } }))
@@ -45,7 +45,7 @@ const summary = `${plural(counts.changes, 'change')} to ${plural(counts.systems,
     <header class="chg-head">
       <nav class="page-crumbs" aria-label="Breadcrumb"><a href="/">Map</a> › <a href="/changes/">Changelog</a> › {title}</nav>
       <h1 class="page-title chg-h1">{title} changes</h1>
-      <p class:list={['chg-label', { upcoming }]}>{ upcoming ? `Upcoming: not yet published` : `Published ${releaseDate}` }</p>
+      <p class="chg-label">Since the {previousReleaseDate} release</p>
       <p class="chg-summary">{summary}</p>
       <p class="chg-summary">{parts.join(', ')}</p>
       <details class="chg-about more">

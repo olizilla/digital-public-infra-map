@@ -30,6 +30,10 @@ The [codebook](https://dpimap.org/codebook/) is built from [./datapackage.json](
 
 Updates to the site are deployed to dpimap.org automatically when changes are merged into the main branch of this repository on GitHub. Cloudflare watches for changes, runs the build process (`npm install && npm run build`) and stores the updated html and css files and starts serving the new version of the website.
 
+## The data
+
+Each table is a JSON file: `<date>-<name>.json` (identity, payment and exchange), with an array of objects keyed by field name. https://dpimap.org/data/latest/ redirects to the current release's files, like `/data/latest/datapackage.json` and `/data/latest/identity.json`. A downloadable spreadsheet of the current release is built out to `/data/latest/dpimap.xlsx`.
+
 ## Data package
 
 [./datapackage.json](./datapackage.json) describes the shape of the data. Each release folder has its own `datapackage.json`, which describes the JSON format for each table. Each is an Open Knowledge Foundation [Data Package](https://datapackage.org/standard/data-package/) (v2) file, that documents the shapes of the dpimap.org data, to aid reuse.

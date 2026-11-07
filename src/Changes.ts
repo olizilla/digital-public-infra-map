@@ -65,8 +65,8 @@ export const changesHref = (dpiType: DPIType) => `/changes/${laneAnchors[dpiType
 /** The release's date, like "6 Nov 2026" */
 export const releaseDate = new Date(`${release}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })
 
-/** Whether the release is still to come: the build is before its date. Pending changes are always to come. */
-export const upcoming = new Date().toISOString().slice(0, 10) < release
+/** The previous release's date, like "31 Mar 2026": the changes shown are those since it */
+export const previousReleaseDate = new Date(`${previousRelease}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })
 
 /** The kinds of change the page filters by, in chip order. `dpi` is a system's, the rest a change's. */
 export const kinds = ['dpi', 'new', 'removed', 'renamed', 'values', 'sources', 'wording'] as const

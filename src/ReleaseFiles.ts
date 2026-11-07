@@ -16,6 +16,9 @@ import exchange from '../public/data/2026-11-06/2026-11-06-exchange.json'
 
 export const release = '2026-11-06'
 
+/** How to cite the release, on the Data page and in the workbook, /data/latest/dpimap.xlsx */
+export const citation = `DPI Map (${release}). Institute for Innovation and Public Purpose, UCL. https://dpimap.org/data`
+
 /** The release's datapackage.json: the codebook the site shows (D71) */
 export const releasePackage = datapackage
 

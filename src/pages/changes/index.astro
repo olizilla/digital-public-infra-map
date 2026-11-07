@@ -6,7 +6,7 @@ import Layout from '../../layouts/Layout.astro'
 import Footer from '../../components/Footer.astro'
 import TypeIcon from '../../components/TypeIcon.astro'
 import { dpiTypes } from '../../Systems'
-import { changelog, codebookChangesOf, codebookSummary, changesHref, changeTitles, n, previousRelease, releaseDate, upcoming } from '../../Changes'
+import { changelog, codebookChangesOf, codebookSummary, changesHref, changeTitles, n, previousRelease, releaseDate, previousReleaseDate } from '../../Changes'
 
 const cards = dpiTypes.map(dpiType => {
   const { counts, dpiCountries, dpiLike } = changelog(dpiType)
@@ -36,7 +36,7 @@ const cards = dpiTypes.map(dpiType => {
     <header class="chg-head">
       <nav class="page-crumbs" aria-label="Breadcrumb"><a href="/">Map</a> › Changes</nav>
       <h1 class="page-title chg-h1">Changelog</h1>
-      <p class:list={['chg-label', { upcoming }]}>{ upcoming ? 'Upcoming: not yet published' : `Published ${releaseDate}` }</p>
+      <p class="chg-label">Since the {previousReleaseDate} release</p>
     </header>
     <div class="chg-hub">
       { cards.map(card => (
