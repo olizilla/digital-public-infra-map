@@ -1,0 +1,89 @@
+[[changes]]
+type = "update"
+key = "id-hu-01"
+as_of = 2026-09-16
+values.name = "Digitális Állampolgár (DÁP) mobile application"
+reason = ""
+sources = [
+  "https://app.dap.gov.hu/en",
+  "https://dap.gov.hu/",
+]
+
+[[changes]]
+type = "update"
+key = "id-hu-01"
+as_of = 2026-09-16
+values.digital_auth = "Yes"
+reason = "Secure digital identification and e-signature."
+sources = [
+  "https://www.interregeurope.eu/good-practices/digital-citizenship-programme-dap-mobile-based-digital-identity-public-services",
+  "https://dap.gov.hu/",
+]
+
+[[changes]]
+type = "update"
+key = "id-hu-01"
+as_of = 2026-09-16
+values.funders = "Government of Hungary; European Union (DIMOP Plus)"
+reason = ""
+sources = [
+  "https://www.interregeurope.eu/good-practices/digital-citizenship-programme-dap-mobile-based-digital-identity-public-services",
+  "https://app.dap.gov.hu/en/program",
+  "https://dap.gov.hu/",
+]
+
+[[changes]]
+type = "update"
+key = "id-hu-01"
+as_of = 2026-09-16
+values.governing_entity = "Digital Hungary Agency (Digitális Magyarország Ügynökség, DHA)"
+reason = ""
+sources = [
+  "https://www.interregeurope.eu/good-practices/digital-citizenship-programme-dap-mobile-based-digital-identity-public-services",
+  "https://interoperable-europe.ec.europa.eu/collection/iopeu-monitoring/governance-hungary",
+  "https://dap.gov.hu/",
+]
+
+[[changes]]
+type = "update"
+key = "id-hu-01"
+as_of = 2026-09-16
+values.status = "Implemented"
+reason = "Launched early 2025; 2.5M+ downloads by Nov 2025."
+sources = [
+  "https://www.interregeurope.eu/good-practices/digital-citizenship-programme-dap-mobile-based-digital-identity-public-services",
+  "https://kormany.hu/hirek/tajekoztato-oldal-a-digitalis-allampolgarsag-programrol",
+]
+
+[[changes]]
+type = "update"
+key = "id-hu-01"
+as_of = 2026-09-16
+values.technical_support = "IdomSoft"
+reason = "Named as wallet developer."
+sources = [
+  "https://idomsoft.hu/",
+  "https://dap.gov.hu/",
+]
+
+[[changes]]
+type = "update"
+key = "id-hu-01"
+as_of = 2026-09-17
+values.sectoral_use_cases = "Yes"
+reason = "Sectors in use: Government services, Tax, Health, Banking and finance, Land and property, Justice and police. DAP app used for tax filing, health insurance and ePrescriptions, land registry, criminal record certificates, and bank login and account opening (OTP, MBH, K&H)."
+sources = [
+  "https://app.dap.gov.hu/en",
+  "https://dap.gov.hu/",
+]
+
+[[changes]]
+type = "update"
+key = "id-hu-01"
+as_of = 2026-09-16
+values.url = "https://play.google.com/store/apps/details?id=hu.gov.dap.app"
+reason = ""
+sources = [
+  "https://play.google.com/store/apps/details?id=hu.gov.dap.app",
+  "https://dap.gov.hu/",
+]

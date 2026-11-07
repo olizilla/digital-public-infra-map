@@ -1,0 +1,19 @@
+[[changes]]
+type = "update"
+key = "pay-ng-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "Switch"
+reason = "New field. NIBSS operates the NIP switch. Cycle count may have changed since 2021."
+sources = [
+  "https://fastpayments.worldbank.org/sites/default/files/2021-09/World_Bank_FPS_Nigeria_NIBSS_Case_Study.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ng-01"
+as_of = 2026-10-15
+values.settlement_method = "DNS"
+reason = "New field. 1 settlement cycle per day at CBN (2021 data). Cycle count may have changed since 2021."
+sources = [
+  "https://fastpayments.worldbank.org/sites/default/files/2021-09/World_Bank_FPS_Nigeria_NIBSS_Case_Study.pdf",
+]

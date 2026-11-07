@@ -36,6 +36,12 @@ export const placeNamed = (name: string) => byName.get(name)
 /** A region, like Europe, rather than a country or territory */
 export const isRegion = (place: Place) => place.code.length !== 2
 
+/** The label for a system's Country / Region value: "Region" or "Country", or "Country / Region" if it isn't a known place */
+export function placeLabel (name: string) {
+  const place = placeNamed(name)
+  return !place ? 'Country / Region' : isRegion(place) ? 'Region' : 'Country'
+}
+
 /** Whether `place` is in the region `code`, directly or through a sub-region */
 export function isIn (place: Place, code: string): boolean {
   const parent = place.parent && byCode.get(place.parent)

@@ -1,4 +1,7 @@
-import datapackage from '../datapackage.json'
+// The schema of each DPI table, from the datapackage.json of the release the site shows (D71, src/ReleaseFiles.ts)
+import rootPackage from '../datapackage.json'
+import { release, releasePackage as datapackage } from './ReleaseFiles'
+import { placeLabel } from './Places'
 import { siteFields, type SiteField, type ResourceName, type FieldId } from './SiteFields'
 
 export type { Kind } from './SiteFields'
@@ -23,8 +26,13 @@ export interface Field<Id extends string = string> {
   site: SiteField
 }
 
+/** A missing value, like `NA`: Data Package v2 allows text, or text with a label that says what it means */
+export type MissingValue = string | { value: string, label?: string }
+
 export interface Schema<Id extends string = string> {
-  missingValues?: string[]
+  missingValues?: MissingValue[]
+  /** column headers (field names) that together identify a row */
+  primaryKey?: string[]
   fields: Field<Id>[]
 }
 
@@ -36,14 +44,22 @@ export const resourceNames = {
 } as const satisfies Record<string, ResourceName>
 
 export type DPIType = keyof typeof resourceNames
+
+/** How a system's type is named on its page */
+export const typeLabels: Record<DPIType, string> = {
+  id: 'Digital ID',
+  pay: 'Payment',
+  data: 'Data Exchange'
+}
 type IdOf<D extends DPIType> = FieldId<typeof resourceNames[D]>
 
 /** Where a dpiType's schema lives, for error messages */
-export const schemaSource = (dpiType: DPIType) => `datapackage.json resource "${resourceNames[dpiType]}"`
+export const schemaSource = (dpiType: DPIType) => `public/data/${release}/datapackage.json resource "${resourceNames[dpiType]}"`
 
 /**
  * The resource's schema, with each field's entry from src/SiteFields.ts.
- * Throws if the two don't have the same field ids, or flag and text fields don't have a unique order.
+ * Throws if a field has no entry, or an entry is for a field that's in neither the release's datapackage.json
+ * nor the root one, the next release's (D71), or flag and text fields don't have a unique order.
  */
 function schemaOf<D extends DPIType> (dpiType: D) {
   const name = resourceNames[dpiType]
@@ -57,7 +73,11 @@ function schemaOf<D extends DPIType> (dpiType: D) {
   }
   const orders = new Set<string>()
   for (const [id, entry] of Object.entries(site)) {
-    if (!fields.some(field => field.id === id)) throw new Error(`${where} has "${id}", which is not a field id in ${schemaSource(dpiType)}`)
+    // an entry may be for a field of the next release, which only the root datapackage.json has yet
+    const next = rootPackage.resources.find(resource => resource.name === name)?.schema.fields ?? []
+    if (!fields.some(field => field.id === id) && !next.some(field => field.id === id)) {
+      throw new Error(`${where} has "${id}", which is not a field id in ${schemaSource(dpiType)} or the root datapackage.json`)
+    }
     if (entry.kind === 'flag' || entry.kind === 'text') {
       const key = `${entry.kind} ${entry.order}`
       if (!Number.isInteger(entry.order) || orders.has(key)) throw new Error(`${where}.${id} needs an order that no other ${entry.kind} field has`)
@@ -76,8 +96,29 @@ export const schemas = {
   data: schemaOf('data')
 }
 
-/** The label the site shows for a field */
-export const labelOf = (field: Field) => field.site.label ?? field.title
+/** The schema's missing values as text, like `NA`. The default is `[""]`, as in Data Package (D38). */
+export const missingValuesOf = (schema: Schema) =>
+  (schema.missingValues ?? ['']).map(missing => typeof missing === 'string' ? missing : missing.value)
+
+/** What a missing value means, from its label in the schema, if it has one */
+export function missingLabelOf (schema: Schema, value: string) {
+  for (const missing of schema.missingValues ?? []) {
+    if (typeof missing !== 'string' && missing.value === value) return missing.label
+  }
+}
+
+/**
+ * Whether a cell has no value: it's one of the schema's missing values, like `NA` (D36, D38).
+ * An empty cell is missing only if the schema says so: with `["NA"]`, `""` is an empty string.
+ */
+export const isMissing = (schema: Schema, value?: string) => value === undefined || missingValuesOf(schema).includes(value)
+
+/**
+ * The label the site shows for a field, outside the changelog, which uses the codebook's `title`.
+ * The Country / Region field is "Region" or "Country" by the system's `place`, its value in that field.
+ */
+export const labelOf = (field: Field, place?: string) =>
+  field.site.kind === 'country' ? placeLabel(place ?? '') : field.site.label ?? field.title
 
 /** The field's variable name in the codebook, or undefined if the codebook doesn't cover it */
 export const codebookNameOf = (field: Field) => field.site.codebook === false ? undefined : field.title
@@ -95,7 +136,7 @@ export function fieldById<Id extends string> (schema: Schema<Id>, id: NoInfer<Id
 type Transforms<Id extends string> = Partial<Record<Id, (value: any, get: (id: Id) => any) => unknown>>
 
 /**
- * Turn a row keyed by raw column header into a record keyed by field label.
+ * Turn a row keyed by raw column header into a record keyed by field id, like `record.country`.
  * `transforms` maps a field id to a function that fixes up its value. It is
  * passed `get`, to read another field of the same row by id.
  */
@@ -107,7 +148,7 @@ export function toRecord<Id extends string> (schema: Schema<Id>, row: Record<str
     const value = row[field.name]
     // the site's data may predate the System ID column
     if (field.site.kind === 'hidden' && value === undefined) continue
-    record[labelOf(field)] = transform ? transform(value, get) : value
+    record[field.id] = transform ? transform(value, get) : value
   }
-  return record
+  return record as Partial<Record<Id, any>> & Record<string, any>
 }

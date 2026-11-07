@@ -1,0 +1,105 @@
+[[changes]]
+type = "create"
+key = "dx-nl-02"
+as_of = 2026-10-15
+values.country = "Netherlands"
+values.name = "Digital Link (Digikoppelling)"
+reason = ""
+sources = [
+  "https://www.nldigitalgovernment.nl/overview/mido/generic-digital-infrastructure-gdi/",
+]
+
+[[changes]]
+type = "update"
+key = "dx-nl-02"
+as_of = 2026-10-15
+values.permitted_participants = "Public"
+values.formal_mandate = "No"
+reason = ""
+sources = [
+  "https://www.forumstandaardisatie.nl/open-standaarden/digikoppeling",
+]
+
+[[changes]]
+type = "update"
+key = "dx-nl-02"
+as_of = 2026-10-16
+values.number_of_members = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-nl-02"
+as_of = 2026-10-17
+values.number_of_transactions = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-nl-02"
+as_of = 2026-10-15
+values.url = "https://www.logius.nl/onze-dienstverlening/gegevensuitwisseling/digikoppeling/wat-is-het"
+values.architecture = "Not Found"
+values.national_regional = "National"
+values.sectoral = "Cross-sectoral"
+values.realtime_sharing = "Not Found"
+values.scalable_architecture = "Not Found"
+values.ownership = "Public"
+values.data_management_rules = "Not Found"
+values.coordination_unit = "Logius"
+values.multiple_public_entities = "Yes"
+values.impact_metrics = "Not Found"
+values.once_only_principle = "Yes"
+values.personal_data_protection = "Yes"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-nl-02"
+as_of = 2026-10-15
+values.interoperability_level = "Syntactic"
+values.independent_audit = "No"
+reason = ""
+sources = [
+  "https://www.nldigitalgovernment.nl/overview/mido/generic-digital-infrastructure-gdi/",
+]
+
+[[changes]]
+type = "update"
+key = "dx-nl-02"
+as_of = 2026-10-15
+values.status = "Implemented"
+reason = ""
+sources = [
+  "https://interoperable-europe.ec.europa.eu/sites/default/files/file-visibility/resource/2026-05/national-policy-brief-api-gateway-enablers_1.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "dx-nl-02"
+as_of = 2026-10-15
+values.governing_entity = "Logius"
+reason = ""
+sources = [
+  "https://www.logius.nl/zakendoen-met-logius/algemene-voorwaarden-logius",
+]
+
+[[changes]]
+type = "update"
+key = "dx-nl-02"
+as_of = 2026-10-15
+values.enrolment_info = "Yes"
+reason = ""
+sources = [
+  "https://www.logius.nl/onze-dienstverlening/gegevensuitwisseling/digikoppeling/documentatie/gebruiksvoorwaarden-digikoppeling",
+]
+
+[[changes]]
+type = "update"
+key = "dx-nl-02"
+as_of = 2026-10-15
+values.audit_mechanism = "Yes"
+reason = ""
+sources = [
+  "https://gitdocumentatie.logius.nl/publicatie/dk/architectuur/2.1.1/",
+]

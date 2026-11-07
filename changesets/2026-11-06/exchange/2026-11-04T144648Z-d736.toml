@@ -1,0 +1,40 @@
+[[changes]]
+type = "update"
+key = "dx-ee-01"
+as_of = 2026-10-15
+values.formal_mandate = "Yes"
+values.once_only_principle = "Yes"
+values.personal_data_protection = "Yes"
+values.independent_audit = "Yes"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-ee-01"
+as_of = 2026-10-15
+values.number_of_members = "2026 - 2139"
+reason = ""
+sources = [
+  "https://x-tee.ee/stats/",
+]
+
+[[changes]]
+type = "update"
+key = "dx-ee-01"
+as_of = 2026-10-15
+values.number_of_transactions = "2026 - 3.7 billion"
+reason = ""
+sources = [
+  "https://www.x-tee.ee/factsheets/EE/",
+  "https://www.x-tee.ee/factsheets/EE/#eng",
+]
+
+[[changes]]
+type = "update"
+key = "dx-ee-01"
+as_of = 2026-10-15
+values.interoperability_level = "Semantic"
+reason = ""
+sources = [
+  "https://interoperable-europe.ec.europa.eu/sites/default/files/document/2011-12/martin-luts-estonian-semantic-interoperability.pdf",
+]

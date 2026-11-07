@@ -1,0 +1,21 @@
+[[changes]]
+type = "update"
+key = "pay-ru-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "RTGS"
+reason = "New field. Bank of Russia is operator and settlement centre; NSPK (Bank of Russia-owned) is the operational and clearing centre; each order executed by the Bank of Russia immediately after acceptance. Sources: Bank of Russia Regulation 595-P (via legal database): fast payments service executes orders immediately after acceptance (Primary); Bank terms (Uralsib, 2024): Bank of Russia is SBP operator and settlement centre; NSPK is operational and payment clearing centre (Secondary)."
+sources = [
+  "https://pravo.ppt.ru/polozheniye-polozheniya/187107",
+  "https://uralsib.ru/api/directory-engine/files/publications/usloviya-osuschestvleniya-raschetov-po-operatsiyam-s-ispolzovaniem-sistemy-docx_o8gwbi1z",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ru-01"
+as_of = 2026-10-15
+values.settlement_method = "Gross"
+reason = "New field. Orders executed individually by the Bank of Russia immediately after acceptance, 24/7. Sources: Bank of Russia Regulation 595-P (via legal database): fast payments service executes orders immediately after acceptance (Primary); Bank terms (Uralsib, 2024): Bank of Russia is SBP operator and settlement centre; NSPK is operational and payment clearing centre (Secondary)."
+sources = [
+  "https://pravo.ppt.ru/polozheniye-polozheniya/187107",
+  "https://uralsib.ru/api/directory-engine/files/publications/usloviya-osuschestvleniya-raschetov-po-operatsiyam-s-ispolzovaniem-sistemy-docx_o8gwbi1z",
+]

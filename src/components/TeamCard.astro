@@ -10,8 +10,8 @@ const { name, link, imgSrc, imgAlt = `Photo of ${name}` } = Astro.props
     <h3 class="mt-0 -mb-2">
       <a href={link} class="no-underline hover:underline">{name}</a>
     </h3>
-    <div class="text-sm text-zinc-600">
-    <slot/>
+    <div class="text-sm text-zinc-600 min-h-4">
+    	<slot/>
     </div>
   </figcaption>
 </figure>

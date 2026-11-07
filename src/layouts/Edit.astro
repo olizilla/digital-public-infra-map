@@ -1,0 +1,26 @@
+---
+// The layout for the /edit tree. Editing code lives here and in src/pages/edit, never on public pages.
+// Edit pages are not for search engines: robots.txt disallows /edit/, and each page says noindex.
+import '/src/styles/global.css'
+import Header from '../components/Header.astro'
+
+const { title } = Astro.props
+const fullTitle = title ? `${title} - Edit - DPI Map` : 'Edit - DPI Map'
+---
+
+<!doctype html>
+<html lang="en" class="bg-white">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🗺️</text></svg>">
+    <title>{fullTitle}</title>
+  </head>
+  <body>
+    <Header />
+    <main class="max-w-2xl mx-auto px-3 pt-4 md:pt-10 pb-16">
+      <slot />
+    </main>
+  </body>
+</html>

@@ -3,12 +3,14 @@ import KeyLabel from '../components/KeyLabel.astro'
 import type { CodebookVariable } from '../Codebook'
 
 const variable: CodebookVariable = Astro.props.variable
+// the variable's own page, if a field in the data has it
+const href: string | undefined = Astro.props.href
 const { anchor, codes, indicator } = variable
 ---
 { variable.name !== 'DPI based digital ID count for visualisation' && (
 <div class="pt-15" id={anchor}>
   <header>
-    <a class="font-bold text-lg m-0" href={`#${anchor}`}>
+    <a class="font-bold text-lg m-0" href={href ?? `#${anchor}`}>
       {variable.name}
     </a>
   </header>

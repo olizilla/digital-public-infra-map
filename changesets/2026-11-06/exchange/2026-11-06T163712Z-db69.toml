@@ -1,0 +1,48 @@
+[[changes]]
+type = "update"
+key = "dx-kh-01"
+as_of = 2024-10-01
+values.permitted_participants = "Public, Private, Civil"
+reason = "Use the agreed wording for Permitted participants: the combinations are written in the order Public, Private, Civil."
+
+[[changes]]
+type = "update"
+key = "dx-in-01"
+as_of = 2024-10-01
+values.permitted_participants = "Public, Private, Civil"
+reason = "Use the agreed wording for Permitted participants: the combinations are written in the order Public, Private, Civil."
+
+[[changes]]
+type = "update"
+key = "dx-mv-01"
+as_of = 2025-12-09
+values.permitted_participants = "Public, Private, Civil"
+reason = "Use the agreed wording for Permitted participants: the combinations are written in the order Public, Private, Civil."
+
+[[changes]]
+type = "update"
+key = "dx-sg-01"
+as_of = 2024-10-01
+values.permitted_participants = "Public, Private, Civil"
+reason = "Use the agreed wording for Permitted participants: the combinations are written in the order Public, Private, Civil."
+
+[[changes]]
+type = "update"
+key = "dx-pr-01"
+as_of = 2024-10-01
+values.permitted_participants = "Public, Private, Civil"
+reason = "Use the agreed wording for Permitted participants: the combinations are written in the order Public, Private, Civil."
+
+[[changes]]
+type = "update"
+key = "dx-dk-01"
+as_of = 2024-10-01
+values.permitted_participants = "Public, Private, Civil"
+reason = "Use the agreed wording for Permitted participants: the combinations are written in the order Public, Private, Civil."
+
+[[changes]]
+type = "update"
+key = "dx-pt-01"
+as_of = 2024-10-01
+values.permitted_participants = "Public, Private, Civil"
+reason = "Use the agreed wording for Permitted participants: the combinations are written in the order Public, Private, Civil."

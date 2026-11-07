@@ -1,0 +1,44 @@
+[[changes]]
+type = "update"
+key = "dx-om-01"
+as_of = 2026-10-15
+values.interoperability_level = "Syntactic"
+values.data_management_rules = "Yes"
+values.formal_mandate = "Yes"
+values.independent_audit = "Not Found"
+reason = ""
+sources = [
+  "https://mtcit.gov.om/library-3/legislations-policies-8/regulations-72/regulatory-framework-for-digital-transformation-government-1190",
+]
+
+[[changes]]
+type = "update"
+key = "dx-om-01"
+as_of = 2026-10-15
+values.permitted_participants = "Public, Private"
+values.audit_mechanism = "Yes"
+values.once_only_principle = "Yes"
+reason = ""
+sources = [
+  "https://share.google/lmUBe6RXM832ES3as",
+]
+
+[[changes]]
+type = "update"
+key = "dx-om-01"
+as_of = 2026-10-15
+values.architecture = "Not Found"
+values.realtime_sharing = "Not Found"
+values.scalable_architecture = "Not Found"
+values.enrolment_info = "Not Found"
+values.impact_metrics = "No"
+values.personal_data_protection = "Yes"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-om-01"
+as_of = 2026-10-15
+values.number_of_transactions = "Not Found"
+values.number_of_members = "Not Found"
+reason = "Data not found"

@@ -1,0 +1,9 @@
+[[changes]]
+type = "update"
+key = "id-bs-01"
+as_of = 2026-09-16
+values.governing_entity = "National Digital Identification Office (Department of Information and Communication Technology)"
+reason = "Department of ICT has a National Digital Identification Office tasked with building the national ID solution (undated page). Minister Sebas Bastian (Innovation and National Development) pledged the new national ID on 16 Jun 2026."
+sources = [
+  "https://www.dict.gov.bs/national-digital-identification-office",
+]

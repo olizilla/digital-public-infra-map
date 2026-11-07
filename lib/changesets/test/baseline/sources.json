@@ -1,0 +1,4 @@
+[
+  { "resource": "things", "key": "t-a-2", "field": "colour", "url": "https://example.org/avocado" },
+  { "resource": "things", "key": "t-a-2", "field": "colour", "url": "https://example.org/avocado-2" }
+]

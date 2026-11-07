@@ -1,0 +1,85 @@
+[[changes]]
+type = "update"
+key = "dx-by-01"
+as_of = 2026-10-15
+values.enrolment_info = "Yes"
+reason = ""
+sources = [
+  "https://nces.by/bisrs/integraciya-s-oais/",
+]
+
+[[changes]]
+type = "update"
+key = "dx-by-01"
+as_of = 2026-10-15
+values.name = "National Automated Information System (OAIS)"
+reason = "OAIS is the actual data exchange component of the Belarusian Integrated Service Settlement System."
+sources = [
+  "https://www.mpt.gov.by/ru/o-bisrs",
+]
+
+[[changes]]
+type = "update"
+key = "dx-by-01"
+as_of = 2026-10-15
+values.url = "https://account.gov.by/"
+values.permitted_participants = "Public, Private, Civil"
+values.audit_mechanism = "Yes"
+values.number_of_transactions = "Not Found"
+values.number_of_members = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-by-01"
+as_of = 2026-10-15
+values.formal_mandate = "Yes"
+reason = ""
+sources = [
+  "https://pravo.by/document/?guid=12551&p0=P31900460",
+]
+
+[[changes]]
+type = "update"
+key = "dx-by-01"
+as_of = 2026-10-15
+values.once_only_principle = "Yes"
+reason = "Law of the Republic of Belarus of 28 October 2008 No. 433-Z, “On the Fundamentals of Administrative Procedures”. I"
+sources = [
+  "https://pravo.by/document/?guid=3871&p0=h10800433",
+]
+
+[[changes]]
+type = "update"
+key = "dx-by-01"
+as_of = 2026-10-15
+values.personal_data_protection = "Yes"
+reason = "The Law on Personal Data Protection No. 99-Z of 7 May 2021 entered into force on 15 November 2021"
+
+[[changes]]
+type = "update"
+key = "dx-by-01"
+as_of = 2026-10-15
+values.interoperability_level = "Syntactic"
+reason = "Technical document specifies enforcement and requirement for compliance with shared standards."
+
+[[changes]]
+type = "update"
+key = "dx-by-01"
+as_of = 2026-10-15
+values.governing_entity = "OAC"
+values.coordination_unit = "NCEU"
+reason = ""
+sources = [
+  "https://nces.by/wp-content/uploads/ett_oais.docx",
+]
+
+[[changes]]
+type = "update"
+key = "dx-by-01"
+as_of = 2026-10-15
+values.independent_audit = "Not Found"
+reason = ""
+sources = [
+  "https://pravo.by/document/?guid=12551&p0=P31900460&p1=1&p5=0",
+]

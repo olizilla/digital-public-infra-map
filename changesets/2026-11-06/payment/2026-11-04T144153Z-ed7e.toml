@@ -1,0 +1,9 @@
+[[changes]]
+type = "update"
+key = "pay-is-01"
+as_of = 2026-10-15
+values.status = "Planned/Piloted"
+reason = "Will join TIPS in 2028"
+sources = [
+  "https://cb.is/news-and-publications/article/iceland-joins-eurosystems-tips-instant-payment-system",
+]

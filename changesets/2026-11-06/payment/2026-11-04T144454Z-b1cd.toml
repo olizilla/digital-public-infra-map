@@ -1,0 +1,13 @@
+[[changes]]
+type = "update"
+key = "pay-ng-02"
+as_of = 2026-10-15
+values.clearing_infrastructure = "Other"
+reason = "New field. Closed-loop mobile money: transfers are book entries on the provider's ledger"
+
+[[changes]]
+type = "update"
+key = "pay-ng-02"
+as_of = 2026-10-15
+values.settlement_method = "NA"
+reason = "New field. Information not found. Closed-loop mobile money; interbank settlement method for transfers leaving the network not documented"

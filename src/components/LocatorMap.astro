@@ -8,7 +8,7 @@
 // Europe, isn't highlighted: the view is framed on the places in it, by `parent`
 // in public/data/places.csv, leaving out any that would stretch it a lot (Russia).
 // Places with neither a shape nor a point, like Antarctica, render nothing.
-// Every other place in view with a country page links to it.
+// Every place in view with a country page links to it, the highlighted place too.
 import features from '../../public/features.json'
 import topojson from 'topojson-client'
 import * as d3 from 'd3-geo'
@@ -106,26 +106,29 @@ if (box) {
   const path = d3.geoPath(projection).digits(1)
   shown = regions.filter(r => r.geometry.type !== 'Point').flatMap(r => {
     const d = path(r)
-    // a region's places aren't highlighted, and are links like any other
-    const highlighted = !region && here.has(r)
-    return d ? [{ d, here: highlighted, page: highlighted ? undefined : pages.get(r.id) }] : []
+    // a region's places aren't highlighted
+    return d ? [{ d, here: !region && here.has(r), page: pages.get(r.id) }] : []
   })
 }
 const n = (v: number) => v.toFixed(1)
+/** the highlighted place's page, which its ring links to */
+const own = place && !region ? pages.get(place.code) : undefined
 ---
 { view &&
   <svg class:list={['block size-full', className]} viewBox={`${n(view.x)} ${n(view.y)} ${n(view.w)} ${n(view.h)}`} preserveAspectRatio="xMidYMid slice" aria-labelledby="locator-title" xmlns="http://www.w3.org/2000/svg">
     <title id="locator-title">Map showing where {country} is</title>
     { shown.map(r => r.here
-      ? <path d={r.d} class="fill-zinc-700" />
+      ? r.page
+        ? <a class="cursor-pointer" href={r.page.href}><title>{r.page.name}</title><path d={r.d} class="fill-zinc-700" /></a>
+        : <path d={r.d} class="fill-zinc-700" />
       : r.page
         ? <a href={r.page.href}><title>{r.page.name}</title><path d={r.d} class="fill-zinc-200 hover:fill-zinc-300" stroke="#fff" stroke-width="1" vector-effect="non-scaling-stroke" /></a>
         : <path d={r.d} class="fill-zinc-200" stroke="#fff" stroke-width="1" vector-effect="non-scaling-stroke" />) }
-    { ring &&
-      <Fragment>
-        <circle cx={n(ring.cx)} cy={n(ring.cy)} r={n(view.h / 70)} class="fill-zinc-700" />
-        <circle cx={n(ring.cx)} cy={n(ring.cy)} r={n(ring.r)} fill="none" class="stroke-zinc-700" stroke-width="1.5" vector-effect="non-scaling-stroke" />
-      </Fragment>
-    }
+    { ring && (own
+      ? <a class="cursor-pointer" href={own.href}><title>{own.name}</title><circle cx={n(ring.cx)} cy={n(ring.cy)} r={n(view.h / 70)} class="fill-zinc-700" /><circle cx={n(ring.cx)} cy={n(ring.cy)} r={n(ring.r)} fill="none" class="stroke-zinc-700" stroke-width="1.5" vector-effect="non-scaling-stroke" /></a>
+      : <Fragment>
+          <circle cx={n(ring.cx)} cy={n(ring.cy)} r={n(view.h / 70)} class="fill-zinc-700" />
+          <circle cx={n(ring.cx)} cy={n(ring.cy)} r={n(ring.r)} fill="none" class="stroke-zinc-700" stroke-width="1.5" vector-effect="non-scaling-stroke" />
+        </Fragment>) }
   </svg>
 }

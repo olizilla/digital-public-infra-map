@@ -1,0 +1,259 @@
+code,name,source,iso3,parent
+tw,Taiwan (Province of China),ISO 3166-1,TWN,asia
+ad,Andorra,UN M49,AND,europe
+ae,United Arab Emirates,UN M49,ARE,asia
+af,Afghanistan,UN M49,AFG,asia
+africa,Africa,UN M49,NA,world
+ag,Antigua and Barbuda,UN M49,ATG,lac
+ai,Anguilla,UN M49,AIA,lac
+al,Albania,UN M49,ALB,europe
+am,Armenia,UN M49,ARM,asia
+americas,Americas,UN M49,NA,world
+ao,Angola,UN M49,AGO,africa
+aq,Antarctica,UN M49,ATA,world
+ar,Argentina,UN M49,ARG,lac
+as,American Samoa,UN M49,ASM,oceania
+asia,Asia,UN M49,NA,world
+at,Austria,UN M49,AUT,europe
+au,Australia,UN M49,AUS,oceania
+aw,Aruba,UN M49,ABW,lac
+ax,Åland Islands,UN M49,ALA,europe
+az,Azerbaijan,UN M49,AZE,asia
+ba,Bosnia and Herzegovina,UN M49,BIH,europe
+bb,Barbados,UN M49,BRB,lac
+bd,Bangladesh,UN M49,BGD,asia
+be,Belgium,UN M49,BEL,europe
+bf,Burkina Faso,UN M49,BFA,africa
+bg,Bulgaria,UN M49,BGR,europe
+bh,Bahrain,UN M49,BHR,asia
+bi,Burundi,UN M49,BDI,africa
+bj,Benin,UN M49,BEN,africa
+bl,Saint Barthélemy,UN M49,BLM,lac
+bm,Bermuda,UN M49,BMU,noram
+bn,Brunei Darussalam,UN M49,BRN,asia
+bo,Bolivia (Plurinational State of),UN M49,BOL,lac
+bq,"Bonaire, Sint Eustatius and Saba",UN M49,BES,lac
+br,Brazil,UN M49,BRA,lac
+bs,Bahamas,UN M49,BHS,lac
+bt,Bhutan,UN M49,BTN,asia
+bv,Bouvet Island,UN M49,BVT,lac
+bw,Botswana,UN M49,BWA,africa
+by,Belarus,UN M49,BLR,europe
+bz,Belize,UN M49,BLZ,lac
+ca,Canada,UN M49,CAN,noram
+cc,Cocos (Keeling) Islands,UN M49,CCK,oceania
+cd,Democratic Republic of the Congo,UN M49,COD,africa
+cf,Central African Republic,UN M49,CAF,africa
+cg,Congo,UN M49,COG,africa
+ch,Switzerland,UN M49,CHE,europe
+ci,Côte d’Ivoire,UN M49,CIV,africa
+ck,Cook Islands,UN M49,COK,oceania
+cl,Chile,UN M49,CHL,lac
+cm,Cameroon,UN M49,CMR,africa
+cn,China,UN M49,CHN,asia
+co,Colombia,UN M49,COL,lac
+cr,Costa Rica,UN M49,CRI,lac
+cu,Cuba,UN M49,CUB,lac
+cv,Cabo Verde,UN M49,CPV,africa
+cw,Curaçao,UN M49,CUW,lac
+cx,Christmas Island,UN M49,CXR,oceania
+cy,Cyprus,UN M49,CYP,asia
+cz,Czechia,UN M49,CZE,europe
+de,Germany,UN M49,DEU,europe
+dj,Djibouti,UN M49,DJI,africa
+dk,Denmark,UN M49,DNK,europe
+dm,Dominica,UN M49,DMA,lac
+do,Dominican Republic,UN M49,DOM,lac
+dz,Algeria,UN M49,DZA,africa
+ec,Ecuador,UN M49,ECU,lac
+ee,Estonia,UN M49,EST,europe
+eg,Egypt,UN M49,EGY,africa
+eh,Western Sahara,UN M49,ESH,africa
+er,Eritrea,UN M49,ERI,africa
+es,Spain,UN M49,ESP,europe
+et,Ethiopia,UN M49,ETH,africa
+europe,Europe,UN M49,NA,world
+fi,Finland,UN M49,FIN,europe
+fj,Fiji,UN M49,FJI,oceania
+fk,Falkland Islands (Malvinas),UN M49,FLK,lac
+fm,Micronesia (Federated States of),UN M49,FSM,oceania
+fo,Faroe Islands,UN M49,FRO,europe
+fr,France,UN M49,FRA,europe
+ga,Gabon,UN M49,GAB,africa
+gb,United Kingdom of Great Britain and Northern Ireland,UN M49,GBR,europe
+gd,Grenada,UN M49,GRD,lac
+ge,Georgia,UN M49,GEO,asia
+gf,French Guiana,UN M49,GUF,lac
+gg,Guernsey,UN M49,GGY,europe
+gh,Ghana,UN M49,GHA,africa
+gi,Gibraltar,UN M49,GIB,europe
+gl,Greenland,UN M49,GRL,noram
+gm,Gambia,UN M49,GMB,africa
+gn,Guinea,UN M49,GIN,africa
+gp,Guadeloupe,UN M49,GLP,lac
+gq,Equatorial Guinea,UN M49,GNQ,africa
+gr,Greece,UN M49,GRC,europe
+gs,South Georgia and the South Sandwich Islands,UN M49,SGS,lac
+gt,Guatemala,UN M49,GTM,lac
+gu,Guam,UN M49,GUM,oceania
+gw,Guinea-Bissau,UN M49,GNB,africa
+gy,Guyana,UN M49,GUY,lac
+hk,"China, Hong Kong Special Administrative Region",UN M49,HKG,asia
+hm,Heard Island and McDonald Islands,UN M49,HMD,oceania
+hn,Honduras,UN M49,HND,lac
+hr,Croatia,UN M49,HRV,europe
+ht,Haiti,UN M49,HTI,lac
+hu,Hungary,UN M49,HUN,europe
+id,Indonesia,UN M49,IDN,asia
+ie,Ireland,UN M49,IRL,europe
+il,Israel,UN M49,ISR,asia
+im,Isle of Man,UN M49,IMN,europe
+in,India,UN M49,IND,asia
+io,British Indian Ocean Territory,UN M49,IOT,africa
+iq,Iraq,UN M49,IRQ,asia
+ir,Iran (Islamic Republic of),UN M49,IRN,asia
+is,Iceland,UN M49,ISL,europe
+it,Italy,UN M49,ITA,europe
+je,Jersey,UN M49,JEY,europe
+jm,Jamaica,UN M49,JAM,lac
+jo,Jordan,UN M49,JOR,asia
+jp,Japan,UN M49,JPN,asia
+ke,Kenya,UN M49,KEN,africa
+kg,Kyrgyzstan,UN M49,KGZ,asia
+kh,Cambodia,UN M49,KHM,asia
+ki,Kiribati,UN M49,KIR,oceania
+km,Comoros,UN M49,COM,africa
+kn,Saint Kitts and Nevis,UN M49,KNA,lac
+kp,Democratic People's Republic of Korea,UN M49,PRK,asia
+kr,Republic of Korea,UN M49,KOR,asia
+kw,Kuwait,UN M49,KWT,asia
+ky,Cayman Islands,UN M49,CYM,lac
+kz,Kazakhstan,UN M49,KAZ,asia
+la,Lao People's Democratic Republic,UN M49,LAO,asia
+lac,Latin America and the Caribbean,UN M49,NA,americas
+lb,Lebanon,UN M49,LBN,asia
+lc,Saint Lucia,UN M49,LCA,lac
+li,Liechtenstein,UN M49,LIE,europe
+lk,Sri Lanka,UN M49,LKA,asia
+lr,Liberia,UN M49,LBR,africa
+ls,Lesotho,UN M49,LSO,africa
+lt,Lithuania,UN M49,LTU,europe
+lu,Luxembourg,UN M49,LUX,europe
+lv,Latvia,UN M49,LVA,europe
+ly,Libya,UN M49,LBY,africa
+ma,Morocco,UN M49,MAR,africa
+mc,Monaco,UN M49,MCO,europe
+md,Republic of Moldova,UN M49,MDA,europe
+me,Montenegro,UN M49,MNE,europe
+mf,Saint Martin (French Part),UN M49,MAF,lac
+mg,Madagascar,UN M49,MDG,africa
+mh,Marshall Islands,UN M49,MHL,oceania
+mk,North Macedonia,UN M49,MKD,europe
+ml,Mali,UN M49,MLI,africa
+mm,Myanmar,UN M49,MMR,asia
+mn,Mongolia,UN M49,MNG,asia
+mo,"China, Macao Special Administrative Region",UN M49,MAC,asia
+mp,Northern Mariana Islands,UN M49,MNP,oceania
+mq,Martinique,UN M49,MTQ,lac
+mr,Mauritania,UN M49,MRT,africa
+ms,Montserrat,UN M49,MSR,lac
+mt,Malta,UN M49,MLT,europe
+mu,Mauritius,UN M49,MUS,africa
+mv,Maldives,UN M49,MDV,asia
+mw,Malawi,UN M49,MWI,africa
+mx,Mexico,UN M49,MEX,lac
+my,Malaysia,UN M49,MYS,asia
+mz,Mozambique,UN M49,MOZ,africa
+na,Namibia,UN M49,NAM,africa
+nc,New Caledonia,UN M49,NCL,oceania
+ne,Niger,UN M49,NER,africa
+nf,Norfolk Island,UN M49,NFK,oceania
+ng,Nigeria,UN M49,NGA,africa
+ni,Nicaragua,UN M49,NIC,lac
+nl,Netherlands (Kingdom of the),UN M49,NLD,europe
+no,Norway,UN M49,NOR,europe
+noram,Northern America,UN M49,NA,americas
+np,Nepal,UN M49,NPL,asia
+nr,Naoero,UN M49,NRU,oceania
+nu,Niue,UN M49,NIU,oceania
+nz,New Zealand,UN M49,NZL,oceania
+oceania,Oceania,UN M49,NA,world
+om,Oman,UN M49,OMN,asia
+pa,Panama,UN M49,PAN,lac
+pe,Peru,UN M49,PER,lac
+pf,French Polynesia,UN M49,PYF,oceania
+pg,Papua New Guinea,UN M49,PNG,oceania
+ph,Philippines,UN M49,PHL,asia
+pk,Pakistan,UN M49,PAK,asia
+pl,Poland,UN M49,POL,europe
+pm,Saint Pierre and Miquelon,UN M49,SPM,noram
+pn,Pitcairn,UN M49,PCN,oceania
+pr,Puerto Rico,UN M49,PRI,lac
+ps,State of Palestine,UN M49,PSE,asia
+pt,Portugal,UN M49,PRT,europe
+pw,Palau,UN M49,PLW,oceania
+py,Paraguay,UN M49,PRY,lac
+qa,Qatar,UN M49,QAT,asia
+re,Réunion,UN M49,REU,africa
+ro,Romania,UN M49,ROU,europe
+rs,Serbia,UN M49,SRB,europe
+ru,Russian Federation,UN M49,RUS,europe
+rw,Rwanda,UN M49,RWA,africa
+sa,Saudi Arabia,UN M49,SAU,asia
+sb,Solomon Islands,UN M49,SLB,oceania
+sc,Seychelles,UN M49,SYC,africa
+sd,Sudan,UN M49,SDN,africa
+se,Sweden,UN M49,SWE,europe
+sg,Singapore,UN M49,SGP,asia
+sh,Saint Helena,UN M49,SHN,africa
+si,Slovenia,UN M49,SVN,europe
+sj,Svalbard and Jan Mayen Islands,UN M49,SJM,europe
+sk,Slovakia,UN M49,SVK,europe
+sl,Sierra Leone,UN M49,SLE,africa
+sm,San Marino,UN M49,SMR,europe
+sn,Senegal,UN M49,SEN,africa
+so,Somalia,UN M49,SOM,africa
+sr,Suriname,UN M49,SUR,lac
+ss,South Sudan,UN M49,SSD,africa
+st,Sao Tome and Principe,UN M49,STP,africa
+sv,El Salvador,UN M49,SLV,lac
+sx,Sint Maarten (Dutch part),UN M49,SXM,lac
+sy,Syrian Arab Republic,UN M49,SYR,asia
+sz,Eswatini,UN M49,SWZ,africa
+tc,Turks and Caicos Islands,UN M49,TCA,lac
+td,Chad,UN M49,TCD,africa
+tf,French Southern Territories,UN M49,ATF,africa
+tg,Togo,UN M49,TGO,africa
+th,Thailand,UN M49,THA,asia
+tj,Tajikistan,UN M49,TJK,asia
+tk,Tokelau,UN M49,TKL,oceania
+tl,Timor-Leste,UN M49,TLS,asia
+tm,Turkmenistan,UN M49,TKM,asia
+tn,Tunisia,UN M49,TUN,africa
+to,Tonga,UN M49,TON,oceania
+tr,Türkiye,UN M49,TUR,asia
+tt,Trinidad and Tobago,UN M49,TTO,lac
+tv,Tuvalu,UN M49,TUV,oceania
+tz,United Republic of Tanzania,UN M49,TZA,africa
+ua,Ukraine,UN M49,UKR,europe
+ug,Uganda,UN M49,UGA,africa
+um,United States Minor Outlying Islands,UN M49,UMI,oceania
+us,United States of America,UN M49,USA,noram
+uy,Uruguay,UN M49,URY,lac
+uz,Uzbekistan,UN M49,UZB,asia
+va,Holy See,UN M49,VAT,europe
+vc,Saint Vincent and the Grenadines,UN M49,VCT,lac
+ve,Venezuela (Bolivarian Republic of),UN M49,VEN,lac
+vg,British Virgin Islands,UN M49,VGB,lac
+vi,United States Virgin Islands,UN M49,VIR,lac
+vn,Viet Nam,UN M49,VNM,asia
+vu,Vanuatu,UN M49,VUT,oceania
+wf,Wallis and Futuna Islands,UN M49,WLF,oceania
+world,World,UN M49,NA,NA
+ws,Samoa,UN M49,WSM,oceania
+ye,Yemen,UN M49,YEM,asia
+yt,Mayotte,UN M49,MYT,africa
+za,South Africa,UN M49,ZAF,africa
+zm,Zambia,UN M49,ZMB,africa
+zw,Zimbabwe,UN M49,ZWE,africa
+xk,Kosovo,Unicode CLDR,XKX,europe

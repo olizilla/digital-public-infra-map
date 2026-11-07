@@ -1,0 +1,47 @@
+# Checks that public/data/<release>/ is what the previous release and the released
+# changesets build, and that the changeset tests pass. Deploys don't wait on it.
+name: Data check
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  data-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+
+      # the scripts run TypeScript directly with Node, which strips types from 22.18 on
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: "24"
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run test:changesets
+
+      - name: Check the release data
+        run: |
+          set +e
+          npm run --silent data:check 2>&1 | tee data-check.txt
+          status=${PIPESTATUS[0]}
+          if [ "$status" -eq 0 ]; then
+            headline="data:check passed"
+          else
+            headline="data:check failed"
+          fi
+          {
+            echo "## ${headline}"
+            echo
+            echo '```'
+            cat data-check.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          exit "$status"

@@ -1,0 +1,248 @@
+[[changes]]
+type = "create"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.country = "Poland"
+values.name = "Express Elixir"
+reason = "Added: Express Elixir, Poland's national instant payment system, run by KIR (Krajowa Izba Rozliczeniowa), replacing the TIPS entry. Source: KIR, Express Elixir system rules v1.7 (March 2023)."
+sources = [
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf",
+  "https://nbp.pl/wp-content/uploads/2025/11/Informacja-o-rozliczeniach-i-rozrachunkach-miedzybankowych-w-II-kw.-2025.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.url = "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf"
+reason = "KIR's system rules for Express Elixir."
+sources = [
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.realtime_active = "Yes"
+reason = "Operates 24/7/365; payments are settled immediately on receipt. Source: KIR, Express Elixir system rules v1.7 (March 2023)."
+sources = [
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf",
+  "https://nbp.pl/wp-content/uploads/2025/11/Informacja-o-rozliczeniach-i-rozrachunkach-miedzybankowych-w-II-kw.-2025.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.system_type = "Interbank"
+reason = "Instant PLN credit transfers between accounts at participating payment service providers, all currently banks. Phone-number transfers between BLIK users also run on Express Elixir but settle between bank accounts. Sources: KIR, Express Elixir system rules v1.7 (March 2023); NBP (2025)."
+sources = [
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf",
+  "https://nbp.pl/wp-content/uploads/2025/11/Informacja-o-rozliczeniach-i-rozrachunkach-miedzybankowych-w-II-kw.-2025.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.status = "Implemented"
+reason = "In operation since 2012, with 636 million transactions in 2025. Sources: NBP (2025); Telepolis (2022)."
+sources = [
+  "https://nbp.pl/wp-content/uploads/2025/11/Informacja-o-rozliczeniach-i-rozrachunkach-miedzybankowych-w-II-kw.-2025.pdf",
+  "https://www.telepolis.pl/wiadomosci/express-elixir-przelewy-natychmiastowe-10-lat",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.national_regional = "National"
+reason = "Express Elixir is a national system."
+sources = [
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.cross_border = "No"
+reason = "Settles payments in Polish zloty only. Source: KIR, Express Elixir system rules v1.7 (March 2023)."
+sources = [
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf",
+  "https://nbp.pl/wp-content/uploads/2025/11/Informacja-o-rozliczeniach-i-rozrachunkach-miedzybankowych-w-II-kw.-2025.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.interoperability_policy = "Not Found"
+reason = "The EU Instant Payments Regulation amended the Settlement Finality Directive so that payment institutions and e-money institutions can participate directly in payment systems from 9 April 2025, with the stated aim of a level playing field between banks and non-bank providers. Poland implemented this through the Act of 23 January 2026. Sources: Worldline (June 2025); Dudkowiak & Putyra (March 2026)."
+sources = [
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf",
+  "https://nbp.pl/wp-content/uploads/2025/11/Informacja-o-rozliczeniach-i-rozrachunkach-miedzybankowych-w-II-kw.-2025.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.transaction_types = "P2P, P2M, B2B, Other"
+reason = "Four payment types: general instant transfers (used by individuals and businesses, including payments to merchants), mobile phone-number transfers, VAT split payments and transfers to tax and customs authorities. Source: KIR, Express Elixir system rules v1.7 (March 2023)."
+sources = [
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf",
+  "https://nbp.pl/wp-content/uploads/2025/11/Informacja-o-rozliczeniach-i-rozrachunkach-miedzybankowych-w-II-kw.-2025.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.clearing_infrastructure = "ACH"
+reason = "KIR, the national clearing house, processes and clears Express Elixir payments. Source: KIR, Express Elixir system rules v1.7 (March 2023)."
+sources = [
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf",
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/6f97ebab2b71f387d08e37f5686356e6/Raport%20ujawnieniowy%20dot.%20zasad%20zarz%C4%85dzania%20oraz%20przestrzegania%20Zasad%20PFMI.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.settlement_method = "Gross"
+reason = "Each payment is settled individually and immediately against funds prefunded in KIR's trust account at the NBP; only payments covered by those funds can be executed. Source: KIR, Express Elixir system rules v1.7 (March 2023)."
+sources = [
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf",
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/6f97ebab2b71f387d08e37f5686356e6/Raport%20ujawnieniowy%20dot.%20zasad%20zarz%C4%85dzania%20oraz%20przestrzegania%20Zasad%20PFMI.pdf",
+  "https://www.kir.pl/storage/file/core_files/2026/4/8/d6237c3bffbb6bff384aeba859e0b545/Og%C3%B3lne%20zasady%20i%20kryteria%20dost%C4%99pu%20do%20system%C3%B3w%20p%C5%82atno%C5%9Bci%20KIR.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.operator = "Bank association/Central bank"
+reason = "KIR, which operates Express Elixir, is a joint-stock company owned by the NBP, commercial banks and the Polish Bank Association (ZBP). Source: KIR, governance and PFMI disclosure report (February 2023)."
+sources = [
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/6f97ebab2b71f387d08e37f5686356e6/Raport%20ujawnieniowy%20dot.%20zasad%20zarz%C4%85dzania%20oraz%20przestrzegania%20Zasad%20PFMI.pdf",
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.bank_participation = "Yes"
+reason = "22 banks, including the NBP, were participants at end June 2025; many cooperative banks offer Express Elixir through their associating banks. Sources: NBP (2025); Bankier (September 2023)."
+sources = [
+  "https://nbp.pl/wp-content/uploads/2025/11/Informacja-o-rozliczeniach-i-rozrachunkach-miedzybankowych-w-II-kw.-2025.pdf",
+  "https://www.bankier.pl/smart/express-elixir-co-warto-wiedziec-o-tym-przelewie-natychmiastowym",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.nonbank_participation = "Yes"
+reason = "Since the Act of 23 January 2026 came into force in March 2026, payment institutions and e-money institutions can become participants in Polish payment systems, and KIR's access criteria for Express Elixir admit any payment service provider. Sources: KIR, access criteria (2026); Dudkowiak & Putyra (March 2026)."
+sources = [
+  "https://www.kir.pl/storage/file/core_files/2026/4/8/d6237c3bffbb6bff384aeba859e0b545/Og%C3%B3lne%20zasady%20i%20kryteria%20dost%C4%99pu%20do%20system%C3%B3w%20p%C5%82atno%C5%9Bci%20KIR.pdf",
+  "https://www.dudkowiak.com/blog/president-signs-new-amendment-payment-systems-open-to-fintechs-in-just-14-days/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.participation_rules = "Yes"
+reason = "KIR publishes access criteria: a participation agreement, an NBP account in SORBNET3, technical tests and an admission fee, alongside detailed system rules. Source: KIR, General principles and criteria for access to KIR payment systems (2026)."
+sources = [
+  "https://www.kir.pl/storage/file/core_files/2026/4/8/d6237c3bffbb6bff384aeba859e0b545/Og%C3%B3lne%20zasady%20i%20kryteria%20dost%C4%99pu%20do%20system%C3%B3w%20p%C5%82atno%C5%9Bci%20KIR.pdf",
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.participants = "2025- 22"
+reason = "22 banks, including the NBP, at end June 2025. Source: NBP, Information on interbank clearing and settlement, Q2 2025."
+sources = [
+  "https://nbp.pl/wp-content/uploads/2025/11/Informacja-o-rozliczeniach-i-rozrachunkach-miedzybankowych-w-II-kw.-2025.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.annual_value_usd = "2025- 89.01 Bn"
+reason = "PLN 320.58 billion in 2025 (up 21% on 2024), converted to USD. Sources: GSMONLINE (January 2026), reporting KIR data; NBP (2025)."
+sources = [
+  "https://gsmonline.pl/artykuly/elixir-w-2025-r-przetworzyl-224-mld-transakcji-na-kwote-957-bln-zl",
+  "https://nbp.pl/wp-content/uploads/2025/11/Informacja-o-rozliczeniach-i-rozrachunkach-miedzybankowych-w-II-kw.-2025.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.annual_volume = "2025- 636 M"
+reason = "636.08 million transactions in 2025, up 21% on 2024 (526.91 million). Sources: GSMONLINE (January 2026), reporting KIR data; NBP (2025)."
+sources = [
+  "https://gsmonline.pl/artykuly/elixir-w-2025-r-przetworzyl-224-mld-transakcji-na-kwote-957-bln-zl",
+  "https://nbp.pl/wp-content/uploads/2025/11/Informacja-o-rozliczeniach-i-rozrachunkach-miedzybankowych-w-II-kw.-2025.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.data_handling_rules = "Yes"
+reason = "The system rules contain a personal data chapter (§§ 43-50): KIR processes personal data on behalf of participants under GDPR Article 28, breaches are reported within 36 hours and archived data is deleted after five years. Source: KIR, Express Elixir system rules v1.7 (March 2023)."
+sources = [
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.reporting_forum = "Yes"
+reason = "The EU Instant Payments Regulation amended the Settlement Finality Directive so that payment institutions and e-money institutions can participate directly in payment systems from 9 April 2025, with the stated aim of a level playing field between banks and non-bank providers; applies to Poland as an EU member. Secondary source: Worldline (13 Jun 2025). Poland's national transposition and Express Elixir's rules for non-banks not confirmed."
+sources = [
+  "https://worldline.com/en/home/main-navigation/resources/blogs/2025/settlement-finality-directive-direct-access-to-payment-systems-for-non-bank-psps",
+  "https://nbp.pl/wp-content/uploads/2025/11/Informacja-o-rozliczeniach-i-rozrachunkach-miedzybankowych-w-II-kw.-2025.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.aml_law = "Yes"
+reason = "Poland's AML legislation applies to payment service providers. Source: Act of 1 March 2018 on counteracting money laundering and terrorist financing."
+sources = [
+  "https://eli.gov.pl/eli/DU/2018/723/ogl/pol/pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.transaction_cost = "Variable"
+reason = "Fees are set by each bank, typically PLN 0 to 5 per instant transfer; some banks offer free transfers online or for the first transfers each month. Source: Bankier (September 2023)."
+sources = [
+  "https://www.bankier.pl/smart/express-elixir-co-warto-wiedziec-o-tym-przelewie-natychmiastowym",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-10-15
+values.qr_code = "Not Found"
+reason = "No QR payment product on Express Elixir found in KIR rules or NBP reporting."
+sources = [
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf",
+  "https://nbp.pl/wp-content/uploads/2025/11/Informacja-o-rozliczeniach-i-rozrachunkach-miedzybankowych-w-II-kw.-2025.pdf",
+]

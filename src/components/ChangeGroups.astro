@@ -1,0 +1,60 @@
+---
+// A system's changes on a changelog page (src/pages/changes/[type].astro), by changeset: the
+// changeset's date and id (marked if it's pending), then a row per change, each with the fields it
+// set, old → new, its reason and its sources. A new system's values have no arrows. A removal says
+// what takes the system's place. There are over a thousand rows on the Payments page, so they're
+// styled by .chg-* in src/styles/global.css, and the changeset link is once per group rather than
+// once per row.
+import FieldValue from './FieldValue.astro'
+import Status from './Status.astro'
+import { domainOf } from '../SystemPage'
+import { systemHref } from '../Systems'
+import type { ChangesetGroup, Successor } from '../Changes'
+
+interface Props {
+  groups: ChangesetGroup[]
+  isNew: boolean
+  /** for a removed system, the system that takes its place */
+  successor?: Successor
+}
+const { groups, isNew, successor } = Astro.props
+---
+<ol class="chg-groups">
+  { groups.map(group => (
+    <li class="chg-cs">
+      <p class="h-top">{ group.as_of && <Fragment><time>{group.as_of}</time><span class="sep">·</span></Fragment> }<a class="mono" href={group.href}>{group.changeset}</a>{ group.pending && <span class="chg-pending">pending</span> }</p>
+      <ol>
+        { group.changes.map(change => (
+          <li class="chg-row" data-k={change.kind}>
+            <dl>
+              { change.kind === 'removed' &&
+                <div>
+                  <dt>System</dt>
+                  <dd class="h-diff">Removed{ successor
+                    ? <span class="chg-succ">{ successor.how === 'duplicate' ? 'a duplicate of' : 'replaced by' } <Status status={successor.system.dpiStatus} title="DPI status" /> <a class="ul" href={systemHref(successor.system.id)}>{successor.system.title}</a></span>
+                    : <span class="h-same">no replacement</span> }</dd>
+                </div> }
+              { change.cells.map(cell => (
+                <div>
+                  <dt>{cell.label}</dt>
+                  <dd class="h-diff">{ isNew || cell.before === undefined
+                    ? <Fragment><FieldValue field={cell.field} value={cell.after} />{ !isNew && <span class="h-same">new field</span> }</Fragment>
+                    : cell.valueChanged
+                      ? <Fragment><del><FieldValue field={cell.field} value={cell.before} /></del><span class="arr">→</span><ins><FieldValue field={cell.field} value={cell.after} /></ins></Fragment>
+                      : <Fragment><FieldValue field={cell.field} value={cell.after} /><span class="h-same">{change.sources.length ? 'value unchanged, source added' : 'value unchanged'}</span></Fragment> }</dd>
+                </div>
+              ))}
+            </dl>
+            { (!group.as_of || change.reason || change.sources.length > 0) &&
+              <div class="chg-why">
+                { !group.as_of && <p class="h-top"><time>{change.as_of}</time></p> }
+                { change.reason && <blockquote class="h-reason">“{change.reason}”</blockquote> }
+                { change.sources.length > 0 &&
+                  <p class="h-by">Source: { change.sources.map((url, i) => <Fragment>{i > 0 && ', '}<a class="src" href={url} rel="nofollow noopener">{domainOf(url)}</a></Fragment>) }</p> }
+              </div> }
+          </li>
+        ))}
+      </ol>
+    </li>
+  ))}
+</ol>

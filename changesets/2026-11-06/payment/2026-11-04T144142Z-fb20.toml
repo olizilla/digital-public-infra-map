@@ -1,0 +1,243 @@
+[[changes]]
+type = "create"
+key = "pay-cz-02"
+as_of = 2026-10-15
+values.country = "Czech Republic"
+values.name = "CERTIS Instant Payments (Okamžité platby)"
+reason = "Added: Czech instant payments, run as a scheme within CERTIS, the Czech National Bank's interbank payment system, since November 2018. Replaces the TIPS entry. Source: Czech National Bank."
+sources = [
+  "https://www.cnb.cz/en/payments/certis/instant-payments/index.html",
+  "https://www.cnb.cz/export/sites/cnb/en/economic-research/.galleries/research_publications/cnb_wp/cnbwp_2025_04.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-cz-02"
+as_of = 2026-10-15
+values.url = "https://www.cnb.cz/en/payments/certis/instant-payments/index.html"
+reason = "Czech National Bank's official page for instant payments in CERTIS."
+sources = [
+  "https://www.cnb.cz/en/payments/certis/instant-payments/index.html",
+]
+
+[[changes]]
+type = "update"
+key = "pay-cz-02"
+as_of = 2026-10-15
+values.realtime_active = "Yes"
+reason = "Processed 24/7 within seconds. Source: Czech National Bank."
+sources = [
+  "https://www.cnb.cz/en/payments/certis/instant-payments/index.html",
+]
+
+[[changes]]
+type = "update"
+key = "pay-cz-02"
+as_of = 2026-10-15
+values.system_type = "Interbank"
+reason = "Instant CZK credit transfers between accounts at CERTIS participants; no mobile money, card network or CBDC is connected. Source: Czech National Bank."
+sources = [
+  "https://www.cnb.cz/en/payments/certis/instant-payments/index.html",
+  "https://www.cnb.cz/export/sites/cnb/en/payments/.galleries/certis/download/CERTIS_rules.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-cz-02"
+as_of = 2026-10-15
+values.status = "Implemented"
+reason = "Live since November 2018. Source: Czech National Bank, Working Paper 4/2025."
+sources = [
+  "https://www.cnb.cz/export/sites/cnb/en/economic-research/.galleries/research_publications/cnb_wp/cnbwp_2025_04.pdf",
+  "https://www.cnb.cz/en/payments/certis/instant-payments/index.html",
+]
+
+[[changes]]
+type = "update"
+key = "pay-cz-02"
+as_of = 2026-10-15
+values.national_regional = "National"
+reason = "CERTIS instant payments is a national system."
+sources = [
+  "https://www.cnb.cz/en/payments/certis/instant-payments/index.html",
+]
+
+[[changes]]
+type = "update"
+key = "pay-cz-02"
+as_of = 2026-10-15
+values.cross_border = "No"
+reason = "CERTIS transfers Czech koruna between CERTIS participants only. Source: Czech National Bank, CERTIS rules v15 (August 2026)."
+sources = [
+  "https://www.cnb.cz/export/sites/cnb/en/payments/.galleries/certis/download/CERTIS_rules.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-cz-02"
+as_of = 2026-10-15
+values.interoperability_policy = "No"
+reason = "The April 2025 amendment to the Payments Act opened CERTIS to payment institutions and e-money institutions as direct participants, implementing the EU change to the Settlement Finality Directive, whose stated aim is a level playing field between banks and non-bank providers. Sources: Czech National Bank (January 2025); Worldline (June 2025)."
+sources = [
+  "https://www.cnb.cz/en/payments/certis/instant-payments/index.html",
+  "https://www.cnb.cz/export/sites/cnb/en/payments/.galleries/certis/download/CERTIS_rules_annex_08.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-cz-02"
+as_of = 2026-10-15
+values.transaction_types = "P2P, P2M, B2B, Other"
+reason = "Supports payments between individuals, QR payments at merchants, business payments and, since 2025, instant payments to state accounts such as taxes and insurance contributions (recorded as Other). Source: Czech National Bank (May 2026)."
+sources = [
+  "https://www.cnb.cz/en/payments/certis/instant-payments/index.html",
+  "https://www.cnb.cz/cs/cnb-news/tiskove-zpravy/Okamzite-platby-u-Cechu-boduji.-Aktivne-jepouziva-uz-vetsina-populace-99-klientu-je-s-nimi-spokojeno/",
+  "https://financnisprava.gov.cz/cs/financni-sprava/media-a-verejnost/tiskove-zpravy-gfr/tiskove-zpravy-2025/tiskova-zprava-cnb-dane-nebo-pojistne",
+]
+
+[[changes]]
+type = "update"
+key = "pay-cz-02"
+as_of = 2026-10-15
+values.clearing_infrastructure = "RTGS"
+reason = "Processed in CERTIS, the Czech National Bank's RTGS system. Source: Czech National Bank, CERTIS rules v15 (August 2026)."
+sources = [
+  "https://www.cnb.cz/export/sites/cnb/en/payments/.galleries/certis/download/CERTIS_rules.pdf",
+  "https://www.cnb.cz/export/sites/cnb/en/economic-research/.galleries/research_publications/cnb_wp/cnbwp_2025_04.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-cz-02"
+as_of = 2026-10-15
+values.settlement_method = "Gross"
+reason = "Each instruction is settled individually in real time on accounts at the Czech National Bank, with no overdraft. Source: Czech National Bank, CERTIS rules v15 (August 2026)."
+sources = [
+  "https://www.cnb.cz/export/sites/cnb/en/payments/.galleries/certis/download/CERTIS_rules.pdf",
+  "https://www.cnb.cz/export/sites/cnb/en/economic-research/.galleries/research_publications/cnb_wp/cnbwp_2025_04.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-cz-02"
+as_of = 2026-10-15
+values.operator = "Central bank"
+reason = "The Czech National Bank operates CERTIS and the instant payment scheme. Source: Czech National Bank."
+sources = [
+  "https://www.cnb.cz/en/payments/certis/instant-payments/index.html",
+  "https://www.cnb.cz/export/sites/cnb/en/payments/.galleries/certis/download/CERTIS_rules.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-cz-02"
+as_of = 2026-10-15
+values.bank_participation = "Yes"
+reason = "Banks are the main participants: 16 of the 17 listed instant payment participants are banks or the Czech National Bank. Source: Czech National Bank, List of Instant Payments Participants (March 2026)."
+sources = [
+  "https://www.cnb.cz/export/sites/cnb/en/payments/.galleries/certis/download/list_instant_payments.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-cz-02"
+as_of = 2026-10-15
+values.nonbank_participation = "Yes"
+reason = "CERTIS rules have admitted payment institutions and e-money institutions as direct participants since the April 2025 amendment to the Payments Act; Devizová burza joined the instant scheme in 2026. Sources: Czech National Bank, CERTIS rules v15 (August 2026); Czech National Bank (January 2025)."
+sources = [
+  "https://www.cnb.cz/export/sites/cnb/en/payments/.galleries/certis/download/CERTIS_rules.pdf",
+  "https://www.cnb.cz/cs/cnb-news/tiskove-zpravy/System-CERTIS-rocne-zpracuje-temer-miliardu-mezibankovnich-platebnich-transakci.-CNB-jej-nove-zpristupni-inbspnebankovnim-subjektum",
+  "https://www.cnb.cz/export/sites/cnb/en/payments/.galleries/certis/download/list_instant_payments.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-cz-02"
+as_of = 2026-10-15
+values.participation_rules = "Yes"
+reason = "The Czech National Bank publishes the CERTIS rules, including a dedicated instant payment annex and registration forms. Source: Czech National Bank, CERTIS rules v15 (August 2026)."
+sources = [
+  "https://www.cnb.cz/export/sites/cnb/en/payments/.galleries/certis/download/CERTIS_rules.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-cz-02"
+as_of = 2026-10-15
+values.participants = "2026- 17"
+reason = "17 instant payment participants, including the Czech National Bank. Source: Czech National Bank, List of Instant Payments Participants (March 2026)."
+sources = [
+  "https://www.cnb.cz/export/sites/cnb/en/payments/.galleries/certis/download/list_instant_payments.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-cz-02"
+as_of = 2026-10-15
+values.annual_value_usd = "Not Found"
+reason = "No 2025 value published for instant payments; the Czech National Bank publishes CERTIS totals and monthly instant payment counts only."
+sources = [
+  "https://www.cnb.cz/en/payments/certis/instant-payments/index.html",
+]
+
+[[changes]]
+type = "update"
+key = "pay-cz-02"
+as_of = 2026-10-15
+values.annual_volume = "Not Found"
+reason = "No 2025 annual total published for instant payments; monthly volumes reached 43.6 million in June 2026. Source: Czech National Bank."
+sources = [
+  "https://www.cnb.cz/en/payments/certis/instant-payments/index.html",
+  "https://www.cnb.cz/cs/cnb-news/tiskove-zpravy/Okamzite-platby-u-Cechu-boduji.-Aktivne-jepouziva-uz-vetsina-populace-99-klientu-je-s-nimi-spokojeno/",
+  "https://www.cnb.cz/cs/cnb-news/tiskove-zpravy/Lide-si-mezi-sebou-poslali-uznbsp700nbspmilionu-okamzitych-plateb",
+]
+
+[[changes]]
+type = "update"
+key = "pay-cz-02"
+as_of = 2026-10-15
+values.data_handling_rules = "Yes"
+reason = "CERTIS rules set GDPR controller roles, client consent, and expiry and deletion rules for the Czech National Bank's phone-number register, and cover client data protection in account switching. Source: Czech National Bank, CERTIS rules and Annex 8 (2026)."
+sources = [
+  "https://www.cnb.cz/export/sites/cnb/en/payments/.galleries/certis/download/CERTIS_rules_annex_08.pdf",
+  "https://www.cnb.cz/export/sites/cnb/en/payments/.galleries/certis/download/CERTIS_rules.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-cz-02"
+as_of = 2026-10-15
+values.reporting_forum = "Yes"
+reason = "No reporting forum specific to CERTIS instant payments. Payment disputes go first to the bank, and the Czech National Bank's general complaints route covers financial institutions generally. Source: Czech National Bank."
+sources = [
+  "https://www.cnb.cz/cs/cnb-news/tiskove-zpravy/System-CERTIS-rocne-zpracuje-temer-miliardu-mezibankovnich-platebnich-transakci.-CNB-jej-nove-zpristupni-inbspnebankovnim-subjektum",
+  "https://worldline.com/en/home/main-navigation/resources/blogs/2025/settlement-finality-directive-direct-access-to-payment-systems-for-non-bank-psps",
+]
+
+[[changes]]
+type = "update"
+key = "pay-cz-02"
+as_of = 2026-10-15
+values.aml_law = "Yes"
+reason = "Act No. 253/2008 Coll. on selected measures against money laundering and terrorist financing applies to banks and payment institutions."
+
+[[changes]]
+type = "update"
+key = "pay-cz-02"
+as_of = 2026-10-15
+values.transaction_cost = "Not Found"
+reason = "Customer fees are set by banks and are not published centrally. CERTIS charges participants CZK 0.11 per instant payment. Source: Czech National Bank, Working Paper 4/2025."
+sources = [
+  "https://www.cnb.cz/export/sites/cnb/en/economic-research/.galleries/research_publications/cnb_wp/cnbwp_2025_04.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-cz-02"
+as_of = 2026-10-15
+values.qr_code = "Yes"
+reason = "QR payments are executed as instant credit transfers processed in CERTIS, and the Czech National Bank lists QR payments as part of the instant payment service; QR codes generated in banking apps are used for payments, including at points of sale, and 31% of Czechs have paid by QR code. Sources: Czech National Bank, instant payments page; Czech National Bank (May 2026)."
+sources = [
+  "https://www.cnb.cz/en/payments/certis/instant-payments/index.html",
+  "https://www.cnb.cz/cs/cnb-news/tiskove-zpravy/Okamzite-platby-u-Cechu-boduji.-Aktivne-jepouziva-uz-vetsina-populace-99-klientu-je-s-nimi-spokojeno/",
+]

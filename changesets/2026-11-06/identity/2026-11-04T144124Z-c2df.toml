@@ -1,0 +1,43 @@
+[[changes]]
+type = "update"
+key = "id-jm-01"
+as_of = 2026-09-16
+values.funders = "Inter-American Development Bank; Government of Jamaica"
+reason = "JMD 1.86B in the 2026-27 budget."
+sources = [
+  "https://jis.gov.jm/1-86b-to-fund-nids-implementation-in-2026-27-fiscal-year/",
+  "https://opm.gov.jm/portfolios/national-identification-system/",
+]
+
+[[changes]]
+type = "update"
+key = "id-jm-01"
+as_of = 2026-09-16
+values.status = "Implemented"
+reason = "NIDS has moved from pilot to national roll-out; all 10 Jamaica Bankers Association members accept the card (Jul 2026)."
+sources = [
+  "https://nira.gov.jm/national-identification/",
+  "https://opm.gov.jm/official-launch-of-the-national-identification-registration-authority-and-issuance-of-cards/",
+]
+
+[[changes]]
+type = "update"
+key = "id-jm-01"
+as_of = 2026-09-16
+values.sectoral_use_cases = "Yes"
+reason = "Accepted across banks and public sector."
+sources = [
+  "https://nira.gov.jm/",
+  "https://nira.gov.jm/national-identification/",
+]
+
+[[changes]]
+type = "update"
+key = "id-jm-01"
+as_of = 2026-09-16
+values.url = "https://nira.gov.jm/"
+reason = "The previous link points to a 2020 policy document rather than a current system page."
+sources = [
+  "https://nira.gov.jm/",
+  "https://nira.gov.jm/national-identification/",
+]

@@ -1,0 +1,31 @@
+---
+// A count of systems that opens to a list of them, each linked to its page.
+// With `fieldId`, each system's value for that field is shown too.
+import { systemHref, type System } from '../Systems'
+
+interface Props {
+  systems: System[]
+  fieldId?: string
+}
+
+const { systems, fieldId } = Astro.props
+const sorted = [...systems].sort((a, b) => a.country.localeCompare(b.country) || a.title.localeCompare(b.title))
+const count = `${systems.length} ${systems.length === 1 ? 'system' : 'systems'}`
+---
+{ systems.length === 0
+  ? <span class="text-zinc-400">No systems</span>
+  : (
+    <details>
+      <summary class="cursor-pointer text-zinc-600 hover:text-blue-500">{count}</summary>
+      <ul class="pt-1 pb-2 text-xs space-y-1">
+        { sorted.map(system => (
+          <li>
+            <a class="hover:underline text-blue-700" href={systemHref(system.id)}>{system.title}</a>
+            <span class="ml-1 text-zinc-500">{system.country}</span>
+            { fieldId && <span class="block text-zinc-700 break-words">{system.values[fieldId]}</span> }
+          </li>
+        ))}
+      </ul>
+    </details>
+  )
+}

@@ -7,17 +7,17 @@ import { oneSystemPerCountry } from '../Util.js'
 import Layout from '../layouts/Standard.astro'
 
 const q2 = oneSystemPerCountry(id_q2.map((a) => ({ 
-  Country: a['Country/Region'],
+  country: a['Country/Region'],
   'DPI Status': a['Count for DPI'] === 1 ? 'DPI' : 'WIP'
 })))
 
 const q3 = oneSystemPerCountry(id_q3.map((a) => ({ 
-  Country: a['Country / Region'], 
+  country: a['Country / Region'], 
   'DPI Status': a['Count for DPI'] === 1 ? 'DPI' : 'WIP'
 })))
 
 const diff = q3.reduce((arr, x, i) => {
-  const y = q2.find(y => y['Country'] === x['Country'])
+  const y = q2.find(y => y.country === x.country)
   if (!y) { 
     arr.push({ ...x, diff: '' })
   }
@@ -76,7 +76,7 @@ const diff = q3.reduce((arr, x, i) => {
     <tbody>
       {diff.map(x => (
         <tr>
-          <td>{x.Country}</td>
+          <td>{x.country}</td>
           <td>{x.diff}</td>
           <td>{x['DPI Status']}</td>
           <td>{x.diff === 'DPI' ? '📉 down' : '📈 up'}</td>

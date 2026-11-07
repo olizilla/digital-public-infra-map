@@ -1,0 +1,94 @@
+[[changes]]
+type = "create"
+key = "dx-ie-02"
+as_of = 2026-10-15
+values.country = "Ireland"
+values.name = "Information Mediator"
+reason = ""
+sources = [
+  "https://interoperable-europe.ec.europa.eu/sites/default/files/file-visibility/resource/2026-05/national-policy-brief-api-gateway-enablers_1.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "dx-ie-02"
+as_of = 2026-10-15
+values.url = "https://www.gov.ie/en/govie-team/publications/information-mediator/"
+values.sectoral = "Cross-sectoral"
+values.data_management_rules = "Not Found"
+values.coordination_unit = "Not Found"
+values.impact_metrics = "No"
+values.personal_data_protection = "Yes"
+values.independent_audit = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-ie-02"
+as_of = 2026-10-15
+values.once_only_principle = "Yes"
+reason = ""
+sources = [
+  "https://www.ogcio.gov.ie/en/corporate-pages/policy/data-governance/public-service-data-strategy/",
+]
+
+[[changes]]
+type = "update"
+key = "dx-ie-02"
+as_of = 2026-10-15
+values.formal_mandate = "No"
+reason = ""
+sources = [
+  "https://www.irishstatutebook.ie/eli/2019/act/5/enacted/en/print",
+  "https://www.irishstatutebook.ie/eli/2019/act/5/enacted/en/print#sec2",
+]
+
+[[changes]]
+type = "update"
+key = "dx-ie-02"
+as_of = 2026-10-15
+values.status = "Planned/Piloted"
+values.architecture = "API Gateway"
+values.interoperability_level = "Syntactic"
+values.audit_mechanism = "Yes"
+values.multiple_public_entities = "Yes"
+reason = ""
+sources = [
+  "https://interoperable-europe.ec.europa.eu/sites/default/files/file-visibility/resource/2026-05/national-policy-brief-api-gateway-enablers_1.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "dx-ie-02"
+as_of = 2026-10-15
+values.number_of_transactions = "Not Found"
+values.number_of_members = "Not Found"
+reason = "Exchange is still in pilot stage"
+sources = [
+  "https://interoperable-europe.ec.europa.eu/sites/default/files/file-visibility/resource/2026-05/national-policy-brief-api-gateway-enablers_1.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "dx-ie-02"
+as_of = 2026-10-15
+values.national_regional = "National"
+values.realtime_sharing = "Yes"
+values.scalable_architecture = "No"
+values.governing_entity = "Office of the Government Chief Information Officer (OGCIO)"
+values.ownership = "Public"
+values.permitted_participants = "Public, Civil"
+reason = ""
+sources = [
+  "https://www.youtube.com/watch?v=qAcH223WV5o",
+]
+
+[[changes]]
+type = "update"
+key = "dx-ie-02"
+as_of = 2026-10-15
+values.enrolment_info = "No"
+reason = ""
+sources = [
+  "https://www.gov.ie/en/govie-team/publications/information-mediator/",
+]

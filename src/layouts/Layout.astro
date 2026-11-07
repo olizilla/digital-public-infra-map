@@ -2,8 +2,9 @@
 import '/src/styles/global.css'
 import Header from '../components/Header.astro';
 
+// `fullTitle` replaces the whole title, for pages that name the site their own way
 const {title} = Astro.props
-const fullTitle = title ? `${title} - DPI Map` : 'Digital Public Infrastructure Map - UCL IIPP'
+const fullTitle = Astro.props.fullTitle ?? (title ? `${title} - DPI Map` : 'Digital Public Infrastructure Map - UCL IIPP')
 const desc = 'The first global investigation of digital public infrastructure.'
 const pageUrl = Astro.url
 const rootUrl = Astro.site
@@ -16,6 +17,7 @@ const imgUrl = new URL('/map/preview.png', rootUrl)
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🗺️</text></svg>">
+		<link rel="alternate" type="application/rss+xml" title="DPI Map Insights" href="/rss.xml" />
 		<title>{fullTitle}</title>
 		<meta name="title" content={fullTitle} />
 		<meta name="description" content={desc} />

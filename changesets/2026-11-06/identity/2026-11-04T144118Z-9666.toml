@@ -1,0 +1,54 @@
+[[changes]]
+type = "update"
+key = "id-cu-01"
+as_of = 2026-09-16
+values.claim = "Yes"
+reason = "New Law on Identity and Residence (approved 31 Jul 2026) formally defines digital identity; implementation expected within three months."
+sources = [
+  "https://www.cibercuba.com/noticias/2026-07-31-u1-e208574-s27061-nid336690-regimen-cubano-aprueba-nueva-ley-identidad-domicilio",
+  "https://www.parlamentocubano.gob.cu/sites/default/files/documento/2026-07/proyecto-ley-de-identidad-1_0.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "id-cu-01"
+as_of = 2026-09-16
+values.name = "Identidad Digital"
+reason = ""
+sources = [
+  "https://www.cibercuba.com/noticias/2026-07-31-u1-e208574-s27061-nid336690-regimen-cubano-aprueba-nueva-ley-identidad-domicilio",
+  "https://www.presidencia.gob.cu/es/noticias/proyecto-de-ley-del-sistema-de-identidad-personal-y-domicilio-una-norma-juridica-necesaria-y-actualizada/",
+]
+
+[[changes]]
+type = "update"
+key = "id-cu-01"
+as_of = 2026-09-16
+values.governing_entity = "Authority for Personal Identity and Residence (Ministry of the Interior)"
+reason = "New authority created by the law."
+sources = [
+  "https://www.cibercuba.com/noticias/2026-07-31-u1-e208574-s27061-nid336690-regimen-cubano-aprueba-nueva-ley-identidad-domicilio",
+  "https://www.parlamentocubano.gob.cu/sites/default/files/documento/2026-07/proyecto-ley-de-identidad-1_0.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "id-cu-01"
+as_of = 2026-09-16
+values.regulation = "Yes"
+reason = "Law on Identity and Residence (Jul 2026) replaces the 2007 decree and defines digital identity."
+sources = [
+  "https://www.cibercuba.com/noticias/2026-07-31-u1-e208574-s27061-nid336690-regimen-cubano-aprueba-nueva-ley-identidad-domicilio",
+  "https://www.parlamentocubano.gob.cu/sites/default/files/documento/2026-07/proyecto-ley-de-identidad-1_0.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "id-cu-01"
+as_of = 2026-09-16
+values.status = "Planned/Piloted"
+reason = "Law approved; implementation pending. No further evidence of completed implementation"
+sources = [
+  "https://www.cibercuba.com/noticias/2026-07-31-u1-e208574-s27061-nid336690-regimen-cubano-aprueba-nueva-ley-identidad-domicilio",
+  "https://www.presidencia.gob.cu/es/noticias/proyecto-de-ley-del-sistema-de-identidad-personal-y-domicilio-una-norma-juridica-necesaria-y-actualizada/",
+]

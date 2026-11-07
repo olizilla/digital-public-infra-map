@@ -1,0 +1,31 @@
+[[changes]]
+type = "update"
+key = "dx-eg-01"
+as_of = 2026-10-15
+values.architecture = "Not Found"
+values.interoperability_level = "Not Found"
+values.realtime_sharing = "Not Found"
+values.enrolment_info = "Not Found"
+values.audit_mechanism = "Not Found"
+values.data_management_rules = "Not Found"
+values.formal_mandate = "Not Found"
+values.once_only_principle = "Yes"
+values.personal_data_protection = "Yes"
+values.independent_audit = "Not Found"
+values.number_of_transactions = "Not Found"
+values.number_of_members = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-eg-01"
+as_of = 2026-10-15
+values.permitted_participants = "Public, Private"
+reason = "Unclear if G2G is linked to Digital Egypt as the e-services portal"
+
+[[changes]]
+type = "update"
+key = "dx-eg-01"
+as_of = 2026-10-15
+values.impact_metrics = "Not Found"
+reason = "Website not found"

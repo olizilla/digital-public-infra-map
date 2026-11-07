@@ -1,0 +1,40 @@
+[[changes]]
+type = "update"
+key = "dx-is-01"
+as_of = 2026-10-15
+values.formal_mandate = "Not Found"
+values.personal_data_protection = "Yes"
+values.independent_audit = "Not Found"
+values.number_of_transactions = "Not Found"
+values.number_of_members = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-is-01"
+as_of = 2026-10-15
+values.interoperability_level = "Semantic"
+reason = ""
+sources = [
+  "https://docs.devland.is/technical-overview/api-design-guide/data-definitions",
+]
+
+[[changes]]
+type = "update"
+key = "dx-is-01"
+as_of = 2026-10-15
+values.once_only_principle = "Yes"
+reason = ""
+sources = [
+  "https://docs.devland.is/technical-overview/api-design-guide/once-only",
+]
+
+[[changes]]
+type = "update"
+key = "dx-is-01"
+as_of = 2026-10-15
+values.permitted_participants = "Public, Private, Civil"
+reason = ""
+sources = [
+  "https://docs.devland.is/misc/application-system-org-requests",
+]

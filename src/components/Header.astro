@@ -1,5 +1,7 @@
 ---
 import IIPP from '../assets/iipp.svg'
+// the site's title is the homepage's h1. Every other page has its own, so there it's a paragraph that looks the same
+const Title = Astro.url.pathname === '/' ? 'h1' : 'p'
 ---
 <header class="pl-1 pr-2 pt-1 mx-auto">
   <div class="flex items-center">
@@ -7,9 +9,9 @@ import IIPP from '../assets/iipp.svg'
       <IIPP width="50" height="47" />
     </a>
     <a href="/" aria-label="Home" class="pl-2 flex-none hidden md:block">
-      <h1 class="font-sans font-bold text-xl">
+      <Title class="font-sans font-bold text-xl">
         The Digital Public Infrastructure Map
-      </h1>
+      </Title>
       <p class="pt-0 font-sans text-xs text-zinc-500">
         Tracking national-scale digital infrastructure around the world
       </p>
@@ -18,7 +20,7 @@ import IIPP from '../assets/iipp.svg'
       <a class="hidden lg:inline px-1 lg:px-2 hover:text-blue-500" href="/">Map</a>
       <a class="px-1 lg:px-2 hover:text-blue-500" href="/about/">About</a>
       <a class="px-1 lg:px-2 hover:text-blue-500" href="/data/">Data</a>
-      <a class="px-1 lg:px-2 hover:text-blue-500" href="/global-state-of-dpi/">Insights</a>
+      <a class="px-1 lg:px-2 hover:text-blue-500" href="/blog/">Insights</a>
       <a class="px-1 lg:px-2 hover:text-blue-500" href="/methodology/">Method</a>
       <a class="px-1 lg:px-2 hover:text-blue-500" href="/measurement-community/">Community</a>
       <a class="hidden lg:inline px-3 py-2 bg-zinc-700 hover:bg-black text-white rounded-2xl" href="/contribute/">Help map DPI</a>
@@ -26,7 +28,7 @@ import IIPP from '../assets/iipp.svg'
   </div>
   <div class="pt-8 flex-none md:hidden text-center">
     <a href="/" aria-label="Home" class="inline-block">
-      <h1 class="font-sans font-bold text-xl">The Digital Public Infrastructure Map</h1>
+      <Title class="font-sans font-bold text-xl">The Digital Public Infrastructure Map</Title>
       <p class="pt-0 font-sans text-xs text-zinc-500">Tracking national-scale digital infrastructure around the world</p>
     </a>
   </div>

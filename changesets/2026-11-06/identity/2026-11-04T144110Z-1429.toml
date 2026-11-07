@@ -1,0 +1,44 @@
+[[changes]]
+type = "update"
+key = "id-bh-01"
+as_of = 2026-09-16
+values.gov_portal_auth = "Yes"
+reason = "eKey 2.0 is the login for bahrain.bh / My Gov eServices."
+sources = [
+  "https://play.google.com/store/apps/details?id=bh.bahrain.unified&hl=en",
+  "https://www.bahrain-confidential.com/advanced-ekey-my-gov-bahrain-2025/",
+  "https://www.iga.gov.bh/en/article/iga-ce-more-than-13-000-registrations-for-the-revamped-ekey-2-0-within-one-day-of-its-launch",
+]
+
+[[changes]]
+type = "update"
+key = "id-bh-01"
+as_of = 2026-09-16
+values.name = "eKey 2.0"
+reason = "iGA launched eKey 2.0 on 9 Feb 2025: biometric login to 41 eServices via the My Gov app. Smart ID card remains the base credential."
+sources = [
+  "https://idtechwire.com/bahrain-launches-ekey-2-0-digital-identity-system-with-biometric-authentication/",
+  "https://www.iga.gov.bh/en/article/iga-ce-more-than-13-000-registrations-for-the-revamped-ekey-2-0-within-one-day-of-its-launch",
+]
+
+[[changes]]
+type = "update"
+key = "id-bh-01"
+as_of = 2026-09-16
+values.digital_auth = "Yes"
+reason = "eKey 2.0 is a biometric authentication service for government eServices."
+sources = [
+  "https://idtechwire.com/bahrain-launches-ekey-2-0-digital-identity-system-with-biometric-authentication/",
+  "https://www.iga.gov.bh/en/article/iga-ce-more-than-13-000-registrations-for-the-revamped-ekey-2-0-within-one-day-of-its-launch",
+]
+
+[[changes]]
+type = "update"
+key = "id-bh-01"
+as_of = 2026-09-16
+values.sectoral_use_cases = "Yes"
+reason = "Used by government services and private firms (stc pay onboarding, housing sector)."
+sources = [
+  "https://techafricanews.com/2026/08/12/stc-pay-bahrain-integrates-ekey-2-0-for-faster-digital-customer-onboarding/",
+  "https://www.iga.gov.bh/en/article/iga-showcase-the-ekey-2-0-app-and-its-digital-initiatives-supporting-the-housing-sector",
+]

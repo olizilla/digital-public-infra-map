@@ -1,0 +1,7 @@
+[[changes]]
+type = "update"
+key = "pay-bq-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "NA"
+values.settlement_method = "NA"
+reason = "New field. Information not found"

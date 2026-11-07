@@ -1,0 +1,51 @@
+[[changes]]
+type = "update"
+key = "dx-ae-01"
+as_of = 2026-10-15
+values.permitted_participants = "Public, Private"
+reason = ""
+sources = [
+  "https://tdra.gov.ae/en/Services/government-service-bus-gsb",
+]
+
+[[changes]]
+type = "update"
+key = "dx-ae-01"
+as_of = 2026-10-15
+values.formal_mandate = "Yes"
+values.once_only_principle = "Yes"
+reason = "“Digital Customer and Digital Government Service Policy” (March 2021)"
+sources = [
+  "https://u.ae/en/about-the-uae/strategies-initiatives-and-awards/policies/government-services-and-digital-transformation/digital-customer-and-digital-government-service-policy",
+]
+
+[[changes]]
+type = "update"
+key = "dx-ae-01"
+as_of = 2026-10-15
+values.number_of_members = "2021 - 144"
+reason = ""
+sources = [
+  "https://u.ae/en/information-and-services/g2g-services/government-services-bus",
+]
+
+[[changes]]
+type = "update"
+key = "dx-ae-01"
+as_of = 2026-10-15
+values.interoperability_level = "Syntactic"
+values.audit_mechanism = "Not Found"
+values.data_management_rules = "Not Found"
+values.personal_data_protection = "Yes"
+values.independent_audit = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-ae-01"
+as_of = 2026-10-15
+values.number_of_transactions = "2020 - 117.65 million"
+reason = "New framework variable not yet recorded for this country"
+sources = [
+  "https://u.ae/en/information-and-services/g2g-services/government-services-bus",
+]

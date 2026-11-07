@@ -1,10 +1,8 @@
 ---
-layout: ../../layouts/Standard.astro
+layout: ../../layouts/Post.astro
 title: 'DPI Map Data for Statistical Analysis'
 date: 2025-04-30
 ---
-
-# DPI Map Data for Statistical Analysis
 
 The **DPI Map dataset for statistical analysis** is a cross-national and cross-sectional policy database of technology characteristics, policies and adoption metrics related to digital public infrastructure across a maximum of 218 geographical entities (countries, regions/continents). The dataset comprises three distinct sets: one for digital identity systems, digital payment systems, and one for data exchange systems.
 

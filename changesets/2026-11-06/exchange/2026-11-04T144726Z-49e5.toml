@@ -1,0 +1,131 @@
+[[changes]]
+type = "create"
+key = "dx-si-02"
+as_of = 2026-10-15
+values.country = "Slovenia"
+values.name = "Tray (Pladenj)"
+reason = ""
+sources = [
+  "https://www.oecd.org/en/publications/digital-government-scan-of-slovenia_d22179d2-en/full-report/service-design-and-delivery_9651e525.html",
+  "https://www.oecd.org/en/publications/digital-government-scan-of-slovenia_d22179d2-en/full-report/service-design-and-delivery_9651e525.html#back-endnote320231172016",
+]
+
+[[changes]]
+type = "update"
+key = "dx-si-02"
+as_of = 2026-10-15
+values.formal_mandate = "Yes"
+reason = "Article 74a and b of the State Administration Act https://www.iusinfo.si/zakonodajna-knjiznica/zakon/Z029DEAK/clen/74b"
+sources = [
+  "https://www.iusinfo.si/zakonodajna-knjiznica/zakon/Z029DEAK/clen/74b",
+]
+
+[[changes]]
+type = "update"
+key = "dx-si-02"
+as_of = 2026-10-15
+values.once_only_principle = "No"
+reason = "Unclear if a once- only policy exists but has signed onto EU's OOTS"
+sources = [
+  "https://www.oecd.org/en/publications/digital-government-scan-of-slovenia_d22179d2-en/full-report/service-design-and-delivery_9651e525.html",
+  "https://www.oecd.org/en/publications/digital-government-scan-of-slovenia_d22179d2-en/full-report/service-design-and-delivery_9651e525.html#back-endnote320231172016",
+]
+
+[[changes]]
+type = "update"
+key = "dx-si-02"
+as_of = 2026-10-15
+values.governing_entity = "Ministry of Justice"
+reason = ""
+sources = [
+  "https://nio.gov.si/api/files/31e37efd-8dca-4370-93fe-e2f0539bc5fa/file?download=true",
+]
+
+[[changes]]
+type = "update"
+key = "dx-si-02"
+as_of = 2026-10-15
+values.coordination_unit = "Ministry of Digital Transformation"
+reason = ""
+sources = [
+  "https://nio.gov.si/en/products/interoperabilnostna%2Bkomponenta%2Bpladenj-288?release=2.0",
+]
+
+[[changes]]
+type = "update"
+key = "dx-si-02"
+as_of = 2026-10-15
+values.url = "https://nio.gov.si/en/products/interoperabilnostna%2Bkomponenta%2Bpladenj-288?release=2.0"
+values.status = "Implemented"
+values.national_regional = "National"
+values.sectoral = "Cross-sectoral"
+values.ownership = "Public"
+values.impact_metrics = "Yes"
+values.personal_data_protection = "Yes"
+values.independent_audit = "Not Found"
+values.number_of_transactions = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-si-02"
+as_of = 2026-10-15
+values.interoperability_level = "Syntactic"
+values.realtime_sharing = "Yes"
+values.enrolment_info = "Yes"
+values.data_management_rules = "Yes"
+reason = ""
+sources = [
+  "https://nio.gov.si/api/files/31e37efd-8dca-4370-93fe-e2f0539bc5fa/file?download=true",
+]
+
+[[changes]]
+type = "update"
+key = "dx-si-02"
+as_of = 2026-10-15
+values.multiple_public_entities = "Yes"
+values.number_of_members = "2025 - 31"
+reason = ""
+sources = [
+  "https://www.interregeurope.eu/good-practices/pladenj-tray-predicting-data-load-using-machine-learning",
+]
+
+[[changes]]
+type = "update"
+key = "dx-si-02"
+as_of = 2026-10-15
+values.architecture = "Not Found"
+reason = ""
+sources = [
+  "https://nio.gov.si/api/files/d87f2cab-444e-4cf3-8e35-b9aa17c19a8a/file?download=true",
+]
+
+[[changes]]
+type = "update"
+key = "dx-si-02"
+as_of = 2026-10-15
+values.scalable_architecture = "Yes"
+reason = ""
+sources = [
+  "https://nio.gov.si/en/products/interoperabilnostna%2Bkomponenta%2Bpladenj-288",
+]
+
+[[changes]]
+type = "update"
+key = "dx-si-02"
+as_of = 2026-10-15
+values.permitted_participants = "Public"
+reason = "Information unclear but includes public participants"
+sources = [
+  "https://www.oecd.org/en/publications/digital-government-review-of-slovenia_954b0e74-en/full-report/component-9.html",
+]
+
+[[changes]]
+type = "update"
+key = "dx-si-02"
+as_of = 2026-10-15
+values.audit_mechanism = "Yes"
+reason = ""
+sources = [
+  "https://www.youtube.com/watch?v=JwBBavEUDAk",
+]

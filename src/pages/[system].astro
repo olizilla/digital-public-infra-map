@@ -1,0 +1,130 @@
+---
+// One page per system, at /<System ID>, built from the current release (src/Release.ts) and
+// the history of its cells: the DPI test, then every field with what it means, its evidence and
+// its history, and the change log. See docs/design/system-page-brief.md (M3b) and D2, D62, D64.
+// Nothing links to /edit/ yet (D59), so proposing an update goes to /contribute/.
+// It shares the root with [country].astro. Astro tries each route's getStaticPaths in turn,
+// and src/Systems.ts fails the build if a System ID is ever also a country page path.
+// A removed system has no page: `npm run data:build` redirects it to its country page (D64).
+import { getCollection } from 'astro:content'
+import Layout from '../layouts/Layout.astro'
+import Footer from '../components/Footer.astro'
+import Status from '../components/Status.astro'
+import TypeIcon from '../components/TypeIcon.astro'
+import CountryHeader from '../components/CountryHeader.astro'
+import SystemCard from '../components/SystemCard.astro'
+import DpiTestList from '../components/DpiTestList.astro'
+import FieldRow from '../components/FieldRow.astro'
+import ChangeLog from '../components/ChangeLog.astro'
+import { systemHref, systems, type System } from '../Systems'
+import { nouns, presence } from '../DpiTest'
+import { laneTitles, statusOrder } from '../CountryPage'
+import { changeLogOf, fieldAnchor, fieldsByAttribute, joiner, snapshotDate, verdictOf } from '../SystemPage'
+
+export async function getStaticPaths () {
+  return systems.map(system => ({ params: { system: system.id }, props: { system } }))
+}
+
+const { system } = Astro.props as { system: System }
+const { dpiType, record } = system
+const verdict = verdictOf(dpiType, record)
+
+const attributes = (await getCollection('dpiAttributes')).sort((a, b) => Number(a.id) - Number(b.id))
+const byAttribute = fieldsByAttribute(dpiType)
+const groups = [
+  { id: 0, name: 'About the system' },
+  ...attributes.map(a => ({ id: Number(a.id), name: a.data.attribute }))
+].map(group => ({ ...group, fields: byAttribute.get(group.id) ?? [] }))
+
+// Last updated is the row's newest as_of (D48), and the page is cited by it
+const updated = system.values.last_updated && system.values.last_updated !== 'NA' ? system.values.last_updated : undefined
+const cited = updated ?? 'n.d.'
+const fromSnapshot = changeLogOf(system).snapshot !== undefined
+
+// the country's systems, this one included so the card is the same on each of its pages, in the country page's order: by lane, best first. Like the
+// country page, it leaves out rows where the research found no system
+const lanes = Object.keys(laneTitles)
+const siblings = systems
+  .filter(other => other.country === system.country && presence(other.dpiType, other.record) !== 'not-found')
+  .sort((a, b) => lanes.indexOf(a.dpiType) - lanes.indexOf(b.dpiType) || statusOrder[a.dpiStatus] - statusOrder[b.dpiStatus])
+---
+
+<Layout fullTitle={`${system.title} · ${system.country} · DPI Map`}>
+  <main class="page">
+    <!-- the country page's header, so nothing moves when you click through; hidden on a phone, where the page starts at the type heading -->
+    <div class="sp-country">
+      <CountryHeader country={system.country} countryHref={system.countryHref} step={laneTitles[dpiType]} />
+    </div>
+
+    <!-- the country page's three columns: the system's card across two, then its change log and the country's other systems -->
+    <div class="sp-grid">
+      <p class="lane-head sp-lane"><a href={system.countryHref}><TypeIcon dpiType={dpiType} /><span>{laneTitles[dpiType]}</span></a></p>
+      <SystemCard dpiType={dpiType} record={record} full>
+        <section class="sys-test" aria-labelledby="dpi-test-h">
+          <h2 class="test-label" id="dpi-test-h">DPI test</h2>
+          <DpiTestList dpiType={dpiType} record={record} links />
+          { !verdict.passes && <p class="test-verdict">Not yet DPI-like: { verdict.reasons.map((reason, i) => (
+            <Fragment>{joiner(i, verdict.reasons.length)}<a class="ul" href={`#${fieldAnchor(reason.field)}`}>{reason.text}</a>{reason.after}</Fragment>
+          ))}</p> }
+        </section>
+        <section class="sys-fields" aria-labelledby="fields-h">
+          <h2 class="sr-only" id="fields-h">Fields</h2>
+          <p class="fields-hint">Open a field to see what it means, its evidence and its history.</p>
+          { groups.map(group => (
+            <section class="grp">
+              <h3 class="divider"><span>{group.name}</span></h3>
+              { group.fields.length
+                ? group.fields.map(field => <FieldRow system={system} field={field} />)
+                : <p class="grp-empty">The Map doesn’t measure an indicator for this attribute in {nouns[dpiType]} systems.</p> }
+            </section>
+          ))}
+        </section>
+        <footer class="fields-foot">
+          <span>Last updated {updated ?? 'NA'}</span>
+          <a href="/contribute/">Propose an update</a>
+        </footer>
+      </SystemCard>
+
+      <aside class="sp-side">
+        { siblings.length > 0 &&
+          <section class="side-card" aria-labelledby="systems-h">
+            <h2 class="side-h" id="systems-h">Systems in {system.country}</h2>
+            <ul class="side-body systems-list">
+              { siblings.map(other => (
+                <li class:list={{ current: other.id === system.id }}>
+                  <TypeIcon dpiType={other.dpiType} class="size-4" />
+                  { other.id === system.id
+                    ? <span aria-current="page" class:list={{ unnamed: presence(other.dpiType, other.record) === 'unnamed' }}>{other.title}</span>
+                    : <a class:list={{ unnamed: presence(other.dpiType, other.record) === 'unnamed' }} href={systemHref(other.id)}>{other.title}</a> }
+                  <Status status={other.dpiStatus} title="DPI status" />
+                </li>
+              ))}
+            </ul>
+          </section> }
+        <ChangeLog system={system} />
+      </aside>
+    </div>
+
+    <section class="about">
+      <div>
+        <h2 class="about-h">Where this data comes from</h2>
+        <p>Desk research of public sources: government websites, laws, press releases, and reports from bodies like the World Bank and UN, plus validated submissions from country implementers.</p>
+      </div>
+      <div>
+        <h2 class="about-h">What NA and Not Found mean</h2>
+        <p>NA: no answer, not researched yet. Not Found: insufficient information, including where the system is not yet live. If you know, <a href="/contribute/">propose an update</a> with a source.</p>
+      </div>
+      <div>
+        <h2 class="about-h">How this record changes</h2>
+        { fromSnapshot
+          ? <p>It started as the {snapshotDate} dataset snapshot. Every change since is a reviewed proposal with a reason and sources, applied in batches and listed in the change log.</p>
+          : <p>It was added after the {snapshotDate} dataset snapshot. Every change, including adding it, is a reviewed proposal with a reason and sources, applied in batches and listed in the change log.</p> }
+      </div>
+    </section>
+    <section class="cite-row" id="cite">
+      <h2 class="about-h">Cite this page</h2>
+      <p class="cite-text">DPI Map ({cited}). {system.title} ({system.id}), {system.country}. Institute for Innovation and Public Purpose, UCL. https://dpimap.org/{system.id}/</p>
+    </section>
+  </main>
+  <Footer />
+</Layout>

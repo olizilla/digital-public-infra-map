@@ -1,0 +1,21 @@
+[[changes]]
+type = "update"
+key = "pay-se-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "RTGS"
+reason = "New field. Riksbank settles krona instant payments (Swish) in TIPS since Feb 2024"
+sources = [
+  "https://www.ecb.europa.eu/paym/intro/news/html/ecb.mipnews240227.bg.html",
+  "https://www.ecb.europa.eu/press/pr/date/2018/html/ecb.pr181130.en.html",
+]
+
+[[changes]]
+type = "update"
+key = "pay-se-01"
+as_of = 2026-10-15
+values.settlement_method = "Gross"
+reason = "New field. TIPS clears and settles each payment individually in central bank money via dedicated cash accounts funded from T2"
+sources = [
+  "https://www.ecb.europa.eu/paym/intro/news/html/ecb.mipnews240227.bg.html",
+  "https://www.ecb.europa.eu/press/pr/date/2018/html/ecb.pr181130.en.html",
+]

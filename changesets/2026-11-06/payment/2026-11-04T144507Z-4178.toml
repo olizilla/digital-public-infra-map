@@ -1,0 +1,23 @@
+[[changes]]
+type = "update"
+key = "pay-pk-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "Switch"
+reason = "New field. Raast is a hub operated by Raast Payments Pakistan (Pvt) Ltd, a wholly-owned SBP subsidiary, separate from the PRISM RTGS; central bank ownership recorded in Operator. Cycle count may have changed since 2021."
+sources = [
+  "https://www.sbp.org.pk/raast",
+  "https://fastpayments.worldbank.org/sites/default/files/2023-05/Settlement%20Note_Final_April%2020.pdf",
+  "https://fastpayments.worldbank.org/sites/default/files/2022-05/Pakistan_RAAST_Case_Study_%20May_2022.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pk-01"
+as_of = 2026-10-15
+values.settlement_method = "DNS"
+reason = "New field. Net batches settled in PRISM, 2 cycles a day as of 2021. Cycle count may have changed since 2021."
+sources = [
+  "https://www.sbp.org.pk/raast",
+  "https://fastpayments.worldbank.org/sites/default/files/2023-05/Settlement%20Note_Final_April%2020.pdf",
+  "https://fastpayments.worldbank.org/sites/default/files/2022-05/Pakistan_RAAST_Case_Study_%20May_2022.pdf",
+]

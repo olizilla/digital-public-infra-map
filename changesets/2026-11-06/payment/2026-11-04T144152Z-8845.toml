@@ -1,0 +1,20 @@
+[[changes]]
+type = "update"
+key = "pay-in-01"
+as_of = 2026-10-15
+values.operator = "Bank association"
+reason = "Value unchanged: NPCI, which operates UPI, is a not-for-profit company owned by banks."
+
+[[changes]]
+type = "update"
+key = "pay-in-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "Switch"
+reason = "NPCI's UPI switch routes payments between participating banks and third-party payment apps."
+
+[[changes]]
+type = "update"
+key = "pay-in-01"
+as_of = 2026-10-15
+values.settlement_method = "DNS"
+reason = "UPI payments are cleared in real time and participants' net positions are settled in the RBI's RTGS in several settlement cycles a day."

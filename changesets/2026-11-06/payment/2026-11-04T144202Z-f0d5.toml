@@ -1,0 +1,240 @@
+[[changes]]
+type = "create"
+key = "pay-li-02"
+as_of = 2026-10-15
+values.country = "Liechtenstein"
+values.name = "SIC IP (Instant Payments service of the SIC system)"
+reason = "New row for the instant payment system used in Liechtenstein; replaces TIPS, the Eurosystem service, which was named in error. Liechtenstein uses the Swiss franc and its banks participate in the SNB's SIC system; SIC IP is the instant service of SIC, launched August 2024. Primary source: SNB, Report on the SIC system and Disclosure Report 2024 (Sep 2025): IP service settled gross in real time in central bank money from a separate IP settlement account, round the clock, within ten seconds; SNB is system manager; around 60 banks able to receive at end 2024; all active participants must be able to receive by end 2026; SNB, Instruction sheet on admission to the SIC system (4 Mar 2022): eligible participants include banks, securities firms, fintech licence holders, insurers and FMIs; institutions authorised and supervised by the Liechtenstein FMA treated as domestic; LLB (Liechtensteinische Landesbank): instant payments available in Switzerland and Liechtenstein since August 2024 on SIC5, 24/7, under ten seconds."
+sources = [
+  "https://www.bankenverband.li/en/topics/regulation",
+  "https://www.snb.ch/en/mmr/reference/sicgiro_access_2022/source/sicgiro_access_2022.en.pdf",
+  "https://llb.li/en/business/payments/solutions/instant-payment",
+]
+
+[[changes]]
+type = "update"
+key = "pay-li-02"
+as_of = 2026-10-15
+values.url = "https://www.snb.ch/public/asset/en/www-snb-ch/publications/sicsystem-disclosure/sicsystem-disclosure-all/sicsystem_disclosure_2024/publications0_en/sicsystem_disclosure_2024.en.pdf"
+reason = "SNB report and disclosure on the SIC system, covering the IP service."
+sources = [
+  "https://www.snb.ch/public/asset/en/www-snb-ch/publications/sicsystem-disclosure/sicsystem-disclosure-all/sicsystem_disclosure_2024/publications0_en/sicsystem_disclosure_2024.en.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-li-02"
+as_of = 2026-10-15
+values.realtime_active = "Yes"
+reason = "Instant payments settled within ten seconds, round the clock; live in Liechtenstein since August 2024."
+sources = [
+  "https://www.snb.ch/public/asset/en/www-snb-ch/publications/sicsystem-disclosure/sicsystem-disclosure-all/sicsystem_disclosure_2024/publications0_en/sicsystem_disclosure_2024.en.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-li-02"
+as_of = 2026-10-15
+values.system_type = "Interbank"
+reason = "Instant CHF credit transfers between accounts at SIC participants (banks and a small number of licensed fintechs); no mobile money, card or CBDC domain connected."
+sources = [
+  "https://www.snb.ch/public/asset/en/www-snb-ch/publications/sicsystem-disclosure/sicsystem-disclosure-all/sicsystem_disclosure_2024/publications0_en/sicsystem_disclosure_2024.en.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-li-02"
+as_of = 2026-10-15
+values.status = "Implemented"
+reason = "Launched August 2024."
+sources = [
+  "https://www.six-group.com/dam/download/banking-services/interbank-clearing/annual-reports/annual-report-2025.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-li-02"
+as_of = 2026-10-15
+values.national_regional = "National"
+reason = "SIC IP is the Swiss national system, also used in Liechtenstein under the currency treaty with Switzerland. Coded National to match Switzerland; confirm whether Liechtenstein should be National or Regional."
+
+[[changes]]
+type = "update"
+key = "pay-li-02"
+as_of = 2026-10-15
+values.cross_border = "Yes"
+reason = "SIC IP settles CHF instant payments between participants in Switzerland and Liechtenstein, two countries sharing the Swiss franc; FMA-authorised Liechtenstein institutions participate on the same terms as Swiss ones. No link to other currencies yet; the SNB and ECB are exploring a TIPS link through 2026."
+sources = [
+  "https://www.snb.ch/en/mmr/reference/sicgiro_access_2022/source/sicgiro_access_2022.en.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-li-02"
+as_of = 2026-10-15
+values.interoperability_policy = "Yes"
+reason = "SNB requires all active SIC participants with customer payments, banks and fintechs, to be able to receive instant payments by end 2026; sending is voluntary."
+sources = [
+  "https://www.snb.ch/public/asset/en/www-snb-ch/publications/sicsystem-disclosure/sicsystem-disclosure-all/sicsystem_disclosure_2024/publications0_en/sicsystem_disclosure_2024.en.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-li-02"
+as_of = 2026-10-15
+values.transaction_types = "P2P, P2M, B2B"
+reason = "Account-to-account CHF credit transfers for households and companies; no merchant-specific or government-specific product found. Primary source: SNB, Report on the SIC system and Disclosure Report 2024 (Sep 2025): IP service settled gross in real time in central bank money from a separate IP settlement account, round the clock, within ten seconds; SNB is system manager; around 60 banks able to receive at end 2024; all active participants must be able to receive by end 2026; SNB speech (10 Apr 2025): CHF 20,000 limit per transaction; receiving mandatory for all banks and fintechs with customer payments from end 2026; SNB does not set fees; prices partly still high."
+sources = [
+  "https://www.snb.ch/public/asset/en/www-snb-ch/publications/sicsystem-disclosure/sicsystem-disclosure-all/sicsystem_disclosure_2024/publications0_en/sicsystem_disclosure_2024.en.pdf",
+  "https://www.snb.ch/public/asset/de/www-snb-ch/publications/communication/speeches/2025/ref_20250410_gpetmo/publications0/ref_20250410_gpetmo.de.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-li-02"
+as_of = 2026-10-15
+values.clearing_infrastructure = "RTGS"
+reason = "Processed in SIC, the SNB's RTGS system, through its dedicated IP service. Primary source: SNB, Report on the SIC system and Disclosure Report 2024 (Sep 2025): IP service settled gross in real time in central bank money from a separate IP settlement account, round the clock, within ten seconds; SNB is system manager; around 60 banks able to receive at end 2024; all active participants must be able to receive by end 2026; SNB, Report on the SIC system and Disclosure Report 2023 (May 2024): SNB system manager, SIX Interbank Clearing operates on its behalf; participants include banks, securities firms, insurers, FMIs, licensed fintechs and cash processors."
+sources = [
+  "https://www.snb.ch/public/asset/en/www-snb-ch/publications/sicsystem-disclosure/sicsystem-disclosure-all/sicsystem_disclosure_2024/publications0_en/sicsystem_disclosure_2024.en.pdf",
+  "https://www.snb.ch/public/asset/en/www-snb-ch/publications/sicsystem-disclosure/sicsystem-disclosure-all/sicsystem_disclosure_2023/publications0_en/sicsystem_disclosure_2023.en.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-li-02"
+as_of = 2026-10-15
+values.settlement_method = "Gross"
+reason = "Each payment settled individually in real time in central bank money from a separate IP settlement account at the SNB. Primary source: SNB, Report on the SIC system and Disclosure Report 2024 (Sep 2025): IP service settled gross in real time in central bank money from a separate IP settlement account, round the clock, within ten seconds; SNB is system manager; around 60 banks able to receive at end 2024; all active participants must be able to receive by end 2026."
+sources = [
+  "https://www.snb.ch/public/asset/en/www-snb-ch/publications/sicsystem-disclosure/sicsystem-disclosure-all/sicsystem_disclosure_2024/publications0_en/sicsystem_disclosure_2024.en.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-li-02"
+as_of = 2026-10-15
+values.operator = "Central bank"
+reason = "The SNB is system manager and SIX Interbank Clearing (a SIX Group subsidiary owned by financial institutions) operates SIC on its behalf. Primary source: SNB, Report on the SIC system and Disclosure Report 2023 (May 2024): SNB system manager, SIX Interbank Clearing operates on its behalf; participants include banks, securities firms, insurers, FMIs, licensed fintechs and cash processors; SNB, Report on the SIC system and Disclosure Report 2024 (Sep 2025): IP service settled gross in real time in central bank money from a separate IP settlement account, round the clock, within ten seconds; SNB is system manager; around 60 banks able to receive at end 2024; all active participants must be able to receive by end 2026."
+sources = [
+  "https://www.snb.ch/public/asset/en/www-snb-ch/publications/sicsystem-disclosure/sicsystem-disclosure-all/sicsystem_disclosure_2023/publications0_en/sicsystem_disclosure_2023.en.pdf",
+  "https://www.snb.ch/public/asset/en/www-snb-ch/publications/sicsystem-disclosure/sicsystem-disclosure-all/sicsystem_disclosure_2024/publications0_en/sicsystem_disclosure_2024.en.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-li-02"
+as_of = 2026-10-15
+values.bank_participation = "Yes"
+reason = "Banks are the main SIC participants; Liechtenstein banks such as LLB and VP Bank receive CHF instant payments. Primary source: SNB, Report on the SIC system and Disclosure Report 2023 (May 2024): SNB system manager, SIX Interbank Clearing operates on its behalf; participants include banks, securities firms, insurers, FMIs, licensed fintechs and cash processors; LLB (Liechtensteinische Landesbank): instant payments available in Switzerland and Liechtenstein since August 2024 on SIC5, 24/7, under ten seconds. Secondary source: Liechtensteiner Vaterland (2 Aug 2024), via Liechtenstein Bankers Association: LLB receiving CHF instant payments from 20 Aug 2024, sending planned spring 2025, receiving free; VP Bank receiving only; LGT receiving CHF by end 2026."
+sources = [
+  "https://www.snb.ch/public/asset/en/www-snb-ch/publications/sicsystem-disclosure/sicsystem-disclosure-all/sicsystem_disclosure_2023/publications0_en/sicsystem_disclosure_2023.en.pdf",
+  "https://llb.li/en/business/payments/solutions/instant-payment",
+  "https://www.bankenverband.li/download_file/view/1936/1899",
+]
+
+[[changes]]
+type = "update"
+key = "pay-li-02"
+as_of = 2026-10-15
+values.nonbank_participation = "Yes"
+reason = "SIC admits licensed fintechs, securities firms, insurers and other non-banks; the end-2026 receiving obligation covers fintechs with customer payments as well as banks. Primary source: SNB, Instruction sheet on admission to the SIC system (4 Mar 2022): eligible participants include banks, securities firms, fintech licence holders, insurers and FMIs; institutions authorised and supervised by the Liechtenstein FMA treated as domestic; SNB, Report on the SIC system and Disclosure Report 2023 (May 2024): SNB system manager, SIX Interbank Clearing operates on its behalf; participants include banks, securities firms, insurers, FMIs, licensed fintechs and cash processors; SNB speech (10 Apr 2025): CHF 20,000 limit per transaction; receiving mandatory for all banks and fintechs with customer payments from end 2026; SNB does not set fees; prices partly still high. No Liechtenstein non-bank IP participant identified; value describes the system."
+sources = [
+  "https://www.snb.ch/en/mmr/reference/sicgiro_access_2022/source/sicgiro_access_2022.en.pdf",
+  "https://www.snb.ch/public/asset/en/www-snb-ch/publications/sicsystem-disclosure/sicsystem-disclosure-all/sicsystem_disclosure_2023/publications0_en/sicsystem_disclosure_2023.en.pdf",
+  "https://www.snb.ch/public/asset/de/www-snb-ch/publications/communication/speeches/2025/ref_20250410_gpetmo/publications0/ref_20250410_gpetmo.de.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-li-02"
+as_of = 2026-10-15
+values.participation_rules = "Yes"
+reason = "Published SNB admission criteria; FMA-authorised Liechtenstein institutions treated as domestic participants. Primary source: SNB, Instruction sheet on admission to the SIC system (4 Mar 2022): eligible participants include banks, securities firms, fintech licence holders, insurers and FMIs; institutions authorised and supervised by the Liechtenstein FMA treated as domestic."
+sources = [
+  "https://www.snb.ch/en/mmr/reference/sicgiro_access_2022/source/sicgiro_access_2022.en.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-li-02"
+as_of = 2026-10-15
+values.participants = "2025- 78 (including Swiss members)"
+reason = "78 participants able to receive instant payments at end 2025, of which 24 also offered sending to customers; 310 institutions connected to SIC overall. Primary source: SIX Interbank Clearing, Annual Report 2025: 78 participants able to receive instant payments and 24 offering sending at end 2025; 310 institutions connected to SIC; IP launched August 2024 on SIC5."
+sources = [
+  "https://www.six-group.com/dam/download/banking-services/interbank-clearing/annual-reports/annual-report-2025.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-li-02"
+as_of = 2026-10-15
+values.annual_value_usd = "Not Found"
+reason = "Searched: SNB SIC reports combine IP with other retail payments; the SNB annual report 2025 (section 4.2, p. 77) may give a 2025 IP figure but could not be accessed. Average instant payment above CHF 1,000 (April 2025). Primary source: SNB, Report on the SIC system and Disclosure Report 2024 (Sep 2025): IP service settled gross in real time in central bank money from a separate IP settlement account, round the clock, within ten seconds; SNB is system manager; around 60 banks able to receive at end 2024; all active participants must be able to receive by end 2026; SNB speech (10 Apr 2025): CHF 20,000 limit per transaction; receiving mandatory for all banks and fintechs with customer payments from end 2026; SNB does not set fees; prices partly still high. Check SNB annual report 2025 p. 77."
+sources = [
+  "https://www.snb.ch/public/asset/en/www-snb-ch/publications/sicsystem-disclosure/sicsystem-disclosure-all/sicsystem_disclosure_2024/publications0_en/sicsystem_disclosure_2024.en.pdf",
+  "https://www.snb.ch/public/asset/de/www-snb-ch/publications/communication/speeches/2025/ref_20250410_gpetmo/publications0/ref_20250410_gpetmo.de.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-li-02"
+as_of = 2026-10-15
+values.annual_volume = "Not Found"
+reason = "Searched: no published 2025 IP total located. SNB annual report 2024 reportedly gives about 7,100 instant payments per calendar day since launch in 2024 (via secondary source); 2025 figure likely in SNB annual report 2025, section 4.2. Primary source: SNB, Report on the SIC system and Disclosure Report 2024 (Sep 2025): IP service settled gross in real time in central bank money from a separate IP settlement account, round the clock, within ten seconds; SNB is system manager; around 60 banks able to receive at end 2024; all active participants must be able to receive by end 2026. Secondary source: The Sound of Payments (Substack), citing SNB Annual Report 2024 p. 76: SIC5 averaged about 7,100 instant payments per calendar day in 2024 after launch. Check SNB annual report 2025 p. 77."
+sources = [
+  "https://www.snb.ch/public/asset/en/www-snb-ch/publications/sicsystem-disclosure/sicsystem-disclosure-all/sicsystem_disclosure_2024/publications0_en/sicsystem_disclosure_2024.en.pdf",
+  "https://jeremylight.substack.com/p/the-sound-of-payments",
+]
+
+[[changes]]
+type = "update"
+key = "pay-li-02"
+as_of = 2026-10-15
+values.data_handling_rules = "Yes"
+reason = "Operator privacy statement covering personal data included in transactions processed for SIC participants, purposes, disclosures to SNB and FINMA, and retention. Primary source: SIX Interbank Clearing privacy statement (1 Dec 2021): covers personal data included in transactions processed for participants; purposes, disclosure to SNB and FINMA, retention. Operator statement rather than SNB rules; medium confidence."
+sources = [
+  "https://six-group.com/en/services/legal/privacy-statement-sic.html",
+]
+
+[[changes]]
+type = "update"
+key = "pay-li-02"
+as_of = 2026-10-15
+values.reporting_forum = "No"
+reason = "No forum connected to SIC IP. Users complain to their bank, which must run a complaints process; disputes can go to the Liechtenstein conciliation board for financial services under general rules. Primary source: FMA Liechtenstein Communication 2015/2 on complaint handling (amended 1 Feb 2025): banks and payment institutions must handle complaints and report them annually to the conciliation board; European Commission consumer redress listing: Liechtenstein conciliation board for financial services covers payment accounts and payment services."
+sources = [
+  "https://fma-li.li/fma-li/documents/rechtsgrundlagen/mitteilungen/fma-m-2015-2-beschwerdebearbeitung.pdf",
+  "https://consumer-redress.ec.europa.eu/dispute-resolution-bodies/liechtenstein-schlichtungsstelle-im-finanzdienstleistungsbereich_en",
+]
+
+[[changes]]
+type = "update"
+key = "pay-li-02"
+as_of = 2026-10-15
+values.aml_law = "Yes"
+reason = "Liechtenstein Due Diligence Act (SPG) and Ordinance apply to banks and payment service providers. Primary source: Liechtenstein Due Diligence Ordinance (SPV, LR 952.11, 2009), implementing the Due Diligence Act (SPG) on money laundering and terrorist financing."
+sources = [
+  "https://nextmobile.gesetze.li/konso/pdf/2009098000?version=7",
+]
+
+[[changes]]
+type = "update"
+key = "pay-li-02"
+as_of = 2026-10-15
+values.transaction_cost = "Variable"
+reason = "Fees set by each bank; SNB does not intervene. LLB receives instant payments free of charge. Primary source: SNB speech (10 Apr 2025): CHF 20,000 limit per transaction; receiving mandatory for all banks and fintechs with customer payments from end 2026; SNB does not set fees; prices partly still high. Secondary source: Liechtensteiner Vaterland (2 Aug 2024), via Liechtenstein Bankers Association: LLB receiving CHF instant payments from 20 Aug 2024, sending planned spring 2025, receiving free; VP Bank receiving only; LGT receiving CHF by end 2026."
+sources = [
+  "https://www.snb.ch/public/asset/de/www-snb-ch/publications/communication/speeches/2025/ref_20250410_gpetmo/publications0/ref_20250410_gpetmo.de.pdf",
+  "https://www.bankenverband.li/download_file/view/1936/1899",
+]
+
+[[changes]]
+type = "update"
+key = "pay-li-02"
+as_of = 2026-10-15
+values.qr_code = "No"
+reason = "Searched: no QR product specific to SIC IP found. The Swiss QR-bill, also used in Liechtenstein, is a payment slip standard for credit transfers in general. Primary source: SNB, Report on the SIC system and Disclosure Report 2024 (Sep 2025): IP service settled gross in real time in central bank money from a separate IP settlement account, round the clock, within ten seconds; SNB is system manager; around 60 banks able to receive at end 2024; all active participants must be able to receive by end 2026."
+sources = [
+  "https://www.snb.ch/public/asset/en/www-snb-ch/publications/sicsystem-disclosure/sicsystem-disclosure-all/sicsystem_disclosure_2024/publications0_en/sicsystem_disclosure_2024.en.pdf",
+]

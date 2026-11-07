@@ -1,9 +1,131 @@
 ---
-import Layout from '../../layouts/Standard.astro'
-import Blog from "../../components/Blog.astro";
+// Insights, /blog/: the pinned State of DPI report, then every post, talk, paper and Community
+// of Practice session, newest first (src/Insights.ts) and grouped by year; sessions are compact
+// rows. The meta line names the site an entry is published on; an arrow means the link leaves this
+// site. Papers with a PDF have a link to it under them.
+// Tabs above the list filter it by kind; they need the script below, so they start hidden.
+import Layout from '../../layouts/Layout.astro'
+import Footer from '../../components/Footer.astro'
+import { getInsights, formatDate, kindLabels, type Kind } from '../../Insights'
+
+const insights = await getInsights()
+const pinned = insights.filter(i => i.pinned)
+const entries = insights.filter(i => !i.pinned)
+const ext = (external: boolean) => external ? { rel: 'external' } : {}
+
+// entries by year, newest first (entries are already newest first)
+// (undated entries are last, in a group of their own)
+const years: { year?: string, entries: typeof entries }[] = []
+for (const e of entries) {
+  const year = e.date?.slice(0, 4)
+  if (years.at(-1)?.year !== year) years.push({ year, entries: [] })
+  years.at(-1)!.entries.push(e)
+}
+
+// a tab per kind in the list, from the most academic to the least
+const order: Kind[] = ['paper', 'report', 'case', 'article', 'talk', 'session', 'post']
+const plural: Record<Kind, string> = { paper: 'Papers', report: 'Reports', case: 'Case studies', article: 'Articles', talk: 'Talks', session: 'Sessions', post: 'Posts' }
+const tabs = [
+  { kind: 'all', label: 'All', count: entries.length },
+  ...order
+    .map(kind => ({ kind, label: plural[kind], count: entries.filter(e => e.kind === kind).length }))
+    .filter(t => t.count > 0)
+]
 ---
 
-<Layout>
-  <h1>Blog</h1>
-  <Blog/>
+<Layout title="Insights">
+  <main class="page ins" data-filter="all">
+    <header class="ins-head">
+      <h1 class="page-title page-h1">Insights</h1>
+      <p class="ins-summary">Posts, talks and papers from the DPI Map team, and notes from the <a href="/measurement-community/">DPI Measurement Community of Practice</a>.</p>
+      <p class="page-links"><a href="/rss.xml">RSS feed</a></p>
+    </header>
+
+    { pinned.map(p => (
+      <article class="ins-hero">
+        { p.image && <a href={p.href} class="ins-hero-img" tabindex="-1" aria-hidden="true"><img src={p.image} alt="" /></a> }
+        <div class="ins-hero-text">
+          <p class="ins-meta">
+            <span class="ins-kind" data-kind={p.kind}>{kindLabels[p.kind]}</span>
+            <span class="sep" aria-hidden="true">·</span>
+            { p.date ? <time datetime={p.date}>{formatDate(p.date)}</time> : <span class="ins-undated">{formatDate()}</span> }
+          </p>
+          <h2><a href={p.href}>{p.title}</a></h2>
+          { p.description && <p class="ins-hero-desc">{p.description}</p> }
+          <p class="ins-actions">
+            { p.pdf
+              ? <a class="button-blue" href={p.pdf}>Download the PDF</a>
+              : <a class="button-blue" href={p.href}>Read the report</a> }
+            { p.links.map(l => <a class="ins-more" href={l.href}>{l.label}</a>) }
+          </p>
+        </div>
+      </article>
+    ))}
+
+    <nav class="ins-tabs" aria-label="Show only" hidden>
+      { tabs.map(t => (
+        <button type="button" data-kind={t.kind} aria-pressed={t.kind === 'all' ? 'true' : 'false'}>
+          {t.label} <span class="ins-count">{t.count}</span>
+        </button>
+      ))}
+    </nav>
+
+    <div class="ins-years">
+      { years.map(y => (
+        <section class="ins-year" aria-labelledby={`y${y.year ?? 'unknown'}`}>
+          <h2 id={`y${y.year ?? 'unknown'}`} class="ins-year-label">{y.year ?? 'Date unknown'}</h2>
+          <ol class="ins-list">
+            { y.entries.map(e => e.kind === 'session' ? (
+              <li class="ins-entry ins-session" data-kind="session">
+                <p class="ins-meta">
+                  <span class="ins-kind" data-kind="session">{kindLabels.session}{e.number !== undefined && ` ${e.number}`}</span>
+                  <span class="sep" aria-hidden="true">·</span>
+                  <span class="ins-pub">Community of Practice</span>
+                  { e.date ? <time datetime={e.date}>{formatDate(e.date, true)}</time> : <span class="ins-undated">{formatDate()}</span> }
+                </p>
+                <h3><a href={e.href}>{e.title}</a></h3>
+              </li>
+            ) : (
+              <li class="ins-entry" data-kind={e.kind}>
+                <p class="ins-meta">
+                  <span class="ins-kind" data-kind={e.kind}>{kindLabels[e.kind]}</span>
+                  <span class="sep" aria-hidden="true">·</span>
+                  <span class="ins-pub">{e.source ? `First published on ${e.publisher}` : e.publisher}{ e.external && <span class="ins-arrow" aria-hidden="true">&nbsp;↗</span> }</span>
+                  { e.date ? <time datetime={e.date}>{formatDate(e.date, true)}</time> : <span class="ins-undated">{formatDate()}</span> }
+                </p>
+                <h3><a href={e.href} {...ext(e.external)}>{e.title}</a></h3>
+                { e.authors.length > 0 && <p class="ins-authors">{e.authors.join(', ')}</p> }
+                { e.description && <p class="ins-desc">{e.description}</p> }
+                { (e.pdf || e.links.length > 0) && (
+                  <p class="ins-links">
+                    { e.pdf && <a href={e.pdf} rel="external">PDF</a> }
+                    { e.links.map(l => <a href={l.href}>{l.label}</a>) }
+                  </p>
+                )}
+              </li>
+            ))}
+          </ol>
+        </section>
+      ))}
+    </div>
+
+  </main>
+  <Footer />
 </Layout>
+
+<script>
+  // the kind tabs: the main element's data-filter picks what shows (the CSS hides the rest),
+  // and a year with nothing left to show is hidden
+  const main = document.querySelector<HTMLElement>('.ins')!
+  const nav = main.querySelector<HTMLElement>('.ins-tabs')!
+  const buttons = [...nav.querySelectorAll<HTMLButtonElement>('button')]
+  function show (kind: string) {
+    main.dataset.filter = kind
+    for (const b of buttons) b.setAttribute('aria-pressed', String(b.dataset.kind === kind))
+    for (const y of main.querySelectorAll<HTMLElement>('.ins-year')) {
+      y.hidden = kind !== 'all' && !y.querySelector(`[data-kind="${kind}"]`)
+    }
+  }
+  for (const b of buttons) b.addEventListener('click', () => show(b.dataset.kind!))
+  nav.hidden = false
+</script>

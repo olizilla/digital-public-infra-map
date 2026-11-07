@@ -1,0 +1,19 @@
+[[changes]]
+type = "update"
+key = "pay-kh-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "RTGS"
+reason = "Bakong is run by the National Bank of Cambodia, which validates every transaction on its permissioned ledger without a central clearing house; participating banks hold Bakong settlement accounts at the NBC. Coded RTGS because the central bank system processes each payment individually. Primary source: NBC, Project Bakong white paper (2020), pp. 21-23."
+sources = [
+  "https://www.nbc.gov.kh/download_files/research_papers/khmer/NBC_BAKONG_White_Paper.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-kh-01"
+as_of = 2026-10-15
+values.settlement_method = "Gross"
+reason = "Each transaction is settled in real time with finality: the sender is debited and the receiver credited immediately, against Bakong settlement accounts at the NBC that must be prefunded before transacting; no credit or overdraft, and transfers lacking liquidity are queued. Q1 value (ACH) not supported. Primary source: NBC, Project Bakong white paper (2020), pp. 23-30. Watch item: the NBC 2025 payment system report describes a system split into modules including a net settlement module; check at next review whether Bakong settlement has changed."
+sources = [
+  "https://www.nbc.gov.kh/download_files/research_papers/khmer/NBC_BAKONG_White_Paper.pdf",
+]

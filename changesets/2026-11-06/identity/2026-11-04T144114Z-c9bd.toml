@@ -1,0 +1,69 @@
+[[changes]]
+type = "update"
+key = "id-bz-01"
+as_of = 2026-09-16
+values.claim = "Yes"
+reason = "Cabinet approved nationwide roll-out of a biometrics-based national digital ID in July 2025 after a 6-month, 500-person pilot."
+sources = [
+  "https://sumsub.com/media/news/belize-cabinet-approves-roll-out-of-biometrics-based-digital-id/",
+  "https://www.pressoffice.gov.bz/press-releases/",
+]
+
+[[changes]]
+type = "update"
+key = "id-bz-01"
+as_of = 2026-09-16
+values.status = "Not Found"
+reason = "Claim of new system rollout but no additional details"
+sources = [
+  "https://sumsub.com/media/news/belize-cabinet-approves-roll-out-of-biometrics-based-digital-id/",
+]
+
+[[changes]]
+type = "update"
+key = "id-bz-01"
+as_of = 2026-09-16
+values.gov_portal_auth = "Not Found"
+values.sectoral_use_cases = "Not Found"
+reason = "Claim of new system rollout but no additional details"
+
+[[changes]]
+type = "update"
+key = "id-bz-01"
+as_of = 2026-09-16
+values.url = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "id-bz-01"
+as_of = 2026-09-16
+values.biometrics = "Yes"
+reason = "Biometrics linked to a secure national ID card."
+sources = [
+  "https://sumsub.com/media/news/belize-cabinet-approves-roll-out-of-biometrics-based-digital-id/",
+  "https://www.pressoffice.gov.bz/press-releases/",
+]
+
+[[changes]]
+type = "update"
+key = "id-bz-01"
+as_of = 2026-09-16
+values.name = "National Digital ID"
+reason = ""
+sources = [
+  "https://www.biometricupdate.com/202507/belize-cabinet-approves-national-digital-id-roll-out",
+  "https://lovefm.com/belize-moves-closer-to-national-id-rollout-following-pilot-phase/",
+  "https://www.pressoffice.gov.bz/press-releases/",
+]
+
+[[changes]]
+type = "update"
+key = "id-bz-01"
+as_of = 2026-09-16
+values.governing_entity = "Ministry of E-Governance (e-Government and Digitalization Unit)"
+reason = ""
+sources = [
+  "https://www.biometricupdate.com/202507/belize-cabinet-approves-national-digital-id-roll-out",
+  "https://www.pressoffice.gov.bz/press-releases/",
+]

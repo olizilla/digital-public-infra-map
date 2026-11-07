@@ -1,0 +1,29 @@
+[[changes]]
+type = "update"
+key = "id-kw-01"
+as_of = 2026-09-16
+values.gov_portal_auth = "Yes"
+reason = "Sahel government app uses the digital identity for e-services."
+sources = [
+  "https://hawyti.paci.gov.kw/English/Home.aspx",
+]
+
+[[changes]]
+type = "update"
+key = "id-kw-01"
+as_of = 2026-09-16
+values.name = "Kuwait Mobile ID"
+reason = "PACI moving certificates and civil ID services into Sahel (2026)."
+sources = [
+  "https://hawyti.paci.gov.kw/English/Home.aspx",
+]
+
+[[changes]]
+type = "update"
+key = "id-kw-01"
+as_of = 2026-09-16
+values.status = "Implemented"
+reason = "Kuwait Mobile ID is operational, with additional PACI-related services introduced in 2026."
+sources = [
+  "https://hawyti.paci.gov.kw/English/Home.aspx",
+]

@@ -1,0 +1,104 @@
+---
+// A landing page for a paper, report or article that lives on another site, so a reader stays
+// in Insights until they choose the full text: one for each `links` entry with a body, its
+// abstract, or a PDF (src/content.config.ts). The title, kind, venue and authors; a button to
+// download the PDF and a link to the record; the abstract, or the description as a summary; the
+// places on the map it's about; a citation to copy. Entries with neither link straight to their source.
+import CiteBox from '../../components/CiteBox.astro'
+import { getCollection, render } from 'astro:content'
+import Layout from '../../layouts/Layout.astro'
+import Footer from '../../components/Footer.astro'
+import MoreInsights from '../../components/MoreInsights.astro'
+import { formatDate, hasPage, kindLabels } from '../../Insights'
+import { systems, systemHref } from '../../Systems'
+import { pages } from '../../Records'
+
+export async function getStaticPaths () {
+  const links = await getCollection('links', ({ data, body }) => data.published && hasPage(data, body))
+  return links.map(entry => ({ params: { id: entry.id }, props: { entry } }))
+}
+
+const { entry } = Astro.props
+const { Content } = await render(entry)
+const d = entry.data
+const authors = d.authors ?? []
+
+// `places` are System IDs or country names; a name that is neither fails the build
+const countries = new Map([...pages.values()].map(p => [p.name, p.href]))
+const places = (d.places ?? []).map(place => {
+  const system = systems.find(s => s.id === place)
+  if (system) return { href: systemHref(system.id), label: system.title, note: system.country }
+  const href = countries.get(place)
+  if (href) return { href, label: place, note: 'Country' }
+  throw new Error(`src/content/links/${entry.id}.md: place "${place}" is neither a System ID nor a country with a page`)
+})
+
+// "Sarosh Nagar" → "Nagar, S.", "R. Gaur" → "Gaur, R."
+const citeName = (name: string) => {
+  const parts = name.split(/\s+/)
+  const last = parts.pop()
+  return `${last}, ${parts.map(p => p[0] + '.').join(' ')}`
+}
+const names = authors.map(citeName)
+const authorList = names.length > 1 ? `${names.slice(0, -1).join(', ')} & ${names.at(-1)}` : names[0] ?? ''
+const citation = [
+  `${authorList} (${d.date ? d.date.slice(0, 4) : 'n.d.'}).`,
+  `${d.title}.`,
+  d.publication ? `${d.publication}.` : `${d.publisher ?? ''}.`,
+  d.doi ? `https://doi.org/${d.doi}` : d.url
+].join(' ')
+const recordLabel = d.urlLabel ?? d.publisher ?? 'the source'
+---
+
+<Layout title={d.title}>
+  <article class="paper pt-4 md:pt-10 pb-10 max-w-2xl mx-auto px-3 md:px-0">
+    <header class="post-head">
+      <nav class="page-crumbs" aria-label="Breadcrumb"><a href="/blog/">Insights</a></nav>
+      <h1 class="page-title page-h1">{d.title}</h1>
+      <p class="post-meta">
+        <span class="ins-kind" data-kind={d.kind}>{kindLabels[d.kind]}</span>
+        <span aria-hidden="true">·</span>
+        <span>{d.publisher}</span>
+        <span aria-hidden="true">·</span>
+        { d.date ? <time datetime={d.date}>{formatDate(d.date)}</time> : <span class="ins-undated">{formatDate()}</span> }
+      </p>
+      { authors.length > 0 && <p class="paper-authors">{authors.join(', ')}</p> }
+      <p class="ins-actions">
+        { d.pdf && <a class="button-blue" href={d.pdf} rel="external">Download the PDF</a> }
+        <a class="ins-more" href={d.url} rel="external">View on {recordLabel}&nbsp;↗</a>
+      </p>
+    </header>
+
+    { entry.body?.trim()
+      ? (
+        <section class="paper-section" aria-labelledby="abstract">
+          <h2 id="abstract">Abstract</h2>
+          <div class="prose prose-zinc max-w-none"><Content /></div>
+          { d.licence && <p class="paper-licence">Abstract from {recordLabel}, shared under {d.licence}.</p> }
+        </section>
+      )
+      : d.description && (
+        <section class="paper-section" aria-labelledby="summary">
+          <h2 id="summary">Summary</h2>
+          <div class="prose prose-zinc max-w-none"><p>{d.description}</p></div>
+        </section>
+      )}
+
+    { places.length > 0 && (
+      <section class="paper-section" aria-labelledby="on-the-map">
+        <h2 id="on-the-map">On the map</h2>
+        <ul class="paper-places">
+          { places.map(p => <li><a href={p.href}>{p.label}</a> <span>{p.note}</span></li>) }
+        </ul>
+      </section>
+    )}
+
+    <section class="paper-section" aria-labelledby="cite">
+      <h2 id="cite">Cite</h2>
+      <CiteBox citation={citation} />
+    </section>
+
+    <MoreInsights />
+  </article>
+  <Footer />
+</Layout>

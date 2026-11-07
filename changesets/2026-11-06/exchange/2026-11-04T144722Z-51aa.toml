@@ -1,0 +1,59 @@
+[[changes]]
+type = "update"
+key = "dx-rs-01"
+as_of = 2026-10-15
+values.once_only_principle = "Yes"
+values.personal_data_protection = "Yes"
+reason = ""
+sources = [
+  "https://interoperable-europe.ec.europa.eu/sites/default/files/custom-page/attachment/2026-04/iopeu-monitoring_2025-supporting-document_serbia_vfinal.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "dx-rs-01"
+as_of = 2026-10-15
+values.url = "https://euprava.gov.rs/usluge/5224"
+values.number_of_transactions = "Not Found"
+values.number_of_members = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-rs-01"
+as_of = 2026-10-15
+values.formal_mandate = "Yes"
+reason = ""
+sources = [
+  "https://mduls.gov.rs/en/announcements/public-administration-reform-citizens-have-not-been-acting-as-couriers-of-the-administration-for-six-years/",
+]
+
+[[changes]]
+type = "update"
+key = "dx-rs-01"
+as_of = 2026-10-15
+values.interoperability_level = "Semantic"
+reason = ""
+sources = [
+  "https://reg.pravno-informacioni-sistem.rs/api/viewdoc?uuid=fb2ff74b-864a-4506-b0dc-c865d9a3c50c&regactid=440573&doctype=reg",
+]
+
+[[changes]]
+type = "update"
+key = "dx-rs-01"
+as_of = 2026-10-15
+values.independent_audit = "Not Found"
+reason = ""
+sources = [
+  "https://pravno-informacioni-sistem.rs/eli/rep/sgrs/ministarstva/pravilnik/2019/57/3/reg",
+]
+
+[[changes]]
+type = "update"
+key = "dx-rs-01"
+as_of = 2026-10-15
+values.permitted_participants = "Public, Private, Civil"
+reason = ""
+sources = [
+  "https://euprava.gov.rs/usluge/5224",
+]

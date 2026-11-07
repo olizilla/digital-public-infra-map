@@ -1,0 +1,10 @@
+[[changes]]
+type = "update"
+key = "pay-lac-01"
+as_of = 2026-10-15
+values.realtime_active = "No"
+values.status = "Suspended"
+reason = "DCash 2.0 formally suspended by ECCB Monetary Council (communique 4 May 2026); entry removed; regional row deleted"
+sources = [
+  "https://www.eccb-centralbank.org/viewPDF/documents/2026-02-17-14-37-37-Communique-of-the-112th-Meeting-of-the-ECCB-Monetary-Council.pdf",
+]

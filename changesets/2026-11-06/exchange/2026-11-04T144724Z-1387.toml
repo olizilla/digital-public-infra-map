@@ -1,0 +1,112 @@
+[[changes]]
+type = "create"
+key = "dx-se-02"
+as_of = 2026-10-15
+values.country = "Sweden"
+values.name = "Secure Digital Communication"
+reason = ""
+sources = [
+  "https://www.digg.se/download/18.41bb5ce61939e3df6684131/1738330308588/Bilaga_Lo%CC%88sningar%20i%20Ena.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "dx-se-02"
+as_of = 2026-10-15
+values.formal_mandate = "Yes"
+reason = ""
+sources = [
+  "https://www.digg.se/saker-digital-kommunikation/sdk-for-deltagarorganisationer/anslutningsavtal-regelverk-samt-bilagor/anslutningsavtal-for-deltagarorganisationer-angaende-saker-digital-kommunikation",
+]
+
+[[changes]]
+type = "update"
+key = "dx-se-02"
+as_of = 2026-10-15
+values.architecture = "Not Found"
+values.once_only_principle = "Yes"
+values.personal_data_protection = "Yes"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-se-02"
+as_of = 2026-10-15
+values.national_regional = "National"
+values.scalable_architecture = "Yes"
+values.coordination_unit = "Agency for Digital Government (Digg)"
+values.multiple_public_entities = "Yes"
+values.impact_metrics = "Yes"
+values.number_of_transactions = "2025 - 42700"
+values.number_of_members = "2025 - 139"
+reason = ""
+sources = [
+  "https://www.digg.se/download/18.4d9d13fe19c34cfab858b8/1771920789535/A%CC%8Arsredovisning%202025%20Myndigheten%20fo%CC%88r%20digital%20f%C3%B6rvaltning.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "dx-se-02"
+as_of = 2026-10-15
+values.independent_audit = "No"
+reason = ""
+sources = [
+  "https://www.digg.se/analys-och-uppfoljning/publikationer/publikationer/2024-03-27-uppdrag-att-tillhandahalla-infrastruktur-for-saker-digital-kommunikation",
+  "https://www.digg.se/analys-och-uppfoljning/publikationer/publikationer/2024-03-27-uppdrag-att-tillhandahalla-infrastruktur-for-saker-digital-kommunikation#:~:text=Risk%20and%20safety%20analysis",
+]
+
+[[changes]]
+type = "update"
+key = "dx-se-02"
+as_of = 2026-10-15
+values.url = "https://sdk.digg.se"
+values.status = "Implemented"
+values.governing_entity = "Agency for Digital Government (Digg)"
+values.ownership = "Public"
+reason = ""
+sources = [
+  "https://www.digg.se/download/18.129a4fef1939e2e1c1f25094/1711528166705/Uppdrag%20att%20tillhandha%CC%8Alla%20infrastruktur%20fo%CC%88r%20sa%CC%88ker%20digital%20kommunikation.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "dx-se-02"
+as_of = 2026-10-15
+values.sectoral = "Cross-sectoral"
+values.realtime_sharing = "Yes"
+values.enrolment_info = "Yes"
+reason = ""
+sources = [
+  "https://inera.atlassian.net/wiki/download/attachments/2719318231/Introduktion+till+SDK+2023.pdf?version=1",
+]
+
+[[changes]]
+type = "update"
+key = "dx-se-02"
+as_of = 2026-10-15
+values.interoperability_level = "Syntactic"
+values.data_management_rules = "Yes"
+reason = ""
+sources = [
+  "https://inera.atlassian.net/wiki/download/attachments/2711027723/Regelverk+f%C3%B6r+anslutning+till+S%C3%A4ker+digital+kommunikation+-+Informationss%C3%A4kerhet+1.4%282023%29.pdf?version=1",
+]
+
+[[changes]]
+type = "update"
+key = "dx-se-02"
+as_of = 2026-10-15
+values.permitted_participants = "Public, Private"
+reason = "SDK is used by both public and private actors discharging a public duty"
+sources = [
+  "https://www.digg.se/saker-digital-kommunikation/sdk-for-deltagarorganisationer/anslutningsavtal-regelverk-samt-bilagor/anslutningsavtal-for-deltagarorganisationer-angaende-saker-digital-kommunikation---privata-aktorer",
+]
+
+[[changes]]
+type = "update"
+key = "dx-se-02"
+as_of = 2026-10-15
+values.audit_mechanism = "Yes"
+reason = ""
+sources = [
+  "https://www.digg.se/saker-digital-kommunikation/sdk-for-leverantorer-av-meddelandesystem/regelverk-for-meddelandesystem",
+]

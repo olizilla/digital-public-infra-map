@@ -1,0 +1,27 @@
+---
+// A value as a system's page shows it: a YES/NO/NA pill for a yes/no field, a link for
+// a website, NA in grey when it's missing, or the text.
+import YesNo from './YesNo.astro'
+import { yesNo } from '../DpiTest'
+import { domainOf } from '../SystemPage'
+import { webLink } from '../Util'
+import type { Field } from '../Schema'
+
+interface Props {
+  field: Field
+  value: string
+}
+const { field, value } = Astro.props
+const flag = field.site.kind === 'flag' ? yesNo(value) : undefined
+const missing = value.trim() === '' || value === 'NA'
+// a website without its scheme, like www.example.org, links to https://
+const href = field.site.kind !== 'url' || missing ? undefined : [value, `https://${value}`].map(webLink).find(Boolean)
+---
+{ flag
+  ? <YesNo status={flag} />
+  : missing
+    ? <span class="na-text" title="No data">NA</span>
+    : href
+      ? <a class="val-link" href={href} rel="nofollow noopener">{domainOf(href)}</a>
+      : <Fragment>{value}</Fragment>
+}

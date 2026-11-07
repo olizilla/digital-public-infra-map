@@ -1,0 +1,18 @@
+[[changes]]
+type = "create"
+key = "t-d-1"
+as_of = 2026-06-02
+values.place = "D"
+values.name = "Date"
+reason = "A new thing in a new place."
+sources = [
+  "https://example.org/date",
+]
+
+[[changes]]
+type = "update"
+key = "t-d-1"
+as_of = 2026-06-02
+values.colour = "brown"
+values.weight = "5g"
+reason = ""

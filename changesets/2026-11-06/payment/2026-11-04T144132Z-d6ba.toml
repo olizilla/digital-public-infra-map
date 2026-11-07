@@ -1,0 +1,224 @@
+[[changes]]
+type = "update"
+key = "pay-africa-02"
+as_of = 2026-10-15
+values.name = "PI-SPI (Plateforme Interopérable du Système de Paiement Instantané)"
+reason = "BCEAO instant payment platform launched 30 Sep 2025 across all 8 WAEMU states."
+sources = [
+  "https://www.bceao.int/fr/content/lancement-officiel-de-la-plateforme-interoperable-du-systeme-de-paiement-instantane-pi-spi",
+]
+
+[[changes]]
+type = "update"
+key = "pay-africa-02"
+as_of = 2026-10-15
+values.url = "https://pispi.bceao.int/"
+reason = "Official PI-SPI webpage."
+
+[[changes]]
+type = "update"
+key = "pay-africa-02"
+as_of = 2026-10-15
+values.realtime_active = "Yes"
+reason = "Live 24/7 instant payments."
+sources = [
+  "https://www.bceao.int/fr/content/lancement-officiel-de-la-plateforme-interoperable-du-systeme-de-paiement-instantane-pi-spi",
+]
+
+[[changes]]
+type = "update"
+key = "pay-africa-02"
+as_of = 2026-10-15
+values.system_type = "Cross-domain"
+reason = "Connects banks, microfinance institutions, e-money issuers and payment institutions."
+sources = [
+  "https://www.bceao.int/fr/content/lancement-officiel-de-la-plateforme-interoperable-du-systeme-de-paiement-instantane-pi-spi",
+]
+
+[[changes]]
+type = "update"
+key = "pay-africa-02"
+as_of = 2026-10-15
+values.status = "Implemented"
+reason = "Launched 30 Sep 2025."
+sources = [
+  "https://www.bceao.int/fr/content/lancement-officiel-de-la-plateforme-interoperable-du-systeme-de-paiement-instantane-pi-spi",
+]
+
+[[changes]]
+type = "update"
+key = "pay-africa-02"
+as_of = 2026-10-15
+values.national_regional = "Regional"
+reason = "Unchanged from Q1."
+sources = [
+  "https://pispi.bceao.int/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-africa-02"
+as_of = 2026-10-15
+values.cross_border = "Yes"
+reason = "Intra-Union transfers in a single currency; coded as TIPS rows are."
+sources = [
+  "https://www.bceao.int/fr/content/lancement-officiel-de-la-plateforme-interoperable-du-systeme-de-paiement-instantane-pi-spi",
+]
+
+[[changes]]
+type = "update"
+key = "pay-africa-02"
+as_of = 2026-10-15
+values.interoperability_policy = "Yes"
+reason = "BCEAO Instruction 001-01-2024 requires providers to offer interoperable instant payments."
+sources = [
+  "https://www.bceao.int/fr/content/lancement-officiel-de-la-plateforme-interoperable-du-systeme-de-paiement-instantane-pi-spi",
+]
+
+[[changes]]
+type = "update"
+key = "pay-africa-02"
+as_of = 2026-10-15
+values.transaction_types = "P2P, P2M, B2B, G2P"
+reason = "Transfers and merchant QR payments."
+sources = [
+  "https://www.bceao.int/fr/content/lancement-officiel-de-la-plateforme-interoperable-du-systeme-de-paiement-instantane-pi-spi",
+]
+
+[[changes]]
+type = "update"
+key = "pay-africa-02"
+as_of = 2026-10-15
+values.operator = "Central bank"
+reason = "Built and operated by (Central Bank of West African States) BCEAO."
+sources = [
+  "https://www.bceao.int/fr/content/lancement-officiel-de-la-plateforme-interoperable-du-systeme-de-paiement-instantane-pi-spi",
+]
+
+[[changes]]
+type = "update"
+key = "pay-africa-02"
+as_of = 2026-10-15
+values.bank_participation = "Yes"
+reason = "Banks connected."
+sources = [
+  "https://www.bceao.int/fr/content/lancement-officiel-de-la-plateforme-interoperable-du-systeme-de-paiement-instantane-pi-spi",
+]
+
+[[changes]]
+type = "update"
+key = "pay-africa-02"
+as_of = 2026-10-15
+values.nonbank_participation = "Yes"
+reason = "E-money issuers, MFIs and payment institutions connected."
+sources = [
+  "https://www.bceao.int/fr/content/lancement-officiel-de-la-plateforme-interoperable-du-systeme-de-paiement-instantane-pi-spi",
+]
+
+[[changes]]
+type = "update"
+key = "pay-africa-02"
+as_of = 2026-10-15
+values.clearing_infrastructure = "Switch"
+reason = "New field. Built and operated by BCEAO; the central bank platform processes payments directly. Settlement-level documentation not reviewed; confirm clearing arrangement against PI-SPI rules."
+sources = [
+  "https://www.bceao.int/fr/content/lancement-officiel-de-la-plateforme-interoperable-du-systeme-de-paiement-instantane-pi-spi",
+]
+
+[[changes]]
+type = "update"
+key = "pay-africa-02"
+as_of = 2026-10-15
+values.settlement_method = "DNS"
+reason = "New field. Information not found."
+
+[[changes]]
+type = "update"
+key = "pay-africa-02"
+as_of = 2026-10-15
+values.participation_rules = "Yes"
+reason = "Connection to PI-SPI is mandatory for banks, e-money institutions, payment institutions and microfinance institutions supervised by the WAMU Banking Commission, with membership agreements and technical certification; the BCEAO extended the deadline to 30 September 2026 for banks, e-money and payment institutions and to 30 June 2027 for microfinance institutions. Primary source: BCEAO communiqué (25 Jun 2026). Secondary source: Droit Medias Finance on the BCEAO circular setting the original 30 June 2026 deadline. Updated from the value in the consolidated log."
+sources = [
+  "https://www.bceao.int/sites/default/files/2026-06/Communiqu%C3%A9_Prolongation_d%C3%A9lai_Connexion_%C3%A0_PI-SPI-25062026.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-africa-02"
+as_of = 2026-10-15
+values.participants = "2026- 8"
+reason = "104 institutions authorised to offer PI-SPI services to the public across the WAEMU at 31 July 2026 (Senegal 24, Côte d'Ivoire 23, Mali 14, Burkina Faso 13, Benin 11, Togo 9, Guinea-Bissau 5, Niger 5), up from 45 at launch. The BCEAO reported 80 connected participants on 24 June 2026. Secondary source: Finances AO, citing the BCEAO list (18 Aug 2026). Primary source: BCEAO communiqué (25 Jun 2026) for the 80 connected participants. Updated from the value in the consolidated log."
+sources = [
+  "https://financesao.com/uemoa-pi-spi-atteint-104-etablissements-autorises/",
+  "https://burkina24.com/?p=418262",
+]
+
+[[changes]]
+type = "update"
+key = "pay-africa-02"
+as_of = 2026-10-15
+values.annual_value_usd = "Not Found"
+reason = "Over XOF 110 billion transferred from launch (30 Sep 2025) to July 2026, as reported by the BCEAO at the presentation of its 2025 Annual Report. No calendar-year figure published yet. Secondary source: Financial Afrik (23 Jul 2026)."
+sources = [
+  "https://www.financialafrik.com/en/2026/07/23/bceao-pi-spi-surpasses-30-million-users-and-accelerates-financial-inclusion-in-the-uemoa/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-africa-02"
+as_of = 2026-10-15
+values.annual_volume = "Not Found"
+reason = "Over one million transactions from launch (30 Sep 2025) to July 2026, reported by the BCEAO at the presentation of its 2025 Annual Report; over 30 million users connected. No calendar-year figure published yet. Secondary source: Financial Afrik (23 Jul 2026)."
+sources = [
+  "https://www.financialafrik.com/en/2026/07/23/bceao-pi-spi-surpasses-30-million-users-and-accelerates-financial-inclusion-in-the-uemoa/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-africa-02"
+as_of = 2026-10-15
+values.data_handling_rules = "Yes"
+reason = "BCEAO Instruction No. 001-01-2024 on payment services in the WAMU limits payment service providers to the personal data needed to provide the service and requires explicit consent for other uses (Art. 50), and requires data security checks on outsourced providers (Art. 36). Primary source: BCEAO Instruction No. 001-01-2024. Updated from the value in the consolidated log."
+sources = [
+  "https://bceao.int/sites/default/files/inline-files/Instruction-No001-01-2024_relative_aux_services_de_paiement_dans_l-UMOA.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-africa-02"
+as_of = 2026-10-15
+values.reporting_forum = "No"
+reason = "No forum connected to PI-SPI. Under BCEAO Instruction No. 001-01-2024 (Art. 51) users complain to their provider, which must reply within seven working days, then may complain to the WAMU Banking Commission, use mediation or the national Observatory for the Quality of Financial Services; these are general financial sector routes. Primary source: BCEAO Instruction No. 001-01-2024. Updated from the value in the consolidated log."
+sources = [
+  "https://bceao.int/sites/default/files/inline-files/Instruction-No001-01-2024_relative_aux_services_de_paiement_dans_l-UMOA.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-africa-02"
+as_of = 2026-10-15
+values.aml_law = "Yes"
+reason = "Uniform Law on AML/CFT/proliferation financing (March 2023 version), adopted for transposition by all WAMU member states; regional entry. Primary source: BCEAO, Loi uniforme LBC/FT/FP (2023)."
+sources = [
+  "https://bceao.int/sites/default/files/2025-02/Loi-uniforme-LBCFTFP-Mars-2023-vf.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-africa-02"
+as_of = 2026-10-15
+values.transaction_cost = "Cumulative transactions up to a limit of 8,000 CFA francs per day free. Any amount over this daily limit is subject to a fee capped at 0.8%"
+reason = "Information not found."
+sources = [
+  "https://www.ecofinagency.com/news/0510-59462-wave-joins-pi-spi-as-bceao-rewrites-instant-payment-fee-rules",
+]
+
+[[changes]]
+type = "update"
+key = "pay-africa-02"
+as_of = 2026-10-15
+values.qr_code = "Yes"
+reason = "Standardised merchant QR."
+sources = [
+  "https://www.bceao.int/fr/content/lancement-officiel-de-la-plateforme-interoperable-du-systeme-de-paiement-instantane-pi-spi",
+]

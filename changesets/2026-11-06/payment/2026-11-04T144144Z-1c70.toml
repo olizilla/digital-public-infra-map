@@ -1,0 +1,106 @@
+[[changes]]
+type = "update"
+key = "pay-dz-01"
+as_of = 2026-10-15
+values.name = "DZMobPay (GIE Monétique)"
+reason = "Names the live system: national interoperable mobile and QR payment platform run by GIE Monétique, replacing the earlier \"Switch mobile\" label. Note that DZMobPay is the brand but operates on switch mobile rails. Primary source: APS (Algérie Presse Service, state news agency) (2025-11). Secondary source: Maghreb Emergent (2025-11)."
+sources = [
+  "https://www.aps.dz/fr/economie/banque-et-finances/mikdqi6d-m-paiement-l-interoperabilite-elargie-a-15-banques-en-2026",
+  "https://maghrebemergent.news/fr/avenir-du-paiement-mobile-en-algerie-15-banques-interconnectees-dici-2026/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-dz-01"
+as_of = 2026-10-15
+values.url = "https://www.aps.dz/fr/economie/banque-et-finances/mikdqi6d-m-paiement-l-interoperabilite-elargie-a-15-banques-en-2026"
+reason = "The new link is from the governemnt Algeria Press Service"
+
+[[changes]]
+type = "update"
+key = "pay-dz-01"
+as_of = 2026-10-15
+values.realtime_active = "Yes"
+reason = "Live since January 2025; account-to-account transfers and QR payments across banks completed in under 10 seconds. Primary source: APS (Algérie Presse Service, state news agency) (2025-11). Secondary source: Eco Times (2025-11); L'Algérie Aujourd'hui (2025-11)."
+sources = [
+  "https://www.aps.dz/fr/economie/banque-et-finances/mikdqi6d-m-paiement-l-interoperabilite-elargie-a-15-banques-en-2026",
+  "https://ecotimesdz.com/m-paiement-algerie-interoperabilite-dzmobpay-code-qr-2026/",
+  "https://lalgerieaujourdhui.dz/paiement-electronique-par-telephone-du-nouveau-a-partir-de-lannee-prochaine/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-dz-01"
+as_of = 2026-10-15
+values.status = "Implemented"
+reason = "In service since January 2025; 7 banks plus Algérie Poste live by November 2025, 15 banks targeted for 2026. Primary source: APS (Algérie Presse Service, state news agency) (2025-11). Secondary source: L'Algérie Aujourd'hui (2025-11)."
+sources = [
+  "https://www.aps.dz/fr/economie/banque-et-finances/mikdqi6d-m-paiement-l-interoperabilite-elargie-a-15-banques-en-2026",
+  "https://lalgerieaujourdhui.dz/paiement-electronique-par-telephone-du-nouveau-a-partir-de-lannee-prochaine/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-dz-01"
+as_of = 2026-10-15
+values.transaction_types = "P2P, P2M"
+reason = "Direct account-to-account transfers between individuals and QR purchases at merchants. Primary source: APS (Algérie Presse Service, state news agency) (2025-11). Secondary source: Maghreb Emergent (2025-11)."
+sources = [
+  "https://maghrebemergent.news/fr/avenir-du-paiement-mobile-en-algerie-15-banques-interconnectees-dici-2026/",
+  "https://www.aps.dz/fr/economie/banque-et-finances/mikdqi6d-m-paiement-l-interoperabilite-elargie-a-15-banques-en-2026",
+]
+
+[[changes]]
+type = "update"
+key = "pay-dz-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "Switch"
+reason = "New field. Interoperability runs through the SATIM interbank network, which interconnects 18 banks plus Algérie Poste. Primary source: none found. Secondary source: Algeria Tech News (2026); Eco Times (2025-11). Secondary sources only; confirm the clearing arrangement with GIE Monétique or Bank of Algeria material."
+sources = [
+  "https://algeriatech.news/?p=34076",
+  "https://ecotimesdz.com/m-paiement-algerie-interoperabilite-dzmobpay-code-qr-2026/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-dz-01"
+as_of = 2026-10-15
+values.settlement_method = "DNS"
+reason = "New field. Interbank retail payments in Algeria are cleared multilaterally and settled net in the Bank of Algeria RTGS (ARTS) on a same-day basis, through ATCI or SATIM's clearing. Final settlement location: ARTS. Primary source: Bank of Algeria, Regulation No. 2005-06 (2005-12). Secondary source: BNP Paribas Cash Management Atlas (n.d.); Fintech Policies (2025). Sources describe retail and card clearing generally; confirm whether DZMobPay positions settle via ATCI or directly from SATIM to ARTS, and the cycle."
+sources = [
+  "https://www.bank-of-algeria.dz/stoodroa/2021/03/reglement200506.pdf",
+  "https://cashmanagement.bnpparibas.com/atlas-countries/algeria",
+  "https://fr.fintechpolicies.com/algerie-le-switch-national-de-paiement-satim-enjeux-et-perspectives-pour-linclusion-financiere/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-dz-01"
+as_of = 2026-10-15
+values.operator = "Bank association"
+reason = "GIE Monétique, the banking community's economic interest group, runs DZMobPay; SATIM was founded at the initiative of the banking community. Primary source: APS (Algérie Presse Service, state news agency) (2025-11). Secondary source: Algeria Tech News (2026). GIE Monétique membership (banks, Algérie Poste, any Bank of Algeria role) not confirmed."
+sources = [
+  "https://www.aps.dz/fr/economie/banque-et-finances/mikdqi6d-m-paiement-l-interoperabilite-elargie-a-15-banques-en-2026",
+  "https://algeriatech.news/?p=34076",
+]
+
+[[changes]]
+type = "update"
+key = "pay-dz-01"
+as_of = 2026-10-15
+values.participants = "2025- 8"
+reason = "BNA, CPA, BDL, BEA, CNEP-Banque, AGB and Al Salam Bank plus Algérie Poste live by November 2025; BADR and Fransabank due to join by end-2025. Primary source: APS (Algérie Presse Service, state news agency) (2025-11). Secondary source: Maghreb Emergent (2025-11)."
+sources = [
+  "https://www.aps.dz/fr/economie/banque-et-finances/mikdqi6d-m-paiement-l-interoperabilite-elargie-a-15-banques-en-2026",
+  "https://maghrebemergent.news/fr/avenir-du-paiement-mobile-en-algerie-15-banques-interconnectees-dici-2026/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-dz-01"
+as_of = 2026-10-15
+values.transaction_cost = "0 on P2P and 0% P2M"
+reason = "Fee schedule is reported via secondary sources"
+sources = [
+  "https://news.radioalgerie.dz/fr/node/57526",
+]

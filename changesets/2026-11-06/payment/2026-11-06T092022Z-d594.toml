@@ -1,0 +1,21 @@
+[[changes]]
+type = "update"
+key = "pay-lac-04"
+as_of = 2026-11-05
+values.realtime_active = "No"
+reason = "Not yet processing payments for users. A proof of concept with live test payments between The Bahamas and Barbados ran in February 2025; in September 2026 the Central Bank of Trinidad and Tobago reported work continuing toward a pilot. No customer payments reported."
+sources = [
+  "https://gfmag.com/banking/caribbeans-payment-rail-pilot/",
+  "https://www.lacaribenanews.com/caricom-capss-papss-central-banks-port-of-spain-2026/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-lac-04"
+as_of = 2026-11-05
+values.status = "Planned/Piloted"
+reason = "Proof of concept completed (February 2025); pilot in preparation across CARICOM central banks, with no launch date announced."
+sources = [
+  "https://gfmag.com/banking/caribbeans-payment-rail-pilot/",
+  "https://www.lacaribenanews.com/caricom-capss-papss-central-banks-port-of-spain-2026/",
+]

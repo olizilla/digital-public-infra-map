@@ -1,0 +1,90 @@
+[[changes]]
+type = "create"
+key = "dx-be-02"
+as_of = 2026-10-15
+values.country = "Belgium"
+values.name = "CrossRoads Bank of Social Security (KSZ)"
+values.ownership = "Public"
+values.permitted_participants = "Public, Private, Civil"
+values.multiple_public_entities = "Yes"
+values.impact_metrics = "Yes"
+reason = ""
+sources = [
+  "https://www.ksz-bcss.fgov.be/nl",
+]
+
+[[changes]]
+type = "update"
+key = "dx-be-02"
+as_of = 2026-10-15
+values.status = "Implemented"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-be-02"
+as_of = 2026-10-15
+values.independent_audit = "Yes"
+reason = ""
+sources = [
+  "https://www.ksz-bcss.fgov.be/nl/page/koninklijk-besluit-van-12-augustus-1993",
+]
+
+[[changes]]
+type = "update"
+key = "dx-be-02"
+as_of = 2026-10-15
+values.url = "https://www.ksz-bcss.fgov.be/nl"
+values.personal_data_protection = "Yes"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-be-02"
+as_of = 2026-10-15
+values.sectoral = "Cross-sectoral"
+values.data_management_rules = "Yes"
+values.number_of_transactions = "2026 - 2.149 billion"
+values.number_of_members = "2026 - 3000"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-be-02"
+as_of = 2026-10-15
+values.governing_entity = "Management Committee"
+reason = ""
+sources = [
+  "https://www.ksz-bcss.fgov.be/nl/over-de-ksz/beheer/beheerscomite",
+]
+
+[[changes]]
+type = "update"
+key = "dx-be-02"
+as_of = 2026-10-15
+values.interoperability_level = "Semantic"
+reason = ""
+sources = [
+  "https://www.ksz-bcss.fgov.be/nl/documentations",
+]
+
+[[changes]]
+type = "update"
+key = "dx-be-02"
+as_of = 2026-10-15
+values.formal_mandate = "Yes"
+reason = ""
+sources = [
+  "https://www.ksz-bcss.fgov.be/nl/page/wet-van-15-januari-1990-houdende-oprichting-en-organisatie-van-een-kruispuntbank-van-de-sociale-zekerheid",
+  "https://www.ksz-bcss.fgov.be/nl/page/wet-van-15-januari-1990-houdende-oprichting-en-organisatie-van-een-kruispuntbank-van-de-sociale-zekerheid#hoofdstuk-i-algemene-bepalingen",
+]
+
+[[changes]]
+type = "update"
+key = "dx-be-02"
+as_of = 2026-10-15
+values.once_only_principle = "Yes"
+reason = ""
+sources = [
+  "https://www.ejustice.just.fgov.be/eli/ordonnance/2020/07/17/2020015248/moniteur",
+]

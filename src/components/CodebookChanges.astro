@@ -1,0 +1,126 @@
+---
+// The codebook's changes in the release, for one DPI type's changelog page: a heading with the field
+// count before → after and a line that sums them up, then a fold for each kind of change, open if it's
+// short. Fields added (with their definitions, and what they replace), fields removed, allowed values
+// added or removed (a value on several fields is one line), definitions and value meanings reworded
+// (a word diff, folded if long), and missing values. Fields link to their codebook pages.
+// Built by src/CodebookChanges.ts.
+import { schemas, resourceNames, type DPIType } from '../Schema'
+import { wordDiff, type FieldRef, type ResourceChanges, type Reworded, type ValueGroup } from '../CodebookChanges'
+import CodebookField from './CodebookField.astro'
+import { codebookSummary, n, plural, previousRelease } from '../Changes'
+
+interface Props {
+  dpiType: DPIType
+  changes: ResourceChanges
+}
+const { dpiType, changes: c } = Astro.props
+const ids = new Set(schemas[dpiType].fields.map(field => field.id as string))
+/** the field's codebook page, if the release has the field */
+const hrefOf = (field: FieldRef) => ids.has(field.id) ? `/codebook/${resourceNames[dpiType]}/${field.id}/` : undefined
+/** a field's column, after its title, if it's named differently */
+const columnOf = (field: FieldRef) => field.name !== field.title ? ` (column “${field.name}”)` : ''
+/** a fold is open if it has this many items or fewer */
+const short = 4
+/** a reworded text is folded if the two texts are longer than this together */
+const long = 360
+const isLong = (r: Reworded) => r.before.length + r.after.length > long
+const valueGroups: { head: string, on: string, list: ValueGroup[] }[] = [
+  { head: 'Allowed values added', on: 'Newly allowed on', list: c.valuesAdded },
+  { head: 'Allowed values removed', on: 'No longer allowed on', list: c.valuesRemoved },
+]
+---
+<section class="chg-dpi chg-cb" aria-labelledby="codebook-h">
+  <h2 class="chg-h4" id="codebook-h"><span>Codebook changes</span><span class="chg-h2-note"> {n(c.fields.before)} → {n(c.fields.after)} fields</span></h2>
+  <p class="chg-lede">{codebookSummary(c)}, since the {previousRelease} release. See the <a class="ul" href="/codebook/">codebook</a>.</p>
+
+  { c.added.length > 0 && (
+    <details class="chg-cb-group more" open={c.added.length <= short}>
+      <summary><h3>Fields added <span>{c.added.length}</span></h3></summary>
+      <ul class="chg-cb-list">
+        { c.added.map(field => (
+          <li>
+            <p class="chg-cb-field"><span class="chg-new">New</span><CodebookField field={field} href={hrefOf(field)} /></p>
+            { field.replaces.length > 0 && <p class="chg-cb-note">Replaces {field.replaces.map((r, i) => <Fragment>{i > 0 && ' and '}<b>{r.title}</b>{columnOf(r)}</Fragment>)}</p> }
+            { field.description ? <p class="chg-cb-def">{field.description}</p> : <p class="chg-cb-def">No definition recorded.</p> }
+          </li>
+        ))}
+      </ul>
+    </details>
+  )}
+
+  { c.removed.length > 0 && (
+    <details class="chg-cb-group more" open={c.removed.length <= short}>
+      <summary><h3>Fields removed <span>{c.removed.length}</span></h3></summary>
+      <ul class="chg-cb-list">
+        { c.removed.map(field => (
+          <li>
+            <p class="chg-cb-field"><span class="chg-gone">Removed</span><CodebookField field={field} href={hrefOf(field)} /></p>
+            { field.replacedBy.length > 0 && <p class="chg-cb-note">Replaced by {field.replacedBy.map((r, i) => <Fragment>{i > 0 && ' and '}<a class="ul" href={hrefOf(r)}>{r.title}</a>{columnOf(r)}</Fragment>)}</p> }
+            { field.description && <p class="chg-cb-def">{field.description}</p> }
+          </li>
+        ))}
+      </ul>
+    </details>
+  )}
+
+  { valueGroups.filter(g => g.list.length > 0).map(g => (
+    <details class="chg-cb-group more" open={g.list.length <= short}>
+      <summary><h3>{g.head} <span>{g.list.length}</span></h3></summary>
+      <ul class="chg-cb-list">
+        { g.list.map(v => (
+          <li>
+            <p class="chg-cb-field"><span class="chg-cb-v">{v.value}</span>{ v.meaning && <span class="chg-cb-mean">{v.meaning}</span> }</p>
+            <p class="chg-cb-on">{g.on} {v.fields.length > 1 ? plural(v.fields.length, 'field') : ''}{v.fields.length > 1 ? ': ' : ''}{v.fields.map((f, i) => <Fragment>{i > 0 && ', '}<a class="ul" href={hrefOf(f)}>{f.title}</a></Fragment>)}</p>
+          </li>
+        ))}
+      </ul>
+    </details>
+  ))}
+
+  { [{ head: 'Definitions reworded', list: c.definitions }, { head: 'Value meanings reworded', list: c.meanings }].filter(g => g.list.length > 0).map(g => (
+    <details class="chg-cb-group more" open={g.list.length <= short}>
+      <summary><h3>{g.head} <span>{g.list.length}</span></h3></summary>
+      <ul class="chg-cb-list">
+        { g.list.map(r => {
+          const diff = <p class="chg-cb-diff">{ wordDiff(r.before, r.after).map(part => part.kind === 'del' ? <del>{part.text}</del> : part.kind === 'ins' ? <ins>{part.text}</ins> : part.text) }</p>
+          return (
+            <li>
+              <p class="chg-cb-field"><CodebookField field={r.field} href={hrefOf(r.field)} />{ r.value !== undefined && <span class="chg-cb-v">{r.value}</span> }</p>
+              { isLong(r) ? <details class="chg-cb-long more"><summary>Show the change</summary>{diff}</details> : diff }
+            </li>
+          )
+        })}
+      </ul>
+    </details>
+  ))}
+
+  { c.missing.length > 0 && (
+    <details class="chg-cb-group more" open>
+      <summary><h3>Missing values <span>{c.missing.length}</span></h3></summary>
+      <ul class="chg-cb-list">
+        { c.missing.map(m => (
+          <li>
+            <p class="chg-cb-field"><span class="chg-cb-v">{m.value}</span>{ !m.before ? <span class="chg-cb-mean">now a missing value</span> : !m.after ? <span class="chg-cb-mean">no longer a missing value</span> : null }</p>
+            { m.before && m.after && (
+              <p class="chg-cb-diff">{ m.before.label
+                ? wordDiff(m.before.label, m.after.label ?? '').map(part => part.kind === 'del' ? <del>{part.text}</del> : part.kind === 'ins' ? <ins>{part.text}</ins> : part.text)
+                : <Fragment>Now has a meaning: <ins>{m.after.label}</ins></Fragment> }</p>
+            )}
+          </li>
+        ))}
+      </ul>
+    </details>
+  )}
+
+  { c.other.length > 0 && (
+    <details class="chg-cb-group more" open>
+      <summary><h3>Other changes <span>{c.other.length}</span></h3></summary>
+      <ul class="chg-cb-list">
+        { c.other.map(o => (
+          <li><p class="chg-cb-field">{ hrefOf(o.field) ? <a class="ul" href={hrefOf(o.field)}>{o.field.title}</a> : <span>{o.field.title}</span> }<span class="chg-cb-mean">{o.what.join(', ')} changed</span></p></li>
+        ))}
+      </ul>
+    </details>
+  )}
+</section>
