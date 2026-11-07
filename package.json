@@ -2,6 +2,7 @@
   "name": "digital-public-infra-map",
   "type": "module",
   "version": "0.0.1",
+  "license": "MIT",
   "scripts": {
     "start": "astro dev",
     "test": "npm run data:check && astro build && npm run links",

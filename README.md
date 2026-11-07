@@ -87,3 +87,7 @@ All commands are run from the root of the project, from a terminal:
 | `npm run codebook:check`  | Report where the codebook and the data disagree  |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
+
+## Licence
+
+The code is [MIT licensed](./LICENSE). The data (`public/data/` and `changesets/`) and the codebook (`datapackage.json`) are licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/): you may share and adapt them for any purpose, as long as you credit the DPI Map. [CITATION.cff](./CITATION.cff) says how to cite it, and GitHub shows it as "Cite this repository".
