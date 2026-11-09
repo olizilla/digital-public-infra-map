@@ -2,7 +2,6 @@
 type = "update"
 key = "dx-be-01"
 as_of = 2026-10-15
-values.governing_entity = "Yes"
 values.independent_audit = "Not Found"
 reason = ""
 sources = [
@@ -13,9 +12,7 @@ sources = [
 type = "update"
 key = "dx-be-01"
 as_of = 2026-10-15
-values.coordination_unit = "Not Found"
 values.impact_metrics = "Not Found"
-values.formal_mandate = "Not Found"
 values.personal_data_protection = "Yes"
 reason = ""
 
@@ -55,4 +52,14 @@ values.once_only_principle = "Yes"
 reason = ""
 sources = [
   "https://www.ejustice.just.fgov.be/eli/ordonnance/2020/07/17/2020015248/moniteur",
+]
+
+[[changes]]
+type = "update"
+key = "dx-be-01"
+as_of = 2026-11-06
+values.formal_mandate = "Yes"
+reason = "Law provides authorisation to the federal services integrator"
+sources = [
+  "https://www.ejustice.just.fgov.be/cgi/article.pl?language=nl&sum_date=2012-08-29&lg_txt=n&pd_search=2012-08-29&s_editie=&numac_search=2012002044&caller=&2012002044=&view_numac=2012002044dx2012002044n",
 ]

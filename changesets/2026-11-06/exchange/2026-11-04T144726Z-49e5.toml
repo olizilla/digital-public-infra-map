@@ -34,11 +34,11 @@ sources = [
 [[changes]]
 type = "update"
 key = "dx-si-02"
-as_of = 2026-10-15
-values.governing_entity = "Ministry of Justice"
-reason = ""
+as_of = 2026-11-06
+values.governing_entity = "Government of the Republic of Slovenia"
+reason = "Article 74a of the ZDU act entrusts the 'Government' with the responsibility of setting data and technology standards, guidelines for common information solutions, and a common security policy."
 sources = [
-  "https://nio.gov.si/api/files/31e37efd-8dca-4370-93fe-e2f0539bc5fa/file?download=true",
+  "https://www.iusinfo.si/zakonodajna-knjiznica/zakon/Z029DEAK/clen/74a",
 ]
 
 [[changes]]

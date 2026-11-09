@@ -2,7 +2,7 @@
 
 Built by `npm run data:build -- --release 2026-11-06` into `public/data/2026-11-06/`, from the 2026-03-31 release and the changesets in `changesets/2026-11-06/` and `changesets/next/`.
 
-- exchange: 215 rows, from 71 changesets
+- exchange: 215 rows, from 72 changesets
 - identity: 212 rows, from 33 changesets
 - payment: 260 rows, from 300 changesets
 
