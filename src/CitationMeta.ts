@@ -3,9 +3,7 @@
 // The layout (src/layouts/Layout.astro) writes the tags in the page's head.
 //
 // The tags are Highwire Press `citation_*` tags, the ones Zotero's "Embedded Metadata" translator
-// reads best, plus a few it can't get from Highwire, each noted where it's made. See
-// docs/zotero-check.md for what Zotero should make of each kind of page, and
-// `npm run citation:check` (scripts/citation-meta-check.mjs), which checks the built pages.
+// reads best, plus a few it can't get from Highwire, each noted where it's made.
 //
 // - The State of DPI report, a Zotero Report (reportMeta), from its page's front matter.
 // - The Data page, the map pages (/, /digital-payment/, /data-exchange/), a system's page and a

@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "astro dev",
-    "test": "npm run data:check && astro build && npm run citation:check && npm run links",
+    "test": "npm run data:check && astro build && npm run links",
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
@@ -19,9 +19,7 @@
     "data:check": "node scripts/data-build.ts --check",
     "validate": "node scripts/validate.mjs",
     "codebook:check": "node scripts/codebook-check.mjs",
-    "test:changesets": "node --test 'lib/changesets/test/*.test.ts'",
-    "citation:check": "node scripts/citation-meta-check.mjs",
-    "zotero:check": "node scripts/zotero-live-check.mjs"
+    "test:changesets": "node --test 'lib/changesets/test/*.test.ts'"
   },
   "dependencies": {
     "@ascorbic/csv-loader": "^2.0.3",

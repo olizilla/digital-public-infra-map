@@ -22,7 +22,8 @@
 // only if a changeset introduced it, and one from release N is a legacy
 // warning (D60). It writes a report of everything it skipped or found, and of
 // every system whose DPI status changed since release N, to
-// reports/data-build-<release>.md, which isn't published. Values for fields that
+// reports/data-build-<release>.md, which isn't published or committed (reports/ is in
+// .gitignore: every build rewrites it). Values for fields that
 // aren't in the root datapackage.json are reported as legacy, if an earlier
 // release had the field, or else as unknown (D51).
 //

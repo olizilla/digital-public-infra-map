@@ -1,5 +1,0 @@
-tab,row,system,field,value,allowed
-Digital ID_ChangeLog,26,id-bz-01,legal_status,Planned/Piloted,"[""Yes"", ""No"", ""Not Found""]"
-Digital ID_ChangeLog,27,id-bz-01,regulation,Planned/Piloted,"[""Yes"", ""No"", ""Not Found""]"
-Payment_ChangeLog_New-MM Label,24,pay-om-01,system_type,"Interbank payment system, Mobile money system","[""Cross-domain"", ""Interbank"", ""Mobile money"", ""Mobile money system"", ""CBDC"", ""Card Payment"", ""Not Found""]"
-Payment_ChangeLog_New-MM Label,25,pay-om-02,system_type,"Interbank payment system, Mobile money system","[""Cross-domain"", ""Interbank"", ""Mobile money"", ""Mobile money system"", ""CBDC"", ""Card Payment"", ""Not Found""]"
