@@ -130,7 +130,7 @@ type = "update"
 key = "pay-africa-02"
 as_of = 2026-10-15
 values.settlement_method = "DNS"
-reason = "New field. Information not found."
+reason = "Payments are cleared on PI-SPI and participants' net positions are settled at the BCEAO. Source: BCEAO."
 
 [[changes]]
 type = "update"
@@ -208,7 +208,7 @@ type = "update"
 key = "pay-africa-02"
 as_of = 2026-10-15
 values.transaction_cost = "Cumulative transactions up to a limit of 8,000 CFA francs per day free. Any amount over this daily limit is subject to a fee capped at 0.8%"
-reason = "Information not found."
+reason = "From 2 November 2026, e-money transfers between individuals are free up to XOF 8,000 per user per day; above that, providers may charge up to 0.8% excluding tax. Receiving is free. Source: Agence Ecofin (October 2026)."
 sources = [
   "https://www.ecofinagency.com/news/0510-59462-wave-joins-pi-spi-as-bceao-rewrites-instant-payment-fee-rules",
 ]

@@ -76,12 +76,12 @@ sources = [
 [[changes]]
 type = "update"
 key = "pay-ro-02"
-as_of = 2026-10-15
-values.interoperability_policy = "No"
+as_of = 2026-11-06
+values.interoperability_policy = "Yes"
 reason = "SENT rules admit payment institutions and e-money institutions as participants, and the EU Instant Payments Regulation amended the Settlement Finality Directive so that non-bank providers can join payment systems directly from 9 April 2025, with the stated aim of a level playing field with banks. Sources: Transfond, SENT system rules v28 (February 2026); Worldline (June 2025)."
 sources = [
-  "https://www.transfond.ro/en/services/automated-clearing-house-sent",
-  "https://www.platiinstant.ro/en/the-service",
+  "https://www.transfond.ro/pdf/Reguli_SENT%20v28r00.pdf",
+  "https://worldline.com/en/home/main-navigation/resources/blogs/2025/settlement-finality-directive-direct-access-to-payment-systems-for-non-bank-psps",
 ]
 
 [[changes]]

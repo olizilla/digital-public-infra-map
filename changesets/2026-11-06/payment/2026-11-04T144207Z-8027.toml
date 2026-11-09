@@ -35,7 +35,7 @@ type = "update"
 key = "pay-pe-02"
 as_of = 2026-10-15
 values.clearing_infrastructure = "Other"
-reason = "Transfers are recorded on the CBDC ledger issued by the BCRP and distributed through BiPay (decision rule 7). Primary source: none found. Secondary source: RPP (2026-06); Infobae (2025-03). Ledger architecture not documented; confirm with BCRP material."
+reason = "Transfers are recorded on the ledger of the digital money issued by the BCRP and distributed through the BiPay wallet, outside the interbank clearing infrastructure. Sources: RPP (June 2026); Infobae (March 2025)."
 sources = [
   "https://rpp.pe/economia/economia/bcrp-amplia-dinero-digital-2027-de-que-trata-piloto-y-que-resultados-tiene-noticia-1691625",
   "https://www.infobae.com/peru/2025/03/19/dinero-digital-del-bcrp-comenzo-la-evaluacion-del-primer-piloto-en-que-consiste/",

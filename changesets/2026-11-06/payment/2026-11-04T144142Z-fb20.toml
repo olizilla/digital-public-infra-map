@@ -75,12 +75,12 @@ sources = [
 [[changes]]
 type = "update"
 key = "pay-cz-02"
-as_of = 2026-10-15
-values.interoperability_policy = "No"
+as_of = 2026-11-06
+values.interoperability_policy = "Yes"
 reason = "The April 2025 amendment to the Payments Act opened CERTIS to payment institutions and e-money institutions as direct participants, implementing the EU change to the Settlement Finality Directive, whose stated aim is a level playing field between banks and non-bank providers. Sources: Czech National Bank (January 2025); Worldline (June 2025)."
 sources = [
-  "https://www.cnb.cz/en/payments/certis/instant-payments/index.html",
-  "https://www.cnb.cz/export/sites/cnb/en/payments/.galleries/certis/download/CERTIS_rules_annex_08.pdf",
+  "https://www.cnb.cz/cs/cnb-news/tiskove-zpravy/System-CERTIS-rocne-zpracuje-temer-miliardu-mezibankovnich-platebnich-transakci.-CNB-jej-nove-zpristupni-inbspnebankovnim-subjektum",
+  "https://worldline.com/en/home/main-navigation/resources/blogs/2025/settlement-finality-directive-direct-access-to-payment-systems-for-non-bank-psps",
 ]
 
 [[changes]]
@@ -206,12 +206,11 @@ sources = [
 [[changes]]
 type = "update"
 key = "pay-cz-02"
-as_of = 2026-10-15
-values.reporting_forum = "Yes"
+as_of = 2026-11-06
+values.reporting_forum = "No"
 reason = "No reporting forum specific to CERTIS instant payments. Payment disputes go first to the bank, and the Czech National Bank's general complaints route covers financial institutions generally. Source: Czech National Bank."
 sources = [
-  "https://www.cnb.cz/cs/cnb-news/tiskove-zpravy/System-CERTIS-rocne-zpracuje-temer-miliardu-mezibankovnich-platebnich-transakci.-CNB-jej-nove-zpristupni-inbspnebankovnim-subjektum",
-  "https://worldline.com/en/home/main-navigation/resources/blogs/2025/settlement-finality-directive-direct-access-to-payment-systems-for-non-bank-psps",
+  "https://www.cnb.cz/en/payments/certis/instant-payments/index.html",
 ]
 
 [[changes]]

@@ -46,7 +46,6 @@ type = "update"
 key = "pay-gb-02"
 as_of = 2026-10-15
 values.cross_border = "No"
-values.interoperability_policy = "Not Found"
 reason = "Information not found for the corrected system; previous value described the wrongly named system."
 
 [[changes]]
@@ -172,4 +171,15 @@ sources = [
   "https://www.wearepay.uk/what-we-do/payment-systems/faster-payment-system/",
   "https://paymentexpert.com/2022/06/15/qr-code-payments-launched-for-natwest-service-paylt/",
   "https://blog.finexer.com/best-qr-code-payment-platforms-uk/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-gb-02"
+as_of = 2026-11-06
+values.interoperability_policy = "Yes"
+reason = "In July 2017 the Bank of England opened RTGS settlement accounts to non-bank payment service providers so they can access Faster Payments directly, with the stated aim of letting them compete on a more level playing field with banks. Source: Bank of England (19 July 2017)."
+sources = [
+  "https://www.bankofengland.co.uk/news/2017/july/boe-extends-direct-access-to-rtgs-accounts-to-non-bank-payment-service-providers",
+  "https://www.bankofengland.co.uk/payments/access-to-uk-payment-systems-for-non-bank-payment-service-providers",
 ]

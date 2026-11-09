@@ -77,12 +77,12 @@ sources = [
 [[changes]]
 type = "update"
 key = "pay-pl-02"
-as_of = 2026-10-15
-values.interoperability_policy = "Not Found"
+as_of = 2026-11-06
+values.interoperability_policy = "Yes"
 reason = "The EU Instant Payments Regulation amended the Settlement Finality Directive so that payment institutions and e-money institutions can participate directly in payment systems from 9 April 2025, with the stated aim of a level playing field between banks and non-bank providers. Poland implemented this through the Act of 23 January 2026. Sources: Worldline (June 2025); Dudkowiak & Putyra (March 2026)."
 sources = [
-  "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf",
-  "https://nbp.pl/wp-content/uploads/2025/11/Informacja-o-rozliczeniach-i-rozrachunkach-miedzybankowych-w-II-kw.-2025.pdf",
+  "https://worldline.com/en/home/main-navigation/resources/blogs/2025/settlement-finality-directive-direct-access-to-payment-systems-for-non-bank-psps",
+  "https://www.dudkowiak.com/blog/president-signs-new-amendment",
 ]
 
 [[changes]]

@@ -72,9 +72,9 @@ sources = [
 [[changes]]
 type = "update"
 key = "pay-la-01"
-as_of = 2026-10-15
-values.interoperability_policy = "Not Found"
-reason = "Searched: the Law on Payment System (Amended) No. 45/NA (in force 15 Jan 2024) defines interoperability and makes a connection to other payment systems in Laos a licensing condition for non-bank payment service providers (Art. 32(2.3)), but no rule requiring banks or providers to join LMPS or LAPNet was found. Secondary source: RegAlert, English text of the law. Team to decide whether the licensing condition counts as an interoperability policy."
+as_of = 2026-11-06
+values.interoperability_policy = "Yes"
+reason = "The Law on Payment System (Amended) No. 45/NA (in force 15 January 2024) admits authorised non-bank payment service providers as members of retail payment systems (Art. 10) and requires them to connect with other payment systems in Laos as a licensing condition (Art. 32(2.3)). Source: Law on Payment System (Amended) No. 45/NA, English text via RegAlert."
 sources = [
   "https://regalert.today/document/law-on-payment-system-amended-737af38b-f653-407e-ba64-25c36dd86a30/text",
 ]
@@ -192,11 +192,11 @@ sources = [
 [[changes]]
 type = "update"
 key = "pay-la-01"
-as_of = 2026-10-15
-values.reporting_forum = "Yes"
-reason = "The Law on Payment System (Amended) No. 45/NA (in force 15 January 2024) defines interoperability, admits authorised non-bank payment service providers as retail payment system members (Art. 10) and requires them to connect with other payment systems in Laos as a licensing condition (Art. 32(2.3)). Secondary source: RegAlert, English text of the law."
+as_of = 2026-11-06
+values.reporting_forum = "No"
+reason = "No reporting forum specific to LMPS. Under the Decree on Financial Consumer Protection No. 225/GOV (April 2020), customers complain to their provider first and may then refer the dispute to the Bank of the Lao PDR's consumer protection department; this route covers the financial sector generally. Source: Tilleke & Gibbins summary of the decree."
 sources = [
-  "https://regalert.today/document/law-on-payment-system-amended-737af38b-f653-407e-ba64-25c36dd86a30/text",
+  "https://www.tilleke.com/insights/decree-on-consumer-protection-in-the-financial-sector-in-laos/",
 ]
 
 [[changes]]

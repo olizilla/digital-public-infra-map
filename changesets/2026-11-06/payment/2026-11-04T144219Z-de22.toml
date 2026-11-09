@@ -77,9 +77,9 @@ reason = "Searched: no law, policy or strategy found stating interoperability be
 [[changes]]
 type = "update"
 key = "pay-vn-01"
-as_of = 2026-10-15
-values.transaction_types = "P2P, P2M, B2P"
-reason = "Account transfers and VietQR payments. B2B over a threshold of VND 500 million are moved to CITAD."
+as_of = 2026-11-06
+values.transaction_types = "P2P, P2M, B2B"
+reason = "Supports account transfers between individuals, VietQR payments to merchants and business payments; business payments above VND 500 million are routed to CITAD, the State Bank of Vietnam's interbank system. Source: NAPAS."
 sources = [
   "https://en.napas.com.vn/napas-fastfund-247-service-featured-service",
 ]
@@ -130,7 +130,6 @@ type = "update"
 key = "pay-vn-01"
 as_of = 2026-10-15
 values.nonbank_participation = "Yes"
-values.participants = "2026- 68"
 reason = "Payment intermediaries, e-wallets and mobile money"
 sources = [
   "https://en.napas.com.vn/",
@@ -209,4 +208,14 @@ values.qr_code = "Yes"
 reason = "VietQR standard"
 sources = [
   "https://en.napas.com.vn/napas-fastfund-247-service-featured-service",
+]
+
+[[changes]]
+type = "update"
+key = "pay-vn-01"
+as_of = 2026-10-15
+values.participants = "2026- 68"
+reason = "NAPAS reports 68 member organisations, including banks and financial companies. Source: NAPAS (2026)."
+sources = [
+  "https://en.napas.com.vn/",
 ]
