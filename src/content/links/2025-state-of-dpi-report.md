@@ -1,8 +1,8 @@
 ---
 # pinned to the top of /blog/. The report lives at its own page, src/pages/global-state-of-dpi.md
-title: 2025 State of DPI Report
+title: State of DPI Report
 # the day the report and its PDF went up on this site
-date: 2025-11-02
+date: 2025-10
 kind: report
 url: /global-state-of-dpi/
 description: A look at measurement and prevalence as DPI transitions from experiment to scale.

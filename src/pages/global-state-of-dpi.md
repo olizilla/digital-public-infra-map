@@ -2,7 +2,6 @@
 layout: ../layouts/Standard.astro
 title: 2025 State of DPI Report
 ---
-
 # 2025 State of DPI Report
 
 _A Look at Measurement and Prevalence as DPI Transitions from Experiment to Scale._
@@ -96,12 +95,13 @@ Read the full <a href="/iipp-state-of-dpi-report-2025.pdf">2025 State of DPI rep
 
 This report can be referenced as follows:
 
-<p class="text-sm">
+<div class="paper-cite not-prose">
+  <p data-citation>
 Fetter, J., Rao, K., and Eaves, D. (2025). 
 <i>2025 State of Digital Public Infrastructure Report: A Look at Measurement and Prevalence as DPI Transitions from Experiment to Scale.</i>
 UCL Institute for Innovation and Public Purpose. IIPP Policy
-Report 2025/06. ISBN: 978-1-917384-39-1
-</p>
+Report 2025/06. ISBN: 978-1-917384-39-1</p>
+</div>
 
 
 ## Next steps
