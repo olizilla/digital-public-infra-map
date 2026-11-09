@@ -177,7 +177,7 @@ sources = [
 type = "update"
 key = "pay-pl-02"
 as_of = 2026-10-15
-values.annual_value_usd = "2025- 89.01 Bn"
+values.annual_value_usd = "2025- 89.01 B"
 reason = "PLN 320.58 billion in 2025 (up 21% on 2024), converted to USD. Sources: GSMONLINE (January 2026), reporting KIR data; NBP (2025)."
 sources = [
   "https://gsmonline.pl/artykuly/elixir-w-2025-r-przetworzyl-224-mld-transakcji-na-kwote-957-bln-zl",

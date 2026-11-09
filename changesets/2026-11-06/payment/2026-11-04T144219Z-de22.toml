@@ -194,7 +194,7 @@ sources = [
 type = "update"
 key = "pay-vn-01"
 as_of = 2026-10-15
-values.transaction_cost = "VietQR is free. NAPAS fastfund fees are set by financial institution."
+values.transaction_cost = "VietQR is free. NAPAS FastFund fees are set by financial institution."
 reason = "Fee is documented under Q2 of the QR section of the handbook."
 sources = [
   "https://en.napas.com.vn/digital-payment-handbook",

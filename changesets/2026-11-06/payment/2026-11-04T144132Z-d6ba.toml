@@ -180,7 +180,7 @@ as_of = 2026-10-15
 values.data_handling_rules = "Yes"
 reason = "BCEAO Instruction No. 001-01-2024 on payment services in the WAMU limits payment service providers to the personal data needed to provide the service and requires explicit consent for other uses (Art. 50), and requires data security checks on outsourced providers (Art. 36). Primary source: BCEAO Instruction No. 001-01-2024. Updated from the value in the consolidated log."
 sources = [
-  "https://bceao.int/sites/default/files/inline-files/Instruction-No001-01-2024_relative_aux_services_de_paiement_dans_l-UMOA.pdf",
+  "https://www.bceao.int/sites/default/files/inline-files/Instruction-No001-01-2024_relative_aux_services_de_paiement_dans_l-UMOA.pdf",
 ]
 
 [[changes]]
@@ -190,7 +190,7 @@ as_of = 2026-10-15
 values.reporting_forum = "No"
 reason = "No forum connected to PI-SPI. Under BCEAO Instruction No. 001-01-2024 (Art. 51) users complain to their provider, which must reply within seven working days, then may complain to the WAMU Banking Commission, use mediation or the national Observatory for the Quality of Financial Services; these are general financial sector routes. Primary source: BCEAO Instruction No. 001-01-2024. Updated from the value in the consolidated log."
 sources = [
-  "https://bceao.int/sites/default/files/inline-files/Instruction-No001-01-2024_relative_aux_services_de_paiement_dans_l-UMOA.pdf",
+  "https://www.bceao.int/sites/default/files/inline-files/Instruction-No001-01-2024_relative_aux_services_de_paiement_dans_l-UMOA.pdf",
 ]
 
 [[changes]]
@@ -200,7 +200,7 @@ as_of = 2026-10-15
 values.aml_law = "Yes"
 reason = "Uniform Law on AML/CFT/proliferation financing (March 2023 version), adopted for transposition by all WAMU member states; regional entry. Primary source: BCEAO, Loi uniforme LBC/FT/FP (2023)."
 sources = [
-  "https://bceao.int/sites/default/files/2025-02/Loi-uniforme-LBCFTFP-Mars-2023-vf.pdf",
+  "https://www.bceao.int/sites/default/files/2025-02/Loi-uniforme-LBCFTFP-Mars-2023-vf.pdf",
 ]
 
 [[changes]]

@@ -52,7 +52,7 @@ sources = [
 type = "update"
 key = "id-cy-01"
 as_of = 2026-09-16
-values.technical_support = "Veridos; Ascertia (SigningHub)"
+values.technical_support = "Veridos, Ascertia (SigningHub)"
 reason = "Ascertia supplies the signing platform."
 sources = [
   "https://blog.ascertia.com/cyprus-launches-eid-system-incorporating-signinghub",

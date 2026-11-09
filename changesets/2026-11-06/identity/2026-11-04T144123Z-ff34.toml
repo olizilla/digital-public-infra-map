@@ -24,7 +24,7 @@ sources = [
 type = "update"
 key = "id-hu-01"
 as_of = 2026-09-16
-values.funders = "Government of Hungary; European Union (DIMOP Plus)"
+values.funders = "Government of Hungary, European Union (DIMOP Plus)"
 reason = ""
 sources = [
   "https://www.interregeurope.eu/good-practices/digital-citizenship-programme-dap-mobile-based-digital-identity-public-services",

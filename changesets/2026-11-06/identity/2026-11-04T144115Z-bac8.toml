@@ -12,7 +12,7 @@ sources = [
 type = "update"
 key = "id-ci-01"
 as_of = 2026-09-16
-values.technical_support = "Semlex; Mastercard; Paynah"
+values.technical_support = "Semlex, Mastercard, Paynah"
 reason = "Mastercard and Paynah are identified as additional partners supporting the CI Identité initiative."
 sources = [
   "https://identite.ci/fr",

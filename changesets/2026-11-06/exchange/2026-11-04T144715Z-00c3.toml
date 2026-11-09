@@ -3,7 +3,7 @@ type = "create"
 key = "dx-nl-02"
 as_of = 2026-10-15
 values.country = "Netherlands"
-values.name = "Digital Link (Digikoppelling)"
+values.name = "Digital Link (Digikoppeling)"
 reason = ""
 sources = [
   "https://www.nldigitalgovernment.nl/overview/mido/generic-digital-infrastructure-gdi/",

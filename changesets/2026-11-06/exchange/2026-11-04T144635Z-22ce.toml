@@ -66,7 +66,7 @@ values.realtime_sharing = "Not Found"
 values.scalable_architecture = "Not Found"
 values.enrolment_info = "No"
 values.audit_mechanism = "No"
-values.coordination_unit = "Agency for Identification Documents, Registers and Data\nExchange of Bosnia and Herzegovina"
+values.coordination_unit = "Agency for Identification Documents, Registers and Data Exchange of Bosnia and Herzegovina"
 reason = ""
 
 [[changes]]
@@ -108,7 +108,7 @@ sources = [
 type = "update"
 key = "dx-ba-02"
 as_of = 2026-10-15
-values.governing_entity = "Agency for Identification Documents, Registers and Data\nExchange of Bosnia and Herzegovina"
+values.governing_entity = "Agency for Identification Documents, Registers and Data Exchange of Bosnia and Herzegovina"
 values.ownership = "Public"
 values.data_management_rules = "Yes"
 reason = ""

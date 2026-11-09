@@ -74,7 +74,7 @@ The headline count on the home page: places that are countries, not regions, wit
 - dx-gr-02, Interoperability Centre (KED): DPI (1)
 - dx-ie-02, Information Mediator: WIP (0)
 - dx-lu-02, API Gateway Portal: DPI (1)
-- dx-nl-02, Digital Link (Digikoppelling): DPI (1)
+- dx-nl-02, Digital Link (Digikoppeling): DPI (1)
 - dx-pl-02, System of State Registers: DPI (1)
 - dx-sk-02, The Common Module for Data and Process Integration: DPI (1)
 - dx-si-02, Tray (Pladenj): DPI (1)
