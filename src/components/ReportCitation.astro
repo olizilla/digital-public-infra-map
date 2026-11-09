@@ -1,0 +1,9 @@
+---
+// The State of DPI report's citation, from its page's front matter (src/pages/global-state-of-dpi.mdx),
+// the same data as its citation meta tags (src/CitationMeta.ts)
+import { reportCitation, type Report } from '../CitationMeta'
+const parts = reportCitation(Astro.props.citation as Report)
+---
+<div class="paper-cite not-prose">
+  <p data-citation>{parts.authors} <i>{parts.title}</i> {parts.rest}</p>
+</div>

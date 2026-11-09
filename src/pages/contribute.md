@@ -1,6 +1,7 @@
 ---
 layout: ../layouts/Standard.astro
 title: 'Contribute to the DPI map'
+description: "Share information about DPI deployments, give feedback on the DPI Map's framework, or add to the data and build on it."
 ---
 
 # Contribute to the DPI Map

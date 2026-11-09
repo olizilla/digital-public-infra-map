@@ -61,17 +61,22 @@ export function sessionTitle (id: string, title: string) {
   }
 }
 
+// markdown as plain text, on one line: no tags, images, link targets or emphasis
+const strip = (text: string) => text
+  .replace(/<[^>]+>/g, '')
+  .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
+  .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+  .replace(/[*_`]/g, '')
+  .replace(/\s+/g, ' ')
+  .trim()
+
+// a body's prose as plain text, a paragraph after another: an abstract, for its citation meta tags
+export const plainText = (body = '') => body.split(/\n\s*\n/).map(strip).filter(Boolean).join(' ')
+
 // a short summary from the body, for entries without a description: the first paragraph of
 // prose long enough to say something, else the first list item, stripped of markdown
 export function excerpt (body = '', max = 300) {
   const blocks = body.split(/\n\s*\n/).map(b => b.trim()).filter(Boolean)
-  const strip = (text: string) => text
-    .replace(/<[^>]+>/g, '')
-    .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
-    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
-    .replace(/[*_`]/g, '')
-    .replace(/\s+/g, ' ')
-    .trim()
   const prose = blocks.find(b => !/^(#|<|---|>|[-*] |\d+\. |import |export )/.test(b) && strip(b).length >= 80)
   const item = blocks.find(b => /^[-*] /.test(b))?.split('\n')[0].replace(/^[-*] /, '')
   const text = strip(prose ?? item ?? '')

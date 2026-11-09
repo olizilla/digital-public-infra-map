@@ -1,7 +1,32 @@
 ---
 layout: ../layouts/Standard.astro
 title: 2025 State of DPI Report
+description: A look at measurement and prevalence as DPI transitions from experiment to scale.
+# How to cite the report: the citation under "Reference" below (src/components/ReportCitation.astro),
+# and the page's citation meta tags, which make it a Report in Zotero (src/CitationMeta.ts).
+# The authors' full names are from the team on the About page (src/pages/about.mdx): one person
+# there has each surname and initial in the report's own citation, "Fetter, J., Rao, K., and Eaves, D."
+citation:
+  type: report
+  authors:
+    - family: Fetter
+      given: Jordyn
+    - family: Rao
+      given: Krisstina
+    - family: Eaves
+      given: David
+  # the year, as the report's citation gives it
+  date: '2025'
+  title: 2025 State of Digital Public Infrastructure Report
+  subtitle: A Look at Measurement and Prevalence as DPI Transitions from Experiment to Scale
+  institution: UCL Institute for Innovation and Public Purpose
+  series: IIPP Policy Report
+  number: '2025/06'
+  isbn: '978-1-917384-39-1'
+  pdf: /iipp-state-of-dpi-report-2025.pdf
 ---
+import ReportCitation from '../components/ReportCitation.astro'
+
 # 2025 State of DPI Report
 
 _A Look at Measurement and Prevalence as DPI Transitions from Experiment to Scale._
@@ -87,21 +112,13 @@ for increasingly rigorous assessment in the years ahead.
 </aside>
 </section>
 
-<p>
-Read the full <a href="/iipp-state-of-dpi-report-2025.pdf">2025 State of DPI report here</a>.
-</p>
+<p>Read the full <a href="/iipp-state-of-dpi-report-2025.pdf">2025 State of DPI report here</a>.</p>
 
 ## Reference
 
 This report can be referenced as follows:
 
-<div class="paper-cite not-prose">
-  <p data-citation>
-Fetter, J., Rao, K., and Eaves, D. (2025). 
-<i>2025 State of Digital Public Infrastructure Report: A Look at Measurement and Prevalence as DPI Transitions from Experiment to Scale.</i>
-UCL Institute for Innovation and Public Purpose. IIPP Policy
-Report 2025/06. ISBN: 978-1-917384-39-1</p>
-</div>
+<ReportCitation citation={frontmatter.citation} />
 
 
 ## Next steps
@@ -120,6 +137,7 @@ Participants are encouraged to subscribe to the [DPI Map newsletter](https://doc
 team and our collaborators.
 
 <script>
+{`
   function pdfDownload(label) {
     if (typeof gtag === 'function') {
       gtag('event', '2025_state_of_dpi_pdf');
@@ -127,4 +145,5 @@ team and our collaborators.
       console.log('gtag not available. Analytics event not sent for: 2025_state_of_dpi_pdf')
     }
   }
+`}
 </script>

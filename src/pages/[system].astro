@@ -20,6 +20,7 @@ import { systemHref, systems, type System } from '../Systems'
 import { nouns, presence } from '../DpiTest'
 import { laneTitles, statusOrder } from '../CountryPage'
 import { changeLogOf, fieldAnchor, fieldsByAttribute, joiner, snapshotDate, verdictOf } from '../SystemPage'
+import { recordCitation, systemDescription } from '../CitationMeta'
 
 export async function getStaticPaths () {
   return systems.map(system => ({ params: { system: system.id }, props: { system } }))
@@ -36,9 +37,13 @@ const groups = [
   ...attributes.map(a => ({ id: Number(a.id), name: a.data.attribute }))
 ].map(group => ({ ...group, fields: byAttribute.get(group.id) ?? [] }))
 
-// Last updated is the row's newest as_of (D48), and the page is cited by it
+// Last updated is the row's newest as_of (D48), shown under the fields
 const updated = system.values.last_updated && system.values.last_updated !== 'NA' ? system.values.last_updated : undefined
-const cited = updated ?? 'n.d.'
+// the citation, and its meta tags for Zotero, which make the page a Dataset (src/CitationMeta.ts),
+// by the release, not the last update. The system's ID isn't in the title: the tags give it as the
+// item's Identifier
+const citation = recordCitation({ title: `${system.title}, ${system.country}`, path: system.id, identifier: system.id })
+const description = systemDescription({ title: system.title, noun: nouns[dpiType], country: system.country, dpiStatus: system.dpiStatus })
 const fromSnapshot = changeLogOf(system).snapshot !== undefined
 
 // the country's systems, this one included so the card is the same on each of its pages, in the country page's order: by lane, best first. Like the
@@ -49,7 +54,7 @@ const siblings = systems
   .sort((a, b) => lanes.indexOf(a.dpiType) - lanes.indexOf(b.dpiType) || statusOrder[a.dpiStatus] - statusOrder[b.dpiStatus])
 ---
 
-<Layout fullTitle={`${system.title} · ${system.country} · DPI Map`}>
+<Layout fullTitle={`${system.title} · ${system.country} · DPI Map`} description={description} citation={citation.meta(description)}>
   <main class="page">
     <!-- the country page's header, so nothing moves when you click through; hidden on a phone, where the page starts at the type heading -->
     <div class="sp-country">
@@ -123,7 +128,7 @@ const siblings = systems
     </section>
     <section class="cite-row" id="cite">
       <h2 class="about-h">Cite this page</h2>
-      <p class="cite-text">DPI Map ({cited}). {system.title} ({system.id}), {system.country}. Institute for Innovation and Public Purpose, UCL. https://dpimap.org/{system.id}/</p>
+      <p class="cite-text">{citation.text}</p>
     </section>
   </main>
   <Footer />

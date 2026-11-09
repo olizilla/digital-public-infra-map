@@ -8,7 +8,7 @@ abstract: >-
   digital identity, payment and data exchange systems, by country or region,
   with the evidence and history behind each value.
 authors:
-  - name: "Institute for Innovation and Public Purpose, UCL"
+  - name: "UCL Institute for Innovation and Public Purpose"
     website: "https://www.ucl.ac.uk/bartlett/public-purpose/"
 version: "2026-11-06"
 date-released: "2026-11-06"
@@ -26,7 +26,9 @@ preferred-citation:
   type: data
   title: "DPI Map"
   authors:
-    - name: "Institute for Innovation and Public Purpose, UCL"
+    - name: "UCL Institute for Innovation and Public Purpose"
+  publisher:
+    name: "DPI Map"
   version: "2026-11-06"
   date-released: "2026-11-06"
   url: "https://dpimap.org/data"

@@ -13,11 +13,17 @@ import datapackage from '../public/data/2026-11-06/datapackage.json'
 import identity from '../public/data/2026-11-06/2026-11-06-identity.json'
 import payment from '../public/data/2026-11-06/2026-11-06-payment.json'
 import exchange from '../public/data/2026-11-06/2026-11-06-exchange.json'
+import { dataset, datasetCitation } from './Citation'
 
 export const release = '2026-11-06'
 
-/** How to cite the release, on the Data page and in the workbook, /data/latest/dpimap.xlsx */
-export const citation = `DPI Map (${release}). Institute for Innovation and Public Purpose, UCL. https://dpimap.org/data`
+/**
+ * How to cite the release, on the Data page and in the workbook, /data/latest/dpimap.xlsx, author
+ * first (APA 7): the author, title, repository and address from CITATION.cff, and the release as the
+ * version and the year (src/Citation.ts datasetCitation). "UCL Institute for Innovation and Public
+ * Purpose. (2026). DPI Map (Version 2026-11-06) [Data set]. DPI Map. https://dpimap.org/data"
+ */
+export const citation = datasetCitation({ title: dataset.title, release, url: dataset.url })
 
 /** The release's datapackage.json: the codebook the site shows (D71) */
 export const releasePackage = datapackage

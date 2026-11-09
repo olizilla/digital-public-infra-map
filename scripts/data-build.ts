@@ -50,6 +50,7 @@
 // the root one, which may have moved on to the next release (D71). It compares the result with public/data/<release>/
 // and exits 1 on any difference, or if anything blocks a merge. This catches a DPI test
 // changed without a rebuild, a released changeset edited after the cut, and other drift.
+// It also fails if CITATION.cff's version or date-released isn't the release the site shows (src/Citation.ts).
 
 import './site-modules.ts'
 import { spawnSync } from 'node:child_process'
@@ -510,6 +511,10 @@ if (check) {
   }
   const blockers = result.report.filter(item => item.blocking)
   fs.rmSync(out, { recursive: true, force: true })
+  // CITATION.cff's version and release date are the release the site shows (src/Citation.ts)
+  const { release: siteRelease } = await import('../src/ReleaseFiles.ts')
+  const { citationFileProblems } = await import('../src/Citation.ts')
+  const citationProblems = citationFileProblems(siteRelease)
 
   const lines: string[] = []
   const list = (title: string, items: string[]) => {
@@ -519,9 +524,14 @@ if (check) {
   }
   list(`public/data/${release}/ differs from the rebuild`, problems)
   list('Blocking items in the build', blockers.map(item => `${item.resource ?? ''} ${item.key ?? ''} ${item.field ?? ''}: ${item.message}`.replace(/\s+/g, ' ').trim()))
+  list('CITATION.cff is not the release the site shows', citationProblems)
   if (lines.length) {
-    console.log(`data:check FAILED: public/data/${release}/ is not what the previous release (${previous ?? 'none'}) and changesets/${release}/ build.${lines.join('\n')}`)
-    console.log(`\nRebuild it with: npm run data:build -- --release ${release}`)
+    const rebuild = problems.length > 0 || blockers.length > 0
+    console.log(rebuild
+      ? `data:check FAILED: public/data/${release}/ is not what the previous release (${previous ?? 'none'}) and changesets/${release}/ build.${lines.join('\n')}`
+      : `data:check FAILED: CITATION.cff doesn't match the release.${lines.join('\n')}`)
+    if (rebuild) console.log(`\nRebuild it with: npm run data:build -- --release ${release}`)
+    if (citationProblems.length) console.log(`\nSet version and date-released in CITATION.cff to ${siteRelease}.`)
     process.exit(1)
   }
   console.log(`data:check passed: public/data/${release}/ is what the previous release (${previous ?? 'none'}) and changesets/${release}/ build.`)

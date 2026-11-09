@@ -58,7 +58,7 @@ const withValue = ofType.filter(system => !isMissing(schema, system.values[field
 const history = historyOf(dpiType, field)
 ---
 
-<Layout title={`${field.title} - ${typeLabels[dpiType]} codebook`}>
+<Layout title={`${field.title} - ${typeLabels[dpiType]} codebook`} description={description}>
   <article class="max-w-3xl mx-auto px-3 pt-10 pb-16">
     <header class="pb-6 border-b border-zinc-200">
       <div class="flex items-center text-zinc-600 text-sm">

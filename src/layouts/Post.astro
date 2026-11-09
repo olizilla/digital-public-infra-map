@@ -6,16 +6,18 @@
 import Layout from './Layout.astro'
 import Footer from '../components/Footer.astro'
 import MoreInsights from '../components/MoreInsights.astro'
-import { formatDate, normDate, kindLabels, type Kind } from '../Insights'
+import { excerpt, formatDate, normDate, kindLabels, type Kind } from '../Insights'
 
 const fm = Astro.props.frontmatter
 const date = normDate(fm.date)
 const authors: string[] = fm.authors ?? []
 const kind: Kind = fm.kind ?? 'post'
 const sourceText = fm.source?.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')
+// described as Insights describes it: its description, else its first paragraph
+const description = fm.description ?? excerpt(Astro.props.rawContent?.() ?? '')
 ---
 
-<Layout title={fm.title}>
+<Layout title={fm.title} description={description}>
   <article class="post prose pt-4 md:pt-10 pb-10 max-w-2xl mx-auto px-3 md:px-0">
     <header class="not-prose post-head">
       <nav class="page-crumbs" aria-label="Breadcrumb"><a href="/blog/">Insights</a></nav>

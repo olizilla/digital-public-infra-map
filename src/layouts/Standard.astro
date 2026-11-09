@@ -1,9 +1,22 @@
 ---
+// The layout for Markdown and MDX pages, and a few .astro pages, which can pass a `description`.
+// A page's front matter can give its `description`, and a
+// `citation`, for its citation meta tags (src/CitationMeta.ts): `type: report` with the report's
+// details (src/pages/global-state-of-dpi.mdx), or `type: dataset` for the release (src/pages/data.mdx).
+// A dated page, a Community of Practice session, is described by its first paragraph, as Insights describes it.
 import Layout from "./Layout.astro"
-const title = Astro.props.frontmatter?.title ?? Astro.props.title
+import { excerpt } from '../Insights'
+import { releaseDescription, releaseMeta, reportMeta } from '../CitationMeta'
+
+const fm = Astro.props.frontmatter ?? {}
+const title = fm.title ?? Astro.props.title
+const cite = fm.citation?.type === 'report' ? { meta: reportMeta(fm.citation, Astro.site!) }
+	: fm.citation?.type === 'dataset' ? { meta: releaseMeta(), description: releaseDescription }
+		: undefined
+const description = fm.description ?? Astro.props.description ?? cite?.description ?? (fm.date && Astro.props.rawContent ? excerpt(Astro.props.rawContent()) : undefined)
 ---
 
-<Layout title={title} bodyClass={Astro.props.bodyClass}>
+<Layout title={title} bodyClass={Astro.props.bodyClass} description={description} citation={cite?.meta}>
 	<article class="prose pt-4 md:pt-10 pb-10 max-w-2xl mx-auto px-2 md:px-0">
 		<slot/>
 	</article>

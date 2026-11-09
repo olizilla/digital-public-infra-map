@@ -8,18 +8,30 @@ import CardSection from '../components/CardSection.astro'
 import ListingCard from '../components/ListingCard.astro'
 import { presence } from '../DpiTest'
 import StatusBar from '../components/StatusBar.astro'
+import SourceAndCite from '../components/SourceAndCite.astro'
+import { mapDescription, recordCitation } from '../CitationMeta'
+import { oneSystemPerCountry } from '../Util'
 
 const items = DataExchanges
 const dpiType = 'data'
 // the cards are for systems: places where research found none are on the map, not here
 const systems = items.filter(record => presence(dpiType, record) !== 'not-found')
+// the page as a view of the data, a Dataset in Zotero, cited like a record by the release (src/CitationMeta.ts),
+// and described by its status bar's counts: the countries researched, one system each, and how many are DPI-like
+const title = 'Data exchange systems'
+const countries = oneSystemPerCountry(items)
+const description = mapDescription({ title, countries: countries.length, dpiLike: countries.filter(row => row['DPI Status'] === 'DPI').length })
+const citation = recordCitation({ title, path: 'data-exchange' })
 ---
-<Layout>
+<Layout title={title} description={description} citation={citation.meta(description)}>
 	<MapAndTabs countryCount={items.length} dpiType={dpiType} />
 	<StatusBar items={items} />
 	<CardSection title="Data Exchange Systems" items={systems}>
 		<TypeIcon dpiType="data" class="inline" slot="icon" />
 		{ systems.map(record => <ListingCard dpiType={dpiType} record={record} />) }
 	</CardSection>
+	<div class="page pt-0">
+		<SourceAndCite citation={citation.text} />
+	</div>
 	<Footer />
 </Layout>

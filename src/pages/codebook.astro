@@ -15,7 +15,7 @@ const pageOf = (dpiType: DPIType, name: string) => {
 // Fields in the data that the codebook doesn't cover, like the System ID
 const uncovered = (dpiType: DPIType) => (schemas[dpiType].fields as Field[]).filter(field => codebookNameOf(field) === undefined)
 ---
-<Layout title="Codebook">
+<Layout title="Codebook" description="The DPI Map's codebook: the variables used to categorise digital identity, payment and data exchange systems, and what each value means.">
   <h1>Codebook</h1>
   <div class="lg:flex mt-2">
     <div class="flex-3/4 mt-0">

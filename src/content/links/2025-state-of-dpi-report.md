@@ -1,5 +1,5 @@
 ---
-# pinned to the top of /blog/. The report lives at its own page, src/pages/global-state-of-dpi.md
+# pinned to the top of /blog/. The report lives at its own page, src/pages/global-state-of-dpi.mdx
 title: State of DPI Report
 # the day the report and its PDF went up on this site
 date: 2025-10

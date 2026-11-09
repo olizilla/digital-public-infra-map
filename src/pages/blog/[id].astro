@@ -9,7 +9,8 @@ import { getCollection, render } from 'astro:content'
 import Layout from '../../layouts/Layout.astro'
 import Footer from '../../components/Footer.astro'
 import MoreInsights from '../../components/MoreInsights.astro'
-import { formatDate, hasPage, kindLabels } from '../../Insights'
+import { excerpt, formatDate, hasPage, kindLabels, plainText } from '../../Insights'
+import { insightCitation } from '../../CitationMeta'
 import { systems, systemHref } from '../../Systems'
 import { pages } from '../../Records'
 
@@ -33,24 +34,15 @@ const places = (d.places ?? []).map(place => {
   throw new Error(`src/content/links/${entry.id}.md: place "${place}" is neither a System ID nor a country with a page`)
 })
 
-// "Sarosh Nagar" → "Nagar, S.", "R. Gaur" → "Gaur, R."
-const citeName = (name: string) => {
-  const parts = name.split(/\s+/)
-  const last = parts.pop()
-  return `${last}, ${parts.map(p => p[0] + '.').join(' ')}`
-}
-const names = authors.map(citeName)
-const authorList = names.length > 1 ? `${names.slice(0, -1).join(', ')} & ${names.at(-1)}` : names[0] ?? ''
-const citation = [
-  `${authorList} (${d.date ? d.date.slice(0, 4) : 'n.d.'}).`,
-  `${d.title}.`,
-  d.publication ? `${d.publication}.` : `${d.publisher ?? ''}.`,
-  d.doi ? `https://doi.org/${d.doi}` : d.url
-].join(' ')
+// the citation, from the authors, date, title, where it was published and its DOI or address, and the
+// same data as meta tags, so Zotero saves the original work (src/CitationMeta.ts)
+const abstract = entry.body?.trim() ? plainText(entry.body) : d.description
+const { text: citation, meta } = insightCitation(d, abstract ?? '')
+const description = d.description ?? excerpt(entry.body)
 const recordLabel = d.urlLabel ?? d.publisher ?? 'the source'
 ---
 
-<Layout title={d.title}>
+<Layout title={d.title} description={description} citation={meta}>
   <article class="paper pt-4 md:pt-10 pb-10 max-w-2xl mx-auto px-3 md:px-0">
     <header class="post-head">
       <nav class="page-crumbs" aria-label="Breadcrumb"><a href="/blog/">Insights</a></nav>

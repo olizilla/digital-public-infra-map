@@ -1,8 +1,7 @@
-// A country's lanes of systems, its summary sentence and its citation date, for its page's
+// A country's lanes of systems and its summary sentence, for its page's
 // header (src/components/CountryHeader.astro), which the country page and its systems' pages share.
-import { nameOf, nouns, presence, valueOf } from './DpiTest'
+import { nameOf, nouns, presence } from './DpiTest'
 import { records } from './Records'
-import { parseDate } from './Util'
 import type { DPIType } from './Schema'
 
 type Status = 'DPI' | 'WIP' | 'NA'
@@ -56,13 +55,4 @@ export function summaryOf (country: string, lanes: Lane[]) {
 		}
 	}
 	return sentences.join(' ')
-}
-
-/** The date the country page is cited by: that of its newest data */
-export function citedDateOf (lanes: Lane[]) {
-	const updated = lanes
-		.flatMap(lane => lane.all.map(record => parseDate(valueOf(lane.dpiType, record, 'last_updated'))))
-		.filter(date => date !== undefined)
-		.sort((a, b) => b.getTime() - a.getTime())[0]
-	return updated ? updated.toISOString().slice(0, 10) : 'n.d.'
 }
