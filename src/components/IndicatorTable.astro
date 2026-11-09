@@ -1,18 +1,12 @@
 ---
+// A DPI type's indicators, under the attribute each measures. Each indicator's row has an id, like
+// #id-indicator-2-5, so the codebook can link a variable to it (src/Methodology.ts).
 import { getCollection } from 'astro:content'
+import { attributeOfIndicator, indicatorAnchor } from '../Methodology'
 const {dpi} = Astro.props
 const collName = `${dpi}Indicators`
 const indicators = await getCollection(collName)
 const attrs = await getCollection('dpiAttributes')
-
-/*
-Indicator numbers are numbered per DPI type, so they don't always match the attribute ids.
-Data exchange has no "Non-discrimination and inclusion" indicators, so its 4.x indicators
-are "Capacity and coordination" (attribute 5) and its 5.x are "Scale of adoption" (attribute 6).
-*/
-const attributeForIndicator: Record<string, Record<string, string>> = {
-  data: { '4': '5', '5': '6' }
-}
 
 let lastAttributeID = null
 ---
@@ -23,17 +17,12 @@ let lastAttributeID = null
     </thead>
     <tbody>
       { indicators.map(({data}) => {
-        const indicatorGroup = data.id.split('.')[0]
-        const attributeId = attributeForIndicator[dpi]?.[indicatorGroup] ?? indicatorGroup
-        if (lastAttributeID === attributeId) {
-          return <tr><td>{data.id}</td><td>{data.indicator}</td></tr>
-        }
+        const attributeId = String(attributeOfIndicator(dpi, data.id))
+        const row = <tr id={indicatorAnchor(dpi, data.id)}><td>{data.id}</td><td>{data.indicator}</td></tr>
+        if (lastAttributeID === attributeId) return row
         const attr = attrs.find(a => a.id === attributeId)
         lastAttributeID = attr?.id
-        return (
-          <tr><td class="label bg-zinc-50" colspan="2">{attr?.data.attribute}</td></tr>
-          <tr><td>{data.id}</td><td>{data.indicator}</td></tr>
-        )
+        return <Fragment><tr><td class="label bg-zinc-50" colspan="2">{attr?.data.attribute}</td></tr>{row}</Fragment>
       })}
     </tbody>
   </table>

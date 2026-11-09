@@ -1,16 +1,17 @@
 ---
-// One page per variable, at /codebook/<resource>/<field id>: what it means, the values it allows,
-// how many systems in the current release have each value, and its history.
+// One page per variable, at /codebook/<resource>/<field id>: the index's entry for it (CodebookVariable.astro)
+// in full, with how many systems in the current release have each value and which they are, then where it
+// sits in the methodology and its history.
 import Layout from '../../../layouts/Layout.astro'
-import KeyLabel from '../../../components/KeyLabel.astro'
-import SystemList from '../../../components/SystemList.astro'
-import IdentityIcon from '../../../components/icons/IdentityIcon.astro'
-import PaymentIcon from '../../../components/icons/PaymentIcon.astro'
-import DataIcon from '../../../components/icons/DataIcon.astro'
-import { systems, dpiTypes, type System } from '../../../Systems'
-import { schemas, resourceNames, typeLabels, isMissing, missingLabelOf, missingValuesOf, type DPIType, type Schema, type Field } from '../../../Schema'
-import { codebookVariableOf, meaningsOf, historyOf } from '../../../Codebook'
-import { listValues, listSeparator } from '../../../../scripts/fields.mjs'
+import TypeIcon from '../../../components/TypeIcon.astro'
+import CodebookVariable from '../../../components/CodebookVariable.astro'
+import { dpiTypes } from '../../../Systems'
+import { schemas, resourceNames, typeLabels, type DPIType, type Field } from '../../../Schema'
+import { historyOf } from '../../../Codebook'
+import { variableView } from '../../../CodebookPage'
+import { attributeHref, dpiTestAnchor } from '../../../Methodology'
+import { nouns } from '../../../DpiTest'
+import { laneTitles } from '../../../CountryPage'
 
 export async function getStaticPaths () {
   return dpiTypes.flatMap(dpiType => (schemas[dpiType].fields as Field[]).map(field => ({
@@ -20,175 +21,73 @@ export async function getStaticPaths () {
 }
 
 const { dpiType, field } = Astro.props as { dpiType: DPIType, field: Field }
-const schema = schemas[dpiType] as Schema
-const Icon = { id: IdentityIcon, pay: PaymentIcon, data: DataIcon }[dpiType]
+const view = variableView(dpiType, field)
+const { description } = view
 
-const variable = codebookVariableOf(dpiType, field)
-const description = variable?.description || (field as Field & { description?: string }).description
-
-// The allowed values come from datapackage.json, which is what the data is checked against.
-// A multi-valued field, like `P2P, B2B`, allows any of the values in its pattern.
-const enumValues = field.constraints?.enum?.map(String)
-const listed: string[] | undefined = enumValues ? undefined : listValues(field)
-const allowed = enumValues ?? listed
-const { meaningOf, unmatched } = meaningsOf(field)
-// Codes in the codebook that aren't an allowed value or a missing value, like an old spelling
-const codebookOnly = unmatched.filter(({ value }) => !missingValuesOf(schema).includes(String(value)))
-// What a missing value means: the codebook's text, or the schema's label for it, like NA's
-const missingMeaningOf = (value: string) => meaningOf(value) ?? missingLabelOf(schema, value)
-
-// Usage: the systems with each value, those with values outside the allowed list, and those with none
-const ofType = systems.filter(system => system.dpiType === dpiType)
-const byValue = new Map<string, System[]>()
-const byMissing = new Map<string, System[]>()
-const add = (map: Map<string, System[]>, key: string, system: System) => map.set(key, [...(map.get(key) ?? []), system])
-for (const system of ofType) {
-  const value = system.values[field.id]
-  if (isMissing(schema, value)) {
-    add(byMissing, value, system)
-    continue
-  }
-  if (!allowed) continue
-  for (const part of new Set(listed ? value.split(listSeparator) : [value])) add(byValue, part, system)
-}
-const bySize = (a: [string, System[]], b: [string, System[]]) => b[1].length - a[1].length || a[0].localeCompare(b[0])
-const unlisted = [...byValue].filter(([value]) => !allowed?.includes(value)).sort(bySize)
-const missing = [...byMissing].sort(bySize)
-const withValue = ofType.filter(system => !isMissing(schema, system.values[field.id]))
+// the indicators it measures, by the attribute each measures (one, but Types of transactions supported has two)
+const measured = view.indicators.filter(indicator => indicator.attribute)
+const byAttribute = [...new Set(measured.map(indicator => indicator.attribute!))]
+  .map(attribute => ({ attribute, indicators: measured.filter(indicator => indicator.attribute === attribute) }))
 const history = historyOf(dpiType, field)
 ---
 
 <Layout title={`${field.title} - ${typeLabels[dpiType]} codebook`} description={description}>
-  <article class="max-w-3xl mx-auto px-3 pt-10 pb-16">
-    <header class="pb-6 border-b border-zinc-200">
-      <div class="flex items-center text-zinc-600 text-sm">
-        <Icon class="flex-none text-zinc-400" />
-        <span class="px-1">{typeLabels[dpiType]} variable</span>
-        <span class="text-zinc-300 px-1">·</span>
-        <a class="hover:underline" href={`/codebook/#${dpiType}`}>Codebook</a>
-      </div>
-      <h1 class="pt-3 text-2xl lg:text-3xl font-sans font-bold">{field.title}</h1>
-      <div class="pt-4 flex items-center gap-4 text-sm">
-        <span class="font-mono text-xs text-zinc-500" title="Field id">{resourceNames[dpiType]}/{field.id}</span>
-      </div>
-    </header>
+  <main class="page cb-page">
+    <p class="page-crumbs cb-crumbs"><a href="/codebook/">Codebook</a><span class="sep" aria-hidden="true">›</span><a href={`/codebook/#${dpiType}`}><TypeIcon dpiType={dpiType} class="size-4" />{laneTitles[dpiType]}</a></p>
 
-    <section class="pt-6" id="definition">
-      <h2 class="text-lg font-bold">Definition</h2>
-      <p class="pt-2 text-sm">{description || <span class="text-zinc-400">No definition recorded yet.</span>}</p>
-      <div class="pt-2 flex flex-wrap gap-x-6 text-sm">
-        { variable?.type && <div><KeyLabel class="inline">Type</KeyLabel> {variable.type}</div> }
-        { variable?.scope && variable.scope !== 'NA' && <div><KeyLabel class="inline">Scope</KeyLabel> {variable.scope}</div> }
-        <div><KeyLabel class="inline">Column</KeyLabel> {field.name}</div>
-      </div>
-      { variable?.indicator && (
-        <div class="pt-3">
-          <KeyLabel>Related Indicator in Measuring DPI Framework</KeyLabel>
-          <p class="text-sm italic text-zinc-600 whitespace-pre-wrap">{variable.indicator}</p>
-        </div>
-      )}
-    </section>
+    <div class="cb-solo">
+      <CodebookVariable view={view} full />
 
-    <section class="pt-10" id="values">
-      <h2 class="text-lg font-bold">{allowed ? 'Allowed values' : 'Values'}</h2>
-      <p class="pt-2 text-sm text-zinc-600">
-        { allowed
-          ? `How many of the ${ofType.length} ${typeLabels[dpiType]} systems in the latest data have each value.` +
-            (listed ? ' A system can have more than one value, so it can be counted more than once.' : '')
-          : `This field has no fixed list of values. Of the ${ofType.length} ${typeLabels[dpiType]} systems in the latest data, ` +
-            `${withValue.length} have a value and ${ofType.length - withValue.length} are missing one.`
-        }
-      </p>
-      <div class="pt-2 divide-y divide-zinc-100">
-        { allowed
-          ? allowed.map(value => (
-            <div class="py-3 sm:grid sm:grid-cols-5 sm:gap-4 text-sm">
-              <div class="sm:col-span-2 font-semibold">{value}</div>
-              <div class="sm:col-span-3">
-                { meaningOf(value) && <p class="pb-1 text-zinc-600">{meaningOf(value)}</p> }
-                <SystemList systems={byValue.get(value) ?? []} />
-              </div>
-            </div>
-          ))
+      <section class="cb-sec" id="methodology">
+        <h2 class="cb-h2">In the methodology</h2>
+        <dl class="cb-dl cb-method">
+          <div>
+            <dt>Used in the DPI test</dt>
+            <dd>{ view.criterion
+              ? <Fragment>Yes<span class="sep" aria-hidden="true">·</span><a class="ul" href={`/methodology/#${dpiTestAnchor(dpiType)}`}>How we count DPI-like {nouns[dpiType]} systems</a></Fragment>
+              : 'No' }</dd>
+          </div>
+          <div>
+            <dt>Attribute</dt>
+            <dd>{ byAttribute.length
+              ? byAttribute.map(({ attribute, indicators }) => (
+                <div class="cb-attr">
+                  <p><a class="ul font-medium" href={attributeHref(attribute.name)}>{attribute.name}</a><span class="cb-attr-cat">{attribute.category}</span></p>
+                  { indicators.map(indicator => (
+                    <p class="cb-ind">{ indicator.listed
+                      ? <a class="ul" href={`/methodology/#${indicator.anchor}`}>Indicator {indicator.number}</a>
+                      : <span>Indicator {indicator.number}</span> }{ indicator.text && `: ${indicator.text}` }</p>
+                  )) }
+                </div>
+              ))
+              : 'None. It describes the system rather than measuring an attribute.' }</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="cb-sec" id="history">
+        <h2 class="cb-h2">History</h2>
+        { history.length === 0
+          ? <p class="cb-note">No changes to this variable have been recorded yet.</p>
           : (
-            <div class="py-3 sm:grid sm:grid-cols-5 sm:gap-4 text-sm">
-              <div class="sm:col-span-2 font-semibold">With a value</div>
-              <div class="sm:col-span-3"><SystemList systems={withValue} fieldId={field.id} /></div>
-            </div>
+            <ul class="cb-history">
+              { history.map(entry => (
+                <li>
+                  { entry.mapTo === field.id
+                    ? <>Retired field <code>{entry.id}</code> was mapped to this field.</>
+                    : <>This field was retired{entry.rule && <span>, with rule <code>{entry.rule}</code></span>}.</>
+                  }
+                  { entry.values && (
+                    <ul>
+                      { Object.entries(entry.values).map(([from, to]) => <li><code>{from}</code> &rarr; <code>{to}</code></li>) }
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
           )
         }
-        { codebookOnly.map(({ value: key, label: value }) => (
-          <div class="py-3 sm:grid sm:grid-cols-5 sm:gap-4 text-sm">
-            <div class="sm:col-span-2">
-              <span class="font-semibold whitespace-pre-line">{key}</span>
-              <span class="block text-xs text-zinc-500">In the codebook text{allowed ? ', but not an allowed value' : ''}</span>
-            </div>
-            <div class="sm:col-span-3 text-zinc-600">{value}</div>
-          </div>
-        ))}
-      </div>
-    </section>
-
-    { unlisted.length > 0 && (
-      <section class="pt-10" id="not-in-codebook">
-        <h2 class="text-lg font-bold">Not in the codebook</h2>
-        <p class="pt-2 text-sm text-zinc-600">Values in the latest data that aren't one of the allowed values.</p>
-        <div class="pt-2 divide-y divide-zinc-100">
-          { unlisted.map(([value, list]) => (
-            <div class="py-3 sm:grid sm:grid-cols-5 sm:gap-4 text-sm">
-              <div class="sm:col-span-2">
-                <span class="font-semibold">{value}</span>
-                <span class="block text-xs text-amber-700">Not in the codebook</span>
-              </div>
-              <div class="sm:col-span-3"><SystemList systems={list} /></div>
-            </div>
-          ))}
-        </div>
       </section>
-    )}
-
-    <section class="pt-10" id="missing">
-      <h2 class="text-lg font-bold">Missing values</h2>
-      { missing.length === 0
-        ? <p class="pt-2 text-sm text-zinc-600">Every {typeLabels[dpiType]} system has a value.</p>
-        : (
-          <div class="pt-2 divide-y divide-zinc-100">
-            { missing.map(([value, list]) => (
-              <div class="py-3 sm:grid sm:grid-cols-5 sm:gap-4 text-sm">
-                <div class="sm:col-span-2 font-semibold text-zinc-500">{value || 'Empty'}</div>
-                <div class="sm:col-span-3">
-                  { missingMeaningOf(value) && <p class="pb-1 text-zinc-600">{missingMeaningOf(value)}</p> }
-                  <SystemList systems={list} />
-                </div>
-              </div>
-            ))}
-          </div>
-        )
-      }
-    </section>
-
-    <section class="pt-10" id="history">
-      <h2 class="text-lg font-bold">History</h2>
-      { history.length === 0
-        ? <p class="pt-2 text-sm text-zinc-600">No changes to this variable have been recorded yet.</p>
-        : (
-          <ul class="pt-2 text-sm space-y-2">
-            { history.map(entry => (
-              <li>
-                { entry.mapTo === field.id
-                  ? <>Retired field <code>{entry.id}</code> was mapped to this field.</>
-                  : <>This field was retired{entry.rule && <span>, with rule <code>{entry.rule}</code></span>}.</>
-                }
-                { entry.values && (
-                  <ul class="pt-1 pl-4 text-xs text-zinc-600">
-                    { Object.entries(entry.values).map(([from, to]) => <li><code>{from}</code> &rarr; <code>{to}</code></li>) }
-                  </ul>
-                )}
-              </li>
-            ))}
-          </ul>
-        )
-      }
-    </section>
-  </article>
+    </div>
+  </main>
 </Layout>

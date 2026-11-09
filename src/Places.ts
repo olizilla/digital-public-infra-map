@@ -15,18 +15,18 @@ export interface Place {
 }
 
 /** The rows of a CSV with a header row, as objects. Enough for these files: quoted cells, no line breaks in cells. */
-function rows (csv: string): Record<string, string>[] {
+export function csvRows (csv: string): Record<string, string>[] {
   const cells = (line: string) => [...line.matchAll(/(?:^|,)(?:"((?:[^"]|"")*)"|([^,]*))/g)].map(m => m[1]?.replace(/""/g, '"') ?? m[2])
   const [header, ...lines] = csv.trim().split(/\r?\n/).map(cells)
   return lines.map(line => Object.fromEntries(header.map((name, i) => [name, line[i]])))
 }
 
 const value = (cell: string) => cell === 'NA' ? undefined : cell
-export const places: Place[] = rows(placesCSV).map(({ code, name, iso3, parent }) => ({ code, name, iso3: value(iso3), parent: value(parent) }))
+export const places: Place[] = csvRows(placesCSV).map(({ code, name, iso3, parent }) => ({ code, name, iso3: value(iso3), parent: value(parent) }))
 
 const byCode = new Map(places.map(place => [place.code, place]))
 const byName = new Map(places.map(place => [place.name, place]))
-for (const { dpimap_name, code } of rows(namesCSV)) byName.set(dpimap_name, byCode.get(code)!)
+for (const { dpimap_name, code } of csvRows(namesCSV)) byName.set(dpimap_name, byCode.get(code)!)
 
 export const placeByCode = (code: string) => byCode.get(code)
 

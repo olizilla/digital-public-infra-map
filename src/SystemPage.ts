@@ -9,6 +9,7 @@ import { historyFor, sourcesFor, type System } from './Systems'
 import { baselineRelease, changesetRelease } from './Release'
 import { parseDate } from './Util'
 import { listValues } from '../scripts/fields.mjs'
+import { attributeOfIndicator } from './Methodology'
 
 /** The dataset snapshot the history starts from: the 2026-03-31 release (src/Release.ts) */
 export const snapshotDate = baselineRelease
@@ -55,19 +56,9 @@ export const isListed = (field: Field) => !notListed.has(field.site.kind)
 /** Within an attribute: yes/no flags, then the name and website, then text fields */
 const kindRank: Record<string, number> = { flag: 0, name: 1, url: 2, text: 3 }
 
-/**
- * Indicator numbers are numbered per DPI type, so they don't always match the attribute ids.
- * Data exchange has no "Non-discrimination and inclusion" indicators, so its 4.x indicators
- * are "Capacity and coordination" (attribute 5) and its 5.x are "Scale of adoption" (attribute 6).
- * As in src/components/IndicatorTable.astro.
- */
-const attributeForIndicator: Partial<Record<DPIType, Record<number, number>>> = { data: { 4: 5, 5: 6 } }
-
-/** The attribute a field's framework indicator measures, 1 to 6, or 0 if it has none */
+/** The attribute a field's framework indicator measures, 1 to 6, or 0 if it has none (src/Methodology.ts) */
 function attributeOf (dpiType: DPIType, field: Field) {
-  const match = codebookVariableOf(dpiType, field)?.indicator.match(/^\s*(\d+)\./)
-  const group = match ? Number(match[1]) : 0
-  return attributeForIndicator[dpiType]?.[group] ?? group
+  return attributeOfIndicator(dpiType, codebookVariableOf(dpiType, field)?.indicator ?? '')
 }
 
 /** The fields the page lists, by attribute id (0 for "About the system"), each in display order */

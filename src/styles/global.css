@@ -128,6 +128,10 @@
 .indicator-table th {
   @apply pl-2
 }
+/* the rows and paragraphs the codebook links to (src/Methodology.ts), marked when linked to */
+.attribute-table tr, .indicator-table tr, [id^="dpi-test-"] { scroll-margin-top: 4rem; }
+.attribute-table tr:target, .indicator-table tr:target { @apply bg-blue-50 outline-2 outline-blue-300; }
+[id^="dpi-test-"]:target { @apply bg-blue-50 outline-2 outline-offset-2 outline-blue-300 rounded-sm; }
 /* "All N fields" toggles on system cards */
 details.more > summary {
   @apply flex items-center gap-1.5 cursor-pointer list-none hover:text-black;
@@ -1043,4 +1047,183 @@ details.more[open] > summary::before {
 .chg-country > .lane-head { margin-bottom: 0; }
 @media (max-width: 900px) {
   .chg-sys .sys-id { display: inline-block; }
+}
+
+/* The codebook, /codebook/ (src/pages/codebook.astro) and a variable's page, /codebook/<resource>/<field>/
+   (src/pages/codebook/[resource]/[field].astro): the same entry (CodebookVariable.astro), compact on the
+   index and in full on its page. Its values table has a row per value, then Not Found, a soft No in the
+   site's light red, and NA last, in grey.
+   The index groups variables under the system page's attribute dividers (.grp, .divider). */
+@layer components {
+  .cb-page { @apply max-w-[1120px]; }
+  .cb-head { @apply pt-0 md:pt-4 pb-6; }
+  .cb-intro {
+    @apply mt-3 max-w-[42rem] grid gap-2 text-[15px] leading-6 text-zinc-700;
+  }
+  .cb-crumbs {
+    @apply flex flex-wrap items-center pt-0 md:pt-4 pb-2;
+    & a { @apply inline-flex items-center gap-1.5; }
+    & .sep { @apply px-1.5; }
+  }
+  .cb-grid {
+    @apply grid gap-8 min-[901px]:grid-cols-[minmax(0,1fr)_15rem] min-[901px]:gap-x-12 items-start;
+    grid-template-areas: "side" "main";
+  }
+  .cb-main { @apply min-w-0; grid-area: main; }
+  .cb-side { @apply min-w-0; grid-area: side; }
+  @media (min-width: 901px) {
+    .cb-grid { grid-template-areas: "main side"; }
+    .cb-side { @apply sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto; }
+  }
+  /* a variable's page: one column, as wide as the index's main column */
+  .cb-solo { @apply max-w-[920px]; }
+  .cb-toc {
+    @apply grid gap-1 text-[13px] leading-5;
+    & a { @apply text-zinc-700 hover:text-blue-500 hover:underline; }
+    & ul { @apply grid gap-1 mt-1 mb-1 pl-6; }
+    & ul a { @apply text-zinc-600; }
+  }
+  .cb-toc-type { @apply flex items-center gap-2 mt-2 font-semibold; }
+
+  /* Standard values, then what the words on a variable's meta line mean */
+  .cb-sv {
+    @apply px-4 py-3.5 bg-zinc-50 border border-zinc-200 rounded-lg text-sm leading-[22px] text-zinc-700;
+    & .pill { @apply text-[11px] leading-[15px] min-w-8; }
+  }
+  /* the codebook's pills keep dark text on their colour, whatever the text around them */
+  .cb-page .pill { @apply text-zinc-900; }
+  .cb-sv-h { @apply mb-1 text-[15px] leading-[22px] font-semibold text-zinc-800; }
+  .cb-sv-defs {
+    @apply grid gap-1.5 mt-3;
+    & > div { @apply grid sm:grid-cols-[8.5rem_minmax(0,1fr)] gap-x-3 gap-y-0.5; }
+    & dt { @apply flex flex-wrap items-start gap-1 pt-0.5; }
+    & dd { @apply text-black; }
+  }
+  .cb-terms {
+    @apply grid gap-1 mt-4 px-1 text-[13px] leading-5 text-zinc-600;
+    & dt { @apply inline font-medium text-zinc-800; }
+    & dt::after { content: ": "; }
+    & dd { @apply inline; }
+  }
+
+  /* a DPI type: its sticky heading, as the codebook has always had, in sans */
+  .cb-type { @apply mt-14; }
+  .cb-type-h {
+    @apply sticky top-0 z-10 flex items-center gap-2.5 py-2.5 bg-white border-b-4 border-zinc-300 text-xl leading-7 font-semibold text-zinc-800;
+  }
+  .cb-type-h h2 { @apply flex items-center gap-2.5 min-w-0; }
+  .cb-type-n { @apply ml-auto text-[13px] leading-[18px] font-normal text-zinc-500; }
+  .cb-top { @apply shrink-0 text-[13px] leading-[18px] font-semibold text-zinc-700 hover:text-blue-500; }
+  .cb-type-intro { @apply mt-3 max-w-[42rem] text-sm leading-[22px] text-zinc-600; }
+  .cb-grp { @apply mt-9; scroll-margin-top: 4rem; }
+  .cb-grp .divider { @apply mb-1; }
+  .cb-type, .cb-var, #standard-values, #values, #methodology, #history { scroll-margin-top: 4rem; }
+
+  /* a variable */
+  .cb-var { @apply py-5 border-t border-zinc-100; }
+  .cb-grp .divider + .cb-var { @apply border-t-0; }
+  .cb-var.is-full { @apply py-0 border-t-0; }
+  .cb-var:target { @apply -mx-3 px-3 rounded-lg outline-2 outline-blue-300; }
+  .cb-name {
+    @apply text-base leading-6 font-semibold;
+    & a { @apply hover:text-blue-500 hover:underline; }
+  }
+  .cb-title { @apply text-[32px] leading-tight font-bold tracking-[-.01em]; }
+  .cb-meta {
+    @apply mt-0.5 text-[13px] leading-5 text-zinc-500;
+    & .sep { @apply px-1.5 text-zinc-400; }
+  }
+  .cb-meta-l { @apply text-zinc-600 underline decoration-zinc-300 underline-offset-3 hover:text-blue-500; }
+  .is-full .cb-meta { @apply mt-2 text-sm; }
+  .cb-def { @apply mt-1.5 max-w-[64ch] text-sm leading-[22px] text-black; }
+  .is-full .cb-def { @apply mt-4 text-base leading-7; }
+  .cb-def.is-none, .cb-v-def .is-none { @apply text-zinc-500; }
+  .cb-h2 { @apply mt-10 mb-1 text-lg leading-6 font-semibold text-zinc-800; }
+  .cb-note { @apply text-sm leading-[22px] text-zinc-600; }
+  .cb-cover { @apply mt-2 text-[13px] leading-5 text-zinc-600; }
+  .is-full .cb-cover { @apply mt-4 text-sm; }
+  .cb-n { @apply text-xs leading-5 tabular-nums text-zinc-500; }
+
+  /* the values table: value, definition, count; on its page a bar and the systems below */
+  .cb-values { @apply mt-2; }
+  .cb-v, .cb-vhead {
+    @apply grid gap-x-4 py-1.5 border-t border-zinc-100 text-[13px] leading-5;
+    grid-template-columns: 9rem minmax(0, 1fr) 2.5rem;
+    grid-template-areas: "name def count" ". sys sys";
+  }
+  .cb-v-name { grid-area: name; @apply font-medium [overflow-wrap:anywhere]; }
+  .cb-v-def { grid-area: def; @apply text-zinc-800; }
+  .cb-v-count { grid-area: count; @apply text-right; }
+  .cb-v .pill { @apply text-[11px] leading-[15px] min-w-8; }
+  .cb-v.is-std .cb-v-def { @apply text-zinc-500; }
+  .cb-vhead {
+    @apply mt-3 pb-1 border-t-0 text-xs font-medium text-zinc-500;
+    & span:last-child { @apply text-right; }
+  }
+  .is-full .cb-v, .is-full .cb-vhead { grid-template-columns: 10rem minmax(0, 1fr) 7rem; }
+  .is-full .cb-v { @apply py-2.5 text-sm leading-[22px]; }
+  .is-full .cb-vhead { @apply py-1; }
+  .is-full .cb-v-count { @apply flex flex-col items-end pt-px; }
+  .is-full .cb-v-count .cb-n { @apply text-sm font-medium text-zinc-800; }
+  .is-full .cb-v.is-na .cb-v-count .cb-n { @apply font-normal text-zinc-600; }
+  .cb-bar {
+    @apply block w-full h-1 mt-1 rounded-full bg-zinc-100 overflow-hidden;
+    & > span { @apply block h-full rounded-full bg-zinc-500; }
+  }
+  .is-nf .cb-bar > span { @apply bg-red-300; }
+  .is-na .cb-bar > span { @apply bg-zinc-300; }
+  .cb-sys {
+    grid-area: sys;
+    @apply mt-1;
+    & summary { @apply w-fit text-[13px] leading-5 text-zinc-600 cursor-pointer hover:text-blue-500; }
+    & ul { @apply grid sm:grid-cols-2 gap-x-6 gap-y-1 mt-1.5 mb-1 text-[13px] leading-5; }
+    & li { @apply min-w-0; }
+    & .sep { @apply px-1 text-zinc-400; }
+    & a { @apply text-black hover:text-blue-500 hover:underline; }
+  }
+  .cb-sys-c { @apply text-zinc-500; }
+  .cb-sys-v { @apply block text-xs leading-[18px] text-zinc-600 [overflow-wrap:anywhere]; }
+  /* the values with the standard definition, on one line */
+  .cb-std {
+    @apply flex flex-wrap items-center gap-x-1.5 gap-y-1 mt-2 text-[13px] leading-5 text-zinc-500;
+    & .sep { @apply text-zinc-400; }
+    & .pill { @apply text-[11px] leading-[15px] min-w-8; }
+  }
+  .cb-values + .cb-std { @apply mt-0 pt-1.5 border-t border-zinc-100; }
+  .cb-std-v { @apply inline-flex items-center gap-1; }
+  .cb-std-l { @apply ml-1.5 underline decoration-zinc-300 underline-offset-3 hover:text-blue-500; }
+  .cb-more {
+    @apply inline-flex items-center gap-1.5 mt-2.5 text-[13px] leading-5 font-medium text-zinc-600 hover:text-black;
+    &::after { content: "→"; }
+  }
+
+  /* a variable's page: the methodology and history */
+  .cb-dl {
+    @apply grid gap-2 mt-2 text-sm leading-[22px];
+    & > div { @apply grid sm:grid-cols-[9rem_minmax(0,1fr)] gap-x-4; }
+    & dt { @apply text-zinc-600; }
+    & dd { @apply min-w-0 text-black [overflow-wrap:anywhere]; }
+  }
+  /* In the methodology: the attribute, its category, then the indicator */
+  .cb-method .sep { @apply px-1.5 text-zinc-400; }
+  .cb-attr + .cb-attr { @apply mt-2; }
+  .cb-attr-cat { @apply ml-2 text-[13px] text-zinc-500; }
+  .cb-ind { @apply text-zinc-800; }
+  .cb-history {
+    @apply grid gap-2 mt-2 pl-5 list-disc text-sm leading-[22px];
+    & ul { @apply pl-4 pt-1 text-xs text-zinc-600; }
+  }
+
+  /* a phone: each value stacks, its definition under its name and count */
+  @media (max-width: 640px) {
+    .cb-v, .is-full .cb-v {
+      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-areas: "name count" "def def" "sys sys";
+      @apply gap-y-0.5;
+    }
+    .cb-vhead { display: none; }
+    .is-full .cb-v-count { @apply min-w-16; }
+    .is-full .cb-v-def { @apply text-[13px] leading-5; }
+    .cb-type-h { @apply text-lg leading-6; }
+  }
 }
