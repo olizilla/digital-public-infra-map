@@ -267,7 +267,7 @@
             ],
             "scope": "System",
             "variableType": "Binary",
-            "frameworkIndicator": "1.3 Vision and strategy of the interoperabiity of the ID system as DPI conveyed transparently"
+            "frameworkIndicator": "1.3 Vision and strategy of the interoperability of the ID system as DPI conveyed transparently"
           },
           {
             "id": "legal_status",
@@ -288,7 +288,7 @@
             ],
             "scope": "System",
             "variableType": "Binary",
-            "frameworkIndicator": "2.1 The ID serves as a legal proof of an individual’s ID"
+            "frameworkIndicator": "2.1 The ID serves as a legal proof of an individual’s identity"
           },
           {
             "id": "governing_entity",
@@ -454,8 +454,7 @@
               }
             ],
             "scope": "System",
-            "variableType": "Binary",
-            "frameworkIndicator": "0"
+            "variableType": "Binary"
           },
           {
             "id": "sectoral_use_cases",
@@ -719,7 +718,7 @@
                 "label": "Insufficient information, including where the system is not yet live."
               }
             ],
-            "scope": "System",
+            "scope": "Subsystem",
             "variableType": "Binary"
           },
           {
@@ -821,6 +820,7 @@
                 "label": "Insufficient information, including where the system is not yet live."
               }
             ],
+            "scope": "Subsystem",
             "variableType": "Categorical",
             "frameworkIndicator": "1.3 Payment system has the infrastructure to facilitate (near) real-time settlement of transactions between users"
           },
@@ -840,7 +840,7 @@
               },
               {
                 "value": "Hybrid",
-                "label": "Continuous multilateral offsetting with very frequent settlement (SPEI and CoDi only)."
+                "label": "Continuous multilateral offsetting with very frequent settlement (e.g. SPEI and CoDi)."
               },
               {
                 "value": "DNS",
@@ -851,6 +851,7 @@
                 "label": "Insufficient information, including where the system is not yet live."
               }
             ],
+            "scope": "Subsystem",
             "variableType": "Categorical",
             "frameworkIndicator": "1.3 Payment system has the infrastructure to facilitate (near) real-time settlement of transactions between users"
           },
@@ -1274,7 +1275,8 @@
               }
             ],
             "scope": "System",
-            "variableType": "Categorical"
+            "variableType": "Categorical",
+            "frameworkIndicator": "5.2 Data exchange is cross-sectoral"
           },
           {
             "id": "interoperability_level",
@@ -1412,7 +1414,7 @@
             ],
             "scope": "Subsystem",
             "variableType": "Binary",
-            "frameworkIndicator": "2.2 Data Exchange provides information for enrollment and participation"
+            "frameworkIndicator": "2.2 Use of the DES is subject to transparent enrollment and participation conditions"
           },
           {
             "id": "permitted_participants",

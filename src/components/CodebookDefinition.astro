@@ -22,7 +22,7 @@ const { anchor, codes, indicator } = variable
       )}
       { codes.map(({key, value}) => (<p><span class="font-bold">{key}</span> &ndash; {value}</p>))}
       {indicator && (
-      <p>
+      <div class="my-5">
         <KeyLabel>Related Indicator in Measuring DPI Framework</KeyLabel>
         <span class="text-sm italic text-zinc-600 whitespace-pre-wrap">{indicator}</span>
       </div>
