@@ -76,6 +76,7 @@
           {
             "name": "count_for_dpi",
             "title": "Count for DPI",
+            "description": "1 if the system counts as DPI-like: it passes the DPI test for its type. 0 if it doesn't.",
             "type": "integer",
             "constraints": {
               "required": true,
@@ -676,6 +677,7 @@
           {
             "name": "count_for_dpi",
             "title": "Count for DPI",
+            "description": "1 if the system counts as DPI-like: it passes the DPI test for its type. 0 if it doesn't.",
             "type": "integer",
             "constraints": {
               "required": true,
@@ -1360,6 +1362,7 @@
           {
             "name": "count_for_dpi",
             "title": "Count for DPI",
+            "description": "1 if the system counts as DPI-like: it passes the DPI test for its type. 0 if it doesn't.",
             "type": "integer",
             "constraints": {
               "required": true,
