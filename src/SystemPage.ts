@@ -160,8 +160,10 @@ export interface LogItem {
   created: boolean
   /** fields whose value it changed */
   changed: Field[]
-  /** fields it only gave sources, or restated */
+  /** fields whose value it kept and gave sources */
   sourced: Field[]
+  /** fields whose value it restated, with no sources */
+  restated: Field[]
 }
 
 /**
@@ -177,10 +179,10 @@ export function changeLogOf (system: System) {
         snapshot = { fields: (snapshot?.fields ?? 0) + (isListed(field) ? 1 : 0), researched: entry.as_of || snapshot?.researched || '' }
         continue
       }
-      const item = items.get(entry.changeset) ?? { changeset: entry.changeset, date: '', created: false, changed: [], sourced: [], ...(entry.author ? { author: entry.author } : {}) }
+      const item = items.get(entry.changeset) ?? { changeset: entry.changeset, date: '', created: false, changed: [], sourced: [], restated: [], ...(entry.author ? { author: entry.author } : {}) }
       if (entry.as_of > item.date) item.date = entry.as_of
       if (entry.type === 'create') item.created = true
-      ;(entry.valueChanged ? item.changed : item.sourced).push(field)
+      ;(entry.valueChanged ? item.changed : entry.sources?.length ? item.sourced : item.restated).push(field)
       items.set(entry.changeset, item)
     }
   }
@@ -192,14 +194,19 @@ export function changeLogOf (system: System) {
 export function logTitle (item: LogItem) {
   const fields = (n: number) => `${n} field${n === 1 ? '' : 's'}`
   if (item.created) return { text: `Added this system, with ${fields(item.changed.filter(isListed).length)}` }
-  const { changed, sourced } = item
-  if (changed.length === 1 && !sourced.length) return { text: 'Changed: ', field: changed[0] }
-  if (sourced.length === 1 && !changed.length) return { text: 'Source added: ', field: sourced[0] }
+  const { changed, sourced, restated } = item
+  const only = (list: Field[]) => list.length === 1 && changed.length + sourced.length + restated.length === 1
+  if (only(changed)) return { text: 'Changed: ', field: changed[0] }
+  if (only(sourced)) return { text: 'Source added: ', field: sourced[0] }
+  if (only(restated)) return { text: 'Value unchanged: ', field: restated[0] }
+  // a restatement with no sources isn't a source added (code review S9)
   const parts = [
-    ...(changed.length ? [`Changed ${fields(changed.length)}`] : []),
-    ...(sourced.length ? [`${changed.length ? 'sources' : 'Sources'} added to ${fields(sourced.length)}`] : [])
+    ...(changed.length ? [`changed ${fields(changed.length)}`] : []),
+    ...(sourced.length ? [`sources added to ${fields(sourced.length)}`] : []),
+    ...(restated.length ? [`${fields(restated.length)} unchanged`] : [])
   ]
-  return { text: parts.join(', ') }
+  const text = parts.join(', ')
+  return { text: text[0].toUpperCase() + text.slice(1) }
 }
 
 // --- the verdict ---

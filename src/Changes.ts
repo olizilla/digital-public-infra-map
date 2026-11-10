@@ -73,7 +73,7 @@ export const kinds = ['dpi', 'new', 'removed', 'renamed', 'values', 'sources', '
 export type Kind = typeof kinds[number]
 export type ChangeKind = Exclude<Kind, 'dpi'>
 export const kindLabels: Record<Kind, string> = {
-  dpi: 'DPI status', new: 'New', removed: 'Removed', renamed: 'Renamed', values: 'Values', sources: 'Sources only', wording: 'Wording fixes'
+  dpi: 'DPI status', new: 'New', removed: 'Removed', renamed: 'Renamed', values: 'Values', sources: 'Unchanged values', wording: 'Wording fixes'
 }
 
 /**
