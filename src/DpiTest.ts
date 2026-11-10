@@ -191,12 +191,21 @@ export function nameOf (dpiType: DPIType, record: SystemRecord) {
 }
 
 /**
+ * The field that says a system exists, where a type has one: Claim of digital ID, and Active
+ * real-time payment system present. A Yes there is a system, even with no name or status.
+ */
+const claimFields: Partial<Record<DPIType, string>> = { id: 'claim', pay: 'realtime_active' }
+
+/**
  * 'named', 'unnamed' when the data has a system but not its name,
- * or 'not-found' when researchers found no system at all.
+ * or 'not-found' when researchers found no system at all. A row with no name and no status
+ * whose claim field is Yes (Belarus's digital ID) is 'unnamed', not 'not-found'.
  */
 export function presence (dpiType: DPIType, record: SystemRecord): 'named' | 'unnamed' | 'not-found' {
   if (nameOf(dpiType, record)) return 'named'
-  return statusOf(dpiType, record).counts === 'NA' ? 'not-found' : 'unnamed'
+  if (statusOf(dpiType, record).counts !== 'NA') return 'unnamed'
+  const claim = claimFields[dpiType]
+  return claim && valueOf(dpiType, record, claim) === 'Yes' ? 'unnamed' : 'not-found'
 }
 
 export const nouns: Record<DPIType, string> = { id: 'digital ID', pay: 'digital payment', data: 'data exchange' }

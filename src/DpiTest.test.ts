@@ -58,7 +58,17 @@ test('Not Found counts in the DPI test exactly as NA does', () => {
     assert.equal(presence('id', notFound), presence('id', na))
   }
   // a row without a name whose status is Not Found or NA is one where the research found no system; a suspended one is a system
-  assert.equal(presence('id', id('Not Found', { name: 'NA' })), 'not-found')
+  assert.equal(presence('id', id('Not Found', { name: 'NA', claim: 'No' })), 'not-found')
+  assert.equal(presence('id', id('NA', { name: 'NA', claim: 'NA' })), 'not-found')
   assert.equal(presence('id', id('Suspended', { name: 'NA' })), 'unnamed')
   assert.equal(presence('id', id('Planned/Piloted', { name: 'NA' })), 'unnamed')
+})
+
+test('a row that claims a system has one, even with no name or status', () => {
+  // Belarus's digital ID: Claim of digital ID is Yes, with no name and no status
+  assert.equal(presence('id', { name: 'NA', status: 'NA', claim: 'Yes' }), 'unnamed')
+  assert.equal(presence('pay', { name: 'NA', status: 'NA', realtime_active: 'Yes' }), 'unnamed')
+  assert.equal(presence('pay', { name: 'NA', status: 'NA', realtime_active: 'No', aml_law: 'Yes' }), 'not-found')
+  // data exchange has no claim field
+  assert.equal(presence('data', { name: 'NA', status: 'NA' }), 'not-found')
 })
