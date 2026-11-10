@@ -55,8 +55,8 @@ sources = [
 type = "update"
 key = "pay-li-02"
 as_of = 2026-10-15
-values.national_regional = "National"
-reason = "SIC IP is the Swiss national system, also used in Liechtenstein under the currency treaty with Switzerland. Coded National to match Switzerland; confirm whether Liechtenstein should be National or Regional."
+values.national_regional = "Regional"
+reason = "SIC IP is the Swiss national system, also used in Liechtenstein under the currency treaty with Switzerland."
 
 [[changes]]
 type = "update"

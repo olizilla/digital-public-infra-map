@@ -1,0 +1,195 @@
+[[changes]]
+type = "update"
+key = "id-ls-01"
+as_of = 2024-10-01
+values.legal_redress = "Legally binding mechanism"
+reason = "Use the codebook's value for Legally binding redress mechanism: \"Legally established mechanism\" is \"Legally binding mechanism\"."
+
+[[changes]]
+type = "update"
+key = "id-sc-01"
+as_of = 2024-10-01
+values.legal_redress = "Legally binding mechanism"
+reason = "Use the codebook's value for Legally binding redress mechanism: \"Legally established mechanism\" is \"Legally binding mechanism\"."
+
+[[changes]]
+type = "update"
+key = "id-so-01"
+as_of = 2024-10-01
+values.legal_redress = "Legally binding mechanism"
+reason = "Use the codebook's value for Legally binding redress mechanism: \"Legally established mechanism\" is \"Legally binding mechanism\"."
+
+[[changes]]
+type = "update"
+key = "id-tg-01"
+as_of = 2024-10-01
+values.legal_redress = "Legally binding mechanism"
+reason = "Use the codebook's value for Legally binding redress mechanism: \"Legally established mechanism\" is \"Legally binding mechanism\"."
+
+[[changes]]
+type = "update"
+key = "id-th-01"
+as_of = 2025-06-20
+values.legal_redress = "Legally binding mechanism"
+reason = "Use the codebook's value for Legally binding redress mechanism: \"Legally established mechanism\" is \"Legally binding mechanism\"."
+
+[[changes]]
+type = "update"
+key = "id-th-02"
+as_of = 2025-06-20
+values.legal_redress = "Legally binding mechanism"
+reason = "Use the codebook's value for Legally binding redress mechanism: \"Legally established mechanism\" is \"Legally binding mechanism\"."
+
+[[changes]]
+type = "update"
+key = "id-cu-01"
+as_of = 2024-10-01
+values.legal_redress = "Legally binding mechanism"
+reason = "Use the codebook's value for Legally binding redress mechanism: \"Legally established mechanism\" is \"Legally binding mechanism\"."
+
+[[changes]]
+type = "update"
+key = "id-jm-01"
+as_of = 2024-10-01
+values.legal_redress = "Legally binding mechanism"
+reason = "Use the codebook's value for Legally binding redress mechanism: \"Legally established mechanism\" is \"Legally binding mechanism\"."
+
+[[changes]]
+type = "update"
+key = "id-ad-01"
+as_of = 2024-10-01
+values.legal_redress = "Legally binding mechanism"
+reason = "Use the codebook's value for Legally binding redress mechanism: \"Legally established mechanism\" is \"Legally binding mechanism\"."
+
+[[changes]]
+type = "update"
+key = "id-at-01"
+as_of = 2024-10-01
+values.legal_redress = "Legally binding mechanism"
+reason = "Use the codebook's value for Legally binding redress mechanism: \"Legally established mechanism\" is \"Legally binding mechanism\"."
+
+[[changes]]
+type = "update"
+key = "id-ba-01"
+as_of = 2024-10-01
+values.legal_redress = "Legally binding mechanism"
+reason = "Use the codebook's value for Legally binding redress mechanism: \"Legally established mechanism\" is \"Legally binding mechanism\"."
+
+[[changes]]
+type = "update"
+key = "id-bg-01"
+as_of = 2024-10-01
+values.legal_redress = "Legally binding mechanism"
+reason = "Use the codebook's value for Legally binding redress mechanism: \"Legally established mechanism\" is \"Legally binding mechanism\"."
+
+[[changes]]
+type = "update"
+key = "id-fi-01"
+as_of = 2024-10-01
+values.legal_redress = "Legally binding mechanism"
+reason = "Use the codebook's value for Legally binding redress mechanism: \"Legally established mechanism\" is \"Legally binding mechanism\"."
+
+[[changes]]
+type = "update"
+key = "id-de-01"
+as_of = 2025-06-17
+values.legal_redress = "Legally binding mechanism"
+reason = "Use the codebook's value for Legally binding redress mechanism: \"Legally established mechanism\" is \"Legally binding mechanism\"."
+
+[[changes]]
+type = "update"
+key = "id-gr-01"
+as_of = 2025-03-28
+values.legal_redress = "Legally binding mechanism"
+reason = "Use the codebook's value for Legally binding redress mechanism: \"Legally established mechanism\" is \"Legally binding mechanism\"."
+
+[[changes]]
+type = "update"
+key = "id-hu-01"
+as_of = 2024-10-01
+values.legal_redress = "Legally binding mechanism"
+reason = "Use the codebook's value for Legally binding redress mechanism: \"Legally established mechanism\" is \"Legally binding mechanism\"."
+
+[[changes]]
+type = "update"
+key = "id-lv-01"
+as_of = 2024-10-01
+values.legal_redress = "Legally binding mechanism"
+reason = "Use the codebook's value for Legally binding redress mechanism: \"Legally established mechanism\" is \"Legally binding mechanism\"."
+
+[[changes]]
+type = "update"
+key = "id-lt-01"
+as_of = 2024-10-01
+values.legal_redress = "Legally binding mechanism"
+reason = "Use the codebook's value for Legally binding redress mechanism: \"Legally established mechanism\" is \"Legally binding mechanism\"."
+
+[[changes]]
+type = "update"
+key = "id-lu-01"
+as_of = 2024-10-01
+values.legal_redress = "Legally binding mechanism"
+reason = "Use the codebook's value for Legally binding redress mechanism: \"Legally established mechanism\" is \"Legally binding mechanism\"."
+
+[[changes]]
+type = "update"
+key = "id-mk-01"
+as_of = 2024-10-01
+values.legal_redress = "Legally binding mechanism"
+reason = "Use the codebook's value for Legally binding redress mechanism: \"Legally established mechanism\" is \"Legally binding mechanism\"."
+
+[[changes]]
+type = "update"
+key = "id-md-01"
+as_of = 2024-10-01
+values.legal_redress = "Legally binding mechanism"
+reason = "Use the codebook's value for Legally binding redress mechanism: \"Legally established mechanism\" is \"Legally binding mechanism\"."
+
+[[changes]]
+type = "update"
+key = "id-me-01"
+as_of = 2024-10-01
+values.legal_redress = "Legally binding mechanism"
+reason = "Use the codebook's value for Legally binding redress mechanism: \"Legally established mechanism\" is \"Legally binding mechanism\"."
+
+[[changes]]
+type = "update"
+key = "id-es-01"
+as_of = 2026-03-01
+values.legal_redress = "Legally binding mechanism"
+reason = "Use the codebook's value for Legally binding redress mechanism: \"Legally established mechanism\" is \"Legally binding mechanism\"."
+
+[[changes]]
+type = "update"
+key = "id-se-01"
+as_of = 2024-10-01
+values.legal_redress = "Legally binding mechanism"
+reason = "Use the codebook's value for Legally binding redress mechanism: \"Legally established mechanism\" is \"Legally binding mechanism\"."
+
+[[changes]]
+type = "update"
+key = "id-gy-01"
+as_of = 2024-10-01
+values.legal_redress = "Legally binding mechanism"
+reason = "Use the codebook's value for Legally binding redress mechanism: \"Legally established mechanism\" is \"Legally binding mechanism\"."
+
+[[changes]]
+type = "update"
+key = "id-nz-01"
+as_of = 2024-10-01
+values.legal_redress = "Legally binding mechanism"
+reason = "Use the codebook's value for Legally binding redress mechanism: \"Legally established mechanism\" is \"Legally binding mechanism\"."
+
+[[changes]]
+type = "update"
+key = "id-ws-01"
+as_of = 2024-10-01
+values.legal_redress = "Legally binding mechanism"
+reason = "Use the codebook's value for Legally binding redress mechanism: \"Legally established mechanism\" is \"Legally binding mechanism\"."
+
+[[changes]]
+type = "update"
+key = "id-to-01"
+as_of = 2025-08-21
+values.legal_redress = "Legally binding mechanism"
+reason = "Use the codebook's value for Legally binding redress mechanism: \"Yes\" here means a legally binding mechanism."

@@ -1,8 +1,7 @@
 [[changes]]
-type = "create"
-key = "pay-py-02"
+type = "update"
+key = "pay-py-01"
 as_of = 2026-10-15
-values.country = "Paraguay"
 values.name = "SPI (Sistema de Pagos Instantáneos)"
 reason = "Relabelled because SIPAP is the umbrella system (LBTR, ACH, SPI modules); retail instant layer is SPI, live since May 2022"
 sources = [
@@ -12,14 +11,14 @@ sources = [
 
 [[changes]]
 type = "update"
-key = "pay-py-02"
+key = "pay-py-01"
 as_of = 2026-10-15
 values.url = "https://www.bcp.gov.py/web/institucional/w/bcp-actualiza-el-reglamento-del-sipap-y-eleva-el-limite-de-las-transferencias-instantaneas-a-g-10-millones"
 reason = "Previous source described SIPAP"
 
 [[changes]]
 type = "update"
-key = "pay-py-02"
+key = "pay-py-01"
 as_of = 2026-10-15
 values.clearing_infrastructure = "Switch"
 reason = "SPI is the instant payment module of SIPAP, run by the Banco Central del Paraguay, which routes instant transfers between participating institutions."
@@ -29,7 +28,7 @@ sources = [
 
 [[changes]]
 type = "update"
-key = "pay-py-02"
+key = "pay-py-01"
 as_of = 2026-10-15
 values.settlement_method = "DNS"
 reason = "Instant transfers are cleared individually in SPI and participants' net positions are settled in SIPAP. Settlement cycle not stated in the source."
