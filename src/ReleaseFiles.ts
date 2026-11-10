@@ -19,9 +19,9 @@ export const release = '2026-11-06'
 
 /**
  * How to cite the release, on the Data page and in the workbook, /data/latest/dpimap.xlsx, author
- * first (APA 7): the author, title, repository and address from CITATION.cff, and the release as the
+ * first (APA 7): the author, title and address from CITATION.cff, and the release as the
  * version and the year (src/Citation.ts datasetCitation). "UCL Institute for Innovation and Public
- * Purpose. (2026). DPI Map (Version 2026-11-06) [Data set]. DPI Map. https://dpimap.org/data"
+ * Purpose. (2026). DPI Map (Version 2026-11-06) [Data set]. https://dpimap.org/data"
  */
 export const citation = datasetCitation({ title: dataset.title, release, url: dataset.url })
 

@@ -27,8 +27,6 @@ preferred-citation:
   title: "DPI Map"
   authors:
     - name: "UCL Institute for Innovation and Public Purpose"
-  publisher:
-    name: "DPI Map"
   version: "2026-11-06"
   date-released: "2026-11-06"
   url: "https://dpimap.org/data"

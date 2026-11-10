@@ -8,7 +8,7 @@
 // - The State of DPI report, a Zotero Report (reportMeta), from its page's front matter.
 // - The Data page, the map pages (/, /digital-payment/, /data-exchange/), a system's page and a
 //   country's page, a Zotero Dataset (datasetMeta): the institute as the author, the release as the
-//   version and the date, CC BY 4.0 as the rights, the DPI Map as the repository, and on a system's
+//   version and the date, CC BY 4.0 as the rights, no repository, and on a system's
 //   page, its ID as the identifier. Every one but the Data page is titled after the dataset, "DPI Map:
 //   Ireland". Their citations are APA 7's for a dataset, author first (src/Citation.ts datasetCitation).
 // - Insights landing pages (insightCitation): a Journal Article, a Report or a Web Page by kind.
@@ -56,7 +56,7 @@ const datasetAuthorTag = (author: Author) => 'name' in author ? `${author.name},
  * - `citation_author` is the institute, as a single-field creator (datasetAuthorTag).
  * - `citation_publication_date` is the release, the date the citation the page shows gives.
  * - `prism.edition` is the version, the release too: the translator copies it to Version.
- * - `citation_publisher` is Zotero's Repository for a Dataset: the DPI Map, CITATION.cff's publisher.
+ * - No `citation_publisher`, Zotero's Repository for a Dataset: it would be "DPI Map" again (src/Citation.ts).
  * - `z.identifier`, where there is one, is Zotero's Identifier, in Zotero's own namespace: the
  *   translator doesn't put `DC.identifier` there.
  * - `DC.rights` is the licence, Zotero's Rights.
@@ -66,7 +66,6 @@ function datasetMeta ({ title, url, description, identifier }: { title: string, 
     ...tag('citation_title', title),
     ...dataset.authors.flatMap(author => tag('citation_author', datasetAuthorTag(author))),
     ...tag('citation_publication_date', release),
-    ...tag('citation_publisher', dataset.publisher),
     ...tag('citation_public_url', url),
     ...tag('citation_abstract', description),
     ...tag('prism.edition', release),
@@ -85,7 +84,7 @@ export const releaseDescription = `${abstract} ${releaseNote}`
 
 /**
  * The Data page, /data: the release, as CITATION.cff's preferred citation gives it, titled just
- * "DPI Map", the dataset's title, with the DPI Map as the repository, like every dataset page.
+ * "DPI Map", the dataset's title, like every dataset page.
  */
 export const releaseMeta = (): MetaTag[] => datasetMeta({ title: dataset.title, url: dataset.url, description: releaseDescription })
 
@@ -94,10 +93,9 @@ export const releaseMeta = (): MetaTag[] => datasetMeta({ title: dataset.title, 
  * Data page: a record (a system's page, a country's page) or a map page's DPI type. Its title is
  * the part's after the dataset's, so a reference manager doesn't save a page as just "Ireland": "UCL
  * Institute for Innovation and Public Purpose. (2026). DPI Map: Federal Service Bus (FSB), Belgium
- * (Version 2026-11-06) [Data set]. DPI Map. https://dpimap.org/dx-be-01/". The DPI Map, the
- * platform the data is published on, is the repository, in the citation and the tags, as on the Data
- * page, and the tags give a system's ID (`identifier`, "dx-be-01") as the identifier. Only the
- * citation and its tags have the prefix: the page's own title and description name the part alone.
+ * (Version 2026-11-06) [Data set]. https://dpimap.org/dx-be-01/". As on the Data page, there's no
+ * repository, in the citation or the tags, and the tags give a system's ID (`identifier`,
+ * "dx-be-01") as the identifier. Only the citation and its tags have the prefix: the page's own title and description name the part alone.
  * A system's page still shows when its data was last updated, beside its fields; the citation doesn't.
  *
  * `title` is the part's, "Ireland"; `path` the page's path without slashes, "" for the home page.

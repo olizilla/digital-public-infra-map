@@ -1,5 +1,5 @@
 // How to cite the DPI Map, from CITATION.cff, read at build time so it's written down once: the
-// dataset's title, its author, its publisher (the repository), licence and address. The Data page's
+// dataset's title, its author, licence and address. The Data page's
 // citation and the workbook's (src/ReleaseFiles.ts), the pages' "Cite this page" lines and their
 // citation meta tags (src/CitationMeta.ts) all take them from here, and the citations are all
 // written by datasetCitation, below.
@@ -14,7 +14,6 @@ import { load } from 'js-yaml'
 import cffText from '../CITATION.cff?raw'
 
 type CffPerson = { name?: string, 'given-names'?: string, 'family-names'?: string }
-type CffEntity = { name: string }
 
 /** One of the dataset's authors: an organisation, by its `name`, or a person, by family and given names */
 export type Author = { name: string } | { family: string, given?: string }
@@ -37,9 +36,7 @@ export const licenceLabel = (spdx: string) => /^CC-/.test(spdx) ? spdx.replace(/
 
 const licence: string = preferred.license ?? cff.license
 
-// the repository: CFF 1.2.0 has a `publisher`, an entity, in a reference such as `preferred-citation`, not at the top level
-const publisher = preferred.publisher as CffEntity | undefined
-if (!publisher?.name) throw new Error('CITATION.cff has no preferred-citation.publisher.name, the repository the dataset pages cite ("DPI Map")')
+// No repository (CITATION.cff's `publisher`): it would be "DPI Map" again, after a title that starts "DPI Map"
 
 /** The DPI Map as a dataset, as CITATION.cff's `preferred-citation` gives it */
 export const dataset = {
@@ -47,8 +44,6 @@ export const dataset = {
   title: String(preferred.title),
   /** the institute, an organisation: { name: "UCL Institute for Innovation and Public Purpose" } */
   authors: (preferred.authors as CffPerson[]).map(authorOf),
-  /** the repository, the platform the data is published on, `preferred-citation.publisher`: "DPI Map" */
-  publisher: publisher.name,
   /** the Data page, "https://dpimap.org/data" */
   url: String(preferred.url),
   /** the SPDX id, "CC-BY-4.0" */
@@ -72,19 +67,19 @@ const element = (text: string) => text.endsWith('.') ? text : `${text}.`
 /**
  * The DPI Map's citation, or a part's of it (a system's page, a country's page, a map page), as
  * APA 7 cites a dataset, author first, as plain text: the author, the year, the title with the version and
- * "[Data set]", the repository (CITATION.cff's publisher, "DPI Map") and the address. The release is
+ * "[Data set]", and the address, with no repository: it would repeat the title's "DPI Map". The release is
  * both the version and the date, so the year is the release's.
  *
  * - The Data page and the workbook: "UCL Institute for Innovation and Public Purpose. (2026). DPI Map
- *   (Version 2026-11-06) [Data set]. DPI Map. https://dpimap.org/data".
+ *   (Version 2026-11-06) [Data set]. https://dpimap.org/data".
  * - A part, its title after the dataset's (src/CitationMeta.ts recordCitation): "UCL Institute for
- *   Innovation and Public Purpose. (2026). DPI Map: Belgium (Version 2026-11-06) [Data set]. DPI Map.
+ *   Innovation and Public Purpose. (2026). DPI Map: Belgium (Version 2026-11-06) [Data set].
  *   https://dpimap.org/belgium/".
  *
  * No "Retrieved" date: the version names the release cited, and Zotero adds its own access date.
  */
 export const datasetCitation = ({ title, release, url }: { title: string, release: string, url: string }) =>
-  [element(datasetAuthor), `(${release.slice(0, 4)}).`, `${title} (Version ${release}) [Data set].`, element(dataset.publisher), url].join(' ')
+  [element(datasetAuthor), `(${release.slice(0, 4)}).`, `${title} (Version ${release}) [Data set].`, url].join(' ')
 
 /** Where CITATION.cff's version or release date isn't `release`, for `npm run data:check` */
 export function citationFileProblems (release: string): string[] {
