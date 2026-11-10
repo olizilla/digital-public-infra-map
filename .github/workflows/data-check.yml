@@ -27,6 +27,8 @@ jobs:
 
       - run: npm run test:changesets
 
+      - run: npm run test:site
+
       - name: Check the release data
         run: |
           set +e

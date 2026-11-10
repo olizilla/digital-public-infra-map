@@ -5,14 +5,15 @@
 import Status from './Status.astro'
 import YesNo from './YesNo.astro'
 import { systemHref } from '../Systems'
+import { statusMeanings } from '../DpiTest'
 import type { DpiCountry } from '../Changes'
 
 interface Props {
   country: DpiCountry
 }
 const { country } = Astro.props
-/** the implementation status's pill, as in the DPI test (src/components/DpiTestList.astro) */
-const statusPill: Record<string, string> = { Active: 'yes', 'Pilot/Planned': 'wip', Suspended: 'no', NA: 'na' }
+/** the implementation status's pill, by its label, as in the DPI test (src/components/DpiTestList.astro) */
+const statusPill: Record<string, string> = Object.fromEntries(Object.values(statusMeanings).map(meaning => [meaning.label, meaning.pill]))
 ---
 <li>
   <a class="chg-dpi-c" href={`#${country.slug}`}>{country.country}</a>

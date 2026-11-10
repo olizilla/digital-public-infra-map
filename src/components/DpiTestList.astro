@@ -1,6 +1,7 @@
 ---
-// A system's implementation status on its own line, then the DPI test criteria, each with a YES/NO/NA pill.
+// A system's implementation status on its own line, then the DPI test criteria, each with a YES/NO/NF/NA pill.
 // The status is also the first criterion ('Active'), but "NO Active (pilot)" confused readers, so it's shown apart.
+// The status line and its pill come from statusOf (src/DpiTest.ts), which keeps Not Found apart from NA (D61).
 // With `links`, on the system's own page, each line links to its field's row there.
 // Styled by .dpi-test in src/styles/global.css, smaller in a listing card (.card-id, .card-pay, .card-data).
 import YesNo from './YesNo.astro'
@@ -13,15 +14,14 @@ interface Props {
   links?: boolean
 }
 const { dpiType, record, links = false } = Astro.props
-const { status, label } = statusOf(dpiType, record)
-/** the status's pill: YES for active, WIP for a pilot or plan, NO for suspended */
-const pill = { Active: ['yes', 'YES'], Pilot: ['wip', 'WIP'], Suspended: ['no', 'NO'], NA: ['na', 'NA'] }[status]
+/** the status's pill: YES for active, WIP for a pilot or plan, NO for suspended, NF for Not Found, NA for no answer */
+const { card, pill } = statusOf(dpiType, record)
 const criteria = dpiTest(dpiType, record).filter(c => c.label !== 'Active')
 const Label = links ? 'a' : 'span'
 const href = (field: string) => links ? `#f-${field}` : undefined
 ---
 <ul class="dpi-test">
-	<li><span class={`pill ${pill[0]}`}>{pill[1]}</span><Label href={href('status')}>Status: {label === 'NA' ? 'Unknown' : label}</Label></li>
+	<li>{ pill === 'nf' ? <YesNo status="Not Found" /> : <span class={`pill ${pill}`}>{pill.toUpperCase()}</span> }<Label href={href('status')}>Status: {card}</Label></li>
   { criteria.map(c => (
 	  <li>
 	    <YesNo status={c.value} /> <Label href={href(c.field)} title={c.label}>{c.label}</Label>

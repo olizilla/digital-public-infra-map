@@ -214,11 +214,10 @@ export const fieldAnchor = (fieldId: string) => `f-${fieldId}`
 export function verdictOf (dpiType: DPIType, record: Record<string, any>) {
   const criteria = dpiTest(dpiType, record)
   if (criteria.every(c => c.value === 'Yes')) return { passes: true, reasons: [] }
-  const { status } = statusOf(dpiType, record)
   const reasons: { text: string, field: string, after: string }[] = []
-  if (status === 'Pilot') reasons.push({ text: 'it isn’t active yet', field: 'status', after: '' })
-  if (status === 'Suspended') reasons.push({ text: 'it’s suspended', field: 'status', after: '' })
-  if (status === 'NA') reasons.push({ text: 'its status', field: 'status', after: ' isn’t recorded' })
+  // "it isn’t active yet", "it’s suspended", "there isn’t enough information on its status" (Not Found) or "its status isn’t recorded" (NA)
+  const { reason } = statusOf(dpiType, record)
+  if (reason) reasons.push({ text: reason.text, field: 'status', after: reason.after })
   // each failing criterion by its field's name, as in the codebook, and what the field says: "is No" for
   // a Yes/No answer, or the value itself where the test reads a value (Operator, Sector-specific / Cross-sectoral)
   for (const c of criteria.filter((c: Criterion) => c.field !== 'status' && c.value !== 'Yes')) {

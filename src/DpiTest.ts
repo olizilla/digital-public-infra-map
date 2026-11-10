@@ -9,7 +9,8 @@ import { normaliseImplementationStatus } from './Status'
 
 /** a flag's answer: Yes, No, Not Found (insufficient information, including where the system isn't live yet) or NA (no answer: not researched yet), D61 */
 export type YesNoNA = 'Yes' | 'No' | 'Not Found' | 'NA'
-export type ImplStatus = 'Active' | 'Pilot' | 'Suspended' | 'NA'
+/** a Status of implementation, normalised (src/Status.js): Not Found (researched, insufficient information) and NA (no answer: not researched yet) are kept apart, D61 */
+export type ImplStatus = 'Active' | 'Pilot' | 'Suspended' | 'Not Found' | 'NA'
 export type DpiStatus = 'DPI' | 'WIP' | 'NA'
 /** A system's row as the site uses it, by field id (src/Schema.ts toRecord), with its 'DPI Status' */
 type SystemRecord = Record<string, any>
@@ -44,17 +45,49 @@ export function valueOf (dpiType: DPIType, record: SystemRecord, id: string) {
   return text(record[fieldById(schemas[dpiType], id as never).id])
 }
 
-/** 'Active', 'Pilot', 'Suspended' or 'NA' */
+/** 'Active', 'Pilot', 'Suspended', 'Not Found' or 'NA' */
 export function implementationStatus (value: unknown): ImplStatus {
   const s = normaliseImplementationStatus(text(value))
-  return s === 'Active' || s === 'Pilot' || s === 'Suspended' ? s : 'NA'
+  return s === 'Active' || s === 'Pilot' || s === 'Suspended' || s === 'Not Found' ? s : 'NA'
 }
 
-/** The system's implementation status, shown on its own line above the DPI test criteria */
-export function statusOf (dpiType: DPIType, record: SystemRecord): { status: ImplStatus, label: string } {
-  const status = implementationStatus(valueOf(dpiType, record, 'status'))
-  return { status, label: status === 'Pilot' ? 'Pilot/Planned' : status }
+/** What an implementation status means for the DPI test, and how the site shows it */
+export interface StatusMeaning {
+  status: ImplStatus
+  /**
+   * How the DPI test counts it. Not Found counts as NA, as neither says whether the system is live:
+   * the Active criterion is Yes for Active, No for Pilot or Suspended, and NA for NA (dpiTest); a system
+   * that doesn't pass is in progress if it's Active or Pilot (dpiStatus); and a row without a name
+   * that counts as NA is one where the research found no system (presence).
+   */
+  counts: 'Active' | 'Pilot' | 'Suspended' | 'NA'
+  /** the status as a value, as a pill on the changes pages shows it: 'Pilot/Planned' for Pilot, 'Not Found', 'NA' */
+  label: string
+  /** the DPI test card's line, "Status: <card>": the label, but 'Unknown' for NA */
+  card: string
+  /** the DPI test card's pill, as YesNo.astro's: its class, and its text in upper case */
+  pill: 'yes' | 'wip' | 'no' | 'nf' | 'na'
+  /** the verdict's reason, if the status keeps the system from being DPI-like: the text that links to the status, and what follows it */
+  reason?: { text: string, after: string }
 }
+
+/** What each implementation status means (StatusMeaning) */
+export const statusMeanings: Record<ImplStatus, StatusMeaning> = {
+  Active: { status: 'Active', counts: 'Active', label: 'Active', card: 'Active', pill: 'yes' },
+  Pilot: { status: 'Pilot', counts: 'Pilot', label: 'Pilot/Planned', card: 'Pilot/Planned', pill: 'wip', reason: { text: 'it isn’t active yet', after: '' } },
+  Suspended: { status: 'Suspended', counts: 'Suspended', label: 'Suspended', card: 'Suspended', pill: 'no', reason: { text: 'it’s suspended', after: '' } },
+  'Not Found': { status: 'Not Found', counts: 'NA', label: 'Not Found', card: 'Not Found', pill: 'nf', reason: { text: 'there isn’t enough information on its status', after: '' } },
+  NA: { status: 'NA', counts: 'NA', label: 'NA', card: 'Unknown', pill: 'na', reason: { text: 'its status', after: ' isn’t recorded' } },
+}
+
+/** What a Status of implementation value means: how the DPI test counts it, and how the site shows it */
+export const statusMeaning = (value: unknown): StatusMeaning => statusMeanings[implementationStatus(value)]
+
+/**
+ * The system's implementation status and what it means: how the DPI test counts it, the DPI test card's
+ * line above the criteria, and the verdict's reason. The one place that says what a status means.
+ */
+export const statusOf = (dpiType: DPIType, record: SystemRecord) => statusMeaning(valueOf(dpiType, record, 'status'))
 
 /** 'Yes', 'No', 'Not Found' or 'NA' for a flag value, or undefined if it isn't a clean answer, like a note */
 export function yesNo (value: unknown): YesNoNA | undefined {
@@ -70,7 +103,7 @@ export function dpiTest (dpiType: DPIType, record: SystemRecord): Criterion[] {
   const get = (id: string) => valueOf(dpiType, record, id)
   // a criterion that is a field's own Yes/No answer is named by the field, as in the codebook
   const named = (id: string) => labelOf(fieldById(schemas[dpiType], id as never))
-  const status = implementationStatus(get('status'))
+  const status = statusOf(dpiType, record).counts
   const active: Criterion = {
     label: 'Active',
     value: status === 'Active' ? 'Yes' : status === 'NA' ? 'NA' : 'No',
@@ -103,10 +136,10 @@ export function dpiTest (dpiType: DPIType, record: SystemRecord): Criterion[] {
 
 export const passesDpiTest = (criteria: Criterion[]) => criteria.every(c => c.value === 'Yes')
 
-/** 'DPI' if the system passes the DPI test, 'WIP' if it's active or a pilot but doesn't pass, otherwise 'NA'. A suspended system is 'NA'. */
+/** 'DPI' if the system passes the DPI test, 'WIP' if it's active or a pilot but doesn't pass, otherwise 'NA'. A suspended system is 'NA', as is one whose status is Not Found. */
 export function dpiStatus (dpiType: DPIType, record: SystemRecord): DpiStatus {
   if (passesDpiTest(dpiTest(dpiType, record))) return 'DPI'
-  const status = implementationStatus(valueOf(dpiType, record, 'status'))
+  const status = statusOf(dpiType, record).counts
   return status === 'NA' || status === 'Suspended' ? 'NA' : 'WIP'
 }
 
@@ -163,7 +196,7 @@ export function nameOf (dpiType: DPIType, record: SystemRecord) {
  */
 export function presence (dpiType: DPIType, record: SystemRecord): 'named' | 'unnamed' | 'not-found' {
   if (nameOf(dpiType, record)) return 'named'
-  return implementationStatus(valueOf(dpiType, record, 'status')) === 'NA' ? 'not-found' : 'unnamed'
+  return statusOf(dpiType, record).counts === 'NA' ? 'not-found' : 'unnamed'
 }
 
 export const nouns: Record<DPIType, string> = { id: 'digital ID', pay: 'digital payment', data: 'data exchange' }
