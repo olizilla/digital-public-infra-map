@@ -28,12 +28,11 @@
           "NA"
         ],
         "primaryKey": [
-          "System ID"
+          "system_id"
         ],
         "fields": [
           {
-            "id": "system_id",
-            "name": "System ID",
+            "name": "system_id",
             "title": "System ID",
             "description": "A stable id for this system, unique in DPI Map. The global form is https://dpimap.org/<id>.",
             "type": "string",
@@ -44,8 +43,7 @@
             }
           },
           {
-            "id": "country",
-            "name": "Country / Region",
+            "name": "country",
             "title": "Country / Region",
             "description": "Name of the country or region (for regional ID systems).",
             "type": "string",
@@ -56,8 +54,7 @@
             "variableType": "Nominal"
           },
           {
-            "id": "last_updated",
-            "name": "Last updated",
+            "name": "last_updated",
             "title": "Last updated",
             "type": "date",
             "format": "%d/%m/%y",
@@ -66,9 +63,8 @@
             }
           },
           {
-            "id": "dpi_count",
-            "name": "Count for DPI",
-            "title": "DPI based digital ID count for visualisation",
+            "name": "count_for_dpi",
+            "title": "Count for DPI",
             "type": "integer",
             "constraints": {
               "required": true,
@@ -79,8 +75,7 @@
             }
           },
           {
-            "id": "claim",
-            "name": "Claim of digital ID",
+            "name": "claim",
             "title": "Claim of digital ID",
             "description": "This indicator specifies whether a country publicly claims to have a digital or electronic ID system. It is determined by the use of the terms digital or electronic ID, publicly displayed in official sources (e.g. government websites, regulations and policies) or secondary sources (e.g. news websites and multileral organization reports).",
             "type": "string",
@@ -94,17 +89,15 @@
             "variableType": "Binary"
           },
           {
-            "id": "name",
-            "name": "Digital ID name",
-            "title": "Digital ID Name",
+            "name": "name",
+            "title": "Digital ID name",
             "description": "The official name of the infrastructure, platform, or network used to facilitate digital identity verification.",
             "type": "string",
             "scope": "Subsystem",
             "variableType": "Nominal"
           },
           {
-            "id": "url",
-            "name": "URL",
+            "name": "url",
             "title": "URL",
             "type": "string",
             "constraints": {
@@ -112,8 +105,7 @@
             }
           },
           {
-            "id": "biometrics",
-            "name": "Collects or uses biometric data",
+            "name": "biometrics",
             "title": "Collects or uses biometric data",
             "description": "Refers to the act of obtaining individuals' unique biological or behavioral characteristics and processing this information for purposes such as identification, authentication, security, or personalized services.",
             "type": "string",
@@ -127,8 +119,7 @@
             "variableType": "Binary"
           },
           {
-            "id": "status",
-            "name": "Status of Implementation",
+            "name": "status",
             "title": "Status of Implementation",
             "description": "This indicator specifies the stage of the ID life cycle a country is currently in, categorized as one of the following: plan, pilot, or rollout. It is determined by the statement of the stage of implementation displayed in official sources (e.g. government websites, regulations and policies) or secondary sources (e.g. news websites and multileral organization reports), as well as evidence that the ID system is running, such an operational website specificaly dedicated to it.",
             "type": "string",
@@ -152,8 +143,7 @@
             "variableType": "Categorical"
           },
           {
-            "id": "id_act",
-            "name": "ID or Civil Registry Act",
+            "name": "id_act",
             "title": "ID or Civil Registry Act",
             "description": "This indicator specifies whether a country has an identification, civil registration, or vital statistics act. It is determined by the presence of a document containing the regulation, or a mention of it, publicly displayed in official sources (e.g. government websites, regulations and policies) or secondary sources (e.g. news websites and multileral organization reports).",
             "type": "string",
@@ -167,8 +157,7 @@
             "variableType": "Binary"
           },
           {
-            "id": "regulation",
-            "name": "Regulation for digital ID",
+            "name": "regulation",
             "title": "Regulation for digital ID",
             "description": "This indicator specifies whether a country has a regulation or policy specifically addressing digital ID. This includes formal acts and policy documents. Terms and conditions or privacy policy from a digital ID website, as well as Data Protection Acts, are not considered as a data source for this indicator. It is determined by the presence of a document containing the regulation, or a mention of it, publicly displayed in official sources (e.g. government websites, regulations and policies) or secondary sources (e.g. news websites and multileral organization reports).",
             "type": "string",
@@ -182,8 +171,7 @@
             "variableType": "Binary"
           },
           {
-            "id": "digital_auth",
-            "name": "Digital authentication function",
+            "name": "digital_auth",
             "title": "Digital authentication function",
             "description": "This indicator specifies whether the ID system can provide a simple \"yes\" or \"no\" response to confirm an individual's ID. It checks for explicit mentions to authentication methods, such as demographic details, biometric data (fingerprints/iris), facial recognition, OTP (one-time password via mobile or email), or explicit mentions of the system’s authentication capability, publicly displayed in official sources (e.g. government websites, regulations and policies) or secondary sources (e.g. news websites and multileral organization reports).",
             "type": "string",
@@ -198,8 +186,7 @@
             "frameworkIndicator": "1.1 Individuals can authenticate themselves or their documents digitally"
           },
           {
-            "id": "kyc",
-            "name": "Enables KYC packet collection",
+            "name": "kyc",
             "title": "Enables KYC packet collection",
             "description": "This indicator specifies whether the country digital ID system allows Know Your Customer (KYC) packet collection. KYC involves verifying a person’s ID to assess customer risk, typically requiring proof of ID and address. In ID-based KYC, the ID is verified electronically, allowing service providers to access profile details from the ID authority's database. It is determined by the use of the term KYC, publicly displayed in official sources (e.g. government websites, regulations and policies) or secondary sources (e.g. news websites and multileral organization reports).",
             "type": "string",
@@ -214,8 +201,7 @@
             "frameworkIndicator": "1.2 Policy preference for a government-wide digital and interoperable ID system exists"
           },
           {
-            "id": "gov_portal_auth",
-            "name": "Authentication through government portal",
+            "name": "gov_portal_auth",
             "title": "Authentication through government portal",
             "description": "This indicator specifies whether the country has a governmental portal that can be used for authentication purposes. It is determined either by the direct presence of a website with this function or through secondary sources that confirm its existence.",
             "type": "string",
@@ -230,8 +216,7 @@
             "frameworkIndicator": "1.3 Vision and strategy of the interoperabiity of the ID system as DPI conveyed transparently"
           },
           {
-            "id": "legal_status",
-            "name": "Codified digital ID legal status",
+            "name": "legal_status",
             "title": "Codified digital ID legal status",
             "description": "This indicator specifies whether the ID system serves as a legal proof of an individual’s ID. It is determined by the explicit mention in the digital ID regulation that the digital ID has legal validity.",
             "type": "string",
@@ -246,8 +231,7 @@
             "frameworkIndicator": "2.1 The ID serves as a legal proof of an individual’s ID"
           },
           {
-            "id": "governing_entity",
-            "name": "Governing entity",
+            "name": "governing_entity",
             "title": "Governing entity",
             "description": "This indicator specifies which is the instituition responsible for managing the digital ID system. It is determined by information publicly diclosed either in official government websites, secondary sources (e.g. news websites), multileral governmental reports, poli",
             "type": "string",
@@ -256,8 +240,7 @@
             "frameworkIndicator": "2.2 Institutional governance structure and its accountability are established"
           },
           {
-            "id": "legal_redress",
-            "name": "Legally binding redress mechanism ",
+            "name": "legal_redress",
             "title": "Legally binding redress mechanism",
             "description": "This indicator specifies whether the digital ID system includes a redress mechanism for addressing user complaints. It is determined by the explicit mention in the digital ID regulation or in the Data Protection Act of such mechanisms, as well as by the existence of a customer service system that enables users to submit complaints.",
             "type": "string",
@@ -287,8 +270,7 @@
             "frameworkIndicator": "2.5 Legally-binding redressal framework for ID-related malpractice is established"
           },
           {
-            "id": "storage_sharing_terms",
-            "name": "Terms of data storage and sharing available",
+            "name": "storage_sharing_terms",
             "title": "Terms of data storage and sharing available",
             "description": "This indicator specifies whether the digital ID system specifies how ID data is collected, stored and shared. Is is determined by the explicit mention of mechanisms to gather, archive and/or circulate data in the digital ID regulation.",
             "type": "string",
@@ -303,8 +285,7 @@
             "frameworkIndicator": "2.6 Procedural rules for collection, storage and sharing of personal data related to ID system are established"
           },
           {
-            "id": "data_protection_act",
-            "name": "National Data Protection Act",
+            "name": "data_protection_act",
             "title": "National Data Protection Act",
             "description": "This indicator specifies whether the country has a Data Protection Act. It is determined by the presence of a document containing the regulation, or a mention of it, publicly displayed in official sources (e.g. government websites, regulations and policies) or secondary sources (e.g. news websites and multileral organization reports).",
             "type": "string",
@@ -319,8 +300,7 @@
             "frameworkIndicator": "3.1 Personal data linked to the ID is under the purview of the DPA and protected by law"
           },
           {
-            "id": "enrolment_rules",
-            "name": "Procedural rules for digital ID enrolment ",
+            "name": "enrolment_rules",
             "title": "Procedural rules for digital ID enrolment",
             "description": "This indicator specifies whether the digital identity system has clear processes for it's digital identity enrolment. It is determined by the explicit mention of mechanisms for registration, data management and/or issuing in the digital ID regulation.",
             "type": "string",
@@ -335,8 +315,7 @@
             "frameworkIndicator": "3.2 Procedural rules for the ID (enrolment, data processing, issuing credentials, etc.) are established"
           },
           {
-            "id": "data_leak_disclosure",
-            "name": "Data leak disclosure process",
+            "name": "data_leak_disclosure",
             "title": "Data leak disclosure process",
             "description": "This indicator specifies whether the countrie's Data Protection Act has rules on if and how individuals and general public about should be notified about personal data leaks or breaches. It is determined by the explicit mention of such rules in the Data Protection Act.",
             "type": "string",
@@ -351,8 +330,7 @@
             "frameworkIndicator": "3.3 There exists a process to notify individuals and general public about personal data related to ID system leaks or threats"
           },
           {
-            "id": "data_handling_terms",
-            "name": "ID data handling terms",
+            "name": "data_handling_terms",
             "title": "ID data handling terms",
             "description": "This indicator specifies whether the digital ID system details which are the procedures for data subjects to access, review, edit and delete ID data. Is is determined by the explicit mention of mechanisms to access, review, edit and/or delete data in the digital ID regulation or other sources, such as the digital identity website.",
             "type": "string",
@@ -367,8 +345,7 @@
             "frameworkIndicator": "4.1 Processes to access, review, edit and delete one's ID data are transparent"
           },
           {
-            "id": "feeder_documents",
-            "name": "Relationship with feeder documents",
+            "name": "feeder_documents",
             "title": "Relationship with feeder documents",
             "description": "The legal or regulatory framework (commonly referred to as an Identity Act or law) defines how primary identity documents—such as birth certificates, passports, or driver’s licenses (called feeder documents)—are used to establish or authenticate a person’s identity when issuing or updating a digital ID.",
             "type": "string",
@@ -383,8 +360,7 @@
             "frameworkIndicator": "0"
           },
           {
-            "id": "sectoral_use_cases",
-            "name": "Two or more sectoral use cases enabled",
+            "name": "sectoral_use_cases",
             "title": "Two or more sectoral use cases enabled",
             "description": "This indicator specifies whether the digital ID infrastructure is utilized across multiple sectors. It is determined by explicit references to the use of the digital ID system by institutions other than the identity manager or by mentions of use cases beyond citizen identification in official sources (such as government websites) or secondary sources (such as news outlets and reports from multilateral organizations).",
             "type": "string",
@@ -399,8 +375,7 @@
             "frameworkIndicator": "6.2 ID infrastructure is used across more than 1 sector"
           },
           {
-            "id": "funders",
-            "name": "Funding organizations identified",
+            "name": "funders",
             "title": "Funding organizations identified",
             "description": "Institutions or entities that provide the financial resources necessary for the development, rollout, and maintenance of the digital ID system. This variable does not specify which components of the digital system have been financed by which funding organisation.",
             "type": "string",
@@ -408,9 +383,8 @@
             "variableType": "Nominal"
           },
           {
-            "id": "technical_support",
-            "name": "Technical support organizations identified",
-            "title": "Technical Support organizations identified",
+            "name": "technical_support",
+            "title": "Technical support organizations identified",
             "description": "This refers to the entity or group responsible for providing technical expertise and operational support for the design, implementation, and management of the digital ID infrastructure.",
             "type": "string",
             "scope": "NA",
@@ -434,12 +408,11 @@
           "NA"
         ],
         "primaryKey": [
-          "System ID"
+          "system_id"
         ],
         "fields": [
           {
-            "id": "system_id",
-            "name": "System ID",
+            "name": "system_id",
             "title": "System ID",
             "description": "A stable id for this system, unique in DPI Map. The global form is https://dpimap.org/<id>.",
             "type": "string",
@@ -450,8 +423,7 @@
             }
           },
           {
-            "id": "country",
-            "name": "Country / Region",
+            "name": "country",
             "title": "Country / Region",
             "description": "Name of the country or region (for regional payment systems)",
             "type": "string",
@@ -462,8 +434,7 @@
             "variableType": "Nominal"
           },
           {
-            "id": "last_updated",
-            "name": "Last updated",
+            "name": "last_updated",
             "title": "Last updated",
             "type": "date",
             "format": "%d/%m/%y",
@@ -472,8 +443,7 @@
             }
           },
           {
-            "id": "dpi_count",
-            "name": "Count for DPI",
+            "name": "count_for_dpi",
             "title": "Count for DPI",
             "type": "integer",
             "constraints": {
@@ -485,8 +455,7 @@
             }
           },
           {
-            "id": "name",
-            "name": "Payment system name",
+            "name": "name",
             "title": "Payment system name",
             "description": "Refers to the name of the payment system in official documentation. In cases where this is not evident, the payment system type is used.",
             "type": "string",
@@ -494,8 +463,7 @@
             "variableType": "Nominal"
           },
           {
-            "id": "url",
-            "name": "URL",
+            "name": "url",
             "title": "URL",
             "type": "string",
             "constraints": {
@@ -503,9 +471,8 @@
             }
           },
           {
-            "id": "realtime_active",
-            "name": "Active real-time payment system present",
-            "title": "Active-real time payment system present",
+            "name": "realtime_active",
+            "title": "Active real-time payment system present",
             "description": "Given that a country can have multiple payment systems at distinct stages of deployment, this filters for those countries with at least one payment system that is in operation. The status of the payment system is inferred based on the volume and value of transactions, as well as its mention on the country's central bank website.",
             "type": "string",
             "constraints": {
@@ -528,8 +495,7 @@
             "variableType": "Binary"
           },
           {
-            "id": "system_type",
-            "name": "Payment system type",
+            "name": "system_type",
             "title": "Payment system type",
             "description": "Refers to the domain in which the payment system operates. This is inferred based on the key channel of transactions highlighted on payment system documentations and its list of participants.",
             "type": "string",
@@ -568,9 +534,8 @@
             "variableType": "Categorical"
           },
           {
-            "id": "status",
-            "name": "Status of Implementation",
-            "title": "Status of payment system implementation",
+            "name": "status",
+            "title": "Status of Implementation",
             "description": "Distinguishes between payment systems that are in operation and those that are not.  The status of the payment system is inferred based on the volume and value of transactions, as well as its mention on the country's central bank website. If information about a payment system is only found in a press release without information about its launch, it is not assumed to be in operation.",
             "type": "string",
             "constraints": {
@@ -593,8 +558,7 @@
             "variableType": "Categorical"
           },
           {
-            "id": "national_regional",
-            "name": "National / Regional",
+            "name": "national_regional",
             "title": "National / Regional",
             "description": "Distinguishes between national and regional-level deployments.",
             "type": "string",
@@ -618,8 +582,7 @@
             "variableType": "Categorical"
           },
           {
-            "id": "cross_border",
-            "name": "Cross-border payments",
+            "name": "cross_border",
             "title": "Cross-border payments",
             "description": "Determines if any of the country's payment systems facilitates cross-border transactions in real-time.",
             "type": "string",
@@ -633,8 +596,7 @@
             "variableType": "Binary"
           },
           {
-            "id": "interoperability_policy",
-            "name": "Interoperability policy",
+            "name": "interoperability_policy",
             "title": "Interoperability policy",
             "description": "Indicates if a country has a payment system Act, or policy, or strategy that articulates if interoperability between diverse payment service-providers (banks and non-bank payment service providers) is a stated goal.",
             "type": "string",
@@ -649,8 +611,7 @@
             "frameworkIndicator": "1.1 Payment system policy prefers interoperability between PSPs"
           },
           {
-            "id": "transaction_types",
-            "name": "Types of transactions supported",
+            "name": "transaction_types",
             "title": "Types of transactions supported",
             "description": "Indicates the type of transactions supported between individuals and businesses. Inferred through a keyword search on the payment system documentation, as well as a review of its participant types.",
             "type": "string",
@@ -692,8 +653,7 @@
             "frameworkIndicator": "4.1 RTPS enables key transaction types for financial inclusion: P2P, G2P payments\n6.1 Public entities (that are not the same as the architect of the payment system) use the payment system for G2P/P2G transactions"
           },
           {
-            "id": "settlement_type",
-            "name": "Type of settlement system",
+            "name": "settlement_type",
             "title": "Type of settlement system",
             "description": "Indicates the settlement system available in the country's banking and payments infrastructure. Inferred through a keyword search on the central bank website, as well as resources from BIS.",
             "type": "string",
@@ -723,8 +683,7 @@
             "frameworkIndicator": "1.3 Payment system has the infrastructure to facilitate (near) real-time settlement of transactions between users"
           },
           {
-            "id": "operator",
-            "name": "Operator",
+            "name": "operator",
             "title": "Operator",
             "description": "Indicates the type of operator of the payment system, referring to institutional arranagement of the payment system. This is inferred from the payment system website, specifically through a scan of the governance structure.",
             "type": "string",
@@ -768,8 +727,7 @@
             "frameworkIndicator": "2.1 RTPS is governed by a central bank/ financial regulator"
           },
           {
-            "id": "bank_participation",
-            "name": "Bank participation",
+            "name": "bank_participation",
             "title": "Bank participation",
             "description": "Indicates if banks can participate in a given payment system as payment service providers. This is determined according to rules stated on the payment system website, or in the stated payment system rules.",
             "type": "string",
@@ -784,8 +742,7 @@
             "frameworkIndicator": "1.2 Payment system facilitates cross-domain and/or domain-specific interoperability"
           },
           {
-            "id": "nonbank_participation",
-            "name": "Non-bank participation",
+            "name": "nonbank_participation",
             "title": "Non-bank participation",
             "description": "Indicates if non-bank payment service providers can particiapte in a given payment system. This is determined based on the payment system website or stated rules, as well as the list of participants made available",
             "type": "string",
@@ -800,8 +757,7 @@
             "frameworkIndicator": "1.2 Payment system facilitates cross-domain and/or domain-specific interoperability"
           },
           {
-            "id": "participation_rules",
-            "name": "Participation conditions and rules",
+            "name": "participation_rules",
             "title": "Participation conditions and rules",
             "description": "Indicates if the rules and conditions for payment service providers to be a part of the payment system have been made available",
             "type": "string",
@@ -816,8 +772,7 @@
             "frameworkIndicator": "2.2 RTPS is transparent about the rules and conditions of participation"
           },
           {
-            "id": "participants",
-            "name": "Number of participants",
+            "name": "number_of_participants",
             "title": "Number of participants",
             "description": "Indicates the number of participants that are stated to be a part of a given payment system. For regional payment systems, this refers to the number of countries part of the payment system",
             "type": "string",
@@ -826,8 +781,7 @@
             "frameworkIndicator": "1.2 Payment system facilitates cross-domain and/or domain-specific interoperability"
           },
           {
-            "id": "annual_value_usd",
-            "name": "Annual value of transactions (USD)",
+            "name": "annual_value_usd",
             "title": "Annual value of transactions (USD)",
             "description": "Indicates the annual value of transactions in USD",
             "type": "string",
@@ -836,8 +790,7 @@
             "frameworkIndicator": "1.2 Payment system facilitates cross-domain and/or domain-specific interoperability"
           },
           {
-            "id": "annual_volume",
-            "name": "Annual volume of transactions",
+            "name": "annual_volume",
             "title": "Annual volume of transactions",
             "description": "Indicates the annual volume of transactions",
             "type": "string",
@@ -846,8 +799,7 @@
             "frameworkIndicator": "1.2 Payment system facilitates cross-domain and/or domain-specific interoperability"
           },
           {
-            "id": "data_handling_rules",
-            "name": "Data-handing rules for payment system",
+            "name": "data_handling_rules",
             "title": "Data-handing rules for payment system",
             "description": "Indicates if there if the payment system guidelines or central bank rules offer specific regulations for handling personal data relevant to payment systems",
             "type": "string",
@@ -862,8 +814,7 @@
             "frameworkIndicator": "3.1 Procedural rules for the RTPS's data handling are established"
           },
           {
-            "id": "reporting_forum",
-            "name": "Reporting forum",
+            "name": "reporting_forum",
             "title": "Reporting forum",
             "description": "Indicates if the payment system or central bank has a mechanism to report issues with transactions, through its website, a form, or a helpline number",
             "type": "string",
@@ -878,8 +829,7 @@
             "frameworkIndicator": "3.2 Fraudulent transactions on the RTPS are proactively prevented and managed"
           },
           {
-            "id": "aml_law",
-            "name": "AML Law",
+            "name": "aml_law",
             "title": "AML Law",
             "description": "Indicates if the country codifies protections against money-laundering in its legal code. This is gathered from the UNODC databse- Sherloc.",
             "type": "string",
@@ -894,8 +844,7 @@
             "frameworkIndicator": "3.3 RTPS is subject to relevant security compliance and consumer protection laws"
           },
           {
-            "id": "transaction_cost",
-            "name": "Cost of transactions",
+            "name": "transaction_cost",
             "title": "Cost of transactions",
             "description": "Indicates the fee structure for transactions",
             "type": "string",
@@ -904,8 +853,7 @@
             "frameworkIndicator": "4.3 Transaction fee for retail users is low/none"
           },
           {
-            "id": "qr_code",
-            "name": "QR code based transactions",
+            "name": "qr_code",
             "title": "QR code based transactions",
             "description": "For cross domain payment systems, this indicates if push and pull transactions can be conducted through the payment system",
             "type": "string",
@@ -937,12 +885,11 @@
           "NA"
         ],
         "primaryKey": [
-          "System ID"
+          "system_id"
         ],
         "fields": [
           {
-            "id": "system_id",
-            "name": "System ID",
+            "name": "system_id",
             "title": "System ID",
             "description": "A stable id for this system, unique in DPI Map. The global form is https://dpimap.org/<id>.",
             "type": "string",
@@ -953,8 +900,7 @@
             }
           },
           {
-            "id": "country",
-            "name": "Country / Region",
+            "name": "country",
             "title": "Country / Region",
             "description": "Name of the country or region (for regional data exchange systems).",
             "type": "string",
@@ -965,8 +911,7 @@
             "variableType": "Nominal"
           },
           {
-            "id": "last_updated",
-            "name": "Last updated",
+            "name": "last_updated",
             "title": "Last updated",
             "type": "date",
             "format": "%d/%m/%y",
@@ -975,8 +920,7 @@
             }
           },
           {
-            "id": "dpi_count",
-            "name": "Count for DPI",
+            "name": "count_for_dpi",
             "title": "Count for DPI",
             "type": "integer",
             "constraints": {
@@ -988,8 +932,7 @@
             }
           },
           {
-            "id": "name",
-            "name": "Data exchange system name",
+            "name": "name",
             "title": "Data exchange system name",
             "description": "Refers to the name of the data exchange system as listed in official documentation. If no specific name is found, \"Data Exchange System\" is used. In cases where no information is available, \"Unknown\" is used",
             "type": "string",
@@ -997,8 +940,7 @@
             "variableType": "Nominal"
           },
           {
-            "id": "url",
-            "name": "URL",
+            "name": "url",
             "title": "URL",
             "type": "string",
             "constraints": {
@@ -1006,8 +948,7 @@
             }
           },
           {
-            "id": "status",
-            "name": "Status of implementation",
+            "name": "status",
             "title": "Status of implementation",
             "description": "This indicator represents the stage at which the data exchange system currently exists within a country. It tracks the development and operational status based on available information. The stages range from having no information on the system (Unknown), to a system being planned (Proposed), actively being developed (In Progress), or fully functional (Active).",
             "type": "string",
@@ -1031,8 +972,7 @@
             "variableType": "Categorical"
           },
           {
-            "id": "architecture",
-            "name": "Base technical architecture",
+            "name": "architecture",
             "title": "Base technical architecture",
             "description": "This indicator identifies the technical architecture used for the data exchange system within a country. It includes frameworks such as X-Road, ESB, API Gateway, UXP, and others. The technical architecture is considered disclosed when it is either explicitly mentioned in official documents or websites, or when indicative terms are used.",
             "type": "string",
@@ -1040,8 +980,7 @@
             "variableType": "Nominal"
           },
           {
-            "id": "national_regional",
-            "name": "National / Regional",
+            "name": "national_regional",
             "title": "National / Regional",
             "description": "Distinguishes between national and regional-level deployments.",
             "type": "string",
@@ -1065,8 +1004,7 @@
             "variableType": "Categorical"
           },
           {
-            "id": "sectoral",
-            "name": "Sector-specific / Cross-sectoral",
+            "name": "sectoral",
             "title": "Sector-specific / Cross-sectoral",
             "description": "This indicator refers to whether the data exchange system operates within a single specific sector or across multiple sectors (i.e., cross-sectoral). If no sufficient information is available, \"Unknown\" is used.",
             "type": "string",
@@ -1083,8 +1021,7 @@
             "variableType": "Categorical"
           },
           {
-            "id": "semantic_interoperability",
-            "name": "Semantic interoperability",
+            "name": "semantic_interoperability",
             "title": "Semantic interoperability",
             "description": "This indicator assesses whether semantic interoperability within the Data Exchange System is facilitated through either policy or technical mechanisms. It specifically looks for officially published documents or standards that outline the use of standardized data formats, protocols, or terminologies to ensure consistent data exchange and understanding across systems.",
             "type": "string",
@@ -1108,8 +1045,7 @@
             "frameworkIndicator": "1.1 Semantic interoperability within the DES is facilitated through either policy or technical means"
           },
           {
-            "id": "realtime_sharing",
-            "name": "Real-time sharing",
+            "name": "realtime_sharing",
             "title": "Real-time sharing",
             "description": "This indicator examines whether the data exchange system explicitly supports real-time or near real-time data sharing. It is determined by the presence of documentation that either mentions the use of data formats enabling real-time exchanges or explicitly references \"real-time data sharing\" capabilities.",
             "type": "string",
@@ -1133,8 +1069,7 @@
             "frameworkIndicator": "1.2 Data is shared in (near) real-time through the DES"
           },
           {
-            "id": "scalable_architecture",
-            "name": "Scalable technology architecture",
+            "name": "scalable_architecture",
             "title": "Scalable technology architecture",
             "description": "This indicator evaluates whether the technology architecture of the Data Exchange System is designed for scalability. It includes any documented mention of infrastructure elements that facilitate scalability, such as load balancers, elastic cloud resources, scalable databases, or the ability to add resources to handle increased demand and load.",
             "type": "string",
@@ -1158,8 +1093,7 @@
             "frameworkIndicator": "1.3 Technology architecture of the DES is scalable"
           },
           {
-            "id": "governing_entity",
-            "name": "Governing entity",
+            "name": "governing_entity",
             "title": "Governing entity",
             "description": "Refers to the entity responsible for the governance and operational control of the data exchange system. The name of the entity is provided, or \"Unknown\" is recorded if no information is available.",
             "type": "string",
@@ -1168,8 +1102,7 @@
             "frameworkIndicator": "2.1 A public-interest entity governs the development and operations of the DES"
           },
           {
-            "id": "ownership",
-            "name": "Ownership",
+            "name": "ownership",
             "title": "Ownership",
             "description": "Identifies who owns and controls the data exchange system, based on official documentation or sources. If no information is found, \"Unknown\" is recorded.",
             "type": "string",
@@ -1199,8 +1132,7 @@
             "frameworkIndicator": "2.1 A public-interest entity governs the development and operations of the DES"
           },
           {
-            "id": "enrolment_info",
-            "name": "Enrolment and participation information",
+            "name": "enrolment_info",
             "title": "Enrolment and participation information",
             "description": "This indicator specifies whether a data exchange system provides clear and accessible information on how entities can enroll and participate. The presence of such information typically includes official guidelines or procedures, as well as accessible platforms such as login pages where users or organizations can directly register for participation in the data exchange.",
             "type": "string",
@@ -1225,8 +1157,7 @@
             "frameworkIndicator": "2.2 Data Exchange provides information for enrollment and participation"
           },
           {
-            "id": "permitted_participants",
-            "name": "Permitted participants",
+            "name": "permitted_participants",
             "title": "Permitted participants",
             "description": "This indicator captures the types of entities that are allowed or documented to use the data exchange system, where public entities are always included by default. It assesses whether the system is also accessible to private sector entities and civil society organizations based on documented evidence such as user registrations or usage reports. The default assumption is that public sector entities are always included, as the system is a Digital Public Infrastructure (DPI). Therefore, the range categorization reflects the additional inclusion of private and/or civil society entities.",
             "type": "string",
@@ -1256,8 +1187,7 @@
             "frameworkIndicator": "2.2 Types of entities that can participate  in the data exchange"
           },
           {
-            "id": "audit_mechanism",
-            "name": "Audit mechanism",
+            "name": "audit_mechanism",
             "title": "Audit mechanism",
             "description": "Refers to the existence of protocols or system features that allow the auditing of data transactions. This includes mechanisms such as traditional audit logs, transaction tracking, or other verification technologies.",
             "type": "string",
@@ -1281,8 +1211,7 @@
             "frameworkIndicator": "2.3 Data exchange instances within the DES can be monitored in public-interest"
           },
           {
-            "id": "data_management_rules",
-            "name": "Procedural rules for data mgmt.",
+            "name": "data_management_rules",
             "title": "Procedural rules for data mgmt.",
             "description": "This indicator checks for any official documents, policies, or guidelines that describe access controls, usage conditions, and data protection measures for the data exchange system.",
             "type": "string",
@@ -1306,8 +1235,7 @@
             "frameworkIndicator": "3.1 Procedural rules for the DES (access restrictions, protections, etc.) are established"
           },
           {
-            "id": "coordination_unit",
-            "name": "Coordination unit",
+            "name": "coordination_unit",
             "title": "Coordination unit",
             "description": "This indicator identifies the entity responsible for coordinating operations and ensuring the data exchange is implemented across government agencies. Evidence includes official documents, organizational charts, or reports demonstrating the existence and operational framework of a coordination unit managing data exchanges across various government entities. \"Unknown\" is used when no information was found.",
             "type": "string",
@@ -1316,8 +1244,7 @@
             "frameworkIndicator": "4.1 Data exchange across government is implemented by a coordination unit"
           },
           {
-            "id": "multiple_public_entities",
-            "name": "Used by more than one public entity",
+            "name": "multiple_public_entities",
             "title": "Used by more than one public entity",
             "description": "Refers to whether other public sector entities, besides the operator, are using the data exchange system. Documentation or evidence of usage by multiple public entities is necessary to verify this.",
             "type": "string",
@@ -1341,8 +1268,7 @@
             "frameworkIndicator": "5.1 Public entities (other than the operator of the DES) leverage the data exchange"
           },
           {
-            "id": "impact_metrics",
-            "name": "Impact metrics",
+            "name": "impact_metrics",
             "title": "Impact metrics",
             "description": "This indicator checks whether there is information about the performance or usage of the data exchange system. Metrics may include the number of entities using the system, the volume of data exchanged, the number of connections, or the number of transactions.",
             "type": "string",
@@ -1381,7 +1307,6 @@
       "schema": {
         "fields": [
           {
-            "id": "resource",
             "name": "resource",
             "title": "Table",
             "description": "The table the value is in: identity, payment or exchange.",
@@ -1396,7 +1321,6 @@
             }
           },
           {
-            "id": "key",
             "name": "key",
             "title": "System ID",
             "description": "The System ID of the row the value is in.",
@@ -1406,7 +1330,6 @@
             }
           },
           {
-            "id": "field",
             "name": "field",
             "title": "Field",
             "description": "The id of the field the value is in.",
@@ -1416,7 +1339,6 @@
             }
           },
           {
-            "id": "url",
             "name": "url",
             "title": "Source",
             "description": "A source for the value.",

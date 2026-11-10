@@ -1,9 +1,10 @@
 // Report where the codebook in datapackage.json disagrees with the data, for
-// each dataset. Each field's `title` is its codebook variable name, and what
-// its values mean is in Table Schema `categories`, each value with its meaning
-// as the `label`. Where the codebook's list of values doesn't match the
-// field's values, it's kept as written in `codebookCategories` instead, and
-// this lists the differences. It's a to-do list for the codebook and the schema.
+// each dataset. Each field's `name` is its id, the key in the data, and its
+// `title` is its codebook variable name (D83). What its values mean is in Table
+// Schema `categories`, each value with its meaning as the `label`. Where the
+// codebook's list of values doesn't match the field's values, it's kept as
+// written in `codebookCategories` instead, and this lists the differences.
+// It's a to-do list for the codebook and the schema.
 // Prints markdown, with each difference in a diff block, codebook first.
 // It's a report, not a check: it always exits 0.
 //
@@ -133,24 +134,20 @@ for (const dataset of datasets) {
 
   out.push(`\n## ${dataset}\n\ndatapackage.json resource "${dataset}"\n`)
 
-  section('a) Headers that differ from the codebook variable name (the field\'s title)', fields
-    .filter(field => field.name !== field.title)
-    .map(field => item(`\`${field.id}\``, field.title, field.name, 'data')))
-
   const differences = []
   for (const field of fields.filter(field => field.codebookCategories)) {
     const inCodebook = field.codebookCategories.map(category => String(category.value))
     const allowed = allowedValues(field)
     if (!allowed) {
       const rule = field.constraints?.pattern ? `a pattern, ${q(field.constraints.pattern)}` : 'no allowed values'
-      differences.push(`\`${field.id}\`: codebook lists ${inCodebook.map(q).join(', ')}, schema has ${rule}`)
+      differences.push(`\`${field.name}\`: codebook lists ${inCodebook.map(q).join(', ')}, schema has ${rule}`)
       continue
     }
     const codebookOnly = inCodebook.filter(x => !allowed.includes(x))
     const schemaOnly = allowed.filter(x => !inCodebook.includes(x))
     const pairs = pair(codebookOnly, schemaOnly)
     for (const [a, b] of pairs.filter(([a, b]) => a !== undefined && b !== undefined)) {
-      differences.push(item(`\`${field.id}\``, a, b, 'schema'))
+      differences.push(item(`\`${field.name}\``, a, b, 'schema'))
     }
     // the values with no close match go together, as they may be the same values split differently
     const unpaired = pairs.filter(([a, b]) => a === undefined || b === undefined)
@@ -158,13 +155,13 @@ for (const dataset of datasets) {
       const a = unpaired.map(([a]) => a).filter(x => x !== undefined)
       const b = unpaired.map(([, b]) => b).filter(x => x !== undefined)
       const kind = !a.length ? 'not in the codebook' : !b.length ? 'not in the schema' : 'different values'
-      differences.push(`\`${field.id}\` (${kind})\n${diff(a, b, 'schema')}`)
+      differences.push(`\`${field.name}\` (${kind})\n${diff(a, b, 'schema')}`)
     }
     if (!codebookOnly.length && !schemaOnly.length) {
-      differences.push(`\`${field.id}\`: the values match, but it's a multi-valued field, which \`categories\` can't describe`)
+      differences.push(`\`${field.name}\`: the values match, but it's a multi-valued field, which \`categories\` can't describe`)
     }
   }
-  section('b) Codebook values (`codebookCategories`) that aren\'t the field\'s values', differences)
+  section('a) Codebook values (`codebookCategories`) that aren\'t the field\'s values', differences)
 
   // allowed values with no meaning, for fields with some meanings, then fields with none
   const meaningless = []
@@ -175,11 +172,11 @@ for (const dataset of datasets) {
     const meanings = (field.categories ?? field.codebookCategories ?? []).filter(category => category.label !== undefined)
     const missing = allowed.filter(value => !meanings.some(category => String(category.value) === value))
     if (!missing.length) continue
-    if (meanings.length) meaningless.push(`\`${field.id}\`: ${missing.map(q).join(', ')}`)
-    else none.push(`\`${field.id}\``)
+    if (meanings.length) meaningless.push(`\`${field.name}\`: ${missing.map(q).join(', ')}`)
+    else none.push(`\`${field.name}\``)
   }
   if (none.length) meaningless.push(`No meaning for any value: ${none.join(', ')}`)
-  section('c) Allowed values with no meaning', meaningless)
+  section('b) Allowed values with no meaning', meaningless)
 }
 
 console.log(out.join('\n'))

@@ -165,7 +165,7 @@ sources = [
 type = "update"
 key = "pay-ro-02"
 as_of = 2026-10-15
-values.participants = "2025- 20"
+values.number_of_participants = "2025- 20"
 reason = "20 participants in the instant component at end 2025. Source: Transfond, Annual Report 2025."
 sources = [
   "https://www.transfond.ro/pdf/Raport%20Anual%20Transfond%202025%20Compressed%202.pdf",

@@ -1,6 +1,6 @@
 // The DPI test: the criteria a system must meet to count as DPI-like, per DPI type.
 // See /methodology/. This is the one place that decides whether a system is DPI:
-// its DPI Status comes from these criteria. The data's Count for DPI column (dpi_count) must
+// its DPI Status comes from these criteria. The data's Count for DPI column (count_for_dpi) must
 // agree: `npm run data:build` derives it from these criteria, and `npm run data:check` (D48)
 // fails if the release's files don't match a rebuild.
 import { schemas, fieldById, labelOf, type DPIType, type Field } from './Schema'

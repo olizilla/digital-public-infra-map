@@ -70,7 +70,7 @@ reason = "BiPay is the only organization in the pilot"
 type = "update"
 key = "pay-pe-02"
 as_of = 2026-10-15
-values.participants = "2026- 1"
+values.number_of_participants = "2026- 1"
 reason = "Single distribution partner in the pilot. Primary source: none found. Secondary source: RPP (2026-06)."
 sources = [
   "https://rpp.pe/economia/economia/bcrp-amplia-dinero-digital-2027-de-que-trata-piloto-y-que-resultados-tiene-noticia-1691625",

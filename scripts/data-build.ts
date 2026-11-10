@@ -6,7 +6,7 @@
 // always replaces the value in release N, and one dated before its row's Last
 // updated there is reported (D46). Release N is the newest release folder before
 // this one with JSON for every table, or --previous. It writes public/data/<release>/:
-// - <release>-<resource>.json, the canonical tables (D67), one row per line
+// - <release>-<resource>.json, the canonical tables (D67), one row per line, keyed by field id (D83)
 // - places.csv and place-names.csv, copied
 // - datapackage.json: the root one, with paths to the files in this folder
 // No table CSVs: the site makes a workbook of the tables, /data/latest/dpimap.xlsx, from the JSON
@@ -98,7 +98,7 @@ const copied = ['public/data/places.csv', 'public/data/place-names.csv']
 const dpiTypeOf = Object.fromEntries(Object.entries(resourceNames).map(([dpiType, name]) => [name, dpiType])) as Record<string, DPIType>
 const resourceOf = (name: string) => datapackage.resources.find(r => r.name === name)!
 
-/** A row keyed by column header, as the site's JSON has it */
+/** A row keyed by field name, which is the field's id (D83), as the release's JSON has it */
 const byName = (fields: Field[], row: Row) => Object.fromEntries(fields.map(field => [field.name, row[fieldId(field)]]))
 
 /** A row as the site's record for it, keyed by field id, with its 'DPI Status' (see src/Identity.ts) */
@@ -180,7 +180,7 @@ const result = build({
       const record = toRecord(schemas[dpiTypeOf[name]], byName(resourceOf(name).schema.fields, row))
       return {
         ...(asOf ? { last_updated: asOf } : {}),
-        dpi_count: passesDpiTest(dpiTest(dpiTypeOf[name], record)) ? '1' : '0',
+        count_for_dpi: passesDpiTest(dpiTest(dpiTypeOf[name], record)) ? '1' : '0',
         ...isoCodes(row.country)
       }
     }
@@ -376,8 +376,8 @@ const legacyLines = [
 function previousRecords (name: string): Map<string, Record<string, any>> {
   const dpiType = dpiTypeOf[name]
   const rows = (baseline?.tables[name] ?? []) as Record<string, any>[]
-  if (rows.some(row => row['System ID'] === undefined)) throw new Error(`${previous}-${name}.json has rows with no System ID`)
-  return new Map(rows.map(row => [row['System ID'], recordOf(dpiType, { ...row })]))
+  if (rows.some(row => row.system_id === undefined)) throw new Error(`${previous}-${name}.json has rows with no System ID`)
+  return new Map(rows.map(row => [row.system_id, recordOf(dpiType, { ...row })]))
 }
 
 interface StatusChange { dpiType: DPIType, id: string, name: string, old?: string, new?: string, criteria: string }
@@ -385,14 +385,14 @@ const changes: StatusChange[] = []
 const added: StatusChange[] = []
 const removed: StatusChange[] = []
 const headline: { dpiType: DPIType, old: number, new: number }[] = []
-const statusText = (record?: Record<string, any>) => record && `${record['DPI Status']} (${record.dpi_count})`
+const statusText = (record?: Record<string, any>) => record && `${record['DPI Status']} (${record.count_for_dpi})`
 
 if (previous) {
   for (const [name, table] of Object.entries(result.tables)) {
     const dpiType = dpiTypeOf[name]
     if (!dpiType) continue
     const before = previousRecords(name)
-    const after = new Map(tableRecords(table).map(row => [row['System ID'] as string, recordOf(dpiType, row)]))
+    const after = new Map(tableRecords(table).map(row => [row.system_id as string, recordOf(dpiType, row)]))
     const nameFor = (record: Record<string, any>) => nameOf(dpiType, record) ?? '(unnamed)'
     for (const [id, now] of after) {
       const then = before.get(id)
@@ -400,7 +400,7 @@ if (previous) {
         added.push({ dpiType, id, name: nameFor(now), new: statusText(now), criteria: '' })
         continue
       }
-      if (then['DPI Status'] === now['DPI Status'] && then.dpi_count === now.dpi_count) continue
+      if (then['DPI Status'] === now['DPI Status'] && then.count_for_dpi === now.count_for_dpi) continue
       const was = new Map(dpiTest(dpiType, then).map(c => [c.label, c.value]))
       const criteria = dpiTest(dpiType, now).filter(c => was.get(c.label) !== c.value).map(c => `${c.label}: ${was.get(c.label)} → ${c.value}`)
       const status = [implementationStatus(valueOf(dpiType, then, 'status')), implementationStatus(valueOf(dpiType, now, 'status'))]

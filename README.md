@@ -32,7 +32,7 @@ Updates to the site are deployed to dpimap.org automatically when changes are me
 
 ## The data
 
-Each table is a JSON file: `<date>-<name>.json` (identity, payment and exchange), with an array of objects keyed by field name. https://dpimap.org/data/latest/ redirects to the current release's files, like `/data/latest/datapackage.json` and `/data/latest/identity.json`. A downloadable spreadsheet of the current release is built out to `/data/latest/dpimap.xlsx`.
+Each table is a JSON file: `<date>-<name>.json` (identity, payment and exchange), with an array of objects keyed by field id, which is each field's `name` in the `datapackage.json` (D83). https://dpimap.org/data/latest/ redirects to the current release's files, like `/data/latest/datapackage.json` and `/data/latest/identity.json`. A downloadable spreadsheet of the current release is built out to `/data/latest/dpimap.xlsx`.
 
 ## Data package
 
@@ -40,7 +40,7 @@ Each table is a JSON file: `<date>-<name>.json` (identity, payment and exchange)
 
 ### The codebook
 
-The codebook lives in the fields of each resource's schema. A field's `title` is the variable's name and its `description` is the definition. What each value means is in the standard [`categories`](https://datapackage.org/standard/table-schema/#categories) property, with the meaning as each value's `label`. Where the codebook's list of values doesn't match the field's values yet, for example for a multi-valued field, the list is kept as written in `codebookCategories`, in the same shape. Three more properties carry the rest of the codebook: `scope` (System or Subsystem), `variableType` (Binary, Categorical or Nominal) and `frameworkIndicator` (the related indicator in the Measuring DPI Framework). `npm run codebook:check` lists where the codebook and the data disagree.
+The codebook lives in the fields of each resource's schema. A field's `name` is its id, the key in the data, its `title` is the variable's name and its `description` is the definition. What each value means is in the standard [`categories`](https://datapackage.org/standard/table-schema/#categories) property, with the meaning as each value's `label`. Where the codebook's list of values doesn't match the field's values yet, for example for a multi-valued field, the list is kept as written in `codebookCategories`, in the same shape. Three more properties carry the rest of the codebook: `scope` (System or Subsystem), `variableType` (Binary, Categorical or Nominal) and `frameworkIndicator` (the related indicator in the Measuring DPI Framework). `npm run codebook:check` lists where the codebook and the data disagree.
 
 ### System IDs
 

@@ -1,8 +1,8 @@
 // The systems in the current release (src/Release.ts), for the /<system-id> pages.
 // They're the same rows as the country pages' (src/Identity.ts etc), by System ID.
-// Fields come from datapackage.json and are found by id, never by header.
+// Fields come from datapackage.json and are found by id, which is each row's key in the JSON (D83).
 import slug from 'slug'
-import { schemas, resourceNames, fieldById, schemaSource, toRecord, type DPIType, type Schema } from './Schema'
+import { schemas, resourceNames, schemaSource, toRecord, type DPIType, type Schema } from './Schema'
 import { normaliseImplementationStatus } from './Status'
 import { dpiStatus, nameOf, nouns, type DpiStatus } from './DpiTest'
 import { placeNamed } from './Places'
@@ -39,8 +39,6 @@ function systemsOf (dpiType: DPIType): System[] {
   if (key?.length !== 1) throw new Error(`${schemaSource(dpiType)} needs a primaryKey of one field, the System ID`)
   const idField = schema.fields.find(field => field.name === key[0])
   if (!idField) throw new Error(`${schemaSource(dpiType)} primaryKey "${key[0]}" is not one of its fields`)
-  const header = (id: string) => fieldById(schema, id).name
-  const columns = { country: header('country'), name: header('name') }
 
   return releaseRows[dpiType].map(row => {
     const values: Record<string, string> = {}
@@ -51,13 +49,13 @@ function systemsOf (dpiType: DPIType): System[] {
       status: normaliseImplementationStatus,
     })
     record['DPI Status'] = dpiStatus(dpiType, record)
-    const country = row[columns.country]
+    const country = row.country
     const code = placeNamed(country)?.code
     return {
       id: row[idField.name],
       dpiType,
       resource: resourceNames[dpiType],
-      name: row[columns.name],
+      name: row.name,
       title: nameOf(dpiType, record) ?? `Unnamed ${nouns[dpiType]} system`,
       country,
       countryHref: code ? pages.get(code)?.href : undefined,

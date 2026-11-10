@@ -18,8 +18,6 @@ const { dpiType, changes: c } = Astro.props
 const ids = new Set(schemas[dpiType].fields.map(field => field.id as string))
 /** the field's codebook page, if the release has the field */
 const hrefOf = (field: FieldRef) => ids.has(field.id) ? `/codebook/${resourceNames[dpiType]}/${field.id}/` : undefined
-/** a field's column, after its title, if it's named differently */
-const columnOf = (field: FieldRef) => field.name !== field.title ? ` (column “${field.name}”)` : ''
 /** a fold is open if it has this many items or fewer */
 const short = 4
 /** a reworded text is folded if the two texts are longer than this together */
@@ -41,7 +39,7 @@ const valueGroups: { head: string, on: string, list: ValueGroup[] }[] = [
         { c.added.map(field => (
           <li>
             <p class="chg-cb-field"><span class="chg-new">New</span><CodebookField field={field} href={hrefOf(field)} /></p>
-            { field.replaces.length > 0 && <p class="chg-cb-note">Replaces {field.replaces.map((r, i) => <Fragment>{i > 0 && ' and '}<b>{r.title}</b>{columnOf(r)}</Fragment>)}</p> }
+            { field.replaces.length > 0 && <p class="chg-cb-note">Replaces {field.replaces.map((r, i) => <Fragment>{i > 0 && ' and '}<b>{r.title}</b></Fragment>)}</p> }
             { field.description ? <p class="chg-cb-def">{field.description}</p> : <p class="chg-cb-def">No definition recorded.</p> }
           </li>
         ))}
@@ -56,7 +54,7 @@ const valueGroups: { head: string, on: string, list: ValueGroup[] }[] = [
         { c.removed.map(field => (
           <li>
             <p class="chg-cb-field"><span class="chg-gone">Removed</span><CodebookField field={field} href={hrefOf(field)} /></p>
-            { field.replacedBy.length > 0 && <p class="chg-cb-note">Replaced by {field.replacedBy.map((r, i) => <Fragment>{i > 0 && ' and '}<a class="ul" href={hrefOf(r)}>{r.title}</a>{columnOf(r)}</Fragment>)}</p> }
+            { field.replacedBy.length > 0 && <p class="chg-cb-note">Replaced by {field.replacedBy.map((r, i) => <Fragment>{i > 0 && ' and '}<a class="ul" href={hrefOf(r)}>{r.title}</a></Fragment>)}</p> }
             { field.description && <p class="chg-cb-def">{field.description}</p> }
           </li>
         ))}

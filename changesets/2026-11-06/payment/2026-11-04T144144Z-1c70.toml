@@ -88,7 +88,7 @@ sources = [
 type = "update"
 key = "pay-dz-01"
 as_of = 2026-10-15
-values.participants = "2025- 8"
+values.number_of_participants = "2025- 8"
 reason = "BNA, CPA, BDL, BEA, CNEP-Banque, AGB and Al Salam Bank plus Algérie Poste live by November 2025; BADR and Fransabank due to join by end-2025. Primary source: APS (Algérie Presse Service, state news agency) (2025-11). Secondary source: Maghreb Emergent (2025-11)."
 sources = [
   "https://www.aps.dz/fr/economie/banque-et-finances/mikdqi6d-m-paiement-l-interoperabilite-elargie-a-15-banques-en-2026",

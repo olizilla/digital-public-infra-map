@@ -1,24 +1,23 @@
 // What changed in the codebook between two datapackage.json files: the previous release's
 // (public/data/<previous>/datapackage.json) and this one's. For the changelog pages, which show it
 // per DPI type beside the data's changes (src/pages/changes/). It compares each resource's fields by
-// id: the fields added and removed, the allowed values added and removed, the definitions and value
+// name, which is the field's id (D83): the fields added and removed, the allowed values added and removed, the definitions and value
 // meanings reworded, and the missing values. It reads only the two packages, so it works for any pair.
 import { listValues } from '../scripts/fields.mjs'
 import { meaningsOf } from './Codebook'
 import type { Field, MissingValue } from './Schema'
 
 /** A field of a datapackage.json resource, with the codebook properties this reads */
-type PackageField = Omit<Field, 'site'> & { description?: string }
+type PackageField = Omit<Field, 'id' | 'site'> & { description?: string }
 interface PackageResource { name: string, schema?: { fields?: PackageField[], missingValues?: MissingValue[] } }
 export interface Package { resources: PackageResource[] }
 
 /** A field as either package has it */
 export interface FieldRef {
+  /** the field's name in the package, its id (D83) */
   id: string
   /** the codebook's variable name */
   title: string
-  /** the column header, which can differ from the title */
-  name: string
   description: string
 }
 
@@ -66,13 +65,13 @@ export interface ResourceChanges {
   definitions: Reworded[]
   meanings: Reworded[]
   missing: MissingChange[]
-  /** fields in both whose other codebook properties changed: title, column, type, format, check, scope, variable type or indicator */
+  /** fields in both whose other codebook properties changed: title, type, format, check, scope, variable type or indicator */
   other: { field: FieldRef, what: string[] }[]
   /** whether anything changed */
   any: boolean
 }
 
-const refOf = (field: PackageField): FieldRef => ({ id: field.id, title: field.title, name: field.name, description: field.description ?? '' })
+const refOf = (field: PackageField): FieldRef => ({ id: field.name, title: field.title, description: field.description ?? '' })
 
 /**
  * The top-level alternatives of a regex, like `https?://\S+` and `Not Found` in `https?://\S+|Not Found`,
@@ -148,10 +147,10 @@ const missingOf = (list: MissingValue[] = ['']) => new Map(list.map(m => typeof 
 export function resourceChanges (before: PackageResource | undefined, after: PackageResource | undefined): ResourceChanges {
   const old = before?.schema?.fields ?? []
   const now = after?.schema?.fields ?? []
-  const oldById = new Map(old.map(f => [f.id, f]))
-  const nowById = new Map(now.map(f => [f.id, f]))
-  const addedFields = now.filter(f => !oldById.has(f.id))
-  const removedFields = old.filter(f => !nowById.has(f.id))
+  const oldById = new Map(old.map(f => [f.name, f]))
+  const nowById = new Map(now.map(f => [f.name, f]))
+  const addedFields = now.filter(f => !oldById.has(f.name))
+  const removedFields = old.filter(f => !nowById.has(f.name))
 
   const added = addedFields.map(f => ({ ...refOf(f), replaces: removedFields.filter(r => replaces(f, r)).map(refOf) }))
   const removed = removedFields.map(r => ({ ...refOf(r), replacedBy: addedFields.filter(f => replaces(f, r)).map(refOf) }))
@@ -162,7 +161,7 @@ export function resourceChanges (before: PackageResource | undefined, after: Pac
   const meanings: Reworded[] = []
   const other: { field: FieldRef, what: string[] }[] = []
   for (const f of now) {
-    const o = oldById.get(f.id)
+    const o = oldById.get(f.name)
     if (!o) continue
     const ref = refOf(f)
     const [was, is] = [allowedValues(o), allowedValues(f)]
@@ -189,9 +188,9 @@ export function resourceChanges (before: PackageResource | undefined, after: Pac
       if (label === undefined || explained.includes(String(value)) || is.includes(String(value))) continue
       meanings.push({ field: ref, value: String(value), before: label, after: '' })
     }
-    // anything else about the field
+    // anything else about the field. Its name is its id, so it can't change (D83)
     const what = ([
-      ['title', 'title'], ['name', 'column'], ['type', 'type'], ['format', 'format'], ['scope', 'scope'],
+      ['title', 'title'], ['type', 'type'], ['format', 'format'], ['scope', 'scope'],
       ['variableType', 'variable type'], ['frameworkIndicator', 'indicator']
     ] as const).filter(([key]) => String((o as Record<string, unknown>)[key] ?? '') !== String((f as Record<string, unknown>)[key] ?? '')).map(([, label]) => label)
     if ((o.constraints?.pattern ?? '') !== (f.constraints?.pattern ?? '') && was.join('\n') === is.join('\n')) what.push('check')

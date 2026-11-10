@@ -167,7 +167,7 @@ sources = [
 type = "update"
 key = "pay-pl-02"
 as_of = 2026-10-15
-values.participants = "2025- 22"
+values.number_of_participants = "2025- 22"
 reason = "22 banks, including the NBP, at end June 2025. Source: NBP, Information on interbank clearing and settlement, Q2 2025."
 sources = [
   "https://nbp.pl/wp-content/uploads/2025/11/Informacja-o-rozliczeniach-i-rozrachunkach-miedzybankowych-w-II-kw.-2025.pdf",

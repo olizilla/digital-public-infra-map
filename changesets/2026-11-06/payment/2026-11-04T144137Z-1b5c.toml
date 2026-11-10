@@ -34,7 +34,7 @@ sources = [
 type = "update"
 key = "pay-ch-01"
 as_of = 2026-10-15
-values.participants = "2025- 78"
+values.number_of_participants = "2025- 78"
 reason = "Previous value is the TIPS participant count. 78 participants able to receive instant payments at end 2025, of which 24 also offered sending; 310 institutions connected to SIC overall. Primary source: SIX Interbank Clearing, Annual Report 2025: 78 participants able to receive instant payments and 24 offering sending at end 2025; 310 institutions connected to SIC; IP launched August 2024 on SIC5."
 sources = [
   "https://www.six-group.com/dam/download/banking-services/interbank-clearing/annual-reports/annual-report-2025.pdf",

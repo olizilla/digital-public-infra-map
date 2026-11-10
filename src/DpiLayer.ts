@@ -6,7 +6,7 @@
  * The fields the build computes, never taken from a changeset: Last updated, from the row's newest as_of,
  * Count for DPI, from the DPI test, and the ISO 3166-1 codes, from the row's place in public/data/places.csv (D68)
  */
-export const derivedFields = ['last_updated', 'dpi_count', 'iso3']
+export const derivedFields = ['last_updated', 'count_for_dpi', 'iso3']
 
 /**
  * A release row's Last updated as YYYY-MM-DD: the as_of of its cells (D7). Releases up to

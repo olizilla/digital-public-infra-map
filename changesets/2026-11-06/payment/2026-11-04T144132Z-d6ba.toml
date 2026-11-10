@@ -146,7 +146,7 @@ sources = [
 type = "update"
 key = "pay-africa-02"
 as_of = 2026-10-15
-values.participants = "2026- 8"
+values.number_of_participants = "2026- 8"
 reason = "104 institutions authorised to offer PI-SPI services to the public across the WAEMU at 31 July 2026 (Senegal 24, Côte d'Ivoire 23, Mali 14, Burkina Faso 13, Benin 11, Togo 9, Guinea-Bissau 5, Niger 5), up from 45 at launch. The BCEAO reported 80 connected participants on 24 June 2026. Secondary source: Finances AO, citing the BCEAO list (18 Aug 2026). Primary source: BCEAO communiqué (25 Jun 2026) for the 80 connected participants. Updated from the value in the consolidated log."
 sources = [
   "https://financesao.com/uemoa-pi-spi-atteint-104-etablissements-autorises/",

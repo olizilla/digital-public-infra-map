@@ -159,7 +159,7 @@ sources = [
 type = "update"
 key = "pay-la-01"
 as_of = 2026-10-15
-values.participants = "2026- 26"
+values.number_of_participants = "2026- 26"
 reason = "LAPNet homepage lists 24 commercial banks and 2 fintechs as members (checked on the live site during review). BCEL page naming 14 members reflects the older ATM network. Primary source: LAPNet (operator) (2026). Secondary source: Fintech News Singapore (2023)."
 sources = [
   "https://www.lapnet.com.la/",

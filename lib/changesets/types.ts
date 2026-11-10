@@ -2,9 +2,9 @@
 // describes the tables, and a log of changesets says what goes in them.
 
 export interface Field {
-  /** The column header */
+  /** The field's key in the data */
   name: string
-  /** A stable id for the field, which changesets use. Defaults to `name`. */
+  /** A stable id for the field, which changesets use. Defaults to `name`, as in dpimap's packages (D83). */
   id?: string
   type?: string
   format?: string

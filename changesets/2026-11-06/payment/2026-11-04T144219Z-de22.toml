@@ -214,7 +214,7 @@ sources = [
 type = "update"
 key = "pay-vn-01"
 as_of = 2026-10-15
-values.participants = "2026- 68"
+values.number_of_participants = "2026- 68"
 reason = "NAPAS reports 68 member organisations, including banks and financial companies. Source: NAPAS (2026)."
 sources = [
   "https://en.napas.com.vn/",

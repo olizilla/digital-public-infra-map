@@ -28,5 +28,5 @@ export const citation = datasetCitation({ title: dataset.title, release, url: da
 /** The release's datapackage.json: the codebook the site shows (D71) */
 export const releasePackage = datapackage
 
-/** Each table's rows, keyed by column header, as in the release's JSON, by resource name */
+/** Each table's rows, keyed by field id, as in the release's JSON (D83), by resource name */
 export const releaseTables: Record<'identity' | 'payment' | 'exchange', Record<string, any>[]> = { identity, payment, exchange }

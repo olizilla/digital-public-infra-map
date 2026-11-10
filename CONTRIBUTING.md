@@ -100,6 +100,6 @@ You need [node.js](https://nodejs.org). Clone the repo, then run `npm install` a
 Gotchas:
 
 - The codebook is built from `datapackage.json`: each field's `title`, `description`, `categories` (or `codebookCategories`), `scope`, `variableType` and `frameworkIndicator`. See the README. Every field is in the codebook unless it's marked `codebook: false` in `src/SiteFields.ts`.
-- Code refers to fields by `id`, never by column header. Headers change; ids don't.
+- A field's `name` in `datapackage.json` is its id, the key in the JSON (D83). Code refers to fields by id, and shows people the `title`. Titles change; ids don't.
 - A codebook link's anchor comes from the field's `title`, so changing a title changes its `/codebook` anchor.
 - Tailwind only scans `src/pages`, `src/components` and `src/layouts` for class names, so classes used anywhere else aren't generated.

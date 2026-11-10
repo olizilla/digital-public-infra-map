@@ -18,7 +18,7 @@ import { release, releasePackage, releaseTables } from './ReleaseFiles'
 
 export { release }
 
-/** Each table's rows, keyed by column header, as in the release's JSON */
+/** Each table's rows, keyed by field id, as in the release's JSON (D83) */
 export const releaseRows: Record<DPIType, Record<string, any>[]> = { id: releaseTables.identity, pay: releaseTables.payment, data: releaseTables.exchange }
 
 /** The release the history starts from: the first with System IDs, and evidence for its values */

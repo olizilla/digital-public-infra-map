@@ -1,8 +1,9 @@
 // Check the shape of datapackage.json, then each resource's table, at its
 // `path`, against the resource's schema. A table is JSON, an array of objects
-// keyed by field name, if the resource's `format` is json (the release tables, D67),
-// or else CSV (places and place-names). A JSON value that isn't a string, like
-// Count for DPI's 0 or 1, is checked as its text, as it would be in a CSV.
+// keyed by field name, which is the field's id (D83), if the resource's `format`
+// is json (the release tables, D67), or else CSV (places and place-names). A
+// JSON value that isn't a string, like Count for DPI's 0 or 1, is checked as its
+// text, as it would be in a CSV.
 // Prints one line per problem, tab separated, then a summary per resource
 // that counts, for each column, the values found that aren't allowed.
 // A cell in the schema's `missingValues` (NA) is unknown, which is fine unless
@@ -52,7 +53,7 @@ const print = asJSON ? () => {} : console.log
 function whereIs (path) {
   const [, r, f] = path.match(/^\/resources\/(\d+)(?:\/schema\/fields\/(\d+))?/) ?? []
   const resource = datapackage.resources?.[r]
-  const id = resource?.schema?.fields?.[f]?.id
+  const id = resource?.schema?.fields?.[f]?.name
   const names = [resource?.name, id && JSON.stringify(id)].filter(Boolean)
   return names.length ? ` (${names.join(', ')})` : ''
 }
@@ -60,7 +61,7 @@ function whereIs (path) {
 /**
  * What the site and this script rely on, beyond the standard: each resource has
  * a table at a relative path inside the repo and its schema inline, and each field
- * has a unique snake_case `id` and a `title`. As [path, message]
+ * has a unique snake_case `name`, its id, no separate `id`, and a `title` (D83). As [path, message]
  */
 function checkPackage () {
   const problems = []
@@ -78,13 +79,14 @@ function checkPackage () {
     const seen = new Map()
     schema.fields.forEach((field, i) => {
       const at = `${base}/schema/fields/${i}`
-      if (typeof field.id !== 'string' || !/^[a-z][a-z0-9_]*$/.test(field.id)) {
-        problems.push([`${at}/id`, 'must be snake_case, like dpi_count'])
-      } else if (seen.has(field.id)) {
-        problems.push([`${at}/id`, `is the same as ${base}/schema/fields/${seen.get(field.id)}`])
+      if (typeof field.name !== 'string' || !/^[a-z][a-z0-9_]*$/.test(field.name)) {
+        problems.push([`${at}/name`, 'must be the field\'s id, in snake_case, like count_for_dpi'])
+      } else if (seen.has(field.name)) {
+        problems.push([`${at}/name`, `is the same as ${base}/schema/fields/${seen.get(field.name)}`])
       } else {
-        seen.set(field.id, i)
+        seen.set(field.name, i)
       }
+      if ('id' in field) problems.push([`${at}/id`, 'must not be set: the field\'s name is its id'])
       if (typeof field.title !== 'string' || field.title === '') {
         problems.push([`${at}/title`, 'must be the codebook\'s variable name, or a label if the codebook doesn\'t cover it'])
       }
@@ -127,7 +129,7 @@ function cast (field, value) {
     case 'integer': return /^-?\d+$/.test(value) ? Number(value) : undefined
     case 'number': return value.trim() !== '' && Number.isFinite(Number(value)) ? Number(value) : undefined
     case 'date': return parseDate(value, field.format) ?? undefined
-    default: throw new Error(`unsupported type "${field.type}" for field "${field.id}"`)
+    default: throw new Error(`unsupported type "${field.type}" for field "${field.name}"`)
   }
 }
 
@@ -284,7 +286,7 @@ function validate (resource) {
 
   // Table Schema's default is [''], but here an empty cell is an error, see checkCell
   const missingValues = missingValueStrings(schema) ?? []
-  const countryField = schema.fields.find(field => field.id === 'country')
+  const countryField = schema.fields.find(field => field.name === 'country')
   const fields = schema.fields.filter(field => meta.fields.includes(field.name))
   const primaryKey = primaryKeyOf(schema)
   for (const name of primaryKey.filter(name => !names.includes(name))) {
@@ -301,7 +303,7 @@ function validate (resource) {
     if (!rows) report('-', '-', '-', undefined, `foreignKeys refers to resource "${reference.resource}", which is not in the package or has no table`)
     return new Set((rows ?? []).map(row => JSON.stringify([reference.fields].flat().map(name => row[name]))))
   })
-  const systemIdField = schema.fields.find(field => field.id === 'system_id')
+  const systemIdField = schema.fields.find(field => field.name === 'system_id')
   const { codes, byName } = placesOf()
   // for each of uniques, value -> the row it was first seen in
   const firstSeen = uniques.map(() => new Map())

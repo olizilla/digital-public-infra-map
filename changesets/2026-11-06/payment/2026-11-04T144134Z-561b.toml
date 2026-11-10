@@ -66,7 +66,7 @@ sources = [
 type = "update"
 key = "pay-bb-01"
 as_of = 2026-10-15
-values.participants = "2026- 9"
+values.number_of_participants = "2026- 9"
 reason = """
 Commercial Banks 
 • CIBC Caribbean Bank (Barbados)

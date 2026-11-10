@@ -8,11 +8,11 @@ export type { Kind } from './SiteFields'
 
 /** A column in the data, as described by a resource's schema in datapackage.json, plus how the site shows it */
 export interface Field<Id extends string = string> {
-  /** the column header in the data */
-  name: string
-  /** stable snake_case id. Code refers to fields by id, never by header */
+  /** the field's stable snake_case id: its key in the data (D83) */
+  name: Id
+  /** the same as `name`, set by schemaOf. Code refers to fields by id */
   id: Id
-  /** the codebook's variable name, if the codebook covers the field */
+  /** the codebook's variable name: the field's label, wherever the site shows its name (D83) */
   title: string
   type: string
   format?: string
@@ -31,7 +31,7 @@ export type MissingValue = string | { value: string, label?: string }
 
 export interface Schema<Id extends string = string> {
   missingValues?: MissingValue[]
-  /** column headers (field names) that together identify a row */
+  /** the field names (ids) that together identify a row */
   primaryKey?: string[]
   fields: Field<Id>[]
 }
@@ -65,17 +65,17 @@ function schemaOf<D extends DPIType> (dpiType: D) {
   const name = resourceNames[dpiType]
   const resource = datapackage.resources.find(resource => resource.name === name)
   if (!resource) throw new Error(`No ${schemaSource(dpiType)}`)
-  const fields = resource.schema.fields as unknown as Omit<Field, 'site'>[]
+  const fields = resource.schema.fields as unknown as Omit<Field, 'id' | 'site'>[]
   const site: Record<string, SiteField> = siteFields[name]
   const where = `src/SiteFields.ts siteFields.${name}`
   for (const field of fields) {
-    if (!site[field.id]) throw new Error(`Field "${field.id}" in ${schemaSource(dpiType)} has no entry in ${where}`)
+    if (!site[field.name]) throw new Error(`Field "${field.name}" in ${schemaSource(dpiType)} has no entry in ${where}`)
   }
   const orders = new Set<string>()
   for (const [id, entry] of Object.entries(site)) {
     // an entry may be for a field of the next release, which only the root datapackage.json has yet
     const next = rootPackage.resources.find(resource => resource.name === name)?.schema.fields ?? []
-    if (!fields.some(field => field.id === id) && !next.some(field => field.id === id)) {
+    if (!fields.some(field => field.name === id) && !next.some(field => field.name === id)) {
       throw new Error(`${where} has "${id}", which is not a field id in ${schemaSource(dpiType)} or the root datapackage.json`)
     }
     if (entry.kind === 'flag' || entry.kind === 'text') {
@@ -86,7 +86,8 @@ function schemaOf<D extends DPIType> (dpiType: D) {
   }
   return {
     ...resource.schema,
-    fields: fields.map(field => ({ ...field, site: site[field.id] }))
+    // a field's id is its name (D83), kept as `id` so code reads as it refers to fields
+    fields: fields.map(field => ({ ...field, id: field.name, site: site[field.name] }))
   } as Schema<IdOf<D>>
 }
 
@@ -136,7 +137,8 @@ export function fieldById<Id extends string> (schema: Schema<Id>, id: NoInfer<Id
 type Transforms<Id extends string> = Partial<Record<Id, (value: any, get: (id: Id) => any) => unknown>>
 
 /**
- * Turn a row keyed by raw column header into a record keyed by field id, like `record.country`.
+ * Turn a row of the release's JSON, keyed by field name, which is the field's id (D83), into the site's
+ * record, like `record.country`.
  * `transforms` maps a field id to a function that fixes up its value. It is
  * passed `get`, to read another field of the same row by id.
  */

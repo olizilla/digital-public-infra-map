@@ -158,7 +158,7 @@ sources = [
 type = "update"
 key = "pay-pe-03"
 as_of = 2026-10-15
-values.participants = "2024- 29"
+values.number_of_participants = "2024- 29"
 reason = "16 banks, 8 cajas municipales, 3 financieras, 2 EEDEs. Participants in the mobile-number immediate transfer service. Primary source: BCRP (2024-09). Figure covers the mobile-number service as of September 2024; total immediate transfer participants may differ and e-money issuers have joined since."
 sources = [
   "https://www.bcrp.gob.pe/reporte-de-inflacion/142-sistemas-de-pagos.html",

@@ -163,7 +163,7 @@ sources = [
 type = "update"
 key = "pay-ua-02"
 as_of = 2026-10-15
-values.participants = "2026- 66"
+values.number_of_participants = "2026- 66"
 reason = "66 SEP participants on 1 January 2026: 61 banks, the National Bank of Ukraine, the State Treasury and three non-bank providers (through banks). Source: Ukrainian News (January 2026), reporting National Bank of Ukraine data."
 sources = [
   "https://ukranews.com/en/news/1128373-number-of-payments-via-sep-increases-by-almost-quarter-to-595-million-in-2025",

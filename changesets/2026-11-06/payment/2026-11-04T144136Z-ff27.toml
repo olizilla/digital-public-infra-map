@@ -160,7 +160,7 @@ sources = [
 type = "update"
 key = "pay-bj-01"
 as_of = 2026-10-15
-values.participants = "2026- 11"
+values.number_of_participants = "2026- 11"
 reason = "11 institutions authorised to offer PI-SPI services to the public in this country at 31 July 2026, of 104 across the WAEMU. Secondary source: Finances AO, citing the BCEAO list (18 Aug 2026). Primary source: BCEAO communiqué (25 Jun 2026) for the 80 connected participants."
 sources = [
   "https://financesao.com/uemoa-pi-spi-atteint-104-etablissements-autorises/",
