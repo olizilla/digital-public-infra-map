@@ -17,17 +17,17 @@ export const snapshot = release
 
 The DPI data is collected based on the [DPI conceptualisation and measurement](/methodology) framework. Each variable pertains to a specific attribute of DPI, tracking indicators across digital ID, digital payment and data exchange systems.
 
-Read the [Codebook](/codebook) for detailed descriptions of the variables.
+[Read the Codebook](/codebook) for detailed descriptions of the variables.
 
-Download the data as JSON:
+<a href={`/data/latest/dpimap.xlsx`} onclick="trackDownload('dpimap-xlsx')">Download the data as a .xlsx spreadsheet file.</a> 	It has one sheet per DPI type, each system links to its dpimap page and each column to its codebook definintion. You can import it to Google Sheets or open it in open Office / Excel / Numbers.
 
-<div class="grid grid-cols-1 sm:grid-cols-3 gap-2 pb-8">
-  <a href={`/data/${snapshot}/${snapshot}-identity.json`} class="button-blue" onclick="trackDownload('identity')"><IdentityIcon class='inline-block mr-2' /> Identity JSON </a>
-  <a href={`/data/${snapshot}/${snapshot}-payment.json`} class="button-blue" onclick="trackDownload('payment')"><PayIcon class='inline-block mr-2' /> Payment JSON </a>
-  <a href={`/data/${snapshot}/${snapshot}-exchange.json`} class="button-blue" onclick="trackDownload('exchange')"><DataIcon class='inline-block mr-2' /> Exchange JSON </a>
-</div>
+<div class="pt-6 pb-8 text-center"><a href={`/data/latest/dpimap.xlsx`} class="button-blue" onclick="trackDownload('dpimap-xlsx')">Download dpimap.xlsx</a></div>
 
-Or **[download all three as a spreadsheet (.xlsx)](/data/latest/dpimap.xlsx)** with one sheet per DPI type. Each system links to its dpimap page and each column to its codebook entry. You can import it to Google Sheets or open it in open Office / Excel / Numbers.
+Or you can download the data as a JSON file per system type:
+
+- <a href={`/data/${snapshot}/${snapshot}-identity.json`} onclick="trackDownload('identity')">Identity JSON</a>
+- <a href={`/data/${snapshot}/${snapshot}-payment.json`} onclick="trackDownload('payment')">Payment JSON</a>
+- <a href={`/data/${snapshot}/${snapshot}-exchange.json`} onclick="trackDownload('exchange')">Exchange JSON</a>
 
 ## Citation
 
