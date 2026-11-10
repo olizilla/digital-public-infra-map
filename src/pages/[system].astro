@@ -68,7 +68,7 @@ const siblings = systems
       <SystemCard dpiType={dpiType} record={record} full>
         <section class="sys-test" aria-labelledby="dpi-test-h">
           <h2 class="test-label" id="dpi-test-h">DPI test</h2>
-          <DpiTestList dpiType={dpiType} record={record} links />
+          <DpiTestList dpiType={dpiType} record={record} />
           { !verdict.passes && <p class="test-verdict">Not yet DPI-like: { verdict.reasons.map((reason, i) => (
             <Fragment>{joiner(i, verdict.reasons.length)}<a class="ul" href={`#${fieldAnchor(reason.field)}`}>{reason.text}</a>{reason.after}</Fragment>
           ))}</p> }

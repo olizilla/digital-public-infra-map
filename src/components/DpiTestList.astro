@@ -2,29 +2,28 @@
 // A system's implementation status on its own line, then the DPI test criteria, each with a YES/NO/NF/NA pill.
 // The status is also the first criterion ('Active'), but "NO Active (pilot)" confused readers, so it's shown apart.
 // The status line and its pill come from statusOf (src/DpiTest.ts), which keeps Not Found apart from NA (D61).
-// With `links`, on the system's own page, each line links to its field's row there.
+// Each line's label links to its field's codebook page, as the cards' other labels do (SystemFields).
 // Styled by .dpi-test in src/styles/global.css, smaller in a listing card (.card-id, .card-pay, .card-data).
 import YesNo from './YesNo.astro'
 import { dpiTest, statusOf } from '../DpiTest'
+import { codebookPathFor } from '../Codebook'
 import type { DPIType } from '../Schema'
 
 interface Props {
   dpiType: DPIType
   record: Record<string, any>
-  links?: boolean
 }
-const { dpiType, record, links = false } = Astro.props
+const { dpiType, record } = Astro.props
 /** the status's pill: YES for active, WIP for a pilot or plan, NO for suspended, NF for Not Found, NA for no answer */
 const { card, pill } = statusOf(dpiType, record)
 const criteria = dpiTest(dpiType, record).filter(c => c.label !== 'Active')
-const Label = links ? 'a' : 'span'
-const href = (field: string) => links ? `#f-${field}` : undefined
+const href = (field: string) => codebookPathFor(dpiType, field)
 ---
 <ul class="dpi-test">
-	<li>{ pill === 'nf' ? <YesNo status="Not Found" /> : <span class={`pill ${pill}`}>{pill.toUpperCase()}</span> }<Label href={href('status')}>Status: {card}</Label></li>
+	<li>{ pill === 'nf' ? <YesNo status="Not Found" /> : <span class={`pill ${pill}`}>{pill.toUpperCase()}</span> }<a href={href('status')}>Status: {card}</a></li>
   { criteria.map(c => (
 	  <li>
-	    <YesNo status={c.value} /> <Label href={href(c.field)} title={c.label}>{c.label}</Label>
+	    <YesNo status={c.value} /> <a href={href(c.field)} title={c.label}>{c.label}</a>
 	  </li>
   ))}
 </ul>

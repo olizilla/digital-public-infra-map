@@ -356,6 +356,9 @@ details.more[open] > summary::before {
   .dpi-test .pill {
     @apply flex-none;
   }
+  .dpi-test a {
+    @apply hover:text-blue-500 hover:underline;
+  }
   .dpi-test .note {
     @apply text-zinc-500;
   }
