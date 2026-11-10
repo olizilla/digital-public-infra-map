@@ -1,0 +1,102 @@
+[[changes]]
+type = "create"
+key = "dx-tr-02"
+as_of = 2026-10-15
+values.country = "Turkey"
+values.name = "eGovernment Gateway"
+reason = ""
+sources = [
+  "https://www.oecd.org/content/dam/oecd/en/publications/reports/2023/05/digital-government-review-of-turkiye_69ffd9d4/3958d102-en.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "dx-tr-02"
+as_of = 2026-10-15
+values.status = "Implemented"
+values.national_regional = "National"
+values.interoperability_level = "Syntactic"
+values.formal_mandate = "Yes"
+reason = ""
+sources = [
+  "https://www.oecd.org/content/dam/oecd/en/publications/reports/2023/05/digital-government-review-of-turkiye_69ffd9d4/3958d102-en.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "dx-tr-02"
+as_of = 2026-10-15
+values.url = "https://www.turkiye.gov.tr/non-citizens"
+values.architecture = "Not Found"
+values.realtime_sharing = "Not Found"
+values.scalable_architecture = "Not Found"
+values.personal_data_protection = "Yes"
+values.number_of_transactions = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-tr-02"
+as_of = 2026-10-15
+values.once_only_principle = "Yes"
+reason = "Presidential Circular No. 2018/13 (Official Gazette, 11 October 2018)"
+sources = [
+  "https://interoperable-europe.ec.europa.eu/sites/default/files/custom-page/attachment/2026-04/iopeu-monitoring_2025-supporting-document_turkiye_vfinal.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "dx-tr-02"
+as_of = 2026-10-15
+values.permitted_participants = "Public, Private, Civil"
+reason = "Delivers services based on data sharing for universities, governments. Data from the businesses registry can also be exchanged following services application from the egovernment gateway"
+sources = [
+  "https://interoperable-europe.ec.europa.eu/sites/default/files/custom-page/attachment/2026-04/iopeu-monitoring_2025-supporting-document_turkiye_vfinal.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "dx-tr-02"
+as_of = 2026-10-15
+values.sectoral = "Cross-sectoral"
+values.multiple_public_entities = "Yes"
+values.impact_metrics = "Yes"
+values.independent_audit = "Yes"
+values.number_of_members = "2026 - 1135"
+reason = ""
+sources = [
+  "https://www.turksat.com.tr/en/e-government-portal",
+]
+
+[[changes]]
+type = "update"
+key = "dx-tr-02"
+as_of = 2026-10-15
+values.governing_entity = "Cybersecurity presidency"
+reason = ""
+sources = [
+  "https://www.srp-legal.com/presidential-decree-no-192-on-the-amendment-of-the-presidential-decree-on-the-cybersecurity-presidency-is-published-in-the-official-gazette-dated-25-december-2025-and-numbered-33118/",
+]
+
+[[changes]]
+type = "update"
+key = "dx-tr-02"
+as_of = 2026-10-15
+values.ownership = "Public"
+values.enrolment_info = "No"
+values.data_management_rules = "Yes"
+values.coordination_unit = "Ministry of Transport, Maritime Affairs and Communications"
+reason = ""
+sources = [
+  "https://www.lexpera.com.tr/mevzuat/yonetmelikler/e-devlet-hizmetlerinin-yurutulmesine-iliskin-usul-ve-esaslar-hakkinda-yonetmelik",
+]
+
+[[changes]]
+type = "update"
+key = "dx-tr-02"
+as_of = 2026-10-15
+values.audit_mechanism = "Yes"
+reason = ""
+sources = [
+  "https://www.turkiye.gov.tr/bilgilendirme?konu=kvkk",
+]

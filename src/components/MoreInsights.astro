@@ -1,0 +1,27 @@
+---
+// After a post or a paper's landing page: the three newest other entries in Insights, and a link to them all.
+import { getInsights, kindLabels } from '../Insights'
+
+const here = Astro.url.pathname.replace(/\/?$/, '/')
+const more = (await getInsights())
+  .filter(i => !i.pinned && i.kind !== 'session' && i.href !== here)
+  .slice(0, 3)
+---
+{ more.length > 0 && (
+  <footer class="not-prose post-more">
+    <h2>More from Insights</h2>
+    <ol>
+      { more.map(e => (
+        <li>
+          <p class="ins-meta">
+            <span class="ins-kind" data-kind={e.kind}>{kindLabels[e.kind]}</span>
+            <span aria-hidden="true">·</span>
+            <span class="ins-pub">{e.publisher}{ e.external && <span class="ins-arrow" aria-hidden="true">&nbsp;↗</span> }</span>
+          </p>
+          <h3><a href={e.href} {...(e.external ? { rel: 'external' } : {})}>{e.title}</a></h3>
+        </li>
+      ))}
+    </ol>
+    <a class="post-all" href="/blog/">All insights →</a>
+  </footer>
+)}

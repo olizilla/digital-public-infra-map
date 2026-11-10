@@ -1,7 +1,10 @@
-// Report where the codebook (src/codebook.json) and the data's columns
-// (the resources' schemas in datapackage.json) disagree, for each dataset.
-// A field is matched to a codebook variable by its `title`. The headers in the
-// latest snapshot are the ground truth, so this is a to-do list for the codebook.
+// Report where the codebook in datapackage.json disagrees with the data, for
+// each dataset. Each field's `name` is its id, the key in the data, and its
+// `title` is its codebook variable name (D83). What its values mean is in Table
+// Schema `categories`, each value with its meaning as the `label`. Where the
+// codebook's list of values doesn't match the field's values, it's kept as
+// written in `codebookCategories` instead, and this lists the differences.
+// It's a to-do list for the codebook and the schema.
 // Prints markdown, with each difference in a diff block, codebook first.
 // It's a report, not a check: it always exits 0.
 //
@@ -13,15 +16,9 @@ import { listValues } from './fields.mjs'
 const root = new URL('../', import.meta.url)
 const readJSON = path => JSON.parse(fs.readFileSync(new URL(path, root), 'utf8'))
 
-// resource name -> the dataset's key in codebook.json
-const datasets = { identity: 'id', payment: 'pay', exchange: 'data' }
+const datasets = ['identity', 'payment', 'exchange']
 const datapackage = readJSON('datapackage.json')
-const codebook = readJSON('src/codebook.json')
 
-/** The codebook's "Range/ Categories" as a list, without NA, which the schemas treat as missing. */
-function categories (text) {
-  return text.split(/\n|,\s*/).map(x => x.trim()).filter(x => x !== '' && x !== 'NA')
-}
 
 /**
  * The values a field allows: its `enum`, or for a multi-valued field, the
@@ -130,48 +127,27 @@ const item = (heading, codebookValue, other, otherLabel) => {
 
 out.push('Legend: ␠ space at the end or doubled, ⇥ tab, ⍽ non-breaking space, <U+…> other invisible character.')
 
-for (const [dataset, dpiType] of Object.entries(datasets)) {
+for (const dataset of datasets) {
   const resource = datapackage.resources.find(resource => resource.name === dataset)
   if (!resource) throw new Error(`No datapackage.json resource "${dataset}"`)
   const { fields } = resource.schema
-  const variables = codebook[dpiType]
-  const names = new Set(variables.map(variable => variable.name))
-  const covered = fields.filter(field => names.has(field.title))
-  const uncovered = fields.filter(field => !names.has(field.title))
 
-  out.push(`\n## ${dataset}\n\ndatapackage.json resource "${dataset}", codebook tab "${dpiType}"\n`)
-
-  section('a) Headers that differ from the codebook variable name', covered
-    .filter(field => field.name !== field.title)
-    .map(field => item(`\`${field.id}\``, field.title, field.name, 'data')))
-
-  // a title that's not a variable is either a column the codebook doesn't cover,
-  // or a variable that's been renamed, so pair them up where they're close
-  const titles = new Set(fields.map(field => field.title))
-  const unused = variables.map(variable => variable.name).filter(name => !titles.has(name))
-  section('b) Field titles that aren\'t a codebook variable, and codebook variables with no field', pair(unused, uncovered.map(field => field.title))
-    .map(([name, title]) => {
-      const field = fields.find(field => field.title === title)
-      return item(field ? `\`${field.id}\`` : 'codebook variable', name, title, 'title')
-    }))
+  out.push(`\n## ${dataset}\n\ndatapackage.json resource "${dataset}"\n`)
 
   const differences = []
-  for (const field of covered) {
-    const variable = variables.find(variable => variable.name === field.title)
-    const inCodebook = categories(variable.categories)
+  for (const field of fields.filter(field => field.codebookCategories)) {
+    const inCodebook = field.codebookCategories.map(category => String(category.value))
     const allowed = allowedValues(field)
     if (!allowed) {
-      if (inCodebook.length) {
-        const rule = field.constraints?.pattern ? `a pattern, ${q(field.constraints.pattern)}` : 'no allowed values'
-        differences.push(`\`${field.id}\`: codebook lists ${inCodebook.map(q).join(', ')}, schema has ${rule}`)
-      }
+      const rule = field.constraints?.pattern ? `a pattern, ${q(field.constraints.pattern)}` : 'no allowed values'
+      differences.push(`\`${field.name}\`: codebook lists ${inCodebook.map(q).join(', ')}, schema has ${rule}`)
       continue
     }
     const codebookOnly = inCodebook.filter(x => !allowed.includes(x))
     const schemaOnly = allowed.filter(x => !inCodebook.includes(x))
     const pairs = pair(codebookOnly, schemaOnly)
     for (const [a, b] of pairs.filter(([a, b]) => a !== undefined && b !== undefined)) {
-      differences.push(item(`\`${field.id}\``, a, b, 'schema'))
+      differences.push(item(`\`${field.name}\``, a, b, 'schema'))
     }
     // the values with no close match go together, as they may be the same values split differently
     const unpaired = pairs.filter(([a, b]) => a === undefined || b === undefined)
@@ -179,10 +155,28 @@ for (const [dataset, dpiType] of Object.entries(datasets)) {
       const a = unpaired.map(([a]) => a).filter(x => x !== undefined)
       const b = unpaired.map(([, b]) => b).filter(x => x !== undefined)
       const kind = !a.length ? 'not in the codebook' : !b.length ? 'not in the schema' : 'different values'
-      differences.push(`\`${field.id}\` (${kind})\n${diff(a, b, 'schema')}`)
+      differences.push(`\`${field.name}\` (${kind})\n${diff(a, b, 'schema')}`)
+    }
+    if (!codebookOnly.length && !schemaOnly.length) {
+      differences.push(`\`${field.name}\`: the values match, but it's a multi-valued field, which \`categories\` can't describe`)
     }
   }
-  section('c) Codebook categories that differ from the schema\'s allowed values (NA left out)', differences)
+  section('a) Codebook values (`codebookCategories`) that aren\'t the field\'s values', differences)
+
+  // allowed values with no meaning, for fields with some meanings, then fields with none
+  const meaningless = []
+  const none = []
+  for (const field of fields) {
+    const allowed = allowedValues(field)
+    if (!allowed) continue
+    const meanings = (field.categories ?? field.codebookCategories ?? []).filter(category => category.label !== undefined)
+    const missing = allowed.filter(value => !meanings.some(category => String(category.value) === value))
+    if (!missing.length) continue
+    if (meanings.length) meaningless.push(`\`${field.name}\`: ${missing.map(q).join(', ')}`)
+    else none.push(`\`${field.name}\``)
+  }
+  if (none.length) meaningless.push(`No meaning for any value: ${none.join(', ')}`)
+  section('b) Allowed values with no meaning', meaningless)
 }
 
 console.log(out.join('\n'))

@@ -1,6 +1,9 @@
 # build output
 dist/
 
+# generated reports: scripts/data-build.ts writes them on every run
+reports/
+
 # generated types
 .astro/
 

@@ -1,0 +1,90 @@
+[[changes]]
+type = "create"
+key = "dx-gr-02"
+as_of = 2026-10-15
+values.country = "Greece"
+values.name = "Interoperability Centre (KED)"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-gr-02"
+as_of = 2026-10-15
+values.scalable_architecture = "Not Found"
+values.data_management_rules = "Yes"
+values.once_only_principle = "Yes"
+values.independent_audit = "No"
+values.number_of_members = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-gr-02"
+as_of = 2026-10-15
+values.impact_metrics = "Yes"
+values.number_of_transactions = "2025 - 772 million"
+reason = ""
+sources = [
+  "https://gsis.gr/en/public-data/statistics-interoperability-center-ked",
+]
+
+[[changes]]
+type = "update"
+key = "dx-gr-02"
+as_of = 2026-10-15
+values.formal_mandate = "Yes"
+reason = "Operation of the Interoperability Center of the General Secretariat of Public Administration Information Systems of the Ministry of Digital Governance."
+sources = [
+  "https://www.gsis.gr/sites/default/files/2019-11/%CE%9B%CE%95%CE%99%CE%A4%CE%9F%CE%A5%CE%A1%CE%93%CE%99%CE%91%20%CE%9A%CE%95%CE%9D%CE%A4%CE%A1%CE%9F%CE%A5%20%CE%94%CE%99%CE%91%CE%9B%CE%95%CE%99%CE%A4%CE%9F%CE%A5%CE%A1%CE%93%CE%99%CE%9A%CE%9F%CE%A4%CE%97%CE%A4%CE%91%CE%A3.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "dx-gr-02"
+as_of = 2026-10-15
+values.interoperability_level = "Semantic"
+reason = ""
+sources = [
+  "https://www.semantics.gr/authorities/?language=en",
+]
+
+[[changes]]
+type = "update"
+key = "dx-gr-02"
+as_of = 2026-10-15
+values.governing_entity = "General Directorate of Information and Communication Technology (G.G.P.S.D.)"
+values.ownership = "Public"
+values.permitted_participants = "Public, Private, Civil"
+values.audit_mechanism = "Yes"
+values.coordination_unit = "General Directorate of Information and Communication Technology (G.G.P.S.D.)"
+reason = ""
+sources = [
+  "https://www.gsis.gr/sites/default/files/2019-11/%CE%9B%CE%95%CE%99%CE%A4%CE%9F%CE%A5%CE%A1%CE%93%CE%99%CE%91%20%CE%9A%CE%95%CE%9D%CE%A4%CE%A1%CE%9F%CE%A5%20%CE%94%CE%99%CE%91%CE%9B%CE%95%CE%99%CE%A4%CE%9F%CE%A5%CE%A1%CE%93%CE%99%CE%9A%CE%9F%CE%A4%CE%97%CE%A4%CE%91%CE%A3.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "dx-gr-02"
+as_of = 2026-10-15
+values.architecture = "Custom ESB"
+reason = ""
+sources = [
+  "https://www.gsis.gr/sites/default/files/2019-11/%CE%9B%CE%95%CE%99%CE%A4%CE%9F%CE%A5%CE%A1%CE%93%CE%99%CE%91%20%CE%9A%CE%95%CE%9D%CE%A4%CE%A1%CE%9F%CE%A5%20%CE%94%CE%99%CE%91%CE%9B%CE%95%CE%99%CE%A4%CE%9F%CE%A5%CE%A1%CE%93%CE%99%CE%9A%CE%9F%CE%A4%CE%97%CE%A4%CE%91%CE%A3.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "dx-gr-02"
+as_of = 2026-10-15
+values.enrolment_info = "Yes"
+reason = ""
+sources = [
+  "https://gsis.gr/en/public-administration/ked",
+]
+
+[[changes]]
+type = "update"
+key = "dx-gr-02"
+as_of = 2026-10-15
+values.personal_data_protection = "Yes"
+reason = "General Data Protection Regulation"

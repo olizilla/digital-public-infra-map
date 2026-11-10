@@ -1,0 +1,6 @@
+[[changes]]
+type = "update"
+key = "pay-ug-02"
+as_of = 2026-10-15
+values.system_type = "Mobile money system"
+reason = "Codebook revision: payment system type \"Mobile money\" renamed \"Mobile money system\"."

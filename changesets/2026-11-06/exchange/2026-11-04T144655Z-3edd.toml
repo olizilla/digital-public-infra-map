@@ -1,0 +1,28 @@
+[[changes]]
+type = "update"
+key = "dx-gl-01"
+as_of = 2026-10-15
+values.formal_mandate = "Not Found"
+values.once_only_principle = "No"
+values.personal_data_protection = "Yes"
+values.independent_audit = "Not Found"
+values.number_of_transactions = "Not Found"
+values.number_of_members = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-gl-01"
+as_of = 2026-10-15
+values.enrolment_info = "Yes"
+reason = ""
+sources = [
+  "https://digitalimik.gl/da/digitale-loesninger/pitu",
+]
+
+[[changes]]
+type = "update"
+key = "dx-gl-01"
+as_of = 2026-10-15
+values.interoperability_level = "Not Found"
+reason = "No information found"

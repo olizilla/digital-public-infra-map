@@ -1,0 +1,87 @@
+[[changes]]
+type = "update"
+key = "pay-pe-02"
+as_of = 2026-10-15
+values.name = "BCRP digital money (CBDC pilot via BiPay)"
+reason = "Names the system: retail digital money issued by the BCRP and distributed through the BiPay wallet. Primary source: none found. Secondary source: RPP (2026-06); Infobae (2025-03)."
+sources = [
+  "https://rpp.pe/economia/economia/bcrp-amplia-dinero-digital-2027-de-que-trata-piloto-y-que-resultados-tiene-noticia-1691625",
+  "https://www.infobae.com/peru/2025/03/19/dinero-digital-del-bcrp-comenzo-la-evaluacion-del-primer-piloto-en-que-consiste/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pe-02"
+as_of = 2026-10-15
+values.url = "https://www.bcrp.gob.pe/docs/Publicaciones/reporte-del-sistema-nacional-de-pagos/2026/marzo/rspf-marzo-2026.pdf"
+reason = "New webpage. Previous source reported the 2024 contract award and predates the pilot launch. Primary source: none found. Secondary source: RPP (2026-06). No BCRP page on the pilot found; replace with a BCRP primary source if one is located."
+sources = [
+  "https://rpp.pe/economia/economia/bcrp-amplia-dinero-digital-2027-de-que-trata-piloto-y-que-resultados-tiene-noticia-1691625",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pe-02"
+as_of = 2026-10-15
+values.status = "Planned/Piloted"
+reason = "Pilot launched October 2024; first evaluation phase ended March 2026 and the pilot was extended to 10 March 2027. Primary source: none found. Secondary source: RPP (2026-06); Infobae (2025-03)."
+sources = [
+  "https://rpp.pe/economia/economia/bcrp-amplia-dinero-digital-2027-de-que-trata-piloto-y-que-resultados-tiene-noticia-1691625",
+  "https://www.infobae.com/peru/2025/03/19/dinero-digital-del-bcrp-comenzo-la-evaluacion-del-primer-piloto-en-que-consiste/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pe-02"
+as_of = 2026-10-15
+values.clearing_infrastructure = "Other"
+reason = "Transfers are recorded on the ledger of the digital money issued by the BCRP and distributed through the BiPay wallet, outside the interbank clearing infrastructure. Sources: RPP (June 2026); Infobae (March 2025)."
+sources = [
+  "https://rpp.pe/economia/economia/bcrp-amplia-dinero-digital-2027-de-que-trata-piloto-y-que-resultados-tiene-noticia-1691625",
+  "https://www.infobae.com/peru/2025/03/19/dinero-digital-del-bcrp-comenzo-la-evaluacion-del-primer-piloto-en-que-consiste/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pe-02"
+as_of = 2026-10-15
+values.settlement_method = "Not Found"
+reason = "Searched: BCRP and press sources describe the digital money pilot distributed through BiPay but not how transfers are settled between participants."
+
+[[changes]]
+type = "update"
+key = "pay-pe-02"
+as_of = 2026-10-15
+values.operator = "Central bank"
+reason = "BCRP issues the digital money; BiPay (majority owned by Viettel Perú S.A.C., ultimately controlled by Viettel Group) is the distribution partner. Primary source: El Peruano (SBS resolution) (2026). Secondary source: Infomercado (2026)."
+sources = [
+  "https://busquedas.elperuano.pe/dispositivo/NL/2553804-1",
+  "https://infomercado.pe/la-sbs-suma-a-bipay-a-la-lista-de-emisoras-de-dinero-electronico-frente-a-yape-y-plin/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pe-02"
+as_of = 2026-10-15
+values.bank_participation = "No"
+reason = "BiPay is the only organization in the pilot"
+
+[[changes]]
+type = "update"
+key = "pay-pe-02"
+as_of = 2026-10-15
+values.number_of_participants = "2026- 1"
+reason = "Single distribution partner in the pilot. Primary source: none found. Secondary source: RPP (2026-06)."
+sources = [
+  "https://rpp.pe/economia/economia/bcrp-amplia-dinero-digital-2027-de-que-trata-piloto-y-que-resultados-tiene-noticia-1691625",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pe-02"
+as_of = 2026-10-15
+values.transaction_cost = "Free"
+reason = "BiPay transfers and payments are free to users. Primary source: none found. Secondary source: Infobae (2026-02). Source describes the BiPay wallet generally; confirm it applies to the CBDC pilot."
+sources = [
+  "https://www.infobae.com/peru/2026/02/10/yape-tendra-nueva-competencia-nueva-billetera-digital-es-autorizada-por-la-sbs/",
+]

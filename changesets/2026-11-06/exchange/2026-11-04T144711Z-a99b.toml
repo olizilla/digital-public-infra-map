@@ -1,0 +1,84 @@
+[[changes]]
+type = "create"
+key = "dx-lu-02"
+as_of = 2026-10-15
+values.country = "Luxembourg"
+values.name = "API Gateway Portal"
+reason = "PNED exists as research infrastructure that helps connect government bodies and research organisations. However, it doesn't have a transport layer/"
+sources = [
+  "https://guichet.public.lu/en/citoyens/actualites/2026/mai/26-api-gateway.html",
+]
+
+[[changes]]
+type = "update"
+key = "dx-lu-02"
+as_of = 2026-10-15
+values.url = "https://api.public.lu/en/api-gateway.html"
+values.interoperability_level = "Syntactic"
+values.realtime_sharing = "Not Found"
+values.scalable_architecture = "Not Found"
+values.governing_entity = "Centre des technologies de l'information de l'Etat (CTIE)"
+values.audit_mechanism = "Not Found"
+values.data_management_rules = "Not Found"
+values.multiple_public_entities = "Not Found"
+values.impact_metrics = "Not Found"
+values.formal_mandate = "Not Found"
+values.personal_data_protection = "Yes"
+values.independent_audit = "Not Found"
+values.number_of_transactions = "Not Found"
+values.number_of_members = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-lu-02"
+as_of = 2026-10-15
+values.once_only_principle = "Yes"
+reason = ""
+sources = [
+  "https://wdocs-pub.chd.lu/docs/Dossiers_parlementaires/8395B/20260205_AmendementGouvernemental.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "dx-lu-02"
+as_of = 2026-10-15
+values.enrolment_info = "Yes"
+values.permitted_participants = "Public, Private, Civil"
+reason = ""
+sources = [
+  "https://guichet.public.lu/en/citoyens/actualites/2026/mai/26-api-gateway.html",
+]
+
+[[changes]]
+type = "update"
+key = "dx-lu-02"
+as_of = 2026-10-15
+values.architecture = "API Gateway"
+reason = ""
+sources = [
+  "https://api.public.lu/en/api-gateway.html",
+]
+
+[[changes]]
+type = "update"
+key = "dx-lu-02"
+as_of = 2026-10-15
+values.status = "Implemented"
+values.national_regional = "National"
+values.sectoral = "Cross-sectoral"
+reason = ""
+sources = [
+  "https://interoperable-europe.ec.europa.eu/sites/default/files/custom-page/attachment/2026-04/iopeu-monitoring_2025-supporting-document_luxembourg_vfinal.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "dx-lu-02"
+as_of = 2026-10-15
+values.ownership = "Public"
+values.coordination_unit = "Centre des technologies de l'information de l'Etat (CTIE)"
+reason = ""
+sources = [
+  "https://ctie.gouvernement.lu/en/l-administration.html",
+]

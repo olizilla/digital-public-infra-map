@@ -1,0 +1,19 @@
+[[changes]]
+type = "update"
+key = "pay-rs-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "RTGS"
+reason = "The NBS operates the IPS system, which transfers dinars between participants. Primary source: NBS, NBS as the payment systems operator."
+sources = [
+  "https://nbs.rs/en/ciljevi-i-funkcije/platni-sistem/nbs-operator/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-rs-01"
+as_of = 2026-10-15
+values.settlement_method = "Gross"
+reason = "Instant credit transfers are made on the basis of participants’ individual transfer orders in gross amount, 24/7. Q1 value (RTGS) consistent. Primary source: NBS, NBS as the payment systems operator."
+sources = [
+  "https://nbs.rs/en/ciljevi-i-funkcije/platni-sistem/nbs-operator/",
+]

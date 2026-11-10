@@ -1,0 +1,37 @@
+[[changes]]
+type = "update"
+key = "dx-sa-01"
+as_of = 2026-10-15
+values.architecture = "Not Found"
+values.interoperability_level = "Semantic"
+values.number_of_transactions = "Not Found"
+values.number_of_members = "2026 - 243"
+reason = ""
+sources = [
+  "https://sdaia.gov.sa/en/Services/Pages/GSB.aspx",
+]
+
+[[changes]]
+type = "update"
+key = "dx-sa-01"
+as_of = 2026-10-15
+values.formal_mandate = "No"
+values.independent_audit = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-sa-01"
+as_of = 2026-10-15
+values.once_only_principle = "Yes"
+reason = ""
+sources = [
+  "https://accesspartnership.com/opinion/access-alert-introducing-saudi-arabias-e-government-regulatory-framework/",
+]
+
+[[changes]]
+type = "update"
+key = "dx-sa-01"
+as_of = 2026-10-15
+values.personal_data_protection = "Yes"
+reason = "Personal Data Protection Law"

@@ -1,0 +1,5 @@
+[[changes]]
+type = "remove"
+key = "pay-pe-01"
+as_of = 2026-10-15
+reason = "Generic placeholder row (pointing to the Bim wallet) removed. Bim is an e-money wallet connected through the BCRP interoperability strategy and the CCE, not a national real-time payment system; Peru's real-time capability is captured in the new CCE immediate transfers row."

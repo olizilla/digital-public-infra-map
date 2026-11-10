@@ -1,0 +1,54 @@
+[[changes]]
+type = "update"
+key = "dx-hu-01"
+as_of = 2026-10-15
+values.formal_mandate = "Yes"
+reason = ""
+sources = [
+  "https://njt.jog.gov.hu/jogszabaly/2024-322-20-22",
+]
+
+[[changes]]
+type = "update"
+key = "dx-hu-01"
+as_of = 2026-10-15
+values.once_only_principle = "Yes"
+reason = ""
+sources = [
+  "https://interoperable-europe.ec.europa.eu/collection/iopeu-monitoring/solution/european-interoperability-framework-eif-toolbox/discussion/integrated-public-service-provision-central-solutions-hungary",
+]
+
+[[changes]]
+type = "update"
+key = "dx-hu-01"
+as_of = 2026-10-15
+values.independent_audit = "No"
+reason = "Periodic review needed for security but is not by an independent authority. Half-yearly security-officer check"
+sources = [
+  "https://njt.jog.gov.hu/jogszabaly/2024-322-20-22",
+]
+
+[[changes]]
+type = "update"
+key = "dx-hu-01"
+as_of = 2026-10-15
+values.interoperability_level = "Syntactic"
+reason = ""
+sources = [
+  "https://njt.jog.gov.hu/jogszabaly/2024-322-20-23",
+]
+
+[[changes]]
+type = "update"
+key = "dx-hu-01"
+as_of = 2026-10-15
+values.number_of_transactions = "Not Found"
+values.number_of_members = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-hu-01"
+as_of = 2026-10-15
+values.personal_data_protection = "Yes"
+reason = "General Data Protection Regulation"

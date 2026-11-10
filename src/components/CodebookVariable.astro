@@ -1,0 +1,109 @@
+---
+// A codebook variable: its name, a meta line, its definition and its values table (src/CodebookPage.ts).
+// The meta line says whether it's used in the DPI test and links the indicator it measures to
+// /methodology/ (src/Methodology.ts). A free-text variable says how many systems have a value instead of a table.
+// The index (src/pages/codebook.astro) shows it compact: counts as small numbers, no system lists,
+// and the values with the standard definition on one line of pills. Its own page
+// (src/pages/codebook/[resource]/[field].astro) shows it `full`: every value with its count, a bar
+// and the systems that have it. Styled by .cb-* in src/styles/global.css.
+import { systemHref } from '../Systems'
+import { kindLabel, scopeLabel, NOT_FOUND, type ValueRow, type VariableView } from '../CodebookPage'
+import { attributeHref } from '../Methodology'
+import YesNo from './YesNo.astro'
+
+interface Props {
+  view: VariableView
+  /** the variable's page, for the index */
+  href?: string
+  /** the index entry's anchor, like `id-claim-of-digital-id` */
+  anchor?: string
+  full?: boolean
+}
+const { view, href, anchor, full = false } = Astro.props
+const { field, variable, description, kind, rows, total, noun } = view
+
+const meta = [
+  variable ? kindLabel(view) : 'Not in the codebook',
+  scopeLabel(variable?.scope),
+  view.criterion && 'Used in the DPI test'
+].filter(Boolean) as string[]
+// the indicators it measures, each with its attribute, linked: "Indicator 2.5 of Transparency, …"
+const measures = view.indicators.filter(indicator => indicator.attribute)
+
+// Yes, No, Not Found and NA are the site's pills: YES, NO, NF and NA
+const pills = ['Yes', 'No', NOT_FOUND, 'NA']
+const percent = (row: ValueRow) => total ? Math.round(row.systems.length / total * 1000) / 10 : 0
+// a row standing for many values, like `Sectoral (…)`, lists each system's own value
+const showsValue = (row: ValueRow) => row.value.includes('…')
+
+// on the index, the values with the standard definition go on one line; the rest are written out
+const written = full ? rows : rows.filter(row => !row.standard)
+const standard = full || kind === 'text' ? [] : rows.filter(row => row.standard)
+const tableRows = kind === 'text' ? [] : written
+---
+<article class:list={['cb-var', { 'is-full': full }]} id={anchor}>
+  { full
+    ? <h1 class="cb-title">{field.title}</h1>
+    : <h4 class="cb-name"><a href={href}>{field.title}</a></h4> }
+  <p class="cb-meta">{ meta.map((part, i) => <Fragment>{i > 0 && <span class="sep" aria-hidden="true">·</span>}<span>{part}</span></Fragment>) }{ measures.map(indicator => <Fragment><span class="sep" aria-hidden="true">·</span><span>Indicator {indicator.number} of <a class="cb-meta-l" href={attributeHref(indicator.attribute!.name)}>{indicator.attribute!.name}</a></span></Fragment>) }</p>
+  { description
+    ? <p class="cb-def">{description}</p>
+    : <p class="cb-def is-none">No definition recorded yet.</p> }
+
+  { full && kind !== 'text' &&
+    <Fragment>
+      <h2 class="cb-h2" id="values">Values</h2>
+      <p class="cb-note">How many of the {total} {noun} systems in the latest data have each value.{kind === 'list' && ' A system can have more than one value, so it can be counted more than once.'}</p>
+    </Fragment> }
+  { kind === 'text' &&
+    <p class="cb-cover">{ view.withValue === total
+      ? `All ${total} ${noun} systems have a value`
+      : `${view.withValue} of ${total} have a value` }</p> }
+
+  { tableRows.length > 0 &&
+    <Fragment>
+      { full && <p class="cb-vhead" aria-hidden="true"><span>Value</span><span>Definition</span><span>Systems</span></p> }
+      <ul class="cb-values" aria-label={`Values of ${field.title}`}>
+      { tableRows.map(row => (
+        <li class:list={['cb-v', { 'is-nf': row.notFound, 'is-na': row.missing, 'is-std': row.standard }]}>
+          <span class="cb-v-name">
+            { pills.includes(row.value)
+              ? <YesNo status={row.value} />
+              : <span class="cb-v-text">{row.value || 'Empty'}</span> }
+          </span>
+          <span class="cb-v-def">
+            { row.definition
+              ? row.definition
+              : <span class="is-none">No definition recorded yet.</span> }
+          </span>
+          <span class="cb-v-count">
+            <span class="cb-n">{row.systems.length}</span>
+            { full && <span class="cb-bar" aria-hidden="true"><span style={`width: ${percent(row)}%`} /></span> }
+          </span>
+          { full && row.systems.length > 0 &&
+            <details class="cb-sys">
+              <summary>Show {row.systems.length} {row.systems.length === 1 ? 'system' : 'systems'}</summary>
+              <ul>
+                { row.systems.map(system => (
+                  <li>
+                    <span class="cb-sys-c">{system.country}</span><span class="sep" aria-hidden="true">·</span><a href={systemHref(system.id)}>{system.title}</a>
+                    { showsValue(row) && <span class="cb-sys-v">{system.values[field.id]}</span> }
+                  </li>
+                ))}
+              </ul>
+            </details> }
+        </li>
+      ))}
+      </ul>
+    </Fragment> }
+
+  { standard.length > 0 &&
+    <p class="cb-std">
+      { standard.map((row, i) => (
+        <Fragment>{i > 0 && <span class="sep" aria-hidden="true">·</span>}<span class="cb-std-v"><YesNo status={row.value} /><span class="cb-n">{row.systems.length}</span></span></Fragment>
+      ))}
+      <a class="cb-std-l" href="/codebook/#standard-values">standard values</a>
+    </p> }
+
+  { !full && href && <a class="cb-more" href={href}>Details</a> }
+</article>

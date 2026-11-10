@@ -1,0 +1,24 @@
+---
+// "Standard values": the four values a variable that checks for evidence takes, each with what it
+// means (src/CodebookPage.ts), then, below the box, what the words on a variable's meta line mean.
+// At the top of the codebook index.
+import { standardDefinitions, NOT_FOUND } from '../CodebookPage'
+import YesNo from './YesNo.astro'
+
+const textOf = (value: string) => standardDefinitions.find(standard => standard.value === value)!.text
+---
+<section class="cb-sv" id="standard-values" aria-labelledby="cb-sv-h">
+  <h2 class="cb-sv-h" id="cb-sv-h">Standard values</h2>
+  <p>Where possible the definitions list the values a variable can have. Variables that check for the existence of evidence take one of four standard values:</p>
+  <dl class="cb-sv-defs">
+    <div><dt><YesNo status="Yes" /> <YesNo status="No" /></dt><dd>{textOf('Yes')}</dd></div>
+    <div><dt><YesNo status={NOT_FOUND} /></dt><dd>{textOf(NOT_FOUND)}</dd></div>
+    <div><dt><YesNo status="NA" /></dt><dd>{textOf('NA')}</dd></div>
+  </dl>
+</section>
+<dl class="cb-terms">
+  <div><dt>System level</dt><dd>the same for every deployment in a country.</dd></div>
+  <div><dt>Subsystem level</dt><dd>specific to one of several components that together serve a country’s ID, payment or data exchange.</dd></div>
+  <div><dt>Used in the DPI test</dt><dd>one of the criteria that decide whether a system counts as DPI-like. <a class="ul" href="/methodology/#how-we-count-dpi-like-systems">How we count DPI-like systems</a></dd></div>
+  <div><dt>Indicator</dt><dd>the outcome indicator the variable measures, numbered as in the <a class="ul" href="/methodology/">methodology</a>, and the attribute it belongs to.</dd></div>
+</dl>

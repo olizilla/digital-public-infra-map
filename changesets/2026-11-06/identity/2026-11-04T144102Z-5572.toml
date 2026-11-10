@@ -1,0 +1,43 @@
+[[changes]]
+type = "update"
+key = "id-af-01"
+as_of = 2026-09-16
+values.name = "Electronic National Identity Card (e-Tazkira)"
+reason = "The national ID is the e-Tazkira, a biometric smart card run by NSIA. Launched May 2018. Over 12.2 million issued by Nov 2024."
+sources = [
+  "https://www.khaama.com/more-than-800000-electronic-id-cards-distributed-in-afghanistan-during-first-six-months/",
+]
+
+[[changes]]
+type = "update"
+key = "id-af-01"
+as_of = 2026-09-17
+values.sectoral_use_cases = "Yes"
+reason = "Sectors in use: Travel and borders, Education, Health, Banking and finance, Employment, Land and property, Government services. e-Tazkira is required for passports, school enrolment, health care, bank accounts and loans, formal jobs, land ownership and other public services."
+sources = [
+  "https://seap.nationalityforall.org/digital-id/regional-overview/south-asia/afghanistan/",
+]
+
+[[changes]]
+type = "update"
+key = "id-af-01"
+as_of = 2026-09-16
+values.legal_redress = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "id-af-01"
+as_of = 2026-09-16
+values.url = "https://nid.nsia.gov.af/home"
+reason = "NSIA national ID website identified, but accessibility and validity of the URL remain unverified."
+sources = [
+  "https://nid.nsia.gov.af/home",
+]
+
+[[changes]]
+type = "update"
+key = "id-af-01"
+as_of = 2026-10-15
+values.gov_portal_auth = "Not Found"
+reason = ""

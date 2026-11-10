@@ -1,0 +1,40 @@
+[[changes]]
+type = "update"
+key = "dx-ad-01"
+as_of = 2026-10-15
+values.ownership = "Public"
+values.formal_mandate = "Yes"
+reason = ""
+sources = [
+  "https://www.bopa.ad/Documents/Detall?doc=CGL20221219_11_51_10",
+]
+
+[[changes]]
+type = "update"
+key = "dx-ad-01"
+as_of = 2026-10-15
+values.once_only_principle = "Yes"
+reason = ""
+sources = [
+  "https://andorra-digital.com/en/andorra-data-document-exchange-gateway",
+]
+
+[[changes]]
+type = "update"
+key = "dx-ad-01"
+as_of = 2026-10-15
+values.personal_data_protection = "Yes"
+values.independent_audit = "Not Found"
+values.number_of_transactions = "Not Found"
+values.number_of_members = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-ad-01"
+as_of = 2026-10-15
+values.interoperability_level = "Syntactic"
+reason = "Mention of alignment to European Standards and no mention of dictionaries."
+sources = [
+  "https://andorra-digital.com/en/andorra-data-document-exchange-gateway",
+]

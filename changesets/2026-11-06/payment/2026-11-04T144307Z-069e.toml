@@ -1,0 +1,21 @@
+[[changes]]
+type = "update"
+key = "pay-co-02"
+as_of = 2026-10-15
+values.clearing_infrastructure = "RTGS"
+reason = "New field. Banco de la República settles each instant payment in central bank money; clearing by participating instant payment systems and the Drixi clearing house. Sources: Banco de la República: Bre-B features; gross real-time settlement in central bank money (Primary); Banco de la República (2025): 24/7 settlement mechanism live 23 September; mass operation from 6 October (Primary)."
+sources = [
+  "https://repositorio.banrep.gov.co/bitstreams/b6ddaa21-8fa1-4fa3-a850-9c82452e821c/download",
+  "https://www.banrep.gov.co/es/print/pdf/node/65069",
+]
+
+[[changes]]
+type = "update"
+key = "pay-co-02"
+as_of = 2026-10-15
+values.settlement_method = "Gross"
+reason = "New field. Gross real-time settlement against deposit accounts at Banco de la República, 24/7 since September 2025. Sources: Banco de la República: Bre-B features; gross real-time settlement in central bank money (Primary); Banco de la República (2025): 24/7 settlement mechanism live 23 September; mass operation from 6 October (Primary)."
+sources = [
+  "https://repositorio.banrep.gov.co/bitstreams/b6ddaa21-8fa1-4fa3-a850-9c82452e821c/download",
+  "https://www.banrep.gov.co/es/print/pdf/node/65069",
+]

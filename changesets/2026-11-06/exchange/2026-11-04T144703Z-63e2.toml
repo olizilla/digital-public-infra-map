@@ -1,0 +1,84 @@
+[[changes]]
+type = "create"
+key = "dx-il-02"
+as_of = 2026-10-15
+values.country = "Israel"
+values.name = "Data Avenue"
+reason = "SAAR is a document management system; Data Avenue has stronger evidence"
+sources = [
+  "https://www.oecd.org/en/publications/digital-government-outlook-2026_d46c0555-en/israel_6ab992f0-en.html",
+]
+
+[[changes]]
+type = "update"
+key = "dx-il-02"
+as_of = 2026-10-15
+values.formal_mandate = "Not Found"
+reason = "Formal Mandate was not found"
+sources = [
+  "https://www.gov.il/he/pages/2016_dec1933",
+]
+
+[[changes]]
+type = "update"
+key = "dx-il-02"
+as_of = 2026-10-15
+values.status = "Implemented"
+values.national_regional = "National"
+values.realtime_sharing = "Yes"
+reason = ""
+sources = [
+  "https://www.oecd.org/en/publications/digital-government-outlook-2026_d46c0555-en/israel_6ab992f0-en.html",
+]
+
+[[changes]]
+type = "update"
+key = "dx-il-02"
+as_of = 2026-10-15
+values.url = "https://www.oecd.org/en/publications/digital-government-outlook-2026_d46c0555-en/israel_6ab992f0-en.html"
+values.sectoral = "Cross-sectoral"
+values.scalable_architecture = "Not Found"
+values.ownership = "Public"
+values.enrolment_info = "Not Found"
+values.audit_mechanism = "Not Found"
+values.coordination_unit = "Not Found"
+values.multiple_public_entities = "Not Found"
+values.impact_metrics = "No"
+values.personal_data_protection = "Yes"
+values.independent_audit = "Not Found"
+values.number_of_transactions = "Not Found"
+values.number_of_members = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-il-02"
+as_of = 2026-10-15
+values.once_only_principle = "Yes"
+reason = ""
+sources = [
+  "https://www.gov.il/he/pages/2016_dec1933",
+]
+
+[[changes]]
+type = "update"
+key = "dx-il-02"
+as_of = 2026-10-15
+values.architecture = "API Gateway"
+values.interoperability_level = "Syntactic"
+values.governing_entity = "Government ICT Authority"
+values.data_management_rules = "Yes"
+reason = ""
+sources = [
+  "https://www.gov.il/he/pages/datahighway_operating_model_with_rest_api",
+]
+
+[[changes]]
+type = "update"
+key = "dx-il-02"
+as_of = 2026-10-15
+values.permitted_participants = "Public, Civil"
+reason = ""
+sources = [
+  "https://www.gov.il/BlobFolder/policy/datahighway_operating_model_with_rest_api/he/meshilut_DataHighway%20operating%20model%20with%20REST%20API.pdf",
+]

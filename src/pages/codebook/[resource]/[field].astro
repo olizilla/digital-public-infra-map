@@ -1,0 +1,93 @@
+---
+// One page per variable, at /codebook/<resource>/<field id>: the index's entry for it (CodebookVariable.astro)
+// in full, with how many systems in the current release have each value and which they are, then where it
+// sits in the methodology and its history.
+import Layout from '../../../layouts/Layout.astro'
+import TypeIcon from '../../../components/TypeIcon.astro'
+import CodebookVariable from '../../../components/CodebookVariable.astro'
+import { dpiTypes } from '../../../Systems'
+import { schemas, resourceNames, typeLabels, type DPIType, type Field } from '../../../Schema'
+import { historyOf } from '../../../Codebook'
+import { variableView } from '../../../CodebookPage'
+import { attributeHref, dpiTestAnchor } from '../../../Methodology'
+import { nouns } from '../../../DpiTest'
+import { laneTitles } from '../../../CountryPage'
+
+export async function getStaticPaths () {
+  return dpiTypes.flatMap(dpiType => (schemas[dpiType].fields as Field[]).map(field => ({
+    params: { resource: resourceNames[dpiType], field: field.id },
+    props: { dpiType, field }
+  })))
+}
+
+const { dpiType, field } = Astro.props as { dpiType: DPIType, field: Field }
+const view = variableView(dpiType, field)
+const { description } = view
+
+// the indicators it measures, by the attribute each measures (one, but Types of transactions supported has two)
+const measured = view.indicators.filter(indicator => indicator.attribute)
+const byAttribute = [...new Set(measured.map(indicator => indicator.attribute!))]
+  .map(attribute => ({ attribute, indicators: measured.filter(indicator => indicator.attribute === attribute) }))
+const history = historyOf(dpiType, field)
+---
+
+<Layout title={`${field.title} - ${typeLabels[dpiType]} codebook`} description={description}>
+  <main class="page cb-page">
+    <p class="page-crumbs cb-crumbs"><a href="/codebook/">Codebook</a><span class="sep" aria-hidden="true">›</span><a href={`/codebook/#${dpiType}`}><TypeIcon dpiType={dpiType} class="size-4" />{laneTitles[dpiType]}</a></p>
+
+    <div class="cb-solo">
+      <CodebookVariable view={view} full />
+
+      <section class="cb-sec" id="methodology">
+        <h2 class="cb-h2">In the methodology</h2>
+        <dl class="cb-dl cb-method">
+          <div>
+            <dt>Used in the DPI test</dt>
+            <dd>{ view.criterion
+              ? <Fragment>Yes<span class="sep" aria-hidden="true">·</span><a class="ul" href={`/methodology/#${dpiTestAnchor(dpiType)}`}>How we count DPI-like {nouns[dpiType]} systems</a></Fragment>
+              : 'No' }</dd>
+          </div>
+          <div>
+            <dt>Attribute</dt>
+            <dd>{ byAttribute.length
+              ? byAttribute.map(({ attribute, indicators }) => (
+                <div class="cb-attr">
+                  <p><a class="ul font-medium" href={attributeHref(attribute.name)}>{attribute.name}</a><span class="cb-attr-cat">{attribute.category}</span></p>
+                  { indicators.map(indicator => (
+                    <p class="cb-ind">{ indicator.listed
+                      ? <a class="ul" href={`/methodology/#${indicator.anchor}`}>Indicator {indicator.number}</a>
+                      : <span>Indicator {indicator.number}</span> }{ indicator.text && `: ${indicator.text}` }</p>
+                  )) }
+                </div>
+              ))
+              : 'None. It describes the system rather than measuring an attribute.' }</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="cb-sec" id="history">
+        <h2 class="cb-h2">History</h2>
+        { history.length === 0
+          ? <p class="cb-note">No changes to this variable have been recorded yet.</p>
+          : (
+            <ul class="cb-history">
+              { history.map(entry => (
+                <li>
+                  { entry.mapTo === field.id
+                    ? <>Retired field <code>{entry.id}</code> was mapped to this field.</>
+                    : <>This field was retired{entry.rule && <span>, with rule <code>{entry.rule}</code></span>}.</>
+                  }
+                  { entry.values && (
+                    <ul>
+                      { Object.entries(entry.values).map(([from, to]) => <li><code>{from}</code> &rarr; <code>{to}</code></li>) }
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
+          )
+        }
+      </section>
+    </div>
+  </main>
+</Layout>

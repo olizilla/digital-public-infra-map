@@ -1,0 +1,82 @@
+[[changes]]
+type = "update"
+key = "pay-gb-02"
+as_of = 2026-11-05
+values.url = "https://www.wearepay.uk/what-we-do/payment-systems/faster-payment-system/"
+reason = "Operator’s official page for Faster Payments."
+sources = [
+  "https://www.wearepay.uk/what-we-do/payment-systems/faster-payment-system/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-gb-02"
+as_of = 2026-11-05
+values.reporting_forum = "No"
+reason = "Pay.UK runs no forum for users to report problems with Faster Payments. Users complain to their bank or payment provider and can escalate to the Financial Ombudsman Service, which covers all financial services and is not specific to Faster Payments. Claims for reimbursement after a scam also go through the sending provider."
+sources = [
+  "https://www.financial-ombudsman.org.uk/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-pl-02"
+as_of = 2026-11-05
+values.reporting_forum = "No"
+reason = "KIR runs no forum for users to report problems with Express Elixir; its system rules cover disputes between KIR and participants only. Users complain to their bank or payment provider and can escalate to the Financial Ombudsman (Rzecznik Finansowy), which covers all financial services and is not specific to Express Elixir."
+sources = [
+  "https://eli.gov.pl/eli/DU/2015/1348/ogl/pol/pdf",
+  "https://www.kir.pl/storage/file/core_files/2023/6/20/a90eee368a6ff8c9e2529098950d844b/Regulamin%20systemu%20Express%20Elixir%20v1.7.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-11-05
+values.reporting_forum = "No"
+reason = "Transfond runs no forum for users to report problems with Plăți Instant; the complaints section of the SENT rules covers disputes between Transfond and participants only. Users complain to their bank or payment provider under general financial complaints rules, which are not specific to the instant service."
+sources = [
+  "https://www.transfond.ro/pdf/Reguli_SENT%20v28r00.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-bb-01"
+as_of = 2026-11-05
+values.interoperability_policy = "Yes"
+reason = "The Central Bank of Barbados mandated that all commercial banks, the three largest credit unions, the Barbados Stock Exchange and the Accountant General's Office join BiMPay from 31 March 2026, with access for mobile money operators, fintechs and other licensed payment providers to follow. Legal instrument not named."
+sources = [
+  "https://www.centralbank.org.bb/news/bimpay-news/mandatory-participation-in-national-instant-payment-system",
+  "https://www.centralbank.org.bb/bimpay-about",
+]
+
+[[changes]]
+type = "update"
+key = "pay-no-01"
+as_of = 2026-11-05
+values.realtime_active = "No"
+reason = "NOK settlement in TIPS is not yet live; Norway is due to join from 2028 and Norges Bank says the timeline is under revision."
+sources = [
+  "https://www.ecb.europa.eu/press/pr/date/2024/html/ecb.pr241129~e98f169ac2.en.html",
+]
+
+[[changes]]
+type = "update"
+key = "pay-is-01"
+as_of = 2026-11-05
+values.realtime_active = "No"
+reason = "ISK settlement in TIPS is not yet live; the agreement signed on 24 June 2026 takes effect from 2028, with participation targeted for the second half of 2028. No pilot or go-live date announced."
+sources = [
+  "https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.pr260624_1~ce8e85127f.en.html",
+  "https://cb.is/news-and-publications/article/iceland-joins-eurosystems-tips-instant-payment-system",
+]
+
+[[changes]]
+type = "update"
+key = "pay-hu-02"
+as_of = 2026-11-05
+values.url = "https://giro.hu/en/en-giroinstant"
+reason = "Operator’s official page for the instant payment system."
+sources = [
+  "https://giro.hu/en/en-giroinstant",
+]

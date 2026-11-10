@@ -1,0 +1,96 @@
+[[changes]]
+type = "create"
+key = "dx-kw-02"
+as_of = 2026-10-15
+values.country = "Kuwait"
+values.name = "Apigee"
+reason = ""
+sources = [
+  "https://documents.worldbank.org/en/publication/documents-reports/documentdetail/099703212012571773",
+]
+
+[[changes]]
+type = "update"
+key = "dx-kw-02"
+as_of = 2026-10-15
+values.status = "Implemented"
+values.formal_mandate = "Not Found"
+reason = ""
+sources = [
+  "https://timeskuwait.com/kuwait-advances-govt-digital-integration-links-sahel-services-to-apigee/",
+]
+
+[[changes]]
+type = "update"
+key = "dx-kw-02"
+as_of = 2026-10-15
+values.url = "https://documents1.worldbank.org/curated/en/099703212012571773/pdf/IDU-25e71676-54fb-43fd-b763-66a5b6b568fa.pdf"
+values.architecture = "Not Found"
+values.realtime_sharing = "Not Found"
+values.scalable_architecture = "Not Found"
+values.governing_entity = "Not Found"
+values.ownership = "Private"
+values.enrolment_info = "Not Found"
+values.audit_mechanism = "Not Found"
+values.data_management_rules = "Not Found"
+values.impact_metrics = "Not Found"
+values.once_only_principle = "No"
+values.personal_data_protection = "No"
+values.independent_audit = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-kw-02"
+as_of = 2026-10-15
+values.national_regional = "National"
+values.permitted_participants = "Public"
+reason = ""
+sources = [
+  "https://documents1.worldbank.org/curated/en/099703212012571773/pdf/IDU-25e71676-54fb-43fd-b763-66a5b6b568fa.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "dx-kw-02"
+as_of = 2026-10-15
+values.sectoral = "Cross-sectoral"
+values.coordination_unit = "Central Agency for Information Technology"
+reason = ""
+sources = [
+  "https://timeskuwait.com/kuwait-moves-to-unify-government-data-with-secure-digital-linking-initiative/",
+]
+
+[[changes]]
+type = "update"
+key = "dx-kw-02"
+as_of = 2026-10-15
+values.interoperability_level = "Syntactic"
+reason = ""
+sources = [
+  "https://docs.cloud.google.com/apigee/docs/api-platform/get-started/what-apigee",
+]
+
+[[changes]]
+type = "update"
+key = "dx-kw-02"
+as_of = 2026-10-15
+values.multiple_public_entities = "Yes"
+reason = ""
+sources = [
+  "https://epaper.kuwaittimes.com/article?date=2025-10-01&page=2&article=82804",
+]
+
+[[changes]]
+type = "update"
+key = "dx-kw-02"
+as_of = 2026-10-16
+values.number_of_members = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-kw-02"
+as_of = 2026-10-17
+values.number_of_transactions = "Not Found"
+reason = ""

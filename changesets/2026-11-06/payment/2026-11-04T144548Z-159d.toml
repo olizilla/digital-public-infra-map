@@ -1,0 +1,19 @@
+[[changes]]
+type = "update"
+key = "pay-tz-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "Switch"
+reason = "New field. National real-time payment switch developed and operated by the Bank of Tanzania. Sources: AFI article by Bank of Tanzania Head of Retail Payments: TIPS switch developed and operated by BOT; same-day settlement (Primary)."
+sources = [
+  "https://afi-global.org/?p=21327",
+]
+
+[[changes]]
+type = "update"
+key = "pay-tz-01"
+as_of = 2026-10-15
+values.settlement_method = "DNS"
+reason = "New field. Same-day settlement for all transactions. Sources: AFI article by Bank of Tanzania Head of Retail Payments: TIPS switch developed and operated by BOT; same-day settlement (Primary)."
+sources = [
+  "https://afi-global.org/?p=21327",
+]

@@ -1,0 +1,27 @@
+[[changes]]
+type = "update"
+key = "id-ke-01"
+as_of = 2026-09-16
+values.status = "Implemented"
+reason = "Injunction lifted Aug 2024; 1.7M+ Maisha Cards printed by 2026."
+sources = [
+  "https://did.ecitizen.go.ke/",
+  "https://www.kenyanews.go.ke/state-revs-up-maisha-namba-digital-id-awareness-drive/",
+]
+
+[[changes]]
+type = "update"
+key = "id-ke-01"
+as_of = 2026-09-16
+values.enrolment_rules = "Yes"
+reason = ""
+sources = [
+  "https://did.ecitizen.go.ke/",
+]
+
+[[changes]]
+type = "update"
+key = "id-ke-01"
+as_of = 2026-09-16
+values.sectoral_use_cases = "Not Found"
+reason = ""

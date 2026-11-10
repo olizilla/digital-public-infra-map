@@ -1,0 +1,21 @@
+[[changes]]
+type = "update"
+key = "pay-ma-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "Switch"
+reason = "New field. Switch Al Maghrib (SWAM, formerly HPS Switch) is the national switch routing card, ATM and mobile wallet payments between 48 participants, and runs the correspondence table that makes m-wallets interoperable; it is a hub between providers, not a closed-loop ledger. Recognised by Bank Al-Maghrib as a financial market infrastructure of economic importance. Secondary sources: TelQuel (2 Jul 2025); Finances News Hebdo (22 Feb 2021)."
+sources = [
+  "https://telquel.ma/2025/07/02/hps-switch-becomes-swam-the-new-face-of-moroccos-electronic-payment-infrastructure_1936857",
+  "https://fnh.ma/article/actualite-economique/hps-switch-une-plateforme-robuste-au-service-des-paiements-au-maroc",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ma-01"
+as_of = 2026-10-15
+values.settlement_method = "Not Found"
+reason = "New field. Searched: interbank card transactions through the switch are cleared in a multilateral clearing system, which points to net settlement, but no source describes how mobile wallet payments between providers are settled or where. Secondary source: Finances News Hebdo (22 Feb 2021)."
+sources = [
+  "https://fnh.ma/article/actualite-economique/hps-switch-une-plateforme-robuste-au-service-des-paiements-au-maroc",
+  "https://telquel.ma/2025/07/02/hps-switch-becomes-swam-the-new-face-of-moroccos-electronic-payment-infrastructure_1936857",
+]

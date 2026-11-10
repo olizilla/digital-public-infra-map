@@ -1,0 +1,185 @@
+[[changes]]
+type = "create"
+key = "pay-gb-02"
+as_of = 2026-10-15
+values.country = "United Kingdom of Great Britain and Northern Ireland"
+values.name = "Faster Payments"
+reason = "Row named TIPS in error; the UK's instant payment system is Faster Payments. Sources: World Bank, Settlement Models in Fast Payment Systems (2023; 2021 data) (Secondary (multilateral))."
+sources = [
+  "https://fastpayments.worldbank.org/sites/default/files/2023-05/Settlement%20Note_Final_April%2020.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-gb-02"
+as_of = 2026-10-15
+values.url = "https://fastpayments.worldbank.org/sites/default/files/2023-05/Settlement%20Note_Final_April%2020.pdf"
+reason = "New source for the corrected system. Sources: World Bank, Settlement Models in Fast Payment Systems (2023; 2021 data) (Secondary (multilateral))."
+
+[[changes]]
+type = "update"
+key = "pay-gb-02"
+as_of = 2026-10-15
+values.realtime_active = "Yes"
+values.system_type = "Interbank"
+values.status = "Implemented"
+values.bank_participation = "Yes"
+values.nonbank_participation = "Yes"
+values.aml_law = "Yes"
+reason = "Unchanged from Q1; recorded against Faster Payments and its source."
+sources = [
+  "https://fastpayments.worldbank.org/sites/default/files/2023-05/Settlement%20Note_Final_April%2020.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-gb-02"
+as_of = 2026-10-15
+values.national_regional = "National"
+reason = "Faster Payments is a national system; Q1 value described TIPS, the Eurosystem service."
+sources = [
+  "https://fastpayments.worldbank.org/sites/default/files/2023-05/Settlement%20Note_Final_April%2020.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-gb-02"
+as_of = 2026-10-15
+values.cross_border = "No"
+reason = "Information not found for the corrected system; previous value described the wrongly named system."
+
+[[changes]]
+type = "update"
+key = "pay-gb-02"
+as_of = 2026-10-15
+values.transaction_types = "P2P, B2B"
+reason = "Customers can pay a bill, a business or another person; payment types are single immediate, standing order and forward-dated payments, with batch input for businesses. Sources: Pay.UK, Faster Payments Service Principles v7.6 (Jan 2023): access options and requirements, payment types, DNS three times daily with prefunded accounts, sterling only, customer charges competitive (Primary); Northey Point (2026): four FPS transaction types; forward-dated payments used extensively for business payments (Secondary)."
+sources = [
+  "https://www.wearepay.uk/wp-content/uploads/2026/02/Annual-Statistics-2025-v1.3.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-gb-02"
+as_of = 2026-10-15
+values.clearing_infrastructure = "Switch"
+reason = "Pay.UK operates the central infrastructure; net sender caps collateralised at the Bank of England. Sources: World Bank, Settlement Models in Fast Payment Systems (2023; 2021 data) (Secondary (multilateral))."
+sources = [
+  "https://fastpayments.worldbank.org/sites/default/files/2023-05/Settlement%20Note_Final_April%2020.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-gb-02"
+as_of = 2026-10-15
+values.settlement_method = "DNS"
+reason = "3 settlement cycles per working day in the Bank of England RTGS (2021 data). Sources: World Bank, Settlement Models in Fast Payment Systems (2023; 2021 data) (Secondary (multilateral)). Cycle count may have changed since 2021."
+sources = [
+  "https://fastpayments.worldbank.org/sites/default/files/2023-05/Settlement%20Note_Final_April%2020.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-gb-02"
+as_of = 2026-10-15
+values.operator = "Other"
+reason = "Pay.UK, the industry-owned retail payments operator. Sources: World Bank, Settlement Models in Fast Payment Systems (2023; 2021 data) (Secondary (multilateral)). Confirm Pay.UK ownership category."
+sources = [
+  "https://fastpayments.worldbank.org/sites/default/files/2023-05/Settlement%20Note_Final_April%2020.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-gb-02"
+as_of = 2026-10-15
+values.participation_rules = "Yes"
+reason = "Direct settling participants must be authorised PSPs under the Payment Services Regulations 2017, hold Bank of England settlement access, hold a sort code, and comply with FPS Rules and assurance requirements. Sources: Pay.UK, Faster Payments Service Principles v7.6 (Jan 2023): access options and requirements, payment types, DNS three times daily with prefunded accounts, sterling only, customer charges competitive (Primary)."
+sources = [
+  "https://www.wearepay.uk/wp-content/uploads/2023/02/Pay.UK-Faster-Payments-Service-Principles.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-gb-02"
+as_of = 2026-10-15
+values.number_of_participants = "2026- 47"
+reason = "Pay.UK's participant list shows 47 directly connected participants in Faster Payments (2026). Primary source: Pay.UK participant list."
+sources = [
+  "https://www.wearepay.uk/what-we-do/payment-systems/payment-system-participant-list/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-gb-02"
+as_of = 2026-10-15
+values.annual_value_usd = "2025- 6.51 T"
+reason = "GBP 4,838,212 million in Faster Payments in 2025 (up 14.0% on 2024), converted at the Bank of England spot rate of 31 Dec 2025 (GBP 1 = USD 1.3451). Primary source: Pay.UK, Annual Summary of Payment Statistics 2025, Total Faster Payments. Secondary source: Pound Sterling Live, reproducing the Bank of England spot rate."
+sources = [
+  "https://www.wearepay.uk/wp-content/uploads/2026/02/Annual-Statistics-2025-v1.3.pdf",
+  "https://www.poundsterlinglive.com/bank-of-england-spot/historical-spot-exchange-rates/gbp/GBP-to-USD-2025",
+]
+
+[[changes]]
+type = "update"
+key = "pay-gb-02"
+as_of = 2026-10-15
+values.annual_volume = "2025- 5.55 B"
+reason = "5,548 million Faster Payments in 2025. Sources: Pay.UK Quarterly Statistical Report 2025 Q4: 2025 annual Faster Payments 5,548 million payments, £4,838 billion (Primary)."
+sources = [
+  "https://www.wearepay.uk/wp-content/uploads/2026/03/Quarterly-Statistical-Report-2025-Q4.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-gb-02"
+as_of = 2026-10-15
+values.reporting_forum = "Yes"
+reason = "In July 2017 the Bank of England opened RTGS settlement accounts to non-bank payment service providers so they can access Faster Payments and other sterling systems directly, stating the aim of letting them compete on a more level playing field with banks. Primary source: Bank of England (19 Jul 2017)."
+sources = [
+  "https://www.bankofengland.co.uk/news/2017/july/boe-extends-direct-access-to-rtgs-accounts-to-non-bank-payment-service-providers",
+  "https://www.bankofengland.co.uk/payments/access-to-uk-payment-systems-for-non-bank-payment-service-providers",
+]
+
+[[changes]]
+type = "update"
+key = "pay-gb-02"
+as_of = 2026-10-15
+values.data_handling_rules = "Yes"
+reason = "Payment Systems Regulator Specific Direction 20 and the Compliance Data Reporting Standard require Faster Payments PSPs to collate, retain and report APP scams data to Pay.UK. Pay.UK's Faster Payments Service Principles contain no personal data provisions; scheme-level data protection clauses are reported only via a contract-clause aggregator. UK GDPR and the Data Protection Act 2018 apply nationally. Sources: Payment Systems Regulator: Faster Payments APP scams Compliance Data Reporting Standard (Specific Directions 19 and 20) (Primary); Law Insider: Faster Payments agreement clauses on personal data processing under the FPS Rules (Secondary). Personal data clauses in the FPS Rules themselves not verified; Service Principles defer to the FPS Rules, which are not public."
+sources = [
+  "https://www.psr.org.uk/publications/policy-statements/compliance-data-reporting-standards/",
+  "https://www.lawinsider.com/dictionary/fps-rules",
+]
+
+[[changes]]
+type = "update"
+key = "pay-gb-02"
+as_of = 2026-10-15
+values.transaction_cost = "Variable (set by each PSP)"
+reason = "Whether to charge customers for sending or receiving is a competitive matter for PSPs. Sources: Pay.UK, Faster Payments Service Principles v7.6 (Jan 2023): access options and requirements, payment types, DNS three times daily with prefunded accounts, sterling only, customer charges competitive (Primary)."
+sources = [
+  "https://www.wearepay.uk/wp-content/uploads/2023/02/Pay.UK-Faster-Payments-Service-Principles.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-gb-02"
+as_of = 2026-10-15
+values.qr_code = "No"
+reason = "Pay.UK runs no QR scheme for Faster Payments. QR codes used by banks and open banking providers to start payments are third-party products, not part of the scheme."
+sources = [
+  "https://www.wearepay.uk/what-we-do/payment-systems/faster-payment-system/",
+  "https://paymentexpert.com/2022/06/15/qr-code-payments-launched-for-natwest-service-paylt/",
+  "https://blog.finexer.com/best-qr-code-payment-platforms-uk/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-gb-02"
+as_of = 2026-11-06
+values.interoperability_policy = "Yes"
+reason = "In July 2017 the Bank of England opened RTGS settlement accounts to non-bank payment service providers so they can access Faster Payments directly, with the stated aim of letting them compete on a more level playing field with banks. Source: Bank of England (19 July 2017)."
+sources = [
+  "https://www.bankofengland.co.uk/news/2017/july/boe-extends-direct-access-to-rtgs-accounts-to-non-bank-payment-service-providers",
+  "https://www.bankofengland.co.uk/payments/access-to-uk-payment-systems-for-non-bank-payment-service-providers",
+]

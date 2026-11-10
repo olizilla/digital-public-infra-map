@@ -1,0 +1,6 @@
+[
+  { "Thing ID": "t-a-1", "Place": "A", "Name": "Apple", "Colour": "red", "Updated": "2026-01-01" },
+  { "Thing ID": "t-b-1", "Place": "B", "Name": "Banana", "Colour": "yellow", "Updated": "2026-01-01" },
+  { "Thing ID": "t-a-2", "Place": "A", "Name": "Avocado", "Colour": "green", "Updated": "2026-03-01" },
+  { "Thing ID": "t-c-1", "Place": "C", "Name": "Cherry", "Colour": "dark, red", "Updated": "2026-02-01" }
+]

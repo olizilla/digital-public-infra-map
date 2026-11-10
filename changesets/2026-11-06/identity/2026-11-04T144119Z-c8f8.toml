@@ -1,0 +1,32 @@
+[[changes]]
+type = "update"
+key = "id-cv-01"
+as_of = 2026-09-16
+values.gov_portal_auth = "Yes"
+reason = "CMD-CV and CNI authenticate on the Autentika government portal."
+sources = [
+  "https://www.gov.cv/en/",
+  "https://portal-autentika.gov.cv/en/-/chave-movel-de-cabo-verde",
+]
+
+[[changes]]
+type = "update"
+key = "id-cv-01"
+as_of = 2026-09-16
+values.name = "Chave Móvel Digital de Cabo Verde (CMD-CV)"
+reason = "Mobile digital key for government e-services added alongside the CNI; the name also has a typo (Identifticação)."
+sources = [
+  "https://www.nosi.cv/en/web/guest/w/cabo-verde-digital-mobile-key",
+  "https://portal-autentika.gov.cv/en/-/chave-movel-de-cabo-verde",
+]
+
+[[changes]]
+type = "update"
+key = "id-cv-01"
+as_of = 2026-09-16
+values.technical_support = "NOSi (Núcleo Operacional da Sociedade de Informação)"
+reason = "State IT agency that built CMD-CV."
+sources = [
+  "https://nosi.cv/en/w/lan%C3%A7amento-da-chave-movel-digital-de-cabo-verde",
+  "https://portal-autentika.gov.cv/en/-/chave-movel-de-cabo-verde",
+]

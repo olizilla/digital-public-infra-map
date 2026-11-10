@@ -1,0 +1,20 @@
+[[changes]]
+type = "update"
+key = "id-bg-01"
+as_of = 2026-09-16
+values.funders = "Bulgarian Development Bank, Silverline Capital, 3TS Capital Partners"
+reason = "3TS led a EUR 6.6M round (Nov 2025). These are investors in Evrotrust, not state funders."
+sources = [
+  "https://idtechwire.com/bulgarian-eid-provider-evrotrust-raises-7-5m-for-european-expansion/",
+]
+
+[[changes]]
+type = "update"
+key = "id-bg-01"
+as_of = 2026-09-16
+values.governing_entity = "Ministry of Innovation and Digital Transformation"
+reason = "Government restructuring in 2026 reportedly consolidated e-government and innovation responsibilities into a new ministry."
+sources = [
+  "https://www.bta.bg/en/news/bulgaria/1121943-ivan-vasilev-assumes-office-as-minister-of-innovation-and-digital-transformation",
+  "https://www.mig.government.bg/vsichki-novini/ministarat-na-inovacziite-i-digitalnata-transformacziya-ivan-vasilev-sthe-rabotim-za-po-barzi-prozrachni-i-udobni-uslugi-za-grazhdanite-i-biznesa/",
+]

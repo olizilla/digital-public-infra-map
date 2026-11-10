@@ -26,13 +26,21 @@ The code in this repo uses that data to build out a static, multi-page website u
 
 A date-stamped snapshot of the data is captured as JSON in the [./public/data](./public/data) directory. Those JSON files are then used to build out the map and cards for all the DPI systems you can see at https://dpimap.org
 
-The [codebook](https://dpimap.org/codebook/) is built from a snapshot of the [codebook google sheet](https://docs.google.com/spreadsheets/d/1XywQ7War3luFLzfuvqdeH-ZH7S_b2jibYk9fOjlcRgs/). To refresh it after the sheet has changed, run `npm run codebook:pull` and commit the result. That writes [./src/codebook.json](./src/codebook.json), which has the variables with their anchor ids and value codes already extracted, and is what the site imports. Card labels that link to the codebook are checked against it at build time, so a renamed variable fails the build rather than leaving a dead link.
+The [codebook](https://dpimap.org/codebook/) is built from [./datapackage.json](./datapackage.json), which is the one place variables are defined (see [Data package](#data-package)). To change a definition, or what a value means, edit it there.
 
 Updates to the site are deployed to dpimap.org automatically when changes are merged into the main branch of this repository on GitHub. Cloudflare watches for changes, runs the build process (`npm install && npm run build`) and stores the updated html and css files and starts serving the new version of the website.
 
+## The data
+
+Each table is a JSON file: `<date>-<name>.json` (identity, payment and exchange), with an array of objects keyed by field id, which is each field's `name` in the `datapackage.json` (D83). https://dpimap.org/data/latest/ redirects to the current release's files, like `/data/latest/datapackage.json` and `/data/latest/identity.json`. A downloadable spreadsheet of the current release is built out to `/data/latest/dpimap.xlsx`.
+
 ## Data package
 
-[./datapackage.json](./datapackage.json) describes the CSVs in [./public/data/latest](./public/data/latest). It's an Open Knowledge Foundation [Data Package](https://datapackage.org/standard/data-package/) (v2) file, that documents the shapes of the dpimap.org data, to aid reuse.
+[./datapackage.json](./datapackage.json) describes the shape of the data. Each release folder has its own `datapackage.json`, which describes the JSON format for each table. Each is an Open Knowledge Foundation [Data Package](https://datapackage.org/standard/data-package/) (v2) file, that documents the shapes of the dpimap.org data, to aid reuse.
+
+### The codebook
+
+The codebook lives in the fields of each resource's schema. A field's `name` is its id, the key in the data, its `title` is the variable's name and its `description` is the definition. What each value means is in the standard [`categories`](https://datapackage.org/standard/table-schema/#categories) property, with the meaning as each value's `label`. Where the codebook's list of values doesn't match the field's values yet, for example for a multi-valued field, the list is kept as written in `codebookCategories`, in the same shape. Three more properties carry the rest of the codebook: `scope` (System or Subsystem), `variableType` (Binary, Categorical or Nominal) and `frameworkIndicator` (the related indicator in the Measuring DPI Framework). `npm run codebook:check` lists where the codebook and the data disagree.
 
 ### System IDs
 
@@ -75,8 +83,11 @@ All commands are run from the root of the project, from a terminal:
 | `npm start`               | Starts local dev server at `localhost:4321`      |
 | `npm run build`           | Build your production site to `./dist/`          |
 | `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run codebook:pull`   | Refresh `src/codebook.json` from the sheet       |
-| `npm run validate`        | Check `datapackage.json` and the latest CSVs     |
+| `npm run validate`        | Check `datapackage.json` and the latest tables   |
 | `npm run codebook:check`  | Report where the codebook and the data disagree  |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
+
+## Licence
+
+The code is [MIT licensed](./LICENSE). The data (`public/data/` and `changesets/`) and the codebook (`datapackage.json`) are licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/): you may share and adapt them for any purpose, as long as you credit the DPI Map. [CITATION.cff](./CITATION.cff) says how to cite it, and GitHub shows it as "Cite this repository".

@@ -1,0 +1,37 @@
+[[changes]]
+type = "update"
+key = "dx-pt-01"
+as_of = 2026-10-15
+values.interoperability_level = "Syntactic"
+values.independent_audit = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-pt-01"
+as_of = 2026-10-15
+values.number_of_transactions = "2026 - 1.02 billion"
+values.number_of_members = "2026 - 124"
+reason = ""
+sources = [
+  "https://www.iap.gov.pt/web/iap/iAP-em-numeros",
+]
+
+[[changes]]
+type = "update"
+key = "dx-pt-01"
+as_of = 2026-10-15
+values.audit_mechanism = "Yes"
+values.formal_mandate = "Yes"
+values.once_only_principle = "Yes"
+reason = ""
+sources = [
+  "https://interoperable-europe.ec.europa.eu/sites/default/files/custom-page/attachment/2026-06/iopeu-monitoring_2025-supporting-document_portugal_vfinal.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "dx-pt-01"
+as_of = 2026-10-15
+values.personal_data_protection = "Yes"
+reason = "General Data Protection Regulation (Regulation (EU) 2016/679) (GDPR)"

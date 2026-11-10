@@ -1,0 +1,124 @@
+[[changes]]
+type = "update"
+key = "pay-bb-01"
+as_of = 2026-10-15
+values.realtime_active = "Yes"
+reason = "BiMPay went live 12 June 2026"
+
+[[changes]]
+type = "update"
+key = "pay-bb-01"
+as_of = 2026-10-15
+values.system_type = "Cross-domain"
+reason = "National IPS owned by the Central Bank, interoperable with banks, credit unions, government and mobile money operators; supersedes the Mobile money rail recode for this row. Also in the codebook recode log; keep this row and drop the recode row."
+sources = [
+  "https://www.centralbank.org.bb/news/general-press-release/instant-payment-system-launch",
+]
+
+[[changes]]
+type = "update"
+key = "pay-bb-01"
+as_of = 2026-10-15
+values.status = "Implemented"
+reason = "BiMPay went live 12 June 2026"
+sources = [
+  "https://www.centralbank.org.bb/news/general-press-release/instant-payment-system-launch",
+]
+
+[[changes]]
+type = "update"
+key = "pay-bb-01"
+as_of = 2026-10-15
+values.cross_border = "No"
+reason = "Currently no evidence of cross-border payments facilitation"
+
+[[changes]]
+type = "update"
+key = "pay-bb-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "RTGS"
+reason = "BiMPay is operated by the Central Bank of Barbados, which processes payments directly; it replaced the ACH and RTP systems. Primary source: Central Bank of Barbados (2026-06); Central Bank of Barbados (2026-06)"
+sources = [
+  "https://www.centralbank.org.bb/news/bimpay-news/bimpay-goes-live-on-june-12-marking-new-era-in-payments",
+]
+
+[[changes]]
+type = "update"
+key = "pay-bb-01"
+as_of = 2026-10-15
+values.settlement_method = "Gross"
+reason = "Direct participants hold settlement accounts within BiMPay and payments settle in seconds, 24/7. Primary source: Central Bank of Barbados (2026); Central Bank of Barbados (2026-06). Secondary source: Caribbean360 (2026-06). Evidence is indirect: Central Bank material describes settlement partly from the user's side. Confirm individual interbank settlement against BiMPay operating rules or technical documentation."
+sources = [
+  "https://www.centralbank.org.bb/news/bimpay-news/bimpay-goes-live-on-june-12-marking-new-era-in-payments",
+]
+
+[[changes]]
+type = "update"
+key = "pay-bb-01"
+as_of = 2026-10-15
+values.nonbank_participation = "Yes"
+reason = "Credit unions, fintechs and mobile money operators onboard in phases"
+sources = [
+  "https://www.centralbank.org.bb/news/general-press-release/instant-payment-system-launch",
+]
+
+[[changes]]
+type = "update"
+key = "pay-bb-01"
+as_of = 2026-10-15
+values.number_of_participants = "2026- 9"
+reason = """
+Commercial Banks 
+• CIBC Caribbean Bank (Barbados)
+• First Citizens Bank
+• RBC Royal Bank
+• Republic Bank (Barbados)
+• Sagicor Bank (also serves as the primary custodian)
+• Scotiabank (Barbados)
+Credit Unions 
+• Barbados Public Workers' Co-operative Credit Union
+• City of Bridgetown (COB) Co-operative Credit Union
+• AffinityPlus Credit Union"""
+sources = [
+  "https://www.centralbank.org.bb/bimpay-support",
+]
+
+[[changes]]
+type = "update"
+key = "pay-bb-01"
+as_of = 2026-10-15
+values.data_handling_rules = "Yes"
+reason = "Data collected in accordance with BimPay's own privacy law and the country-wide Data Protection Act 2019"
+sources = [
+  "https://www.centralbank.org.bb/bimpay-support",
+]
+
+[[changes]]
+type = "update"
+key = "pay-bb-01"
+as_of = 2026-10-15
+values.reporting_forum = "No"
+reason = "There is no central reporting forum; issues are directed to the oeprator"
+sources = [
+  "https://www.centralbank.org.bb/bimpay-support",
+]
+
+[[changes]]
+type = "update"
+key = "pay-bb-01"
+as_of = 2026-10-15
+values.transaction_cost = "Free for P2P. Free for merchants below a certain revenue threshold; set by financial institution."
+reason = "Fee schedule has been shared"
+sources = [
+  "https://www.centralbank.org.bb/news/bimpay-blog/fees-and-transaction-limits-in-bimpay",
+]
+
+[[changes]]
+type = "update"
+key = "pay-bb-01"
+as_of = 2026-10-15
+values.qr_code = "Yes"
+reason = "QR codes have been introduced in BIMPay"
+sources = [
+  "https://www.centralbank.org.bb/news/bimpay-blog/qr-codes-and-bimpay",
+]

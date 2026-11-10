@@ -1,0 +1,243 @@
+[[changes]]
+type = "create"
+key = "pay-ua-02"
+as_of = 2026-10-15
+values.country = "Ukraine"
+values.name = "SEP instant credit transfers (System of Electronic Payments of the NBU)"
+reason = "Added: instant credit transfers in the National Bank of Ukraine's System of Electronic Payments (SEP), live since December 2024. Replaces the TIPS entry. Source: National Bank of Ukraine."
+sources = [
+  "https://bank.gov.ua/en/payments/ips",
+  "https://ukranews.com/en/news/1050659-sep-4-1-with-instant-transfer-functionality-launched-in-december-nbu",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ua-02"
+as_of = 2026-10-15
+values.url = "https://bank.gov.ua/en/payments/ips"
+reason = "National Bank of Ukraine's official page for SEP instant transfers."
+sources = [
+  "https://bank.gov.ua/en/payments/ips",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ua-02"
+as_of = 2026-10-15
+values.realtime_active = "Yes"
+reason = "Available at any time of day; payments are final within 10 seconds. Source: National Bank of Ukraine."
+sources = [
+  "https://bank.gov.ua/en/payments/ips",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ua-02"
+as_of = 2026-10-15
+values.system_type = "Interbank"
+reason = "Instant UAH credit transfers between accounts at SEP participants (banks, the State Treasury and non-bank providers through banks); no mobile money, card network or CBDC is connected. Source: National Bank of Ukraine."
+sources = [
+  "https://bank.gov.ua/en/payments/ips",
+  "https://ukranews.com/en/news/1128373-number-of-payments-via-sep-increases-by-almost-quarter-to-595-million-in-2025",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ua-02"
+as_of = 2026-10-15
+values.status = "Implemented"
+reason = "Launched on 1 December 2024 with 10 banks. Sources: National Bank of Ukraine; Ukrainian News (December 2024)."
+sources = [
+  "https://bank.gov.ua/en/payments/ips",
+  "https://ukranews.com/en/news/1050659-sep-4-1-with-instant-transfer-functionality-launched-in-december-nbu",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ua-02"
+as_of = 2026-10-15
+values.national_regional = "National"
+reason = "SEP instant credit transfers are a national system."
+sources = [
+  "https://bank.gov.ua/en/payments/ips",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ua-02"
+as_of = 2026-10-15
+values.cross_border = "No"
+reason = "SEP is the domestic hryvnia interbank system and processes payments within Ukraine only. Source: National Bank of Ukraine."
+sources = [
+  "https://bank.gov.ua/en/payments/ips",
+  "https://mind.ua/news/20299765-sep-priskoryuetsya-u-2025-roci-595-mln-platezhiv-i-novij-servis-trekingu",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ua-02"
+as_of = 2026-10-15
+values.interoperability_policy = "Yes"
+reason = "Under amendments to the Law on Payment Services, all SEP participants, banks and non-bank payment service providers alike, must offer instant credit transfers to their clients from 1 April 2026. Sources: National Bank of Ukraine; Ukrainian News (January 2026)."
+sources = [
+  "https://bank.gov.ua/en/payments/ips",
+  "https://ukranews.com/en/news/1128373-number-of-payments-via-sep-increases-by-almost-quarter-to-595-million-in-2025",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ua-02"
+as_of = 2026-10-15
+values.transaction_types = "P2P, P2M, B2B"
+reason = "Instant credit transfers are available to individuals and businesses, including payments to merchants using QR codes that carry payment details. Source: National Bank of Ukraine."
+sources = [
+  "https://bank.gov.ua/en/payments/ips",
+  "https://ukranews.com/en/news/1050659-sep-4-1-with-instant-transfer-functionality-launched-in-december-nbu",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ua-02"
+as_of = 2026-10-15
+values.clearing_infrastructure = "RTGS"
+reason = "Processed in SEP, the National Bank of Ukraine's RTGS system; the central bank is operator and settlement bank. Sources: National Bank of Ukraine; Ukrainian News (December 2024)."
+sources = [
+  "https://ukranews.com/en/news/1050659-sep-4-1-with-instant-transfer-functionality-launched-in-december-nbu",
+  "https://bank.gov.ua/admin_uploads/article/offers_proekt_2024-11-25.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ua-02"
+as_of = 2026-10-15
+values.settlement_method = "Gross"
+reason = "Instant transfers are settled individually in real time on participants' accounts at the National Bank of Ukraine. Source: National Bank of Ukraine."
+sources = [
+  "https://ukranews.com/en/news/1050659-sep-4-1-with-instant-transfer-functionality-launched-in-december-nbu",
+  "https://bank.gov.ua/en/payments/ips",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ua-02"
+as_of = 2026-10-15
+values.operator = "Central bank"
+reason = "The National Bank of Ukraine operates SEP and is its settlement bank. Source: National Bank of Ukraine."
+sources = [
+  "https://bank.gov.ua/en/payments/ips",
+  "https://ukranews.com/en/news/1050659-sep-4-1-with-instant-transfer-functionality-launched-in-december-nbu",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ua-02"
+as_of = 2026-10-15
+values.bank_participation = "Yes"
+reason = "61 banks were SEP participants on 1 January 2026. Source: Ukrainian News (January 2026), reporting National Bank of Ukraine data."
+sources = [
+  "https://ukranews.com/en/news/1128373-number-of-payments-via-sep-increases-by-almost-quarter-to-595-million-in-2025",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ua-02"
+as_of = 2026-10-15
+values.nonbank_participation = "Yes"
+reason = "Three non-bank payment service providers took part in SEP through banks on 1 January 2026; the National Bank of Ukraine keeps a directory of non-bank providers offering instant transfers. Sources: National Bank of Ukraine (November 2024); Ukrainian News (January 2026)."
+sources = [
+  "https://ukranews.com/en/news/1128373-number-of-payments-via-sep-increases-by-almost-quarter-to-595-million-in-2025",
+  "https://bank.gov.ua/admin_uploads/article/offers_proekt_2024-11-25.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ua-02"
+as_of = 2026-10-15
+values.participation_rules = "Yes"
+reason = "The National Bank of Ukraine sets the rules for SEP participation and instant transfers, including conditions for non-bank providers. Source: National Bank of Ukraine (November 2024)."
+sources = [
+  "https://bank.gov.ua/admin_uploads/article/offers_proekt_2024-11-25.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ua-02"
+as_of = 2026-10-15
+values.number_of_participants = "2026- 66"
+reason = "66 SEP participants on 1 January 2026: 61 banks, the National Bank of Ukraine, the State Treasury and three non-bank providers (through banks). Source: Ukrainian News (January 2026), reporting National Bank of Ukraine data."
+sources = [
+  "https://ukranews.com/en/news/1128373-number-of-payments-via-sep-increases-by-almost-quarter-to-595-million-in-2025",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ua-02"
+as_of = 2026-10-15
+values.annual_value_usd = "2025- 3.85 B"
+reason = "UAH 163.1 billion in 2025, converted at the National Bank of Ukraine official rate for 31 December 2025 (USD 1 = UAH 42.3878). Sources: Mind (January 2026), quoting the National Bank of Ukraine; AIN.UA (December 2025)."
+sources = [
+  "https://mind.ua/news/20299765-sep-priskoryuetsya-u-2025-roci-595-mln-platezhiv-i-novij-servis-trekingu",
+  "https://ain.ua/2025/12/31/currency-exchange-rate-dec-31-2025/",
+  "https://ukranews.com/en/news/1128373-number-of-payments-via-sep-increases-by-almost-quarter-to-595-million-in-2025",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ua-02"
+as_of = 2026-10-15
+values.annual_volume = "2025- 35.9 M"
+reason = "35.9 million instant transfers through SEP in 2025, the first full year of operation. Sources: Mind (January 2026); Ukrainian News (January 2026), both reporting National Bank of Ukraine data."
+sources = [
+  "https://mind.ua/news/20299765-sep-priskoryuetsya-u-2025-roci-595-mln-platezhiv-i-novij-servis-trekingu",
+  "https://ukranews.com/en/news/1128373-number-of-payments-via-sep-increases-by-almost-quarter-to-595-million-in-2025",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ua-02"
+as_of = 2026-10-15
+values.data_handling_rules = "Not Found"
+reason = "No National Bank of Ukraine or SEP rule on personal data specific to instant transfers found."
+sources = [
+  "https://bank.gov.ua/en/payments/ips",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ua-02"
+as_of = 2026-10-15
+values.reporting_forum = "No"
+reason = "No reporting forum specific to SEP instant transfers found."
+sources = [
+  "https://bank.gov.ua/en/payments/ips",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ua-02"
+as_of = 2026-10-15
+values.aml_law = "Yes"
+reason = "Law No. 361-IX on preventing and counteracting money laundering, terrorist financing and proliferation financing (2019) applies to banks and payment service providers."
+sources = [
+  "https://zakon.rada.gov.ua/laws/show/361-20",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ua-02"
+as_of = 2026-10-15
+values.transaction_cost = "Not Found"
+reason = "Customer fees are set by each provider and are not published centrally."
+sources = [
+  "https://bank.gov.ua/en/payments/ips",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ua-02"
+as_of = 2026-10-15
+values.qr_code = "Yes"
+reason = "The National Bank of Ukraine, which operates SEP, sets mandatory rules for the QR code used to share credit transfer details (Resolution No. 97, in force 1 November 2025), and payment service providers must comply. Source: Liga.Zakon (October 2025)."
+sources = [
+  "https://biz.ligazakon.net/news/239832_z-1-listopada-dyatimut-nov-pravila-formuvannya-qr-kodv-dlya-perekazv",
+]

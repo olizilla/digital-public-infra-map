@@ -1,0 +1,65 @@
+[[changes]]
+type = "update"
+key = "dx-be-01"
+as_of = 2026-10-15
+values.independent_audit = "Not Found"
+reason = ""
+sources = [
+  "https://www.ejustice.just.fgov.be/cgi/article.pl?language=nl&sum_date=2012-08-29&lg_txt=n&pd_search=2012-08-29&s_editie=&numac_search=2012002044&caller=&2012002044=&view_numac=2012002044dx2012002044n",
+]
+
+[[changes]]
+type = "update"
+key = "dx-be-01"
+as_of = 2026-10-15
+values.impact_metrics = "Not Found"
+values.personal_data_protection = "Yes"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-be-01"
+as_of = 2026-10-15
+values.permitted_participants = "Public"
+reason = ""
+sources = [
+  "https://interoperable-europe.ec.europa.eu/sites/default/files/custom-page/attachment/2026-04/iopeu-monitoring_2025-supporting-document_belgium_vfinal.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "dx-be-01"
+as_of = 2026-10-15
+values.architecture = "Not Found"
+reason = "No documentation on architecture was found."
+
+[[changes]]
+type = "update"
+key = "dx-be-01"
+as_of = 2026-10-15
+values.interoperability_level = "Semantic"
+reason = ""
+sources = [
+  "https://www.ejustice.just.fgov.be/mopdf/2012/08/29_2.pdf",
+  "https://www.ejustice.just.fgov.be/mopdf/2012/08/29_2.pdf#page=6",
+]
+
+[[changes]]
+type = "update"
+key = "dx-be-01"
+as_of = 2026-10-15
+values.once_only_principle = "Yes"
+reason = ""
+sources = [
+  "https://www.ejustice.just.fgov.be/eli/ordonnance/2020/07/17/2020015248/moniteur",
+]
+
+[[changes]]
+type = "update"
+key = "dx-be-01"
+as_of = 2026-11-06
+values.formal_mandate = "Yes"
+reason = "Law provides authorisation to the federal services integrator"
+sources = [
+  "https://www.ejustice.just.fgov.be/cgi/article.pl?language=nl&sum_date=2012-08-29&lg_txt=n&pd_search=2012-08-29&s_editie=&numac_search=2012002044&caller=&2012002044=&view_numac=2012002044dx2012002044n",
+]

@@ -1,0 +1,78 @@
+[[changes]]
+type = "create"
+key = "pay-lac-04"
+as_of = 2026-10-15
+values.country = "Latin America and the Caribbean"
+values.name = "CAPSS (CARICOM Payment and Settlement System)"
+reason = "Added: CAPSS (CARICOM Payment and Settlement System), a planned regional system for cross-border payments between CARICOM countries, settled in local currencies without passing through US dollars. Being developed by CARICOM central banks with Afreximbank and PAPSS. Sources: Central Bank of Belize (May 2026); Global Finance (October 2026)."
+sources = [
+  "https://www.centralbank.org.bz/detail-pages/news/2026/05/22/central-bank-of-belize-hosts-the-66th-bi-annual-meeting-of-caricom-governors",
+]
+
+[[changes]]
+type = "update"
+key = "pay-lac-04"
+as_of = 2026-10-15
+values.url = "https://www.centralbank.org.bz/detail-pages/news/2026/05/22/central-bank-of-belize-hosts-the-66th-bi-annual-meeting-of-caricom-governors"
+reason = "Communiqué of the 66th meeting of CARICOM central bank governors, hosted by the Central Bank of Belize (May 2026)."
+
+[[changes]]
+type = "update"
+key = "pay-lac-04"
+as_of = 2026-10-15
+values.realtime_active = "Yes"
+reason = "Not yet processing payments for users. A proof of concept with live test payments between The Bahamas and Barbados ran in February 2025, and in September 2026 the Central Bank of Trinidad and Tobago reported work continuing toward a pilot. Sources: Global Finance (October 2026); La Caribeña News (September 2026)."
+sources = [
+  "https://www.centralbank.org.bz/detail-pages/news/2026/05/22/central-bank-of-belize-hosts-the-66th-bi-annual-meeting-of-caricom-governors",
+]
+
+[[changes]]
+type = "update"
+key = "pay-lac-04"
+as_of = 2026-10-15
+values.system_type = "Interbank"
+reason = "Links the national payment systems of CARICOM countries so that payments between banks in different countries settle in local currencies; no mobile money, card network or CBDC is connected. Source: Global Finance (October 2026)."
+sources = [
+  "https://www.centralbank.org.bz/detail-pages/news/2026/05/22/central-bank-of-belize-hosts-the-66th-bi-annual-meeting-of-caricom-governors",
+]
+
+[[changes]]
+type = "update"
+key = "pay-lac-04"
+as_of = 2026-10-15
+values.status = "Planned/Piloted"
+reason = "Proof of concept completed in February 2025; a pilot is in preparation across CARICOM central banks, with no launch date announced. Sources: Global Finance (October 2026); La Caribeña News (September 2026)."
+sources = [
+  "https://www.centralbank.org.bz/detail-pages/news/2026/05/22/central-bank-of-belize-hosts-the-66th-bi-annual-meeting-of-caricom-governors",
+  "https://www.curacaochronicle.com/post/local/65th-bi-annual-meeting-of-caricom-central-bank-governors",
+]
+
+[[changes]]
+type = "update"
+key = "pay-lac-04"
+as_of = 2026-10-15
+values.national_regional = "Regional"
+reason = "Regional system for CARICOM member countries."
+sources = [
+  "https://www.centralbank.org.bz/detail-pages/news/2026/05/22/central-bank-of-belize-hosts-the-66th-bi-annual-meeting-of-caricom-governors",
+]
+
+[[changes]]
+type = "update"
+key = "pay-lac-04"
+as_of = 2026-10-15
+values.cross_border = "Yes"
+reason = "Designed for cross-border payments between CARICOM countries in their own currencies. Source: Global Finance (October 2026)."
+sources = [
+  "https://www.centralbank.org.bz/detail-pages/news/2026/05/22/central-bank-of-belize-hosts-the-66th-bi-annual-meeting-of-caricom-governors",
+]
+
+[[changes]]
+type = "update"
+key = "pay-lac-04"
+as_of = 2026-10-15
+values.operator = "Central bank"
+reason = "Being developed by CARICOM central banks through their Intra-Regional Payment Committee, with Afreximbank and PAPSS providing the design. Sources: Central Bank of Belize (May 2026); Global Finance (October 2026)."
+sources = [
+  "https://www.centralbank.org.bz/detail-pages/news/2026/05/22/central-bank-of-belize-hosts-the-66th-bi-annual-meeting-of-caricom-governors",
+]

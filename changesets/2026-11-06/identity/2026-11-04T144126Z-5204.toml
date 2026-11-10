@@ -1,0 +1,9 @@
+[[changes]]
+type = "update"
+key = "id-km-01"
+as_of = 2026-09-16
+values.funders = "African Development Bank"
+reason = "EUR 9.51M AfDB grant (2024) for digital public infrastructure."
+sources = [
+  "https://www.biometricupdate.com/202603/genkey-takes-over-biometric-passport-national-id-card-production-in-comoros",
+]

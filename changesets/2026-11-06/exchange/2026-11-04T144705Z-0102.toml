@@ -1,0 +1,70 @@
+[[changes]]
+type = "update"
+key = "dx-it-01"
+as_of = 2026-10-15
+values.once_only_principle = "Yes"
+reason = ""
+sources = [
+  "https://innovazione.gov.it/notizie/articoli/api-gov-it-il-catalogo-pdnd-rinnovato-nel-nome-e-nelle-funzionalita/",
+  "https://innovazione.gov.it/notizie/articoli/api-gov-it-il-catalogo-pdnd-rinnovato-nel-nome-e-nelle-funzionalita/#cos-e-la-pdnd",
+]
+
+[[changes]]
+type = "update"
+key = "dx-it-01"
+as_of = 2026-10-15
+values.number_of_members = "2026 - 9723"
+reason = ""
+sources = [
+  "https://www.interop.pagopa.it/numeri",
+  "https://www.interop.pagopa.it/numeri#utilizzo",
+]
+
+[[changes]]
+type = "update"
+key = "dx-it-01"
+as_of = 2026-10-15
+values.url = "https://www.interop.pagopa.it/"
+values.personal_data_protection = "Yes"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-it-01"
+as_of = 2026-10-15
+values.interoperability_level = "Semantic"
+reason = ""
+sources = [
+  "https://schema.gov.it/",
+]
+
+[[changes]]
+type = "update"
+key = "dx-it-01"
+as_of = 2026-10-15
+values.formal_mandate = "Yes"
+reason = ""
+sources = [
+  "https://developer.pagopa.it/it/pdnd-interoperabilita/guides/manuale-operativo-pdnd-interoperabilita/v1.0/riferimenti-normativi/normativa-e-approfondimenti",
+]
+
+[[changes]]
+type = "update"
+key = "dx-it-01"
+as_of = 2026-10-15
+values.independent_audit = "Yes"
+reason = ""
+sources = [
+  "https://www.normattiva.it/esporta/attoCompleto?atto.dataPubblicazioneGazzetta=2005-05-16&atto.codiceRedazionale=005G0104",
+]
+
+[[changes]]
+type = "update"
+key = "dx-it-01"
+as_of = 2026-11-06
+values.number_of_transactions = "2026 - 948 million"
+reason = "The I numeri dashboard's total of 1,829,411,962 transactions is cumulative since August 2022, not annual. The 12 monthly counts to 7 October 2026 sum to about 948 million. Source: PDND Interoperabilità, I numeri page and its data file (October 2026)."
+sources = [
+  "https://www.interop.pagopa.it/numeri",
+  "https://pdnd-prod-dl-1-public-data.s3.eu-central-1.amazonaws.com/dashboard/interop/dashboard-interop.json",
+]

@@ -1,0 +1,40 @@
+---
+// A stub for the editor: /edit/<id> to review a system, /edit/<id>?field=<field id> to edit one value.
+// The page is static, so the requested field is read from the query string in the browser.
+import Edit from '../../layouts/Edit.astro'
+import { systems, systemHref, type System } from '../../Systems'
+import { schemas, typeLabels, type Schema } from '../../Schema'
+
+export async function getStaticPaths () {
+  return systems.map(system => ({ params: { id: system.id }, props: { system } }))
+}
+
+const { system } = Astro.props as { system: System }
+const schema = schemas[system.dpiType] as Schema
+const titles = Object.fromEntries(schema.fields.map(field => [field.id, field.title]))
+---
+
+<Edit title={system.title}>
+  <p class="text-sm text-zinc-600">{typeLabels[system.dpiType]} system · {system.country} · <span class="font-mono text-xs">{system.id}</span></p>
+  <h1 class="pt-2 text-2xl font-bold">{system.title}</h1>
+  <p class="pt-4" id="request" data-titles={JSON.stringify(titles)}>
+    You asked to review the whole system.
+  </p>
+  <div class="mt-6 px-4 py-3 bg-teal-100 text-teal-900 border-l-2 text-sm">
+    <p class="font-semibold">Editing is coming soon.</p>
+    <p class="pt-1">This is where you'll propose changes to this system, with the reason and sources for each one.</p>
+  </div>
+  <p class="pt-6 text-sm"><a class="hover:underline text-blue-700" href={systemHref(system.id)}>Back to {system.title}</a></p>
+</Edit>
+
+<script>
+  const request = document.getElementById('request')
+  const fieldId = new URLSearchParams(location.search).get('field')
+  if (request && fieldId) {
+    const titles: Record<string, string> = JSON.parse(request.dataset.titles ?? '{}')
+    const title = titles[fieldId]
+    request.textContent = title
+      ? `You asked to edit one field: ${title}.`
+      : `There's no field "${fieldId}" in this system, so you can review the whole system instead.`
+  }
+</script>

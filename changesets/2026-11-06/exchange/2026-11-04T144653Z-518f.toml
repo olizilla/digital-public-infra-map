@@ -1,0 +1,141 @@
+[[changes]]
+type = "create"
+key = "dx-fr-02"
+as_of = 2026-10-15
+values.country = "France"
+values.name = "State Exchange Hub (HubEE)"
+reason = ""
+sources = [
+  "https://www.numerique.gouv.fr/offre-accompagnement/expertise-api-donnees/",
+]
+
+[[changes]]
+type = "update"
+key = "dx-fr-02"
+as_of = 2026-10-15
+values.data_management_rules = "Yes"
+values.formal_mandate = "Yes"
+reason = ""
+sources = [
+  "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045213315",
+]
+
+[[changes]]
+type = "update"
+key = "dx-fr-02"
+as_of = 2026-10-15
+values.interoperability_level = "Syntactic"
+reason = ""
+sources = [
+  "https://www.hubee.numerique.gouv.fr/fonctionnement",
+]
+
+[[changes]]
+type = "update"
+key = "dx-fr-02"
+as_of = 2026-10-15
+values.once_only_principle = "Yes"
+reason = "Code of Public-Administration relations - L113-12 - A person submitting an application or filing a declaration with an administration cannot be required to produce information or data that the administration holds or that they can obtain directly from an administration participating in the data exchange system defined in Article"
+sources = [
+  "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000031367312/?anchor=LEGIARTI000031367314",
+  "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000031367312/?anchor=LEGIARTI000031367314#LEGIARTI000031367314",
+]
+
+[[changes]]
+type = "update"
+key = "dx-fr-02"
+as_of = 2026-10-15
+values.url = "https://www.hubee.numerique.gouv.fr/"
+values.status = "Implemented"
+values.architecture = "Not Found"
+values.national_regional = "National"
+values.sectoral = "Cross-sectoral"
+values.realtime_sharing = "Not Found"
+values.scalable_architecture = "Not Found"
+values.ownership = "Public"
+values.multiple_public_entities = "Yes"
+values.personal_data_protection = "Yes"
+values.number_of_transactions = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-fr-02"
+as_of = 2026-10-15
+values.permitted_participants = "Public, Private"
+reason = "Both public and private entities can direct data"
+sources = [
+  "https://www.hubee.numerique.gouv.fr/fonctionnement",
+  "https://www.hubee.numerique.gouv.fr/fonctionnement#:~:text=Who%20can-,send,-data%3F",
+]
+
+[[changes]]
+type = "update"
+key = "dx-fr-02"
+as_of = 2026-10-15
+values.governing_entity = "Council of State; National Commission for Information Technology"
+reason = "NCIT provides an opinion but decree is published by the council"
+sources = [
+  "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045213315",
+  "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045213315#:~:text=A%20decree%20issued,on%20this%20occasion",
+]
+
+[[changes]]
+type = "update"
+key = "dx-fr-02"
+as_of = 2026-10-15
+values.coordination_unit = "DINUM"
+reason = "Exists as operator and in-charge of data exchange"
+sources = [
+  "https://guides.data.gouv.fr/guides/outils-pour-les-administrations/datapass-outil-dhabilitations",
+]
+
+[[changes]]
+type = "update"
+key = "dx-fr-02"
+as_of = 2026-10-15
+values.impact_metrics = "Yes"
+reason = ""
+sources = [
+  "https://hubee.numerique.gouv.fr/statistiques",
+]
+
+[[changes]]
+type = "update"
+key = "dx-fr-02"
+as_of = 2026-10-15
+values.audit_mechanism = "Yes"
+reason = ""
+sources = [
+  "https://datapass.api.gouv.fr/cgus/20210212_dinum_hubee_cgu_v2_1_0_version_site.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "dx-fr-02"
+as_of = 2026-10-15
+values.enrolment_info = "Yes"
+reason = ""
+sources = [
+  "https://www.hubee.numerique.gouv.fr/datapass",
+]
+
+[[changes]]
+type = "update"
+key = "dx-fr-02"
+as_of = 2026-10-15
+values.number_of_members = "2024 - 12100"
+reason = ""
+sources = [
+  "https://hubee.numerique.gouv.fr/rapport",
+]
+
+[[changes]]
+type = "update"
+key = "dx-fr-02"
+as_of = 2026-10-15
+values.independent_audit = "No"
+reason = ""
+sources = [
+  "https://next.ink/brief-article/hubee-le-hub-dechange-de-letat-pirate-au-moins-160-000-documents-voles/",
+]

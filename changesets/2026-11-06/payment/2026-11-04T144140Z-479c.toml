@@ -1,0 +1,103 @@
+[[changes]]
+type = "update"
+key = "pay-cv-01"
+as_of = 2026-10-15
+values.name = "STII (Sistema de Transferências Imediatas e Inclusivas)"
+reason = "Banco de Cabo Verde's instant and inclusive transfer system, described by BCV as national digital public infrastructure. Replaces the earlier proposal to code the vinti4 card network here. Primary source: Banco de Cabo Verde (2026-09). Secondary source: Expresso das Ilhas (2026-09)."
+sources = [
+  "https://www.bcv.cv/pt/O%20Banco/Sala%20de%20Imprensa/Arquivo/Paginas/NoticiasArquivo.aspx",
+  "https://expressodasilhas.cv/economia/2026/09/25/mais-cabo-verdianos-com-contas-bancarias-e-maior-uso-de-pagamentos-digitais/104797",
+]
+
+[[changes]]
+type = "update"
+key = "pay-cv-01"
+as_of = 2026-10-15
+values.url = "https://www.bcv.cv/pt/O%20Banco/Sala%20de%20Imprensa/Arquivo/Paginas/NoticiasArquivo.aspx"
+reason = "New webpage. Banco de Cabo Verde news archive. Primary source: Banco de Cabo Verde (2026-09)."
+sources = [
+  "https://www.bcv.cv/pt/O%20Banco/Sala%20de%20Imprensa/Arquivo/Paginas/NoticiasArquivo.aspx",
+]
+
+[[changes]]
+type = "update"
+key = "pay-cv-01"
+as_of = 2026-10-15
+values.realtime_active = "No"
+reason = "No change; existing value retained. STII is still in implementation (September 2026); launch planned for 2026."
+sources = [
+  "https://www.bcv.cv/pt/O%20Banco/Sala%20de%20Imprensa/Arquivo/Paginas/NoticiasArquivo.aspx",
+]
+
+[[changes]]
+type = "update"
+key = "pay-cv-01"
+as_of = 2026-10-15
+values.system_type = "Not Found"
+values.cross_border = "Not Found"
+values.interoperability_policy = "Not Found"
+values.transaction_types = "Not Found"
+values.bank_participation = "Not Found"
+values.nonbank_participation = "Not Found"
+values.participation_rules = "Not Found"
+values.number_of_participants = "Not Found"
+values.annual_value_usd = "Not Found"
+values.annual_volume = "Not Found"
+values.data_handling_rules = "Not Found"
+values.reporting_forum = "Not Found"
+values.transaction_cost = "Not Found"
+values.qr_code = "Not Found"
+reason = "Information not found."
+
+[[changes]]
+type = "update"
+key = "pay-cv-01"
+as_of = 2026-10-15
+values.status = "Planned/Piloted"
+reason = "BCV set the project governance and strategic objectives in 2025; launch planned for 2026 and implementation ongoing in September 2026. Primary source: Banco de Cabo Verde (2026-09). Secondary source: Expresso das Ilhas (2026-09)."
+sources = [
+  "https://expressodasilhas.cv/economia/2026/09/25/mais-cabo-verdianos-com-contas-bancarias-e-maior-uso-de-pagamentos-digitais/104797",
+  "https://www.bcv.cv/pt/O%20Banco/Sala%20de%20Imprensa/Arquivo/Paginas/NoticiasArquivo.aspx",
+]
+
+[[changes]]
+type = "update"
+key = "pay-cv-01"
+as_of = 2026-10-15
+values.national_regional = "National"
+reason = "Unchanged from Q1."
+sources = [
+  "https://www.bcv.cv/pt/O%20Banco/Sala%20de%20Imprensa/Arquivo/Paginas/NoticiasArquivo.aspx",
+]
+
+[[changes]]
+type = "update"
+key = "pay-cv-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "Not Found"
+reason = "New field. Information not found: system design not yet published."
+
+[[changes]]
+type = "update"
+key = "pay-cv-01"
+as_of = 2026-10-15
+values.settlement_method = "Not Found"
+reason = "New field. Information not found."
+
+[[changes]]
+type = "update"
+key = "pay-cv-01"
+as_of = 2026-10-15
+values.operator = "Central bank"
+reason = "Banco de Cabo Verde is implementing STII as national public infrastructure. Primary source: Banco de Cabo Verde (2026-09). Secondary source: Expresso das Ilhas (2026-09). Operating arrangement (BCV-run or outsourced, e.g. to SISP) not confirmed."
+sources = [
+  "https://www.bcv.cv/pt/O%20Banco/Sala%20de%20Imprensa/Arquivo/Paginas/NoticiasArquivo.aspx",
+  "https://expressodasilhas.cv/economia/2026/09/25/mais-cabo-verdianos-com-contas-bancarias-e-maior-uso-de-pagamentos-digitais/104797",
+]
+
+[[changes]]
+type = "update"
+key = "pay-cv-01"
+as_of = 2026-10-15
+values.aml_law = "Yes"
+reason = "No change; existing value retained."

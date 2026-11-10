@@ -1,0 +1,2089 @@
+{
+  "$schema": "https://datapackage.org/profiles/2.0/datapackage.json",
+  "name": "dpimap",
+  "title": "Digital Public Infrastructure Map",
+  "homepage": "https://dpimap.org",
+  "version": "2026-11-06",
+  "description": "Data on national-scale digital public infrastructure (DPI) around the world, collected by researchers at UCL IIPP and shown at https://dpimap.org: digital identity, payment and data exchange systems, by country or region.",
+  "licenses": [
+    {
+      "name": "CC-BY-4.0",
+      "path": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "Creative Commons Attribution 4.0 International"
+    }
+  ],
+  "resources": [
+    {
+      "name": "identity",
+      "path": "2026-11-06-identity.json",
+      "type": "table",
+      "format": "json",
+      "mediatype": "application/json",
+      "encoding": "utf-8",
+      "dialect": {
+        "itemType": "object"
+      },
+      "schema": {
+        "missingValues": [
+          {
+            "value": "NA",
+            "label": "No answer. Not researched yet."
+          }
+        ],
+        "primaryKey": [
+          "system_id"
+        ],
+        "fields": [
+          {
+            "name": "system_id",
+            "title": "System ID",
+            "description": "A stable id for this system, unique in DPI Map. The global form is https://dpimap.org/<id>.",
+            "type": "string",
+            "constraints": {
+              "required": true,
+              "unique": true,
+              "pattern": "id-([a-z]{2}|africa|asia|europe|oceania|lac|noram|americas|world)-[0-9]{2,}"
+            }
+          },
+          {
+            "name": "country",
+            "title": "Country / Region",
+            "description": "Name of the country, or the region for regional ID systems. For regional systems, it records one of six groups based on the UN M49 standard: the M49 regions Africa, Asia, Europe and Oceania, and, within the Americas, the M49 sub-regions Northern America and Latin America and the Caribbean. The bloc a system serves is named in brackets in the system name, e.g. PI-SPI (WAEMU), Afaq (GCC). The assignment of countries or areas to groupings is for statistical convenience and implies no position on the status of any country or territory.",
+            "type": "string",
+            "constraints": {
+              "required": true
+            },
+            "scope": "NA",
+            "variableType": "Nominal"
+          },
+          {
+            "name": "iso3",
+            "title": "ISO3",
+            "description": "The country's three-letter code from ISO 3166-1, filled in from Country / Region, for joining with other data that uses ISO codes. It is NA for regional systems. Kosovo is XKX, a user-assigned code rather than an official ISO one; it matches the World Bank's code and our place code xk. Other sources may differ (the IMF uses UVK). Each country's two-letter code is the place part of its System ID.",
+            "type": "string",
+            "constraints": {
+              "pattern": "[A-Z]{3}"
+            }
+          },
+          {
+            "name": "last_updated",
+            "title": "Last updated",
+            "type": "date",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "name": "count_for_dpi",
+            "title": "Count for DPI",
+            "description": "1 if the system counts as DPI-like: it passes the DPI test for its type. 0 if it doesn't.",
+            "type": "integer",
+            "constraints": {
+              "required": true,
+              "enum": [
+                0,
+                1
+              ]
+            }
+          },
+          {
+            "name": "claim",
+            "title": "Claim of digital ID",
+            "description": "This indicator specifies whether a country publicly claims to have a digital or electronic ID system. It is determined by the use of the terms digital or electronic ID, publicly displayed in official sources (e.g. government websites, regulations and policies) or secondary sources (e.g. news websites and multileral organization reports).",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes"
+              },
+              {
+                "value": "No"
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "System",
+            "variableType": "Binary"
+          },
+          {
+            "name": "name",
+            "title": "Digital ID name",
+            "description": "The official name of the infrastructure, platform, or network used to facilitate digital identity verification.",
+            "type": "string",
+            "scope": "Subsystem",
+            "variableType": "Nominal"
+          },
+          {
+            "name": "url",
+            "title": "URL",
+            "type": "string",
+            "constraints": {
+              "pattern": "https?://\\S+|Not Found"
+            }
+          },
+          {
+            "name": "biometrics",
+            "title": "Collects or uses biometric data",
+            "description": "Refers to the act of obtaining individuals' unique biological or behavioral characteristics and processing this information for purposes such as identification, authentication, security, or personalized services.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes"
+              },
+              {
+                "value": "No"
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "Subsystem",
+            "variableType": "Binary"
+          },
+          {
+            "name": "status",
+            "title": "Status of Implementation",
+            "description": "This indicator specifies the stage of the ID life cycle a country is currently in, categorized as one of the following: plan, pilot, or rollout. It is determined by the statement of the stage of implementation displayed in official sources (e.g. government websites, regulations and policies) or secondary sources (e.g. news websites and multileral organization reports), as well as evidence that the ID system is running, such an operational website specificaly dedicated to it.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Planned/Piloted",
+                "Implemented",
+                "Suspended",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Planned/Piloted",
+                "label": "The country has announced intentions to implement a digital ID system or there is some evidence of a testing phase, but no evidence of success or indications of a rollout across the country."
+              },
+              {
+                "value": "Implemented",
+                "label": "The country has either officially announced the full implementation of the digital ID system, or there is strong evidence that the system is fully operational."
+              },
+              {
+                "value": "Suspended",
+                "label": "The system was launched or piloted but has been formally halted by its operator or authority, with no set date to resume."
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "System",
+            "variableType": "Categorical"
+          },
+          {
+            "name": "id_act",
+            "title": "ID or Civil Registry Act",
+            "description": "This indicator specifies whether a country has an identification, civil registration, or vital statistics act. It is determined by the presence of a document containing the regulation, or a mention of it, publicly displayed in official sources (e.g. government websites, regulations and policies) or secondary sources (e.g. news websites and multileral organization reports).",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes"
+              },
+              {
+                "value": "No"
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "System",
+            "variableType": "Binary"
+          },
+          {
+            "name": "regulation",
+            "title": "Regulation for digital ID",
+            "description": "This indicator specifies whether a country has a regulation or policy specifically addressing digital ID. This includes formal acts and policy documents. Terms and conditions or privacy policy from a digital ID website, as well as Data Protection Acts, are not considered as a data source for this indicator. It is determined by the presence of a document containing the regulation, or a mention of it, publicly displayed in official sources (e.g. government websites, regulations and policies) or secondary sources (e.g. news websites and multileral organization reports).",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes"
+              },
+              {
+                "value": "No"
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "System",
+            "variableType": "Binary"
+          },
+          {
+            "name": "digital_auth",
+            "title": "Digital authentication function",
+            "description": "This indicator specifies whether the ID system can provide a simple \"yes\" or \"no\" response to confirm an individual's ID. It checks for explicit mentions to authentication methods, such as demographic details, biometric data (fingerprints/iris), facial recognition, OTP (one-time password via mobile or email), or explicit mentions of the system’s authentication capability, publicly displayed in official sources (e.g. government websites, regulations and policies) or secondary sources (e.g. news websites and multileral organization reports).",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes"
+              },
+              {
+                "value": "No"
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "System",
+            "variableType": "Binary",
+            "frameworkIndicator": "1.1 Individuals can authenticate themselves or their documents digitally"
+          },
+          {
+            "name": "kyc",
+            "title": "Enables KYC packet collection",
+            "description": "This indicator specifies whether the country digital ID system allows Know Your Customer (KYC) packet collection. KYC involves verifying a person’s ID to assess customer risk, typically requiring proof of ID and address. In ID-based KYC, the ID is verified electronically, allowing service providers to access profile details from the ID authority's database. It is determined by the use of the term KYC, publicly displayed in official sources (e.g. government websites, regulations and policies) or secondary sources (e.g. news websites and multileral organization reports).",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes"
+              },
+              {
+                "value": "No"
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "System",
+            "variableType": "Binary",
+            "frameworkIndicator": "1.2 Policy preference for a government-wide digital and interoperable ID system exists"
+          },
+          {
+            "name": "gov_portal_auth",
+            "title": "Authentication through government portal",
+            "description": "This indicator specifies whether the country has a governmental portal that can be used for authentication purposes. It is determined either by the direct presence of a website with this function or through secondary sources that confirm its existence.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes"
+              },
+              {
+                "value": "No"
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "System",
+            "variableType": "Binary",
+            "frameworkIndicator": "1.3 Vision and strategy of the interoperability of the ID system as DPI conveyed transparently"
+          },
+          {
+            "name": "legal_status",
+            "title": "Codified digital ID legal status",
+            "description": "This indicator specifies whether the ID system serves as a legal proof of an individual’s ID. It is determined by the explicit mention in the digital ID regulation that the digital ID has legal validity.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes"
+              },
+              {
+                "value": "No"
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "System",
+            "variableType": "Binary",
+            "frameworkIndicator": "2.1 The ID serves as a legal proof of an individual’s identity"
+          },
+          {
+            "name": "governing_entity",
+            "title": "Governing entity",
+            "description": "This indicator specifies which is the instituition responsible for managing the digital ID system. It is determined by information publicly diclosed either in official government websites, secondary sources (e.g. news websites) or multileral governmental reports.",
+            "type": "string",
+            "scope": "System",
+            "variableType": "Nominal",
+            "frameworkIndicator": "2.2 Institutional governance structure and its accountability are established"
+          },
+          {
+            "name": "legal_redress",
+            "title": "Legally binding redress mechanism",
+            "description": "This indicator specifies whether the digital ID system includes a redress mechanism for addressing user complaints. It is determined by the explicit mention in the digital ID regulation or in the Data Protection Act of such mechanisms, as well as by the existence of a customer service system that enables users to submit complaints.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Customer service mechanism",
+                "Legally binding mechanism",
+                "Both",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Customer service mechanism",
+                "label": "Refers to helpdesks, phone contact, email, digital questionnaires, or any other methods for users to get in touch or raise questions about the digital ID system."
+              },
+              {
+                "value": "Legally binding mechanism",
+                "label": "Involves explicit mentions of redress mechanisms either in the digital ID regulation or the Data Protection Act."
+              },
+              {
+                "value": "Both",
+                "label": "Indicates that the country has both a customer service mechanism and a legally binding redress mechanism in place."
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "System",
+            "variableType": "Categorical",
+            "frameworkIndicator": "2.5 Legally-binding redressal framework for ID-related malpractice is established"
+          },
+          {
+            "name": "storage_sharing_terms",
+            "title": "Terms of data storage and sharing available",
+            "description": "This indicator specifies whether the digital ID system specifies how ID data is collected, stored and shared. Is is determined by the explicit mention of mechanisms to gather, archive and/or circulate data in the digital ID regulation.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes"
+              },
+              {
+                "value": "No"
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "System",
+            "variableType": "Binary",
+            "frameworkIndicator": "2.6 Procedural rules for collection, storage and sharing of personal data related to ID system are established"
+          },
+          {
+            "name": "data_protection_act",
+            "title": "National Data Protection Act",
+            "description": "This indicator specifies whether the country has a Data Protection Act. It is determined by the presence of a document containing the regulation, or a mention of it, publicly displayed in official sources (e.g. government websites, regulations and policies) or secondary sources (e.g. news websites and multileral organization reports).",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes"
+              },
+              {
+                "value": "No"
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "System",
+            "variableType": "Binary",
+            "frameworkIndicator": "3.1 Personal data linked to the ID is under the purview of the DPA and protected by law"
+          },
+          {
+            "name": "enrolment_rules",
+            "title": "Procedural rules for digital ID enrolment",
+            "description": "This indicator specifies whether the digital identity system has clear processes for it's digital identity enrolment. It is determined by the explicit mention of mechanisms for registration, data management and/or issuing in the digital ID regulation.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes"
+              },
+              {
+                "value": "No"
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "System",
+            "variableType": "Binary",
+            "frameworkIndicator": "3.2 Procedural rules for the ID (enrolment, data processing, issuing credentials, etc.) are established"
+          },
+          {
+            "name": "data_leak_disclosure",
+            "title": "Data leak disclosure process",
+            "description": "This indicator specifies whether the countrie's Data Protection Act has rules on if and how individuals and general public about should be notified about personal data leaks or breaches. It is determined by the explicit mention of such rules in the Data Protection Act.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes"
+              },
+              {
+                "value": "No"
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "System",
+            "variableType": "Binary",
+            "frameworkIndicator": "3.3 There exists a process to notify individuals and general public about personal data related to ID system leaks or threats"
+          },
+          {
+            "name": "data_handling_terms",
+            "title": "ID data handling terms",
+            "description": "This indicator specifies whether the digital ID system details which are the procedures for data subjects to access, review, edit and delete ID data. Is is determined by the explicit mention of mechanisms to access, review, edit and/or delete data in the digital ID regulation or other sources, such as the digital identity website.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes"
+              },
+              {
+                "value": "No"
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "System",
+            "variableType": "Binary",
+            "frameworkIndicator": "4.1 Processes to access, review, edit and delete one's ID data are transparent"
+          },
+          {
+            "name": "feeder_documents",
+            "title": "Relationship with feeder documents",
+            "description": "The legal or regulatory framework (commonly referred to as an Identity Act or law) defines how primary identity documents—such as birth certificates, passports, or driver’s licenses (called feeder documents)—are used to establish or authenticate a person’s identity when issuing or updating a digital ID.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes"
+              },
+              {
+                "value": "No"
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "System",
+            "variableType": "Binary"
+          },
+          {
+            "name": "sectoral_use_cases",
+            "title": "Two or more sectoral use cases enabled",
+            "description": "This indicator specifies whether the digital ID infrastructure is utilized across multiple sectors. It is determined by explicit references to the use of the digital ID system by institutions other than the identity manager or by mentions of use cases beyond citizen identification in official sources (such as government websites) or secondary sources (such as news outlets and reports from multilateral organizations).",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes"
+              },
+              {
+                "value": "No"
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "System",
+            "variableType": "Binary",
+            "frameworkIndicator": "6.2 ID infrastructure is used across more than 1 sector"
+          },
+          {
+            "name": "funders",
+            "title": "Funding organizations identified",
+            "description": "Institutions or entities that provide the financial resources necessary for the development, rollout, and maintenance of the digital ID system. This variable does not specify which components of the digital system have been financed by which funding organisation.",
+            "type": "string",
+            "scope": "NA",
+            "variableType": "Nominal"
+          },
+          {
+            "name": "technical_support",
+            "title": "Technical support organizations identified",
+            "description": "This refers to the entity or group responsible for providing technical expertise and operational support for the design, implementation, and management of the digital ID infrastructure.",
+            "type": "string",
+            "scope": "NA",
+            "variableType": "Nominal"
+          }
+        ]
+      }
+    },
+    {
+      "name": "payment",
+      "path": "2026-11-06-payment.json",
+      "type": "table",
+      "format": "json",
+      "mediatype": "application/json",
+      "encoding": "utf-8",
+      "dialect": {
+        "itemType": "object"
+      },
+      "schema": {
+        "missingValues": [
+          {
+            "value": "NA",
+            "label": "No answer. Not researched yet."
+          }
+        ],
+        "primaryKey": [
+          "system_id"
+        ],
+        "fields": [
+          {
+            "name": "system_id",
+            "title": "System ID",
+            "description": "A stable id for this system, unique in DPI Map. The global form is https://dpimap.org/<id>.",
+            "type": "string",
+            "constraints": {
+              "required": true,
+              "unique": true,
+              "pattern": "pay-([a-z]{2}|africa|asia|europe|oceania|lac|noram|americas|world)-[0-9]{2,}"
+            }
+          },
+          {
+            "name": "country",
+            "title": "Country / Region",
+            "description": "Name of the country, or the region for regional payment systems. For regional systems, it records one of six groups based on the UN M49 standard: the M49 regions Africa, Asia, Europe and Oceania, and, within the Americas, the M49 sub-regions Northern America and Latin America and the Caribbean. The bloc a system serves is named in brackets in the system name, e.g. PI-SPI (WAEMU), Afaq (GCC). The assignment of countries or areas to groupings is for statistical convenience and implies no position on the status of any country or territory.",
+            "type": "string",
+            "constraints": {
+              "required": true
+            },
+            "scope": "NA",
+            "variableType": "Nominal"
+          },
+          {
+            "name": "iso3",
+            "title": "ISO3",
+            "description": "The country's three-letter code from ISO 3166-1, filled in from Country / Region, for joining with other data that uses ISO codes. It is NA for regional systems. Kosovo is XKX, a user-assigned code rather than an official ISO one; it matches the World Bank's code and our place code xk. Other sources may differ (the IMF uses UVK). Each country's two-letter code is the place part of its System ID.",
+            "type": "string",
+            "constraints": {
+              "pattern": "[A-Z]{3}"
+            }
+          },
+          {
+            "name": "last_updated",
+            "title": "Last updated",
+            "type": "date",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "name": "count_for_dpi",
+            "title": "Count for DPI",
+            "description": "1 if the system counts as DPI-like: it passes the DPI test for its type. 0 if it doesn't.",
+            "type": "integer",
+            "constraints": {
+              "required": true,
+              "enum": [
+                0,
+                1
+              ]
+            }
+          },
+          {
+            "name": "name",
+            "title": "Payment system name",
+            "description": "Refers to the name of the payment system in official documentation. In cases where this is not evident, the payment system type is used.",
+            "type": "string",
+            "scope": "Subsystem",
+            "variableType": "Nominal"
+          },
+          {
+            "name": "url",
+            "title": "URL",
+            "type": "string",
+            "constraints": {
+              "pattern": "https?://\\S+|Not Found"
+            }
+          },
+          {
+            "name": "realtime_active",
+            "title": "Active real-time payment system present",
+            "description": "Given that a country can have multiple payment systems at distinct stages of deployment, this filters for those countries with at least one payment system that is in operation. The status of the payment system is inferred based on the volume and value of transactions, as well as its mention on the country's central bank website.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes",
+                "label": "if a country has an active (in operation) payment system that facilitate real-time transactions."
+              },
+              {
+                "value": "No",
+                "label": "if country does not have active (in operation) payment systems that facilitate real-time transactions OR has such payment systems but they are in planning/ pilot stages."
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "System",
+            "variableType": "Binary"
+          },
+          {
+            "name": "system_type",
+            "title": "Payment system type",
+            "description": "Refers to the domain in which the payment system operates. This is inferred based on the key channel of transactions highlighted on payment system documentations and its list of participants.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Cross-domain",
+                "Interbank",
+                "Mobile money system",
+                "CBDC",
+                "Card Payment",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Cross-domain",
+                "label": "The system connects two or more payment domains: interbank, mobile money, card or CBDC. Non-bank participants such as payment or e-money institutions do not by themselves make a system cross-domain."
+              },
+              {
+                "value": "Interbank",
+                "label": "The system transfers funds between payment accounts, whether held at banks or at non-bank providers such as payment or e-money institutions."
+              },
+              {
+                "value": "Mobile money system",
+                "label": "payment system typically allows only non-bank mobile wallet providers, either interoperably or in closed-loop systems."
+              },
+              {
+                "value": "CBDC",
+                "label": "Central bank digital currencies: payment systems that support transactions in that country or region's CBDC."
+              },
+              {
+                "value": "Card Payment",
+                "label": "a card payment refers to the use of a government-issued payment card—such as a procurement card (P-Card), corporate credit card, or prepaid debit card—to make purchases or disburse funds for official purposes."
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "Subsystem",
+            "variableType": "Categorical"
+          },
+          {
+            "name": "status",
+            "title": "Status of Implementation",
+            "description": "Distinguishes between payment systems that are in operation and those that are not.  The status of the payment system is inferred based on the volume and value of transactions, as well as its mention on the country's central bank website. If information about a payment system is only found in a press release without information about its launch, it is not assumed to be in operation.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Planned/Piloted",
+                "Implemented",
+                "Suspended",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Planned/Piloted",
+                "label": "payment system plans have been announced by the operator/ central bank, without any information on the scale achieved."
+              },
+              {
+                "value": "Implemented",
+                "label": "payment systems listed on the central bank website as an offering and/or payment system volumes of transactions are reported."
+              },
+              {
+                "value": "Suspended",
+                "label": "The system was launched or piloted but has been formally halted by its operator or authority, with no set date to resume."
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "Subsystem",
+            "variableType": "Categorical"
+          },
+          {
+            "name": "national_regional",
+            "title": "National / Regional",
+            "description": "Distinguishes between national and regional-level deployments.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "National",
+                "Regional",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "National",
+                "label": "any payment system that is set up and operated within a national territory."
+              },
+              {
+                "value": "Regional",
+                "label": "any payment system that is set up by a group of national actors and may operatate across more than one national territory."
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "System",
+            "variableType": "Categorical"
+          },
+          {
+            "name": "cross_border",
+            "title": "Cross-border payments",
+            "description": "Determines if any of the country's payment systems facilitates cross-border transactions in real-time.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes"
+              },
+              {
+                "value": "No"
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "Subsystem",
+            "variableType": "Binary"
+          },
+          {
+            "name": "interoperability_policy",
+            "title": "Interoperability policy",
+            "description": "Indicates if a country has a payment system Act, or policy, or strategy that articulates if interoperability between diverse payment service-providers (banks and non-bank payment service providers) is a stated goal.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes"
+              },
+              {
+                "value": "No"
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "System",
+            "variableType": "Binary",
+            "frameworkIndicator": "1.1 Payment system policy prefers interoperability between PSPs"
+          },
+          {
+            "name": "transaction_types",
+            "title": "Types of transactions supported",
+            "description": "Indicates the type of transactions supported between individuals and businesses. Inferred through a keyword search on the payment system documentation, as well as a review of its participant types. A system can support several types: a cell holds each of them, separated by commas, such as \"P2P, G2P\".",
+            "type": "string",
+            "constraints": {
+              "pattern": "(P2P|B2B|P2M|B2P|G2P|B2G|Other)(, (P2P|B2B|P2M|B2P|G2P|B2G|Other))*|Not Found"
+            },
+            "categories": [
+              {
+                "value": "P2P",
+                "label": "Person-to-Person: Transactions between two individuals, typically for personal or non-commercial purposes."
+              },
+              {
+                "value": "B2B",
+                "label": "Business-to-Business: Transactions between two businesses, generally involving the exchange of goods, services, or contractual obligations."
+              },
+              {
+                "value": "P2M",
+                "label": "Person-to-Merchant: Transactions where an individual makes a payment to a merchant or service provider."
+              },
+              {
+                "value": "B2P",
+                "label": "Business-to-Person: Transactions where a business transfers funds to an individual, often as part of compensation or reimbursement."
+              },
+              {
+                "value": "G2P",
+                "label": "Government-to-Person: Payments made by a government entity to individuals, usually as part of social, welfare, or support programs."
+              },
+              {
+                "value": "B2G",
+                "label": "Business-to-Government: Transactions where businesses make payments to government entities, often in the form of taxes, fees, or regulatory charges."
+              },
+              {
+                "value": "Other",
+                "label": "A category for transactions that fall outside the standard models, including government-to-government, person-to-government, and nonprofit-related payments."
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "System",
+            "variableType": "Nominal",
+            "frameworkIndicator": "4.1 RTPS enables key transaction types for financial inclusion: P2P, G2P payments\n6.1 Public entities (that are not the same as the architect of the payment system) use the payment system for G2P/P2G transactions"
+          },
+          {
+            "name": "clearing_infrastructure",
+            "title": "Clearing infrastructure",
+            "description": "Records the infrastructure that clears payments in the system. With Settlement method, it replaces Type of settlement system.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "RTGS",
+                "ACH",
+                "Switch",
+                "Other",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "RTGS",
+                "label": "The central bank system processes each payment individually, including dedicated central bank instant platforms such as TIPS."
+              },
+              {
+                "value": "ACH",
+                "label": "A clearing house clears and nets payments."
+              },
+              {
+                "value": "Switch",
+                "label": "The scheme operator’s hub routes payments between providers, including central bank-owned netting hubs such as Raast."
+              },
+              {
+                "value": "Other",
+                "label": "Clearing outside these, such as closed-loop mobile money ledgers and CBDC ledgers."
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "Subsystem",
+            "variableType": "Categorical",
+            "frameworkIndicator": "1.3 Payment system has the infrastructure to facilitate (near) real-time settlement of transactions between users"
+          },
+          {
+            "name": "settlement_method",
+            "title": "Settlement method",
+            "description": "Records how obligations between participants in the system are settled. With Clearing infrastructure, it replaces Type of settlement system.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Gross",
+                "Hybrid",
+                "DNS",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Gross",
+                "label": "Each payment is settled individually."
+              },
+              {
+                "value": "Hybrid",
+                "label": "Continuous multilateral offsetting with very frequent settlement (e.g. SPEI and CoDi)."
+              },
+              {
+                "value": "DNS",
+                "label": "Deferred net settlement in cycles."
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "Subsystem",
+            "variableType": "Categorical",
+            "frameworkIndicator": "1.3 Payment system has the infrastructure to facilitate (near) real-time settlement of transactions between users"
+          },
+          {
+            "name": "operator",
+            "title": "Operator",
+            "description": "Indicates the type of operator of the payment system, referring to institutional arranagement of the payment system. This is inferred from the payment system website, specifically through a scan of the governance structure.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Central bank",
+                "Commercial bank/Private PSP",
+                "Bank association",
+                "Bank association/Central bank",
+                "Other",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Central bank",
+                "label": "A public authority responsible for managing a country’s currency, money supply, and interest rates. In payment systems, the central bank often acts as the regulator, operator, and settlement agent for national payment infrastructure."
+              },
+              {
+                "value": "Commercial bank/Private PSP",
+                "label": "Operating model where commercial banks and private PSPs operate the system together, or where the system is run by several providers of both types."
+              },
+              {
+                "value": "Bank association",
+                "label": "Association or consortium of banks who collectively operate the payment system."
+              },
+              {
+                "value": "Bank association/Central bank",
+                "label": "Refers to an operating model where the central bank is one of the operators, among an association of private banks, operating the system."
+              },
+              {
+                "value": "Other",
+                "label": "Any non-traditional or auxiliary actors involved in the payment ecosystem that don’t fall into the above categories."
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "Subsystem",
+            "variableType": "Categorical",
+            "frameworkIndicator": "2.1 RTPS is governed by a central bank/ financial regulator"
+          },
+          {
+            "name": "bank_participation",
+            "title": "Bank participation",
+            "description": "Indicates if banks can participate in a given payment system as payment service providers. This is determined according to rules stated on the payment system website, or in the stated payment system rules.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes"
+              },
+              {
+                "value": "No"
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "Subsystem",
+            "variableType": "Categorical",
+            "frameworkIndicator": "1.2 Payment system facilitates cross-domain and/or domain-specific interoperability"
+          },
+          {
+            "name": "nonbank_participation",
+            "title": "Non-bank participation",
+            "description": "Indicates if non-bank payment service providers can particiapte in a given payment system. This is determined based on the payment system website or stated rules, as well as the list of participants made available",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes"
+              },
+              {
+                "value": "No"
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "Subsystem",
+            "variableType": "Categorical",
+            "frameworkIndicator": "1.2 Payment system facilitates cross-domain and/or domain-specific interoperability"
+          },
+          {
+            "name": "participation_rules",
+            "title": "Participation conditions and rules",
+            "description": "Indicates if the rules and conditions for payment service providers to be a part of the payment system have been made available",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes"
+              },
+              {
+                "value": "No"
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "Subsystem",
+            "variableType": "Binary",
+            "frameworkIndicator": "2.2 RTPS is transparent about the rules and conditions of participation"
+          },
+          {
+            "name": "number_of_participants",
+            "title": "Number of participants",
+            "description": "The number of institutions that take part in the system, such as banks, payment institutions and e-money issuers, not merchants or end users. Recorded as year- number, e.g. 2026- 24. For regional payment systems, the count is the number of member countries.",
+            "type": "string",
+            "scope": "Subsystem",
+            "variableType": "Nominal",
+            "frameworkIndicator": "1.2 Payment system facilitates cross-domain and/or domain-specific interoperability"
+          },
+          {
+            "name": "annual_value_usd",
+            "title": "Annual value of transactions (USD)",
+            "description": "The value of transactions processed by the system over one calendar year, recorded as year- value, e.g. 2025- 70.56 B. Local currency values are converted to USD at the official end-of-year exchange rate for that year, preferably the central bank reference rate.",
+            "type": "string",
+            "scope": "Subsystem",
+            "variableType": "Nominal",
+            "frameworkIndicator": "1.2 Payment system facilitates cross-domain and/or domain-specific interoperability"
+          },
+          {
+            "name": "annual_volume",
+            "title": "Annual volume of transactions",
+            "description": "The number of transactions processed by the system over one calendar year, recorded as year- number with K, M, B or T for thousands, millions, billions or trillions, e.g. 2025- 215.6 M. Figures for periods shorter or longer than a calendar year are not recorded here.",
+            "type": "string",
+            "scope": "Subsystem",
+            "variableType": "Nominal",
+            "frameworkIndicator": "1.2 Payment system facilitates cross-domain and/or domain-specific interoperability"
+          },
+          {
+            "name": "data_handling_rules",
+            "title": "Data-handling rules for payment system",
+            "description": "Indicates if there if the payment system guidelines or central bank rules offer specific regulations for handling personal data relevant to payment systems",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes"
+              },
+              {
+                "value": "No"
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "System",
+            "variableType": "Categorical",
+            "frameworkIndicator": "3.1 Procedural rules for the RTPS's data handling are established"
+          },
+          {
+            "name": "reporting_forum",
+            "title": "Reporting forum",
+            "description": "Checks whether users have a forum or dispute process specific to the payment system for reporting transaction problems, whether run by the system operator or the central bank (e.g. the Pix dispute process run by the Banco Central do Brasil).",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes",
+                "label": "Such a system-specific forum exists."
+              },
+              {
+                "value": "No",
+                "label": "Users complain to their provider and then use a general route, such as a regulator, ombudsman or mediation, including general complaint channels the central bank runs for the whole financial sector."
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "System",
+            "variableType": "Nominal",
+            "frameworkIndicator": "3.2 Fraudulent transactions on the RTPS are proactively prevented and managed"
+          },
+          {
+            "name": "aml_law",
+            "title": "AML Law",
+            "description": "Indicates if the country codifies protections against money-laundering in its legal code. This is gathered from the UNODC databse- Sherloc.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes"
+              },
+              {
+                "value": "No"
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "System",
+            "variableType": "Categorical",
+            "frameworkIndicator": "3.3 RTPS is subject to relevant security compliance and consumer protection laws"
+          },
+          {
+            "name": "transaction_cost",
+            "title": "Cost of transactions",
+            "description": "Indicates the fee structure for transactions",
+            "type": "string",
+            "scope": "Subsystem",
+            "variableType": "Nominal",
+            "frameworkIndicator": "4.3 Transaction fee for retail users is low/none"
+          },
+          {
+            "name": "qr_code",
+            "title": "QR code based transactions",
+            "description": "Checks whether QR payments are part of the payment system itself.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes",
+                "label": "A QR scheme or standard is set by the system operator or the central bank, and QR payments clear through the system (e.g. Hungary's qvik, the BCEAO merchant QR on PI-SPI)."
+              },
+              {
+                "value": "No",
+                "label": "QR payments exist only as products of banks or third parties outside the scheme (e.g. open banking QR products over UK Faster Payments)."
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "System",
+            "variableType": "Categorical",
+            "frameworkIndicator": "4.2 Transactions are enabled through multiple access channels and non-digital means"
+          }
+        ]
+      }
+    },
+    {
+      "name": "exchange",
+      "path": "2026-11-06-exchange.json",
+      "type": "table",
+      "format": "json",
+      "mediatype": "application/json",
+      "encoding": "utf-8",
+      "dialect": {
+        "itemType": "object"
+      },
+      "schema": {
+        "missingValues": [
+          {
+            "value": "NA",
+            "label": "No answer. Not researched yet."
+          }
+        ],
+        "primaryKey": [
+          "system_id"
+        ],
+        "fields": [
+          {
+            "name": "system_id",
+            "title": "System ID",
+            "description": "A stable id for this system, unique in DPI Map. The global form is https://dpimap.org/<id>.",
+            "type": "string",
+            "constraints": {
+              "required": true,
+              "unique": true,
+              "pattern": "dx-([a-z]{2}|africa|asia|europe|oceania|lac|noram|americas|world)-[0-9]{2,}"
+            }
+          },
+          {
+            "name": "country",
+            "title": "Country / Region",
+            "description": "Name of the country, or the region for regional data exchange systems. For regional systems, it records one of six groups based on the UN M49 standard: the M49 regions Africa, Asia, Europe and Oceania, and, within the Americas, the M49 sub-regions Northern America and Latin America and the Caribbean. The bloc a system serves is named in brackets in the system name, e.g. PI-SPI (WAEMU), Afaq (GCC). The assignment of countries or areas to groupings is for statistical convenience and implies no position on the status of any country or territory.",
+            "type": "string",
+            "constraints": {
+              "required": true
+            },
+            "scope": "NA",
+            "variableType": "Nominal"
+          },
+          {
+            "name": "iso3",
+            "title": "ISO3",
+            "description": "The country's three-letter code from ISO 3166-1, filled in from Country / Region, for joining with other data that uses ISO codes. It is NA for regional systems. Kosovo is XKX, a user-assigned code rather than an official ISO one; it matches the World Bank's code and our place code xk. Other sources may differ (the IMF uses UVK). Each country's two-letter code is the place part of its System ID.",
+            "type": "string",
+            "constraints": {
+              "pattern": "[A-Z]{3}"
+            }
+          },
+          {
+            "name": "last_updated",
+            "title": "Last updated",
+            "type": "date",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "name": "count_for_dpi",
+            "title": "Count for DPI",
+            "description": "1 if the system counts as DPI-like: it passes the DPI test for its type. 0 if it doesn't.",
+            "type": "integer",
+            "constraints": {
+              "required": true,
+              "enum": [
+                0,
+                1
+              ]
+            }
+          },
+          {
+            "name": "name",
+            "title": "Data exchange system name",
+            "description": "Refers to the name of the data exchange system as listed in official documentation. If no specific name is found, \"Data Exchange System\" is used. In cases where no information is available, \"Unknown\" is used",
+            "type": "string",
+            "scope": "Subsystem",
+            "variableType": "Nominal"
+          },
+          {
+            "name": "url",
+            "title": "URL",
+            "type": "string",
+            "constraints": {
+              "pattern": "https?://\\S+|Not Found"
+            }
+          },
+          {
+            "name": "status",
+            "title": "Status of implementation",
+            "description": "This indicator represents the stage at which the data exchange system currently exists within a country. It tracks the development and operational status based on available information. The stages range from having no information on the system (Unknown), to a system being planned (Proposed), actively being developed (In Progress), or fully functional (Active).",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Planned/Piloted",
+                "Implemented",
+                "Suspended",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Planned/Piloted",
+                "label": "There is an official announcement or credible documentation, such as government plans, policy documents, or reports, indicating an intention to develop a data exchange system OR the system is under development, which may include phases such as drafting legislation, pilot projects, or technical setup."
+              },
+              {
+                "value": "Implemented",
+                "label": "The data exchange system is fully operational and being used. This indicates that the system is implemented and data exchange activities are taking place as intended."
+              },
+              {
+                "value": "Suspended",
+                "label": "The system was launched or piloted but has been formally halted by its operator or authority, with no set date to resume."
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "Subsystem",
+            "variableType": "Categorical"
+          },
+          {
+            "name": "architecture",
+            "title": "Base technical architecture",
+            "description": "This indicator identifies the technical architecture used for the data exchange system within a country. It includes frameworks such as X-Road, ESB, API Gateway, UXP, and others. The technical architecture is considered disclosed when it is either explicitly mentioned in official documents or websites, or when indicative terms are used.",
+            "type": "string",
+            "scope": "System",
+            "variableType": "Nominal"
+          },
+          {
+            "name": "national_regional",
+            "title": "National / Regional",
+            "description": "Distinguishes between national and regional-level deployments.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "National",
+                "Regional",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "National",
+                "label": "any data exchange that is set up and operated within a national territory."
+              },
+              {
+                "value": "Regional",
+                "label": "any payment system that is set up by a group of national actors and may operatate across more than one national territory."
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "System",
+            "variableType": "Categorical"
+          },
+          {
+            "name": "sectoral",
+            "title": "Sector-specific / Cross-sectoral",
+            "description": "Whether the data exchange system operates within a single sector (e.g. health, education, banking) or across multiple sectors. Coded as Sectoral with the sector in brackets, e.g. Sectoral (Trade), or Cross-sectoral when there is enough information to show it operates across sectors.",
+            "type": "string",
+            "constraints": {
+              "pattern": "(Cross-sectoral|Sectoral \\(.+\\))|Not Found"
+            },
+            "categories": [
+              {
+                "value": "Sectoral (…)",
+                "label": "The data exchange serves one sector, named in brackets, for example Sectoral (Trade)."
+              },
+              {
+                "value": "Cross-sectoral",
+                "label": "Sufficient information was found to determine the data exchange operates accross multiple sectors."
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "System",
+            "variableType": "Categorical",
+            "frameworkIndicator": "5.2 Data exchange is cross-sectoral"
+          },
+          {
+            "name": "interoperability_level",
+            "title": "Semantic interoperability",
+            "description": "Whether the Data Exchange System publishes what lets data be exchanged in a common format (syntactic interoperability) and, in addition, what gives the data a shared meaning (semantic interoperability). This replaces the earlier Yes/No variable of the same name, whose values are not carried over.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Syntactic",
+                "Semantic",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Syntactic",
+                "label": "Published data formats, communication protocols or message schemas that let data be exchanged in a common format."
+              },
+              {
+                "value": "Semantic",
+                "label": "In addition, publicly accessible terminologies, dictionaries or ontologies that give the data a shared meaning."
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "variableType": "Categorical",
+            "frameworkIndicator": "1.1 Semantic interoperability within the DES is facilitated through either policy or technical means"
+          },
+          {
+            "name": "realtime_sharing",
+            "title": "Real-time sharing",
+            "description": "This indicator examines whether the data exchange system explicitly supports real-time or near real-time data sharing. It is determined by the presence of documentation that either mentions the use of data formats enabling real-time exchanges or explicitly references \"real-time data sharing\" capabilities.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes",
+                "label": "The data exchange system documentation mentions real-time or near real-time data sharing capabilities or specifies formats that support real-time exchanges."
+              },
+              {
+                "value": "No"
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "System",
+            "variableType": "Binary",
+            "frameworkIndicator": "1.2 Data is shared in (near) real-time through the DES"
+          },
+          {
+            "name": "scalable_architecture",
+            "title": "Scalable technology architecture",
+            "description": "This indicator evaluates whether the technology architecture of the Data Exchange System is designed for scalability. It includes any documented mention of infrastructure elements that facilitate scalability, such as load balancers, elastic cloud resources, scalable databases, or the ability to add resources to handle increased demand and load.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes",
+                "label": "When documentation mentions scalable infrastructure elements."
+              },
+              {
+                "value": "No"
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "Subsystem",
+            "variableType": "Binary",
+            "frameworkIndicator": "1.3 Technology architecture of the DES is scalable"
+          },
+          {
+            "name": "governing_entity",
+            "title": "Governing entity",
+            "description": "Refers to the entity responsible for the governance and operational control of the data exchange system. The name of the entity is provided, or \"Unknown\" is recorded if no information is available.",
+            "type": "string",
+            "scope": "System",
+            "variableType": "Nominal",
+            "frameworkIndicator": "2.1 A public-interest entity governs the development and operations of the DES"
+          },
+          {
+            "name": "ownership",
+            "title": "Ownership",
+            "description": "Identifies who owns and controls the data exchange system, based on official documentation or sources. If no information is found, \"Unknown\" is recorded.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Public",
+                "Private",
+                "Joint",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Public",
+                "label": "The system is entirely owned by a public-sector entity."
+              },
+              {
+                "value": "Private",
+                "label": "The system is entirely owned by a private-sector entity."
+              },
+              {
+                "value": "Joint",
+                "label": "The system is jointly owned by public and private entities"
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "Subsystem",
+            "variableType": "Categorical",
+            "frameworkIndicator": "2.1 A public-interest entity governs the development and operations of the DES"
+          },
+          {
+            "name": "enrolment_info",
+            "title": "Enrolment and participation information",
+            "description": "This indicator specifies whether a data exchange system provides clear and accessible information on how entities can enroll and participate. The presence of such information typically includes official guidelines or procedures, as well as accessible platforms such as login pages where users or organizations can directly register for participation in the data exchange.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes",
+                "label": "The data exchange system has documented and publicly accessible information on enrollment and participation. This can include official guidelines, step-by-step procedures, or accessible web pages where users can register or log in."
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "Subsystem",
+            "variableType": "Binary",
+            "frameworkIndicator": "2.2 Use of the DES is subject to transparent enrollment and participation conditions"
+          },
+          {
+            "name": "permitted_participants",
+            "title": "Permitted participants",
+            "description": "This indicator captures the types of entities that are allowed or documented to use the data exchange system, where public entities are always included by default. It assesses whether the system is also accessible to private sector entities and civil society organizations based on documented evidence such as user registrations or usage reports. The default assumption is that public sector entities are always included, as the system is a Digital Public Infrastructure (DPI). Therefore, the range categorization reflects the additional inclusion of private and/or civil society entities.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Public",
+                "Public, Private",
+                "Public, Civil",
+                "Public, Private, Civil",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Public",
+                "label": "The data exchange is used exclusively by public sector entities. No evidence of participation by private or civil society entities."
+              },
+              {
+                "value": "Public, Private",
+                "label": "The data exchange is used by both public sector entities and private sector organizations. Documented evidence includes private entities registered as users or showing engagement in the system."
+              },
+              {
+                "value": "Public, Civil",
+                "label": "The data exchange is used by public sector entities and civil society organizations and individuals. Evidence includes civil society organizations and individuals registered as users or reports on their involvement."
+              },
+              {
+                "value": "Public, Private, Civil",
+                "label": "The data exchange system is used by public sector entities, private sector organizations, civil society organizations, and individuals. Documented evidence shows participation or engagement from all these types of entities."
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "Subsystem",
+            "variableType": "Categorical",
+            "frameworkIndicator": "2.2 Types of entities that can participate  in the data exchange"
+          },
+          {
+            "name": "audit_mechanism",
+            "title": "Audit mechanism",
+            "description": "Refers to the existence of protocols or system features that allow the auditing of data transactions. This includes mechanisms such as traditional audit logs, transaction tracking, or other verification technologies.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes",
+                "label": "The system has documented features for auditing and verifying data exchanges (e.g., audit logs, transaction tracking)."
+              },
+              {
+                "value": "No"
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "System",
+            "variableType": "Binary",
+            "frameworkIndicator": "2.3 Data exchange instances within the DES can be monitored in public-interest"
+          },
+          {
+            "name": "data_management_rules",
+            "title": "Procedural rules for data mgmt.",
+            "description": "This indicator checks for any official documents, policies, or guidelines that describe access controls, usage conditions, and data protection measures for the data exchange system.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes",
+                "label": "There is documented evidence on access controls and data protection."
+              },
+              {
+                "value": "No"
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "System",
+            "variableType": "Binary",
+            "frameworkIndicator": "3.1 Procedural rules for the DES (access restrictions, protections, etc.) are established"
+          },
+          {
+            "name": "coordination_unit",
+            "title": "Coordination unit",
+            "description": "This indicator identifies the entity responsible for coordinating operations and ensuring the data exchange is implemented across government agencies. Evidence includes official documents, organizational charts, or reports demonstrating the existence and operational framework of a coordination unit managing data exchanges across various government entities. \"Unknown\" is used when no information was found.",
+            "type": "string",
+            "scope": "System",
+            "variableType": "Nominal",
+            "frameworkIndicator": "4.1 Data exchange across government is implemented by a coordination unit"
+          },
+          {
+            "name": "multiple_public_entities",
+            "title": "Used by more than one public entity",
+            "description": "Refers to whether other public sector entities, besides the operator, are using the data exchange system. Documentation or evidence of usage by multiple public entities is necessary to verify this.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes",
+                "label": "Evidence shows that public sector entities other than the operator use the system."
+              },
+              {
+                "value": "No"
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "System",
+            "variableType": "Binary",
+            "frameworkIndicator": "5.1 Public entities (other than the operator of the DES) leverage the data exchange"
+          },
+          {
+            "name": "impact_metrics",
+            "title": "Impact metrics",
+            "description": "This indicator checks whether there is information about the performance or usage of the data exchange system. Metrics may include the number of entities using the system, the volume of data exchanged, the number of connections, or the number of transactions.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes",
+                "label": "Documentation exists with data on the number of entities, transactions, or volume of data."
+              },
+              {
+                "value": "No"
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "scope": "System",
+            "variableType": "Binary"
+          },
+          {
+            "name": "formal_mandate",
+            "title": "Formal Mandate",
+            "description": "Checks whether a formal mandate for data sharing over the DES is laid out in a decree, sub-decree, executive order, law/act or set of rules.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes",
+                "label": "An officially published legal instrument that explicitly authorises data exchange between participating entities and sanctions a shared set of security and data standards."
+              },
+              {
+                "value": "No",
+                "label": "The instrument meets only part of this: it authorises sharing without setting standards, or sets standards without authorising the infrastructure."
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "variableType": "Binary",
+            "frameworkIndicator": "2.6"
+          },
+          {
+            "name": "once_only_principle",
+            "title": "Once-Only Principle",
+            "description": "Checks whether the country has implemented a once-only principle for collecting data from citizens through policy mechanisms.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes",
+                "label": "Documented evidence of the principle being implemented across government or for the specific DES."
+              },
+              {
+                "value": "No"
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "variableType": "Binary",
+            "frameworkIndicator": "2.6"
+          },
+          {
+            "name": "personal_data_protection",
+            "title": "Personal Data Protection",
+            "description": "Checks for enforced personal data protection legislation in the country, or an independent grievance redressal mechanism run by an entity other than the DES operator.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes",
+                "label": "A personal data protection law is enacted, or an independent redressal mechanism handles disputes about the DES."
+              },
+              {
+                "value": "No",
+                "label": "No personal data protection law."
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "variableType": "Binary",
+            "frameworkIndicator": "3.2 Personal data on the exchange is protected by law"
+          },
+          {
+            "name": "independent_audit",
+            "title": "Independent Audit",
+            "description": "Checks for a requirement in formal documentation (system rules, decree, act or executive order) that the DES undergoes periodic audit by an independent agency. The audit obligation often sits in other audit legislation.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "Yes",
+                "No",
+                "Not Found"
+              ]
+            },
+            "categories": [
+              {
+                "value": "Yes",
+                "label": "Such a formal requirement exists."
+              },
+              {
+                "value": "No"
+              },
+              {
+                "value": "Not Found",
+                "label": "Insufficient information, including where the system is not yet live."
+              }
+            ],
+            "variableType": "Binary",
+            "frameworkIndicator": "3.4 Data exchange is regularly reviewed for data protection and cyber resilience"
+          },
+          {
+            "name": "number_of_transactions",
+            "title": "Number of Transactions",
+            "description": "Captures the number of enquiries or transactions on the DES annually. Recorded when reported consistently through the DES’s public dashboard. Not Found where there is no transaction data because the system has been operating for less than 12 months.",
+            "type": "string",
+            "variableType": "Nominal"
+          },
+          {
+            "name": "number_of_members",
+            "title": "Number of Members",
+            "description": "Captures the number of members that can exchange data or messages on the DES and are managed by the governing entity.",
+            "type": "string",
+            "variableType": "Nominal"
+          }
+        ]
+      }
+    },
+    {
+      "name": "places",
+      "path": "places.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "schema": {
+        "missingValues": [
+          "NA"
+        ],
+        "primaryKey": [
+          "code"
+        ],
+        "foreignKeys": [
+          {
+            "fields": [
+              "parent"
+            ],
+            "reference": {
+              "resource": "places",
+              "fields": [
+                "code"
+              ]
+            }
+          }
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "title": "Code",
+            "description": "The place part of a System ID: a lower case ISO 3166-1 alpha-2 code, or a region slug.",
+            "type": "string",
+            "constraints": {
+              "required": true,
+              "unique": true,
+              "pattern": "[a-z]{2}|africa|asia|europe|oceania|lac|noram|americas|world"
+            }
+          },
+          {
+            "name": "name",
+            "title": "Name",
+            "description": "The English name of the place, as given by its source.",
+            "type": "string",
+            "constraints": {
+              "required": true,
+              "unique": true
+            }
+          },
+          {
+            "name": "source",
+            "title": "Source",
+            "description": "Where the code and name come from: the UN M49 table, which gives each country's ISO 3166-1 alpha-2 code; ISO 3166-1 for tw (Taiwan), which M49 doesn't list; and Unicode CLDR for xk (Kosovo), which isn't an ISO code.",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "UN M49",
+                "ISO 3166-1",
+                "Unicode CLDR"
+              ]
+            }
+          },
+          {
+            "name": "iso3",
+            "title": "ISO alpha-3",
+            "description": "The place's ISO 3166-1 alpha-3 code, from the same source as its code, for joining with other data. NA for regions, and for xk (Kosovo), which has none.",
+            "type": "string",
+            "constraints": {
+              "unique": true,
+              "pattern": "[A-Z]{3}"
+            }
+          },
+          {
+            "name": "parent",
+            "title": "Parent",
+            "description": "The region the place is in, from the UN M49 regions and sub-regions: africa, asia, europe, oceania, or for the Americas, lac (Latin America and the Caribbean) or noram (Northern America). Those are in americas or world. tw is in asia and xk in europe, as neither is in M49. Antarctica, which M49 puts in no region, is in world. NA for world.",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "place_names",
+      "path": "place-names.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "schema": {
+        "primaryKey": [
+          "dpimap_name"
+        ],
+        "foreignKeys": [
+          {
+            "fields": [
+              "code",
+              "name_in_source",
+              "source"
+            ],
+            "reference": {
+              "resource": "places",
+              "fields": [
+                "code",
+                "name",
+                "source"
+              ]
+            }
+          }
+        ],
+        "fields": [
+          {
+            "name": "dpimap_name",
+            "title": "DPI Map name",
+            "description": "A name that Country / Region uses for a place, where it differs from its name in places.",
+            "type": "string",
+            "constraints": {
+              "required": true,
+              "unique": true
+            }
+          },
+          {
+            "name": "code",
+            "title": "Code",
+            "description": "The place the name is for.",
+            "type": "string",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "name": "name_in_source",
+            "title": "Name in source",
+            "description": "The place's name in its source, as in places.",
+            "type": "string",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "name": "source",
+            "title": "Source",
+            "description": "The source of the code and name, as in places.",
+            "type": "string",
+            "constraints": {
+              "required": true
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

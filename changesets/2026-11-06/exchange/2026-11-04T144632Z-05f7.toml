@@ -1,0 +1,129 @@
+[[changes]]
+type = "create"
+key = "dx-at-02"
+as_of = 2026-10-15
+values.country = "Austria"
+values.name = "dadeX"
+reason = ""
+sources = [
+  "https://www.digitalaustria.gv.at/verwaltung/egovernment/dadex.html",
+]
+
+[[changes]]
+type = "update"
+key = "dx-at-02"
+as_of = 2026-10-15
+values.once_only_principle = "Yes"
+reason = ""
+sources = [
+  "https://www.digitalaustria.gv.at/verwaltung/egovernment/once-only-prinzip.html",
+]
+
+[[changes]]
+type = "update"
+key = "dx-at-02"
+as_of = 2026-10-15
+values.realtime_sharing = "Not Found"
+values.scalable_architecture = "Not Found"
+values.enrolment_info = "Not Found"
+values.audit_mechanism = "Not Found"
+values.impact_metrics = "No"
+values.personal_data_protection = "Yes"
+values.independent_audit = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-at-02"
+as_of = 2026-10-15
+values.governing_entity = "Federal Minister of Digitalisation and Business location"
+values.data_management_rules = "Yes"
+values.coordination_unit = "Austrian Federal Computing Centre (BRZ)"
+values.formal_mandate = "Yes"
+reason = ""
+sources = [
+  "https://www.ris.bka.gv.at/Dokumente/BgblAuth/BGBLA_2021_I_142/BGBLA_2021_I_142.html",
+]
+
+[[changes]]
+type = "update"
+key = "dx-at-02"
+as_of = 2026-10-15
+values.ownership = "Public"
+reason = "Legislation puts operational control with the Federal Ministry of Finance and BRZ, which is wholly-owned public sector entity."
+sources = [
+  "https://www.brz.gv.at/wer-wir-sind/organisation.html",
+]
+
+[[changes]]
+type = "update"
+key = "dx-at-02"
+as_of = 2026-10-15
+values.url = "https://www.digitalaustria.gv.at/verwaltung/egovernment/dadex.html"
+reason = ""
+sources = [
+  "https://www.digitalaustria.gv.at/verwaltung/egovernment/dadex.html",
+]
+
+[[changes]]
+type = "update"
+key = "dx-at-02"
+as_of = 2026-10-15
+values.interoperability_level = "Syntactic"
+reason = "Mention of shared data standards/formats."
+sources = [
+  "https://www.brz.gv.at/was-wir-tun/services-produkte/registersystemverbund/bausteine-der-once-only-plattform.html",
+]
+
+[[changes]]
+type = "update"
+key = "dx-at-02"
+as_of = 2026-10-15
+values.architecture = "NA"
+reason = ""
+sources = [
+  "https://www.brz.gv.at/was-wir-tun/services-produkte/registersystemverbund/bausteine-der-once-only-plattform.html",
+]
+
+[[changes]]
+type = "update"
+key = "dx-at-02"
+as_of = 2026-10-15
+values.status = "Implemented"
+values.national_regional = "National"
+values.sectoral = "Cross-sectoral"
+reason = ""
+sources = [
+  "https://www.digitalaustria.gv.at/verwaltung/egovernment/dadex.html",
+]
+
+[[changes]]
+type = "update"
+key = "dx-at-02"
+as_of = 2026-10-15
+values.permitted_participants = "Public, Private, Civil"
+values.multiple_public_entities = "Yes"
+reason = ""
+sources = [
+  "https://depp.oecd.org/policies/AUT670",
+]
+
+[[changes]]
+type = "update"
+key = "dx-at-02"
+as_of = 2026-10-16
+values.number_of_members = "Not Found"
+reason = ""
+sources = [
+  "https://www.digitalaustria.gv.at/dam/jcr:da5d764c-ffcd-47a4-84ce-1ea27d43f1ff/Digitalisation%20Report_3_2022-EN.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "dx-at-02"
+as_of = 2026-10-17
+values.number_of_transactions = "Not Found"
+reason = ""
+sources = [
+  "https://www.digitalaustria.gv.at/dam/jcr:da5d764c-ffcd-47a4-84ce-1ea27d43f1ff/Digitalisation%20Report_3_2022-EN.pdf",
+]

@@ -19,7 +19,7 @@ const dpiSystems = Payments.filter(x => x?.['DPI Status'] === 'DPI').length
       Unique countries ({countries.length})
     <ul>
       {countries.map(c => (
-        <li>{c.Country}</li>
+        <li>{c.country}</li>
       ))}
     </ul>
     </div>
@@ -27,7 +27,7 @@ const dpiSystems = Payments.filter(x => x?.['DPI Status'] === 'DPI').length
       countries with DPI ({dpiCountries.length})
     <ul>
       {dpiCountries.map(c => (
-        <li>{c.Country}</li>
+        <li>{c.country}</li>
       ))}
     </ul>
     </div>

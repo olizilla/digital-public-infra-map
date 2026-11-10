@@ -1,0 +1,221 @@
+[[changes]]
+type = "update"
+key = "pay-vn-01"
+as_of = 2026-10-15
+values.name = "NAPAS 247 (NAPAS FastFund 247)"
+reason = "Missing from dataset; national 24/7 instant transfer system operated by NAPAS. Launched 06/21"
+sources = [
+  "https://en.napas.com.vn/napas-fastfund-247-service-featured-service",
+]
+
+[[changes]]
+type = "update"
+key = "pay-vn-01"
+as_of = 2026-10-15
+values.url = "https://en.napas.com.vn/napas-fastfund-247-service-featured-service"
+reason = "New webpage"
+
+[[changes]]
+type = "update"
+key = "pay-vn-01"
+as_of = 2026-10-15
+values.realtime_active = "Yes"
+reason = "24/7 instant interbank transfers."
+sources = [
+  "https://en.napas.com.vn/napas-fastfund-247-service-featured-service",
+]
+
+[[changes]]
+type = "update"
+key = "pay-vn-01"
+as_of = 2026-10-15
+values.system_type = "Cross-domain"
+reason = "Connects banks, payment intermediaries, e-wallets and mobile money"
+sources = [
+  "https://en.napas.com.vn/napas-fastfund-247-service-featured-service",
+]
+
+[[changes]]
+type = "update"
+key = "pay-vn-01"
+as_of = 2026-10-15
+values.status = "Implemented"
+reason = "Live; NAPAS reports continued volume growth in 2025."
+sources = [
+  "https://en.napas.com.vn/napas-fastfund-247-service-featured-service",
+  "https://en.napas.com.vn/napas-successfully-holds-the-2026-task-deployment-conference-18426031710042133.htm",
+]
+
+[[changes]]
+type = "update"
+key = "pay-vn-01"
+as_of = 2026-10-15
+values.national_regional = "National"
+reason = "Domestic system: NAPAS 247 processes VND transfers within Vietnam. Value unchanged from Q1."
+sources = [
+  "https://en.napas.com.vn/napas-fastfund-247-service-featured-service",
+]
+
+[[changes]]
+type = "update"
+key = "pay-vn-01"
+as_of = 2026-10-15
+values.cross_border = "Yes"
+reason = "VietQRGlobal cross-border links with Thailand, Laos, Cambodia"
+sources = [
+  "https://en.napas.com.vn/napas-fastfund-247-service-featured-service",
+  "https://en.napas.com.vn/napas-successfully-holds-the-2026-task-deployment-conference-18426031710042133.htm",
+]
+
+[[changes]]
+type = "update"
+key = "pay-vn-01"
+as_of = 2026-10-15
+values.interoperability_policy = "Not Found"
+reason = "Searched: no law, policy or strategy found stating interoperability between banks and non-bank providers as a goal. Decree 52/2024 requires e-wallets to be linked to bank accounts but sets no interoperability goal."
+
+[[changes]]
+type = "update"
+key = "pay-vn-01"
+as_of = 2026-11-06
+values.transaction_types = "P2P, P2M, B2B"
+reason = "Supports account transfers between individuals, VietQR payments to merchants and business payments; business payments above VND 500 million are routed to CITAD, the State Bank of Vietnam's interbank system. Source: NAPAS."
+sources = [
+  "https://en.napas.com.vn/napas-fastfund-247-service-featured-service",
+]
+
+[[changes]]
+type = "update"
+key = "pay-vn-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "ACH"
+reason = "NAPAS operates an ACH (launched 2020) integrated with its account-to-account services, and is licensed by the State Bank of Vietnam for electronic clearing."
+sources = [
+  "https://napas.com.vn/cac-giai-doan-phat-trien-cua-cong-ty",
+]
+
+[[changes]]
+type = "update"
+key = "pay-vn-01"
+as_of = 2026-10-15
+values.settlement_method = "DNS"
+reason = "Circular 21/2020/TT-NHNN, the interbank payment system processes net settlement results from the ACH in batches."
+sources = [
+  "https://luatvietnam.vn/tai-chinh/thong-tu-21-2020-sua-thong-tu-he-thong-thanh-toan-dien-tu-lien-ngan-hang-qg-197023-d1.html",
+]
+
+[[changes]]
+type = "update"
+key = "pay-vn-01"
+as_of = 2026-10-15
+values.operator = "Bank association/Central bank"
+reason = "NAPAS; State Bank of Vietnam holds 49% of charter capital, remainder held by commercial banks."
+sources = [
+  "https://en.napas.com.vn/napas-fastfund-247-service-featured-service",
+  "https://en.napas.com.vn/development-journey",
+]
+
+[[changes]]
+type = "update"
+key = "pay-vn-01"
+as_of = 2026-10-15
+values.bank_participation = "Yes"
+reason = "50+ member banks"
+sources = [
+  "https://en.napas.com.vn/napas-fastfund-247-service-featured-service",
+]
+
+[[changes]]
+type = "update"
+key = "pay-vn-01"
+as_of = 2026-10-15
+values.nonbank_participation = "Yes"
+reason = "Payment intermediaries, e-wallets and mobile money"
+sources = [
+  "https://en.napas.com.vn/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-vn-01"
+as_of = 2026-10-15
+values.participation_rules = "No"
+reason = "The master operational rulebooks (known locally as the Bộ Quy định Tổ chức thành viên NAPAS / NAPAS Member Organisation Regulations) are classified as proprietary B2B documentation"
+sources = [
+  "https://napas.com.vn/dieu-khoan-su-dung",
+]
+
+[[changes]]
+type = "update"
+key = "pay-vn-01"
+as_of = 2026-10-15
+values.annual_value_usd = "Not Found"
+reason = "Searched: NAPAS and the State Bank of Vietnam publish growth rates but no 2025 annual value for NAPAS 247."
+
+[[changes]]
+type = "update"
+key = "pay-vn-01"
+as_of = 2026-10-15
+values.annual_volume = "Not Found"
+reason = "Searched: NAPAS and the State Bank of Vietnam publish growth rates but no 2025 annual volume for NAPAS 247."
+
+[[changes]]
+type = "update"
+key = "pay-vn-01"
+as_of = 2026-10-15
+values.data_handling_rules = "Yes"
+reason = "On 26 June 2025, Law No. 91/2025/QH15 on Personal Data Protection (“PDPL”) was officially enacted by the National Assembly. Decree 356 treats banking data such as account login credentials, card details and transaction history as sensitive personal data. Finance and banking businesses must meet higher governance standards, including logging all processing activities and annual compliance assessments."
+sources = [
+  "https://www.dlapiperdataprotection.com/?t=law&c=VN",
+]
+
+[[changes]]
+type = "update"
+key = "pay-vn-01"
+as_of = 2026-10-15
+values.reporting_forum = "No"
+reason = "No reporting forum indicated for users; complaints directed to FI. Participants on NAPAS use the SIMO reporting system."
+sources = [
+  "https://en.napas.com.vn/",
+  "https://vietnamnet.vn/en/millions-of-bank-customers-narrowly-avoid-vnd4-trillion-scam-losses-2503095.html",
+]
+
+[[changes]]
+type = "update"
+key = "pay-vn-01"
+as_of = 2026-10-15
+values.aml_law = "Yes"
+reason = "Yes; came into force 1 Mar 2023"
+sources = [
+  "https://english.luatvietnam.vn/law-on-anti-money-laundering-no-14-2022-qh15-of-the-national-assembly-237800-doc1.html",
+]
+
+[[changes]]
+type = "update"
+key = "pay-vn-01"
+as_of = 2026-10-15
+values.transaction_cost = "VietQR is free. NAPAS FastFund fees are set by financial institution."
+reason = "Fee is documented under Q2 of the QR section of the handbook."
+sources = [
+  "https://en.napas.com.vn/digital-payment-handbook",
+]
+
+[[changes]]
+type = "update"
+key = "pay-vn-01"
+as_of = 2026-10-15
+values.qr_code = "Yes"
+reason = "VietQR standard"
+sources = [
+  "https://en.napas.com.vn/napas-fastfund-247-service-featured-service",
+]
+
+[[changes]]
+type = "update"
+key = "pay-vn-01"
+as_of = 2026-10-15
+values.number_of_participants = "2026- 68"
+reason = "NAPAS reports 68 member organisations, including banks and financial companies. Source: NAPAS (2026)."
+sources = [
+  "https://en.napas.com.vn/",
+]

@@ -1,0 +1,71 @@
+[[changes]]
+type = "update"
+key = "id-cy-01"
+as_of = 2026-09-16
+values.name = "Cypriot National eID (IDMe.cy) / eID card"
+reason = "eID card with electronic identity launched; take-up was slow (8,200 applications by Feb 2025)."
+sources = [
+  "https://www.idme.gov.cy/",
+  "https://www.dmrid.gov.cy/dmrid/research.nsf/digitalp01a_el/digitalp01a_el?OpenDocument",
+]
+
+[[changes]]
+type = "update"
+key = "id-cy-01"
+as_of = 2026-09-17
+values.url = "https://www.idme.gov.cy/chrisi-e-id/pos-mporo-na-apoktiso-e-id/"
+reason = ""
+sources = [
+  "https://www.idme.gov.cy/chrisi-e-id/pos-mporo-na-apoktiso-e-id/",
+]
+
+[[changes]]
+type = "update"
+key = "id-cy-01"
+as_of = 2026-09-16
+values.governing_entity = "Deputy Ministry of Research, Innovation and Digital Policy"
+reason = ""
+sources = [
+  "https://www.biometricupdate.com/202603/cyprus-digital-id-must-be-accepted-by-all-organizations-says-govt",
+  "https://www.dmrid.gov.cy/dmrid/research.nsf/digitalp01a_el/digitalp01a_el?OpenDocument",
+]
+
+[[changes]]
+type = "update"
+key = "id-cy-01"
+as_of = 2026-09-17
+values.funders = "Government of the Republic of Cyprus"
+reason = "Insufficient evidence regarding EU financial support."
+
+[[changes]]
+type = "update"
+key = "id-cy-01"
+as_of = 2026-09-16
+values.status = "Implemented"
+reason = "eID issued since 2024; no longer only planned."
+sources = [
+  "https://www.idme.gov.cy/chrisi-e-id/pos-mporo-na-apoktiso-e-id/",
+  "https://www.dmrid.gov.cy/dmrid/research.nsf/digitalp01a_el/digitalp01a_el?OpenDocument",
+]
+
+[[changes]]
+type = "update"
+key = "id-cy-01"
+as_of = 2026-09-16
+values.technical_support = "Veridos, Ascertia (SigningHub)"
+reason = "Ascertia supplies the signing platform."
+sources = [
+  "https://blog.ascertia.com/cyprus-launches-eid-system-incorporating-signinghub",
+  "https://www.dmrid.gov.cy/dmrid/research.nsf/digitalp01a_el/digitalp01a_el?OpenDocument",
+]
+
+[[changes]]
+type = "update"
+key = "id-cy-01"
+as_of = 2026-09-17
+values.sectoral_use_cases = "Yes"
+reason = "Sectors in use: Government services, Tax, Social protection, Employment, Transport and driving. National eID authenticates to CY Login for all gov portals incl. Tax For All, social benefits and work records; Digital Citizen app holds ID and driving licence."
+sources = [
+  "https://cyprus-mail.com/2025/11/21/cyprus-bolsters-digital-identity-system",
+  "https://cylogin.cyprus.gov.cy/register",
+]

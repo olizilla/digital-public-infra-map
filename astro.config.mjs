@@ -5,29 +5,13 @@ import tailwindcss from '@tailwindcss/vite';
 
 import mdx from '@astrojs/mdx';
 
-import { records } from './src/Records';
-import { checkDpiCounts } from './src/DpiTest';
+import sitemap from '@astrojs/sitemap';
 
-/**
- * Fail the build if any system's 'Count for DPI' disagrees with the DPI test in src/DpiTest.ts.
- * @type {import('astro').AstroIntegration}
- */
-const dpiCountCheck = {
-  name: 'dpi-count-check',
-  hooks: {
-    'astro:build:start': () => {
-      const problems = checkDpiCounts(records)
-      if (problems.length) {
-        throw new Error(`${problems.length} systems' Count for DPI disagrees with the DPI test:\n${problems.join('\n')}`)
-      }
-    },
-    'astro:server:setup': ({ logger }) => {
-      for (const problem of checkDpiCounts(records)) logger.warn(`Count for DPI disagrees with the DPI test: ${problem}`)
-    }
-  }
-}
-
-const site = process.env.CF_PAGES_URL ?? 'https://dpi-map.pages.dev'
+// Production (the main branch, or a local build with no Cloudflare variables) is the custom domain.
+// Preview deploys keep their own URL, so their canonical, OG and feed links resolve.
+const { CF_PAGES_BRANCH, CF_PAGES_URL } = process.env
+const isProduction = !CF_PAGES_BRANCH || CF_PAGES_BRANCH === 'main'
+const site = isProduction ? 'https://dpimap.org' : (CF_PAGES_URL ?? 'https://dpi-map.pages.dev')
 
 // https://astro.build/config
 export default defineConfig({
@@ -35,7 +19,13 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()]
   },
-  integrations: [mdx(), dpiCountCheck],
+  integrations: [
+    mdx(),
+    sitemap({
+      // unlinked or internal for now: the changelog, the editor, and the payment analysis scratch pages
+      filter: (page) => !/\/(changes|edit|pay-diff|pay-test)(\/|$)/.test(new URL(page).pathname)
+    })
+  ],
   redirects: {
     "/blog/my-blog/dpi-map-data-for-statistical-analysis": "/blog/dpi-map-data-for-statistical-analysis",
     "/blog/my-blog/dpi-dataset-update-mar-2025": "/blog/dpi-dataset-update-mar-2025"

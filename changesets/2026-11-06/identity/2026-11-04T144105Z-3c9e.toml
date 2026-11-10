@@ -1,0 +1,21 @@
+[[changes]]
+type = "update"
+key = "id-au-01"
+as_of = 2026-09-16
+values.name = "myID"
+reason = "National digital identity service was renamed from myGovID to myID in November 2024; TEx is a separate pilot."
+sources = [
+  "https://www.ato.gov.au/media-centre/mygovid-is-now-called-myid",
+  "https://www.myid.gov.au/news/mygovid-has-changed-its-name-to-myid",
+]
+
+[[changes]]
+type = "update"
+key = "id-au-01"
+as_of = 2026-09-16
+values.governing_entity = "Department of Finance (system lead); Australian Competition and Consumer Commission (Digital ID Regulator); Australian Taxation Office (myID provider)"
+reason = "Digital ID governance involves the Department of Finance as system lead, ACCC as regulator and ATO as myID provider."
+sources = [
+  "https://www.digitalidsystem.gov.au/how-the-system-works",
+  "https://www.ato.gov.au/media-centre/mygovid-is-now-called-myid",
+]

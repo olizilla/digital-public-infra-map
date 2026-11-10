@@ -1,0 +1,2190 @@
+[[changes]]
+type = "update"
+key = "pay-africa-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-africa-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-africa-03"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-africa-03"
+as_of = 2024-10-01
+values.operator = "Commercial bank/Private PSP"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-africa-04"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-africa-05"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-africa-05"
+as_of = 2024-10-01
+values.transaction_types = "P2P, P2M, Other"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-dz-01"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-dj-01"
+as_of = 2025-12-11
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-dj-01"
+as_of = 2025-12-11
+values.transaction_types = "P2P, P2M, B2B, G2P, Other"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-dj-01"
+as_of = 2025-12-11
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-eg-01"
+as_of = 2026-02-10
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-eg-01"
+as_of = 2026-02-10
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-sz-01"
+as_of = 2026-03-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-sz-01"
+as_of = 2026-03-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-et-01"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-gm-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-gm-01"
+as_of = 2024-10-01
+values.transaction_types = "P2P, Other, P2M"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-gm-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-gh-01"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-gh-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-gh-02"
+as_of = 2025-12-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-ke-01"
+as_of = 2025-06-25
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-ke-02"
+as_of = 2025-06-25
+values.operator = "Commercial bank/Private PSP"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-ly-01"
+as_of = 2026-03-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-ly-01"
+as_of = 2026-03-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-mg-01"
+as_of = 2025-06-25
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-mg-02"
+as_of = 2025-06-25
+values.operator = "Commercial bank/Private PSP"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-mw-01"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-mu-01"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-mu-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-ma-01"
+as_of = 2026-03-01
+values.url = "https://www.swam.ma/"
+reason = "Use the agreed wording for URL"
+
+[[changes]]
+type = "update"
+key = "pay-ma-01"
+as_of = 2026-03-01
+values.operator = "Commercial bank/Private PSP"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-mz-01"
+as_of = 2025-06-25
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-mz-02"
+as_of = 2025-06-25
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-mz-03"
+as_of = 2026-03-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-na-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-ng-01"
+as_of = 2025-06-25
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-ng-01"
+as_of = 2025-06-25
+values.transaction_types = "P2P, P2M, B2B, Other, G2P"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-ng-01"
+as_of = 2025-06-25
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-ng-02"
+as_of = 2025-06-25
+values.transaction_types = "P2P, P2M, B2B, Other, G2P"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-ng-03"
+as_of = 2025-05-26
+values.transaction_types = "P2P, P2M, B2B, Other, G2P"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-ng-03"
+as_of = 2025-05-26
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-rw-01"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-sc-01"
+as_of = 2025-06-25
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-sc-01"
+as_of = 2025-06-25
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-so-01"
+as_of = 2026-03-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-za-01"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-za-01"
+as_of = 2024-10-01
+values.operator = "Bank association/Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-za-02"
+as_of = 2025-06-30
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-za-02"
+as_of = 2025-06-30
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-ss-01"
+as_of = 2026-03-01
+values.transaction_types = "P2P, G2P, Other, P2M"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-tz-01"
+as_of = 2026-03-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-tz-01"
+as_of = 2026-03-01
+values.transaction_types = "P2P, P2M, B2B, B2P, Other, B2G"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-tz-01"
+as_of = 2026-03-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-tn-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-tn-02"
+as_of = 2025-05-26
+values.operator = "Commercial bank/Private PSP"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-ug-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-ug-01"
+as_of = 2024-10-01
+values.transaction_types = "P2P, P2M, Other"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-ug-02"
+as_of = 2025-06-26
+values.transaction_types = "P2P, P2M, Other"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-ug-02"
+as_of = 2025-06-26
+values.operator = "Commercial bank/Private PSP"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-zm-01"
+as_of = 2026-03-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-zm-01"
+as_of = 2026-03-01
+values.transaction_types = "P2P, P2M, B2P, B2B"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-zm-01"
+as_of = 2026-03-01
+values.operator = "Bank association/Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-zw-01"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-zw-01"
+as_of = 2024-10-01
+values.transaction_types = "P2P, P2M, Other, G2P, B2B, B2P"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-af-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-asia-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-bd-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-bd-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-bd-02"
+as_of = 2025-06-27
+values.operator = "Commercial bank/Private PSP"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-bd-03"
+as_of = 2026-03-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-bd-03"
+as_of = 2026-03-01
+values.transaction_types = "G2P, P2M"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-bt-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-bt-01"
+as_of = 2026-11-03
+values.operator = "Central bank"
+reason = "Confirmed by the research team."
+
+[[changes]]
+type = "update"
+key = "pay-bn-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-bn-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-kh-01"
+as_of = 2025-02-17
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-kh-01"
+as_of = 2025-02-17
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-cn-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-cn-01"
+as_of = 2024-10-01
+values.transaction_types = "P2P, Other, P2M, B2B, G2P"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-cn-01"
+as_of = 2024-10-01
+values.operator = "Bank association/Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-cn-02"
+as_of = 2025-06-27
+values.transaction_types = "P2P, Other, P2M, B2B, G2P"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-cn-02"
+as_of = 2025-06-27
+values.operator = "Commercial bank/Private PSP"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-cn-03"
+as_of = 2025-06-27
+values.transaction_types = "P2P, Other, P2M, B2B, G2P"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-cn-03"
+as_of = 2025-06-27
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-hk-01"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-hk-01"
+as_of = 2024-10-01
+values.transaction_types = "P2P, P2M, B2B, Other"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-hk-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-hk-02"
+as_of = 2025-06-27
+values.transaction_types = "P2P, P2M, B2B, Other"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-hk-02"
+as_of = 2025-06-27
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-mo-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-mo-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-in-01"
+as_of = 2026-03-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-in-01"
+as_of = 2026-03-01
+values.transaction_types = "P2P, P2M, B2B, Other"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-id-01"
+as_of = 2026-03-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-jp-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-jp-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-kz-01"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-kz-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-kz-02"
+as_of = 2025-06-27
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-kg-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-kg-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-kg-02"
+as_of = 2025-06-27
+values.operator = "Commercial bank/Private PSP"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-kg-03"
+as_of = 2025-06-27
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-my-01"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-mv-01"
+as_of = 2026-03-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-mn-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-mn-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-mm-01"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-mm-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-np-01"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-np-01"
+as_of = 2024-10-01
+values.transaction_types = "P2P, P2M, B2B, Other, G2P"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-pk-01"
+as_of = 2026-03-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-pk-01"
+as_of = 2026-03-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-ph-01"
+as_of = 2025-11-30
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-ph-01"
+as_of = 2025-11-30
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-sg-01"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-kr-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-kr-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-lk-01"
+as_of = 2026-03-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-tw-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-tw-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-tj-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-tj-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-th-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-th-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-tm-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-tm-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-uz-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-uz-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-bs-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-bb-01"
+as_of = 2025-08-21
+values.transaction_types = "B2B, B2G, B2P, P2M, Other, P2P"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-bb-01"
+as_of = 2025-08-21
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-bb-02"
+as_of = 2024-10-01
+values.system_type = "Mobile money system"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-lac-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-cw-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-cw-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-do-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-do-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-jm-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-jm-02"
+as_of = 2025-06-26
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-pr-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-pr-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-tt-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-tt-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-al-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-al-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-ad-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-ad-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-at-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-at-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-by-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-by-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-be-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-be-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-ba-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-ba-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-bg-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-bg-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-hr-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-hr-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-dk-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-dk-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-ee-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-ee-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-europe-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-europe-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-fo-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-fo-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-fi-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-fi-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-fr-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-fr-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-de-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-de-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-gr-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-gr-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-is-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-is-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-ie-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-ie-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-it-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-it-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-xk-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-xk-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-lv-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-lv-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-lt-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-lt-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-lu-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-lu-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-mt-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-mt-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-md-01"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-md-01"
+as_of = 2024-10-01
+values.transaction_types = "P2P, P2M, B2B, Other, G2P"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-md-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-md-02"
+as_of = 2025-06-26
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-md-02"
+as_of = 2025-06-26
+values.transaction_types = "P2P, P2M, B2B, Other, G2P"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-md-02"
+as_of = 2025-06-26
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-mc-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-mc-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-me-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-me-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-nl-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-nl-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-mk-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-mk-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-no-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-no-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-pt-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-pt-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-ru-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-ru-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-sm-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-sm-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-rs-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-rs-01"
+as_of = 2024-10-01
+values.transaction_types = "P2P, P2M, Other, B2P, B2B, B2G"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-rs-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-sk-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-sk-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-si-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-si-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-es-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-es-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-se-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-se-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-ch-01"
+as_of = 2025-03-31
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-ch-01"
+as_of = 2025-03-31
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-va-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-va-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-ar-01"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-ar-01"
+as_of = 2024-10-01
+values.operator = "Commercial bank/Private PSP"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-bz-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-bz-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-bo-01"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-bo-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-br-01"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-br-01"
+as_of = 2024-10-01
+values.transaction_types = "P2P, P2M, B2B, G2P, Other"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-br-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-lac-02"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-cl-01"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-cl-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-co-02"
+as_of = 2026-03-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-co-02"
+as_of = 2026-03-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-cr-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-cr-01"
+as_of = 2024-10-01
+values.transaction_types = "P2P, P2M, Other"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-cr-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-ec-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-ec-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-sv-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-sv-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-sv-02"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-gy-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-gy-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-mx-01"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-mx-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-pa-01"
+as_of = 2026-03-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-py-01"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-py-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-uy-01"
+as_of = 2026-03-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-ve-01"
+as_of = 2026-03-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-am-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-az-01"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-az-01"
+as_of = 2024-10-01
+values.transaction_types = "P2P, P2M, G2P, Other, B2B"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-az-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-bh-01"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-bh-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-cy-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-cy-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-ge-01"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-ge-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-iq-01"
+as_of = 2024-10-01
+values.transaction_types = "P2P, P2M, Other"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-il-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-il-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-jo-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-jo-01"
+as_of = 2024-10-01
+values.transaction_types = "P2P, P2M, B2B, Other, G2P"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-jo-02"
+as_of = 2024-10-01
+values.transaction_types = "P2P, P2M, B2B, Other, G2P"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-kw-01"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-kw-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-kw-02"
+as_of = 2025-06-26
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-kw-02"
+as_of = 2025-06-26
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-lb-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-lb-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-asia-02"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-om-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-qa-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-qa-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-sa-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-sa-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-ps-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-ps-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-tr-01"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-tr-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-ae-01"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-ae-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-ye-01"
+as_of = 2025-07-15
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-ca-01"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-ca-02"
+as_of = 2025-12-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-gl-01"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-gl-01"
+as_of = 2024-10-01
+values.transaction_types = "P2P, P2M, Other, B2P, B2B, B2G"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-gl-01"
+as_of = 2024-10-01
+values.operator = "Commercial bank/Private PSP"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-gl-02"
+as_of = 2025-06-26
+values.transaction_types = "P2P, P2M, Other, B2P, B2B, B2G"
+reason = "Use the agreed wording for Types of transactions supported"
+
+[[changes]]
+type = "update"
+key = "pay-us-01"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-us-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-au-01"
+as_of = 2024-10-01
+values.system_type = "Cross-domain"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-fj-01"
+as_of = 2025-02-10
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-fj-01"
+as_of = 2025-02-10
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-pg-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-pg-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-sb-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"
+
+[[changes]]
+type = "update"
+key = "pay-sb-01"
+as_of = 2024-10-01
+values.operator = "Central bank"
+reason = "Use the agreed wording for Operator"
+
+[[changes]]
+type = "update"
+key = "pay-vu-01"
+as_of = 2024-10-01
+values.system_type = "Interbank"
+reason = "Use the agreed wording for Payment system type"

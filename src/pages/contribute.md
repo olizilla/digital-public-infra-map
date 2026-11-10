@@ -1,6 +1,7 @@
 ---
 layout: ../layouts/Standard.astro
 title: 'Contribute to the DPI map'
+description: "Share information about DPI deployments, give feedback on the DPI Map's framework, or add to the data and build on it."
 ---
 
 # Contribute to the DPI Map
@@ -25,7 +26,7 @@ Use the [Measuring DPI framework](https://docs.google.com/spreadsheets/d/1-G3Jmo
 
 ## Build on the data
 
-[Download and review the raw data](/data). Contribute to the state of DPI by deriving insights from the data.
+[Download and review the raw data](/data/). Contribute to the state of DPI by deriving insights from the data.
 
 
 ---

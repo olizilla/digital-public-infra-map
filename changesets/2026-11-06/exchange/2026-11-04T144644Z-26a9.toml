@@ -1,0 +1,59 @@
+[[changes]]
+type = "update"
+key = "dx-cz-01"
+as_of = 2026-10-15
+values.once_only_principle = "Yes"
+values.personal_data_protection = "Yes"
+values.number_of_transactions = "Not Found"
+values.number_of_members = "Not Found"
+reason = ""
+
+[[changes]]
+type = "update"
+key = "dx-cz-01"
+as_of = 2026-10-15
+values.formal_mandate = "Yes"
+reason = "Act on Base Registries"
+sources = [
+  "https://interoperable-europe.ec.europa.eu/collection/iopeu-monitoring/digital-public-administration-factsheets-2025",
+]
+
+[[changes]]
+type = "update"
+key = "dx-cz-01"
+as_of = 2026-10-15
+values.name = "Shared Service Information System (ISSS)"
+reason = "Name of the system has been changed"
+sources = [
+  "https://www.szrcr.cz/cs/isss-egsb",
+]
+
+[[changes]]
+type = "update"
+key = "dx-cz-01"
+as_of = 2026-10-15
+values.coordination_unit = "Digital and Information Agency"
+reason = ""
+sources = [
+  "https://interoperable-europe.ec.europa.eu/collection/iopeu-monitoring/digital-public-administration-factsheets-2025",
+]
+
+[[changes]]
+type = "update"
+key = "dx-cz-01"
+as_of = 2026-10-15
+values.interoperability_level = "Semantic"
+reason = "Mention of semantics that explain the meaning of the data."
+sources = [
+  "https://archi.gov.cz/nap:egsb",
+]
+
+[[changes]]
+type = "update"
+key = "dx-cz-01"
+as_of = 2026-10-15
+values.permitted_participants = "Public, Private"
+reason = "Banks are able to a draw data."
+sources = [
+  "https://interoperable-europe.ec.europa.eu/collection/iopeu-monitoring/digital-public-administration-factsheets-2025",
+]

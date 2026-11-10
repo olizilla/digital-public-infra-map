@@ -1,0 +1,50 @@
+[[changes]]
+type = "update"
+key = "id-xk-01"
+as_of = 2026-09-16
+values.name = "eID Kosova (Kosova e-Wallet)"
+reason = "Pilot issuance of eID Kosova to ministry staff was completed in November 2025, supporting the updated system identification."
+sources = [
+  "https://play.google.com/store/apps/details?id=com.kosovo.wallet&hl=en_GB",
+  "https://me.rks-gov.net/en/blog/ministry-of-economy-begins-first-pilot-phase-of-electronic-identity-eid-provision/",
+]
+
+[[changes]]
+type = "update"
+key = "id-xk-01"
+as_of = 2026-09-16
+values.url = "https://ekosova.rks-gov.net/"
+reason = "Updated based on newly available evidence."
+sources = [
+  "https://ekosova.rks-gov.net/",
+]
+
+[[changes]]
+type = "update"
+key = "id-xk-01"
+as_of = 2026-09-17
+values.digital_auth = "Yes"
+reason = "Updated based on newly available evidence."
+sources = [
+  "https://me.rks-gov.net/en/blog/ministry-of-economy-begins-first-pilot-phase-of-electronic-identity-eid-provision/",
+]
+
+[[changes]]
+type = "update"
+key = "id-xk-01"
+as_of = 2026-09-16
+values.legal_status = "Yes"
+reason = "Updated based on newly available evidence."
+sources = [
+  "https://gzk.rks-gov.net/ActDetail.aspx?ActID=51618&langid=2",
+]
+
+[[changes]]
+type = "update"
+key = "id-xk-01"
+as_of = 2026-09-16
+values.regulation = "Yes"
+reason = ""
+sources = [
+  "https://gzk.rks-gov.net/ActDetail.aspx?ActID=51618&langid=2",
+]

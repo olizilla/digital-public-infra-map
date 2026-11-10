@@ -1,0 +1,242 @@
+[[changes]]
+type = "create"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.country = "Romania"
+values.name = "Plăți Instant"
+reason = "Added: Plăți Instant, the instant component of SENT, run by Transfond and live since 2019. Replaces the TIPS entry. Source: Transfond."
+sources = [
+  "https://www.platiinstant.ro/en/the-service",
+  "https://www.transfond.ro/pdf/Reguli_SENT%20v28r00.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.url = "https://www.platiinstant.ro/en/the-service"
+reason = "Transfond's instant payments service page."
+sources = [
+  "https://www.platiinstant.ro/en/the-service",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.realtime_active = "Yes"
+reason = "Runs 24/7/365; payments are credited within 10 seconds. Source: Transfond (2024; 2026)."
+sources = [
+  "https://www.transfond.ro/en/services/automated-clearing-house-sent",
+  "https://www.transfond.ro/pdf/Comunicat%20de%20presa%20Revolut%20-%20Plati%20Instant%20FINAL.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.system_type = "Interbank"
+reason = "Instant RON credit transfers between accounts at participating institutions; a few non-bank payment institutions take part, but no mobile money, card network or CBDC is connected. Source: Transfond, SENT system rules v28 (February 2026)."
+sources = [
+  "https://www.transfond.ro/en/services/automated-clearing-house-sent",
+  "https://www.transfond.ro/pdf/Raport%20Anual%20Transfond%202025%20Compressed%202.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.national_regional = "National"
+reason = "Plăți Instant is a national system."
+sources = [
+  "https://www.platiinstant.ro/en/the-service",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.status = "Implemented"
+reason = "Live since 2019, starting with four banks; 20 participants at end 2025. Sources: Transfond (November 2024); Transfond, Annual Report 2025."
+sources = [
+  "https://www.transfond.ro/en/services/automated-clearing-house-sent",
+  "https://www.transfond.ro/pdf/Raport%20Anual%20Transfond%202025%20Compressed%202.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.cross_border = "No"
+reason = "Processes payments in lei between domestic participants. Source: Transfond, SENT system rules v28 (February 2026)."
+sources = [
+  "https://www.transfond.ro/en/services/automated-clearing-house-sent",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-11-06
+values.interoperability_policy = "Yes"
+reason = "SENT rules admit payment institutions and e-money institutions as participants, and the EU Instant Payments Regulation amended the Settlement Finality Directive so that non-bank providers can join payment systems directly from 9 April 2025, with the stated aim of a level playing field with banks. Sources: Transfond, SENT system rules v28 (February 2026); Worldline (June 2025)."
+sources = [
+  "https://www.transfond.ro/pdf/Reguli_SENT%20v28r00.pdf",
+  "https://worldline.com/en/home/main-navigation/resources/blogs/2025/settlement-finality-directive-direct-access-to-payment-systems-for-non-bank-psps",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.transaction_types = "P2P, P2M, B2B"
+reason = "Instant credit transfers between individuals and businesses; RoPay mobile payments, including QR payments to merchants, run on the instant infrastructure since October 2024. Sources: Transfond; Transfond, Annual Report 2025."
+sources = [
+  "https://www.platiinstant.ro/en/the-service",
+  "https://www.transfond.ro/pdf/Raport%20Anual%20Transfond%202025%20Compressed%202.pdf",
+  "https://agerpres.ro/economic/2024/11/09/transfond-volumul-platilor-instant-a-inregistrat-o-crestere-de-aproape-93-in-romania-in-primele-zece--1384411",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.clearing_infrastructure = "ACH"
+reason = "Transfond runs SENT, Romania's automated clearing house; the instant component clears each payment in real time against reserved positions. Source: Transfond, SENT system rules v28 (February 2026)."
+sources = [
+  "https://www.transfond.ro/en/services/automated-clearing-house-sent",
+  "https://www.transfond.ro/pdf/Reguli_SENT%20v28r00.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.settlement_method = "DNS"
+reason = "Net positions from the instant component are settled in ReGIS, the National Bank of Romania's RTGS system, against guarantee funds; customers are credited immediately. Source: Transfond, SENT system rules v28 (February 2026)."
+sources = [
+  "https://www.transfond.ro/en/services/automated-clearing-house-sent",
+  "https://www.transfond.ro/servicii/sistemul-electronic-de-plati/sent",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.operator = "Bank association/Central bank"
+reason = "Transfond, which operates SENT and the instant service, is owned by the National Bank of Romania and 16 banks. Source: Transfond, shareholders page."
+sources = [
+  "https://www.transfond.ro/despre-noi/actionariat",
+  "https://www.transfond.ro/pdf/Reguli_SENT%20v28r00.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.bank_participation = "Yes"
+reason = "20 participants at end 2025, mostly banks. Source: Transfond, Annual Report 2025."
+sources = [
+  "https://www.transfond.ro/pdf/Raport%20Anual%20Transfond%202025%20Compressed%202.pdf",
+  "https://www.transfond.ro/pdf/Comunicat%20de%20presa%20Revolut%20-%20Plati%20Instant%20FINAL.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.nonbank_participation = "Yes"
+reason = "SENT rules admit payment institutions and e-money institutions; Smith&Smith became the first non-bank payment institution to offer instant payments, in November 2024. Source: Transfond, SENT system rules v28 (February 2026)."
+sources = [
+  "https://www.transfond.ro/pdf/Reguli_SENT%20v28r00.pdf",
+  "https://economedia.ro/transfond-smithsmith-prima-institutie-de-plata-nebancara-din-romania-care-face-plati-instant.html",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.participation_rules = "Yes"
+reason = "Transfond publishes the SENT system rules, with participation categories and requirements, approved with the National Bank of Romania's opinion. Source: Transfond, SENT system rules v28 (February 2026)."
+sources = [
+  "https://www.transfond.ro/pdf/Reguli_SENT%20v28r00.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.number_of_participants = "2025- 20"
+reason = "20 participants in the instant component at end 2025. Source: Transfond, Annual Report 2025."
+sources = [
+  "https://www.transfond.ro/pdf/Raport%20Anual%20Transfond%202025%20Compressed%202.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.annual_value_usd = "2025- 70.56 B"
+reason = "RON 306,337.6 million in 2025 (up about 53% on 2024), converted at the National Bank of Romania reference rate for 31 December 2025 (USD 1 = RON 4.3417). Source: Transfond, Annual Report 2025."
+sources = [
+  "https://www.transfond.ro/pdf/Raport%20Anual%20Transfond%202025%20Compressed%202.pdf",
+  "https://cursbnr.nxm.ro/data/31-12-2025",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.annual_volume = "2025- 215.6 M"
+reason = "215,561,142 instant payments in 2025, up from 138,563,309 in 2024. Source: Transfond, Annual Report 2025."
+sources = [
+  "https://www.transfond.ro/pdf/Raport%20Anual%20Transfond%202025%20Compressed%202.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.data_handling_rules = "Yes"
+reason = "SENT rules require each participant to sign a personal data processing agreement (Annex 2C) and include a personal data protection section (15.3). Source: Transfond, SENT system rules v28 (February 2026)."
+sources = [
+  "https://www.transfond.ro/pdf/Reguli_SENT%20v28r00.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.reporting_forum = "Yes"
+reason = "SENT rules admit payment institutions and e-money institutions as participants, and the EU Instant Payments Regulation amended the Settlement Finality Directive so that non-bank providers can join payment systems directly from 9 April 2025, to create a level playing field with banks. Primary source: Transfond, SENT rules v28. Secondary source: Worldline (13 Jun 2025)."
+sources = [
+  "https://www.transfond.ro/pdf/Reguli_SENT%20v28r00.pdf",
+  "https://worldline.com/en/home/main-navigation/resources/blogs/2025/settlement-finality-directive-direct-access-to-payment-systems-for-non-bank-psps",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.aml_law = "Yes"
+reason = "Law No. 129/2019 on preventing and combating money laundering and terrorist financing applies to banks and payment institutions."
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.transaction_cost = "Not Found"
+reason = "Customer fees are set by banks and are not published centrally."
+sources = [
+  "https://www.transfond.ro/pdf/Raport%20Anual%20Transfond%202025%20Compressed%202.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ro-02"
+as_of = 2026-10-15
+values.qr_code = "Yes"
+reason = "RoPay, launched in October 2024 by Transfond and the Romanian Association of Banks, runs QR and phone-number payments on the instant infrastructure. Sources: Transfond, Annual Report 2025; Agerpres (November 2024)."
+sources = [
+  "https://www.transfond.ro/pdf/Raport%20Anual%20Transfond%202025%20Compressed%202.pdf",
+  "https://agerpres.ro/economic/2024/11/09/transfond-volumul-platilor-instant-a-inregistrat-o-crestere-de-aproape-93-in-romania-in-primele-zece--1384411",
+]

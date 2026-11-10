@@ -1,0 +1,39 @@
+[[changes]]
+type = "update"
+key = "pay-id-01"
+as_of = 2026-10-15
+values.operator = "Central bank"
+reason = "BI-FAST rules define BI-FAST as Bank Indonesia's payment system infrastructure for retail payments, and name Bank Indonesia as the operator (\"Penyelenggara\")."
+sources = [
+  "https://www.bi.go.id/id/publikasi/peraturan/Documents/PADG_172023.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-id-01"
+as_of = 2026-10-15
+values.bank_participation = "Yes"
+reason = "Bank Indonesia regulation PADG 17/2023 sets out BI-FAST participation; participants are banks. Primary source: Bank Indonesia, PADG 17/2023."
+sources = [
+  "https://www.bi.go.id/id/publikasi/peraturan/Documents/PADG_172023.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-id-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "RTGS"
+reason = "Bank Indonesia describes BI-FAST as built for real-time fund transfers at both the participant level and the customer level, 24/7. Real-time at the participant level is the key point: it means banks settle with each other instantly, not just that customers are credited instantly."
+sources = [
+  "https://www.bi.go.id/id/publikasi/peraturan/Documents/PADG_172023.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-id-01"
+as_of = 2026-10-15
+values.settlement_method = "Gross"
+reason = "The regulation provides for BI-FAST settlement accounts, with liquidity moved into them through the BI-RTGS system. Under decision rule 4, individual settlement against prefunded balances is Gross."
+sources = [
+  "https://www.bi.go.id/id/publikasi/peraturan/Documents/PADG_172023.pdf",
+]

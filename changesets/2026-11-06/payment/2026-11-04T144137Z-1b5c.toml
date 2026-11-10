@@ -1,0 +1,93 @@
+[[changes]]
+type = "update"
+key = "pay-ch-01"
+as_of = 2026-10-15
+values.name = "SIC IP (Instant Payments service of the SIC system)"
+reason = "SIC5 is the name of the SIC platform generation; the instant payment service on it is SIC IP. Renamed for consistency with the Liechtenstein row. Same system, not a new row. Primary source: SNB, Report on the SIC system and Disclosure Report 2024 (Sep 2025): IP service settled gross in real time in central bank money from a separate IP settlement account, round the clock, within ten seconds; SNB is system manager; around 60 banks able to receive at end 2024; all active participants must be able to receive by end 2026; SIX media release (21 Aug 2024): launch of instant payments in Switzerland by SIX and the SNB."
+sources = [
+  "https://www.snb.ch/public/asset/en/www-snb-ch/publications/sicsystem-disclosure/sicsystem-disclosure-all/sicsystem_disclosure_2024/publications0_en/sicsystem_disclosure_2024.en.pdf",
+  "https://www.six-group.com/en/newsroom/media-releases/2024/20240821-instant-payment-six-snb.html",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ch-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "RTGS"
+reason = "Processed in SIC, the SNB's RTGS system, through its dedicated IP service. Primary source: SNB, Report on the SIC system and Disclosure Report 2024 (Sep 2025): IP service settled gross in real time in central bank money from a separate IP settlement account, round the clock, within ten seconds; SNB is system manager; around 60 banks able to receive at end 2024; all active participants must be able to receive by end 2026; SNB, Report on the SIC system and Disclosure Report 2023 (May 2024): SNB system manager, SIX Interbank Clearing operates on its behalf; participants include banks, securities firms, insurers, FMIs, licensed fintechs and cash processors."
+sources = [
+  "https://www.snb.ch/public/asset/en/www-snb-ch/publications/sicsystem-disclosure/sicsystem-disclosure-all/sicsystem_disclosure_2024/publications0_en/sicsystem_disclosure_2024.en.pdf",
+  "https://www.snb.ch/public/asset/en/www-snb-ch/publications/sicsystem-disclosure/sicsystem-disclosure-all/sicsystem_disclosure_2023/publications0_en/sicsystem_disclosure_2023.en.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ch-01"
+as_of = 2026-10-15
+values.settlement_method = "Gross"
+reason = "Each payment settled individually in real time in central bank money from a separate IP settlement account at the SNB. Primary source: SNB, Report on the SIC system and Disclosure Report 2024 (Sep 2025): IP service settled gross in real time in central bank money from a separate IP settlement account, round the clock, within ten seconds; SNB is system manager; around 60 banks able to receive at end 2024; all active participants must be able to receive by end 2026."
+sources = [
+  "https://www.snb.ch/public/asset/en/www-snb-ch/publications/sicsystem-disclosure/sicsystem-disclosure-all/sicsystem_disclosure_2024/publications0_en/sicsystem_disclosure_2024.en.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ch-01"
+as_of = 2026-10-15
+values.number_of_participants = "2025- 78"
+reason = "Previous value is the TIPS participant count. 78 participants able to receive instant payments at end 2025, of which 24 also offered sending; 310 institutions connected to SIC overall. Primary source: SIX Interbank Clearing, Annual Report 2025: 78 participants able to receive instant payments and 24 offering sending at end 2025; 310 institutions connected to SIC; IP launched August 2024 on SIC5."
+sources = [
+  "https://www.six-group.com/dam/download/banking-services/interbank-clearing/annual-reports/annual-report-2025.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ch-01"
+as_of = 2026-10-15
+values.annual_value_usd = "Not Found"
+reason = "Searched: SNB SIC reports combine IP with other retail payments; the SNB annual report 2025 (section 4.2, p. 77) may give a 2025 IP figure but could not be accessed. Primary source: SNB, Report on the SIC system and Disclosure Report 2024 (Sep 2025): IP service settled gross in real time in central bank money from a separate IP settlement account, round the clock, within ten seconds; SNB is system manager; around 60 banks able to receive at end 2024; all active participants must be able to receive by end 2026; SNB speech (10 Apr 2025): CHF 20,000 limit per transaction; receiving mandatory for all banks and fintechs with customer payments from end 2026; SNB does not set fees; prices partly still high. Check SNB annual report 2025 p. 77."
+sources = [
+  "https://www.snb.ch/public/asset/en/www-snb-ch/publications/sicsystem-disclosure/sicsystem-disclosure-all/sicsystem_disclosure_2024/publications0_en/sicsystem_disclosure_2024.en.pdf",
+  "https://www.snb.ch/public/asset/de/www-snb-ch/publications/communication/speeches/2025/ref_20250410_gpetmo/publications0/ref_20250410_gpetmo.de.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ch-01"
+as_of = 2026-10-15
+values.annual_volume = "Not Found"
+reason = "Searched: no published 2025 IP total located. About 7,100 instant payments per calendar day in 2024 after launch, per SNB annual report 2024 (via secondary source). Primary source: SNB, Report on the SIC system and Disclosure Report 2024 (Sep 2025): IP service settled gross in real time in central bank money from a separate IP settlement account, round the clock, within ten seconds; SNB is system manager; around 60 banks able to receive at end 2024; all active participants must be able to receive by end 2026. Secondary source: The Sound of Payments (Substack), citing SNB Annual Report 2024 p. 76: SIC5 averaged about 7,100 instant payments per calendar day in 2024 after launch. Check SNB annual report 2025 p. 77."
+sources = [
+  "https://www.snb.ch/public/asset/en/www-snb-ch/publications/sicsystem-disclosure/sicsystem-disclosure-all/sicsystem_disclosure_2024/publications0_en/sicsystem_disclosure_2024.en.pdf",
+  "https://jeremylight.substack.com/p/the-sound-of-payments",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ch-01"
+as_of = 2026-10-15
+values.reporting_forum = "No"
+reason = "No forum connected to SIC IP. Users complain to their bank; unresolved disputes can go to the Swiss Banking Ombudsman under general rules. Primary source: Swiss Banking Ombudsman: handles customer questions and complaints about banking and financial services, including payment transactions."
+sources = [
+  "https://www.bankingombudsman.ch/en/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ch-01"
+as_of = 2026-10-15
+values.transaction_cost = "Variable"
+reason = "Fees set by each bank; the SNB does not intervene and notes prices are partly still high. Primary source: SNB speech (10 Apr 2025): CHF 20,000 limit per transaction; receiving mandatory for all banks and fintechs with customer payments from end 2026; SNB does not set fees; prices partly still high."
+sources = [
+  "https://www.snb.ch/public/asset/de/www-snb-ch/publications/communication/speeches/2025/ref_20250410_gpetmo/publications0/ref_20250410_gpetmo.de.pdf",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ch-01"
+as_of = 2026-10-15
+values.qr_code = "No"
+reason = "Searched: no QR product specific to SIC IP found. The Swiss QR-bill is a payment slip standard for credit transfers in general. Primary source: SNB, Report on the SIC system and Disclosure Report 2024 (Sep 2025): IP service settled gross in real time in central bank money from a separate IP settlement account, round the clock, within ten seconds; SNB is system manager; around 60 banks able to receive at end 2024; all active participants must be able to receive by end 2026."
+sources = [
+  "https://www.snb.ch/public/asset/en/www-snb-ch/publications/sicsystem-disclosure/sicsystem-disclosure-all/sicsystem_disclosure_2024/publications0_en/sicsystem_disclosure_2024.en.pdf",
+]

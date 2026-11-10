@@ -1,36 +1,41 @@
 ---
 layout: ../layouts/Standard.astro
 title: 'Data'
+# the citation meta tags: the release as a dataset, from CITATION.cff and the release (src/CitationMeta.ts)
+citation:
+  type: dataset
 ---
 import DataIcon from '../components/icons/DataIcon.astro'
 import PayIcon from '../components/icons/PaymentIcon.astro'
 import IdentityIcon from '../components/icons/IdentityIcon.astro'
-export const snapshot = '2026-03-31'
+import { release } from '../Release'
+import CiteBox from '../components/CiteBox.astro'
+import { citation } from '../ReleaseFiles'
+export const snapshot = release
 
 # Data
 
-The DPI data is collected based on the [DPI conceptualisation and measurement](/methodology) framework. 
+The DPI data is collected based on the [DPI conceptualisation and measurement](/methodology) framework. Each variable pertains to a specific attribute of DPI, tracking indicators across digital ID, digital payment and data exchange systems.
 
-Each variable pertains to a specific attribute of DPI, tracking indicators across digital ID, digital payment and data exchange systems.
+[Read the Codebook](/codebook) for detailed descriptions of the variables.
 
-Read the [Codebook](/codebook) for detailed descriptions of the variables.
+<a href={`/data/latest/dpimap.xlsx`} onclick="trackDownload('dpimap-xlsx')">Download the data as a .xlsx spreadsheet file.</a> 	It has one sheet per DPI type, each system links to its dpimap page and each column to its codebook definintion. You can import it to Google Sheets or open it in open Office / Excel / Numbers.
 
-View the data in [Google Sheets][{snapshot}], or download the data as JSON:
+<div class="pt-6 pb-8 text-center"><a href={`/data/latest/dpimap.xlsx`} class="button-blue" onclick="trackDownload('dpimap-xlsx')">Download dpimap.xlsx</a></div>
 
-<div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-  <a href={`/data/${snapshot}/${snapshot}-identity.json`} class="button-blue" onclick="trackDownload('identity')"><IdentityIcon class='inline-block mr-2' /> Identity JSON </a>
-  <a href={`/data/${snapshot}/${snapshot}-payment.json`} class="button-blue" onclick="trackDownload('payment')"><PayIcon class='inline-block mr-2' /> Payment JSON </a>
-  <a href={`/data/${snapshot}/${snapshot}-exchange.json`} class="button-blue" onclick="trackDownload('exchange')"><DataIcon class='inline-block mr-2' /> Exchange JSON </a>
-</div>
+Or you can download the data as a JSON file per system type.
 
-A snapshot of the data formatted for statistical analysis is available [here](https://drive.google.com/drive/folders/1dkIhzbEs6MQoULEjDhq_GXbuwMz-2Nxe)
+- <a href={`/data/${snapshot}/${snapshot}-identity.json`} onclick="trackDownload('identity')">Identity JSON</a>
+- <a href={`/data/${snapshot}/${snapshot}-payment.json`} onclick="trackDownload('payment')">Payment JSON</a>
+- <a href={`/data/${snapshot}/${snapshot}-exchange.json`} onclick="trackDownload('exchange')">Exchange JSON</a>
 
 ## Citation
 
-<pre><code>
-{`DPI Map (${snapshot}). Institute for Innovation and Public Purpose, UCL. https://dpimap.org/data`}
-</code></pre>
+<CiteBox citation={citation} />
 
+## License
+
+The data and the codebook are licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/): you may share and adapt them for any purpose, as long as you cite the DPI Map, as above.
 
 ## Releases
 
@@ -38,7 +43,8 @@ A snapshot of the data formatted for statistical analysis is available [here](ht
 
 | Date           | Changes                                   |
 |----------------|-------------------------------------------|
-| [{snapshot}] _Current_ | **Digital ID**: Albania, Bhutan, Burundi, Cambodia, Central African Republic, Comoros, Equatorial Guinea, Eritrea, Eswatini, Gambia, Guinea-Bissau, Morocco, Namibia, Nepal, Nigeria, Peru, South Africa, Spain, Sri Lanka, Uzbekistan<br/>**Payment**: Bangladesh, Colombia, Egypt, Eswatini, India, Libya, Maldives, Morocco, Mozambique, Nepal, Pakistan, Panama, Somalia, South Sudan, Sri Lanka, Tanzania, Uruguay, Venezuela, Zambia<br/>**Data Exchange**: Azerbaijan, Andorra, Angola, Armenia, Bangladesh, Burundi, El Salvador, Guatemala, Guinea, Guyana, Haiti, Indonesia, Kyrgyzstan, Madagascar, Mali, Namibia, Nepal, Trinidad and Tobago, Turkey, Uganda.
+| {snapshot} _Current_ | 27 systems added, 25 removed, 342 updated. <br/>DPI-like countries: **Digital ID** 70 → 80, **Payment 102 → 110**, **Data exchange** 103 → 101.<br/>**Codebook:** Payment and Data exchange gain new fields. 
+| [2026-03-31] | **Digital ID**: Albania, Bhutan, Burundi, Cambodia, Central African Republic, Comoros, Equatorial Guinea, Eritrea, Eswatini, Gambia, Guinea-Bissau, Morocco, Namibia, Nepal, Nigeria, Peru, South Africa, Spain, Sri Lanka, Uzbekistan<br/>**Payment**: Bangladesh, Colombia, Egypt, Eswatini, India, Libya, Maldives, Morocco, Mozambique, Nepal, Pakistan, Panama, Somalia, South Sudan, Sri Lanka, Tanzania, Uruguay, Venezuela, Zambia<br/>**Data Exchange**: Azerbaijan, Andorra, Angola, Armenia, Bangladesh, Burundi, El Salvador, Guatemala, Guinea, Guyana, Haiti, Indonesia, Kyrgyzstan, Madagascar, Mali, Namibia, Nepal, Trinidad and Tobago, Turkey, Uganda.
 | [2026-01-15] | **Digital ID**: Saudi Arabia, Philipines, Djibouti, Brunei, Malaysia, Papua New Guinea, Nigeria <br/>**Payment**: Colombia, Djibouti, Ghana, Morocco, Philippines, Colombia <br/>**Data Exchange**: Benin, Namibia, State of Palestine, Bahamas, Argentina, Azerbaijan, Barbados, Brazil, Germany, Japan, Mexico, Montenegro, Saudi Arabia, Spain, Laos, Maldives, Tunisia, Norway, Peru, Austria
 | [2025-10-27] | Data Formatting and Record Count Correction:<br/> **Digital ID**: Lesotho, Indonesia, Kasakhstan, Greenland <br/>**Digital payments:** Moldova<br/>**Data exchange:** Guinea, Philippines, Bonaire, Sint Eustatius
 | [2025-09-30] | **Digital ID**: Tonga, Slovenia, Bosnia and Herzegovina, Zimbabwe, Democratic Republic of Congo, Angola, Benin, Malawi, Japan, Peru, Greenland, Mexico, Honduras, United Kingdom, Indonesia, Philippines, Singapore, Thailand, Mali, Mauritania, Germany, Nigeria <br/>**Digital payments:** Barbados, India, Yemen, Burkina Faso, Samoa <br/>**Data exchange:** Sri Lanka, Bosnia and Herzegovina, Bangladesh, Japan, Mexico, Peru, Yemen
@@ -50,7 +56,7 @@ A snapshot of the data formatted for statistical analysis is available [here](ht
 
 </div>
 
-[{snapshot}]: https://docs.google.com/spreadsheets/d/1nDtz40mYLPOc0WyUtjJvSY9YASe_fX0FP2fbwpcMSno
+[2026-03-31]: https://docs.google.com/spreadsheets/d/1nDtz40mYLPOc0WyUtjJvSY9YASe_fX0FP2fbwpcMSno
 [2026-01-15]: https://docs.google.com/spreadsheets/d/1AJsuUiupyJGBZH2GDx-NuhMKKZw5Gi5y9oy8CDsxyS8
 [2025-10-27]: https://docs.google.com/spreadsheets/d/168wnnvAk7N_FxAlVUR9HGwKUxMQWx53rLeaWhS90R8Y
 [2025-09-30]: https://docs.google.com/spreadsheets/d/1YlaBSGV7oBnPZBBzm4BSF6MvIzN_ueozronnjHx5sx0

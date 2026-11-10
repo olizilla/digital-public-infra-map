@@ -1,66 +1,101 @@
 ---
-import Layout from '../layouts/Standard.astro'
-import IdentityIcon from '../components/icons/IdentityIcon.astro'
-import PaymentIcon from '../components/icons/PaymentIcon.astro'
-import DataIcon from '../components/icons/DataIcon.astro'
-import CodebookDefinition from '../components/CodebookDefinition.astro'
-import codebook from '../codebook.json'
+// The codebook: its standard values, then each DPI type's variables, grouped by the methodology attribute
+// they measure, as on a system's page. Each variable is a compact version of its own page
+// (CodebookVariable.astro), keeps its anchor, like #id-claim-of-digital-id, and links to its page.
+import { getCollection } from 'astro:content'
+import Layout from '../layouts/Layout.astro'
+import TypeIcon from '../components/TypeIcon.astro'
+import CodebookValues from '../components/CodebookValues.astro'
+import CodebookVariable from '../components/CodebookVariable.astro'
+import { codebookVariableOf, variablePath, proposalUrl } from '../Codebook'
+import { variableView } from '../CodebookPage'
+import { laneTitles } from '../CountryPage'
+import { fieldsByAttribute } from '../SystemPage'
+import { nouns } from '../DpiTest'
+import { schemas, codebookNameOf, type DPIType, type Field } from '../Schema'
 
-// The codebook is a snapshot of this sheet, refresh it with `npm run codebook:pull`
-// see: https://docs.google.com/spreadsheets/d/1XywQ7War3luFLzfuvqdeH-ZH7S_b2jibYk9fOjlcRgs/
+const attributes = (await getCollection('dpiAttributes')).sort((a, b) => Number(a.id) - Number(b.id))
+const covered = (field: Field) => codebookNameOf(field) !== undefined
 
+// What each type is, as the codebook has always said it
+const intros: Record<DPIType, string> = {
+  id: 'A digital ID system can range from basic identification systems that provide digital authentication for users to more advanced systems that enable citizens to share their credentials with other institutions for a variety of purposes beyond mere self-identification. The Map focuses national or federal-level ID systems that are governed by public institutions.',
+  pay: 'A digital payment system can range from an interbank payment system to a mobile-based payment system that allows users to leverage the speed and efficiency of digital payments across domains (banks, mobile wallets). Further, any transaction that allows users (and not payment service providers) to have a settlement record within a few seconds is deemed real-time. The Map focuses on national and regional payment systems that facilitate transactions between individuals, merchants and businesses and governments.',
+  data: 'A data exchange system can range from internal platforms that facilitate data sharing within government departments to systems connecting multiple agencies and authorized third parties. These systems enable public organisations to securely and efficiently share structured data among them or with authorised entities, reducing administrative burdens and enhancing interoperability across sectors. Any system that facilitates the secure exchange of data relevant to public service delivery is considered a data exchange system. The Map focuses on national or federal-level, cross-sectoral data exchange systems that are integral to public service delivery.'
+}
+
+// Each type's variables by attribute, as on a system's page: "About the system" first, with the
+// codebook variables a system's page doesn't list, like Country / Region. The DPI count is derived, so it isn't listed.
+const types = (['id', 'pay', 'data'] as DPIType[]).map(dpiType => {
+  const byAttribute = fieldsByAttribute(dpiType)
+  const unlisted = (schemas[dpiType].fields as Field[]).filter(field => covered(field) && ![...byAttribute.values()].flat().includes(field) && field.site.kind !== 'count')
+  const groups = [{ id: 0, name: 'About the system' }, ...attributes.map(a => ({ id: Number(a.id), name: a.data.attribute }))]
+    .map(group => ({
+      ...group,
+      anchor: `${dpiType}-attribute-${group.id}`,
+      fields: [...(group.id === 0 ? unlisted : []), ...(byAttribute.get(group.id) ?? []).filter(covered)]
+    }))
+  return {
+    dpiType,
+    title: laneTitles[dpiType],
+    count: groups.flatMap(group => group.fields).length,
+    groups
+  }
+})
 ---
-<Layout title="Codebook">
-  <h1>Codebook</h1>
-  <div class="lg:flex mt-2">
-    <div class="flex-3/4 mt-0">
-      <p class="mt-0">This page defines the variables used to categorise DPI systems.
-      </p>
-      <p>Unless specified otherwise, <strong>yes/no</strong> values are used to indicate presence or absence of a <em>binary</em> variable. <strong>NA</strong> is used to indicate that data is either unavailable or insufficient.
-      </p>
-      <p><strong>Scope</strong>: System level indicators are common to all deployments in a country; sub-system level indicators are specific to one of several components that collectively serve a country's ID/payment/data exchange components
-      </p>
+<Layout title="Codebook" description="The DPI Map's codebook: the variables used to categorise digital identity, payment and data exchange systems, and what each value means.">
+  <main class="page cb-page">
+    <header class="cb-head">
+      <h1 class="page-h1">Codebook</h1>
+      <div class="cb-intro">
+        <p>This page defines the variables used to categorise DPI systems: what each one means, the values it can have, and how many systems have each value.</p>
+        <p>Each variable has its own page, with the systems behind each count and its history. To suggest a new variable or category, or a change to a definition, <a class="ul" href={proposalUrl()}>propose a change</a>.</p>
+      </div>
+    </header>
+
+    <div class="cb-grid">
+      <aside class="cb-side">
+        <nav class="side-card" aria-labelledby="cb-toc-h">
+          <h2 class="side-h" id="cb-toc-h">Contents</h2>
+          <ul class="side-body cb-toc">
+            <li><a href="#standard-values">Standard values</a></li>
+            { types.map(type => (
+              <li>
+                <a class="cb-toc-type" href={`#${type.dpiType}`}><TypeIcon dpiType={type.dpiType} class="size-4" />{type.title}</a>
+                <ul>
+                  { type.groups.filter(group => group.fields.length).map(group => <li><a href={`#${group.anchor}`}>{group.name}</a></li>) }
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </aside>
+
+      <div class="cb-main">
+        <CodebookValues />
+
+        { types.map(type => (
+          <section class="cb-type" id={type.dpiType} aria-labelledby={`${type.dpiType}-h`}>
+            <header class="cb-type-h">
+              <h2 id={`${type.dpiType}-h`}><TypeIcon dpiType={type.dpiType} class="size-6" /><span>{type.title}</span></h2>
+              <span class="cb-type-n">{type.count} variables</span>
+              <a class="cb-top" href="#top">Back to top</a>
+            </header>
+            <p class="cb-type-intro">{intros[type.dpiType]}</p>
+            { type.groups.map(group => (
+              <section class="grp cb-grp" id={group.anchor}>
+                <h3 class="divider"><span>{group.name}</span></h3>
+                { group.fields.length
+                  ? group.fields.map(field => {
+                    const view = variableView(type.dpiType, field)
+                    return <CodebookVariable view={view} href={variablePath(type.dpiType, field)} anchor={codebookVariableOf(type.dpiType, field)?.anchor} />
+                  })
+                  : <p class="grp-empty">The Map doesn’t measure an indicator for this attribute in {nouns[type.dpiType]} systems.</p> }
+              </section>
+            ))}
+          </section>
+        ))}
+      </div>
     </div>
-    <div class="flex-1/4 lg:border-l-2 border-zinc-100 lg:pl-4 lg:ml-4">
-    <h2 class="text-base mt-0">Contents</h2>
-      <nav>
-        <a class="block no-underline pt-2 text-sm" href="#id">Digital ID Systems</a>
-        <a class="block no-underline pt-2 text-sm" href="#pay">Payment Systems</a>
-        <a class="block no-underline pt-2 text-sm" href="#data">Data Exchange Systems</a>
-      </nav>
-    </div>
-  </div>
-
-  <section id="id" class="pb-20 mt-20">
-    <h2 class="sticky top-0 bg-white py-2 border-b-4 border-zinc-300">
-      <IdentityIcon class="inline-block size-8 align-top mr-1" /> Digital ID Systems
-    </h2>
-    <p>A digital ID system can range from basic identification systems that provide digital authentication for users to more advanced systems that enable citizens to share their credentials with other institutions for a variety of purposes beyond mere self-identification. The Map focuses national or federal-level ID systems that are governed by public institutions.</p>
-    <h3 class="text-base">Variables <span class="font-normal text-zinc-500">({codebook.id.length})</span></h3>
-    {codebook.id.map(variable => (
-      <CodebookDefinition variable={variable} />
-    ))}  
-  </section>
-
-  <section id="pay" class="mt-20 pb-20">
-    <h2 class="sticky top-0 bg-white py-2 border-b-4 border-zinc-300">
-      <PaymentIcon class="inline-block size-8 align-top mr-1" /> Payment Systems
-    </h2>
-    <p>A digital payment system can range from an interbank payment system to a mobile-based payment system that allows users to leverage the speed and efficiency of digital payments across domains (banks, mobile wallets). Further, any transaction that allows users (and not payment service providers) to have a settlement record within a few seconds is deemed real-time. The Map focuses on national and regional payment systems that facilitate transactions between individuals, merchants and businesses and governments.</p>
-    <h3 class="text-base">Variables <span class="font-normal text-zinc-500">({codebook.pay.length})</span></h3>
-    {codebook.pay.map(variable => (
-      <CodebookDefinition variable={variable} />
-    ))}  
-  </section>
-
-  <section id="data" class="mt-20">
-    <h2 class="sticky top-0 bg-white py-2 border-b-4 border-zinc-300">
-      <DataIcon class="inline-block size-8 align-top mr-1" /> Data Exchange Systems
-    </h2>
-    <p>A data exchange system can range from internal platforms that facilitate data sharing within government departments to systems connecting multiple agencies and authorized third parties. These systems enable public organisations to securely and efficiently share structured data among them or with authorised entities, reducing administrative burdens and enhancing interoperability across sectors. Any system that facilitates the secure exchange of data relevant to public service delivery is considered a data exchange system. The Map focuses on national or federal-level, cross-sectoral data exchange systems that are integral to public service delivery.</p>
-    <h3 class="text-base">Variables <span class="font-normal text-zinc-500">({codebook.data.length})</span></h3>
-    {codebook.data.map(variable => (
-      <CodebookDefinition variable={variable} />
-    ))}  
-  </section>
+  </main>
 </Layout>

@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "If you use the DPI Map data, please cite it as below."
+type: dataset
+title: "DPI Map: Digital Public Infrastructure Map"
+abstract: >-
+  Data on national-scale digital public infrastructure (DPI) around the world,
+  collected by researchers at the UCL Institute for Innovation and Public Purpose:
+  digital identity, payment and data exchange systems, by country or region,
+  with the evidence and history behind each value.
+authors:
+  - name: "UCL Institute for Innovation and Public Purpose"
+    website: "https://www.ucl.ac.uk/bartlett/public-purpose/"
+version: "2026-11-06"
+date-released: "2026-11-06"
+license: CC-BY-4.0
+url: "https://dpimap.org"
+repository-code: "https://github.com/olizilla/digital-public-infra-map"
+repository-artifact: "https://dpimap.org/data/"
+keywords:
+  - digital public infrastructure
+  - DPI
+  - digital identity
+  - digital payments
+  - data exchange
+preferred-citation:
+  type: data
+  title: "DPI Map"
+  authors:
+    - name: "UCL Institute for Innovation and Public Purpose"
+  version: "2026-11-06"
+  date-released: "2026-11-06"
+  url: "https://dpimap.org/data"
+  license: CC-BY-4.0

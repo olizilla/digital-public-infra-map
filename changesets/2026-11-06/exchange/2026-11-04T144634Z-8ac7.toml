@@ -1,0 +1,5 @@
+[[changes]]
+type = "remove"
+key = "dx-ba-01"
+as_of = 2026-10-15
+reason = "Delete row and associated fields"

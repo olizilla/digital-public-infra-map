@@ -1,0 +1,19 @@
+[[changes]]
+type = "update"
+key = "pay-ae-01"
+as_of = 2026-10-15
+values.clearing_infrastructure = "RTGS"
+reason = "New field. Operated by Al Etihad Payments, a CBUAE subsidiary; each transaction settles in real time against prefunded amounts. Sources: Al Etihad Payments (operator): real-time gross settlement of every transaction against prefunded amounts (Primary)."
+sources = [
+  "https://aep.ae/en/news-media/insights/aani-instant-payments-platform-redefining-uaes-financial-landscape/",
+]
+
+[[changes]]
+type = "update"
+key = "pay-ae-01"
+as_of = 2026-10-15
+values.settlement_method = "Gross"
+reason = "New field. Real-time gross settlement of every transaction against prefunded balances. Sources: Al Etihad Payments (operator): real-time gross settlement of every transaction against prefunded amounts (Primary)."
+sources = [
+  "https://aep.ae/en/news-media/insights/aani-instant-payments-platform-redefining-uaes-financial-landscape/",
+]

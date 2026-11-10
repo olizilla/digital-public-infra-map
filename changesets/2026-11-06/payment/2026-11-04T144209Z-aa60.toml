@@ -1,0 +1,8 @@
+[[changes]]
+type = "remove"
+key = "pay-pl-01"
+as_of = 2026-10-15
+reason = "Not part of TIPS. Only Euro, Danish Krone, and Swedish Krona covered."
+sources = [
+  "https://www.ecb.europa.eu/paym/target/tips/facts/html/index.en.html",
+]
