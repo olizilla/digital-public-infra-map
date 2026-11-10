@@ -12,6 +12,7 @@ import Footer from '../components/Footer.astro'
 import Status from '../components/Status.astro'
 import TypeIcon from '../components/TypeIcon.astro'
 import CountryHeader from '../components/CountryHeader.astro'
+import SourceAndCite from '../components/SourceAndCite.astro'
 import SystemCard from '../components/SystemCard.astro'
 import DpiTestList from '../components/DpiTestList.astro'
 import FieldRow from '../components/FieldRow.astro'
@@ -110,26 +111,7 @@ const siblings = systems
       </aside>
     </div>
 
-    <section class="about">
-      <div>
-        <h2 class="about-h">Where this data comes from</h2>
-        <p>Desk research of public sources: government websites, laws, press releases, and reports from bodies like the World Bank and UN, plus validated submissions from country implementers.</p>
-      </div>
-      <div>
-        <h2 class="about-h">What NA and Not Found mean</h2>
-        <p>NA: no answer, not researched yet. Not Found: insufficient information, including where the system is not yet live. If you know, <a href="/contribute/">propose an update</a> with a source.</p>
-      </div>
-      <div>
-        <h2 class="about-h">How this record changes</h2>
-        { fromSnapshot
-          ? <p>It started as the {snapshotDate} dataset snapshot. Every change since is listed in the change log.</p>
-          : <p>It was added after the {snapshotDate} dataset snapshot. Every change, including adding it, is listed in the change log.</p> }
-      </div>
-    </section>
-    <section class="cite-row" id="cite">
-      <h2 class="about-h">Cite this page</h2>
-      <p class="cite-text">{citation.text}</p>
-    </section>
+    <SourceAndCite citation={citation.text} />
   </main>
   <Footer />
 </Layout>
