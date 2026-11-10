@@ -83,7 +83,7 @@ sources = [
 type = "update"
 key = "dx-ba-02"
 as_of = 2026-10-15
-values.number_of_transactions = "No"
+values.number_of_transactions = "Not Found"
 reason = "Data has not been released"
 
 [[changes]]
