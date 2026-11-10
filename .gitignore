@@ -1,7 +1,7 @@
 # build output
 dist/
 
-# generated reports: scripts/data-build.ts and scripts/import/ write them on every run
+# generated reports: scripts/data-build.ts writes them on every run
 reports/
 
 # generated types
