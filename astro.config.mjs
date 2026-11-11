@@ -38,7 +38,7 @@ export default defineConfig({
       // changelog, /changes/<date>/…, is fixed, so it's in.
       filter: (page) => {
         const { pathname } = new URL(page)
-        return !/\/(edit|pay-diff|pay-test)(\/|$)/.test(pathname) && !/^\/changes\/(?![0-9]{4}-[0-9]{2}-[0-9]{2}\/)/.test(pathname)
+        return !/\/(edit|pay-diff|pay-test|share-previews)(\/|$)/.test(pathname) && !/^\/changes\/(?![0-9]{4}-[0-9]{2}-[0-9]{2}\/)/.test(pathname)
       }
     })
   ],

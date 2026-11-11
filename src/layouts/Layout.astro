@@ -7,7 +7,9 @@ import type { MetaTag } from '../CitationMeta'
 // `fullTitle` replaces the whole title, for pages that name the site their own way.
 // `description` is the page's own, where it has one. `citation` is the page's citation meta tags,
 // for Zotero and other reference managers (src/CitationMeta.ts). `noindex` keeps the page out of
-// search engines, as for the pending changes (D81).
+// search engines, as for the pending changes (D81). `shareTitle` and `shareDescription` replace the
+// title and description in the link preview only (Open Graph and Twitter), as the homepage does: its
+// page is the digital ID map, but a shared link to it stands for the whole site.
 const {title} = Astro.props
 const fullTitle = Astro.props.fullTitle ?? (title ? `${title} - DPI Map` : 'Digital Public Infrastructure Map - UCL IIPP')
 const desc: string = Astro.props.description || 'The first global investigation of digital public infrastructure.'
@@ -15,6 +17,8 @@ const citation: MetaTag[] = Astro.props.citation ?? []
 const pageUrl = Astro.url
 const rootUrl = Astro.site
 const imgUrl = new URL('/map/preview.png', rootUrl)
+const shareTitle: string = Astro.props.shareTitle ?? fullTitle
+const shareDescription: string = Astro.props.shareDescription ?? desc
 ---
 
 <!doctype html>
@@ -32,13 +36,13 @@ const imgUrl = new URL('/map/preview.png', rootUrl)
 		<meta property="og:site_name" content={dataset.title} />
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content={pageUrl} />
-		<meta property="og:title" content={fullTitle} />
-		<meta property="og:description" content={desc} />
+		<meta property="og:title" content={shareTitle} />
+		<meta property="og:description" content={shareDescription} />
 		<meta property="og:image" content={imgUrl} />
 		<meta property="twitter:card" content="summary_large_image" />
 		<meta property="twitter:url" content={pageUrl} />
-		<meta property="twitter:title" content={fullTitle} />
-		<meta property="twitter:description" content={desc} />
+		<meta property="twitter:title" content={shareTitle} />
+		<meta property="twitter:description" content={shareDescription} />
 		<meta property="twitter:image" content={imgUrl} />
 		{ citation.some(meta => meta.name.startsWith('DC.')) && <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" /> }
 		{ citation.map(meta => <meta name={meta.name} content={meta.content} />) }

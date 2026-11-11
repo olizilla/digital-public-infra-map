@@ -123,6 +123,14 @@ export const systemDescription = ({ title, noun, country, dpiStatus }: { title: 
 export const mapDescription = ({ title, countries, dpiLike }: { title: string, countries: number, dpiLike: number }) =>
   `${title} in ${countries} countries researched: ${dpiLike} DPI-like. ${releaseNote}`
 
+/**
+ * The homepage's link preview: the whole map, not the digital ID map the page shows, so a shared link
+ * to the site doesn't read as digital ID alone. Each type's DPI-like countries, as the map pages count them,
+ * in under 160 characters, about what a card shows before cutting it off.
+ */
+export const siteShareDescription = (dpiLike: { id: number, pay: number, data: number }) =>
+  `DPI-like systems in ${dpiLike.id} countries for digital ID, ${dpiLike.pay} for payments and ${dpiLike.data} for data exchange. Researched by UCL IIPP. ${releaseNote}`
+
 /** A country page's description: its summary sentence (src/CountryPage.ts), as text, and the release */
 export const countryDescription = (summaryHtml: string) =>
   `${summaryHtml.replace(/<[^>]+>/g, '').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&')} ${releaseNote}`

@@ -1,0 +1,138 @@
+---
+// /share-previews/: how a shared link to each page previews, for checking the Open Graph and Twitter
+// tags (src/layouts/Layout.astro) on production or a PR preview. Unlisted: not linked, not indexed,
+// not in the sitemap (astro.config.mjs). It fetches each page from the same site in the browser and
+// reads the tags the page really serves, so it shows what was deployed, redirects followed.
+import Layout from '../layouts/Layout.astro'
+import { systems } from '../Systems'
+import { release } from '../ReleaseFiles'
+
+// a page of each kind, and the newest posts; any other path can be typed in
+const firstSystem = systems.find(system => system.id === 'pay-ke-01') ?? systems[0]
+const paths = [
+  '/', '/digital-payment/', '/data-exchange/',
+  '/kenya/', `/${firstSystem.id}/`,
+  '/data/', '/codebook/', '/codebook/payment/status/',
+  '/changes/', `/changes/${release}/digital-payment/`,
+  '/blog/', '/blog/newsletter-nov-2026/', '/methodology/', '/about/',
+]
+---
+<Layout title="Share previews" noindex>
+  <main class="page max-w-5xl mx-auto px-4 py-8 grid gap-6">
+    <header class="grid gap-2">
+      <h1 class="text-2xl font-semibold text-zinc-900">Share previews</h1>
+      <p class="text-zinc-600 max-w-prose">How a link to each page previews when shared, from the tags the page serves on this site. Cards are typical shapes, not each platform's exact rendering: large (Slack, Facebook, Bluesky), title only (LinkedIn, iMessage) and image only (X).</p>
+      <form id="sp-form" class="flex gap-2 max-w-md">
+        <label class="sr-only" for="sp-path">Path</label>
+        <input id="sp-path" name="path" placeholder="/belarus/" class="flex-1 min-w-0 border border-zinc-300 rounded-md px-3 py-2 text-sm" />
+        <button class="button-blue" type="submit">Add</button>
+      </form>
+    </header>
+    <div id="sp-list" class="grid gap-8" data-paths={JSON.stringify(paths)}></div>
+  </main>
+</Layout>
+
+<script>
+  // A description longer than this is usually cut after about two lines; a title longer than this, after one
+  const DESCRIPTION_MAX = 160
+  const TITLE_MAX = 70
+
+  const list = document.getElementById('sp-list')!
+  const escape = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+
+  /** The page's share tags, as served, after redirects */
+  async function tagsOf (path: string) {
+    const res = await fetch(path, { redirect: 'follow' })
+    const doc = new DOMParser().parseFromString(await res.text(), 'text/html')
+    const meta = (key: string) => doc.querySelector(`meta[property="${key}"], meta[name="${key}"]`)?.getAttribute('content') ?? ''
+    return {
+      status: res.status,
+      url: res.url,
+      title: meta('og:title'),
+      description: meta('og:description'),
+      image: meta('og:image'),
+      ogUrl: meta('og:url'),
+      twitterTitle: meta('twitter:title'),
+      twitterDescription: meta('twitter:description'),
+      twitterImage: meta('twitter:image'),
+      robots: meta('robots'),
+    }
+  }
+
+  /** What would make the preview look wrong */
+  function problems (t: Awaited<ReturnType<typeof tagsOf>>) {
+    const out: string[] = []
+    if (t.status !== 200) out.push(`HTTP ${t.status}`)
+    if (!t.title) out.push('no og:title')
+    if (!t.description) out.push('no og:description')
+    if (!t.image) out.push('no og:image')
+    else if (!/^https?:\/\//.test(t.image)) out.push('og:image is not an absolute URL')
+    if (t.title.length > TITLE_MAX) out.push(`title is ${t.title.length} characters, likely cut after ${TITLE_MAX}`)
+    if (t.description.length > DESCRIPTION_MAX) out.push(`description is ${t.description.length} characters, likely cut after about ${DESCRIPTION_MAX}`)
+    if (t.twitterTitle && t.twitterTitle !== t.title) out.push('twitter:title differs from og:title')
+    if (t.twitterDescription && t.twitterDescription !== t.description) out.push('twitter:description differs from og:description')
+    if (t.robots.includes('noindex')) out.push('noindex: search engines skip it')
+    return out
+  }
+
+  function render (path: string, t: Awaited<ReturnType<typeof tagsOf>>) {
+    const domain = new URL(t.ogUrl || t.url).host
+    const img = t.image ? `<img src="${escape(t.image)}" alt="" class="block w-full aspect-[1200/630] object-cover bg-zinc-100 border-b border-zinc-200" />` : '<div class="aspect-[1200/630] bg-zinc-100 border-b border-zinc-200"></div>'
+    const issues = problems(t)
+    const section = document.createElement('section')
+    section.className = 'grid gap-3'
+    section.innerHTML = `
+      <h2 class="text-base font-semibold text-zinc-900"><a class="ul" href="${escape(path)}">${escape(path)}</a>${t.url.endsWith(path) ? '' : ` <span class="font-normal text-zinc-500">→ ${escape(new URL(t.url).pathname)}</span>`}</h2>
+      <div class="grid gap-4 md:grid-cols-[minmax(0,26rem)_minmax(0,1fr)] items-start">
+        <article class="bg-white border border-zinc-200 rounded-xl overflow-hidden">
+          ${img}
+          <div class="grid gap-0.5 px-3.5 py-3">
+            <span class="text-xs text-zinc-500">${escape(domain)}</span>
+            <span class="font-semibold text-zinc-900">${escape(t.title)}</span>
+            <span class="text-sm text-zinc-600 line-clamp-2">${escape(t.description)}</span>
+          </div>
+        </article>
+        <div class="grid gap-3 min-w-0">
+          <div class="flex gap-3 items-center bg-white border border-zinc-200 rounded-lg p-2 max-w-md">
+            ${t.image ? `<img src="${escape(t.image)}" alt="" class="w-20 aspect-square object-cover rounded" />` : ''}
+            <div class="grid min-w-0"><span class="text-sm font-semibold text-zinc-900 truncate">${escape(t.title)}</span><span class="text-xs text-zinc-500">${escape(domain)}</span></div>
+          </div>
+          <div class="relative max-w-xs rounded-xl overflow-hidden border border-zinc-200">
+            ${img}
+            <span class="absolute left-2 bottom-2 text-xs text-white bg-black/60 rounded px-1.5 py-0.5">${escape(domain)}</span>
+          </div>
+          ${issues.length ? `<ul class="text-sm text-red-700 list-disc pl-5">${issues.map(i => `<li>${escape(i)}</li>`).join('')}</ul>` : '<p class="text-sm text-green-700">No problems found.</p>'}
+          <details class="text-xs text-zinc-600"><summary class="cursor-pointer">Tags</summary>
+            <dl class="grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 gap-y-1 mt-2">
+              ${(['title', 'description', 'image', 'ogUrl', 'twitterTitle', 'twitterDescription', 'twitterImage'] as const).map(k => `<dt class="text-zinc-500">${k}</dt><dd class="break-words">${escape(t[k] || '(none)')}</dd>`).join('')}
+            </dl>
+          </details>
+        </div>
+      </div>`
+    return section
+  }
+
+  async function add (path: string) {
+    const placeholder = document.createElement('p')
+    placeholder.className = 'text-sm text-zinc-500'
+    placeholder.textContent = `Loading ${path}…`
+    list.append(placeholder)
+    try {
+      placeholder.replaceWith(render(path, await tagsOf(path)))
+    } catch (err) {
+      placeholder.textContent = `${path}: couldn't load it (${err instanceof Error ? err.message : err})`
+    }
+  }
+
+  for (const path of JSON.parse(list.dataset.paths!) as string[]) add(path)
+
+  document.getElementById('sp-form')!.addEventListener('submit', event => {
+    event.preventDefault()
+    const input = document.getElementById('sp-path') as HTMLInputElement
+    let path = input.value.trim()
+    if (!path) return
+    if (!path.startsWith('/')) path = `/${path}`
+    add(path)
+    input.value = ''
+  })
+</script>
