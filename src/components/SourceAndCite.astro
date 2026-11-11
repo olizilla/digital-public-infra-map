@@ -7,13 +7,13 @@ interface Props {
 }
 const { citation } = Astro.props
 ---
-<section class="grid min-[901px]:grid-cols-2 gap-6 mt-6 pt-5 border-t border-zinc-200 text-sm leading-[22px] text-zinc-600">
+<section class="grid wide:grid-cols-2 gap-6 mt-6 pt-5 border-t border-zinc-200 text-sm leading-5.5 text-zinc-600">
 	<div>
 		<h2 class="mb-1 font-semibold leading-5 text-zinc-700">Where this data comes from</h2>
 		<p>Desk research of public sources: government websites, laws, press releases, and reports from bodies like the World Bank and UN, plus validated submissions from country implementers.</p>
 	</div>
 	<div id="cite">
 		<h2 class="mb-1 font-semibold leading-5 text-zinc-700">Cite this page</h2>
-		<p class="font-mono text-xs leading-[18px]">{citation}</p>
+		<p class="font-mono text-xs leading-4.5">{citation}</p>
 	</div>
 </section>

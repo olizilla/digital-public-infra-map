@@ -4,8 +4,6 @@ title: 'Session 2: Measuring DPI Interoperability'
 date: 2025-06-16
 ---
 
-# Session 2: Measuring DPI Interoperability
-
 _Measuring What Matters: Insights on DPI Interoperability from Global Experts_
 
 **Key Takeaways**

@@ -3,7 +3,7 @@
 // in full, with how many systems in the current release have each value and which they are, then where it
 // sits in the methodology and its history.
 import Layout from '../../../layouts/Layout.astro'
-import TypeIcon from '../../../components/TypeIcon.astro'
+import Footer from '../../../components/Footer.astro'
 import CodebookVariable from '../../../components/CodebookVariable.astro'
 import { dpiTypes } from '../../../Systems'
 import { schemas, resourceNames, typeLabels, type DPIType, type Field } from '../../../Schema'
@@ -33,10 +33,8 @@ const history = historyOf(dpiType, field)
 
 <Layout title={`${field.title} - ${typeLabels[dpiType]} codebook`} description={description}>
   <main class="page cb-page">
-    <p class="page-crumbs cb-crumbs"><a href="/codebook/">Codebook</a><span class="sep" aria-hidden="true">›</span><a href={`/codebook/#${dpiType}`}><TypeIcon dpiType={dpiType} class="size-4" />{laneTitles[dpiType]}</a></p>
-
     <div class="cb-solo">
-      <CodebookVariable view={view} full />
+      <CodebookVariable view={view} full crumbs={[{ label: 'Codebook', href: '/codebook/' }, { label: laneTitles[dpiType], href: `/codebook/#${dpiType}`, icon: dpiType }]} />
 
       <section class="cb-sec" id="methodology">
         <h2 class="cb-h2">In the methodology</h2>
@@ -90,4 +88,5 @@ const history = historyOf(dpiType, field)
       </section>
     </div>
   </main>
+  <Footer />
 </Layout>

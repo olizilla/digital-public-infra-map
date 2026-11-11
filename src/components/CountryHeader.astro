@@ -1,37 +1,33 @@
 ---
 // A country page's header, shared by the country page and its systems' pages so that clicking
-// from one to the other moves nothing: the breadcrumb, the country's name, its summary sentence,
-// the links, and the locator map. On a system's page the breadcrumb ends with the system's DPI
-// type, and the country's name looks the same but isn't the page's h1: the system's name is.
-// Styled by .page-* in src/styles/global.css.
+// from one to the other moves nothing: the country's name, its summary sentence, the links, and the
+// locator map. A system's page has a breadcrumb, its country and its DPI type, and the country's name
+// looks the same but isn't the page's h1: the system's name is. A place page has none: the name is
+// right under it.
+// The text is a PageHeader; the grid and the map are styled by .page-head in src/styles/global.css.
 import LocatorMap from './LocatorMap.astro'
+import PageHeader from './PageHeader.astro'
 import { lanesOf, summaryOf } from '../CountryPage'
 
 interface Props {
 	country: string
 	/** the country page's path, to link the country in a system page's breadcrumb */
 	countryHref?: string
-	/** on a system's page, the breadcrumb's last step: the system's DPI type */
+	/** on a system's page, the breadcrumb's last step: the system's DPI type. A place page has no breadcrumb */
 	step?: string
 }
 const { country, countryHref, step } = Astro.props
 const summary = summaryOf(country, lanesOf(country))
 const Name = step === undefined ? 'h1' : 'p'
+const crumbs = step === undefined ? [] : [{ label: country, href: countryHref }, { label: step }]
 ---
 <!-- on desktop, the same three columns as the lanes below, so the map lines up with the third column -->
 <section class="page-head">
-	<div class="page-head-text">
-		<!-- on a place page, phones leave out the breadcrumb: the map link is in the site header -->
-		<nav class:list={['page-crumbs', { 'max-sm:hidden': step === undefined }]} aria-label="Breadcrumb"><a href="/">Map</a> › { step === undefined
-			? country
-			: <Fragment>{ countryHref ? <a href={countryHref}>{country}</a> : country } › {step}</Fragment> }</nav>
-		<Name class="page-title page-h1">{ step !== undefined && countryHref ? <a href={countryHref}>{country}</a> : country }</Name>
-		<p class="page-summary" set:html={summary} />
-		<p class="page-links">
-			<a href="/methodology/">How we count DPI-like systems</a> ·
-			<a href="#cite">Cite this page</a>
-		</p>
-	</div>
+	<PageHeader as="div" class="page-head-text" titleAs={Name} crumbs={crumbs}>
+		<Fragment slot="title">{ step !== undefined && countryHref ? <a href={countryHref}>{country}</a> : country }</Fragment>
+		<Fragment slot="lede" set:html={summary} />
+		<Fragment slot="links"><a href="/methodology/">How we count DPI-like systems</a> · <a href="#cite">Cite this page</a></Fragment>
+	</PageHeader>
 	<!-- on mobile the map comes first, where the homepage map is, so scrolling past it doesn't tap its links.
 	     It stays after the text in the source, so keyboard and screen reader users reach the heading before the map's links -->
 	<LocatorMap country={country} class="page-map" />

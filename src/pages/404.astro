@@ -2,14 +2,6 @@
 import Layout from '../layouts/Standard.astro'
 ---
 
-<Layout bodyClass="bg-zinc-200 h-screen">
-  <div class="flex flex-col items-center justify-center h-[600px]">
-    <div class="card bg-white text-center">
-      <div class="p-8">
-        <h1>404</h1>
-      <p class="pb-4">That page was not found</p>
-      <div class="text-center py-4"><a href="/" class="button-blue">Back to the map</a></div>
-      </div>
-    </div>
-  </div>
+<Layout heading="404" lede="That page was not found">
+  <div class="button-row"><a href="/" class="button-blue">Back to the map</a></div>
 </Layout>

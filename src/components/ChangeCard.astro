@@ -27,7 +27,7 @@ const href = removed ? undefined : pageOf(id)
         { removed && <span class="chg-gone">Removed</span> }
         <span class="chg-status">{ removed
           ? <Status status={before} title="DPI status before" />
-          : <Fragment>{ statusChanged && <Fragment><Status status={before} title="DPI status before" /><span class="arr">→</span></Fragment> }<Status status={after} title="DPI status" /></Fragment> }</span>
+          : <Fragment>{ statusChanged && <Fragment><Status status={before} title="DPI status before" class="is-old" /><span class="arr">→</span></Fragment> }<Status status={after} title="DPI status" /></Fragment> }</span>
       </div>
       <h3 class:list={['sys-title', { unnamed: !named }]} title={title}>{ href ? <a href={href}>{title}</a> : title }</h3>
     </div>

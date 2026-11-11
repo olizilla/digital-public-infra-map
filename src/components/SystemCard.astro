@@ -55,22 +55,22 @@ const Title = full ? 'h1' : 'h3'
     </div>
   </header>
   { full ? <slot /> : <Fragment>
-  <div class="flex flex-col px-4 max-[900px]:px-3.5 py-3 bg-white border-b border-zinc-200">
-    <span class="block pb-2 text-xs font-semibold text-zinc-600">DPI test</span>
+  <div class="flex flex-col px-4 narrow:px-3.5 py-3 bg-white border-b border-zinc-200">
+    <span class="test-label">DPI test</span>
     <DpiTestList dpiType={dpiType} record={record} />
   </div>
-  <div class="sys-body px-4 max-[900px]:px-3.5 pt-1 pb-2 has-[details:not([open])]:pb-0">
+  <div class="sys-body px-4 narrow:px-3.5 pt-1 pb-2 has-[details:not([open])]:pb-0">
     { collapsed
       ? <details class="more group">
-          <summary class="py-3 group-open:pb-0 text-[13px] leading-5 font-medium text-zinc-600">All {count} fields</summary>
+          <summary class="py-3 group-open:pb-0 text-ui leading-5 font-medium text-zinc-600">All {count} fields</summary>
           <SystemFields dpiType={dpiType} record={record} />
         </details>
       : <SystemFields dpiType={dpiType} record={record} />
     }
   </div>
-  <footer class="sys-foot flex items-center gap-2.5 mt-2 px-4 max-[900px]:px-3.5 py-2.5 bg-white border-t border-zinc-200 rounded-b-lg text-xs leading-5 text-zinc-500">
+  <footer class="sys-foot fields-foot mt-2">
     <span>Updated {monthYear(updated)}</span>
-    <a class="ml-auto font-semibold text-zinc-700 hover:text-blue-500" href="/contribute/">Propose an update</a>
+    <a href="/contribute/">Propose an update</a>
   </footer>
   </Fragment> }
 </article>

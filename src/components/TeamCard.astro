@@ -1,17 +1,12 @@
 ---
+// A person on the About page: their photo, name and role, linking to their profile. A card, as the site's cards are.
 const { name, link, imgSrc, imgAlt = `Photo of ${name}` } = Astro.props
 ---
 
-<figure class="bg-zinc-50 border border-zinc-100">
-  <a href={link} class="block m-0 not-prose border-b border-zinc-200">
-    <img src={imgSrc} alt={imgAlt} class="m-0"/>
-  </a>
-  <figcaption class="px-4 lg:px-3">
-    <h3 class="mt-0 -mb-2">
-      <a href={link} class="no-underline hover:underline">{name}</a>
-    </h3>
-    <div class="text-sm text-zinc-600 min-h-4">
-    	<slot/>
-    </div>
+<figure class="team-card">
+  <a href={link}><img src={imgSrc} alt={imgAlt} /></a>
+  <figcaption>
+    <h3><a href={link}>{name}</a></h3>
+    <div class="team-card-role"><slot/></div>
   </figcaption>
 </figure>

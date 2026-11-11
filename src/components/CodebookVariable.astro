@@ -7,9 +7,11 @@
 // (src/pages/codebook/[resource]/[field].astro) shows it `full`: every value with its count, a bar
 // and the systems that have it. Styled by .cb-* in src/styles/global.css.
 import { systemHref } from '../Systems'
+import type { DPIType } from '../Schema'
 import { kindLabel, scopeLabel, NOT_FOUND, type ValueRow, type VariableView } from '../CodebookPage'
 import { attributeHref } from '../Methodology'
 import YesNo from './YesNo.astro'
+import PageHeader from './PageHeader.astro'
 
 interface Props {
   view: VariableView
@@ -18,8 +20,10 @@ interface Props {
   /** the index entry's anchor, like `id-claim-of-digital-id` */
   anchor?: string
   full?: boolean
+  /** the variable's page: its breadcrumb */
+  crumbs?: { label: string, href?: string, icon?: DPIType }[]
 }
-const { view, href, anchor, full = false } = Astro.props
+const { view, href, anchor, full = false, crumbs } = Astro.props
 const { field, variable, description, kind, rows, total, noun } = view
 
 const meta = [
@@ -43,9 +47,13 @@ const tableRows = kind === 'text' ? [] : written
 ---
 <article class:list={['cb-var', { 'is-full': full }]} id={anchor}>
   { full
-    ? <h1 class="cb-title">{field.title}</h1>
-    : <h4 class="cb-name"><a href={href}>{field.title}</a></h4> }
-  <p class="cb-meta">{ meta.map((part, i) => <Fragment>{i > 0 && <span class="sep" aria-hidden="true">·</span>}<span>{part}</span></Fragment>) }{ measures.map(indicator => <Fragment><span class="sep" aria-hidden="true">·</span><span>Indicator {indicator.number} of <a class="cb-meta-l" href={attributeHref(indicator.attribute!.name)}>{indicator.attribute!.name}</a></span></Fragment>) }</p>
+    ? <PageHeader crumbs={crumbs} title={field.title}>
+        <Fragment slot="meta">{ meta.map((part, i) => <Fragment>{i > 0 && <span class="sep" aria-hidden="true">·</span>}<span>{part}</span></Fragment>) }{ measures.map(indicator => <Fragment><span class="sep" aria-hidden="true">·</span><span>Indicator {indicator.number} of <a class="cb-meta-l" href={attributeHref(indicator.attribute!.name)}>{indicator.attribute!.name}</a></span></Fragment>) }</Fragment>
+      </PageHeader>
+    : <Fragment>
+        <h4 class="cb-name"><a href={href}>{field.title}</a></h4>
+        <p class="cb-meta">{ meta.map((part, i) => <Fragment>{i > 0 && <span class="sep" aria-hidden="true">·</span>}<span>{part}</span></Fragment>) }{ measures.map(indicator => <Fragment><span class="sep" aria-hidden="true">·</span><span>Indicator {indicator.number} of <a class="cb-meta-l" href={attributeHref(indicator.attribute!.name)}>{indicator.attribute!.name}</a></span></Fragment>) }</p>
+      </Fragment> }
   { description
     ? <p class="cb-def">{description}</p>
     : <p class="cb-def is-none">No definition recorded yet.</p> }

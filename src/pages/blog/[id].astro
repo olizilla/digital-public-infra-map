@@ -43,7 +43,7 @@ const recordLabel = d.urlLabel ?? d.publisher ?? 'the source'
 ---
 
 <Layout title={d.title} description={description} citation={meta}>
-  <article class="paper pt-4 md:pt-10 pb-10 max-w-2xl mx-auto px-3 md:px-0">
+  <article class="paper pt-4 md:pt-10 pb-10 max-w-2xl mx-auto px-4 md:px-0">
     <header class="post-head">
       <nav class="page-crumbs" aria-label="Breadcrumb"><a href="/blog/">Insights</a></nav>
       <h1 class="page-title page-h1">{d.title}</h1>
@@ -65,14 +65,14 @@ const recordLabel = d.urlLabel ?? d.publisher ?? 'the source'
       ? (
         <section class="paper-section" aria-labelledby="abstract">
           <h2 id="abstract">Abstract</h2>
-          <div class="prose prose-zinc max-w-none"><Content /></div>
+          <div class="prose"><Content /></div>
           { d.licence && <p class="paper-licence">Abstract from {recordLabel}, shared under {d.licence}.</p> }
         </section>
       )
       : d.description && (
         <section class="paper-section" aria-labelledby="summary">
           <h2 id="summary">Summary</h2>
-          <div class="prose prose-zinc max-w-none"><p>{d.description}</p></div>
+          <div class="prose"><p>{d.description}</p></div>
         </section>
       )}
 

@@ -8,8 +8,9 @@ import Layout from '../layouts/Layout.astro'
 import Footer from './Footer.astro'
 import TypeIcon from './TypeIcon.astro'
 import ChangesNav from './ChangesNav.astro'
+import PageHeader from './PageHeader.astro'
 import { dpiTypes } from '../Systems'
-import { changelog, changelogHref, codebookSummary, changesHref, changeTitles, dateOf, n, pending, releaseChangelogs, roundOf, type Round } from '../Changes'
+import { changelog, codebookSummary, changesHref, changeTitles, dateOf, n, pending, plural, releaseChangelogs, roundOf, type Round } from '../Changes'
 
 interface Props {
   round: Round
@@ -26,6 +27,7 @@ const cards = await Promise.all(dpiTypes.map(async dpiType => {
     title: changeTitles[dpiType],
     href: changesHref(round, dpiType),
     changes: counts.changes,
+    systems: counts.systems,
     rows: [
       ['Changes', counts.changes],
       ['Systems', counts.systems],
@@ -44,21 +46,21 @@ const cards = await Promise.all(dpiTypes.map(async dpiType => {
 /** nothing pending: no changes, and the codebook as released */
 const empty = isPending && cards.every(card => card.changes === 0 && !card.codebook)
 const latest = releaseChangelogs[0]
+// the lede's totals: a system is of one type, so the types' counts add up
+const total = { changes: cards.reduce((sum, card) => sum + card.changes, 0), systems: cards.reduce((sum, card) => sum + card.systems, 0) }
 ---
 
 <Layout fullTitle={`${isPending ? 'Pending changes' : `Changes in the ${date} release`} · DPI Map`} noindex={isPending}>
   <main class="page chg">
-    <header class="chg-head">
-      <nav class="page-crumbs" aria-label="Breadcrumb"><a href="/">Map</a> › <a href={changelogHref}>Changelog</a> › { isPending ? 'Next release' : `${date} release` }</nav>
-      <h1 class="page-title chg-h1">Changelog</h1>
-      <ChangesNav round={round} />
-      { isPending
-        ? <Fragment>
-            <p class="chg-label chg-label-pending">Pending: not in the published data</p>
-            <p class="chg-summary">Changes proposed for the next release, since the {baseDate} release. They aren’t published yet: the map and the country and system pages show the {baseDate} release.</p>
-          </Fragment>
-        : <p class="chg-label">Changes in the {date} release, since the {baseDate} release</p> }
-    </header>
+    <PageHeader title="Changelog">
+      <ChangesNav slot="nav" round={round} />
+      <Fragment slot="lede">{ isPending
+        ? `Changes proposed for the next release, since the ${baseDate} release.`
+        : `${plural(total.changes, 'change')} to ${plural(total.systems, 'system')} across the three DPI types.` }</Fragment>
+      <Fragment slot="meta">{ isPending
+        ? `Pending: not in the published data. The map and the country and system pages show the ${baseDate} release.`
+        : `Changes in the ${date} release, since the ${baseDate} release` }</Fragment>
+    </PageHeader>
     { empty
       ? <div>
           <p class="chg-summary">Nothing is pending. No changes have been proposed since the {baseDate} release.</p>

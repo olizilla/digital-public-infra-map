@@ -1,11 +1,10 @@
 ---
 layout: ../../layouts/Standard.astro
 title: 'Session 1: Measuring inclusion'
+# the page's heading, where it isn't its title
+heading: "Session 1: Measuring DPI Inclusion"
 date: 2025-04-09
 ---
-
-# Session 1: Measuring DPI Inclusion
-
 
 **Key takeaways**
 

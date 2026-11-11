@@ -1,14 +1,14 @@
 ---
 layout: ../layouts/Standard.astro
 title: 'Contribute to the DPI map'
+# the page's heading, where it isn't its title
+heading: "Contribute to the DPI Map"
 description: "Share information about DPI deployments, give feedback on the DPI Map's framework, or add to the data and build on it."
 ---
 
-# Contribute to the DPI Map
-
 Contributions are welcome and encouraged! Share information about DPI deployments, provide feedback on our framework, or add to data and build on it.
 
-<div class="text-center py-4">
+<div class="button-row">
   <a href="https://forms.gle/k3zqfXVENMbpsKDp7" class="button-blue">
     Get in touch
   </a>
