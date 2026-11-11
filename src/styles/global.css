@@ -155,7 +155,7 @@
   :where(.prose) :where(pre code) { font-size: inherit; }
 
   /* images: on their own line, with room around them */
-  :where(.prose) > :where(img, figure), :where(.prose) > :where(p, a) > :where(img) { @apply my-8; }
+  :where(.prose) > :where(img, figure), :where(.prose) > :where(p, a) > :where(img) { @apply my-8 border border-line; }
   :where(.prose) :where(figcaption) { @apply mt-2 text-ui text-muted; }
 
   /* the one callout, and quotes */
