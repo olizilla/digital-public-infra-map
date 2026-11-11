@@ -24,13 +24,32 @@ export const PENDING_FOLDER = 'next'
 const ajv = new Ajv2020({ allErrors: true, strict: false })
 const check = ajv.compile(schema)
 
+/** Whether `text` is a real calendar date, `YYYY-MM-DD`: one that reads back the same, so not 2026-02-31 (S2) */
+export function isCalendarDate (text: string): boolean {
+  const [, y, m, d] = text.match(/^(\d{4})-(\d{2})-(\d{2})$/) ?? []
+  if (!y) return false
+  const date = new Date(Date.UTC(+y, +m - 1, +d))
+  return date.getUTCFullYear() === +y && date.getUTCMonth() === +m - 1 && date.getUTCDate() === +d
+}
+
+// TOML's strings and comments, which can hold any text, or else a bare date or the date of a date-time
+const DATE_TOKENS = /"""(?:[^\\]|\\[\s\S])*?"""|'''[\s\S]*?'''|"(?:[^"\\\n]|\\.)*"|'[^'\n]*'|#[^\n]*|(?<![\w.-])(\d{4}-\d{2}-\d{2})(?![\d-])/g
+
 /**
  * The data in a changeset's TOML, as the schema checks it: bare TOML dates
  * become `YYYY-MM-DD` (D39), and other dates and times ISO 8601 text.
- * Throws if it isn't valid TOML.
+ * Throws if it isn't valid TOML, which includes a bare date that isn't a real
+ * one: smol-toml rolls `2026-02-31` over to 2026-03-03, a typo that would read
+ * as a different, valid date, so the raw text is checked for them (S2).
  */
 export function readChangeset (text: string): unknown {
-  return plain(parse(text))
+  const data = parse(text)
+  for (const match of text.matchAll(DATE_TOKENS)) {
+    if (match[1] === undefined || isCalendarDate(match[1])) continue
+    const line = text.slice(0, match.index).split('\n').length
+    throw new Error(`line ${line}: ${match[1]} is not a real calendar date`)
+  }
+  return plain(data)
 }
 
 function plain (value: unknown): unknown {
@@ -55,6 +74,23 @@ export function validateChangeset (data: unknown): string[] {
 export function idTime (id: string): Date {
   const [, y, mo, d, h, mi, s] = id.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2})(\d{2})(\d{2})Z/)!
   return new Date(Date.UTC(+y, +mo - 1, +d, +h, +mi, +s))
+}
+
+/**
+ * Whether a change's `as_of` is later than expected, which is a warning, not a block, as a future
+ * date is sometimes meant (S2). It's expected no later than today, and no later than the changeset:
+ * a pending changeset's id's timestamp, the UTC day it was created, or a released one's release
+ * folder's date. A released one may be later than its id: 11 changes in changesets/2026-11-06/ are
+ * dated 2026-11-06, release-day fixes added to changesets drafted on 11-04, before the release was
+ * published. Returns what it's later than, or undefined.
+ */
+export function laterThanExpected (asOf: string, id: string, folder: string, now: Date): string | undefined {
+  const today = now.toISOString().slice(0, 10)
+  const released = RELEASE_FOLDER.test(folder)
+  const changeset = released ? folder : id.slice(0, 10)
+  if (asOf > changeset) return released ? `its release, ${folder}` : `the changeset's id, created ${changeset}`
+  if (asOf > today) return `today, ${today}`
+  return undefined
 }
 
 const isDir = (p: string) => fs.statSync(p, { throwIfNoEntry: false })?.isDirectory() ?? false
@@ -128,6 +164,20 @@ function readResource (log: string, folder: string, resource: string, report: Re
       report.push(reportItem('invalid-changeset', `does not match the changeset schema, so it is skipped: ${errors.join('; ')}`, about))
       continue
     }
+    // an as_of that isn't a real calendar date blocks, like a schema failure (S2)
+    const changes = (data as Changeset).changes
+    const undated = changes.flatMap((change, i) => change.as_of === undefined || isCalendarDate(change.as_of) ? [] : [{ change: i, key: change.key, as_of: change.as_of }])
+    if (undated.length) {
+      for (const { change, key, as_of } of undated) {
+        report.push(reportItem('invalid-changeset', `as_of ${JSON.stringify(as_of)} is not a real calendar date, so the changeset is skipped`, { ...about, changeset: id, change, ...(key ? { key } : {}) }))
+      }
+      continue
+    }
+    // one later than expected is a warning, and the change still applies
+    changes.forEach((change, i) => {
+      const later = change.as_of && laterThanExpected(change.as_of, id, folder, now)
+      if (later) report.push(reportItem('future-as-of', `is dated ${change.as_of}, later than ${later}, and still applies`, { ...about, changeset: id, change: i, ...(change.key ? { key: change.key } : {}) }))
+    })
     const snapshot = (data as Changeset).changes.findIndex(change => change.type === 'snapshot')
     if (snapshot !== -1) {
       report.push(reportItem('invalid-changeset', 'has a snapshot, which a changeset can no longer hold: the baseline is the previous release, so it is skipped', { ...about, changeset: id, change: snapshot }))

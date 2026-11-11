@@ -122,6 +122,7 @@ export type ReportKind =
   | 'no-effect'
   | 'revert-unknown'
   | 'future-id'
+  | 'future-as-of'
   | 'snapshot-row'
 
 export interface ReportItem {

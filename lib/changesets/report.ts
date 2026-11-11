@@ -1,6 +1,6 @@
 // Report items: what the build skipped or found, and whether each blocks a merge.
 
-import type { ReportItem, ReportKind } from './types.ts'
+import type { Changeset, ReportItem, ReportKind } from './types.ts'
 
 /**
  * Whether each kind of item blocks a merge. Following D51, only a file that
@@ -26,6 +26,7 @@ export const BLOCKING: Record<ReportKind, boolean> = {
   'no-effect': false,
   'revert-unknown': false,
   'future-id': false,
+  'future-as-of': false,
   'snapshot-row': false
 }
 
@@ -46,6 +47,7 @@ export const KIND_TITLES: Record<ReportKind, string> = {
   'no-effect': 'Creates and removes that lose to a newer one',
   'revert-unknown': 'Reverts of changesets that are not earlier in the same set',
   'future-id': 'Changeset ids with a timestamp in the future',
+  'future-as-of': 'Changes dated later than their changeset, their release or today, which still apply',
   'snapshot-row': 'Baseline rows that were skipped or have no date'
 }
 
@@ -63,13 +65,31 @@ export function countByKind (report: ReportItem[]): { kind: ReportKind, blocking
     .sort((a, b) => Number(b.blocking) - Number(a.blocking))
 }
 
-const where = (item: ReportItem) => [
-  item.resource,
-  item.changeset && (item.change === undefined ? item.changeset : `${item.changeset} change ${item.change}`),
-  item.file && !item.changeset ? item.file : undefined,
-  item.key,
-  item.field && `\`${item.field}\``
-].filter(Boolean).join(', ')
+/**
+ * The report, with the file each changeset was read from, `<folder>/<resource>/<id>.toml` relative to
+ * the log, on the items about one of `changesets` that don't say, so each says where to fix it (S3)
+ */
+export function withFiles (report: ReportItem[], changesets: Changeset[]): ReportItem[] {
+  const files = new Map(changesets.map(c => [`${c.resource}/${c.id}`, `${c.folder}/${c.resource}/${c.id}.toml`]))
+  return report.map(item => {
+    const file = !item.file && item.changeset ? files.get(`${item.resource}/${item.changeset}`) : undefined
+    return file ? { ...item, file } : item
+  })
+}
+
+/** Where an item is: its file, or else its table and changeset, each with the change, then its key and field */
+function where (item: ReportItem) {
+  const change = (place: string) => item.change === undefined ? place : `${place} change ${item.change}`
+  return [
+    item.file ? change(item.file) : item.resource,
+    !item.file && item.changeset ? change(item.changeset) : undefined,
+    item.key,
+    item.field && `\`${item.field}\``
+  ].filter(Boolean).join(', ')
+}
+
+/** An item as one line: where it is, and what's wrong */
+export const describeItem = (item: ReportItem) => `${where(item)}: ${item.message}`
 
 /** The report as Markdown: counts, then every item, grouped by kind */
 export function formatReport (report: ReportItem[], title = 'Build report'): string {
@@ -93,7 +113,7 @@ export function formatReport (report: ReportItem[], title = 'Build report'): str
       if (set.length) lines.push('', 'The changesets that set them:', '')
       for (const item of set) lines.push(`- ${item.resource}, \`${item.field}\`: ${item.changesets!.join(', ')}`)
     } else {
-      for (const item of items) lines.push(`- ${where(item)}: ${item.message}`)
+      for (const item of items) lines.push(`- ${describeItem(item)}`)
     }
     lines.push('')
   }

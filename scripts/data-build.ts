@@ -52,6 +52,17 @@
 // and exits 1 on any difference, or if anything blocks a merge. This catches a DPI test
 // changed without a rebuild, a released changeset edited after the cut, and other drift.
 // It also fails if CITATION.cff's version or date-released isn't the release the site shows (src/Citation.ts).
+// Then it checks the pending changesets, as --pending does, and fails if either check fails (S3).
+//
+// --pending (npm run data:check-next, and the end of data:check) checks the pending round, the changesets
+// in changesets/next/, before they're merged (S3). It builds the next release in a temporary folder, from
+// the latest release folder with JSON for every table, as data:build would, the changesets in
+// changesets/next/ only, and the root datapackage.json, the next codebook (D71). It writes nothing in the
+// repo, and exits 1 if anything blocks a merge, by the release's rules (D51, D60): invalid TOML or schema
+// (including an as_of that isn't a real date, S2), an update or remove of a missing row, or a value changed
+// this round that fails scripts/validate.mjs. Values from the latest release that fail are legacy warnings.
+// It lists warnings about the pending changesets, like an as_of later than its changeset or today (S2),
+// which don't block. It doesn't yet require a reason and a source on every change (D78).
 
 import './site-modules.ts'
 import { spawnSync } from 'node:child_process'
@@ -61,7 +72,8 @@ import path from 'node:path'
 import { parseArgs } from 'node:util'
 import slug from 'slug'
 import {
-  build, checkItem, countByKind, fieldId, formatReport, keyField, KIND_TITLES, missingValue, missingValues, PENDING_FOLDER, readFolders, RELEASE_FOLDER
+  build, checkItem, countByKind, datedBy, describeItem, fieldId, formatReport, keyField, KIND_TITLES, missingValue, missingValues, PENDING_FOLDER, readFolders,
+  RELEASE_FOLDER, withFiles
 } from '../lib/changesets/index.ts'
 import type { Baseline, DataPackage, Field, ReportItem, Row, Table } from '../lib/changesets/index.ts'
 import { baselineReason, derivedFields, lastUpdatedAsOf } from '../src/DpiLayer.ts'
@@ -75,22 +87,26 @@ const { oneSystemPerCountry } = await import('../src/Util.ts')
 type DPIType = keyof typeof resourceNames
 
 const root = path.resolve(import.meta.dirname, '..')
-const { values: args } = parseArgs({ options: { release: { type: 'string' }, previous: { type: 'string' }, check: { type: 'boolean' } } })
+const { values: args } = parseArgs({ options: { release: { type: 'string' }, previous: { type: 'string' }, check: { type: 'boolean' }, pending: { type: 'boolean' } } })
 const check = !!args.check
+// the pending round's check (S3): the next release, built from changesets/next/, named for its folder
+const pending = !!args.pending
 // in check mode the release defaults to the one the site shows (src/ReleaseFiles.ts)
-const release = args.release ?? (check ? fs.readFileSync(path.join(root, 'src', 'ReleaseFiles.ts'), 'utf8').match(/export const release = '([^']+)'/)?.[1] : undefined)
+const release = pending ? PENDING_FOLDER : args.release ?? (check ? fs.readFileSync(path.join(root, 'src', 'ReleaseFiles.ts'), 'utf8').match(/export const release = '([^']+)'/)?.[1] : undefined)
 const isDate = (s?: string) => !!s && /^\d{4}-\d{2}-\d{2}$/.test(s)
-if (!isDate(release) || (args.previous && !isDate(args.previous))) {
-  console.error('usage: npm run data:build -- --release YYYY-MM-DD [--previous YYYY-MM-DD] [--check]')
+if ((pending ? check || args.release !== undefined : !isDate(release)) || (args.previous && !isDate(args.previous))) {
+  console.error('usage: npm run data:build -- --release YYYY-MM-DD [--previous YYYY-MM-DD] [--check]\n       node scripts/data-build.ts --pending [--previous YYYY-MM-DD]')
   process.exit(2)
 }
+// check mode and the pending round's check write nothing in the repo
+const dryRun = check || pending
 
 const dataDir = path.join(root, 'public', 'data')
 const releaseDir = path.join(dataDir, release!)
 // the codebook: the root one, the next release's, or in check mode the release's own (D71)
 const datapackage: DataPackage = JSON.parse(fs.readFileSync(check ? path.join(releaseDir, 'datapackage.json') : path.join(root, 'datapackage.json'), 'utf8'))
 // check mode builds into a temporary folder, to compare with the release and to run scripts/validate.mjs on
-const out = check ? fs.mkdtempSync(path.join(os.tmpdir(), 'data-check-')) : releaseDir
+const out = dryRun ? fs.mkdtempSync(path.join(os.tmpdir(), 'data-check-')) : releaseDir
 const reportPath = path.join(root, 'reports', `data-build-${release}.md`)
 // files that are copied into the release as they are
 const copied = ['public/data/places.csv', 'public/data/place-names.csv']
@@ -151,9 +167,10 @@ for (const d of earlierReleases) {
   }
 }
 
-// the changesets: this release's folder, if it isn't published yet, and the pending ones, as one set
+// the changesets: this release's folder, if it isn't published yet, and the pending ones, as one set.
+// The pending round's check reads changesets/next/ only, as release N already has the released ones
 const readReport: ReportItem[] = []
-const changesets = readFolders(path.join(root, 'changesets'), check ? [release!] : [release!, PENDING_FOLDER], datapackage, readReport)
+const changesets = readFolders(path.join(root, 'changesets'), check ? [release!] : pending ? [PENDING_FOLDER] : [release!, PENDING_FOLDER], datapackage, readReport)
 
 /**
  * A row's ISO 3166-1 alpha-3 code, from its place's iso3 in public/data/places.csv, as src/Places.ts matches it (D68).
@@ -330,7 +347,7 @@ const after = replaceBlock(
   ['# latest release (generated by data:build)', '# end latest release'],
   [`# /data/latest/ and /changes/ are the ${latest} release`, ...latestRedirects, ...changelogRedirects]
 )
-if (!check) fs.writeFileSync(redirectsPath, after)
+if (!dryRun) fs.writeFileSync(redirectsPath, after)
 
 // The workbook is saved with the release's date, like dpimap-2026-11-06.xlsx, by the same release as
 // the /data/latest/ redirects, which the release PR points the site at too (Cloudflare Pages _headers)
@@ -340,7 +357,7 @@ const headersAfter = replaceBlock(headersBefore, ['# latest release (generated b
   '/data/latest/dpimap.xlsx',
   `\tContent-Disposition: attachment; filename="dpimap-${latest}.xlsx"`
 ])
-if (!check) fs.writeFileSync(headersPath, headersAfter)
+if (!dryRun) fs.writeFileSync(headersPath, headersAfter)
 
 // check the release. A failing value blocks if a changeset introduced it, and is a legacy warning if it's from the baseline (D60)
 const validate = (...flags: string[]) => spawnSync(process.execPath, [path.join(root, 'scripts', 'validate.mjs'), path.join(out, 'datapackage.json'), ...flags], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 })
@@ -358,7 +375,9 @@ for (const problem of checked.problems) {
   const history = problem.key && id ? result.history[problem.resource]?.[problem.key]?.[id] : undefined
   const value = problem.value === undefined ? '' : `${JSON.stringify(problem.value)} `
   const missing = resource && problem.value === missingValue(resource) && !history ? ' (no value was set)' : ''
-  const item = checkItem(result, { resource: problem.resource, key: problem.key ?? '', fields, message: `${value}${problem.message}${missing}` }, resource ? fieldId(keyField(resource)) : '')
+  // Last updated is derived from the row's newest as_of, so its failure is that change's, not the row's introducer's (S2)
+  const derivedFrom = id === 'last_updated' && problem.key ? datedBy(result.provenance[problem.resource]?.[problem.key]) : undefined
+  const item = checkItem(result, { resource: problem.resource, key: problem.key ?? '', fields, message: `${value}${problem.message}${missing}`, ...(derivedFrom ? { derivedFrom } : {}) }, resource ? fieldId(keyField(resource)) : '')
   result.report.push({ ...item, key: problem.key, field: id ?? problem.column })
 }
 const summary = validate().stdout
@@ -461,7 +480,7 @@ const tableLines = Object.entries(result.tables).map(([name, table]) => `- ${nam
 
 const body = formatReport(result.report, `Data build: the ${release} release`)
 const firstSection = body.indexOf('\n## ')
-if (!check) fs.mkdirSync(path.dirname(reportPath), { recursive: true })
+if (!dryRun) fs.mkdirSync(path.dirname(reportPath), { recursive: true })
 const reportText = [
   body.slice(0, firstSection).replace('\n\n', `\n\nBuilt by \`npm run data:build -- --release ${release}\` into \`public/data/${release}/\`, from ${previous ? `the ${previous} release` : 'no earlier release'} and the changesets in \`changesets/${release}/\` and \`changesets/${PENDING_FOLDER}/\`.\n\n${tableLines.join('\n')}\n\n`),
   ...statusLines,
@@ -476,7 +495,36 @@ const reportText = [
   '```',
   ''
 ].join('\n')
-if (!check) fs.writeFileSync(reportPath, reportText)
+if (!dryRun) fs.writeFileSync(reportPath, reportText)
+
+// the pending round's check (S3): what blocks, each with its file, change, key and field, for the step summary
+if (pending) {
+  fs.rmSync(out, { recursive: true, force: true })
+  const read = Object.values(changesets).flat()
+  const items = withFiles(result.report, read)
+  const blockers = items.filter(item => item.blocking)
+  const from = `changesets/${PENDING_FOLDER}/ (${read.length} changeset${read.length === 1 ? '' : 's'} read), built on the ${previous ?? 'no earlier'} release with the root datapackage.json, the next codebook`
+  if (blockers.length) {
+    console.log(`data:check FAILED for the pending round: ${blockers.length} blocking item${blockers.length === 1 ? '' : 's'} in ${from}. They block a merge (D51, D60).`)
+    for (const { kind } of countByKind(blockers)) {
+      console.log(`\n${KIND_TITLES[kind]}:`)
+      for (const item of blockers.filter(item => item.kind === kind)) console.log(`  changesets/${describeItem(item)}`)
+    }
+  } else {
+    console.log(`data:check passed for the pending round: nothing blocks in ${from}.`)
+  }
+  // what doesn't block but is about a pending changeset, like an as_of later than expected (S2), item by item
+  const warnings = items.filter(item => !item.blocking && item.file?.startsWith(`${PENDING_FOLDER}/`))
+  if (warnings.length) console.log(`\nWarnings: ${warnings.length}. They don't block a merge, but check them.`)
+  for (const { kind } of countByKind(warnings)) {
+    console.log(`\n${KIND_TITLES[kind]}:`)
+    for (const item of warnings.filter(item => item.kind === kind)) console.log(`  changesets/${describeItem(item)}`)
+  }
+  const notes = countByKind(items.filter(item => !item.blocking && !warnings.includes(item)))
+  if (notes.length) console.log(`\nNot blocking, like legacy warnings for values from the ${previous} release (D60):`)
+  for (const { kind, count } of notes) console.log(`  ${String(count).padStart(5)}  ${KIND_TITLES[kind]}`)
+  process.exitCode = blockers.length ? 1 : 0
+}
 
 if (check) {
   const LIMIT = 20
@@ -542,22 +590,30 @@ if (check) {
       : `data:check FAILED: CITATION.cff doesn't match the release.${lines.join('\n')}`)
     if (rebuild) console.log(`\nRebuild it with: npm run data:build -- --release ${release}`)
     if (citationProblems.length) console.log(`\nSet version and date-released in CITATION.cff to ${siteRelease}.`)
-    process.exit(1)
+  } else {
+    console.log(`data:check passed: public/data/${release}/ is what the previous release (${previous ?? 'none'}) and changesets/${release}/ build.`)
   }
-  console.log(`data:check passed: public/data/${release}/ is what the previous release (${previous ?? 'none'}) and changesets/${release}/ build.`)
-  process.exit(0)
+  // released changes dated later than their release or today, which don't block (S2)
+  const later = result.report.filter(item => item.kind === 'future-as-of')
+  if (later.length) console.log(`\nWarnings: ${later.length}. They don't block.\n${KIND_TITLES['future-as-of']}:\n${later.map(item => `  changesets/${describeItem(item)}`).join('\n')}`)
+  // then the pending round, in its own process, as it builds with another codebook and baseline (S3)
+  console.log('')
+  const next = spawnSync(process.execPath, [import.meta.filename, '--pending'], { stdio: 'inherit' })
+  process.exit(lines.length || next.status !== 0 ? 1 : 0)
 }
 
-console.log(`Wrote public/data/${release}/: ${written.join(', ')}`)
-console.log(`Wrote ${redirects.length / 2} removed systems' redirects to ${path.relative(root, redirectsPath)}`)
-console.log(`Wrote ${latestRedirects.length} redirects from /data/latest/ to the ${latest} release to ${path.relative(root, redirectsPath)}`)
-console.log(`Wrote /data/latest/dpimap.xlsx's filename, dpimap-${latest}.xlsx, to ${path.relative(root, headersPath)}`)
-for (const line of tableLines) console.log(line)
-console.log(`\n${blocking} blocking item${blocking === 1 ? '' : 's'}, ${result.report.length - blocking} not blocking`)
-for (const { kind, blocking, count } of counts) console.log(`  ${blocking ? 'blocks' : 'note  '}  ${String(count).padStart(5)}  ${KIND_TITLES[kind]}`)
-if (previous) {
-  console.log(`\n${changes.length} systems changed DPI status since ${previous}, ${added.length} new, ${removed.length} removed`)
-  for (const h of headline) console.log(`  countries with a DPI-like ${typeName[h.dpiType]} system: ${h.old} -> ${h.new}`)
+if (!pending) {
+  console.log(`Wrote public/data/${release}/: ${written.join(', ')}`)
+  console.log(`Wrote ${redirects.length / 2} removed systems' redirects to ${path.relative(root, redirectsPath)}`)
+  console.log(`Wrote ${latestRedirects.length} redirects from /data/latest/ to the ${latest} release to ${path.relative(root, redirectsPath)}`)
+  console.log(`Wrote /data/latest/dpimap.xlsx's filename, dpimap-${latest}.xlsx, to ${path.relative(root, headersPath)}`)
+  for (const line of tableLines) console.log(line)
+  console.log(`\n${blocking} blocking item${blocking === 1 ? '' : 's'}, ${result.report.length - blocking} not blocking`)
+  for (const { kind, blocking, count } of counts) console.log(`  ${blocking ? 'blocks' : 'note  '}  ${String(count).padStart(5)}  ${KIND_TITLES[kind]}`)
+  if (previous) {
+    console.log(`\n${changes.length} systems changed DPI status since ${previous}, ${added.length} new, ${removed.length} removed`)
+    for (const h of headline) console.log(`  countries with a DPI-like ${typeName[h.dpiType]} system: ${h.old} -> ${h.new}`)
+  }
+  console.log(`\nReport: ${path.relative(root, reportPath)}`)
+  process.exitCode = blocking ? 1 : 0
 }
-console.log(`\nReport: ${path.relative(root, reportPath)}`)
-process.exitCode = blocking ? 1 : 0
