@@ -30,7 +30,7 @@
     "date": {
       "type": "string",
       "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
-      "description": "The date the finding is about, as YYYY-MM-DD. In the file it is a bare TOML date."
+      "description": "The date the finding is about, as YYYY-MM-DD. In the file it is a bare TOML date. Reading blocks one that is not a real calendar date, and warns about one later than today or than the changeset: its release folder's date, or for a pending changeset its id's timestamp (S2)."
     },
     "reason": {
       "type": "string",

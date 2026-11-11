@@ -1,5 +1,9 @@
 # Checks that public/data/<release>/ is what the previous release and the released
-# changesets build, and that the changeset tests pass. Deploys don't wait on it.
+# changesets build, that the pending changesets in changesets/next/ have nothing that
+# blocks a merge (D51, D60, S3), and that the changeset tests pass. Deploys don't wait
+# on it, but the site build fails on a pending changeset that isn't valid TOML or a
+# changeset, or that updates or removes a missing row (src/ChangesetLoader.ts), so a
+# PR's preview fails too. A pending value outside the codebook fails only here.
 name: Data check
 
 on:
@@ -29,7 +33,7 @@ jobs:
 
       - run: npm run test:site
 
-      - name: Check the release data
+      - name: Check the release data and the pending changesets
         run: |
           set +e
           npm run --silent data:check 2>&1 | tee data-check.txt
