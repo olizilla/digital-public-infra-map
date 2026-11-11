@@ -2,7 +2,7 @@
 // A post in Insights, src/pages/blog/*.md: the way back to Insights, the title, the kind, date and
 // authors, and for a post first published elsewhere, where (its `source` and `publisher`).
 // After the post, the three newest other entries in Insights (MoreInsights).
-// The post's markdown starts after its title: the layout writes the h1.
+// The post's markdown starts after its title: the layout writes the h1. Only the markdown is .prose.
 import Layout from './Layout.astro'
 import Footer from '../components/Footer.astro'
 import MoreInsights from '../components/MoreInsights.astro'
@@ -18,8 +18,8 @@ const description = fm.description ?? excerpt(Astro.props.rawContent?.() ?? '')
 ---
 
 <Layout title={fm.title} description={description}>
-  <article class="post prose pt-4 md:pt-10 pb-10 max-w-2xl mx-auto px-3 md:px-0">
-    <header class="not-prose post-head">
+  <article class="post pt-4 md:pt-10 pb-10 max-w-2xl mx-auto px-4 md:px-0">
+    <header class="post-head">
       <nav class="page-crumbs" aria-label="Breadcrumb"><a href="/blog/">Insights</a></nav>
       <h1 class="page-title page-h1">{fm.title}</h1>
       <p class="post-meta">
@@ -31,7 +31,7 @@ const description = fm.description ?? excerpt(Astro.props.rawContent?.() ?? '')
         <p class="post-source">First published on {fm.publisher}: <a href={fm.source}>{sourceText}</a></p>
       )}
     </header>
-    <slot/>
+    <div class="prose"><slot/></div>
     <MoreInsights />
   </article>
   <Footer />

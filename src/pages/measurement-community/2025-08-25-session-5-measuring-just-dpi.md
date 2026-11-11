@@ -4,8 +4,6 @@ title: 'Session 5 - Measuring "Just" DPI'
 date: 2025-08-26
 published: true
 ---
-# Session 5 - Measuring "Just" DPI
-
 ## Key Takeaways
 
 * **Measurement Shapes Reality:** The metrics we choose don't just describe DPI impacts, they actively shape funding priorities, design decisions, and ultimately determine who benefits from digital infrastructure.  

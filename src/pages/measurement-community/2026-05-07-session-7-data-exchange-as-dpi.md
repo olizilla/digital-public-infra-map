@@ -1,11 +1,11 @@
 ---
 layout: ../../layouts/Standard.astro
 title: Data Exchange Systems as Digital Public Infrastructure
+# the page's heading, where it isn't its title
+heading: "Session 7 – Data Exchange Systems as Digital Public Infrastructure"
 date: 2026-04-08
 published: true
 ---
-
-# Session 7 – Data Exchange Systems as Digital Public Infrastructure
 
 **Key Takeaways**
 

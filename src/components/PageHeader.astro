@@ -1,0 +1,50 @@
+---
+// A page's header, as the place page has it: the breadcrumb where there is one, the title, a lede sentence, a meta line,
+// and a row of links. Used by the place and system pages (CountryHeader), the long-form pages
+// (src/layouts/Standard.astro), the changelog, the codebook and Insights. Styled by .page-* in
+// src/styles/global.css.
+//
+// Slots: `title` for a title with markup; `nav` after the title (the changelog's ChangesNav); `lede`
+// for a lede with markup (or the `lede` prop); `meta` for a plain line under the lede; `links` for the
+// links row; anything else goes after them.
+import TypeIcon from './TypeIcon.astro'
+import type { DPIType } from '../Schema'
+
+interface Crumb {
+  label: string
+  href?: string
+  /** a DPI type's icon before the label */
+  icon?: DPIType
+}
+interface Props {
+  /** the page's ancestors, not the page itself. Only where they say something the title doesn't: none on
+   * top-level pages and place pages; without them there's no nav and the title starts the header */
+  crumbs?: Crumb[]
+  title?: string
+  lede?: string
+  /** the wrapper's class: by default `page-header`, the spacing of a header on its own */
+  class?: string
+  /** the wrapper element: a header on its own, a div inside CountryHeader's grid */
+  as?: 'header' | 'div'
+  /** the title's element: a system page's title is the system's name, so its country's name is a p */
+  titleAs?: 'h1' | 'p'
+}
+const { crumbs = [], title, lede, class: className = 'page-header', as: Wrapper = 'header', titleAs: Title = 'h1' } = Astro.props
+// a slot's markup, empty when it isn't given or renders nothing (a conditional slot)
+const slot = async (name: string) => Astro.slots.has(name) ? (await Astro.slots.render(name)).trim() : ''
+const [titleHtml, ledeHtml, metaHtml, linksHtml] = await Promise.all(['title', 'lede', 'meta', 'links'].map(slot))
+---
+<Wrapper class={className}>
+  { crumbs.length > 0 &&
+    <nav class="page-crumbs" aria-label="Breadcrumb">{ crumbs.map((crumb, i) => (
+      <Fragment>{ i > 0 && ' › ' }{ crumb.href
+        ? <a href={crumb.href} class:list={{ 'page-crumb-icon': crumb.icon }}>{ crumb.icon && <TypeIcon dpiType={crumb.icon} class="size-4" /> }{crumb.label}</a>
+        : crumb.label }</Fragment>
+    )) }</nav> }
+  { titleHtml ? <Title class="page-title page-h1" set:html={titleHtml} /> : <Title class="page-title page-h1">{title}</Title> }
+  <slot name="nav" />
+  { ledeHtml ? <p class="page-summary" set:html={ledeHtml} /> : lede && <p class="page-summary">{lede}</p> }
+  { metaHtml && <p class="page-meta" set:html={metaHtml} /> }
+  { linksHtml && <p class="page-links" set:html={linksHtml} /> }
+  <slot />
+</Wrapper>

@@ -13,15 +13,13 @@ import CiteBox from '../components/CiteBox.astro'
 import { citation } from '../ReleaseFiles'
 export const snapshot = release
 
-# Data
-
 The DPI data is collected based on the [DPI conceptualisation and measurement](/methodology) framework. Each variable pertains to a specific attribute of DPI, tracking indicators across digital ID, digital payment and data exchange systems.
 
 [Read the Codebook](/codebook) for detailed descriptions of the variables.
 
 <a href={`/data/latest/dpimap.xlsx`} onclick="trackDownload('dpimap-xlsx')">Download the data as a .xlsx spreadsheet file.</a> 	It has one sheet per DPI type, each system links to its dpimap page and each column to its codebook definintion. You can import it to Google Sheets or open it in open Office / Excel / Numbers.
 
-<div class="pt-6 pb-8 text-center"><a href={`/data/latest/dpimap.xlsx`} class="button-blue" onclick="trackDownload('dpimap-xlsx')">Download dpimap.xlsx</a></div>
+<div class="button-row"><a href={`/data/latest/dpimap.xlsx`} class="button-blue" onclick="trackDownload('dpimap-xlsx')">Download dpimap.xlsx</a></div>
 
 Or you can download the data as a JSON file per system type.
 

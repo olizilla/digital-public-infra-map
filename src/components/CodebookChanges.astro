@@ -31,7 +31,7 @@ const valueGroups: { head: string, on: string, list: ValueGroup[] }[] = [
 ]
 ---
 <section class="chg-dpi chg-cb" aria-labelledby="codebook-h">
-  <h2 class="chg-h4" id="codebook-h"><span>Codebook changes</span><span class="chg-h2-note"> {n(c.fields.before)} → {n(c.fields.after)} fields</span></h2>
+  <h2 class="chg-box-h" id="codebook-h"><span>Codebook changes</span><span class="chg-box-note"> {n(c.fields.before)} → {n(c.fields.after)} fields</span></h2>
   <p class="chg-lede">{codebookSummary(c)}, since the {since} release. See the <a class="ul" href="/codebook/">codebook</a>.</p>
 
   { c.added.length > 0 && (

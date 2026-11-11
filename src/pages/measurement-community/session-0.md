@@ -1,10 +1,10 @@
 ---
 layout: ../../layouts/Standard.astro
 title: 'Session 0: Launch'
+# the page's heading, where it isn't its title
+heading: "Session 0: Introduction to the CoP for DPI Measurement"
 date: 2025-03-11
 ---
-
-# Session 0: Introduction to the CoP for DPI Measurement
 
 **Key takeaways**
 

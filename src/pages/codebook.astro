@@ -5,6 +5,8 @@
 import { getCollection } from 'astro:content'
 import Layout from '../layouts/Layout.astro'
 import TypeIcon from '../components/TypeIcon.astro'
+import PageHeader from '../components/PageHeader.astro'
+import Footer from '../components/Footer.astro'
 import CodebookValues from '../components/CodebookValues.astro'
 import CodebookVariable from '../components/CodebookVariable.astro'
 import { codebookVariableOf, variablePath, proposalUrl } from '../Codebook'
@@ -45,13 +47,9 @@ const types = (['id', 'pay', 'data'] as DPIType[]).map(dpiType => {
 ---
 <Layout title="Codebook" description="The DPI Map's codebook: the variables used to categorise digital identity, payment and data exchange systems, and what each value means.">
   <main class="page cb-page">
-    <header class="cb-head">
-      <h1 class="page-h1">Codebook</h1>
-      <div class="cb-intro">
-        <p>This page defines the variables used to categorise DPI systems: what each one means, the values it can have, and how many systems have each value.</p>
-        <p>Each variable has its own page, with the systems behind each count and its history. To suggest a new variable or category, or a change to a definition, <a class="ul" href={proposalUrl()}>propose a change</a>.</p>
-      </div>
-    </header>
+    <PageHeader title="Codebook" lede="This page defines the variables used to categorise DPI systems: what each one means, the values it can have, and how many systems have each value.">
+      <p class="cb-intro">Each variable has its own page, with the systems behind each count and its history. To suggest a new variable or category, or a change to a definition, <a class="ul" href={proposalUrl()}>propose a change</a>.</p>
+    </PageHeader>
 
     <div class="cb-grid">
       <aside class="cb-side">
@@ -98,4 +96,5 @@ const types = (['id', 'pay', 'data'] as DPIType[]).map(dpiType => {
       </div>
     </div>
   </main>
+  <Footer />
 </Layout>

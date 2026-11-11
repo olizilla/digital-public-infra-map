@@ -4,8 +4,6 @@ title: "Session 3: Towards Robust Metrics for Trust in DPI"
 date: 2025-06-16
 published: true
 ---
-# Session 3: Towards Robust Metrics for Trust in DPI  
-
 ## Summary
 
 How do you measure success when the metrics themselves might be part of the problem? This question anchored the third Community of Practice session on DPI Measurement convened by the IIPP’s Digital team on **June 16 2025**, as researchers from APTI Institute and Data Privacy Brazil presented findings that challenge conventional wisdom about digital infrastructure impact.  

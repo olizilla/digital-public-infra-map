@@ -23,7 +23,6 @@
     "@astrojs/mdx": "^4.3.0",
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.4",
-    "@tailwindcss/typography": "^0.5.16",
     "@tailwindcss/vite": "^4.1.11",
     "ajv": "^8.20.0",
     "astro": "^5.9.1",

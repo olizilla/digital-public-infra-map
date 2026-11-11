@@ -6,6 +6,7 @@
 // Tabs above the list filter it by kind; they need the script below, so they start hidden.
 import Layout from '../../layouts/Layout.astro'
 import Footer from '../../components/Footer.astro'
+import PageHeader from '../../components/PageHeader.astro'
 import { getInsights, formatDate, kindLabels, type Kind } from '../../Insights'
 
 const insights = await getInsights()
@@ -35,11 +36,10 @@ const tabs = [
 
 <Layout title="Insights" description="Papers, reports, case studies, articles, talks and Community of Practice sessions on digital public infrastructure, from the DPI Map team and its collaborators.">
   <main class="page ins" data-filter="all">
-    <header class="ins-head">
-      <h1 class="page-title page-h1">Insights</h1>
-      <p class="ins-summary">Posts, talks and papers from the DPI Map team, and notes from the <a href="/measurement-community/">DPI Measurement Community of Practice</a>.</p>
-      <p class="page-links"><a href="/rss.xml">RSS feed</a></p>
-    </header>
+    <PageHeader title="Insights">
+      <Fragment slot="lede">Posts, talks and papers from the DPI Map team, and notes from the <a href="/measurement-community/">DPI Measurement Community of Practice</a>.</Fragment>
+      <a slot="links" href="/rss.xml">RSS feed</a>
+    </PageHeader>
 
     { pinned.map(p => (
       <article class="ins-hero">

@@ -1,11 +1,11 @@
 ---
 layout: ../../layouts/Standard.astro
 title: "Governance Challenges in Digital Public Infrastructure: Evidence from Financial Services Integration"
+# the page's heading, where it isn't its title
+heading: "Session 6 - Governance Challenges in Digital Public Infrastructure: Evidence from Financial Services Integration"
 date: 2025-09-30
 published: true
 ---
-
-# Session 6 - Governance Challenges in Digital Public Infrastructure: Evidence from Financial Services Integration
 
 **Key Takeaways**
 

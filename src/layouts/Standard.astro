@@ -4,20 +4,35 @@
 // `citation`, for its citation meta tags (src/CitationMeta.ts): `type: report` with the report's
 // details (src/pages/global-state-of-dpi.mdx), or `type: dataset` for the release (src/pages/data.mdx).
 // A dated page, a Community of Practice session, is described by its first paragraph, as Insights describes it.
+// The layout writes the page's header (PageHeader): its title is the front matter's `heading`, where the
+// page's heading isn't its `title`, else its `title`. The page's Markdown starts after it. A Community of
+// Practice session's crumbs lead back to the community's page; other pages have none. Then the text, as .prose, and the footer.
 import Layout from "./Layout.astro"
+import PageHeader from '../components/PageHeader.astro'
+import Footer from '../components/Footer.astro'
 import { excerpt } from '../Insights'
 import { releaseDescription, releaseMeta, reportMeta } from '../CitationMeta'
 
 const fm = Astro.props.frontmatter ?? {}
 const title = fm.title ?? Astro.props.title
+const heading: string | undefined = fm.heading ?? Astro.props.heading ?? title
 const cite = fm.citation?.type === 'report' ? { meta: reportMeta(fm.citation, Astro.site!) }
 	: fm.citation?.type === 'dataset' ? { meta: releaseMeta(), description: releaseDescription }
 		: undefined
 const description = fm.description ?? Astro.props.description ?? cite?.description ?? (fm.date && Astro.props.rawContent ? excerpt(Astro.props.rawContent()) : undefined)
+const community = '/measurement-community/'
+const path = Astro.url.pathname.replace(/\/?$/, '/')
+const crumbs = Astro.props.crumbs ?? (path.startsWith(community) && path !== community
+	? [{ label: 'Community', href: community }]
+	: [])
 ---
 
 <Layout title={title} bodyClass={Astro.props.bodyClass} description={description} citation={cite?.meta}>
-	<article class="prose pt-4 md:pt-10 pb-10 max-w-2xl mx-auto px-2 md:px-0">
-		<slot/>
+	<article class="pt-4 md:pt-6 pb-10 max-w-2xl mx-auto px-4 md:px-0">
+		{ heading && <PageHeader class="page-header is-prose" crumbs={crumbs} title={heading} lede={Astro.props.lede} /> }
+		<div class="prose">
+			<slot/>
+		</div>
 	</article>
+	<Footer />
 </Layout>
