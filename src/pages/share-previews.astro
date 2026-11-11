@@ -56,6 +56,11 @@ const paths = [
       twitterDescription: meta('twitter:description'),
       twitterImage: meta('twitter:image'),
       robots: meta('robots'),
+      card: doc.querySelector('meta[name="twitter:card"]')?.getAttribute('content') ?? '',
+      imageWidth: meta('og:image:width'),
+      imageHeight: meta('og:image:height'),
+      imageAlt: meta('og:image:alt'),
+      locale: meta('og:locale'),
     }
   }
 
@@ -67,6 +72,10 @@ const paths = [
     if (!t.description) out.push('no og:description')
     if (!t.image) out.push('no og:image')
     else if (!/^https?:\/\//.test(t.image)) out.push('og:image is not an absolute URL')
+    if (t.image && !(t.imageWidth && t.imageHeight)) out.push('no og:image:width and og:image:height')
+    if (t.image && !t.imageAlt) out.push('no og:image:alt')
+    if (!t.card) out.push('no twitter:card (as name=, which X reads)')
+    if (!t.locale) out.push('no og:locale')
     if (t.title.length > TITLE_MAX) out.push(`title is ${t.title.length} characters, likely cut after ${TITLE_MAX}`)
     if (t.description.length > DESCRIPTION_MAX) out.push(`description is ${t.description.length} characters, likely cut after about ${DESCRIPTION_MAX}`)
     if (t.twitterTitle && t.twitterTitle !== t.title) out.push('twitter:title differs from og:title')
@@ -104,7 +113,7 @@ const paths = [
           ${issues.length ? `<ul class="text-sm text-red-700 list-disc pl-5">${issues.map(i => `<li>${escape(i)}</li>`).join('')}</ul>` : '<p class="text-sm text-green-700">No problems found.</p>'}
           <details class="text-xs text-zinc-600"><summary class="cursor-pointer">Tags</summary>
             <dl class="grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 gap-y-1 mt-2">
-              ${(['title', 'description', 'image', 'ogUrl', 'twitterTitle', 'twitterDescription', 'twitterImage'] as const).map(k => `<dt class="text-zinc-500">${k}</dt><dd class="break-words">${escape(t[k] || '(none)')}</dd>`).join('')}
+              ${(['title', 'description', 'image', 'imageWidth', 'imageHeight', 'imageAlt', 'locale', 'ogUrl', 'card', 'twitterTitle', 'twitterDescription', 'twitterImage'] as const).map(k => `<dt class="text-zinc-500">${k}</dt><dd class="break-words">${escape(t[k] || '(none)')}</dd>`).join('')}
             </dl>
           </details>
         </div>
