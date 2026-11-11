@@ -7,7 +7,7 @@ import YesNo from './YesNo.astro'
 
 const textOf = (value: string) => standardDefinitions.find(standard => standard.value === value)!.text
 ---
-<section class="cb-sv" id="standard-values" aria-labelledby="cb-sv-h">
+<section class="panel text-sm leading-5.5 text-strong" id="standard-values" aria-labelledby="cb-sv-h">
   <h2 class="cb-sv-h" id="cb-sv-h">Standard values</h2>
   <p>Where possible the definitions list the values a variable can have. Variables that check for the existence of evidence take one of four standard values:</p>
   <dl class="cb-sv-defs">

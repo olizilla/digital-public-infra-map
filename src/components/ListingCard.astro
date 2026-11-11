@@ -30,10 +30,10 @@ const country = `/${slug(record.country)}/`
     <Status status={record['DPI Status']} title="DPI status" />
     <h3 class:list={{ unnamed: state !== 'named' }}>{title}</h3>
   </header>
-  <span class="test-label">DPI test</span>
+  <span class="eyebrow">DPI test</span>
   <DpiTestList dpiType={dpiType} record={record} />
   <!-- more detail: on screens wide enough for the system page's columns, the system's own page;
        on narrower ones, one level down, the country page scrolled to this type's lane -->
-  <a class="card-more wide:hidden" href={`${country}#${laneAnchors[dpiType]}`}>More details</a>
-  <a class="card-more narrow:hidden" href={systemHref(record.system_id)}>More details</a>
+  <a class="more-link wide:hidden" href={`${country}#${laneAnchors[dpiType]}`}>More details</a>
+  <a class="more-link narrow:hidden" href={systemHref(record.system_id)}>More details</a>
 </article>

@@ -1,12 +1,13 @@
 ---
-// A post in Insights, src/pages/blog/*.md: the way back to Insights, the title, the kind, date and
-// authors, and for a post first published elsewhere, where (its `source` and `publisher`).
+// A post in Insights, src/pages/blog/*.md: its header (PostHeader: the way back to Insights, the title, the kind,
+// date and authors), and for a post first published elsewhere, where (its `source` and `publisher`).
 // After the post, the three newest other entries in Insights (MoreInsights).
 // The post's markdown starts after its title: the layout writes the h1. Only the markdown is .prose.
 import Layout from './Layout.astro'
 import Footer from '../components/Footer.astro'
 import MoreInsights from '../components/MoreInsights.astro'
-import { excerpt, formatDate, normDate, kindLabels, type Kind } from '../Insights'
+import PostHeader from '../components/PostHeader.astro'
+import { excerpt, normDate, type Kind } from '../Insights'
 
 const fm = Astro.props.frontmatter
 const date = normDate(fm.date)
@@ -19,18 +20,11 @@ const description = fm.description ?? excerpt(Astro.props.rawContent?.() ?? '')
 
 <Layout title={fm.title} description={description}>
   <article class="post pt-4 md:pt-10 pb-10 max-w-2xl mx-auto px-4 md:px-0">
-    <header class="post-head">
-      <nav class="page-crumbs" aria-label="Breadcrumb"><a href="/blog/">Insights</a></nav>
-      <h1 class="page-title page-h1">{fm.title}</h1>
-      <p class="post-meta">
-        <span class="ins-kind" data-kind={kind}>{kindLabels[kind]}</span>
-        <span aria-hidden="true">·</span> { date ? <time datetime={date}>{formatDate(date)}</time> : <span class="ins-undated">{formatDate()}</span> }
-        { authors.length > 0 && <><span aria-hidden="true">·</span> <span>{authors.join(', ')}</span></> }
-      </p>
+    <PostHeader title={fm.title} kind={kind} date={date} authors={authors}>
       { fm.source && (
-        <p class="post-source">First published on {fm.publisher}: <a href={fm.source}>{sourceText}</a></p>
+        <p slot="note" class="post-source">First published on {fm.publisher}: <a href={fm.source}>{sourceText}</a></p>
       )}
-    </header>
+    </PostHeader>
     <div class="prose"><slot/></div>
     <MoreInsights />
   </article>

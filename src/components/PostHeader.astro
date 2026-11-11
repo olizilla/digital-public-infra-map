@@ -1,0 +1,33 @@
+---
+// The header of an Insights page: the way back to Insights, the title, the kind, where it's published and
+// when, the authors, a `note` slot (a post's "First published on" line), and its actions (the default slot: the PDF
+// button and a link to the record). Also the Post layout's header (src/layouts/Post.astro). Used by the paper,
+// report and article landing pages (src/pages/blog/[id].astro) and the State of DPI report's own page
+// (src/pages/global-state-of-dpi.mdx, through src/layouts/Standard.astro). Styled by .post-head.
+import { formatDate, kindLabels, type Kind } from '../Insights'
+
+interface Props {
+  title: string
+  kind: Kind
+  publisher?: string
+  /** YYYY, YYYY-MM or YYYY-MM-DD */
+  date?: string
+  authors?: string[]
+}
+const { title, kind, publisher, date, authors = [] } = Astro.props
+// the actions' markup, empty when none are given or they render nothing
+const actions = Astro.slots.has('default') ? (await Astro.slots.render('default')).trim() : ''
+---
+<header class="post-head">
+  <nav class="page-crumbs" aria-label="Breadcrumb"><a href="/blog/">Insights</a></nav>
+  <h1 class="page-title page-h1">{title}</h1>
+  <p class="post-meta">
+    <span class="ins-kind" data-kind={kind}>{kindLabels[kind]}</span>
+    { publisher && <Fragment><span aria-hidden="true">·</span><span>{publisher}</span></Fragment> }
+    <span aria-hidden="true">·</span>
+    { date ? <time datetime={date}>{formatDate(date)}</time> : <span class="ins-undated">{formatDate()}</span> }
+  </p>
+  { authors.length > 0 && <p class="paper-authors">{authors.join(', ')}</p> }
+  <slot name="note" />
+  { actions && <p class="ins-actions" set:html={actions} /> }
+</header>
