@@ -1,0 +1,82 @@
+---
+// A changelog's hub (D81): /changes/next/ for the pending changes, /changes/<date>/ for a release's
+// (src/pages/changes/). A card per DPI type with its counts, the change in DPI-like countries and in
+// the codebook, each linking to its type's page. Built by src/Changes.ts. The pending changes aren't
+// in the published data, so their hub says so, and with nothing pending it says that and links to
+// the latest release's changes. Nothing links here yet.
+import Layout from '../layouts/Layout.astro'
+import Footer from './Footer.astro'
+import TypeIcon from './TypeIcon.astro'
+import ChangesNav from './ChangesNav.astro'
+import { dpiTypes } from '../Systems'
+import { changelog, changelogHref, codebookSummary, changesHref, changeTitles, dateOf, n, pending, releaseChangelogs, roundOf, type Round } from '../Changes'
+
+interface Props {
+  round: Round
+}
+const { round } = Astro.props
+const { baseDate, date } = await roundOf(round)
+const isPending = round === pending
+
+const cards = await Promise.all(dpiTypes.map(async dpiType => {
+  const { counts, dpiCountries, dpiLike, codebook } = await changelog(round, dpiType)
+  const gains = dpiCountries.filter(d => d.gains).length
+  return {
+    dpiType,
+    title: changeTitles[dpiType],
+    href: changesHref(round, dpiType),
+    changes: counts.changes,
+    rows: [
+      ['Changes', counts.changes],
+      ['Systems', counts.systems],
+      ['New', counts.new],
+      ['Removed', counts.removed],
+      ['Renamed', counts.renamed],
+      ['DPI status changes', counts.dpi],
+    ] as [string, number][],
+    dpiLike,
+    gains,
+    losses: dpiCountries.length - gains,
+    // a pending codebook shows only if it changes
+    codebook: isPending && !codebook?.any ? undefined : codebook,
+  }
+}))
+/** nothing pending: no changes, and the codebook as released */
+const empty = isPending && cards.every(card => card.changes === 0 && !card.codebook)
+const latest = releaseChangelogs[0]
+---
+
+<Layout fullTitle={`${isPending ? 'Pending changes' : `Changes in the ${date} release`} · DPI Map`} noindex={isPending}>
+  <main class="page chg">
+    <header class="chg-head">
+      <nav class="page-crumbs" aria-label="Breadcrumb"><a href="/">Map</a> › <a href={changelogHref}>Changelog</a> › { isPending ? 'Next release' : `${date} release` }</nav>
+      <h1 class="page-title chg-h1">Changelog</h1>
+      <ChangesNav round={round} />
+      { isPending
+        ? <Fragment>
+            <p class="chg-label chg-label-pending">Pending: not in the published data</p>
+            <p class="chg-summary">Changes proposed for the next release, since the {baseDate} release. They aren’t published yet: the map and the country and system pages show the {baseDate} release.</p>
+          </Fragment>
+        : <p class="chg-label">Changes in the {date} release, since the {baseDate} release</p> }
+    </header>
+    { empty
+      ? <div>
+          <p class="chg-summary">Nothing is pending. No changes have been proposed since the {baseDate} release.</p>
+          { latest && <p class="chg-summary"><a class="ul" href={changesHref(latest)}>See the changes in the {dateOf(latest)} release</a></p> }
+        </div>
+      : <div class="chg-hub">
+          { cards.map(card => (
+            <article class="chg-hub-card">
+              <h2><a href={card.href}><TypeIcon dpiType={card.dpiType} class="size-5" /><span>{card.title}</span></a></h2>
+              <dl>
+                { card.rows.map(([label, count]) => <div><dt>{label}</dt><dd>{n(count)}</dd></div>) }
+              </dl>
+              <p class="chg-hub-dpi"><span>DPI-like countries</span><b>{n(card.dpiLike.before)} → {n(card.dpiLike.after)}</b><span class="chg-hub-net">{card.gains} upgraded, {card.losses} downgraded</span></p>
+              { card.codebook && <p class="chg-hub-dpi"><span>Codebook fields</span><b>{n(card.codebook.fields.before)} → {n(card.codebook.fields.after)}</b><span class="chg-hub-net">{codebookSummary(card.codebook)}</span></p> }
+              <a class="card-more" href={card.href}>See the changes</a>
+            </article>
+          ))}
+        </div> }
+  </main>
+  <Footer />
+</Layout>

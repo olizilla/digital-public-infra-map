@@ -1,5 +1,5 @@
 ---
-// A system's changes on a changelog page (src/pages/changes/[type].astro), by changeset: the
+// A system's changes on a changelog page (src/components/ChangelogType.astro), by changeset: the
 // changeset's date and id (marked if it's pending), then a row per change, each with the fields it
 // set, old → new, its reason and its sources. A new system's values have no arrows. A removal says
 // what takes the system's place. There are over a thousand rows on the Payments page, so they're
@@ -8,8 +8,7 @@
 import FieldValue from './FieldValue.astro'
 import Status from './Status.astro'
 import { domainOf } from '../SystemPage'
-import { systemHref } from '../Systems'
-import type { ChangesetGroup, Successor } from '../Changes'
+import { pageOf, type ChangesetGroup, type Successor } from '../Changes'
 
 interface Props {
   groups: ChangesetGroup[]
@@ -31,7 +30,7 @@ const { groups, isNew, successor } = Astro.props
                 <div>
                   <dt>System</dt>
                   <dd class="h-diff">Removed{ successor
-                    ? <span class="chg-succ">{ successor.how === 'duplicate' ? 'a duplicate of' : 'replaced by' } <Status status={successor.system.dpiStatus} title="DPI status" /> <a class="ul" href={systemHref(successor.system.id)}>{successor.system.title}</a></span>
+                    ? <span class="chg-succ">{ successor.how === 'duplicate' ? 'a duplicate of' : 'replaced by' } <Status status={successor.system.dpiStatus} title="DPI status" /> <a class="ul" href={pageOf(successor.system.id)}>{successor.system.title}</a></span>
                     : <span class="h-same">no replacement</span> }</dd>
                 </div> }
               { change.cells.map(cell => (

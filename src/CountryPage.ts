@@ -10,8 +10,7 @@ export const statusOrder: Record<Status, number> = { DPI: 0, WIP: 1, NA: 2 }
 /** The lane title for each DPI type, in lane order */
 export const laneTitles: Record<DPIType, string> = { id: 'Digital ID', pay: 'Digital payment', data: 'Data exchange' }
 
-/** Each lane's anchor on the country page, so a link can jump straight to it, e.g. /kenya/#digital-id */
-export const laneAnchors: Record<DPIType, string> = { id: 'digital-id', pay: 'digital-payment', data: 'data-exchange' }
+export { laneAnchors } from './Lanes'
 
 /** The country's three lanes: its rows of each DPI type, and the systems among them, best first */
 export function lanesOf (country: string) {

@@ -1,0 +1,19 @@
+---
+// The changes pages' nav bar (D81): each release's changelog, newest first, then the pending changes,
+// for those who want what's coming, with the page's own marked. On a type's page, each links to the same type's page.
+import { changesHref, pending, releaseChangelogs, roundLabel, type Round } from '../Changes'
+import type { DPIType } from '../Schema'
+
+interface Props {
+  round: Round
+  dpiType?: DPIType
+}
+const { round, dpiType } = Astro.props
+---
+<nav class="chg-nav" aria-label="Changelogs">
+  <ul>
+    { [...releaseChangelogs, pending].map(r => (
+      <li><a href={changesHref(r, dpiType)} aria-current={r === round ? 'page' : undefined}>{roundLabel(r)}</a></li>
+    ))}
+  </ul>
+</nav>

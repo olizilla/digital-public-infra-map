@@ -1,0 +1,15 @@
+---
+// One DPI type's pending changes, /changes/next/<lane anchor>/ (D81), as the hub, /changes/next/.
+import ChangelogType from '../../../components/ChangelogType.astro'
+import { laneAnchors } from '../../../CountryPage'
+import { dpiTypes } from '../../../Systems'
+import type { DPIType } from '../../../Schema'
+import { pending } from '../../../Changes'
+
+export function getStaticPaths () {
+  return dpiTypes.map(dpiType => ({ params: { type: laneAnchors[dpiType] }, props: { dpiType } }))
+}
+
+const { dpiType } = Astro.props as { dpiType: DPIType }
+---
+<ChangelogType round={pending} dpiType={dpiType} />

@@ -1,0 +1,17 @@
+---
+// One DPI type's changes in a release, /changes/<date>/<lane anchor>/ (D81), as the release's
+// changelog, /changes/<date>/.
+import ChangelogType from '../../../components/ChangelogType.astro'
+import { laneAnchors } from '../../../CountryPage'
+import { dpiTypes } from '../../../Systems'
+import type { DPIType } from '../../../Schema'
+import { releaseChangelogs } from '../../../Changes'
+
+export function getStaticPaths () {
+  return releaseChangelogs.flatMap(release => dpiTypes.map(dpiType => ({ params: { release, type: laneAnchors[dpiType] }, props: { dpiType } })))
+}
+
+const { release } = Astro.params
+const { dpiType } = Astro.props as { dpiType: DPIType }
+---
+<ChangelogType round={release} dpiType={dpiType} />

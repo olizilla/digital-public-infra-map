@@ -4,9 +4,8 @@
 // A new system says so instead, and a removed one says what took its place, if anything.
 import Status from './Status.astro'
 import YesNo from './YesNo.astro'
-import { systemHref } from '../Systems'
 import { statusMeanings } from '../DpiTest'
-import type { DpiCountry } from '../Changes'
+import { pageOf, type DpiCountry } from '../Changes'
 
 interface Props {
   country: DpiCountry
@@ -22,10 +21,10 @@ const statusPill: Record<string, string> = Object.fromEntries(Object.values(stat
       ? <Fragment>
           <p class="chg-dpi-sys"><span class="chg-gone">Removed</span><span class="nm">{s.title}</span></p>
           { s.removed.successor &&
-            <p class="chg-succ">{ s.removed.successor.how === 'duplicate' ? 'a duplicate of' : 'replaced by' } <Status status={s.removed.successor.system.dpiStatus} title="DPI status" /> <a class="ul nm" href={systemHref(s.removed.successor.system.id)}>{s.removed.successor.system.title}</a></p> }
+            <p class="chg-succ">{ s.removed.successor.how === 'duplicate' ? 'a duplicate of' : 'replaced by' } <Status status={s.removed.successor.system.dpiStatus} title="DPI status" /> <a class="ul nm" href={pageOf(s.removed.successor.system.id)}>{s.removed.successor.system.title}</a></p> }
         </Fragment>
       : <Fragment>
-          <p class="chg-dpi-sys"><Status status={s.after} title="DPI status" /><a class="ul nm" href={systemHref(s.id)} title={s.title}>{s.title}</a></p>
+          <p class="chg-dpi-sys"><Status status={s.after} title="DPI status" /><a class="ul nm" href={pageOf(s.id)} title={s.title}>{s.title}</a></p>
           { s.isNew
             ? <p class="chg-crits">New system</p>
             : <ul class="chg-crits">{ s.criteria.map(c => (

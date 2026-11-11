@@ -710,16 +710,29 @@ details.more[open] > summary::before {
   & .next { @apply justify-self-end; }
 }
 
-/* The changelog: /changes/ and /changes/<type>/ (src/pages/changes/). The header, then the
-   DPI-like countries, a sticky filter bar, and the changes by country (.lane-head) and system
-   (.sys cards with .sys-head), with a list of countries beside them on desktop. A type page has
-   over a thousand change rows, so each part has one class here. */
+/* The changelog: /changes/next/ and /changes/next/<type>/ for the pending changes, and /changes/<date>/ and
+   /changes/<date>/<type>/ for a release's (src/pages/changes/). The header, with a nav bar of the
+   changelogs, then the DPI-like countries, a sticky filter bar, and the changes by country
+   (.lane-head) and system (.sys cards with .sys-head), with a list of countries beside them on
+   desktop. A type page has over a thousand change rows, so each part has one class here. */
 @layer components {
   .chg-head { @apply pt-0 md:pt-4 pb-6; }
   .chg-label {
     @apply inline-block mb-3 px-2 py-0.5 rounded border border-zinc-300 bg-zinc-50 text-xs leading-5 font-semibold text-zinc-600;
   }
+  /* the pending changes aren't published, so their label is in the WIP colours */
+  .chg-label-pending { @apply bg-wip border-wip-line text-zinc-800; }
   .chg-summary { @apply max-w-[44rem] leading-[26px] text-lg md:leading-7 text-zinc-700; }
+  /* the changelogs, the pending changes first, then each release's, the page's own filled in */
+  .chg-nav {
+    @apply mb-3;
+    & ul { @apply flex flex-wrap gap-1.5; }
+    & a {
+      @apply inline-block px-2.5 py-0.5 rounded-full border border-zinc-200 text-[13px] leading-5 text-zinc-600;
+      @apply hover:border-zinc-400 hover:text-black;
+    }
+    & a[aria-current] { @apply border-zinc-700 bg-zinc-700 text-white hover:text-white; }
+  }
   .chg-about {
     @apply mt-3 max-w-[44rem] text-sm leading-[22px] text-zinc-600;
     & > summary { @apply text-[13px] font-medium; }
