@@ -7,6 +7,7 @@ import Layout from './Layout.astro'
 import Footer from '../components/Footer.astro'
 import MoreInsights from '../components/MoreInsights.astro'
 import PostHeader from '../components/PostHeader.astro'
+import { getCollection } from 'astro:content'
 import { excerpt, normDate, type Kind } from '../Insights'
 
 const fm = Astro.props.frontmatter
@@ -14,8 +15,11 @@ const date = normDate(fm.date)
 const authors: string[] = fm.authors ?? []
 const kind: Kind = fm.kind ?? 'post'
 const sourceText = fm.source?.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')
-// described as Insights describes it: its description, else its first paragraph
-const description = fm.description ?? excerpt(Astro.props.rawContent?.() ?? '')
+// described as Insights describes it: its description, else its first paragraph, here cut at 160 characters, about
+// what a search result or a link preview shows. The source comes from the blog collection, as an .mdx layout
+// gets no rawContent()
+const post = (await getCollection('blog')).find(entry => Astro.url.pathname.replace(/\/$/, '') === `/blog/${entry.id}`)
+const description = fm.description ?? excerpt(post?.body ?? Astro.props.rawContent?.() ?? '', 160)
 ---
 
 <Layout title={fm.title} description={description}>
