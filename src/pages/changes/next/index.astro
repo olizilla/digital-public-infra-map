@@ -1,0 +1,7 @@
+---
+// The pending changes' hub, /changes/next/ (D81): the changesets in changesets/next/, proposed for the next
+// release and not in the published data, so not indexed, and not in the sitemap or the feed.
+import ChangelogHub from '../../../components/ChangelogHub.astro'
+import { pending } from '../../../Changes'
+---
+<ChangelogHub round={pending} />

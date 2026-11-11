@@ -33,14 +33,18 @@ export interface System {
   record: Record<string, any>
 }
 
-function systemsOf (dpiType: DPIType): System[] {
+/**
+ * A type's systems from a release's rows, keyed by column header as in its JSON: the release the site
+ * shows, by default, or another, as the changelog takes them (src/Changes.ts)
+ */
+export function systemsOf (dpiType: DPIType, rows: Record<string, any>[] = releaseRows[dpiType]): System[] {
   const schema = schemas[dpiType] as Schema
   const key = schema.primaryKey
   if (key?.length !== 1) throw new Error(`${schemaSource(dpiType)} needs a primaryKey of one field, the System ID`)
   const idField = schema.fields.find(field => field.name === key[0])
   if (!idField) throw new Error(`${schemaSource(dpiType)} primaryKey "${key[0]}" is not one of its fields`)
 
-  return releaseRows[dpiType].map(row => {
+  return rows.map(row => {
     const values: Record<string, string> = {}
     for (const field of schema.fields) values[field.id] = String(row[field.name] ?? '')
     // the same record as the cards', so the system page can use their components
@@ -66,7 +70,7 @@ function systemsOf (dpiType: DPIType): System[] {
   })
 }
 
-export const systems = dpiTypes.flatMap(systemsOf)
+export const systems = dpiTypes.flatMap(dpiType => systemsOf(dpiType))
 
 // A system's page is /<id> and a country's is /<slug(country)>, so they must never meet.
 const countrySlugs = new Set([...systems.map(system => slug(system.country)), ...[...pages.values()].map(page => page.href.replaceAll('/', ''))])

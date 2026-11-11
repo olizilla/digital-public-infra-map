@@ -1,0 +1,210 @@
+---
+// One DPI type's changes in a round (D81), for the researcher who owns the type to check every change:
+// /changes/next/<lane anchor>/ for the pending changes, /changes/<date>/<lane anchor>/ for a release's
+// (src/pages/changes/). The countries that gain or lose a DPI-like system, the codebook's changes,
+// then filters, then every change by country and system. Built from the changesets and the releases'
+// rows and datapackage.json by src/Changes.ts. Nothing links here yet. The filters are a little plain
+// JS that toggles `hidden` and keeps its state in the query (?country=benin&kind=dpi,new), so a view
+// can be shared. Without JS everything shows, with the wording fixes folded. With no changes, the page
+// says so and links to the latest release's.
+import Layout from '../layouts/Layout.astro'
+import Footer from './Footer.astro'
+import TypeIcon from './TypeIcon.astro'
+import ChangeCard from './ChangeCard.astro'
+import DpiChange from './DpiChange.astro'
+import CodebookChanges from './CodebookChanges.astro'
+import ChangesNav from './ChangesNav.astro'
+import { nouns } from '../DpiTest'
+import type { DPIType } from '../Schema'
+import { changelog, changelogHref, changesHref, changeTitles, dateOf, kindLabels, kinds, n, pending, plural, releaseChangelogs, roundOf, type Round } from '../Changes'
+
+interface Props {
+  round: Round
+  dpiType: DPIType
+}
+const { round, dpiType } = Astro.props
+const { base, baseDate, date } = await roundOf(round)
+const isPending = round === pending
+const title = changeTitles[dpiType]
+const { countries, dpiCountries, dpiLike, counts, codebook } = await changelog(round, dpiType)
+const gains = dpiCountries.filter(d => d.gains)
+const losses = dpiCountries.filter(d => !d.gains)
+const noun = nouns[dpiType]
+// a pending codebook shows only if it changes
+const codebookChanges = isPending && !codebook?.any ? undefined : codebook
+const none = counts.changes === 0
+const latest = releaseChangelogs[0]
+
+const parts = [
+  `${n(counts.new)} new`,
+  `${n(counts.removed)} removed`,
+  `${n(counts.renamed)} renamed`,
+  plural(counts.dpi, 'DPI status change'),
+]
+const summary = `${plural(counts.changes, 'change')} to ${plural(counts.systems, 'system')} in ${plural(counts.countries, 'country', 'countries')}`
+---
+
+<Layout fullTitle={`${title}: ${isPending ? 'pending changes' : `changes in the ${date} release`} · DPI Map`} noindex={isPending}>
+  <main class="page chg">
+    <!-- the type icon, once, for the cards' headers -->
+    <svg hidden><symbol id="type-icon" viewBox="0 0 24 24"><TypeIcon dpiType={dpiType} /></symbol></svg>
+    <header class="chg-head">
+      <nav class="page-crumbs" aria-label="Breadcrumb"><a href="/">Map</a> › <a href={changelogHref}>Changelog</a> › <a href={changesHref(round)}>{ isPending ? 'Next release' : `${date} release` }</a> › {title}</nav>
+      <h1 class="page-title chg-h1">{title} changes</h1>
+      <ChangesNav round={round} dpiType={dpiType} />
+      { isPending
+        ? <p class="chg-label chg-label-pending">Pending: proposed for the next release, not in the published data</p>
+        : <p class="chg-label">Changes in the {date} release, since the {baseDate} release</p> }
+      { none
+        ? <Fragment>
+            <p class="chg-summary">{ isPending ? `No ${noun} changes are pending.` : `No ${noun} changes in this release.` }</p>
+            { isPending && latest && <p class="chg-summary"><a class="ul" href={changesHref(latest, dpiType)}>See the {noun} changes in the {dateOf(latest)} release</a></p> }
+          </Fragment>
+        : <Fragment>
+            <p class="chg-summary">{summary}</p>
+            <p class="chg-summary">{parts.join(', ')}</p>
+          </Fragment> }
+      <details class="chg-about more">
+        <summary>About this page</summary>
+        { isPending
+          ? <p>Every change researchers have proposed to the {noun} data since the {base} release, by country and system. They’ll be in the next release, and until then they aren’t in the published data: the map and the country and system pages show the {base} release. Each shows the old value and the new, the reason and the sources given for it, and the changeset it’s in. Changes that only bring a value into the codebook’s agreed wording are folded under each system.</p>
+          : <p>Every change researchers made to the {noun} data in the {date} release, since the {base} release, by country and system. Each shows the old value and the new, the reason and the sources given for it, and the changeset it’s in. Changes that only bring a value into the codebook’s agreed wording are folded under each system. Open a system’s page to see all its values and their history.</p> }
+        <p>The codebook changes compare the variables, allowed values and definitions with those the {base} release was published with.</p>
+        <p>DPI-like countries are counted as on the map: countries, not regions, with at least one system that passes the DPI test.</p>
+      </details>
+    </header>
+
+    { !none &&
+      <section class="chg-dpi" aria-labelledby="dpi-h">
+        <h2 class="chg-h4" id="dpi-h"><span>DPI-like countries</span><span class="chg-h2-note"> {n(dpiLike.before)} → {n(dpiLike.after)}</span></h2>
+        { dpiCountries.length === 0 && <p class="chg-lede">No country gains or loses a DPI-like {noun} system.</p> }
+        { [{ head: 'Upgraded', dir: 'up', list: gains }, { head: 'Downgraded', dir: 'down', list: losses }].filter(g => g.list.length).map(g => (
+          <Fragment>
+            <h3 class={`chg-h3 ${g.dir}`}><i aria-hidden="true">{g.dir === 'up' ? '↑' : '↓'}</i>{g.head} <span>{g.list.length}</span></h3>
+            <ul class="chg-dpi-list">
+              { g.list.map(d => <DpiChange country={d} />) }
+            </ul>
+          </Fragment>
+        ))}
+      </section> }
+
+    { codebookChanges && <CodebookChanges dpiType={dpiType} changes={codebookChanges} since={base} /> }
+
+    <!-- the filters need JS, so they're hidden until the script shows them -->
+    { !none && <Fragment>
+      <div class="chg-bar" hidden>
+        <label class="chg-pick"><span class="sr-only">Country</span>
+          <select name="country">
+            <option value="">All countries</option>
+            { countries.map(c => <option value={c.slug}>{c.country}</option>) }
+          </select>
+        </label>
+        <div class="chg-chips" role="group" aria-label="Kind of change">
+          { kinds.filter(kind => counts[kind] > 0).map(kind => (
+            <button type="button" class="chg-chip" data-kind={kind} aria-pressed="false">{kindLabels[kind]} <span>{n(counts[kind])}</span></button>
+          ))}
+        </div>
+        <p class="chg-none" hidden>Nothing matches. <button type="button" class="ul" data-clear>Show everything</button></p>
+      </div>
+
+      <div class="chg-grid">
+        <div class="chg-body">
+          { countries.map(c => (
+            <section class="chg-country" id={c.slug} data-c={c.slug}>
+              <h2 class="lane-head">{ c.href ? <a href={c.href}>{c.country}</a> : c.country }<span class="lane-count">{plural(c.count, 'change')}</span></h2>
+              { c.systems.map(s => <ChangeCard changes={s} />) }
+            </section>
+          ))}
+        </div>
+        <aside class="chg-side">
+          <section class="side-card" aria-labelledby="countries-h">
+            <h2 class="side-h" id="countries-h"><TypeIcon dpiType={dpiType} class="size-4 inline" /> Countries</h2>
+            <ul class="side-body chg-clist">
+              { countries.map(c => <li data-c={c.slug}><a href={`#${c.slug}`}>{c.country}</a><span>{c.count}</span></li>) }
+            </ul>
+          </section>
+        </aside>
+      </div>
+    </Fragment> }
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  // Filter by country and kind of change, by toggling `hidden`. The state is the query string:
+  // ?country=<slug>&kind=<kind>,<kind>. With no kind chosen, everything shows and wording fixes
+  // stay folded; choosing kinds shows only changes of those kinds, and a system's every change
+  // (bar wording fixes) for `dpi`.
+  const bar = document.querySelector<HTMLElement>('.chg-bar')
+  // with no changes there are no filters
+  if (bar) filters(bar)
+
+  function filters (bar: HTMLElement) {
+    const select = bar.querySelector('select')!
+    const chips = [...bar.querySelectorAll<HTMLButtonElement>('.chg-chip')]
+    const none = bar.querySelector<HTMLElement>('.chg-none')!
+    const sections = [...document.querySelectorAll<HTMLElement>('.chg-country')]
+    const sideItems = [...document.querySelectorAll<HTMLElement>('.chg-clist li')]
+
+    function state () {
+      const query = new URLSearchParams(location.search)
+      return { country: query.get('country') ?? '', kinds: new Set((query.get('kind') ?? '').split(',').filter(Boolean)) }
+    }
+
+    function save (country: string, kinds: Set<string>) {
+      const query = new URLSearchParams()
+      if (country) query.set('country', country)
+      if (kinds.size) query.set('kind', [...kinds].join(','))
+      const search = query.toString().replaceAll('%2C', ',')
+      history.replaceState(null, '', search ? `?${search}` : location.pathname)
+      apply()
+    }
+
+    function apply () {
+      const { country, kinds } = state()
+      select.value = country
+      for (const chip of chips) chip.setAttribute('aria-pressed', String(kinds.has(chip.dataset.kind!)))
+      let shown = 0
+      for (const section of sections) {
+        let any = false
+        if (!country || section.dataset.c === country) {
+          for (const sys of section.querySelectorAll<HTMLElement>('.chg-sys')) {
+            const dpi = sys.hasAttribute('data-dpi')
+            let visible = false
+            for (const row of sys.querySelectorAll<HTMLElement>('.chg-row')) {
+              const kind = row.dataset.k!
+              row.hidden = kinds.size > 0 && !kinds.has(kind) && !(dpi && kinds.has('dpi') && kind !== 'wording')
+              if (!row.hidden) visible = true
+            }
+            for (const group of sys.querySelectorAll<HTMLElement>('.chg-cs')) group.hidden = !group.querySelector('.chg-row:not([hidden])')
+            const fold = sys.querySelector<HTMLDetailsElement>('.chg-wf')
+            if (fold) {
+              fold.open = kinds.has('wording')
+              fold.hidden = !fold.querySelector('.chg-row:not([hidden])')
+            }
+            sys.hidden = !visible
+            if (visible) any = true
+          }
+        }
+        section.hidden = !any
+        if (any) shown++
+      }
+      for (const item of sideItems) item.hidden = !!sections.find(s => s.dataset.c === item.dataset.c)?.hidden
+      none.hidden = shown > 0
+    }
+
+    select.addEventListener('change', () => save(select.value, state().kinds))
+    for (const chip of chips) {
+      chip.addEventListener('click', () => {
+        const { country, kinds } = state()
+        const kind = chip.dataset.kind!
+        if (kinds.has(kind)) kinds.delete(kind)
+        else kinds.add(kind)
+        save(country, kinds)
+      })
+    }
+    bar.querySelector('[data-clear]')!.addEventListener('click', () => save('', new Set()))
+    bar.hidden = false
+    apply()
+  }
+</script>

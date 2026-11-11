@@ -1,20 +1,22 @@
 ---
-// The codebook's changes in the release, for one DPI type's changelog page: a heading with the field
-// count before → after and a line that sums them up, then a fold for each kind of change, open if it's
-// short. Fields added (with their definitions, and what they replace), fields removed, allowed values
+// The codebook's changes in a release, or for the next one, for one DPI type's changelog page: a
+// heading with the field count before → after and a line that sums them up, then a fold for each kind
+// of change, open if it's short. Fields added (with their definitions, and what they replace), fields removed, allowed values
 // added or removed (a value on several fields is one line), definitions and value meanings reworded
 // (a word diff, folded if long), and missing values. Fields link to their codebook pages.
 // Built by src/CodebookChanges.ts.
 import { schemas, resourceNames, type DPIType } from '../Schema'
 import { wordDiff, type FieldRef, type ResourceChanges, type Reworded, type ValueGroup } from '../CodebookChanges'
 import CodebookField from './CodebookField.astro'
-import { codebookSummary, n, plural, previousRelease } from '../Changes'
+import { codebookSummary, n, plural } from '../Changes'
 
 interface Props {
   dpiType: DPIType
   changes: ResourceChanges
+  /** the release the changes are since, like `2026-03-31` */
+  since: string
 }
-const { dpiType, changes: c } = Astro.props
+const { dpiType, changes: c, since } = Astro.props
 const ids = new Set(schemas[dpiType].fields.map(field => field.id as string))
 /** the field's codebook page, if the release has the field */
 const hrefOf = (field: FieldRef) => ids.has(field.id) ? `/codebook/${resourceNames[dpiType]}/${field.id}/` : undefined
@@ -30,7 +32,7 @@ const valueGroups: { head: string, on: string, list: ValueGroup[] }[] = [
 ---
 <section class="chg-dpi chg-cb" aria-labelledby="codebook-h">
   <h2 class="chg-h4" id="codebook-h"><span>Codebook changes</span><span class="chg-h2-note"> {n(c.fields.before)} → {n(c.fields.after)} fields</span></h2>
-  <p class="chg-lede">{codebookSummary(c)}, since the {previousRelease} release. See the <a class="ul" href="/codebook/">codebook</a>.</p>
+  <p class="chg-lede">{codebookSummary(c)}, since the {since} release. See the <a class="ul" href="/codebook/">codebook</a>.</p>
 
   { c.added.length > 0 && (
     <details class="chg-cb-group more" open={c.added.length <= short}>

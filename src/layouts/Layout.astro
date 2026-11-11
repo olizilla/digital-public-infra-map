@@ -6,7 +6,8 @@ import type { MetaTag } from '../CitationMeta'
 
 // `fullTitle` replaces the whole title, for pages that name the site their own way.
 // `description` is the page's own, where it has one. `citation` is the page's citation meta tags,
-// for Zotero and other reference managers (src/CitationMeta.ts).
+// for Zotero and other reference managers (src/CitationMeta.ts). `noindex` keeps the page out of
+// search engines, as for the pending changes (D81).
 const {title} = Astro.props
 const fullTitle = Astro.props.fullTitle ?? (title ? `${title} - DPI Map` : 'Digital Public Infrastructure Map - UCL IIPP')
 const desc: string = Astro.props.description || 'The first global investigation of digital public infrastructure.'
@@ -27,6 +28,7 @@ const imgUrl = new URL('/map/preview.png', rootUrl)
 		<meta name="title" content={fullTitle} />
 		<meta name="description" content={desc} />
 		<link rel="canonical" href={pageUrl} />
+		{ Astro.props.noindex && <meta name="robots" content="noindex" /> }
 		<meta property="og:site_name" content={dataset.title} />
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content={pageUrl} />

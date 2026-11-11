@@ -1,0 +1,14 @@
+---
+// A release's changelog, /changes/<date>/ (D81): the changesets released with it, against the release
+// before it. It's fixed once the release is out, so it's indexed, and in the sitemap and the feed.
+// Only releases with changesets have one (src/Changes.ts releaseChangelogs).
+import ChangelogHub from '../../../components/ChangelogHub.astro'
+import { releaseChangelogs } from '../../../Changes'
+
+export function getStaticPaths () {
+  return releaseChangelogs.map(release => ({ params: { release } }))
+}
+
+const { release } = Astro.params
+---
+<ChangelogHub round={release} />
