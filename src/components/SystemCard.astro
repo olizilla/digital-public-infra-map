@@ -56,7 +56,7 @@ const Title = full ? 'h1' : 'h3'
   </header>
   { full ? <slot /> : <Fragment>
   <div class="flex flex-col px-4 narrow:px-3.5 py-3 bg-white border-b border-zinc-200">
-    <span class="test-label">DPI test</span>
+    <span class="eyebrow pb-2">DPI test</span>
     <DpiTestList dpiType={dpiType} record={record} />
   </div>
   <div class="sys-body px-4 narrow:px-3.5 pt-1 pb-2 has-[details:not([open])]:pb-0">
@@ -70,7 +70,7 @@ const Title = full ? 'h1' : 'h3'
   </div>
   <footer class="sys-foot fields-foot mt-2">
     <span>Updated {monthYear(updated)}</span>
-    <a href="/contribute/">Propose an update</a>
+    <a class="propose-link" href="/contribute/">Propose an update</a>
   </footer>
   </Fragment> }
 </article>

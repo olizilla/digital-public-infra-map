@@ -99,10 +99,13 @@ export function formatDate (date?: string, short = false) {
   return short ? `${day}${month}` : `${day}${month} ${y}`
 }
 
-// frontmatter in a post's own page (the Post layout reads it raw): a YAML date is a Date, a year a number
+// frontmatter in a post's own page (the Post layout reads it raw): a YAML date is a Date, a year a number,
+// and in the dev server a date can arrive as an ISO timestamp string ("2025-04-30T00:00:00.000Z")
 export function normDate (value: unknown): string | undefined {
   if (value instanceof Date) return value.toISOString().slice(0, 10)
-  return value === undefined || value === null || value === '' ? undefined : String(value)
+  if (value === undefined || value === null || value === '') return undefined
+  const text = String(value)
+  return /^\d{4}-\d{2}-\d{2}T/.test(text) ? text.slice(0, 10) : text
 }
 
 // every published entry, newest first. The pinned report is in the list; the index shows it on its own.

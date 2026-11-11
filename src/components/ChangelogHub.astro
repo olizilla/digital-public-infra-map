@@ -75,7 +75,7 @@ const total = { changes: cards.reduce((sum, card) => sum + card.changes, 0), sys
               </dl>
               <p class="chg-hub-dpi"><span>DPI-like countries</span><b>{n(card.dpiLike.before)} → {n(card.dpiLike.after)}</b><span class="chg-hub-net">{card.gains} upgraded, {card.losses} downgraded</span></p>
               { card.codebook && <p class="chg-hub-dpi"><span>Codebook fields</span><b>{n(card.codebook.fields.before)} → {n(card.codebook.fields.after)}</b><span class="chg-hub-net">{codebookSummary(card.codebook)}</span></p> }
-              <a class="card-more" href={card.href}>See the changes</a>
+              <a class="more-link" href={card.href}>See the changes</a>
             </article>
           ))}
         </div> }

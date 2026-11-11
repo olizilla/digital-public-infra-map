@@ -4,6 +4,6 @@
 import { reportCitation, type Report } from '../CitationMeta'
 const parts = reportCitation(Astro.props.citation as Report)
 ---
-<div class="paper-cite">
-  <p data-citation>{parts.authors} <i>{parts.title}</i> {parts.rest}</p>
+<div class="panel">
+  <p class="citation">{parts.authors} <i>{parts.title}</i> {parts.rest}</p>
 </div>

@@ -59,7 +59,7 @@ const siblings = systems
   <main class="page">
     <!-- the country page's header, so nothing moves when you click through; hidden on a phone, where the page starts at the type heading -->
     <div class="sp-country">
-      <CountryHeader country={system.country} countryHref={system.countryHref} step={laneTitles[dpiType]} />
+      <CountryHeader country={system.country} countryHref={system.countryHref} dpiType={dpiType} />
     </div>
 
     <!-- the country page's three columns: the system's card across two, then its change log and the country's other systems -->
@@ -67,7 +67,7 @@ const siblings = systems
       <p class="lane-head sp-lane"><a href={system.countryHref}><TypeIcon dpiType={dpiType} /><span>{laneTitles[dpiType]}</span></a></p>
       <SystemCard dpiType={dpiType} record={record} full>
         <section class="sys-test" aria-labelledby="dpi-test-h">
-          <h2 class="test-label" id="dpi-test-h">DPI test</h2>
+          <h2 class="eyebrow pb-2" id="dpi-test-h">DPI test</h2>
           <DpiTestList dpiType={dpiType} record={record} />
           { !verdict.passes && <p class="test-verdict">Not yet DPI-like: { verdict.reasons.map((reason, i) => (
             <Fragment>{joiner(i, verdict.reasons.length)}<a class="ul" href={`#${fieldAnchor(reason.field)}`}>{reason.text}</a>{reason.after}</Fragment>
@@ -87,7 +87,7 @@ const siblings = systems
         </section>
         <footer class="fields-foot">
           <span>Last updated {updated ?? 'NA'}</span>
-          <a href="/contribute/">Propose an update</a>
+          <a class="propose-link" href="/contribute/">Propose an update</a>
         </footer>
       </SystemCard>
 

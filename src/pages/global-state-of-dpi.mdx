@@ -1,6 +1,12 @@
 ---
 layout: ../layouts/Standard.astro
 title: 2025 State of DPI Report
+# its Insights header (src/components/PostHeader.astro), as on the Insights entry (src/content/links/2025-state-of-dpi-report.md)
+insight:
+  kind: report
+  publisher: UCL IIPP
+  date: '2025-10'
+  pdf: /iipp-state-of-dpi-report-2025.pdf
 description: A look at measurement and prevalence as DPI transitions from experiment to scale.
 # How to cite the report: the citation under "Reference" below (src/components/ReportCitation.astro),
 # and the page's citation meta tags, which make it a Report in Zotero (src/CitationMeta.ts).
@@ -28,8 +34,6 @@ citation:
 import ReportCitation from '../components/ReportCitation.astro'
 
 _A Look at Measurement and Prevalence as DPI Transitions from Experiment to Scale._
-
-<div class="button-row"><a href="/iipp-state-of-dpi-report-2025.pdf" class="button-blue" onclick="pdfDownload()">Download the PDF</a></div>
 
 ## Executive Summary
 

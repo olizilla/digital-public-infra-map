@@ -52,8 +52,8 @@ const description = countryDescription(summaryOf(country, lanes))
 					{ lane.systems.length === 0 &&
 						<div class="sys-empty px-4 py-5 bg-white border border-dashed border-zinc-300 rounded-lg text-sm text-zinc-600">
 							{ lane.researched
-								? <Fragment><p>No {lane.noun} system found in public sources.</p><a class="inline-block mt-1.5 font-semibold text-zinc-700 hover:text-blue-500" href="/contribute/">Know of one? Propose it</a></Fragment>
-								: <Fragment><p>No {lane.noun} system recorded yet.</p><a class="inline-block mt-1.5 font-semibold text-zinc-700 hover:text-blue-500" href="/contribute/">Propose one</a></Fragment>
+								? <Fragment><p>No {lane.noun} system found in public sources.</p><a class="propose-link inline-block mt-1.5" href="/contribute/">Know of one? Propose it</a></Fragment>
+								: <Fragment><p>No {lane.noun} system recorded yet.</p><a class="propose-link inline-block mt-1.5" href="/contribute/">Propose one</a></Fragment>
 							}
 						</div>
 					}

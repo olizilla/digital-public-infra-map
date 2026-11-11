@@ -5,11 +5,12 @@
 // download the PDF and a link to the record; the abstract, or the description as a summary; the
 // places on the map it's about; a citation to copy. Entries with neither link straight to their source.
 import CiteBox from '../../components/CiteBox.astro'
+import PostHeader from '../../components/PostHeader.astro'
 import { getCollection, render } from 'astro:content'
 import Layout from '../../layouts/Layout.astro'
 import Footer from '../../components/Footer.astro'
 import MoreInsights from '../../components/MoreInsights.astro'
-import { excerpt, formatDate, hasPage, kindLabels, plainText } from '../../Insights'
+import { excerpt, hasPage, plainText } from '../../Insights'
 import { insightCitation } from '../../CitationMeta'
 import { systems, systemHref } from '../../Systems'
 import { pages } from '../../Records'
@@ -44,41 +45,29 @@ const recordLabel = d.urlLabel ?? d.publisher ?? 'the source'
 
 <Layout title={d.title} description={description} citation={meta}>
   <article class="paper pt-4 md:pt-10 pb-10 max-w-2xl mx-auto px-4 md:px-0">
-    <header class="post-head">
-      <nav class="page-crumbs" aria-label="Breadcrumb"><a href="/blog/">Insights</a></nav>
-      <h1 class="page-title page-h1">{d.title}</h1>
-      <p class="post-meta">
-        <span class="ins-kind" data-kind={d.kind}>{kindLabels[d.kind]}</span>
-        <span aria-hidden="true">·</span>
-        <span>{d.publisher}</span>
-        <span aria-hidden="true">·</span>
-        { d.date ? <time datetime={d.date}>{formatDate(d.date)}</time> : <span class="ins-undated">{formatDate()}</span> }
-      </p>
-      { authors.length > 0 && <p class="paper-authors">{authors.join(', ')}</p> }
-      <p class="ins-actions">
-        { d.pdf && <a class="button-blue" href={d.pdf} rel="external">Download the PDF</a> }
-        <a class="ins-more" href={d.url} rel="external">View on {recordLabel}&nbsp;↗</a>
-      </p>
-    </header>
+    <PostHeader title={d.title} kind={d.kind} publisher={d.publisher} date={d.date} authors={authors}>
+      { d.pdf && <a class="button-blue" href={d.pdf} rel="external">Download the PDF</a> }
+      <a class="ins-more" href={d.url} rel="external">View on {recordLabel}&nbsp;↗</a>
+    </PostHeader>
 
     { entry.body?.trim()
       ? (
         <section class="paper-section" aria-labelledby="abstract">
-          <h2 id="abstract">Abstract</h2>
+          <h2 class="eyebrow" id="abstract">Abstract</h2>
           <div class="prose"><Content /></div>
           { d.licence && <p class="paper-licence">Abstract from {recordLabel}, shared under {d.licence}.</p> }
         </section>
       )
       : d.description && (
         <section class="paper-section" aria-labelledby="summary">
-          <h2 id="summary">Summary</h2>
+          <h2 class="eyebrow" id="summary">Summary</h2>
           <div class="prose"><p>{d.description}</p></div>
         </section>
       )}
 
     { places.length > 0 && (
       <section class="paper-section" aria-labelledby="on-the-map">
-        <h2 id="on-the-map">On the map</h2>
+        <h2 class="eyebrow" id="on-the-map">On the map</h2>
         <ul class="paper-places">
           { places.map(p => <li><a href={p.href}>{p.label}</a> <span>{p.note}</span></li>) }
         </ul>
@@ -86,7 +75,7 @@ const recordLabel = d.urlLabel ?? d.publisher ?? 'the source'
     )}
 
     <section class="paper-section" aria-labelledby="cite">
-      <h2 id="cite">Cite</h2>
+      <h2 class="eyebrow" id="cite">Cite</h2>
       <CiteBox citation={citation} />
     </section>
 

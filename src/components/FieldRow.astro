@@ -39,11 +39,11 @@ const since = latest && (latest.type === 'snapshot' ? snapshotDate : latest.as_o
     </span>
   </summary>
   <div class="fr-more">
-    <details class="meaning">
-      <summary class="mini-h">What this field means</summary>
+    <details class="meaning more">
+      <summary class="eyebrow">What this field means</summary>
       { meaning.description
         ? <p class="def-text">{meaning.description}</p>
-        : <p class="def-text">{meaning.codebook ? 'No definition recorded yet.' : 'Not a codebook variable.'}</p> }
+        : <p class="def-text empty">{meaning.codebook ? 'No definition recorded yet.' : 'Not a codebook variable.'}</p> }
       { meaning.codes.length > 0 &&
         <dl class="codes">{ meaning.codes.map(code => <div><dt>{code.value}</dt><dd>{code.meaning}</dd></div>) }</dl> }
       { meaning.rule && <p class="def-meta">{meaning.rule}</p> }
@@ -51,7 +51,7 @@ const since = latest && (latest.type === 'snapshot' ? snapshotDate : latest.as_o
       <p class="def-meta"><a class="ul" href={variablePath(system.dpiType, field)}>Read it in the codebook</a></p>
     </details>
     <section>
-      <h4 class="mini-h">Source</h4>
+      <h4 class="eyebrow mb-1">Source</h4>
       { evidence.length
         ? <ul class="ev">
             { evidence.map(({ url, from }) => (
@@ -63,12 +63,12 @@ const since = latest && (latest.type === 'snapshot' ? snapshotDate : latest.as_o
               </li>
             ))}
           </ul>
-        : <p class="nosrc-block">No source recorded yet. If you know where this is stated publicly, <a class="ul" href="/contribute/">propose an update</a> with a source.</p> }
+        : <p class="empty">No source recorded yet. If you know where this is stated publicly, <a class="ul" href="/contribute/">propose an update</a> with a source.</p> }
     </section>
     <section>
-      <h4 class="mini-h">History</h4>
+      <h4 class="eyebrow mb-1">History</h4>
       { history.length === 0
-        ? <p class="nosrc-block">No value has been recorded for this field yet.</p>
+        ? <p class="empty">No value has been recorded for this field yet.</p>
         : <ol class="hist">
             { history.map(item => item.type === 'snapshot'
               ? <li class="h-item is-base">

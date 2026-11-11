@@ -195,14 +195,13 @@
     & p + p { @apply mt-1; }
   }
 
-  /* the blue button: downloads and sign-ups */
+  /* the blue button: downloads and sign-ups. One size everywhere, 14px semibold */
   .button-blue {
-    @apply rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-semibold mx-2 px-3 py-3 no-underline whitespace-nowrap;
+    @apply inline-block rounded-lg bg-blue-500 hover:bg-blue-600 text-white text-sm leading-5 font-semibold px-3 py-2.5 no-underline whitespace-nowrap;
   }
   /* a button on its own line in long-form text */
   .button-row {
     @apply my-8 flex flex-wrap items-center gap-3;
-    & .button-blue { @apply mx-0; }
   }
 }
 
@@ -225,11 +224,6 @@
   min-width: 80px;
 }
 
-/* a group row in the methodology's indicator tables (IndicatorTable): an eyebrow, as the attribute's name is written */
-.label {
-  @apply text-xs leading-4 font-semibold text-secondary normal-case;
-}
-
 .indicator-table td,
 .indicator-table th {
   @apply pl-2
@@ -238,9 +232,10 @@
 .attribute-table tr, .indicator-table tr, [id^="dpi-test-"] { scroll-margin-top: 4rem; }
 .attribute-table tr:target, .indicator-table tr:target { @apply bg-blue-50 outline-2 outline-blue-300; }
 [id^="dpi-test-"]:target { @apply bg-blue-50 outline-2 outline-offset-2 outline-blue-300 rounded-sm; }
-/* "All N fields" toggles on system cards */
+/* a disclosure: "All N fields" on system cards, "What this field means", "Show N systems" and the changelog's folds.
+   A chevron before the summary, no native marker */
 details.more > summary {
-  @apply flex items-center gap-1.5 cursor-pointer list-none hover:text-ink;
+  @apply flex items-center gap-1.5 cursor-pointer list-none hover:text-blue-500;
 }
 details.more > summary::-webkit-details-marker {
   display: none;
@@ -462,10 +457,6 @@ details.more[open] > summary::before {
   .dpi-test .pill {
     @apply flex-none;
   }
-  /* "DPI test", over the test on system cards and listing cards */
-  .test-label {
-    @apply block pb-2 text-xs font-semibold text-secondary;
-  }
   .dpi-test a {
     @apply hover:text-blue-500 hover:underline;
   }
@@ -531,18 +522,17 @@ details.more[open] > summary::before {
     & > header > h3 {
       @apply col-span-2;
     }
-    & > .test-label {
-      @apply px-3.5 pt-2.25 pb-1.25;
+    & > .eyebrow {
+      @apply block px-3.5 pt-2.25 pb-1.25;
     }
     @apply compact-card-parts;
     & .dpi-test {
       @apply px-3.5 pb-2.5;
     }
-  }
-  /* "More details" / "See the changes" at the foot of a listing card or a changelog hub card */
-  .card-more {
-    @apply flex items-center gap-1.5 px-3.5 pt-0.5 pb-3 text-xs font-medium text-secondary hover:text-ink;
-    &::after { content: "→"; }
+    /* "More details" at the card's foot */
+    & > .more-link {
+      @apply flex px-3.5 pt-0.5 pb-3;
+    }
   }
 }
 
@@ -681,7 +671,7 @@ details.more[open] > summary::before {
   /* a system card's white footer: when it was updated, and "Propose an update" (SystemCard, the system page) */
   .fields-foot {
     @apply flex items-center gap-2.5 px-4 py-2.5 bg-white border-t border-line rounded-b-lg text-xs leading-5 text-muted;
-    & a { @apply ml-auto font-semibold text-strong hover:text-blue-500; }
+    & a { @apply ml-auto; }
   }
   .grp { @apply mt-5.5; }
   .grp:first-of-type { @apply mt-4; }
@@ -735,7 +725,6 @@ details.more[open] > summary::before {
   }
 
   /* an opened row: what the field means, its evidence and its history */
-  .meaning > summary { @apply cursor-pointer; }
   .meaning[open] > summary { @apply mb-1; }
   .fr-more {
     @apply grid gap-4 mt-1 pt-3 pr-4 pb-4 pl-13.5 border-t border-line-faint text-ui leading-5 text-secondary;
@@ -745,7 +734,6 @@ details.more[open] > summary::before {
   @variant narrow {
     .fr-more { @apply pl-[14.5px]; }
   }
-  .mini-h { @apply m-0 mb-1 text-xs leading-4 font-semibold text-secondary; }
   .def-text { @apply max-w-[64ch] text-ink; }
   .codes {
     @apply grid gap-1 mt-1.5 max-w-[64ch];
@@ -836,14 +824,15 @@ details.more[open] > summary::before {
     & p { @apply mt-2; }
   }
 
-  /* DPI-like countries */
-  .chg-dpi { @apply mb-6 px-4 py-3.5 bg-zinc-50 border border-line rounded-lg; }
-  /* the box's headings, DPI-like countries and codebook changes: a section heading, as .lane-head */
-  .chg-box-h { @apply flex items-baseline gap-3 text-lg leading-6 font-semibold text-strong; }
+  /* DPI-like countries and the codebook's changes: a .panel each */
+  .chg-box { @apply mb-6; }
+  /* the box's headings, DPI-like countries and codebook changes: 18/24 in ink, over its groups' 15/20 */
+  .chg-box-h { @apply flex items-baseline gap-3 text-lg leading-6 font-semibold text-ink; }
   .chg-box-note { @apply font-semibold text-strong tabular-nums; }
   .chg-lede { @apply mt-0.5 mb-3 text-sm leading-5.5 text-secondary; }
+  /* a group in the box: Upgraded, Downgraded */
   .chg-h3 {
-    @apply flex items-baseline gap-1.5 mt-5 mb-2.5 text-lg leading-6 font-semibold text-ink;
+    @apply flex items-baseline gap-1.5 mt-5 mb-2.5 text-title font-semibold text-ink;
     & i { @apply not-italic font-bold; }
     &.up i { @apply text-green-600; }
     &.down i { @apply text-red-600; }
@@ -874,8 +863,9 @@ details.more[open] > summary::before {
     & .pill { @apply flex-none pill-sm; }
     & > .nm { @apply min-w-0 truncate; }
   }
-  /* badges: New, Removed and pending, neutral */
-  .chg-new, .chg-gone, .chg-pending { @apply px-1.5 rounded bg-line-faint border border-line text-xs leading-4 font-medium text-strong; }
+  /* tags: New, Removed and pending, and a codebook value (.chg-cb-v) share one look, a pill's size
+     (12/16 with a 1px border) in white with a zinc-300 border */
+  .chg-new, .chg-gone, .chg-pending, .chg-cb-v { @apply inline-block px-1.5 rounded border border-line-strong bg-white text-xs leading-4 font-medium text-ink; }
   .chg-gone { @apply flex-none; }
   .chg-pending { @apply ml-1.5; }
 
@@ -883,7 +873,7 @@ details.more[open] > summary::before {
      a fold per kind of change, each a list of fields or values */
   .chg-cb-group {
     @apply mt-3 pt-3 border-t border-line;
-    & > summary h3 { @apply text-base leading-6 font-semibold text-ink; }
+    & > summary h3 { @apply text-title font-semibold text-ink; }
     & > summary h3 span { @apply count-num; }
   }
   .chg-cb-list {
@@ -892,11 +882,9 @@ details.more[open] > summary::before {
   }
   .chg-cb-field {
     @apply flex flex-wrap items-baseline gap-x-2 gap-y-0.5;
-    & .chg-new, & .chg-gone { @apply self-center; }
   }
   .chg-cb-name { @apply font-semibold text-ink; }
   a.chg-cb-name { @apply hover:text-blue-500 hover:underline; }
-  .chg-cb-v { @apply px-1.5 rounded border border-line-strong bg-white text-ui leading-5 font-semibold text-zinc-800; }
   .chg-cb-mean { @apply text-ui leading-5 text-secondary; }
   .chg-cb-note { @apply text-ui leading-5 text-strong; }
   .chg-cb-def, .chg-cb-on { @apply mt-0.5 max-w-[64ch] text-ui leading-5 text-secondary; }
@@ -982,6 +970,8 @@ details.more[open] > summary::before {
     & dt { @apply text-xs leading-4.5 text-secondary; }
     & dd { @apply text-lg leading-6 font-semibold tabular-nums; }
   }
+  /* "See the changes" at the card's foot, as the listing cards' "More details" */
+  .chg-hub-card > .more-link { @apply flex px-3.5 pt-0.5 pb-3; }
   .chg-hub-dpi {
     @apply flex flex-wrap items-baseline gap-x-2 mx-3.5 mb-3 pt-2.5 border-t border-line-faint text-xs leading-4.5 text-secondary;
     & b { @apply text-lg leading-6 font-semibold text-ink tabular-nums; }
@@ -995,7 +985,7 @@ details.more[open] > summary::before {
   /* portrait phones: cards edge to edge, as on the country page, and long names cut short */
   @media (max-width: 600px) and (orientation: portrait) {
     .chg-country { @apply -mx-4; }
-    .chg-dpi { @apply -mx-4 rounded-none border-x-0; }
+    .chg-box { @apply -mx-4 rounded-none border-x-0; }
     .chg-country > .lane-head { @apply px-4; }
     .chg-sys .sys-title { @apply truncate; }
   }
@@ -1007,7 +997,7 @@ details.more[open] > summary::before {
    entries scroll past, hairlines between entries; Community of Practice sessions are compact rows.
    The meta line leads with the kind and where the entry is published, an arrow if the link leaves
    the site. And a post's header and footer (src/layouts/Post.astro), and a paper's landing page
-   (src/pages/blog/[id].astro). Colours as the system pages: ink zinc-900, secondary zinc-600, muted
+   (src/pages/blog/[id].astro). Colours as the system pages: ink (black), secondary zinc-600, muted
    zinc-500, lines zinc-200, hairlines zinc-100. */
 @layer components {
   /* the reading column of the long-form pages, so the header sits where theirs does; the report and
@@ -1038,7 +1028,7 @@ details.more[open] > summary::before {
      the line under it runs the full width */
   .ins-hero {
     @apply grid md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-6 md:gap-10 items-center md:pl-30 pb-10 mb-2 border-b border-line;
-    & h2 { @apply mt-2 text-[28px] leading-9 md:text-page md:leading-10 font-bold tracking-[-.015em] text-zinc-900; }
+    & h2 { @apply mt-2 text-[28px] leading-9 md:text-page md:leading-10 font-bold tracking-[-.015em] text-ink; }
     & h2 a { @apply hover:text-blue-500; }
   }
   .ins-hero-img {
@@ -1049,15 +1039,14 @@ details.more[open] > summary::before {
   .ins-hero-desc { @apply mt-3 max-w-[30rem] text-lg leading-7 text-strong; }
   .ins-actions {
     @apply flex flex-wrap items-center gap-x-5 gap-y-3 mt-6;
-    & .button-blue { @apply mx-0! py-2.5 text-sm; }
   }
   .ins-more { @apply text-sm font-medium text-strong ul; }
 
   /* the kind tabs: quiet text, the chosen one underlined */
   .ins-tabs {
     @apply flex flex-wrap gap-x-5 gap-y-1 mt-6 mb-2 md:pl-[7.5rem] text-sm;
-    & button { @apply py-1.5 border-b-2 border-transparent text-muted cursor-pointer hover:text-zinc-900; }
-    & button[aria-pressed="true"] { @apply border-zinc-900 text-zinc-900 font-medium; }
+    & button { @apply py-1.5 border-b-2 border-transparent text-muted cursor-pointer hover:text-ink; }
+    & button[aria-pressed="true"] { @apply border-ink text-ink font-medium; }
     & button:not([data-kind="all"])::before {
       content: "";
       @apply inline-block size-1.5 mr-1.5 mb-px rounded-full align-middle;
@@ -1076,12 +1065,14 @@ details.more[open] > summary::before {
   .ins-list { @apply list-none p-0 divide-y divide-line-faint; }
   .ins-entry {
     @apply relative py-5;
-    & h3 { @apply mt-1 text-lg leading-6.5 font-semibold tracking-[-.005em] text-zinc-900 max-w-[44rem] text-pretty; }
-    & h3 a { @apply underline decoration-transparent decoration-1 underline-offset-[5px] transition-colors hover:decoration-zinc-400; }
+    & h3 { @apply mt-1 text-lg leading-6.5 font-semibold tracking-[-.005em] text-ink max-w-[44rem] text-pretty; }
+    /* a list of titles: the .ul underline appears on hover */
+    & h3 a { @apply underline decoration-transparent underline-offset-3 transition-colors hover:decoration-line-strong hover:text-blue-500; }
     & .ins-meta time { @apply ml-auto pl-3 text-faint; }
     & .ins-meta .ins-undated { @apply ml-auto pl-3 text-amber-700 font-medium; }
   }
-  .ins-authors { @apply mt-1 text-sm leading-5 text-secondary; }
+  /* authors: the same in the Insights list and an Insights page's header (.paper-authors, PostHeader) */
+  .ins-authors, .paper-authors { @apply mt-1 text-sm leading-5 text-secondary; }
   .ins-desc { @apply mt-2 max-w-[42rem] text-title leading-6 text-secondary; }
   .ins-links {
     @apply flex flex-wrap gap-x-4 mt-2.5 text-ui leading-5;
@@ -1105,7 +1096,7 @@ details.more[open] > summary::before {
   /* a post: its header, and the entries after it */
   .post-head {
     @apply mb-8 pb-6 border-b border-line;
-    & h1 { @apply text-zinc-900; }
+    & h1 { @apply text-ink; }
   }
   .post-meta {
     @apply flex flex-wrap items-baseline gap-x-1.5 text-sm leading-5 text-secondary;
@@ -1117,36 +1108,28 @@ details.more[open] > summary::before {
   }
   .post-more {
     @apply mt-14 pt-6 border-t border-line;
-    & h2 { @apply text-xs font-semibold text-muted; }
     & ol { @apply mt-2 list-none p-0 divide-y divide-line-faint; }
     & li { @apply py-3.5; }
-    & h3 { @apply mt-0.5 text-base leading-6 font-semibold text-zinc-900; }
+    & h3 { @apply mt-0.5 text-base leading-6 font-semibold text-ink; }
     & h3 a { @apply hover:text-blue-500; }
   }
-  .post-all { @apply inline-block mt-3 text-sm font-medium text-strong ul; }
 
   /* a paper's landing page: the header and its buttons, then the abstract, the places on the map
      and the citation, each under a small label */
   .paper .post-head .ins-actions { @apply mt-5; }
-  .paper-authors { @apply mt-1.5 text-title leading-6 text-strong; }
   .paper-section {
     @apply mt-9;
-    & > h2 { @apply mb-3 text-xs font-semibold text-muted; }
-    & .prose p { @apply text-[17px] leading-7 text-zinc-800; }
+    & > h2 { @apply mb-3; }
+    & .prose p { @apply text-[17px] leading-7 text-strong; }
     & .prose > :first-child { @apply mt-0; }
   }
   .paper-licence { @apply mt-3 text-ui leading-5 text-muted; }
   .paper-places {
     @apply list-none p-0 divide-y divide-line-faint border-y border-line-faint;
     & li { @apply flex items-baseline justify-between gap-3 py-2.5 text-title leading-6; }
-    & a { @apply font-medium text-zinc-900 hover:text-blue-500 hover:underline; }
+    & a { @apply font-medium text-ink hover:text-blue-500 hover:underline; }
     & span { @apply text-[13px] text-muted; }
   }
-  .paper-cite {
-    @apply flex items-start gap-4 px-4 py-3 rounded-md bg-zinc-50 border border-line text-sm leading-6 text-strong;
-    & p { @apply flex-1 min-w-0 break-words; }
-  }
-  .paper-copy { @apply shrink-0 px-2.5 py-1 rounded border border-line-strong bg-white text-xs font-medium text-strong cursor-pointer hover:border-zinc-400 hover:text-zinc-900; }
 }
 
 /* Changelog overrides of the card and lane styles above, which aren't in a layer, so these aren't either:
@@ -1187,20 +1170,18 @@ details.more[open] > summary::before {
   }
   .cb-toc-type { @apply flex items-center gap-2 mt-2 font-semibold; }
 
-  /* Standard values, then what the words on a variable's meta line mean */
-  .cb-sv {
-    @apply px-4 py-3.5 bg-zinc-50 border border-line rounded-lg text-sm leading-5.5 text-strong;
-  }
-  .cb-sv-h { @apply mb-1 text-title leading-5.5 font-semibold text-zinc-800; }
+  /* Standard values (a .panel), then what the words on a variable's meta line mean */
+  .cb-sv-h { @apply mb-1 text-title leading-5.5 font-semibold text-ink; }
+  /* the same 9rem column as .cb-dl */
   .cb-sv-defs {
     @apply grid gap-1.5 mt-3;
-    & > div { @apply grid sm:grid-cols-[8.5rem_minmax(0,1fr)] gap-x-3 gap-y-0.5; }
+    & > div { @apply grid sm:grid-cols-[9rem_minmax(0,1fr)] gap-x-3 gap-y-0.5; }
     & dt { @apply flex flex-wrap items-start gap-1 pt-0.5; }
     & dd { @apply text-ink; }
   }
   .cb-terms {
     @apply grid gap-1 mt-4 px-1 text-ui leading-5 text-secondary;
-    & dt { @apply inline font-medium text-zinc-800; }
+    & dt { @apply inline font-medium text-ink; }
     & dt::after { content: ": "; }
     & dd { @apply inline; }
   }
@@ -1208,7 +1189,7 @@ details.more[open] > summary::before {
   /* a DPI type: its sticky heading, as the codebook has always had, in sans */
   .cb-type { @apply mt-14; }
   .cb-type-h {
-    @apply sticky top-0 z-10 flex items-center gap-2.5 py-2.5 bg-white border-b-4 border-line-strong text-xl leading-7 font-semibold text-zinc-800;
+    @apply sticky top-0 z-10 flex items-center gap-2.5 py-2.5 bg-white border-b-4 border-line-strong text-xl leading-7 font-semibold text-ink;
   }
   .cb-type-h h2 { @apply flex items-center gap-2.5 min-w-0; }
   .cb-type-n { @apply ml-auto text-ui font-normal text-muted; }
@@ -1234,8 +1215,7 @@ details.more[open] > summary::before {
   .cb-meta-l { @apply text-secondary ul; }
   .cb-def { @apply mt-1.5 max-w-[64ch] text-sm leading-5.5 text-ink; }
   .is-full .cb-def { @apply text-base leading-7; }
-  .cb-def.is-none, .cb-v-def .is-none { @apply text-muted; }
-  .cb-h2 { @apply mt-10 mb-1 text-lg leading-6 font-semibold text-zinc-800; }
+  .cb-h2 { @apply mt-10 mb-1 text-lg leading-6 font-semibold text-strong; }
   .cb-note { @apply text-sm leading-5.5 text-secondary; }
   .cb-cover { @apply mt-2 text-ui leading-5 text-secondary; }
   .is-full .cb-cover { @apply mt-4 text-sm; }
@@ -1249,7 +1229,7 @@ details.more[open] > summary::before {
     grid-template-areas: "name def count" ". sys sys";
   }
   .cb-v-name { grid-area: name; @apply font-medium [overflow-wrap:anywhere]; }
-  .cb-v-def { grid-area: def; @apply text-zinc-800; }
+  .cb-v-def { grid-area: def; @apply text-ink; }
   .cb-v-count { grid-area: count; @apply text-right; }
   /* the index's 13px rows take the compact pill; a variable's page has 14px rows and the full pill */
   .cb-var:not(.is-full) .cb-v .pill { @apply pill-sm; }
@@ -1262,7 +1242,7 @@ details.more[open] > summary::before {
   .is-full .cb-v { @apply py-2.5 text-sm leading-5.5; }
   .is-full .cb-vhead { @apply py-1; }
   .is-full .cb-v-count { @apply flex flex-col items-end pt-px; }
-  .is-full .cb-v-count .cb-n { @apply text-sm font-medium text-zinc-800; }
+  .is-full .cb-v-count .cb-n { @apply text-sm font-medium text-ink; }
   .is-full .cb-v.is-na .cb-v-count .cb-n { @apply font-normal text-secondary; }
   .cb-bar {
     @apply block w-full h-1 mt-1 rounded-full bg-zinc-100 overflow-hidden;
@@ -1273,7 +1253,7 @@ details.more[open] > summary::before {
   .cb-sys {
     grid-area: sys;
     @apply mt-1;
-    & summary { @apply w-fit text-ui leading-5 text-secondary cursor-pointer hover:text-blue-500; }
+    & > summary { @apply w-fit text-ui leading-5 text-secondary; }
     & ul { @apply grid sm:grid-cols-2 gap-x-6 gap-y-1 mt-1.5 mb-1 text-ui leading-5; }
     & li { @apply min-w-0; }
     & .sep { @apply px-1 text-faint; }
@@ -1290,10 +1270,6 @@ details.more[open] > summary::before {
   .cb-values + .cb-std { @apply mt-0 pt-1.5 border-t border-line-faint; }
   .cb-std-v { @apply inline-flex items-center gap-1; }
   .cb-std-l { @apply ml-1.5 ul; }
-  .cb-more {
-    @apply inline-flex items-center gap-1.5 mt-2.5 text-ui leading-5 font-medium text-secondary hover:text-ink;
-    &::after { content: "→"; }
-  }
 
   /* a variable's page: the methodology and history */
   .cb-dl {
@@ -1306,7 +1282,7 @@ details.more[open] > summary::before {
   .cb-method .sep { @apply px-1.5 text-faint; }
   .cb-attr + .cb-attr { @apply mt-2; }
   .cb-attr-cat { @apply ml-2 text-[13px] text-muted; }
-  .cb-ind { @apply text-zinc-800; }
+  .cb-ind { @apply text-ink; }
   .cb-history {
     @apply grid gap-2 mt-2 pl-5 list-disc text-sm leading-5.5;
     & ul { @apply pl-4 pt-1 text-xs text-secondary; }
@@ -1324,4 +1300,35 @@ details.more[open] > summary::before {
     .is-full .cb-v-def { @apply text-ui leading-5; }
     .cb-type-h { @apply text-lg leading-6; }
   }
+}
+
+/* Shared small patterns. Each is defined once here, after the page sections, and used wherever it applies:
+   don't copy one into a page's rules, use the class (and place it with the page's layout rules or utilities). */
+@layer components {
+  /* an eyebrow label: a small section label over what it labels. "DPI test", a field's "Source" and "History",
+     a paper's "Abstract" and "Cite", "More from Insights", the methodology table's group rows. 12/16 semibold
+     secondary, sentence case. Not the attribute dividers (.divider) or the codebook's mono labels */
+  .eyebrow { @apply text-xs leading-4 font-semibold text-secondary; }
+
+  /* a panel: a grey summary box, quieter than a card, with no shadow. The changelog's DPI-like countries and
+     codebook changes, the codebook's standard values, a citation on the Data page, papers and the report */
+  .panel { @apply p-4 bg-zinc-50 border border-line-faint rounded-lg; }
+
+  /* a "more" link: "More details →", "Details →", "See the changes →", "All insights →". The arrow comes from the class */
+  .more-link {
+    @apply inline-flex items-center gap-1.5 text-ui leading-5 font-medium text-secondary hover:text-blue-500;
+    &::after { content: "→"; }
+  }
+  /* "Propose an update" in a card's footer, "Propose one" in an empty lane */
+  .propose-link { @apply text-xs leading-5 font-semibold text-strong hover:text-blue-500; }
+
+  /* an empty state in running text: "No definition recorded yet.", "No source recorded yet." Muted, at the
+     size of the text around it */
+  .empty { @apply font-normal text-muted; }
+
+  /* a citation: one click selects all of it for copying (no Copy button). In a .panel on the Data page,
+     papers and the report, in sans 14/24; unboxed at the foot of the place, system and map pages
+     (SourceAndCite), in mono 13/20 */
+  .citation { @apply font-mono text-ui leading-5 text-ink select-all [overflow-wrap:anywhere]; }
+  .panel > .citation { @apply font-sans text-sm leading-6; }
 }

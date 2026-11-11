@@ -7,8 +7,11 @@
 // The layout writes the page's header (PageHeader): its title is the front matter's `heading`, where the
 // page's heading isn't its `title`, else its `title`. The page's Markdown starts after it. A Community of
 // Practice session's crumbs lead back to the community's page; other pages have none. Then the text, as .prose, and the footer.
+// A page that is also an Insights entry (front matter `insight`: its kind, publisher, date and pdf; the authors from its
+// `citation`) gets an Insights page's header instead (PostHeader), as the State of DPI report does.
 import Layout from "./Layout.astro"
 import PageHeader from '../components/PageHeader.astro'
+import PostHeader from '../components/PostHeader.astro'
 import Footer from '../components/Footer.astro'
 import { excerpt } from '../Insights'
 import { releaseDescription, releaseMeta, reportMeta } from '../CitationMeta'
@@ -20,6 +23,8 @@ const cite = fm.citation?.type === 'report' ? { meta: reportMeta(fm.citation, As
 	: fm.citation?.type === 'dataset' ? { meta: releaseMeta(), description: releaseDescription }
 		: undefined
 const description = fm.description ?? Astro.props.description ?? cite?.description ?? (fm.date && Astro.props.rawContent ? excerpt(Astro.props.rawContent()) : undefined)
+const insight = fm.insight
+const insightAuthors: string[] = (fm.citation?.authors ?? []).map((a: { given?: string, family: string }) => [a.given, a.family].filter(Boolean).join(' '))
 const community = '/measurement-community/'
 const path = Astro.url.pathname.replace(/\/?$/, '/')
 const crumbs = Astro.props.crumbs ?? (path.startsWith(community) && path !== community
@@ -28,8 +33,12 @@ const crumbs = Astro.props.crumbs ?? (path.startsWith(community) && path !== com
 ---
 
 <Layout title={title} bodyClass={Astro.props.bodyClass} description={description} citation={cite?.meta}>
-	<article class="pt-4 md:pt-6 pb-10 max-w-2xl mx-auto px-4 md:px-0">
-		{ heading && <PageHeader class="page-header is-prose" crumbs={crumbs} title={heading} lede={Astro.props.lede} /> }
+	<article class:list={[insight ? 'paper pt-4 md:pt-10' : 'pt-4 md:pt-6', 'pb-10 max-w-2xl mx-auto px-4 md:px-0']}>
+		{ insight
+			? <PostHeader title={heading ?? title} kind={insight.kind} publisher={insight.publisher} date={String(insight.date)} authors={insightAuthors}>
+				{ insight.pdf && <a class="button-blue" href={insight.pdf} onclick="pdfDownload()">Download the PDF</a> }
+			</PostHeader>
+			: heading && <PageHeader class="page-header is-prose" crumbs={crumbs} title={heading} lede={Astro.props.lede} /> }
 		<div class="prose">
 			<slot/>
 		</div>

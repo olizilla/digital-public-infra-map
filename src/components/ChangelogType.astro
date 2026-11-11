@@ -69,7 +69,7 @@ const summary = `${plural(counts.changes, 'change')} to ${plural(counts.systems,
     </PageHeader>
 
     { !none &&
-      <section class="chg-dpi" aria-labelledby="dpi-h">
+      <section class="panel chg-box" aria-labelledby="dpi-h">
         <h2 class="chg-box-h" id="dpi-h"><span>DPI-like countries</span><span class="chg-box-note"> {n(dpiLike.before)} → {n(dpiLike.after)}</span></h2>
         { dpiCountries.length === 0 && <p class="chg-lede">No country gains or loses a DPI-like {noun} system.</p> }
         { [{ head: 'Upgraded', dir: 'up', list: gains }, { head: 'Downgraded', dir: 'down', list: losses }].filter(g => g.list.length).map(g => (
