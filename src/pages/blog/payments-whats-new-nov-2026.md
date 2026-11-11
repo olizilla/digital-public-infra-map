@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/Post.astro
 title: "Payments: What's new?"
-date: 2026-11-11
+date: 2026-11-09
 ---
 
 Over the past few months, we reviewed the full payments codebook and then took a deeper look at real-time payment systems in 38 countries to see how well the DPI Map captures them. Some of what we found led to changes in our codebook. Some raised questions we haven't settled yet. Together, these findings are a reminder that our definitions are never finished. Each round of work pushes us to revisit and question what we count as DPI, which is also why we describe systems as DPI-like rather than DPI. 

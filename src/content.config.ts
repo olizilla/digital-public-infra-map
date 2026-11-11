@@ -18,7 +18,7 @@ const kind = z.enum(['post', 'article', 'talk', 'paper', 'case', 'session', 'rep
 // elsewhere names its `source` URL and that site's name as `publisher`, for the
 // "First published on" line (src/layouts/Post.astro).
 const blog = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./src/pages/blog" }),
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/pages/blog" }),
   schema: z.object({
     title: z.string(),
     date: partialDate.optional(),

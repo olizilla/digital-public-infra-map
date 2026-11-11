@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/Post.astro
 title: "Data Exchange: What's new?"
-date: 2026-11-11
+date: 2026-11-08
 ---
 
 In February 2026 we began reviewing how the DPI Map identifies and measures data exchange systems (DES), [consulting technical and policy stakeholders](/measurement-community/2026-05-07-session-7-data-exchange-as-dpi/) along the way. This release is the first result of that work: new data for 50 countries and territories in Asia, Europe and the Americas, with five new variables and two revised ones.

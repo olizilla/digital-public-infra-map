@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/Post.astro
 title: "Digital ID: What's new?"
-date: 2026-11-11
+date: 2026-11-10
 ---
 
 Over the past two years, digital ID adoption has continued to grow, and so has our understanding of the systems behind it. When we launched the DPI Map in 2024, our questions centred on prevalence. How many countries had a digital ID system? And how many had the policies in place to support one? Two years on, the questions are becoming more complex. Digital ID is increasingly moving beyond standalone credentials into mobile wallets, government apps and integrated public services. Countries are not only introducing new systems, but also rebranding, consolidating and redesigning existing ones. This shift is becoming visible in our data. Over the last six months, we updated the digital ID records for **31 countries**, and the number meeting our criteria for a digital ID system rose from **70 to 80**.
