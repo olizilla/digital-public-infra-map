@@ -1,0 +1,26 @@
+# Proposals for changes to a system's data. The editor at dpimap.org/edit/<System ID>/
+# opens this form filled in: GitHub fills in text fields (input, textarea) from query parameters
+# named by field `id`, so keep the ids below stable: src/Proposal.ts `issueLink` uses them.
+# `changeset` is the changeset's TOML.
+name: Data proposal
+description: Propose changes to a system's data, with a reason and sources for each.
+title: "Proposal: "
+labels: ["proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This proposal should be filled in by the DPI Map editor. Once reviewed it will go into the next data release. Please don't edit the changeset by hand unless a maintainer asks you to.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: The system and what changes, in brief.
+  - type: textarea
+    id: changeset
+    attributes:
+      label: Changeset
+      description: The changes, with the reason, sources and evidence date of each, in TOML.
+      render: toml
+    validations:
+      required: true
