@@ -1,0 +1,197 @@
+# Accepts a proposal (D88): when someone on the team closes a `proposal` issue as completed, it commits the
+# issue's changeset to changesets/next/ on the default branch, for the next release. Closing it as not
+# planned declines it, and nothing runs. scripts/proposal-accept.ts decides, and commits only if:
+# - the issue was closed as completed and has the `proposal` label (also this job's `if:`), by a person,
+#   not by a pull request or a commit, which leaves it closed with a comment;
+# - whoever closed it isn't its author, and has triage access or more (the API's role_name);
+# - its TOML is at most 64 KB, and has the SHA-256 that the check's comment, by github-actions[bot],
+#   records (.github/workflows/proposal-check.yml);
+# - the body wasn't edited after that comment's last update, nor in the 5 minutes before closing, or since;
+# - the check, run again now, says it can be applied, and the full data:check passes with the file in place;
+# - git status then lists that one new file and nothing else;
+# - and, checked again in the push step in plain shell, apart from the scripts and with git hooks off: the
+#   commit has one parent, already on the branch, and adds that one file, at a path of the form
+#   changesets/next/<identity|payment|exchange>/<id>.toml, and changes nothing else.
+# Otherwise it reopens the issue and says why, in a comment, as it does if the run fails or is cancelled.
+#
+# It writes one file, changesets/next/<resource>/<id>.toml: the issue's TOML as written (D87), the resource
+# from the checked System ID's table in datapackage.json, never from the issue's text, and a new id (D58).
+# It commits as github-actions[bot], "data: accepted proposal #<n>, <system> (<System ID>)", naming no
+# person (D69), and pushes to the default branch. If the branch moved, it rebases, checks the commit still
+# adds just that file and data:check still passes, and pushes again, up to 5 times. Then it comments on the
+# commit, "Accepted from #<n>", and leaves one line on the issue naming the file. The issue stays closed. Any
+# failure before the push reopens the issue, with a link to this run.
+#
+# The issue's body is data: the script reads it from the event's file ($GITHUB_EVENT_PATH). Nothing from the
+# issue is put in a shell command or a ${{ }} expression, nothing from it is run, and only the default branch
+# is checked out, without credentials: the token is given to git only to push, not to npm ci or the scripts.
+# Events made with the built-in token start no workflows, so reopening an issue doesn't check it again, and
+# the commit doesn't run data-check.yml (this has run data:check on it).
+name: Proposal accept
+
+on:
+  issues:
+    types: [closed]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  proposal-accept:
+    if: github.event.issue.state_reason == 'completed' && contains(github.event.issue.labels.*.name, 'proposal')
+    # no concurrency group, so no acceptance is dropped: runs at once each add their own new file, and the
+    # push step rebases and checks again if another got there first
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the default branch
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
+
+      # the scripts run TypeScript directly with Node, which strips types from 22.18 on
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: "24"
+          cache: npm
+
+      - run: npm ci
+
+      - name: Gather the closer's role, the check's comment, the body's last edit and what closed it
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        env:
+          CONTEXT: ${{ runner.temp }}/context.json
+        with:
+          script: |
+            const fs = require('node:fs')
+            const { owner, repo } = context.repo
+            const issue_number = context.issue.number
+
+            // triage, write, maintain, admin, read or a custom role's name; none for someone the API doesn't know
+            let role = null
+            try {
+              const { data } = await github.rest.repos.getCollaboratorPermissionLevel({ owner, repo, username: context.payload.sender.login })
+              role = data.role_name ?? null
+            } catch (error) {
+              if (error.status !== 404) throw error
+            }
+            // the bot's comments: the script takes the check's, with the marker
+            const comments = (await github.paginate(github.rest.issues.listComments, { owner, repo, issue_number, per_page: 100 }))
+              .filter(c => c.user?.login === 'github-actions[bot]')
+              .map(c => ({ user: c.user.login, body: c.body ?? '', updated_at: c.updated_at }))
+            // the body's last edit, which the REST API doesn't give, null if it was never edited, and what closed
+            // it: a pull request or a commit, or null for a person
+            const { repository: { issue } } = await github.graphql(`query ($owner: String!, $repo: String!, $number: Int!) {
+              repository(owner: $owner, name: $repo) {
+                issue(number: $number) {
+                  lastEditedAt
+                  timelineItems(last: 1, itemTypes: [CLOSED_EVENT]) { nodes { ... on ClosedEvent { closer { __typename } } } }
+                }
+              }
+            }`, { owner, repo, number: issue_number })
+            const closer = issue.timelineItems.nodes[0]?.closer?.__typename ?? null
+            fs.writeFileSync(process.env.CONTEXT, JSON.stringify({ role, comments, lastEditedAt: issue.lastEditedAt ?? null, closer }))
+
+      # the body is read from the event's file by the script, never through the shell
+      - name: Decide, and commit the changeset
+        id: accept
+        env:
+          CONTEXT: ${{ runner.temp }}/context.json
+          RESULT: ${{ runner.temp }}/accept.json
+        run: |
+          # GitHub doesn't set a git identity on the runner: this is the github-actions[bot] account's own
+          # noreply address (user id 41898282), as in actions/checkout's README
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          node scripts/proposal-accept.ts --event "$GITHUB_EVENT_PATH" --context "$CONTEXT" > "$RESULT"
+          action=$(node -p 'JSON.parse(require("node:fs").readFileSync(process.env.RESULT, "utf8")).action')
+          case "$action" in accept|refuse) echo "action=$action" >> "$GITHUB_OUTPUT" ;; *) exit 1 ;; esac
+
+      - name: Push, rebasing and checking again if the branch moved
+        id: push
+        if: steps.accept.outputs.action == 'accept'
+        env:
+          TOKEN: ${{ github.token }}
+          BRANCH: ${{ github.event.repository.default_branch }}
+          RESULT: ${{ runner.temp }}/accept.json
+          VERIFY: ${{ runner.temp }}/verify.json
+        run: |
+          remote="https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          file=$(jq -r .file "$RESULT")
+          # the last guard, in shell so nothing npm ci or the scripts touched can change it: HEAD is one
+          # commit on top of the branch as fetched, adding just the file the decision named, at a pending
+          # changeset's path, and nothing else
+          guard () {
+            git -c core.hooksPath=/dev/null fetch --quiet "$remote" "$BRANCH"
+            [ "$(git rev-list --parents -n 1 HEAD | wc -w)" -eq 2 ] || { echo "The commit to push isn't a single commit"; return 1; }
+            git merge-base --is-ancestor HEAD~1 FETCH_HEAD || { echo "The commit to push isn't on top of $BRANCH"; return 1; }
+            printf '%s\n' "$file" | grep -Eqx 'changesets/next/(identity|payment|exchange)/[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{6}Z-[0-9a-f]{4}\.toml' || { echo "Not a pending changeset's path: $file"; return 1; }
+            [ "$(git diff --no-renames --name-status HEAD~1 HEAD)" = "$(printf 'A\t%s' "$file")" ] || { echo "The commit changes more than $file:"; git diff --no-renames --name-status HEAD~1 HEAD; return 1; }
+          }
+          # no concurrency group: GitHub keeps one waiting run per group and cancels the rest, which would
+          # drop an acceptance silently. Each acceptance adds a new file, so runs at once can't conflict;
+          # a rejected push rebases, checks again, and retries after a random pause
+          for retry in 0 1 2 3 4 5; do
+            if [ "$retry" -gt 0 ]; then
+              sleep $(( RANDOM % 20 + 5 ))
+              echo "The push was rejected: rebasing on $BRANCH and checking again ($retry of 5)"
+              git -c core.hooksPath=/dev/null pull --quiet --rebase "$remote" "$BRANCH"
+              node scripts/proposal-accept.ts --verify "$RESULT" > "$VERIFY"
+            fi
+            guard
+            if git -c core.hooksPath=/dev/null push --quiet "$remote" "HEAD:refs/heads/$BRANCH"; then
+              echo "pushed=true" >> "$GITHUB_OUTPUT"
+              echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+          done
+          exit 1
+
+      - name: Comment on the commit and the issue
+        if: steps.push.outputs.pushed == 'true'
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        env:
+          RESULT: ${{ runner.temp }}/accept.json
+          SHA: ${{ steps.push.outputs.sha }}
+        with:
+          script: |
+            const fs = require('node:fs')
+            const result = JSON.parse(fs.readFileSync(process.env.RESULT, 'utf8'))
+            const { owner, repo } = context.repo
+            const issue_number = context.issue.number
+            const sha = process.env.SHA
+            await github.rest.issues.createComment({ owner, repo, issue_number, body: `Committed as \`${result.file}\` in ${sha.slice(0, 7)}.` })
+            await github.rest.repos.createCommitComment({ owner, repo, commit_sha: sha, body: `Accepted from #${issue_number}` })
+
+      # a refusal, or a failure or cancellation before the push: reopen, and say why. Closed by a pull
+      # request or a commit, it only says why. Closing as not planned never gets here.
+      - name: Reopen, and say why
+        if: always() && steps.push.outputs.pushed != 'true' && (failure() || cancelled() || steps.accept.outputs.action == 'refuse')
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        env:
+          RESULT: ${{ runner.temp }}/accept.json
+          VERIFY: ${{ runner.temp }}/verify.json
+        with:
+          script: |
+            const fs = require('node:fs')
+            const read = file => {
+              try {
+                return JSON.parse(fs.readFileSync(file, 'utf8'))
+              } catch {
+                return undefined
+              }
+            }
+            // the check after a rebase, if it failed, or else the decision
+            const verify = read(process.env.VERIFY)
+            const result = verify?.action === 'failed' ? verify : read(process.env.RESULT)
+            const { owner, repo } = context.repo
+            const issue_number = context.issue.number
+            const run = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`
+            // the script's comment, or one of its fixed sentences: neither has anything from the issue unescaped
+            const body = result?.action === 'refuse'
+              ? result.comment
+              : `${result?.action === 'failed' && result.reason ? result.reason : 'This was closed as completed, but it couldn’t be committed.'} [The workflow run](${run}) says why.\n`
+            if (result?.action !== 'refuse' || result.reopen) await github.rest.issues.update({ owner, repo, issue_number, state: 'open' })
+            await github.rest.issues.createComment({ owner, repo, issue_number, body })

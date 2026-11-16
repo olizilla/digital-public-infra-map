@@ -1,0 +1,115 @@
+---
+// One field in the editor (/<id>/edit/, D86), in the place of its row on the system page (FieldRow):
+// an input holding the current value, labelled with the field's codebook name (D83), and, once the
+// value changes, its evidence (Evidence, which the script copies in). Radio buttons for an enum, with Not Found but never NA
+// (D73); checkboxes for a multi-valued field; a text box otherwise, with Not Found to tick where the
+// codebook allows it. A yes/no field's choices are pills on the left, as on the system page.
+// The row is a group: `data-changed` or `data-open`, set by the script, shows the evidence. A changed
+// row is a card, and its label is ink and marked "edited", with Undo at the right. The card is only a
+// background, a border colour and a shadow: the row has the same margin, padding and border width either
+// way, and "edited" and Undo keep their place when they're hidden, so changing a value never moves its
+// label or input; only the evidence below opens (D90). A changed text or multi-valued row keeps a line under
+// its value for an error, so one shows without moving the layout (D89); a choice of values can't be wrong,
+// so its line takes no space unless it has something to say.
+import FieldValue from '../FieldValue.astro'
+import { variablePath } from '../../Codebook'
+import { codebookNameOf, type Field } from '../../Schema'
+import { domainOf, fieldAnchor, monthYear, snapshotDate, storyOf } from '../../SystemPage'
+import { joinParts, NOT_FOUND, splitParts, type FieldSpec } from '../../Proposal'
+import type { System } from '../../Systems'
+import { choiceClass, errorLineClass, inputClass, textButtonClass } from './styles'
+
+interface Props {
+  system: System
+  field: Field
+  spec: FieldSpec
+}
+const { system, field, spec } = Astro.props
+const { id, current } = spec
+const missing = current.trim() === '' || current === 'NA'
+// a yes/no field: pills on the left, as on the system page
+const yesNoPills: Record<string, { text: string, on: string }> = {
+  Yes: { text: 'YES', on: 'peer-checked:border-yes-line peer-checked:bg-yes' },
+  No: { text: 'NO', on: 'peer-checked:border-no-line peer-checked:bg-no' },
+  [NOT_FOUND]: { text: 'NF', on: 'peer-checked:border-nf-line peer-checked:bg-nf' }
+}
+const pills = field.site.kind === 'flag' && spec.control === 'choice' && spec.values.every(value => value in yesNoPills)
+const ticked = spec.control === 'multi' ? splitParts(spec, current) : []
+// whether the inputs show the current value. If not, as for NA or an older value the codebook doesn't
+// allow, the row says what it is, as it does for every changed row
+const shown = spec.control === 'choice' ? spec.values.includes(current) : spec.control === 'multi' ? joinParts(spec, ticked) === current : true
+// a value the codebook doesn't allow, from an older round, is shown as the current value, and no choice is ticked
+const textValue = missing || current === NOT_FOUND ? '' : current
+const { history, evidence } = storyOf(system, id)
+const latest = history[0]
+const since = latest && (latest.type === 'snapshot' ? snapshotDate : latest.as_of)
+const codebook = codebookNameOf(field) !== undefined ? variablePath(system.dpiType, field) : undefined
+const labelId = `l-${id}`
+const Label = codebook ? 'a' : 'span'
+---
+<div class="group/er -mx-2.25 mb-1 rounded-lg border border-transparent px-2 py-1.75 scroll-mt-20 target:outline-2 target:outline-blue-300 data-[changed]:border-line data-[changed]:bg-white data-[changed]:shadow data-[open]:border-line data-[open]:bg-white data-[open]:shadow"
+  id={fieldAnchor(id)} role="group" aria-labelledby={labelId} data-field={id}>
+  <div class:list={[pills ? 'grid grid-cols-[auto_minmax(0,1fr)] items-start gap-x-2.5' : 'grid gap-1.5 pl-1.5']}>
+    { pills && (
+      <span class="flex gap-1 narrow:gap-2">
+        { spec.values.map(value => (
+          <label class="flex">
+            <input class="peer sr-only" type="radio" name={`v-${id}`} value={value} checked={value === current} />
+            <span class:list={['pill min-w-9! py-px narrow:min-w-11! narrow:py-1.5 narrow:text-[13px] narrow:leading-5 cursor-pointer border-line-strong bg-white text-muted hover:border-zinc-400 peer-checked:text-ink peer-focus-visible:outline-2 peer-focus-visible:outline-offset-1 peer-focus-visible:outline-blue-300', yesNoPills[value].on]}
+              title={value}>{yesNoPills[value].text}</span>
+          </label>
+        ))}
+      </span>
+    )}
+    <div class="min-w-0">
+      <p class:list={['flex flex-wrap items-baseline gap-x-2', pills ? 'text-sm leading-5 text-ink' : 'text-ui text-secondary group-data-[changed]/er:text-ink']}>
+        <Label id={labelId} class={codebook ? 'hover:text-blue-500 hover:underline' : undefined} href={codebook} target={codebook ? '_blank' : undefined} title={codebook ? 'What this field means, in the codebook (opens a new tab)' : undefined}>{field.title}</Label>
+        <span class="invisible group-data-[changed]/er:visible -ml-0.5 text-xs text-muted">edited</span>
+        <button type="button" class:list={[textButtonClass, 'ml-auto invisible group-data-[changed]/er:visible']} data-undo>Undo</button>
+      </p>
+    </div>
+    { spec.control === 'choice' && !pills && (
+      <span class="flex flex-wrap gap-1 narrow:gap-2">
+        { spec.values.map(value => (
+          <label class="flex">
+            <input class="peer sr-only" type="radio" name={`v-${id}`} value={value} checked={value === current} />
+            <span class={choiceClass} data-orig={value === current ? '' : undefined}>{value}</span>
+          </label>
+        ))}
+      </span>
+    )}
+    { spec.control === 'multi' && (
+      <span class="flex flex-wrap gap-1 narrow:gap-2">
+        { spec.values.map(value => (
+          <label class="flex">
+            <input class="peer sr-only" type="checkbox" name={`v-${id}`} value={value} checked={ticked.includes(value)} data-alone={spec.alone.includes(value) ? '' : undefined} />
+            <span class={choiceClass} data-orig={ticked.includes(value) ? '' : undefined}>{value}</span>
+          </label>
+        ))}
+      </span>
+    )}
+    { spec.control === 'text' && (
+      <span class="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+        <input class:list={[inputClass, 'flex-1 basis-60']} type="text" name={`v-${id}`} dir="auto" value={textValue} placeholder={missing ? 'NA' : undefined}
+          aria-labelledby={labelId} aria-describedby={`e-${id}`} disabled={current === NOT_FOUND} inputmode={field.site.kind === 'url' ? 'url' : undefined} spellcheck={field.site.kind === 'url' ? 'false' : undefined} />
+        { spec.notFound && (
+          <label class="flex items-center gap-1.5 text-ui text-secondary">
+            <input type="checkbox" class="size-3.5 accent-zinc-700" value={NOT_FOUND} checked={current === NOT_FOUND} data-not-found />
+            Not Found
+          </label>
+        )}
+      </span>
+    )}
+    <p class:list={[errorLineClass, 'hidden group-data-[changed]/er:block -mt-0.5', { 'col-start-2': pills, 'empty:hidden!': spec.control === 'choice' }]} id={`e-${id}`} aria-live="polite" data-error="value"></p>
+    <p class:list={['text-xs leading-4.5 text-muted', { 'col-start-2 mt-0.5': pills }]}>
+      <span class:list={[shown ? 'hidden group-data-[changed]/er:inline' : 'inline']}>Current: <FieldValue field={field} value={current} />{ (evidence.length || since) && <span class:list={['sep px-1', { 'narrow:hidden': !evidence.length }]}>·</span> }</span>
+      { evidence.length > 0 && <a class="src" href={evidence[0].url} rel="nofollow noopener" target="_blank" title={evidence[0].url}>{domainOf(evidence[0].url)}</a> }
+      { evidence.length > 1 && <span> and {evidence.length - 1} more</span> }
+      { since && <span class="narrow:hidden">{ evidence.length > 0 && <span class="sep px-1">·</span> }<time datetime={since}>{monthYear(since)}</time></span> }
+    </p>
+  </div>
+  <div class="hidden group-data-[changed]/er:grid group-data-[open]/er:grid gap-3 mt-2.5 pt-3 pl-1.5 border-t border-line-faint">
+    <p class="group-data-[changed]/er:hidden text-ui text-muted">Choose a new value above to propose a change.</p>
+    <div data-evidence></div>
+  </div>
+</div>

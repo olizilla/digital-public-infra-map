@@ -86,11 +86,11 @@ for (const { id } of systems) {
 export const systemHref = (id: string) => `/${id}/`
 
 /**
- * The editor stub, to review the system or, with `fieldId`, edit one value. With the trailing
- * slash, so the query string survives: static hosts (and the link checker) redirect
- * /edit/<id> to /edit/<id>/, which would otherwise come first.
+ * The editor, beside the system's page (D87), to review the system or, with `fieldId`, edit one
+ * value. With the trailing slash, so the query string survives: static hosts (and the link checker)
+ * redirect /<id>/edit to /<id>/edit/, which would otherwise come first.
  */
-export const editHref = (system: System, fieldId?: string) => `/edit/${system.id}/` + (fieldId ? `?field=${encodeURIComponent(fieldId)}` : '')
+export const editHref = (system: System, fieldId?: string) => `/${system.id}/edit/` + (fieldId ? `?field=${encodeURIComponent(fieldId)}` : '')
 
 /** The history of one of a system's values: every change to it, oldest first, so the last set the current value */
 export function historyFor (system: System, fieldId: string) {

@@ -327,6 +327,16 @@ describe('changesets', () => {
     assert.deepEqual(validateChangeset(data), [])
   })
 
+  it('trims each change’s values, reason and sources as it reads them, and nothing else (D90)', () => {
+    const text = '[[changes]]\ntype = "update"\nkey = " k "\nas_of = 2026-09-17\nvalues.x = "  1\\t"\nvalues.y = "a  b"\nvalues.z = " "\nreason = """\n  Why.\n"""\nsources = [" https://example.org/x\\n"]\n'
+    const data = readChangeset(text) as { changes: Record<string, unknown>[] }
+    assert.deepEqual(data.changes[0], { type: 'update', key: ' k ', as_of: '2026-09-17', values: { x: '1', y: 'a  b', z: '' }, reason: 'Why.', sources: ['https://example.org/x'] })
+    // so a source with spaces around it matches the schema
+    assert.deepEqual(validateChangeset({ changes: [{ ...data.changes[0], key: 'k' }] }), [])
+    // what isn't text is the schema's to judge
+    assert.deepEqual((readChangeset('[[changes]]\nvalues.x = 1\nsources = [2]\n') as { changes: unknown[] }).changes, [{ values: { x: 1 }, sources: [2] }])
+  })
+
   it('checks the author format', () => {
     const changes = [{ type: 'remove', key: 'k', as_of: '2026-01-01', reason: '' }]
     assert.deepEqual(validateChangeset({ author: 'Ada Lovelace <did:example:123>', changes }), [])
