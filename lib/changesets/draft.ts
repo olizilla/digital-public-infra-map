@@ -1,59 +1,21 @@
 // Write a new changeset, for tools and checks that suggest a fix (D48). The
 // TOML is laid out like the importer's: one [[changes]] table per change,
-// dotted keys for values, and bare dates.
+// dotted keys for values, and bare dates (toml.ts, which the editor shares).
 
 import crypto from 'node:crypto'
 import fs from 'node:fs'
 import path from 'node:path'
 import { PENDING_FOLDER, readChangeset, validateChangeset } from './log.ts'
+import { changesetText, type ChangesetData } from './toml.ts'
 import type { Change } from './types.ts'
 
-const ESCAPES: Record<string, string> = { '\\': '\\\\', '"': '\\"', '\n': '\\n', '\t': '\\t', '\r': '\\r' }
-// what can't go in a """ string as it is: control characters and backslashes,
-// three quotes in a row, and a quote at the very end
-const NOT_MULTILINE = /[\x00-\x09\x0b-\x1f\x7f\\]|"""|"$/
-
-export function tomlString (text: string): string {
-  return '"' + [...text].map(ch => ESCAPES[ch] ?? (ch.charCodeAt(0) < 0x20 || ch.charCodeAt(0) === 0x7f
-    ? `\\u${ch.charCodeAt(0).toString(16).toUpperCase().padStart(4, '0')}`
-    : ch)).join('') + '"'
-}
-
-/** A string that reads better over several lines, if it has several and that's safe */
-function tomlText (text: string): string {
-  return text.includes('\n') && !NOT_MULTILINE.test(text) ? `"""\n${text}"""` : tomlString(text)
-}
-
-const BARE_KEY = /^[A-Za-z0-9_-]+$/
-const tomlKey = (key: string) => BARE_KEY.test(key) ? key : tomlString(key)
-
-function tomlChange (change: Change): string {
-  const lines = ['[[changes]]']
-  for (const name of ['type', 'key', 'duplicate_of', 'changeset'] as const) {
-    if (change[name] !== undefined) lines.push(`${name} = ${tomlString(change[name])}`)
-  }
-  // a bare TOML date, which reading turns back into this text
-  if (change.as_of !== undefined) lines.push(`as_of = ${change.as_of}`)
-  for (const [id, value] of Object.entries(change.values ?? {})) lines.push(`values.${tomlKey(id)} = ${tomlString(value)}`)
-  if (change.reason !== undefined) lines.push(`reason = ${tomlText(change.reason)}`)
-  for (const name of ['table', 'sources_file'] as const) {
-    if (change[name] !== undefined) lines.push(`${name} = ${tomlString(change[name])}`)
-  }
-  if (change.sources?.length) lines.push('sources = [', ...change.sources.map(url => `  ${tomlString(url)},`), ']')
-  return lines.join('\n') + '\n'
-}
-
-export interface ChangesetData { author?: string, summary?: string, changes: Change[] }
+export { tomlString, type ChangesetData } from './toml.ts'
 
 /** A changeset as TOML. Throws if it doesn't match the schema, or wouldn't read back as the same data. */
 export function changesetTOML (data: ChangesetData): string {
   const errors = validateChangeset(data)
   if (errors.length) throw new Error(`not a valid changeset: ${errors.join('; ')}`)
-  const head = [
-    data.author !== undefined && `author = ${tomlString(data.author)}`,
-    data.summary !== undefined && `summary = ${tomlText(data.summary)}`
-  ].filter(Boolean)
-  const text = (head.length ? head.join('\n') + '\n\n' : '') + data.changes.map(tomlChange).join('\n')
+  const text = changesetText(data)
   if (canonical(readChangeset(text)) !== canonical(data)) throw new Error('the TOML does not read back as the same data')
   return text
 }

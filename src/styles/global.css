@@ -59,6 +59,15 @@
 @utility pill-sm {
   @apply text-[11px] leading-3.75 min-w-8;
 }
+/* the one callout: an <aside> in long-form text, and the editor's note at the top of the form */
+@utility callout {
+  @apply px-4 py-3.5 rounded-lg bg-callout text-callout-ink text-sm leading-6;
+}
+/* a chip: a rounded choice, the changelog's filters (.chg-chip, pressed). The editor's choices between
+   values are the form's own, smaller shape (src/components/edit/styles.ts) */
+@utility chip {
+  @apply px-2.5 py-1 rounded-2xl border border-line-strong bg-white text-ui leading-5 font-medium text-strong whitespace-nowrap cursor-pointer hover:border-zinc-500;
+}
 /* a count after a heading or a chip's label */
 @utility count-num {
   @apply pl-0.5 font-normal text-muted tabular-nums;
@@ -159,7 +168,7 @@
   :where(.prose) :where(figcaption) { @apply mt-2 text-ui text-muted; }
 
   /* the one callout, and quotes */
-  :where(.prose) :where(aside) { @apply px-4 py-3.5 rounded-lg bg-callout text-callout-ink text-sm leading-6; }
+  :where(.prose) :where(aside) { @apply callout; }
   :where(.prose) :where(aside a, aside strong) { color: inherit; }
   :where(.prose) :where(aside a) { @apply decoration-callout-ink/40; }
   :where(.prose) :where(blockquote) { @apply pl-4 border-l-2 border-line-strong text-secondary; }
@@ -905,7 +914,7 @@ details.more[open] > summary::before {
   }
   .chg-chips { @apply flex gap-1.5 min-w-0 overflow-x-auto [scrollbar-width:none]; }
   .chg-chip {
-    @apply flex-none px-2.5 py-1 rounded-2xl border border-line-strong bg-white text-ui leading-5 font-medium text-strong whitespace-nowrap cursor-pointer hover:border-zinc-500;
+    @apply chip flex-none;
     & span { @apply count-num; }
     &[aria-pressed="true"] { @apply bg-zinc-700 border-zinc-700 text-white; }
     &[aria-pressed="true"] span { @apply text-zinc-300; }

@@ -71,22 +71,20 @@ import os from 'node:os'
 import path from 'node:path'
 import { parseArgs } from 'node:util'
 import slug from 'slug'
+import { countByKind, describeItem, fieldId, formatReport, keyField, KIND_TITLES, PENDING_FOLDER, readFolders, RELEASE_FOLDER, withFiles } from '../lib/changesets/index.ts'
+import type { Baseline, DataPackage, ReportItem } from '../lib/changesets/index.ts'
+// the build itself, shared with the proposal check (scripts/proposal-check.ts, D88)
 import {
-  build, checkItem, countByKind, datedBy, describeItem, fieldId, formatReport, keyField, KIND_TITLES, missingValue, missingValues, PENDING_FOLDER, readFolders,
-  RELEASE_FOLDER, withFiles
-} from '../lib/changesets/index.ts'
-import type { Baseline, DataPackage, Field, ReportItem, Row, Table } from '../lib/changesets/index.ts'
-import { baselineReason, derivedFields, lastUpdatedAsOf } from '../src/DpiLayer.ts'
+  buildRelease, checkRelease, dataDir, dpiTypeOf, earlierFieldsOf, loadBaseline, previousRelease, readJSON, recordOf, releasesBefore, root, tableRecords, validate, writeRelease,
+  type DPIType
+} from './release-build.ts'
 
 // the site's modules, which need ./site-modules.ts to load in Node
-const { dpiStatus, dpiTest, implementationStatus, nameOf, passesDpiTest, presence, valueOf } = await import('../src/DpiTest.ts')
-const { resourceNames, schemas, toRecord } = await import('../src/Schema.ts')
-const { normaliseImplementationStatus, statusSort } = await import('../src/Status.js')
-const { isRegion, placeNamed } = await import('../src/Places.ts')
+const { dpiTest, implementationStatus, nameOf, presence, valueOf } = await import('../src/DpiTest.ts')
+const { statusSort } = await import('../src/Status.js')
+const { placeNamed } = await import('../src/Places.ts')
 const { oneSystemPerCountry } = await import('../src/Util.ts')
-type DPIType = keyof typeof resourceNames
 
-const root = path.resolve(import.meta.dirname, '..')
 const { values: args } = parseArgs({ options: { release: { type: 'string' }, previous: { type: 'string' }, check: { type: 'boolean' }, pending: { type: 'boolean' } } })
 const check = !!args.check
 // the pending round's check (S3): the next release, built from changesets/next/, named for its folder
@@ -101,164 +99,28 @@ if ((pending ? check || args.release !== undefined : !isDate(release)) || (args.
 // check mode and the pending round's check write nothing in the repo
 const dryRun = check || pending
 
-const dataDir = path.join(root, 'public', 'data')
 const releaseDir = path.join(dataDir, release!)
 // the codebook: the root one, the next release's, or in check mode the release's own (D71)
 const datapackage: DataPackage = JSON.parse(fs.readFileSync(check ? path.join(releaseDir, 'datapackage.json') : path.join(root, 'datapackage.json'), 'utf8'))
 // check mode builds into a temporary folder, to compare with the release and to run scripts/validate.mjs on
 const out = dryRun ? fs.mkdtempSync(path.join(os.tmpdir(), 'data-check-')) : releaseDir
 const reportPath = path.join(root, 'reports', `data-build-${release}.md`)
-// files that are copied into the release as they are
-const copied = ['public/data/places.csv', 'public/data/place-names.csv']
 
-const dpiTypeOf = Object.fromEntries(Object.entries(resourceNames).map(([dpiType, name]) => [name, dpiType])) as Record<string, DPIType>
 const resourceOf = (name: string) => datapackage.resources.find(r => r.name === name)!
 
-/** A row keyed by field name, which is the field's id (D83), as the release's JSON has it */
-const byName = (fields: Field[], row: Row) => Object.fromEntries(fields.map(field => [field.name, row[fieldId(field)]]))
-
-/** A row as the site's record for it, keyed by field id, with its 'DPI Status' (see src/Identity.ts) */
-function recordOf (dpiType: DPIType, row: Record<string, unknown>) {
-  const record = toRecord(schemas[dpiType], row, { status: normaliseImplementationStatus })
-  record['DPI Status'] = dpiStatus(dpiType, record)
-  return record
-}
-
 /** The release folders before this one, oldest first */
-const earlierReleases = fs.readdirSync(dataDir).filter(d => RELEASE_FOLDER.test(d) && d < release!).sort()
-
-/** The latest release folder before this one with JSON for every table */
-function previousRelease () {
-  return earlierReleases.filter(d => Object.keys(dpiTypeOf).every(name => fs.existsSync(path.join(dataDir, d, `${d}-${name}.json`)))).at(-1)
-}
-const previous = args.previous ?? previousRelease()
-const readJSON = (file: string) => JSON.parse(fs.readFileSync(file, 'utf8'))
-
-// release N: its tables, and the evidence for its values if it has a file of them
-let baseline: Baseline | undefined
-if (previous) {
-  const sourcesPath = path.join(dataDir, previous, `${previous}-sources.json`)
-  baseline = {
-    id: previous,
-    reason: baselineReason(previous),
-    tables: Object.fromEntries(datapackage.resources
-      .map(r => [r.name, path.join(dataDir, previous, `${previous}-${r.name}.json`)])
-      .filter(([, file]) => fs.existsSync(file))
-      .map(([name, file]) => [name, readJSON(file)])),
-    ...(fs.existsSync(sourcesPath) ? { sources: readJSON(sourcesPath) } : {})
-  }
-}
-
-// each field an earlier release had, by id and by name, with the newest release that had it,
-// from the releases' datapackage.json and the keys of their JSON (the 2024-11-19 release names it <date>.<resource>.json)
-const earlierFields: Record<string, Record<string, string>> = {}
-for (const d of earlierReleases) {
-  const had = (name: string, field: string) => { (earlierFields[name] ??= {})[field] = d }
-  const packagePath = path.join(dataDir, d, 'datapackage.json')
-  if (fs.existsSync(packagePath)) {
-    for (const r of (readJSON(packagePath) as DataPackage).resources) for (const f of r.schema?.fields ?? []) [fieldId(f), f.name].forEach(id => had(r.name, id))
-  }
-  for (const r of datapackage.resources) {
-    const file = [`${d}-${r.name}.json`, `${d}.${r.name}.json`].map(f => path.join(dataDir, d, f)).find(f => fs.existsSync(f))
-    if (!file) continue
-    const rows = readJSON(file)
-    if (!Array.isArray(rows)) continue
-    for (const row of rows) for (const key of Object.keys(row)) had(r.name, key)
-  }
-}
+const earlierReleases = releasesBefore(release!)
+// release N: the latest release folder before this one with JSON for every table, or --previous
+const previous = args.previous ?? previousRelease(earlierReleases)
+const baseline: Baseline | undefined = previous ? loadBaseline(previous, datapackage) : undefined
 
 // the changesets: this release's folder, if it isn't published yet, and the pending ones, as one set.
 // The pending round's check reads changesets/next/ only, as release N already has the released ones
 const readReport: ReportItem[] = []
 const changesets = readFolders(path.join(root, 'changesets'), check ? [release!] : pending ? [PENDING_FOLDER] : [release!, PENDING_FOLDER], datapackage, readReport)
 
-/**
- * A row's ISO 3166-1 alpha-3 code, from its place's iso3 in public/data/places.csv, as src/Places.ts matches it (D68).
- * Only alpha-3: it's what other datasets join on, and three letters can't be mistaken for the missing value, NA. The
- * alpha-2 code is already the place part of each country's System ID. A region has none. Kosovo's XKX is user-assigned,
- * not official ISO, and matches the World Bank's. A code left out is the missing value, so a place that isn't matched has none.
- */
-function isoCodes (country: string) {
-  const place = placeNamed(country)
-  if (!place || isRegion(place)) return {}
-  return place.iso3 ? { iso3: place.iso3.toUpperCase() } : {}
-}
-
-const result = build({
-  datapackage,
-  baseline,
-  layers: [changesets],
-  report: readReport,
-  baselineAsOf: lastUpdatedAsOf,
-  earlierFields,
-  derive: {
-    fields: Object.fromEntries(Object.keys(dpiTypeOf).map(name => [name, derivedFields])),
-    values: (name, row, { asOf }) => {
-      const record = toRecord(schemas[dpiTypeOf[name]], byName(resourceOf(name).schema.fields, row))
-      return {
-        ...(asOf ? { last_updated: asOf } : {}),
-        count_for_dpi: passesDpiTest(dpiTest(dpiTypeOf[name], record)) ? '1' : '0',
-        ...isoCodes(row.country)
-      }
-    }
-  },
-  // a new system goes below the last system for its place (D46), so aliases group with their place
-  rowGroup: (_resource, row) => placeNamed(row.country)?.code ?? row.country
-})
-
-/** A cell as JSON, as the earlier releases had it: numbers for integer and number fields, else text */
-function jsonValue (field: Field, value: string, missing: string[]) {
-  if (missing.includes(value)) return value
-  if ((field.type === 'integer' || field.type === 'number') && value.trim() !== '' && Number.isFinite(Number(value))) return Number(value)
-  return value
-}
-
-function tableRecords (table: Table) {
-  const missing = missingValues(table.resource)
-  return table.rows.map(row => Object.fromEntries(table.fields.map(field => [field.name, jsonValue(field, row[fieldId(field)], missing)])))
-}
-
-/**
- * A table's JSON, one row per line, so a diff of two releases reads like a CSV's: [ on its own line,
- * then each row as compact JSON, then ]. From the 2026-11-06 release on; earlier releases keep their bytes.
- */
-const tableJSON = (records: Record<string, unknown>[]) => `[\n${records.map(record => JSON.stringify(record)).join(',\n')}\n]\n`
-
-fs.mkdirSync(out, { recursive: true })
-const written: string[] = []
-const write = (name: string, text: string) => {
-  fs.writeFileSync(path.join(out, name), text)
-  written.push(name)
-}
-
-// each resource's file in the release: a table's dated JSON, or a copied file's name
-const releasePaths: Record<string, string> = {}
-for (const [name, table] of Object.entries(result.tables)) {
-  write(releasePaths[name] = `${release}-${name}.json`, tableJSON(tableRecords(table)))
-}
-for (const file of copied) {
-  write(path.basename(file), fs.readFileSync(path.join(root, file), 'utf8'))
-  const resource = datapackage.resources.find(r => path.basename(r.path ?? '') === path.basename(file))
-  if (resource) releasePaths[resource.name] = path.basename(file)
-}
-
-// the release's own datapackage.json, whose paths are the files in this folder (D50). The root's table paths
-// are the next release's draft, public/data/next/<resource>.json, so each path is set here, not taken from the root's
-const releasePackage = structuredClone(datapackage)
-// the root's $comment says it describes the next release, which isn't true of a release's copy
-delete (releasePackage as { $comment?: string }).$comment
-// a release's copy carries its release date as its version, just after the homepage
-{
-  const { $schema, name, title, homepage, ...rest } = releasePackage as unknown as Record<string, unknown>
-  for (const key of Object.keys(releasePackage)) delete (releasePackage as unknown as Record<string, unknown>)[key]
-  Object.assign(releasePackage, { $schema, name, title, homepage, version: release, ...rest })
-}
-for (const resource of releasePackage.resources) {
-  const file = releasePaths[resource.name]
-  if (!file || !written.includes(file)) throw new Error(`resource "${resource.name}" has no file in the release`)
-  resource.path = file
-}
-write('datapackage.json', JSON.stringify(releasePackage, null, 2) + '\n')
+const result = buildRelease({ datapackage, baseline, earlierFields: earlierFieldsOf(earlierReleases, datapackage), changesets, report: readReport })
+const written = writeRelease(out, release!, result, datapackage)
 
 // --- redirects for removed systems (D64) ---
 
@@ -360,27 +222,8 @@ const headersAfter = replaceBlock(headersBefore, ['# latest release (generated b
 if (!dryRun) fs.writeFileSync(headersPath, headersAfter)
 
 // check the release. A failing value blocks if a changeset introduced it, and is a legacy warning if it's from the baseline (D60)
-const validate = (...flags: string[]) => spawnSync(process.execPath, [path.join(root, 'scripts', 'validate.mjs'), path.join(out, 'datapackage.json'), ...flags], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 })
-const checked = JSON.parse(validate('--json').stdout) as {
-  errors: number
-  problems: { resource: string, row?: number | string, key?: string, column: string, value?: string, message: string }[]
-}
-for (const problem of checked.problems) {
-  const resource = datapackage.resources.find(r => r.name === problem.resource)
-  const idOf = (id: string) => resource?.schema.fields.some(f => fieldId(f) === id) ? [id] : []
-  const field = resource?.schema.fields.find(f => f.name === problem.column)
-  const id = field && fieldId(field)
-  // the place check reads the System ID and the Country / Region, so it's introduced by whichever changed last
-  const fields = id === 'system_id' && /place/.test(problem.message) ? [id, ...idOf('country')] : id ? [id] : []
-  const history = problem.key && id ? result.history[problem.resource]?.[problem.key]?.[id] : undefined
-  const value = problem.value === undefined ? '' : `${JSON.stringify(problem.value)} `
-  const missing = resource && problem.value === missingValue(resource) && !history ? ' (no value was set)' : ''
-  // Last updated is derived from the row's newest as_of, so its failure is that change's, not the row's introducer's (S2)
-  const derivedFrom = id === 'last_updated' && problem.key ? datedBy(result.provenance[problem.resource]?.[problem.key]) : undefined
-  const item = checkItem(result, { resource: problem.resource, key: problem.key ?? '', fields, message: `${value}${problem.message}${missing}`, ...(derivedFrom ? { derivedFrom } : {}) }, resource ? fieldId(keyField(resource)) : '')
-  result.report.push({ ...item, key: problem.key, field: id ?? problem.column })
-}
-const summary = validate().stdout
+checkRelease(out, result, datapackage)
+const summary = validate(out).stdout
 const validateSummary = summary.slice(summary.indexOf('\nSummary') + 1)
 
 // legacy warnings by table and field, for tightening the data release by release (D60)
