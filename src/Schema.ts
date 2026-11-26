@@ -51,6 +51,10 @@ export const typeLabels: Record<DPIType, string> = {
   pay: 'Payment',
   data: 'Data Exchange'
 }
+
+/** How each type's changes page names the type, as in "Payments: changes in the 6 Nov 2026 release", and the workbook names its sheets */
+export const changeTitles: Record<DPIType, string> = { id: 'Digital ID', pay: 'Payments', data: 'Data exchange' }
+
 type IdOf<D extends DPIType> = FieldId<typeof resourceNames[D]>
 
 /** Where a dpiType's schema lives, for error messages */
