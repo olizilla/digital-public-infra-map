@@ -20,7 +20,7 @@ import { getCollection } from 'astro:content'
 import { build, fieldId, unreverted } from '../lib/changesets/build.ts'
 import type { Changeset, DataPackage } from '../lib/changesets/types.ts'
 import nextPackage from '../datapackage.json'
-import { schemas, resourceNames, toRecord, type DPIType, type Field } from './Schema'
+import { schemas, resourceNames, toRecord, changeTitles, type DPIType, type Field } from './Schema'
 import { dpiStatus, dpiTest, nameOf, nouns, statusOf, type DpiStatus } from './DpiTest'
 import { normaliseImplementationStatus } from './Status'
 import { derivedFields } from './DpiLayer'
@@ -138,8 +138,8 @@ export function roundOf (round: Round) {
   return rounds.get(round)!
 }
 
-/** How each type's page names the type, as in "Payments: changes in the 6 Nov 2026 release" */
-export const changeTitles: Record<DPIType, string> = { id: 'Digital ID', pay: 'Payments', data: 'Data exchange' }
+// in src/Schema.ts, so the workbook (src/Evidence.ts) can use it without this module's Vite imports
+export { changeTitles }
 
 /**
  * A round's changelog: /changes/next/ for the pending changes, /changes/<date>/ for a release's, or with
