@@ -14,7 +14,7 @@ import { spawnSync } from 'node:child_process'
 import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
-import { changesetInIssue, notFound, proposalCheck, type ProposalResult } from '../../scripts/proposal-check.ts'
+import { changesetInIssue, checkIssueBody, issueProblem, proposalCheck, type ProposalResult } from '../../scripts/proposal-check.ts'
 import { proposalComment } from '../../scripts/proposal-comment.ts'
 import {
   applyProposal, BOT, changesetPath, checkComment, commitMessage, decide, tooLarge, type Comment, type Context, type Decision, type IssueEvent
@@ -102,8 +102,7 @@ export interface CheckRun {
 
 /** The check workflow on an issue: the real check, on the TOML in its body as the workflow reads it, and its comment */
 export function runCheck (issue: MockIssue, options: { now?: Date, log?: string } = {}): CheckRun {
-  const text = changesetInIssue(issue.body)
-  const result = text === undefined ? notFound() : proposalCheck(text, options)
+  const result = checkIssueBody(issue.body, options)
   return { result, comment: proposalComment(result), needsChanges: !result.applies }
 }
 
@@ -160,7 +159,7 @@ export function runAccept (issue: MockIssue, closer: Closer, options: { clone?: 
   const event = closedEvent(issue, closer.login, closer.state_reason === undefined ? 'completed' : closer.state_reason as never, closedAt)
   const toml = changesetInIssue(issue.body)
   // the check, run again at closing, as the workflow does
-  const check = toml !== undefined && !tooLarge(toml) ? proposalCheck(toml, { now: closedAt, log: options.log }) : undefined
+  const check = toml !== undefined && !tooLarge(toml) && !issueProblem(issue.body) ? proposalCheck(toml, { now: closedAt, log: options.log }) : undefined
   const decision = decide({ event, role: context.role, comment: checkComment(context.comments), lastEditedAt: context.lastEditedAt, closer: context.closer, toml, check, now: closedAt })
   if (decision.action !== 'accept' || !options.clone) return { decision, context }
   const file = changesetPath(check!.resource!, changesetId(closedAt))

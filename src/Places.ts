@@ -24,6 +24,9 @@ export function csvRows (csv: string): Record<string, string>[] {
 const value = (cell: string) => cell === 'NA' ? undefined : cell
 export const places: Place[] = csvRows(placesCSV).map(({ code, name, iso3, parent }) => ({ code, name, iso3: value(iso3), parent: value(parent) }))
 
+/** The names the data uses that aren't places.csv's, and the place each is: place-names.csv */
+export const placeAliases: { dpimap_name: string, code: string }[] = csvRows(namesCSV).map(({ dpimap_name, code }) => ({ dpimap_name, code }))
+
 const byCode = new Map(places.map(place => [place.code, place]))
 const byName = new Map(places.map(place => [place.name, place]))
 for (const { dpimap_name, code } of csvRows(namesCSV)) byName.set(dpimap_name, byCode.get(code)!)

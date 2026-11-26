@@ -33,7 +33,7 @@ const placeholder = 'What changed, and how the source shows it'
   </div>
   <div class="grid gap-1 mt-1.5">
     <label class="grid gap-1">
-      <span class={labelClass}>Evidence date <span class={noteClass}>when the source shows this to be true</span></span>
+      <span class={labelClass}>Evidence date <span class={noteClass}>when this was known to be true</span></span>
       <input class:list={[inputClass, 'max-w-44']} type="date" id={`${id}-as-of`} required aria-describedby={`${id}-as-of-error`} data-as-of />
     </label>
     <p class={errorLineClass} id={`${id}-as-of-error`} aria-live="polite" data-error="as_of"></p>

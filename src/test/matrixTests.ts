@@ -21,7 +21,7 @@ import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 import { changesetFromText, readChangeset } from '../../lib/changesets/index.ts'
-import { changesetInIssue } from '../../scripts/proposal-check.ts'
+import { changesetInIssue, issueProblem } from '../../scripts/proposal-check.ts'
 import { checkProposal, decodeDraft, encodeDraft, issueLink, maxUrlLength, proposalChanges, proposalsOf, proposalTOML, type EditSpec, type Proposal } from '../Proposal.ts'
 import { issueFromLink, issueFromPaste, MAX_ISSUE_BODY, runCheck, type CheckRun, type MockIssue } from './mockGithub.ts'
 import { cases, handWritten, now, specOf, systems, today, type Case } from './matrix.ts'
@@ -42,9 +42,15 @@ function issueFor (s: EditSpec, proposal: Proposal): MockIssue {
 const ZWSP = '​'
 /** (d) Nothing in the comment, but its own markup, is live Markdown, HTML or a mention */
 function assertInert (comment: string) {
-  const [marker, ...lines] = comment.split('\n')
+  // the changeset itself, in its collapsed section, is shown as code: nothing in it is Markdown (D96)
+  const start = comment.indexOf('\n<details><summary>')
+  const shown = start === -1 ? comment : comment.slice(0, start + 1)
+  if (start !== -1) assert.match(comment.slice(start), /^\n<details><summary>The changeset that closing this commits<\/summary>\n\n(`{3,})toml\n[^]*\n\1\n\n<\/details>\n$/)
+  const [marker, ...lines] = shown.split('\n')
   assert.match(marker, /^<!-- dpimap-proposal-check (sha256=[0-9a-f]{64} checked=\S+ )?-->$/)
-  for (const line of lines) {
+  for (const raw of lines) {
+    // a change's evidence is indented, with its sources as code spans, which aren't links (D96)
+    const line = raw.startsWith('&nbsp;&nbsp;&nbsp;&nbsp;') ? raw.slice('&nbsp;&nbsp;&nbsp;&nbsp;'.length).replace(/\\[\\`*_[\]<>|~&]/g, '').replace(/(`+)[^]*?\1/g, '') : raw
     const bare = line
       .replace(/\\[\\`*_[\]<>|~&]/g, '')
       .replace(/^(- )?\*\*/, '').replace(/:\*\*/, '')
@@ -101,6 +107,8 @@ export function matrixTests (resources: string[]) {
       const issue = issueFor(s, proposal)
       assert.ok(issue.body.length <= MAX_ISSUE_BODY)
       // the issue's TOML is the editor's, so the check's fingerprint is of what the editor wrote
+      // nothing the editor writes is hidden or ambiguous (D96)
+      assert.equal(issueProblem(issue.body), undefined, `${about}: the issue body has hidden content or two blocks`)
       const inIssue = changesetInIssue(issue.body)
       assert.equal(inIssue, toml, `${about}: the TOML in the issue isn’t the editor’s`)
       assert.deepEqual(plain((readChangeset(inIssue!) as { changes: unknown[] }).changes), changes, about)

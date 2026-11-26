@@ -2,8 +2,10 @@
 // One field in the editor (/<id>/edit/, D86), in the place of its row on the system page (FieldRow):
 // an input holding the current value, labelled with the field's codebook name (D83), and, once the
 // value changes, its evidence (Evidence, which the script copies in). Radio buttons for an enum, with Not Found but never NA
-// (D73); checkboxes for a multi-valued field; a text box otherwise, with Not Found to tick where the
-// codebook allows it. A yes/no field's choices are pills on the left, as on the system page.
+// (D73); checkboxes for a multi-valued field; a text box otherwise, with Not Found beside it where the
+// codebook allows it, a button as tall as the box (a checkbox, hidden, with its label drawn by boxChoiceClass), light red when it's on, as the NF
+// pill is (D95). The box is never disabled: a row whose value is Not Found loads with it empty, typing in it turns the button off, and an empty box
+// turns it on again (./notFound.ts). A yes/no field's choices are pills on the left, as on the system page.
 // The row is a group: `data-changed` or `data-open`, set by the script, shows the evidence. A changed
 // row is a card, and its label is ink and marked "edited", with Undo at the right. The card is only a
 // background, a border colour and a shadow: the row has the same margin, padding and border width either
@@ -11,27 +13,55 @@
 // label or input; only the evidence below opens (D90). A changed text or multi-valued row keeps a line under
 // its value for an error, so one shows without moving the layout (D89); a choice of values can't be wrong,
 // so its line takes no space unless it has something to say.
+// On a new system's form (/edit/new/<table>/, D91) there's no system: `current` is empty, nothing is ticked, no
+// "Current:" line or history is shown, a text box has no NA placeholder, and the row says "filled in", not "edited".
+// A row whose value is set (not NA or empty, and one the codebook allows, Not Found too) can be restated as still true (D92), which
+// the page does in recheck mode (D94, ./recheck.ts): there the row has a "Still true" checkbox in the place of Undo, and ticking it
+// keeps the value as it is, opens the evidence as for a change, and says "confirmed" where an edit says "edited" (`data-confirming`,
+// set by the script). Outside the mode the checkbox is hidden, except on a row that's confirmed, so a confirmation can be undone.
+// The script says which of Undo and the checkbox the row shows, `data-slot` ("undo" or "confirm"). Both are stacked in one grid cell
+// with the words, so the cell is as wide as the widest in every state and every mode, and nothing moves when the mode changes
+// or the box is ticked.
+// In recheck mode a text row's Not Found box is invisible (it keeps its place, so nothing moves), unless the row's value is Not Found,
+// as the data has it (`data-current`) or as it's been set (checked): there it stays, so the row still shows its value (D94). The
+// value can still be changed in the box.
+// The page is built from the next release (D93): `current` is a value that may be waiting for it, and where it differs from the one
+// the map shows, `waiting` says so, quietly, under the value, with the released one. Its evidence, source and date, are then the
+// pending change's (`pending`), not the release's. A value with line breaks is shown on one line, as the form holds it (Proposal.ts oneLine).
 import FieldValue from '../FieldValue.astro'
 import { variablePath } from '../../Codebook'
-import { codebookNameOf, type Field } from '../../Schema'
+import { codebookNameOf, type DPIType, type Field } from '../../Schema'
 import { domainOf, fieldAnchor, monthYear, snapshotDate, storyOf } from '../../SystemPage'
 import { joinParts, NOT_FOUND, splitParts, type FieldSpec } from '../../Proposal'
 import type { System } from '../../Systems'
-import { choiceClass, errorLineClass, inputClass, textButtonClass } from './styles'
+import type { PendingChange } from '../../NextRelease'
+import { canConfirm as confirmable } from './recheck'
+import { boxChoiceClass, choiceClass, errorLineClass, inputClass, notFoundOn, textButtonClass } from './styles'
 
 interface Props {
-  system: System
+  /** the system the row edits, or none on a new system's form */
+  system?: System
+  /** the table, when there's no system */
+  dpiType?: DPIType
   field: Field
   spec: FieldSpec
+  /** the value in the release the map shows, when the next release's differs from it */
+  waiting?: { released: string }
+  /** the change that last set the value, if one is waiting for the next release */
+  pending?: PendingChange
 }
-const { system, field, spec } = Astro.props
+const { system, field, spec, waiting, pending } = Astro.props
+const dpiType = (system?.dpiType ?? Astro.props.dpiType)!
 const { id, current } = spec
+const isNew = system === undefined
 const missing = current.trim() === '' || current === 'NA'
+// a value to restate: one that's set, on one line, and that the codebook would allow as a new value, as the check reads it (D92)
+const canConfirm = confirmable(spec, isNew)
 // a yes/no field: pills on the left, as on the system page
 const yesNoPills: Record<string, { text: string, on: string }> = {
   Yes: { text: 'YES', on: 'peer-checked:border-yes-line peer-checked:bg-yes' },
   No: { text: 'NO', on: 'peer-checked:border-no-line peer-checked:bg-no' },
-  [NOT_FOUND]: { text: 'NF', on: 'peer-checked:border-nf-line peer-checked:bg-nf' }
+  [NOT_FOUND]: { text: 'NF', on: notFoundOn }
 }
 const pills = field.site.kind === 'flag' && spec.control === 'choice' && spec.values.every(value => value in yesNoPills)
 const ticked = spec.control === 'multi' ? splitParts(spec, current) : []
@@ -40,10 +70,13 @@ const ticked = spec.control === 'multi' ? splitParts(spec, current) : []
 const shown = spec.control === 'choice' ? spec.values.includes(current) : spec.control === 'multi' ? joinParts(spec, ticked) === current : true
 // a value the codebook doesn't allow, from an older round, is shown as the current value, and no choice is ticked
 const textValue = missing || current === NOT_FOUND ? '' : current
-const { history, evidence } = storyOf(system, id)
+const { history, evidence: released } = system ? storyOf(system, id) : { history: [], evidence: [] }
+// a value that's waiting for the next release has its own change's evidence, not the release's
+const evidence = pending ? pending.sources.map(url => ({ url })) : released
 const latest = history[0]
-const since = latest && (latest.type === 'snapshot' ? snapshotDate : latest.as_of)
-const codebook = codebookNameOf(field) !== undefined ? variablePath(system.dpiType, field) : undefined
+const since = pending ? pending.as_of : latest && (latest.type === 'snapshot' ? snapshotDate : latest.as_of)
+const more = !!(evidence.length || since)
+const codebook = codebookNameOf(field) !== undefined ? variablePath(dpiType, field) : undefined
 const labelId = `l-${id}`
 const Label = codebook ? 'a' : 'span'
 ---
@@ -64,8 +97,17 @@ const Label = codebook ? 'a' : 'span'
     <div class="min-w-0">
       <p class:list={['flex flex-wrap items-baseline gap-x-2', pills ? 'text-sm leading-5 text-ink' : 'text-ui text-secondary group-data-[changed]/er:text-ink']}>
         <Label id={labelId} class={codebook ? 'hover:text-blue-500 hover:underline' : undefined} href={codebook} target={codebook ? '_blank' : undefined} title={codebook ? 'What this field means, in the codebook (opens a new tab)' : undefined}>{field.title}</Label>
-        <span class="invisible group-data-[changed]/er:visible -ml-0.5 text-xs text-muted">edited</span>
-        <button type="button" class:list={[textButtonClass, 'ml-auto invisible group-data-[changed]/er:visible']} data-undo>Undo</button>
+        <span class="grid invisible group-data-[changed]/er:visible -ml-0.5 text-xs text-muted">
+          <span class="col-start-1 row-start-1 group-data-[confirming]/er:invisible">{isNew ? 'filled in' : 'edited'}</span>
+          { canConfirm && <span class="col-start-1 row-start-1 invisible group-data-[confirming]/er:visible">confirmed</span> }
+        </span>
+        <span class="ml-auto grid justify-items-end">
+          <button type="button" class:list={[textButtonClass, 'col-start-1 row-start-1 invisible group-data-[slot=undo]/er:visible']} data-undo>Undo</button>
+          { canConfirm && <label class="col-start-1 row-start-1 invisible group-data-[slot=confirm]/er:visible flex cursor-pointer items-center gap-1.5 text-ui text-secondary" title="The value is still true: give your evidence for it">
+            <input type="checkbox" class="size-3.5 accent-zinc-700" aria-describedby={labelId} data-confirm />
+            Still true
+          </label> }
+        </span>
       </p>
     </div>
     { spec.control === 'choice' && !pills && (
@@ -90,26 +132,27 @@ const Label = codebook ? 'a' : 'span'
     )}
     { spec.control === 'text' && (
       <span class="flex flex-wrap items-center gap-x-3 gap-y-1.5">
-        <input class:list={[inputClass, 'flex-1 basis-60']} type="text" name={`v-${id}`} dir="auto" value={textValue} placeholder={missing ? 'NA' : undefined}
-          aria-labelledby={labelId} aria-describedby={`e-${id}`} disabled={current === NOT_FOUND} inputmode={field.site.kind === 'url' ? 'url' : undefined} spellcheck={field.site.kind === 'url' ? 'false' : undefined} />
+        <input class:list={[inputClass, 'flex-1 basis-50']} type="text" name={`v-${id}`} dir="auto" value={textValue} placeholder={missing && !isNew ? 'NA' : undefined}
+          aria-labelledby={labelId} aria-describedby={`e-${id}`} inputmode={field.site.kind === 'url' ? 'url' : undefined} spellcheck={field.site.kind === 'url' ? 'false' : undefined} />
         { spec.notFound && (
-          <label class="flex items-center gap-1.5 text-ui text-secondary">
-            <input type="checkbox" class="size-3.5 accent-zinc-700" value={NOT_FOUND} checked={current === NOT_FOUND} data-not-found />
-            Not Found
+          <label class="flex self-stretch in-data-[recheck]:not-has-checked:not-data-current:invisible" data-current={current === NOT_FOUND ? '' : undefined}>
+            <input type="checkbox" class="peer sr-only" value={NOT_FOUND} checked={current === NOT_FOUND} data-not-found />
+            <span class={boxChoiceClass}>Not Found</span>
           </label>
         )}
       </span>
     )}
     <p class:list={[errorLineClass, 'hidden group-data-[changed]/er:block -mt-0.5', { 'col-start-2': pills, 'empty:hidden!': spec.control === 'choice' }]} id={`e-${id}`} aria-live="polite" data-error="value"></p>
-    <p class:list={['text-xs leading-4.5 text-muted', { 'col-start-2 mt-0.5': pills }]}>
-      <span class:list={[shown ? 'hidden group-data-[changed]/er:inline' : 'inline']}>Current: <FieldValue field={field} value={current} />{ (evidence.length || since) && <span class:list={['sep px-1', { 'narrow:hidden': !evidence.length }]}>·</span> }</span>
+    { !isNew && <p class:list={['text-xs leading-4.5 text-muted', { 'first-letter:uppercase': waiting, 'col-start-2 mt-0.5': pills }]}>
+      <span class:list={[shown ? 'hidden group-data-[changed]/er:inline group-data-[confirming]/er:hidden!' : 'inline']}>Current: <FieldValue field={field} value={current} />{ (waiting || more) && <span class:list={['sep px-1', { 'narrow:hidden': !waiting && !evidence.length }]}>·</span> }</span>
+      { waiting && <span data-waiting>waiting for the next release (released: <FieldValue field={field} value={waiting.released} />){ more && <span class:list={['sep px-1', { 'narrow:hidden': !evidence.length }]}>·</span> }</span> }
       { evidence.length > 0 && <a class="src" href={evidence[0].url} rel="nofollow noopener" target="_blank" title={evidence[0].url}>{domainOf(evidence[0].url)}</a> }
       { evidence.length > 1 && <span> and {evidence.length - 1} more</span> }
       { since && <span class="narrow:hidden">{ evidence.length > 0 && <span class="sep px-1">·</span> }<time datetime={since}>{monthYear(since)}</time></span> }
-    </p>
+    </p> }
   </div>
   <div class="hidden group-data-[changed]/er:grid group-data-[open]/er:grid gap-3 mt-2.5 pt-3 pl-1.5 border-t border-line-faint">
-    <p class="group-data-[changed]/er:hidden text-ui text-muted">Choose a new value above to propose a change.</p>
-    <div data-evidence></div>
+    <p class="group-data-[changed]/er:hidden text-ui text-muted">{isNew ? 'Give a value above to add this field.' : 'Choose a new value above to propose a change.'}</p>
+    <div data-evidence data-placeholder={isNew ? 'Where this comes from, and how the source shows it' : undefined}></div>
   </div>
 </div>

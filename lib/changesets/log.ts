@@ -39,12 +39,22 @@ const DATE_TOKENS = /"""(?:[^\\]|\\[\s\S])*?"""|'''[\s\S]*?'''|"(?:[^"\\\n]|\\.)
  */
 export function readChangeset (text: string): unknown {
   const data = parse(text)
+  const [first] = unrealDates(text)
+  if (first) throw new Error(`line ${first.line}: ${first.date} is not a real calendar date`)
+  return trimmed(plain(data))
+}
+
+/**
+ * The bare dates in a changeset's TOML that aren't real calendar dates (S2), in order, with the line and
+ * the place in `text` of each, as readChangeset refuses the first: the proposal check (D92) reports them all.
+ */
+export function unrealDates (text: string): { date: string, line: number, index: number }[] {
+  const dates = []
   for (const match of text.matchAll(DATE_TOKENS)) {
     if (match[1] === undefined || isCalendarDate(match[1])) continue
-    const line = text.slice(0, match.index).split('\n').length
-    throw new Error(`line ${line}: ${match[1]} is not a real calendar date`)
+    dates.push({ date: match[1], line: text.slice(0, match.index).split('\n').length, index: match.index + match[0].length - match[1].length })
   }
-  return trimmed(plain(data))
+  return dates
 }
 
 const isRecord = (value: unknown): value is Record<string, unknown> => value !== null && typeof value === 'object' && !Array.isArray(value)

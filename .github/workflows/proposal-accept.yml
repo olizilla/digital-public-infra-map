@@ -24,7 +24,9 @@
 #
 # The issue's body is data: the script reads it from the event's file ($GITHUB_EVENT_PATH). Nothing from the
 # issue is put in a shell command or a ${{ }} expression, nothing from it is run, and only the default branch
-# is checked out, without credentials: the token is given to git only to push, not to npm ci or the scripts.
+# is checked out, without credentials: the token is given to git only to push, not to npm ci or the scripts. In
+# the push step it's read once into an unexported shell variable and unset, so not even --verify, which runs the
+# scripts and the data check again after a rebase, has it in its environment (D96).
 # Events made with the built-in token start no workflows, so reopening an issue doesn't check it again, and
 # the commit doesn't run data-check.yml (this has run data:check on it).
 name: Proposal accept
@@ -118,7 +120,11 @@ jobs:
           RESULT: ${{ runner.temp }}/accept.json
           VERIFY: ${{ runner.temp }}/verify.json
         run: |
+          # the token goes into `remote`, a shell variable that isn't exported, and is unset at once: the scripts
+          # this step runs (--verify, and the data check it runs) are child processes, which would otherwise see it
+          # in their environment (D96). Only git, given $remote as an argument, gets the URL it's in.
           remote="https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          unset TOKEN
           file=$(jq -r .file "$RESULT")
           # the last guard, in shell so nothing npm ci or the scripts touched can change it: HEAD is one
           # commit on top of the branch as fetched, adding just the file the decision named, at a pending

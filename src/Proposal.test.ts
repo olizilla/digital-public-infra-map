@@ -6,6 +6,7 @@
 // Run with: node --test src/Proposal.test.ts
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
+import fs from 'node:fs'
 import rootPackage from '../datapackage.json' with { type: 'json' }
 import identityRows from '../public/data/2026-11-06/2026-11-06-identity.json' with { type: 'json' }
 import paymentRows from '../public/data/2026-11-06/2026-11-06-payment.json' with { type: 'json' }
@@ -35,7 +36,7 @@ const edit = (field: string, value: string, more: Partial<FieldEdit> = {}): Fiel
 })
 const errors = (spec: EditSpec, proposal: Proposal) => checkProposal(spec, proposal, today).filter(p => p.level === 'error')
 /** The TOML without the editor's comments: the header line, and each value's `# was "<value>"` (D87) */
-const uncommented = (text: string) => text.replace(/^# .*\n/, '').replace(/ {2}# was "(?:[^"\\]|\\.)*"$/gm, '')
+const uncommented = (text: string) => text.replace(/^# .*\n/, '').replace(/ {2}# (?:was "(?:[^"\\]|\\.)*"|unchanged)$/gm, '')
 /**
  * The TOML without its comments, checked to be exactly what changesetTOML writes, which also checks
  * the schema and reads it back, and the TOML with them to read as the same data
@@ -402,8 +403,8 @@ test('a value: allowed, not NA, not empty, on one line, trimmed first, and a lin
   const spec = specOf('payment', 'pay-ke-01')
   const value = (field: string, v: string) => said(spec, { edits: [edit(field, v)] })
   assert.deepEqual(value('qr_code', 'NA'), [['QR code based transactions can’t be set to NA, which means not researched yet. If you looked and found nothing, choose Not Found.', 'NA can’t be chosen: it means not researched yet.']])
-  assert.deepEqual(value('transaction_cost', ''), [['Cost of transactions needs a value. If you looked and found nothing, tick Not Found.', 'Give a value, or tick Not Found.']])
-  assert.deepEqual(value('transaction_cost', ' \t '), [['Cost of transactions needs a value. If you looked and found nothing, tick Not Found.', 'Give a value, or tick Not Found.']])
+  assert.deepEqual(value('transaction_cost', ''), [['Cost of transactions needs a value. If you looked and found nothing, choose Not Found.', 'Give a value, or choose Not Found.']])
+  assert.deepEqual(value('transaction_cost', ' \t '), [['Cost of transactions needs a value. If you looked and found nothing, choose Not Found.', 'Give a value, or choose Not Found.']])
   for (const v of ['a\nb', 'a\r\nb', 'a\u0000b', 'a\tb', 'a\u2028b', 'a\u2029b', 'a\u0085b']) {
     assert.deepEqual(value('transaction_cost', v), [['Cost of transactions can’t have a line break, a tab or another control character.', 'Keep it to one line, with no tabs.']], JSON.stringify(v))
   }
@@ -515,4 +516,93 @@ test('a changeset’s changes as the editor’s proposals, one per system, for t
   })
   // no reason or sources is empty, for the rules to refuse
   assert.deepEqual(proposals.get('pay-ke-02'), { edits: [{ field: 'qr_code', value: 'Yes', reason: '', sources: [], as_of: '2026-11-01' }] })
+})
+
+// D92: "Still true", a value restated with fresh evidence
+
+const confirmed = (field: string, value: string, more: Partial<FieldEdit> = {}) => edit(field, value, { confirmed: true, ...more })
+
+test('a value confirmed as still true is an update that sets it, with `# unchanged` where an edit has `# was`', () => {
+  const spec = specOf('payment', 'pay-ke-01')
+  const proposal = { edits: [confirmed('status', 'Implemented'), edit('qr_code', 'No')] }
+  // the rule: restating the value is allowed only when it's said to be so, and it needs the same evidence
+  assert.deepEqual(errors(spec, proposal), [])
+  assert.deepEqual(errors(spec, { edits: [edit('status', 'Implemented')] }).map(p => p.message), ['Status of Implementation is the same as now.'])
+  assert.deepEqual(errors(spec, { edits: [confirmed('status', 'Implemented', { reason: '' })] }).map(p => p.message), ['Status of Implementation needs a reason.'])
+  assert.deepEqual(errors(spec, { edits: [confirmed('status', 'Implemented', { reason: '  ', as_of: '' })] }).map(p => p.about), ['reason', 'as_of'])
+  // the TOML says it, and the changeset is the same as any update that sets the value
+  const text = proposalTOML(spec, proposal)
+  assert.match(text, /^values\.status = "Implemented" {2}# unchanged$/m)
+  assert.match(text, /^values\.qr_code = "No" {2}# was "Yes"$/m)
+  assert.equal(toml(spec, proposal), changesetTOML({ changes: proposalChanges(spec, proposal) }))
+  assert.deepEqual(proposalChanges(spec, { edits: [confirmed('status', 'Implemented')] })[0].values, { status: 'Implemented' })
+  // the receipt shows it among the parts, and a person's plain edit of the same value says it hasn't changed, as before
+  const parts = proposalTOMLParts(spec, proposal)
+  assert.deepEqual(parts.changes.map(c => c.field), ['status', 'qr_code'])
+  assert.match(parts.changes[0].text, /# unchanged/)
+})
+
+test('a confirmation can’t be NA or empty, or any value but the one it has', () => {
+  const spec = specOf('payment', 'pay-ke-01')
+  // NA is never allowed (D73), and a field with no value has nothing to confirm
+  assert.match(errors(spec, { edits: [confirmed('interoperability_policy', 'NA')] })[0].message, /can’t be set to NA/)
+  // marked confirmed, but with another value: it's an ordinary edit, with its `# was`
+  const other = { edits: [confirmed('status', 'Suspended')] }
+  assert.deepEqual(errors(spec, other), [])
+  assert.match(proposalTOML(spec, other), /^values\.status = "Suspended" {2}# was "Implemented"$/m)
+  // Not Found is a value, and can be confirmed
+  const notFound = specOf('payment', 'pay-ma-01')
+  assert.equal(notFound.fields.find(f => f.id === 'settlement_method')!.current, 'Not Found')
+  const again = { edits: [confirmed('settlement_method', 'Not Found')] }
+  assert.deepEqual(errors(notFound, again), [])
+  assert.match(proposalTOML(notFound, again), /^values\.settlement_method = "Not Found" {2}# unchanged$/m)
+})
+
+test('a confirmed change is ready with a reason and a date, and counts with the others', () => {
+  const spec = specOf('payment', 'pay-ke-01')
+  const waiting = readiness(spec, { edits: [confirmed('status', 'Implemented', { reason: '' })] }, today)
+  assert.deepEqual(waiting.changes.map(c => c.needs), [['a reason']])
+  assert.equal(waiting.ready.edits.length, 0)
+  const state = readiness(spec, { edits: [confirmed('status', 'Implemented'), edit('qr_code', 'No')] }, today)
+  assert.equal(readyText(state), '2 changes ready')
+  assert.equal(totalLine(state), '2 changes ready')
+  assert.equal(state.ready.edits.length, 2)
+  assert.equal(sendReadyText(state), 'Send the 2 ready changes')
+  // and without sources, as for any change (D90)
+  assert.equal(readiness(spec, { edits: [confirmed('status', 'Implemented', { sources: [] })] }, today).ready.edits.length, 1)
+})
+
+test('the draft link restores a confirmation, and one that’s no longer the current value is left out', async () => {
+  const spec = specOf('payment', 'pay-ke-01')
+  const proposal = { edits: [confirmed('status', 'Implemented'), edit('qr_code', 'No')] }
+  for (const compress of [true, false]) {
+    const text = await encodeDraft(spec, proposal, compress)
+    assert.deepEqual(await decodeDraft(spec, text), { ok: true, proposal, ignored: [] })
+  }
+  // the same value without the mark is the same as now, so it's left out; with the mark but another value it's an edit
+  const plain = await decodeDraft(spec, await encodeDraft(spec, { edits: [edit('status', 'Implemented'), edit('qr_code', 'No')] }, false))
+  assert.deepEqual(plain, { ok: true, proposal: { edits: [edit('qr_code', 'No')] }, ignored: ['Status of Implementation'] })
+  const marked = await decodeDraft(spec, await encodeDraft(spec, { edits: [confirmed('status', 'Suspended')] }, false))
+  assert.deepEqual(marked, { ok: true, proposal: { edits: [edit('status', 'Suspended')] }, ignored: [] })
+  // and a confirmation of a value that's NA now isn't restored
+  const na = await decodeDraft(spec, await encodeDraft(spec, { edits: [confirmed('aml_law', 'NA'), edit('qr_code', 'No')] }, false))
+  assert.deepEqual(na, { ok: true, proposal: { edits: [edit('qr_code', 'No')] }, ignored: ['AML Law'] })
+})
+
+// D92: the evidence date's note, and the way back to /edit/ from the edit pages (the markup is read as text: the pages need astro)
+
+const page = (file: string) => fs.readFileSync(new URL(file, import.meta.url), 'utf8')
+
+test('the evidence date says when this was known to be true, as a change may have no source (D90, D92)', () => {
+  const evidence = page('./components/edit/Evidence.astro')
+  assert.match(evidence, /Evidence date <span[^>]*>when this was known to be true<\/span>/)
+  for (const file of ['./components/edit/Evidence.astro', './components/edit/form.ts', './Proposal.ts', './pages/[system]/edit.astro', './pages/edit/new/[resource].astro']) {
+    assert.doesNotMatch(page(file), /when the sources? shows? (this|the value) to be true/, file)
+  }
+})
+
+test('the edit pages link to /edit/, where another system is found or a new one added (D92)', () => {
+  assert.match(page('./pages/[system]/edit.astro'), /<a class="ul" href="\/edit\/">Edit another system, or add one<\/a>/)
+  assert.match(page('./pages/edit/new/[resource].astro'), /<a href="\/edit\/">Edit the map<\/a>/)
+  assert.match(page('./pages/edit/new/[resource].astro'), /href="\/edit\/">Back to search<\/a>/)
 })

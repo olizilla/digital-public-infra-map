@@ -10,6 +10,17 @@ export const labelClass = 'text-ui font-medium text-strong'
 /** A note after a label, like "required" */
 export const noteClass = 'pl-1 font-normal text-muted'
 
+/** What a choice shows for chosen, kept and removed (the options of a field with a few text values) */
+const choiceStates = [
+  // chosen now and not in the data: added, in dark
+  'peer-checked:border-zinc-700 peer-checked:bg-zinc-700 peer-checked:text-white',
+  // in the data and still chosen: kept, light with a strong border
+  'peer-checked:data-orig:border-zinc-500 peer-checked:data-orig:bg-zinc-100 peer-checked:data-orig:text-ink',
+  // in the data but unticked: removed, struck through
+  'data-orig:[input:not(:checked)+&]:line-through',
+  'peer-focus-visible:outline-2 peer-focus-visible:outline-offset-1 peer-focus-visible:outline-blue-300',
+]
+
 /**
  * A choice among text values: a radio button or checkbox, hidden, with its label after it as a small rounded
  * rectangle, the height and type size of the YES/NO/NF pills beside it (EditRow), and a touch size on a phone
@@ -19,13 +30,22 @@ export const noteClass = 'pl-1 font-normal text-muted'
  */
 export const choiceClass = [
   'inline-block rounded-md border border-line-strong bg-white px-2 py-px text-xs narrow:px-2.5 narrow:py-1.5 narrow:text-[13px] narrow:leading-5 text-muted whitespace-nowrap cursor-pointer hover:border-zinc-400',
-  // chosen now and not in the data: added, in dark
-  'peer-checked:border-zinc-700 peer-checked:bg-zinc-700 peer-checked:text-white',
-  // in the data and still chosen: kept, light with a strong border
-  'peer-checked:data-orig:border-zinc-500 peer-checked:data-orig:bg-zinc-100 peer-checked:data-orig:text-ink',
-  // in the data but unticked: removed, struck through
-  'data-orig:[input:not(:checked)+&]:line-through',
-  'peer-focus-visible:outline-2 peer-focus-visible:outline-offset-1 peer-focus-visible:outline-blue-300',
+  ...choiceStates,
+].join(' ')
+
+/** The light red a Not Found pill takes when it's chosen (NF in a yes/no row, EditRow, and a text row's button, boxChoiceClass), so they match exactly */
+export const notFoundOn = 'peer-checked:border-nf-line peer-checked:bg-nf'
+
+/**
+ * Not Found on a text row (D95): a button beside the text box, as tall as the box (34px, `min-h-8.5`: a 20px line, 6px of padding and a
+ * border, as inputClass has), and centred in that height, rather than the options' small size. It's a pill's two states and no more,
+ * as the YES/NO/NF pills have: on (the value is Not Found), the light red of the NF pill; off, white and grey, whether or not the row's
+ * value was Not Found when the page loaded (a pill shows a deselected current value no differently either)
+ */
+export const boxChoiceClass = [
+  'flex min-h-8.5 items-center rounded-md border border-line-strong bg-white px-2.5 text-xs narrow:text-[13px] leading-5 text-muted whitespace-nowrap cursor-pointer hover:border-zinc-400',
+  'peer-checked:text-ink peer-focus-visible:outline-2 peer-focus-visible:outline-offset-1 peer-focus-visible:outline-blue-300',
+  notFoundOn,
 ].join(' ')
 
 /** A button beside the main one (.button-blue), like the copy buttons: its shape and size, white with a zinc border */
@@ -39,3 +59,14 @@ export const textButtonClass = 'text-ui text-secondary ul cursor-pointer'
  * layout (D89): one line tall even when empty. An error is red, a warning, like a later date, amber.
  */
 export const errorLineClass = 'min-h-4.5 text-xs leading-4.5 text-red-700 data-[level=warning]:text-amber-800'
+
+/**
+ * One of the two modes of the edit page, Edit and Recheck (D94), a segmented control of two radio buttons (hidden, `peer`) with
+ * their words as small segments: quiet, the chosen one white with ink text, the other muted. It's not the values' choiceClass,
+ * which is dark when chosen and could be mistaken for a value
+ */
+export const modeClass = [
+  'inline-block rounded px-2.5 py-px text-ui font-medium text-muted whitespace-nowrap cursor-pointer hover:text-ink narrow:px-3 narrow:py-1',
+  'peer-checked:bg-white peer-checked:text-ink peer-checked:shadow-sm',
+  'peer-focus-visible:outline-2 peer-focus-visible:outline-offset-1 peer-focus-visible:outline-blue-300',
+].join(' ')

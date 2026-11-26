@@ -1,4 +1,4 @@
-// The editor's script (/<id>/edit/, D86, D87): reads the form into a proposal (src/Proposal.ts), marks
+// The editor's script (/<id>/edit/, D86, D87, and /edit/new/<table>/, D91): reads the form into a proposal (src/Proposal.ts), marks
 // each changed row so it shows its evidence, and keeps the receipt at the side up to date: the
 // changeset's TOML with only the changes that are ready, and a total line saying what the rest need.
 // On submit it opens the prefilled GitHub issue with the ready changes, after a word in the page if
@@ -13,11 +13,18 @@
 // open the blank form to paste it into (D56); over the size accepting takes, it can't be sent (D88, D89).
 // Sources are optional: a change is ready with an allowed value, a reason and a real date, and a source
 // box that's filled in must hold a link (D90).
+// A new system's form (D91, startNew in ./newSystem.ts, which gives this the spec for the place) is the same
+// form with every field empty and a top section, `create`, for the reason for adding it: the proposal needs
+// that and at least one field, and its draft link also keeps the place.
+// Recheck mode (D94, ./recheck.ts) is the form's `data-recheck`, switched by the Edit | Recheck control and `?recheck`; it decides which rows show
+// the "Still true" checkbox, `data-slot` on a row, and a confirmed row keeps its checkbox in either mode.
 import {
   checkProposal, cleanSources, decodeDraft, encodeDraft, firstGraphemes, graphemeCount, issueLink, joinParts, localDate, MAX_REASON, notReadyText,
   NOT_FOUND, proposalTOMLParts, readiness, readyText, sendReadyText, sizeProblem, splitParts, totalLine,
-  type EditSpec, type FieldEdit, type FieldSpec, type Problem, type Proposal, type Readiness, type RemoveEdit
+  type CreateEdit, type EditSpec, type FieldEdit, type FieldSpec, type Problem, type Proposal, type Readiness, type RemoveEdit
 } from '../../Proposal.ts'
+import { notFoundAfterTyping } from './notFound.ts'
+import { canConfirm, hasConfirmations, recheckInSearch, searchWithRecheck, slotOf } from './recheck.ts'
 
 /** Where a row asks for each part of a change, to focus what it still needs */
 const inputFor: Record<NonNullable<Problem['about']>, string> = {
@@ -36,7 +43,7 @@ function tomlSpans (text: string): Node[] {
   const nodes: Node[] = []
   let multiline = false
   for (const line of text.replace(/\n$/, '').split('\n')) {
-    const [, name, rhs, note] = line.match(/^([\w.-]+) = (.*?)( {2}# was ".*")?$/) ?? []
+    const [, name, rhs, note] = line.match(/^([\w.-]+) = (.*?)( {2}# (?:was ".*"|unchanged))?$/) ?? []
     if (multiline || /^ {2}"/.test(line)) nodes.push(span(value, line))
     else if (line.startsWith('#')) nodes.push(span(comment, line))
     else if (name) {
@@ -77,8 +84,8 @@ function openTab (url: string) {
   else location.href = url
 }
 
-export function startEditor (form: HTMLFormElement) {
-  const spec: EditSpec = JSON.parse(form.dataset.spec ?? '{}')
+export function startEditor (form: HTMLFormElement, forSpec?: EditSpec) {
+  const spec: EditSpec = forSpec ?? JSON.parse(form.dataset.spec ?? '{}')
   const today = localDate()
   const row = (id: string) => form.querySelector<HTMLElement>(`[data-field="${CSS.escape(id)}"]`)!
   const panel = document.getElementById('proposal')!
@@ -94,6 +101,10 @@ export function startEditor (form: HTMLFormElement) {
   const problemFor = (level: Problem['level'], field: string, about: string) => problems.find(problem => problem.level === level && problem.field === field && (problem.about ?? 'value') === about)
 
   const template = document.querySelector<HTMLTemplateElement>('template#evidence')!
+
+  // the reason's hint, which a confirmation changes (D92): Evidence.astro's, and what ticking "Still true" asks
+  const reasonPlaceholder = template.content.querySelector('textarea')!.placeholder
+  const stillTruePlaceholder = 'How you checked it is still true, and where'
 
   /** A row's evidence inputs (Evidence.astro), copied in from the template the first time they're needed */
   function evidenceIn (el: HTMLElement) {
@@ -127,7 +138,7 @@ export function startEditor (form: HTMLFormElement) {
     const el = row(field.id)
     if (field.control === 'choice') return el.querySelector<HTMLInputElement>('input[type=radio]:checked')?.value ?? field.current
     if (field.control === 'multi') {
-      const ticked = all(el, 'input[type=checkbox]:checked').map(input => input.value)
+      const ticked = all(el, 'input[type=checkbox][name^="v-"]:checked').map(input => input.value)
       // ticks the same as at the start leave an older, unlisted value as it was
       const value = joinParts(field, ticked)
       return value === joinParts(field, splitParts(field, field.current)) ? field.current : value
@@ -150,17 +161,36 @@ export function startEditor (form: HTMLFormElement) {
   function read (): Proposal {
     const edits: FieldEdit[] = []
     for (const field of spec.fields) {
+      const el = row(field.id)
       const value = valueOf(field)
-      const changed = value !== field.current
-      row(field.id).toggleAttribute('data-changed', changed)
-      if (changed) edits.push({ field: field.id, value, ...evidenceOf(row(field.id)) })
+      // a confirmation (D92) keeps the value, which is then a change with its evidence. Changing the value makes it an ordinary edit
+      if (value !== field.current) el.removeAttribute('data-confirmed')
+      const confirming = value === field.current && el.hasAttribute('data-confirmed')
+      const changed = value !== field.current || confirming
+      el.toggleAttribute('data-changed', changed)
+      el.toggleAttribute('data-confirming', confirming)
+      // Undo or the "Still true" checkbox (D94), and the checkbox as ticked as the row is confirmed
+      el.dataset.slot = slotOf({ canConfirm: canConfirm(field, spec.isNew), recheck: form.hasAttribute('data-recheck'), changed, confirming })
+      const box = el.querySelector<HTMLInputElement>('input[data-confirm]')
+      if (box) box.checked = confirming
+      if (changed) {
+        const evidence = evidenceOf(el)
+        const reason = el.querySelector<HTMLTextAreaElement>('textarea[data-reason]')!
+        reason.placeholder = confirming ? stillTruePlaceholder : el.querySelector<HTMLElement>('[data-evidence]')!.dataset.placeholder ?? reasonPlaceholder
+        edits.push({ field: field.id, value, ...(confirming ? { confirmed: true } : {}), ...evidence })
+      }
     }
+    // a new system's top section: the reason for adding it, which it always has (D91)
+    if (spec.isNew) return { create: evidenceOf(row('create')), edits }
     const removal = row('remove')
     const removing = removal.querySelector<HTMLInputElement>('input[data-remove]')!.checked
     removal.toggleAttribute('data-changed', removing)
     const replacement = removal.querySelector<HTMLInputElement>('input[data-replacement]')!.value.trim()
     return removing ? { edits, remove: { ...evidenceOf(removal), ...(replacement ? { duplicate_of: replacement } : {}) } } : { edits }
   }
+
+  /** Whether the person has put anything in the form: a field, or a reason or source for adding a new system, which the date alone isn't */
+  const touched = (proposal: Proposal) => proposal.edits.length > 0 || proposal.remove !== undefined || (proposal.create !== undefined && (proposal.create.reason.trim() !== '' || proposal.create.sources.length > 0))
 
   /** Show the error for a part of a row, if it has one: when its input is left, or on trying to send */
   function reveal (field: string, about: string) {
@@ -226,9 +256,9 @@ export function startEditor (form: HTMLFormElement) {
     })))
     part('problems').hidden = !notes.length
     // with changes that aren't ready, sending shows what they need, so it's blocked only with nothing to send
-    const blocked = !state.changes.length || general.length > 0 || size?.level === 'error'
+    const blocked = !state.changes.length || general.length > 0 || size?.level === 'error' || (spec.isNew === true && !touched(proposal))
     submit.disabled = blocked
-    part('copies').hidden = !proposal.edits.length && !proposal.remove
+    part('copies').hidden = !touched(proposal)
     // over the length a link can carry, sending copies the changeset and opens the blank form, in one action (D56, D89)
     const tooLong = count > 0 && issueLink(spec, state.ready).tooLong
     part('paste-note').hidden = !tooLong
@@ -240,7 +270,29 @@ export function startEditor (form: HTMLFormElement) {
   let draftLink: Promise<string> = Promise.resolve('')
   function makeDraftLink (proposal: Proposal) {
     const url = new URL(location.pathname, location.href)
+    // a new system's link says its place, as the page needs it, and the draft says it too (D91)
+    if (spec.isNew) url.searchParams.set('place', spec.place!)
     draftLink = encodeDraft(spec, proposal).then(text => `${url.href}#draft=${text}`)
+  }
+
+  /** The mode as the form shows it: `data-recheck`, and the control, which is in step with it. It doesn't read the form again. */
+  function showMode (on: boolean) {
+    form.toggleAttribute('data-recheck', on)
+    for (const radio of all(form, 'input[name="mode"]')) radio.checked = (radio.value === 'recheck') === on
+  }
+
+  /** The address as the mode has it, `?recheck` or not, without a new page or history entry, keeping the rest of it and a draft's hash */
+  function showModeInAddress (on: boolean) {
+    try {
+      history.replaceState(history.state, '', location.pathname + searchWithRecheck(location.search, on) + location.hash)
+    } catch { /* an address that can't be changed, like a preview's, only loses the link */ }
+  }
+
+  /** Switch the mode: the form, the address and the rows' controls. Rows and their confirmations are as they were. */
+  function setMode (on: boolean) {
+    showMode(on)
+    showModeInAddress(on)
+    update()
   }
 
   function update () {
@@ -302,13 +354,30 @@ export function startEditor (form: HTMLFormElement) {
     textarea.dispatchEvent(new Event('input', { bubbles: true }))
   })
 
+  /**
+   * Text was typed, deleted or pasted in a text row's box (D95): a value turns Not Found off, and the text it was kept as is no longer
+   * wanted; an empty box on a row whose value is Not Found turns it on again, which is the row as it was loaded
+   */
+  function typed (box: HTMLInputElement) {
+    const notFound = box.closest<HTMLElement>('[data-field]')?.querySelector<HTMLInputElement>('input[data-not-found]')
+    const field = spec.fields.find(field => field.id === box.closest<HTMLElement>('[data-field]')?.dataset.field)
+    if (!notFound || !field) return
+    const on = notFoundAfterTyping({ current: field.current, text: box.value, on: notFound.checked })
+    if (on === notFound.checked) return
+    notFound.checked = on
+    if (!on) delete box.dataset.kept
+  }
+
   form.addEventListener('input', event => {
     const target = event.target
+    // a "Still true" box is read on its `change`, which comes after this: reading the form now would put the box back
+    if (target instanceof HTMLInputElement && target.dataset.confirm !== undefined) return
     if (isReason(target)) {
       const input = event as InputEvent
       if (!input.isComposing && !input.inputType?.startsWith('delete')) cutReason(target)
       countReason(target)
     }
+    if (target instanceof HTMLInputElement && target.type === 'text' && target.name.startsWith('v-')) typed(target)
     update()
   })
 
@@ -332,13 +401,27 @@ export function startEditor (form: HTMLFormElement) {
   form.addEventListener('change', event => {
     const input = event.target as HTMLInputElement
     const el = input.closest<HTMLElement>('[data-field]')
+    // Edit | Recheck (D94)
+    if (input.name === 'mode') {
+      setMode(input.value === 'recheck')
+      return
+    }
+    // "Still true" (D92): ticked, the value stays and its evidence opens; unticked, the confirmation is cancelled, as Undo does
+    if (el && input.dataset.confirm !== undefined) {
+      el.toggleAttribute('data-confirmed', input.checked)
+      update()
+      if (input.checked) el.querySelector<HTMLTextAreaElement>('textarea[data-reason]')?.focus({ preventScroll: true })
+      // outside recheck mode an unconfirmed row has no checkbox, so focus goes to its value rather than nowhere
+      else if (el.dataset.slot === 'none') el.querySelector<HTMLElement>(inputFor.value)?.focus({ preventScroll: true })
+      return
+    }
     // Not Found stands alone in a multi-valued field
     if (el && input.type === 'checkbox' && input.checked && input.name.startsWith('v-')) {
       for (const other of all(el, `input[name="${CSS.escape(input.name)}"]`)) {
         if (other !== input && (input.dataset.alone !== undefined || other.dataset.alone !== undefined)) other.checked = false
       }
     }
-    // and empties a text box, which gets its text back if it's unticked
+    // and clears a text box, which gets its text back if it's unticked. The box is never disabled, and typing in it turns Not Found off (D95)
     if (el && input.dataset.notFound !== undefined) {
       const box = el.querySelector<HTMLInputElement>('input[type=text][name^="v-"]')!
       if (input.checked) {
@@ -348,12 +431,12 @@ export function startEditor (form: HTMLFormElement) {
         box.value = box.dataset.kept ?? ''
         delete box.dataset.kept
       }
-      box.disabled = input.checked
       if (!input.checked) box.focus()
     }
     update()
-    // choosing isn't typing: a value chosen shows its error at once
-    if (el && (input.type === 'radio' || input.type === 'checkbox')) {
+    // choosing isn't typing: a value chosen shows its error at once. Not Found clicked off is, in effect, the start of typing in the box, which has
+    // the focus now, so an empty box shows its error when it's left, as when its text is deleted (D95)
+    if (el && (input.type === 'radio' || input.type === 'checkbox') && input.dataset.notFound === undefined) {
       reveal(el.dataset.field!, 'value')
       showProblems()
     }
@@ -369,11 +452,8 @@ export function startEditor (form: HTMLFormElement) {
         input.checked = input.defaultChecked
         input.value = input.defaultValue
       }
-      const box = el.querySelector<HTMLInputElement>('input[type=text][name^="v-"]')
-      if (box) {
-        box.disabled = el.querySelector<HTMLInputElement>('input[data-not-found]')?.checked ?? false
-        delete box.dataset.kept
-      }
+      delete el.querySelector<HTMLInputElement>('input[type=text][name^="v-"]')?.dataset.kept
+      el.removeAttribute('data-confirmed')
       update()
     }
     if (button.dataset.addSource !== undefined) addSource(el).focus()
@@ -446,6 +526,8 @@ export function startEditor (form: HTMLFormElement) {
   /** Back to the first change that isn't ready, at the first thing it needs */
   function focusFirst () {
     const first = problems.find(problem => problem.level === 'error' && problem.field)
+    // a new system with no field: the first field's row, not the top section's, which has no value
+    if (first?.field === 'create' && first.about === 'value') return focusRow(spec.fields[0].id)
     if (first?.field) focusRow(first.field, first.about)
   }
 
@@ -496,8 +578,7 @@ export function startEditor (form: HTMLFormElement) {
 
   // unsent changes are lost if the page goes, so ask first
   window.addEventListener('beforeunload', event => {
-    const proposal = read()
-    if (!sent && (proposal.edits.length || proposal.remove)) event.preventDefault()
+    if (!sent && touched(read())) event.preventDefault()
   })
 
   // the receipt is always open on desktop, with no disclosure; on a phone, where editing is harder, it starts closed
@@ -511,8 +592,11 @@ export function startEditor (form: HTMLFormElement) {
   narrow.addEventListener('change', fit)
   receipt.addEventListener('toggle', () => { if (!narrow.matches && !receipt.open) receipt.open = true })
 
+  // /<id>/edit/?recheck opens the page in recheck mode (D94)
+  if (!spec.isNew && form.querySelector('[data-mode]') && recheckInSearch(location.search)) showMode(true)
+
   // /<id>/edit/?field=<field id> opens that field's row, ready for a new value
-  const fieldId = new URLSearchParams(location.search).get('field')
+  const fieldId = spec.isNew ? null : new URLSearchParams(location.search).get('field')
   const request = document.getElementById('request')!
   if (fieldId) {
     const field = spec.fields.find(field => field.id === fieldId)
@@ -543,7 +627,13 @@ export function startEditor (form: HTMLFormElement) {
   }
 
   /** A draft's proposal into the form: each value, its evidence, and the removal. decodeDraft has checked the form can hold them. */
-  function restore ({ edits, remove }: { edits: FieldEdit[], remove?: RemoveEdit }) {
+  function restore ({ create, edits, remove }: { create?: CreateEdit, edits: FieldEdit[], remove?: RemoveEdit }) {
+    // a draft with a confirmation opens in recheck mode (D94); one without leaves the mode as the address had it
+    if (!spec.isNew && hasConfirmations({ edits }) && form.querySelector('[data-mode]')) {
+      showMode(true)
+      showModeInAddress(true)
+    }
+    if (create) fillEvidence(row('create'), create)
     for (const edit of edits) {
       const field = spec.fields.find(field => field.id === edit.field)!
       const el = row(field.id)
@@ -551,16 +641,16 @@ export function startEditor (form: HTMLFormElement) {
         for (const input of all(el, 'input[type=radio]')) input.checked = input.value === edit.value
       } else if (field.control === 'multi') {
         const ticked = splitParts(field, edit.value)
-        for (const input of all(el, 'input[type=checkbox]')) input.checked = ticked.includes(input.value)
+        for (const input of all(el, 'input[type=checkbox][name^="v-"]')) input.checked = ticked.includes(input.value)
       } else {
         const notFound = el.querySelector<HTMLInputElement>('input[data-not-found]')
         const box = el.querySelector<HTMLInputElement>('input[type=text][name^="v-"]')!
         const isNotFound = edit.value === NOT_FOUND && notFound !== null
         if (notFound) notFound.checked = isNotFound
-        box.disabled = isNotFound
         box.value = isNotFound ? '' : edit.value
         delete box.dataset.kept
       }
+      if (edit.confirmed) el.toggleAttribute('data-confirmed', true)
       fillEvidence(el, edit)
     }
     if (remove) {
@@ -569,7 +659,7 @@ export function startEditor (form: HTMLFormElement) {
       el.querySelector<HTMLInputElement>('input[data-replacement]')!.value = remove.duplicate_of ?? ''
       fillEvidence(el, remove)
     }
-    row(edits[0]?.field ?? 'remove').scrollIntoView({ block: 'center' })
+    row(edits[0]?.field ?? (spec.isNew ? 'create' : 'remove')).scrollIntoView({ block: 'center' })
   }
 
   // /<id>/edit/#draft=<text>, a draft link, restores the form as it was when the link was made. A

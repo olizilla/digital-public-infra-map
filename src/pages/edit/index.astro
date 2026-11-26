@@ -1,0 +1,44 @@
+---
+// The editor's front door (D91): /edit/ finds a place, a system or a System ID, and goes to what can be
+// done: an edit page, filling in a row that has no name, or adding a system (/edit/new/<table>/). It's static,
+// unlinked from the public pages for now (D59), and kept from search engines like the edit pages: noindex
+// (src/layouts/Edit.astro), robots.txt, and the sitemap's filter (astro.config.mjs).
+// The index it searches (src/EditIndex.ts) is in the page as JSON, made at build time with the changesets
+// waiting in changesets/next/, and the script (src/components/edit/find.ts) does the rest in the browser.
+import Edit from '../../layouts/Edit.astro'
+import { loadEditIndex } from '../../EditData'
+import { inputClass, labelClass } from '../../components/edit/styles'
+
+const index = await loadEditIndex()
+// JSON in a script element must not be able to close it
+const json = JSON.stringify(index).replace(/</g, '\\u003c')
+---
+
+<Edit title="Find a place or a system">
+  <main class="page">
+    <header class="page-header pb-5!">
+      <p class="page-crumbs">Edit the map</p>
+      <h1 class="page-title page-h1">Propose changes</h1>
+      <aside class="callout max-w-[44rem]">Your proposal opens as a GitHub issue for review. Nothing on the map changes until it’s accepted.</aside>
+    </header>
+
+    <div class="max-w-[44rem]">
+      <form role="search" class="grid gap-1.5" id="find" novalidate>
+        <label class="grid gap-1">
+          <span class={labelClass}>Find a place or a system</span>
+          <input class:list={[inputClass, 'text-base!']} type="search" name="q" autocomplete="off" spellcheck="false" autofocus
+            placeholder="A country or region, a system’s name, or a System ID like pay-ke-01" aria-describedby="find-hint" data-query />
+        </label>
+        <p class="text-xs leading-4.5 text-muted" id="find-hint">Search a place to fill in a system that has no name yet, add a system, or edit one. Search a system by its name or its System ID to edit it.</p>
+      </form>
+      <div class="mt-6 grid gap-6" aria-live="polite" data-results></div>
+    </div>
+    <script type="application/json" id="edit-index" set:html={json}></script>
+  </main>
+</Edit>
+
+<script>
+  import { startFind } from '../../components/edit/find'
+  const form = document.querySelector<HTMLFormElement>('form#find')
+  if (form) startFind(form)
+</script>

@@ -240,7 +240,9 @@ function replay (resource: Resource, baselineRows: Record<string, unknown>[], la
   })
 
   for (const [id, { changesets: ids, count }] of notInPackage) {
-    const release = options.earlierFields?.[name]?.[id]
+    // an own property only: a field id like `constructor` must not find Object.prototype's (D96)
+    const earlier = options.earlierFields?.[name]
+    const release = earlier && Object.hasOwn(earlier, id) ? earlier[id] : undefined
     const values = `${count} value${count === 1 ? '' : 's'}`
     report.push(release
       ? reportItem('legacy-field', `has ${values} for a field that was in the ${release} release but is not in the package, so they are skipped`, { resource: name, field: id, count, changesets: [...ids], release })

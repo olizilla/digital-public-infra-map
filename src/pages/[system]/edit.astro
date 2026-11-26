@@ -13,7 +13,16 @@
 // gives the form's state, which also opens the proposal in a browser that's signed in to GitHub (D87, D90).
 // Each changed row keeps a line under each input that can have an error, which shows when the input is left
 // or on sending (D89).
+// The page is built from the next release (D93): the release the site shows with the changesets waiting in changesets/next/
+// replayed onto it, as the proposal check builds it (src/EditData.ts loadNext), so "Current", `# was` and the draft link are the
+// value a proposal changes. A value that differs from the release's says so under it, with the released one. A system a pending
+// changeset created is new: it says so once, near the top, and has no public page to link to. A system a pending changeset
+// removes keeps its page, with the removal and its reason and no form, as an edit would fail against a removed row. Only these
+// pages, /edit/ and /edit/new/ follow the pending data: the public pages stay on the release.
 // The DPI test is the published one, never worked out again here.
+// Recheck mode (D94, components/edit/recheck.ts): a small Edit | Recheck control at the top of the form, `/<id>/edit/?recheck` opening in it,
+// puts a "Still true" checkbox on each row that can be confirmed (D92). Off, the page has none.
+// A quiet link under the note at the top goes to /edit/ (D92), where another system is found or a new one added.
 // The page is static and unlinked (D59), so the query string and a draft link's #draft= are read in
 // the browser. It sits beside the system page, [system].astro, with the same paths.
 import Edit from '../../layouts/Edit.astro'
@@ -21,21 +30,29 @@ import SystemCard from '../../components/SystemCard.astro'
 import TypeIcon from '../../components/TypeIcon.astro'
 import EditRow from '../../components/edit/EditRow.astro'
 import Evidence from '../../components/edit/Evidence.astro'
-import { buttonClass, errorLineClass, inputClass, labelClass, noteClass } from '../../components/edit/styles'
+import ReceiptPanel from '../../components/edit/ReceiptPanel.astro'
+import { errorLineClass, inputClass, labelClass, modeClass, noteClass } from '../../components/edit/styles'
 import rootPackage from '../../../datapackage.json'
 import { getCollection } from 'astro:content'
-import { systems, systemHref, type System } from '../../Systems'
+import { systemHref } from '../../Systems'
 import { schemas, typeLabels, type Field, type Schema } from '../../Schema'
 import { laneTitles } from '../../CountryPage'
 import { fieldsByAttribute } from '../../SystemPage'
-import { editSpec, issueForm, repository } from '../../Proposal'
+import { editSpec } from '../../Proposal'
+import { loadNext, type EditPage } from '../../EditData'
 
 export async function getStaticPaths () {
-  return systems.map(system => ({ params: { system: system.id }, props: { system } }))
+  return (await loadNext()).map(page => ({ params: { system: page.system.id }, props: { page } }))
 }
 
-const { system } = Astro.props as { system: System }
+const { page } = Astro.props as { page: EditPage }
+const { system, state, removal } = page
+const isNew = state === 'new'
+const removed = state === 'removed'
 const { dpiType, record } = system
+// the system that replaces a removed one, if it has a page
+const replacement = removal?.duplicate_of
+const replacementTitle = replacement ? (await loadNext()).find(other => other.system.id === replacement && other.state !== 'removed')?.system.title : undefined
 const schema = schemas[dpiType] as Schema
 
 // the system page's groups: About the system, then each attribute
@@ -63,27 +80,51 @@ const updated = system.values.last_updated && system.values.last_updated !== 'NA
     <header class="page-header pb-5!">
       <p class="page-crumbs">
         { system.countryHref ? <a href={system.countryHref}>{system.country}</a> : system.country }
-        <span class="sep px-1">›</span><a href={systemHref(system.id)}>{system.title}</a>
+        <span class="sep px-1">›</span>{ isNew ? system.title : <a href={systemHref(system.id)}>{system.title}</a> }
         <span class="sep px-1">›</span>Propose changes
       </p>
       <h1 class="page-title page-h1">Propose changes</h1>
-      <aside class="callout max-w-[44rem]">Your proposal opens as a GitHub issue for review. Nothing on the map changes until it’s accepted.</aside>
+      { removed ? (
+        <aside class="callout max-w-[44rem]" data-removal>
+          <p><strong class="font-semibold">This system is to be removed in the next release.</strong> It’s still on the map until then, and nothing can be proposed for it here.</p>
+          { removal!.reason && <p class="mt-1.5">Why: {removal!.reason}</p> }
+          { replacement && <p class="mt-1.5">{ replacementTitle ? <Fragment>Replaced by <a class="ul" href={`/${replacement}/edit/`}>{replacementTitle}</a> ({replacement}).</Fragment> : <Fragment>Replaced by {replacement}.</Fragment> }</p> }
+        </aside>
+      ) : <Fragment>
+        <aside class="callout max-w-[44rem]">Your proposal opens as a GitHub issue for review. Nothing on the map changes until it’s accepted.</aside>
+        { isNew && <aside class="callout mt-2.5 max-w-[44rem]" data-new-system><strong class="font-semibold">This system is new.</strong> It’s waiting for the next release, so it isn’t on the map yet and has no page there. A change you propose here is to the system as that release will have it.</aside> }
+      </Fragment> }
+      <p class="pt-2.5 text-sm text-secondary"><a class="ul" href="/edit/">Edit another system, or add one</a></p>
       <p class="pt-3 text-sm text-strong" id="request" hidden></p>
       <p class="pt-3 text-sm text-strong" id="draft-note" role="status" hidden></p>
     </header>
 
     <div class="sp-grid">
       <p class="lane-head sp-lane"><span class="flex items-center gap-2"><TypeIcon dpiType={dpiType} /><span>{laneTitles[dpiType]}</span></span></p>
-      <SystemCard dpiType={dpiType} record={record} full heading="h2">
-
+      <SystemCard dpiType={dpiType} record={record} full heading="h2" unreleased={isNew}>
+        { removed ? (
+          <footer class="fields-foot">
+            <span class="narrow:hidden">Last updated {updated ?? 'NA'}</span>
+            <a class="ul whitespace-nowrap" href={systemHref(system.id)}>Back to the system page</a>
+          </footer>
+        ) : <Fragment>
         <form class="sys-fields" id="edit" novalidate data-spec={JSON.stringify(spec)}>
           <p class="fields-hint">Current values are filled in. Change a value and its row asks for the reason, sources and date. Field names link to the codebook.</p>
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-1.5 pt-2.5 pb-0.5" data-mode>
+            <fieldset class="inline-flex rounded-md border border-line-strong bg-zinc-100 p-0.5">
+              <legend class="sr-only">Mode</legend>
+              <label class="flex"><input class="peer sr-only" type="radio" name="mode" value="edit" checked /><span class={modeClass}>Edit</span></label>
+              <label class="flex"><input class="peer sr-only" type="radio" name="mode" value="recheck" aria-describedby="recheck-hint" /><span class={modeClass}>Recheck</span></label>
+            </fieldset>
+            <p class="min-w-0 flex-1 basis-60 text-ui text-muted" id="recheck-hint">Recheck: confirm values you’ve checked are still true, with fresh evidence.</p>
+          </div>
           { groups.filter(group => group.fields.length).map(group => (
             <section class="grp">
               <h3 class="divider"><span>{group.name}</span></h3>
               { group.fields.map(field => {
                     const fieldSpec = specOf(field)
-                    return fieldSpec && <EditRow system={system} field={field} spec={fieldSpec} />
+                    return fieldSpec && <EditRow system={system} field={field} spec={fieldSpec}
+                      waiting={field.id in page.changed ? { released: page.changed[field.id] } : undefined} pending={page.latest[field.id]} />
                   }) }
             </section>
           ))}
@@ -123,54 +164,13 @@ const updated = system.values.last_updated && system.values.last_updated !== 'NA
         </form>
         <footer class="fields-foot">
           <span class="narrow:hidden">Last updated {updated ?? 'NA'}</span>
-          <a class="ul whitespace-nowrap narrow:ml-0" href={systemHref(system.id)}>Back to the system page</a>
+          { !isNew && <a class="ul whitespace-nowrap narrow:ml-0" href={systemHref(system.id)}>Back to the system page</a> }
           <a class="ul whitespace-nowrap wide:hidden" href="#proposal">Your proposal ↓</a>
         </footer>
+        </Fragment> }
       </SystemCard>
 
-      <!-- the receipt: the changeset TOML of the ready changes, exactly as it will be sent, then the buttons.
-           On desktop it's always open and sticky, and scrolls inside the panel; on a phone it starts closed (form.ts) -->
-      <aside class="sp-side self-stretch">
-        <section class="side-card bg-white wide:sticky wide:top-4 wide:flex wide:flex-col wide:max-h-[calc(100dvh-2rem)]" id="proposal" aria-label="Your proposal">
-          <details class="group/rc min-h-0 wide:overflow-y-auto" open data-receipt>
-            <summary class="sticky top-0 flex items-center gap-2 px-4 pt-3 pb-2 bg-white text-ui list-none [&::-webkit-details-marker]:hidden narrow:cursor-pointer narrow:hover:text-blue-500 wide:pointer-events-none">
-              <span class="wide:hidden size-1.5 border-r-[1.5px] border-b-[1.5px] border-current -rotate-45 group-open/rc:rotate-45" aria-hidden="true"></span>
-              <span class="font-semibold text-strong"><span class="narrow:hidden">Proposal</span><span class="wide:hidden">Changeset <span class="font-normal text-muted">· <span data-ready>nothing ready yet</span></span></span></span>
-              <span class="narrow:hidden ml-auto font-mono text-xs text-muted">{system.id}</span>
-            </summary>
-            <!-- lines don't wrap: a long reason or comment runs on, and the receipt scrolls sideways; its start is enough to recognise -->
-            <div class="pb-1 font-mono text-[11px] leading-4.5 text-ink overflow-x-auto" hidden data-receipt-body></div>
-          </details>
-          <p class="px-4 py-2.5 border-t border-dashed border-line-strong text-ui text-strong" role="status" data-total>Nothing ready yet. Change a value, then give its reason and a source.</p>
-          <div class="side-body grid gap-3 bg-zinc-50 border-t border-line">
-            <ul class="grid gap-1 text-ui text-red-700" hidden data-problems></ul>
-            <p class="text-ui text-secondary">This opens a GitHub issue with the ready changes; you need a GitHub account. A maintainer reviews it.</p>
-            <div class="grid gap-1">
-              <button type="submit" form="edit" class="button-blue w-full cursor-pointer disabled:bg-zinc-200 disabled:text-muted disabled:cursor-default" disabled>Open the GitHub issue</button>
-              <!-- over the length a link can carry, the button copies the changeset and opens the blank form (D56, D89) -->
-              <p class="text-xs leading-4.5 text-muted" hidden data-paste-note>Your proposal is too long for a link. Paste it into the Changeset box.</p>
-            </div>
-            <div class="grid gap-2.5 rounded-md border border-line bg-white p-3 text-ui text-strong outline-none" tabindex="-1" hidden data-confirm>
-              <p data-confirm-text></p>
-              <div class="flex flex-wrap gap-2">
-                <button type="button" class="button-blue cursor-pointer" data-confirm-send>Send the ready changes</button>
-                <button type="button" class={buttonClass} data-confirm-keep>Keep editing</button>
-              </div>
-            </div>
-            <!-- the draft link also does what a link to the issue would: open it in a browser that's signed in to GitHub (D87, D90) -->
-            <div class="grid gap-1" hidden data-copies>
-              <button type="button" class:list={[buttonClass, 'w-full']} data-copy-draft>Copy a link to this draft</button>
-              <p class="text-xs leading-4.5 text-muted">To finish later, to pass on, or to open in a browser that’s signed in to GitHub, with the changes that aren’t ready yet too. The draft is in the link, after the #, which is never sent to a server.</p>
-              <textarea class:list={[inputClass, 'mt-1 h-24 font-mono text-xs! leading-4! [overflow-wrap:anywhere]']} readonly hidden aria-label="The link to this draft, to copy" data-copy-text></textarea>
-            </div>
-            <!-- where the browser won't copy: the changeset, selected, to copy by hand -->
-            <div class="grid gap-2 rounded-md border border-line bg-white p-3 text-ui text-strong" hidden data-fallback>
-              <p>Copy the changeset (press Ctrl+C or ⌘C), then paste it into the Changeset box of the <a class="ul" href={`${repository}/issues/new?template=${issueForm}`} target="_blank" rel="noopener" data-fallback-link>proposal form</a>.</p>
-              <textarea class:list={[inputClass, 'h-40 font-mono text-xs! leading-4!']} readonly aria-label="The changeset" data-fallback-toml></textarea>
-            </div>
-          </div>
-        </section>
-      </aside>
+      { !removed && <ReceiptPanel label={system.id} /> }
     </div>
     <template id="evidence"><Evidence /></template>
   </main>

@@ -10,7 +10,8 @@
 // GitHub's 65,536 characters, counted as the editor and the check count it (src/Proposal.ts sizeProblemOf); the check's comment, by
 // github-actions[bot], has the fingerprint of the TOML as it is now; the body wasn't edited after the
 // comment's last update, nor in the 5 minutes before it was closed (or since), so whoever closed it read
-// what's committed; and the check, run again now, says it can be applied. Otherwise it refuses, with one
+// what's committed; the issue body is one changeset and nothing hidden (more than one TOML block, an HTML comment or a
+// `<details` refuses, checked here on the body itself and not only by the check, D96); and the check, run again now, says it can be applied. Otherwise it refuses, with one
 // plain sentence for the issue, and the workflow reopens it.
 //
 // To accept, it writes exactly one new file, changesets/next/<resource>/<id>.toml, with the issue's TOML as
@@ -30,7 +31,7 @@ import path from 'node:path'
 import { spawnSync } from 'node:child_process'
 import { parseArgs } from 'node:util'
 import { CHANGESET_ID, changesetId, PENDING_FOLDER } from '../lib/changesets/index.ts'
-import { changesetInIssue, fingerprint, proposalCheck, type ProposalResult } from './proposal-check.ts'
+import { changesetInIssue, fingerprint, issueProblem, proposalCheck, type ProposalResult } from './proposal-check.ts'
 import { commentFingerprint, MARKER, md } from './proposal-comment.ts'
 import { dpiTypeOf, root } from './release-build.ts'
 import { MAX_BYTES, MAX_ISSUE_CHARACTERS, sizeProblemOf } from '../src/Proposal.ts'
@@ -101,6 +102,7 @@ export const REASONS = {
   author: 'Proposals need to be accepted by someone other than the person who proposed them.',
   role: 'Proposals can only be accepted by the team: closing one as completed needs triage access or more.',
   noChangeset: 'There’s no changeset in this issue, so there’s nothing to commit.',
+  ambiguous: 'This issue has more than one changeset block, or hidden content, so what’s shown might not be what’s committed. Please keep one TOML block and nothing hidden, wait for the check to update, read it, and close it again.',
   tooLarge: `The changeset is too large to accept from an issue: over ${MAX_BYTES / 1024} KB, or over the ${MAX_ISSUE_CHARACTERS.toLocaleString('en-GB')} characters an issue can be. Please split it into smaller proposals.`,
   notChecked: 'This hasn’t been checked, so it wasn’t committed. Please edit the issue to check it, read the check’s comment, and close it again.',
   otherVersion: 'The check’s comment is about another version of the changeset. Please wait for the check to update it, read it, and close it again.',
@@ -133,6 +135,8 @@ export function decide (input: DecideInput): Decision {
   if (!sender || sender === issue.user?.login) return refuse(REASONS.author)
   if (!role || !ROLES.includes(role)) return refuse(REASONS.role)
 
+  // read from the body itself, whatever the check said: what a reviewer sees must be the one thing committed (D96)
+  if (issueProblem(String(issue.body ?? ''))) return refuse(REASONS.ambiguous)
   if (toml === undefined) return refuse(REASONS.noChangeset)
   if (tooLarge(toml)) return refuse(REASONS.tooLarge)
 
@@ -348,7 +352,7 @@ if (import.meta.filename === path.resolve(process.argv[1] ?? '')) {
   const number = Number(event.issue?.number)
   const now = new Date()
   const toml = changesetInIssue(String(event.issue?.body ?? ''))
-  const check = toml !== undefined && !tooLarge(toml) ? proposalCheck(toml, { now }) : undefined
+  const check = toml !== undefined && !tooLarge(toml) && !issueProblem(String(event.issue?.body ?? '')) ? proposalCheck(toml, { now }) : undefined
   const decision = decide({ event, role: context.role, comment: checkComment(context.comments ?? []), lastEditedAt: context.lastEditedAt, closer: context.closer, toml, check, now })
   if (decision.action === 'refuse') {
     print({ action: 'refuse', number, reason: decision.reason, reopen: decision.reopen, comment: refusalComment(decision, check) })

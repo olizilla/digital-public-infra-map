@@ -6,7 +6,8 @@
 // pages yet (D59), so "Propose an update" goes to /contribute/.
 // With `full`, it's the card on the system's own page: the name is the page's h1, and the page
 // fills the body (the slot). The header is otherwise the same, so nothing moves between the pages.
-// `heading` sets the name's level where the page has its own h1, as the editor does.
+// `heading` sets the name's level where the page has its own h1, as the editor does. With `unreleased`, the system
+// is waiting for the next release (D93): it has no page and no address yet, so its System ID isn't shown as one.
 import Status from './Status.astro'
 import DpiTestList from './DpiTestList.astro'
 import SystemFields from './SystemFields.astro'
@@ -24,8 +25,9 @@ interface Props {
   collapsed?: boolean
   full?: boolean
   heading?: 'h1' | 'h2' | 'h3'
+  unreleased?: boolean
 }
-const { dpiType, record, collapsed = false, full = false, heading } = Astro.props
+const { dpiType, record, collapsed = false, full = false, heading, unreleased = false } = Astro.props
 const named = presence(dpiType, record) === 'named'
 const name = named ? nameOf(dpiType, record) : `Unnamed ${nouns[dpiType]} system`
 const { count } = displayValues(dpiType, record)
@@ -46,7 +48,9 @@ const Title = heading ?? (full ? 'h1' : 'h3')
       <div class="sys-meta">
         <span class="pin-ico" aria-hidden="true"><TypeIcon dpiType={dpiType} class="size-5!" /></span>
         { country && <CountryTag class="sys-country" href={CountryTag === 'a' ? `/${slug(country)}/` : undefined} title={country}>{country}</CountryTag> }
-        { systemId && (full
+        { systemId && (unreleased
+          ? <span class="sys-id">{systemId} · not released yet</span>
+          : full
           ? <span class="sys-id sys-id-copy">dpimap.org/{systemId}</span>
           : <a class="sys-id" href={systemHref(systemId)}>dpimap.org/{systemId}</a>) }
         <Status status={record['DPI Status']} title="DPI status" class="flex-none ml-auto" />

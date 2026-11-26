@@ -118,6 +118,26 @@ test('no changeset in the issue, or one too large, over 64 KB or GitHub’s 65,5
   assert.ok(Buffer.byteLength(ascii(65_510)) < MAX_BYTES)
 })
 
+test('acceptance refuses an issue with hidden content or two changeset blocks, whatever the check said (D96)', () => {
+  const other = toml.replace('Planned/Piloted', 'Suspended')
+  const bodies = [
+    // the review's hidden_body.md: the visible block isn't the one that was checked
+    `### Changeset\n\n<!--\n\`\`\`toml\n${other}\`\`\`\n-->\n\n\`\`\`toml\n${toml}\`\`\`\n`,
+    `### Changeset\n\n\`\`\`toml\n${toml}\`\`\`\n\n~~~toml\n${other}~~~\n`,
+    `### Changeset\n\n\`\`\`toml\n${other}\`\`\`\n\n\`\`\`toml\n${toml}\`\`\`\n`,
+    `${body(toml)}\n<details><summary>x</summary>y</details>\n`
+  ]
+  for (const text of bodies) {
+    const first = changesetInIssue(text)!
+    // the comment and the fresh check are both of the TOML that's committed, and say it applies: acceptance still refuses, from the body itself
+    const decision = decide(input({ event: event({ body: text }), toml: first, comment: commentFor(first), check: check(first) }))
+    assert.deepEqual(decision, refused(REASONS.ambiguous), text)
+  }
+  assert.match(REASONS.ambiguous, /more than one changeset block, or hidden content/)
+  // and when the body is fine, it's accepted
+  assert.deepEqual(decide(input()), { action: 'accept' })
+})
+
 test('the fingerprint: the check’s comment must be the bot’s, for the TOML as it is now', () => {
   // a match is above; a missing comment
   assert.deepEqual(decide(input({ comment: undefined })), refused(REASONS.notChecked))

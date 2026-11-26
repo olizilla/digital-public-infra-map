@@ -6,6 +6,8 @@
 // A draft link carries the form's state in the URL's fragment (D87).
 // The rules a proposal meets are here once, checkProposal, which the editor uses and so does
 // scripts/proposal-check.ts, on any proposal's TOML, so a hand-written one meets exactly the editor's (D89).
+// A new system (D91, /edit/new/<table>/) is the same proposal with a `create`: its place, the System ID the page
+// suggests and a reason for adding it, then an update for each field filled in, on the same key. It needs no name or status.
 // The changeset has no id or filename, which are assigned when it's accepted (D58), and no
 // author (D69).
 // No astro: imports and nothing that needs Node, as the page's script runs it in the browser,
@@ -38,10 +40,16 @@ export interface FieldSpec {
   combinations?: string[]
   /** the pattern a value must match as a whole, as Data Package's `pattern` */
   pattern?: string
-  /** text: whether Not Found is allowed, for a box to tick */
+  /** text: whether Not Found is allowed, as a choice beside the box */
   notFound: boolean
-  /** the cell's text in the release the site shows */
+  /**
+   * the cell's text in the release the editor's page is built from: the latest release with the changesets waiting for
+   * the next one (D93). With line breaks and tabs as single spaces, and trimmed, which is how the form holds a value
+   * (`oneLine`), so a row the person hasn't touched isn't an edit
+   */
   current: string
+  /** the cell had line breaks, tabs or other control characters, which `current` has as spaces: it can't be restated as it is, with "Still true" (D92) */
+  multiline?: true
 }
 
 /** A system and its fields, as the editor needs them */
@@ -61,6 +69,10 @@ export interface EditSpec {
   missing: string[]
   /** the fields that can be changed, in the page's order, which is the changeset's */
   fields: FieldSpec[]
+  /** a new system (D91): `key` is the System ID it would have and `country` its place's name as the data uses it, and every field starts empty */
+  isNew?: boolean
+  /** a new system's place, as in its System ID: `ke`, `lac` */
+  place?: string
 }
 
 /** A field of a datapackage.json resource, as far as the editor reads it */
@@ -85,8 +97,9 @@ const matches = (pattern: string, value: string) => new RegExp(`^(?:${pattern})$
  * its parts (transaction types) or whose enum lists their combinations (permitted participants);
  * otherwise a text box, checked against the field's pattern if it has one.
  */
-export function fieldSpec (field: PackageField, current: string): FieldSpec {
-  const base = { id: field.name, title: field.title ?? field.name, current, alone: [], notFound: false }
+export function fieldSpec (field: PackageField, cell: string): FieldSpec {
+  const current = oneLine(cell)
+  const base = { id: field.name, title: field.title ?? field.name, current, ...(hasControlCharacters(cell) ? { multiline: true as const } : {}), alone: [], notFound: false }
   const enumValues = field.constraints?.enum?.map(String)
   const pattern = field.constraints?.pattern
   if (enumValues?.some(value => value.includes(listSeparator))) {
@@ -129,6 +142,23 @@ export function editSpec (resource: PackageResource, row: Record<string, unknown
   }
 }
 
+/**
+ * The spec for a new system's form (D91): every field empty, with no current value, and no System ID or place
+ * yet, which the page's script gives once it knows the place (specForPlace). `editable` is the ids of the
+ * fields on the form, in the page's order.
+ */
+export function newSpec (resource: PackageResource, about: { type: string }, editable: string[]): EditSpec {
+  const key = [resource.schema.primaryKey ?? []].flat()[0]
+  return { ...editSpec(resource, { [key]: '' }, { name: NEW_SYSTEM, type: about.type, country: '' }, editable), isNew: true }
+}
+
+/** A new system's spec for a place: the System ID it would have, and the place's name as the data uses it */
+export const specForPlace = (spec: EditSpec, place: { code: string, country: string, key: string }): EditSpec =>
+  ({ ...spec, key: place.key, country: place.country, place: place.code })
+
+/** What a new system is called until it has a name */
+export const NEW_SYSTEM = 'New system'
+
 /** A multi-valued field's value from the parts that are ticked, in the codebook's order */
 export function joinParts (spec: FieldSpec, ticked: string[]): string {
   const alone = ticked.find(value => spec.alone.includes(value))
@@ -153,8 +183,12 @@ export interface FieldEdit {
   value: string
   reason: string
   sources: string[]
-  /** the evidence date, YYYY-MM-DD: when the sources show the value to be true (D65, D85) */
+  /** the evidence date, YYYY-MM-DD: when the value was known to be true (D65, D85) */
   as_of: string
+  /** "Still true" (D92): the value is the one the system has now, restated with fresh evidence, as an update that sets it. Only while `value` is the current value */
+  confirmed?: boolean
+  /** the check's: which change of the changeset this came from, so a problem can be put in the changeset's order. The editor leaves it out */
+  change?: number
 }
 
 /** Removing the system, optionally naming the system that replaces it */
@@ -164,9 +198,20 @@ export interface RemoveEdit {
   as_of: string
   /** the System ID of the system it duplicates or that replaces it */
   duplicate_of?: string
+  /** the check's: which change of the changeset this came from (see FieldEdit) */
+  change?: number
+}
+
+/** Adding a system: the evidence for the new row, which says what it is and why it's being added (D91) */
+export interface CreateEdit {
+  reason: string
+  sources: string[]
+  as_of: string
 }
 
 export interface Proposal {
+  /** a new system's `create`, which the editor always has with its fields (D91) */
+  create?: CreateEdit
   edits: FieldEdit[]
   remove?: RemoveEdit
 }
@@ -183,6 +228,8 @@ export interface Problem {
   hint?: string
   /** what the change still needs, for the receipt's total line, if not needWords' */
   need?: string
+  /** the check's: the change of the changeset it's about, from 0, from its edit's `change` */
+  change?: number
 }
 
 // The rules for a proposal (D89): one set, in the editor (its readiness and the line under each input)
@@ -241,11 +288,21 @@ export function sizeProblemOf (toml: string): Problem | undefined {
 export const tooLargeText = (bytes: number) =>
   `The proposal is ${Math.ceil(bytes / 1024)} KB, over the ${MAX_BYTES / 1024} KB a proposal can be. Send some of its changes now, and the rest in another proposal.`
 
+/**
+ * Markup that hides text from a reader of an issue: an HTML comment, or a `<details>` that starts closed. A proposal's issue
+ * body can't have either anywhere (scripts/proposal-check.ts issueProblem, D96), so what's reviewed is what's committed. The
+ * editor refuses it in anything a person types, so what it writes never trips that rule.
+ */
+export const HIDDEN_MARKUP = /<!--|<details/i
+/** What a text with hidden markup is told */
+export const hiddenMarkupText = 'can’t have “<!--” or “<details”, which hide text in an issue.'
+
 /** A source as the changeset schema allows it: an http(s) URL with no spaces */
 export const isSourceUrl = (url: string) => /^https?:\/\/\S+$/.test(url) && URL.canParse(url)
 
 /** What's wrong with a link, shortly, or undefined if it's an http(s) URL (D89) */
 export function linkProblem (url: string): string | undefined {
+  if (HIDDEN_MARKUP.test(url)) return `A link ${hiddenMarkupText}`
   if (isSourceUrl(url)) return undefined
   if (/\s/.test(url.trim())) return 'A link can’t have spaces.'
   if (/^https?:\/\//i.test(url.trim())) return 'This isn’t a complete link.'
@@ -255,6 +312,16 @@ export function linkProblem (url: string): string | undefined {
 
 /** Line breaks, tabs and other control characters, and the line and paragraph separators, none of which a value can have */
 const controlCharacters = /[\x00-\x1f\x7f-\x9f\u2028\u2029]/
+/** Whether a value has a line break, a tab or another control character, which a change can't set (and the form's boxes can't show) */
+export const hasControlCharacters = (value: string) => controlCharacters.test(value)
+
+/**
+ * A value as the form holds it, on one line (D93): each run of line breaks, tabs and other control characters, and the
+ * Unicode line and paragraph separators, with the spaces around it, is a single space, and the ends are trimmed.
+ * 20 of the 2026-11-06 release's values have line breaks, which a text box can't hold, so the form shows them like this, and
+ * a row the person hasn't touched is still the value it started with: it's compared in this form.
+ */
+export const oneLine = (text: string) => text.replace(/\s*[\x00-\x1f\x7f-\x9f\u2028\u2029][\s\x00-\x1f\x7f-\x9f\u2028\u2029]*/g, ' ').trim()
 
 /** Sources as typed: trimmed, blanks dropped, each once */
 export const cleanSources = (sources: string[]) => [...new Set(sources.map(url => url.trim()).filter(Boolean))]
@@ -301,6 +368,7 @@ export function evidenceProblems (field: string, what: string, edit: { reason?: 
   const asOf = edit.as_of ?? ''
   const length = graphemeCount(reason)
   if (!reason) error('reason', `${what} needs a reason.`, 'Give a reason.')
+  else if (HIDDEN_MARKUP.test(reason)) error('reason', `${what}: the reason ${hiddenMarkupText}`, 'Leave out “<!--” and “<details”.', 'a different reason')
   else if (length > MAX_REASON) error('reason', `${what}: the reason is ${length} characters, over the ${MAX_REASON} it can be.`, `Keep it to ${MAX_REASON} characters (it’s ${length}).`, 'a shorter reason')
   sources.forEach((url, i) => {
     const problem = linkProblem(url)
@@ -317,22 +385,34 @@ export function evidenceProblems (field: string, what: string, edit: { reason?: 
 /**
  * The problems with a field's new value (D73, D89, D90): one the codebook allows, never NA, not empty, on one
  * line, and a link only if http(s). It's trimmed first, as reading a changeset trims every value
- * (lib/changesets/log.ts), so spaces around it are never a problem, but a value of spaces is empty.
+ * (lib/changesets/log.ts), so spaces around it are never a problem, but a value of spaces is empty. `confirmed`
+ * is "Still true" (D92), which sets the value the field has, so that isn't a problem.
  */
-export function valueProblems (spec: EditSpec, field: FieldSpec, untrimmed: string): Problem[] {
+export function valueProblems (spec: EditSpec, field: FieldSpec, untrimmed: string, confirmed = false): Problem[] {
   const value = untrimmed.trim()
   const error = (message: string, hint: string, need?: string): Problem[] => [{ level: 'error', field: field.id, about: 'value', message, hint, ...(need ? { need } : {}) }]
-  const nothing = field.notFound ? `If you looked and found nothing, ${field.control === 'text' ? 'tick' : 'choose'} ${NOT_FOUND}.` : ''
+  const nothing = field.notFound ? `If you looked and found nothing, choose ${NOT_FOUND}.` : ''
   if (spec.missing.includes(value)) return error(`${field.title} can’t be set to ${value}, which means not researched yet. If you looked and found nothing, choose ${NOT_FOUND}.`, `${value} can’t be chosen: it means not researched yet.`)
-  if (!value) return error(`${field.title} needs a value.${nothing ? ` ${nothing}` : ''}`, field.control === 'text' ? `Give a value${field.notFound ? `, or tick ${NOT_FOUND}` : ''}.` : 'Choose a value.')
+  if (!value) return error(`${field.title} needs a value.${nothing ? ` ${nothing}` : ''}`, field.control === 'text' ? `Give a value${field.notFound ? `, or choose ${NOT_FOUND}` : ''}.` : 'Choose a value.')
   if (controlCharacters.test(value)) return error(`${field.title} can’t have a line break, a tab or another control character.`, 'Keep it to one line, with no tabs.')
-  if (value === field.current) return error(`${field.title} is the same as now.`, 'This is the value it has now.')
+  if (HIDDEN_MARKUP.test(value)) return error(`${field.title} ${hiddenMarkupText}`, 'Leave out “<!--” and “<details”.')
+  // a value restated with "Still true" is the same as now, on purpose (D92)
+  if (value === field.current && !confirmed) return error(`${field.title} is the same as now.`, 'This is the value it has now.')
   if (isLinkField(field) && value !== NOT_FOUND && linkProblem(value)) return error(`${field.title}: “${value}” isn’t a web address starting http:// or https://.`, linkProblem(value)!, 'a working link')
   if (!allowedValue(field, value, spec.missing)) {
     return error(`${field.title}: “${commentText(value)}” isn’t a value the codebook allows.${allowedText(field, spec.missing)}`, field.control === 'choice' ? 'Choose one of the values above.' : 'Not a value the codebook allows.')
   }
   return []
 }
+
+/** A problem with the change it's about, if it's known (the check's order) */
+const tagged = (problem: Problem, change?: number): Problem => change === undefined ? problem : { ...problem, change }
+
+/** Whether an edit is "Still true" (D92): marked so, and still setting the value the field has now */
+export const isConfirmed = (field: FieldSpec, edit: FieldEdit) => edit.confirmed === true && !field.multiline && edit.value.trim() === field.current
+
+/** What a new system with no field filled in is told (D91): the place and a reason aren't enough, as the data needs something to show */
+export const NEEDS_A_FIELD = 'A new system needs at least one field filled in, with its reason: its name, status or any other.'
 
 /**
  * What's wrong with a proposal, if anything, by the rules every proposal meets, in the editor and in the
@@ -344,26 +424,31 @@ export function valueProblems (spec: EditSpec, field: FieldSpec, untrimmed: stri
  */
 export function checkProposal (spec: EditSpec, proposal: Proposal, today?: string): Problem[] {
   const problems: Problem[] = []
-  if (!proposal.edits.length && !proposal.remove) problems.push({ level: 'error', message: 'Nothing to propose yet: change a value, or propose removing this system.' })
+  if (spec.isNew) {
+    // a new system is its place and a reason for adding it, and at least one field, which needn't be its name or status (D91)
+    if (proposal.create) problems.push(...evidenceProblems('create', 'Adding the system', proposal.create, today))
+    if (!proposal.edits.length) problems.push({ level: 'error', field: 'create', about: 'value', message: NEEDS_A_FIELD, hint: 'Fill in at least one field below.', need: 'at least one field' })
+    if (proposal.remove) problems.push({ level: 'error', message: 'A new system can’t be removed in the same proposal.' })
+  } else if (!proposal.edits.length && !proposal.remove) problems.push({ level: 'error', message: 'Nothing to propose yet: change a value, or propose removing this system.' })
   if (proposal.edits.length && proposal.remove) {
-    problems.push({ level: 'error', message: 'A proposal either changes values or removes the system, not both. Undo the changed values, or don’t propose removing it.', hint: 'Undo the changed values, or don’t propose removing it.' })
+    problems.push(tagged({ level: 'error', message: 'A proposal either changes values or removes the system, not both. Undo the changed values, or don’t propose removing it.', hint: 'Undo the changed values, or don’t propose removing it.' }, proposal.remove.change))
   }
   const seen = new Set<string>()
   for (const edit of proposal.edits) {
     const field = spec.fields.find(field => field.id === edit.field)
     if (!field) {
-      problems.push({ level: 'error', field: edit.field, message: `“${commentText(edit.field)}” can’t be changed here.` })
+      problems.push(tagged({ level: 'error', field: edit.field, message: `“${commentText(edit.field)}” can’t be changed here.` }, edit.change))
       continue
     }
-    if (seen.has(field.id)) problems.push({ level: 'error', field: field.id, about: 'value', message: `${field.title} is changed twice. Change each field once.`, hint: 'Changed twice.' })
+    if (seen.has(field.id)) problems.push(tagged({ level: 'error', field: field.id, about: 'value', message: `${field.title} is changed twice. Change each field once.`, hint: 'Changed twice.' }, edit.change))
     seen.add(field.id)
-    problems.push(...valueProblems(spec, field, edit.value), ...evidenceProblems(field.id, field.title, edit, today))
+    problems.push(...[...valueProblems(spec, field, edit.value, isConfirmed(field, edit)), ...evidenceProblems(field.id, field.title, edit, today)].map(problem => tagged(problem, edit.change)))
   }
   if (proposal.remove) {
     const remove = proposal.remove
-    problems.push(...evidenceProblems('remove', 'Removing this system', remove, today))
+    problems.push(...evidenceProblems('remove', 'Removing this system', remove, today).map(problem => tagged(problem, remove.change)))
     const replacement = remove.duplicate_of
-    const error = (message: string, hint: string) => problems.push({ level: 'error', field: 'remove', about: 'duplicate_of', message, hint })
+    const error = (message: string, hint: string) => problems.push({ level: 'error', field: 'remove', about: 'duplicate_of', message, hint, ...(remove.change === undefined ? {} : { change: remove.change }) })
     if (replacement !== undefined) {
       if (replacement === spec.key) error(`The replacement, ${spec.key}, is this system. Name another system, or none.`, 'Name another system, not this one.')
       else if (spec.idPattern && !matches(spec.idPattern, replacement)) error(`“${commentText(replacement)}” isn’t a ${spec.type} System ID, like ${spec.key}.`, `Not a ${spec.type} System ID, like ${spec.key}.`)
@@ -375,16 +460,18 @@ export function checkProposal (spec: EditSpec, proposal: Proposal, today?: strin
 /**
  * A changeset's changes as proposals, one for each system they change (D89): each value an update sets
  * is an edit with the update's reason, sources and date, and a remove is the removal. This is how the
- * check reads a proposal's TOML, hand-written or not, to apply the editor's rules to it. Creates and
- * reverts aren't changes the editor makes, so they're left out.
+ * check reads a proposal's TOML, hand-written or not, to apply the editor's rules to it. A new system's
+ * updates are its fields' edits, like any system's, with no current value. Its create and reverts aren't
+ * edits, so they're left out: the check reads them itself (scripts/proposal-check.ts). `numbered` says which
+ * change of the changeset each edit came from, as the check puts its problems in the changeset's order (D92).
  */
-export function proposalsOf (changes: Change[]): Map<string, Proposal> {
+export function proposalsOf (changes: Change[], numbered = false): Map<string, Proposal> {
   const proposals = new Map<string, Proposal>()
-  for (const change of changes) {
+  for (const [at, change] of changes.entries()) {
     if (typeof change.key !== 'string' || (change.type !== 'update' && change.type !== 'remove')) continue
     const proposal = proposals.get(change.key) ?? { edits: [] }
     proposals.set(change.key, proposal)
-    const evidence = { reason: change.reason ?? '', sources: change.sources ?? [], as_of: change.as_of ?? '' }
+    const evidence = { reason: change.reason ?? '', sources: change.sources ?? [], as_of: change.as_of ?? '', ...(numbered ? { change: at } : {}) }
     if (change.type === 'update') {
       for (const [field, value] of Object.entries(change.values ?? {})) proposal.edits.push({ field, value: String(value), ...evidence })
     } else if (!proposal.remove) {
@@ -415,6 +502,11 @@ export function proposalChanges (spec: EditSpec, proposal: Proposal): Change[] {
     ...sourcesOf(edit.sources)
   }))
   const remove = proposal.remove
+  // a new system: its create first, with its place, then an update for each field (D91)
+  const create: Change[] = spec.isNew && proposal.create
+    ? [{ type: 'create', key: spec.key, as_of: proposal.create.as_of, values: { country: spec.country }, reason: proposal.create.reason.trim(), ...sourcesOf(proposal.create.sources) }]
+    : []
+  if (create.length) return [...create, ...updates]
   return remove
     ? [...updates, {
         type: 'remove',
@@ -431,7 +523,8 @@ export function proposalChanges (spec: EditSpec, proposal: Proposal): Change[] {
 export const commentText = (text: string) => text.replace(/[\x00-\x1f\x7f-\x9f\u2028\u2029]+/g, ' ')
 
 /**
- * The proposal's changeset in parts: its header comment, `# <system>, <place>`, and each change's
+ * The proposal's changeset in parts: its header comment, `# <system>, <place>` (`# New system, <place>` until a
+ * new system has a name), and each change's
  * TOML with the field it changes, or `remove`, so the editor's receipt can show them one by one
  * (D87). proposalTOML joins them.
  */
@@ -439,25 +532,33 @@ export function proposalTOMLParts (spec: EditSpec, proposal: Proposal): { header
   const changes = proposalChanges(spec, proposal).map(change => {
     // one change at a time, which changesetText joins as it joins them all
     const text = changesetText({ changes: [change] })
+    if (change.type === 'create') return { field: 'create', text }
     const [id] = Object.keys(change.values ?? {})
     const field = spec.fields.find(field => field.id === id)
     if (!field) return { field: 'remove', text }
+    // a new system's fields have no old value to say
+    if (spec.isNew) return { field: field.id, text }
     // the first line that starts `values.` is the value's: only the reason, after it, can span lines.
     // Lines are split at \n only, as TOML's are: a regex's ^ and $ would also split a value at U+2028
-    const was = `  # was ${tomlString(commentText(field.current || 'NA'))}`
+    // a value restated with "Still true" says so instead (D92)
+    const edit = proposal.edits.find(edit => edit.field === field.id)
+    const was = edit && isConfirmed(field, edit) ? '  # unchanged' : `  # was ${tomlString(commentText(field.current || 'NA'))}`
     const lines = text.split('\n')
     const at = lines.findIndex(line => line.startsWith('values.'))
     lines[at] += was
     return { field: field.id, text: lines.join('\n') }
   })
-  return { header: `# ${commentText(spec.name)}, ${commentText(spec.country)}`, changes }
+  // a new system is headed by its name if it has been given one
+  const name = spec.isNew ? proposal.edits.find(edit => edit.field === 'name')?.value.trim() || NEW_SYSTEM : spec.name
+  return { header: `# ${commentText(name)}, ${commentText(spec.country)}`, changes }
 }
 
 /**
  * The proposal's changeset, as TOML (lib/changesets/toml.ts): what goes in the issue, and what
  * accepting it commits, as written (D87). It's changesetText's, with comments for people reading it:
  * a first line `# <system>, <place>`, and after each changed value `# was <the value the form
- * started from>`, as a TOML string, like the value. Take the comments out and it's exactly what
+ * started from>`, as a TOML string, like the value, or `# unchanged` after one that's confirmed with "Still
+ * true" (D92), which sets the value it has. Take the comments out and it's exactly what
  * changesetTOML writes (src/Proposal.test.ts).
  */
 export function proposalTOML (spec: EditSpec, proposal: Proposal): string {
@@ -474,7 +575,7 @@ export const needWords: Record<NonNullable<Problem['about']>, string> = {
 }
 
 /** The order the total line names what changes need in: a row's, top to bottom */
-const needOrder = [needWords.value, 'a working link', needWords.reason, 'a shorter reason', needWords.sources, needWords.as_of, needWords.duplicate_of]
+const needOrder = [needWords.value, 'a working link', needWords.reason, 'a shorter reason', needWords.sources, needWords.as_of, needWords.duplicate_of, 'at least one field']
 
 /** A change in the form: the field it changes, or `remove`, its label, and what it still needs, in words. It's ready when `needs` is empty. */
 export interface ChangeState {
@@ -486,8 +587,10 @@ export interface ChangeState {
 export interface Readiness {
   /** the ready changes: what's sent */
   ready: Proposal
-  /** every change, ready or not, in the page's order, the removal last */
+  /** every change, ready or not, in the page's order, the removal last. A new system's `create` is first (D91) */
   changes: ChangeState[]
+  /** whether it's a new system's form, which says "fields" where another says "changes" */
+  isNew?: boolean
 }
 
 /**
@@ -510,15 +613,23 @@ export function readiness (spec: EditSpec, proposal: Proposal, today: string): R
   const remove = proposal.remove && { field: 'remove', title: 'Removing this system', needs: needsOf('remove') }
   if (remove) changes.push(remove)
   const ready = edits.filter(edit => !needsOf(edit.field).length)
+  if (spec.isNew) {
+    // the new system is sent when its top section is ready, with the fields that are: at least one (D91)
+    const create = proposal.create && { field: 'create', title: 'Adding the system', needs: needsOf('create') }
+    if (create) changes.unshift(create)
+    return { ready: proposal.create && !create!.needs.length && ready.length ? { create: proposal.create, edits: ready } : { edits: [] }, changes, isNew: true }
+  }
   return { ready: remove && !remove.needs.length ? { edits: ready, remove: proposal.remove } : { edits: ready }, changes }
 }
 
 const changesText = (n: number) => `${n} change${n === 1 ? '' : 's'}`
+const fieldsText = (n: number) => `${n} field${n === 1 ? '' : 's'}`
 /** Whether the form both changes values and removes the system, which a proposal can't (D89) */
 const bothKinds = (changes: ChangeState[]) => changes.some(change => change.field === 'remove') && changes.some(change => change.field !== 'remove')
 
 /** How many changes are ready, as the receipt's summary on a phone says it: "2 changes ready" */
-export function readyText ({ changes }: Readiness): string {
+export function readyText ({ changes, ready: sent, isNew }: Readiness): string {
+  if (isNew) return sent.create ? `${fieldsText(sent.edits.length)} ready` : 'nothing ready yet'
   if (bothKinds(changes)) return 'a removal or values, not both'
   const ready = changes.filter(change => !change.needs.length).length
   return ready ? `${changesText(ready)} ready` : 'nothing ready yet'
@@ -530,6 +641,7 @@ export function readyText ({ changes }: Readiness): string {
  * "need a reason or a source".
  */
 export function totalLine (state: Readiness): string {
+  if (state.isNew) return newTotalLine(state)
   const waiting = state.changes.filter(change => change.needs.length)
   const ready = state.changes.length - waiting.length
   if (!state.changes.length) return 'Nothing ready yet. Change a value, then give its reason.'
@@ -542,6 +654,24 @@ export function totalLine (state: Readiness): string {
   return ready ? `${readyText(state)} · ${waiting.length} ${rest}` : `Nothing ready yet · ${changesText(waiting.length)} ${rest}`
 }
 
+/**
+ * A new system's total line (D91): how many fields are ready, and what the rest, and the top section, still
+ * need: "2 fields ready · 1 field needs a reason". With no field yet, it says what to do first.
+ */
+function newTotalLine (state: Readiness): string {
+  const create = state.changes.find(change => change.field === 'create')
+  const fields = state.changes.filter(change => change.field !== 'create')
+  const waiting = fields.filter(change => change.needs.length)
+  const top = (create?.needs ?? []).filter(need => need !== 'at least one field')
+  const needs = [...new Set(waiting.flatMap(change => change.needs))].sort((a, b) => needOrder.indexOf(a) - needOrder.indexOf(b))
+  if (!fields.length) return `Nothing ready yet. ${top.length ? `Give ${and(top)} for adding it, then fill in` : 'Fill in'} at least one field.`
+  const rest = [
+    ...(top.length ? [`the new system still needs ${and(top)}`] : []),
+    ...(waiting.length ? [`${waiting.length === 1 ? '1 field needs' : `${waiting.length} fields need`} ${and(needs)}`] : [])
+  ]
+  return [state.ready.create ? `${fieldsText(state.ready.edits.length)} ready` : 'Nothing ready yet', ...rest].join(' · ')
+}
+
 /** Why sending now leaves some changes out: "1 change isn’t ready and won’t be sent: Status needs a reason." */
 export function notReadyText ({ changes }: Readiness): string {
   const waiting = changes.filter(change => change.needs.length)
@@ -551,6 +681,7 @@ export function notReadyText ({ changes }: Readiness): string {
 
 /** The button that sends only the ready changes: "Send the 2 ready changes" */
 export const sendReadyText = ({ ready }: Readiness) => {
+  if (ready.create) return `Send the new system with ${ready.edits.length === 1 ? 'its ready field' : `its ${ready.edits.length} ready fields`}`
   const n = ready.edits.length + (ready.remove ? 1 : 0)
   return n === 1 ? 'Send the ready change' : `Send the ${n} ready changes`
 }
@@ -558,7 +689,12 @@ export const sendReadyText = ({ ready }: Readiness) => {
 /** Whether a proposal is too large, as the check and accepting count it (sizeProblemOf): an error, or a warning near the limit */
 export const sizeProblem = (spec: EditSpec, proposal: Proposal): Problem | undefined => sizeProblemOf(proposalTOML(spec, proposal))
 
-export const issueTitle = (spec: EditSpec) => `Proposal: ${spec.name} (${spec.key})`
+/** The issue's title: `Proposal: <system> (<System ID>)`. A new system with no name yet is `New <type> system, <place>`. */
+export function issueTitle (spec: EditSpec, proposal?: Proposal) {
+  if (!spec.isNew) return `Proposal: ${spec.name} (${spec.key})`
+  const name = proposal?.edits.find(edit => edit.field === 'name')?.value.trim()
+  return `Proposal: ${name ? `${commentText(name)}, ` : `New ${spec.type} system, `}${commentText(spec.country)} (${spec.key})`
+}
 
 /**
  * The link to a new issue with the form filled in: GitHub fills an issue form's fields from query
@@ -568,7 +704,7 @@ export const issueTitle = (spec: EditSpec) => `Proposal: ${spec.name} (${spec.ke
 export function issueLink (spec: EditSpec, proposal: Proposal) {
   const form = `${repository}/issues/new?template=${issueForm}`
   const query = (params: Record<string, string>) => Object.entries(params).map(([k, v]) => `&${k}=${encodeURIComponent(v)}`).join('')
-  const title = issueTitle(spec)
+  const title = issueTitle(spec, proposal)
   const toml = proposalTOML(spec, proposal)
   const url = form + query({ title, changeset: toml })
   return { url, tooLong: url.length > maxUrlLength, blank: form + query({ title }), title, toml }
@@ -579,12 +715,20 @@ export function issueLink (spec: EditSpec, proposal: Proposal) {
 // compressed with deflate-raw, or, where CompressionStream is missing, `j.` and the JSON as it is,
 // either one base64url.
 
-/** What a draft link holds: the System ID, and each changed field and the removal as the form has them */
+/**
+ * What a draft link holds: the System ID, and each changed field and the removal as the form has them. A new
+ * system's (D91) holds its place and table instead of a key, which it doesn't keep: the next free System ID
+ * may have moved on by the time the link is opened, and the page suggests the one that's free then. And its
+ * `create`, the reason for adding it.
+ */
 interface DraftState {
   v: 1
-  key: string
+  key?: string
   edits: FieldEdit[]
   remove?: RemoveEdit
+  create?: CreateEdit
+  place?: string
+  resource?: string
 }
 
 /** The most a draft's JSON can be, so a link can't make the page unpack something huge */
@@ -627,7 +771,9 @@ async function through (bytes: Uint8Array, transform: CompressionStream | Decomp
 
 /** A draft link's text for a proposal: compressed, unless `compress` is false or the browser can't */
 export async function encodeDraft (spec: EditSpec, proposal: Proposal, compress = typeof CompressionStream === 'function'): Promise<string> {
-  const state: DraftState = { v: 1, key: spec.key, edits: proposal.edits, ...(proposal.remove ? { remove: proposal.remove } : {}) }
+  const state: DraftState = spec.isNew
+    ? { v: 1, place: spec.place, resource: spec.resource, edits: proposal.edits, ...(proposal.create ? { create: proposal.create } : {}) }
+    : { v: 1, key: spec.key, edits: proposal.edits, ...(proposal.remove ? { remove: proposal.remove } : {}) }
   const json = new TextEncoder().encode(JSON.stringify(state))
   return compress ? `z.${toBase64url(await through(json, new CompressionStream('deflate-raw')))}` : `j.${toBase64url(json)}`
 }
@@ -635,30 +781,11 @@ export async function encodeDraft (spec: EditSpec, proposal: Proposal, compress 
 /** A draft restored: its proposal and the fields left out, or why it can't be */
 export type DraftResult = { ok: true, proposal: Proposal, ignored: string[] } | { ok: false, message: string }
 
-const isObject = (value: unknown): value is Record<string, unknown> => typeof value === 'object' && value !== null && !Array.isArray(value)
-const textOf = (value: unknown) => typeof value === 'string' ? value : ''
+/** Why a draft that isn't valid text can't be restored */
+const unreadable = { ok: false, message: 'The draft in this link couldn’t be read, so nothing was restored.' } as const
 
-/** A change's evidence from a draft: text where there should be text, and no evidence date unless it's a real one, so the form keeps today */
-const evidenceFrom = (state: Record<string, unknown>) => ({
-  reason: textOf(state.reason),
-  sources: cleanSources(Array.isArray(state.sources) ? state.sources.filter(url => typeof url === 'string') : []),
-  as_of: typeof state.as_of === 'string' && isCalendarDate(state.as_of) ? state.as_of : ''
-})
-
-/** Whether the form can hold `value` as a change to `field`: a value the codebook allows, not the current one, that its inputs can show */
-function formAllows (spec: EditSpec, field: FieldSpec, value: string): boolean {
-  if (valueProblems(spec, field, value).length) return false
-  if (field.control !== 'multi') return true
-  // ticks for the value, which aren't the ticks the form starts with
-  return joinParts(field, splitParts(field, value)) === value && value !== joinParts(field, splitParts(field, field.current))
-}
-
-/**
- * The proposal in a draft link's text, if it's for this system. Fields this page can't change, values
- * the form wouldn't allow, and a field given twice are left out, and named in `ignored`.
- */
-export async function decodeDraft (spec: EditSpec, text: string): Promise<DraftResult> {
-  const unreadable = { ok: false, message: 'The draft in this link couldn’t be read, so nothing was restored.' } as const
+/** A draft's text as its state, or why it can't be read */
+async function readDraft (text: string): Promise<{ ok: true, state: Record<string, unknown> } | typeof unreadable | { ok: false, message: string }> {
   let state: unknown
   try {
     const [, format, data] = text.match(/^([zj])\.(.*)$/s) ?? []
@@ -670,25 +797,73 @@ export async function decodeDraft (spec: EditSpec, text: string): Promise<DraftR
     return unreadable
   }
   if (!isObject(state) || state.v !== 1 || !Array.isArray(state.edits)) return unreadable
-  if (state.key !== spec.key) {
+  return { ok: true, state }
+}
+
+/** The place and table a new system's draft is for, if its text is one, so a link with no `?place=` can still open it (D91) */
+export async function draftPlace (text: string): Promise<{ place: string, resource: string } | undefined> {
+  const read = await readDraft(text)
+  if (!read.ok) return undefined
+  const { place, resource } = read.state
+  return typeof place === 'string' && typeof resource === 'string' && /^[a-z]{2,10}$/.test(place) ? { place, resource } : undefined
+}
+
+const isObject = (value: unknown): value is Record<string, unknown> => typeof value === 'object' && value !== null && !Array.isArray(value)
+const textOf = (value: unknown) => typeof value === 'string' ? value : ''
+
+/** A change's evidence from a draft: text where there should be text, and no evidence date unless it's a real one, so the form keeps today */
+const evidenceFrom = (state: Record<string, unknown>) => ({
+  reason: textOf(state.reason),
+  sources: cleanSources(Array.isArray(state.sources) ? state.sources.filter(url => typeof url === 'string') : []),
+  as_of: typeof state.as_of === 'string' && isCalendarDate(state.as_of) ? state.as_of : ''
+})
+
+/** Whether the form can hold `value` as a change to `field`: a value the codebook allows, not the current one unless it's confirmed (D92), that its inputs can show */
+function formAllows (spec: EditSpec, field: FieldSpec, value: string, confirmed = false): boolean {
+  if (valueProblems(spec, field, value, confirmed).length) return false
+  if (confirmed) return value.trim() === field.current
+  if (field.control !== 'multi') return true
+  // ticks for the value, which aren't the ticks the form starts with
+  return joinParts(field, splitParts(field, value)) === value && value !== joinParts(field, splitParts(field, field.current))
+}
+
+/**
+ * The proposal in a draft link's text, if it's for this system. Fields this page can't change, values
+ * the form wouldn't allow, and a field given twice are left out, and named in `ignored`.
+ */
+export async function decodeDraft (spec: EditSpec, text: string): Promise<DraftResult> {
+  const read = await readDraft(text)
+  if (!read.ok) return read
+  const { state } = read
+  if (spec.isNew) {
+    if (state.resource !== spec.resource || typeof state.place !== 'string') return { ok: false, message: `This draft link is for another kind of system, not a new ${spec.type} system, so nothing was restored.` }
+    if (state.place !== spec.place) return { ok: false, message: 'This draft link is for another place, so nothing was restored.' }
+  } else if (state.key !== spec.key) {
     const key = typeof state.key === 'string' && /^[\w-]{1,40}$/.test(state.key) ? ` (${state.key})` : ''
     return { ok: false, message: `This draft link is for another system${key}, not ${spec.key}, so nothing was restored.` }
   }
   const edits: FieldEdit[] = []
   const ignored: string[] = []
-  for (const edit of state.edits) {
+  for (const edit of state.edits as unknown[]) {
     const id = isObject(edit) ? textOf(edit.field) : ''
     const field = spec.fields.find(field => field.id === id)
-    if (!isObject(edit) || !field || typeof edit.value !== 'string' || !formAllows(spec, field, edit.value) || edits.some(earlier => earlier.field === id)) {
+    // a value that's the current one is a restated value ("Still true", D92) only if it says so
+    const confirmed = isObject(edit) && edit.confirmed === true && typeof edit.value === 'string' && field !== undefined && !field.multiline && !spec.isNew && edit.value.trim() === field.current
+    if (!isObject(edit) || !field || typeof edit.value !== 'string' || !formAllows(spec, field, edit.value, confirmed) || edits.some(earlier => earlier.field === id)) {
       ignored.push(field?.title ?? (id ? commentText(id).slice(0, 40) : 'a change'))
       continue
     }
-    edits.push({ field: field.id, value: edit.value, ...evidenceFrom(edit) })
+    edits.push({ field: field.id, value: edit.value, ...(confirmed ? { confirmed: true } : {}), ...evidenceFrom(edit) })
   }
   let remove: RemoveEdit | undefined
-  if (isObject(state.remove)) {
+  if (!spec.isNew && isObject(state.remove)) {
     const replacement = textOf(state.remove.duplicate_of).trim()
     remove = { ...evidenceFrom(state.remove), ...(replacement ? { duplicate_of: replacement } : {}) }
+  }
+  if (spec.isNew) {
+    const create = isObject(state.create) ? evidenceFrom(state.create) : undefined
+    if (!edits.length && !create?.reason && !create?.sources.length) return { ok: false, message: 'The draft in this link has nothing this page can restore, so nothing was restored.' }
+    return { ok: true, proposal: { ...(create ? { create } : {}), edits }, ignored }
   }
   if (!edits.length && !remove) return { ok: false, message: 'The draft in this link has nothing this page can restore, so nothing was restored.' }
   return { ok: true, proposal: remove ? { edits, remove } : { edits }, ignored }
