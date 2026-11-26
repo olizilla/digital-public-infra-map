@@ -1,0 +1,41 @@
+---
+// A change's evidence in the editor (D86): its reason (public, D62), its sources (optional, as not every
+// source has a public link: the reason then says where it came from, D90) and its evidence date, the change's as_of (D65), which the page's script sets to today and warns
+// about if it's later (D85). Under each changed field's row, and in "Remove this system".
+// It's in the page once, as a <template> (#evidence) that the script (src/components/edit/form.ts)
+// copies into a row when the row first needs it, so 686 pages don't each carry 23 copies. Its ids
+// start `ev-`, which the script prefixes with the row's field id, and it reads the inputs by their
+// data- attributes. It starts with one source box; "Add another source", and a draft with more, add
+// more. Under the reason, the sources and the date, a line is kept for an error, so one shows without
+// moving the layout (D89), and the reason's has a quiet counter at the right, near its 500 characters.
+import { errorLineClass, inputClass, labelClass, noteClass, textButtonClass } from './styles'
+
+const id = 'ev'
+const placeholder = 'What changed, and how the source shows it'
+---
+<div class="grid gap-1.5">
+  <div class="grid gap-1">
+    <label class="grid gap-1">
+      <span class={labelClass}>Reason <span class={noteClass}>required, and public</span></span>
+      <textarea class={inputClass} id={`${id}-reason`} rows="2" dir="auto" placeholder={placeholder} aria-describedby={`${id}-reason-error`} data-reason></textarea>
+    </label>
+    <p class="flex gap-3">
+      <span class={errorLineClass} id={`${id}-reason-error`} aria-live="polite" data-error="reason"></span>
+      <span class="ml-auto shrink-0 text-xs leading-4.5 text-muted tabular-nums" aria-live="polite" data-count></span>
+    </p>
+  </div>
+  <div class="grid gap-1" role="group" aria-labelledby={`${id}-sources`}>
+    <span class={labelClass} id={`${id}-sources`}>Sources <span class={noteClass}>optional</span></span>
+    <p class="-mt-0.5 text-xs leading-4.5 text-muted" id={`${id}-sources-hint`}>Links to the evidence. If there’s no public link (an interview, a tip-off), say where it came from in the reason.</p>
+    <input class={inputClass} type="text" inputmode="url" autocomplete="off" spellcheck="false" placeholder="https://…" aria-label="Source" aria-describedby={`${id}-sources-error ${id}-sources-hint`} data-source />
+    <p class={errorLineClass} id={`${id}-sources-error`} aria-live="polite" data-error="sources"></p>
+    <button type="button" class:list={[textButtonClass, 'justify-self-start']} data-add-source>Add another source</button>
+  </div>
+  <div class="grid gap-1 mt-1.5">
+    <label class="grid gap-1">
+      <span class={labelClass}>Evidence date <span class={noteClass}>when this was known to be true</span></span>
+      <input class:list={[inputClass, 'max-w-44']} type="date" id={`${id}-as-of`} required aria-describedby={`${id}-as-of-error`} data-as-of />
+    </label>
+    <p class={errorLineClass} id={`${id}-as-of-error`} aria-live="polite" data-error="as_of"></p>
+  </div>
+</div>

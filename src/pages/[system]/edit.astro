@@ -1,0 +1,183 @@
+---
+// The editor (D86): /<id>/edit/ proposes changes to a system (D87), /<id>/edit/?field=<field id>
+// opens one field's row. It matches the system page row for row ([system].astro), each value an
+// input holding the current one (EditRow). A changed value needs its reason, sources and evidence date (D78, D85),
+// and each is its own change. Renames change the name and URL and keep the System ID (D82); the
+// System ID, the place and the derived fields are shown, not edited; nothing can be set back to NA
+// (D73). The system can be proposed for removal, optionally naming its replacement.
+// The side panel is a receipt: the changeset's TOML as it builds up, with only the changes that are
+// ready, then the buttons. Submitting opens a prefilled `proposal` issue with that TOML (src/Proposal.ts,
+// D56), after a word in the page if some changes aren't ready and so aren't sent; the id is assigned on
+// acceptance (D58). Over the length a link can carry, the button copies the changeset and opens the blank
+// form, in one action, and over the size accepting takes, it can't send (D89). "Copy a link to this draft"
+// gives the form's state, which also opens the proposal in a browser that's signed in to GitHub (D87, D90).
+// Each changed row keeps a line under each input that can have an error, which shows when the input is left
+// or on sending (D89).
+// The page is built from the next release (D93): the release the site shows with the changesets waiting in changesets/next/
+// replayed onto it, as the proposal check builds it (src/EditData.ts loadNext), so "Current", `# was` and the draft link are the
+// value a proposal changes. A value that differs from the release's says so under it, with the released one. A system a pending
+// changeset created is new: it says so once, near the top, and has no public page to link to. A system a pending changeset
+// removes keeps its page, with the removal and its reason and no form, as an edit would fail against a removed row. Only these
+// pages, /edit/ and /edit/new/ follow the pending data: the public pages stay on the release.
+// The DPI test is the published one, never worked out again here.
+// Recheck mode (D94, components/edit/recheck.ts): a small Edit | Recheck control at the top of the form, `/<id>/edit/?recheck` opening in it,
+// puts a "Still true" checkbox on each row that can be confirmed (D92). Off, the page has none.
+// A quiet link under the note at the top goes to /edit/ (D92), where another system is found or a new one added.
+// The page is static and unlinked (D59), so the query string and a draft link's #draft= are read in
+// the browser. It sits beside the system page, [system].astro, with the same paths.
+import Edit from '../../layouts/Edit.astro'
+import SystemCard from '../../components/SystemCard.astro'
+import TypeIcon from '../../components/TypeIcon.astro'
+import EditRow from '../../components/edit/EditRow.astro'
+import Evidence from '../../components/edit/Evidence.astro'
+import ReceiptPanel from '../../components/edit/ReceiptPanel.astro'
+import { errorLineClass, inputClass, labelClass, modeClass, noteClass } from '../../components/edit/styles'
+import rootPackage from '../../../datapackage.json'
+import { getCollection } from 'astro:content'
+import { systemHref } from '../../Systems'
+import { schemas, typeLabels, type Field, type Schema } from '../../Schema'
+import { laneTitles } from '../../CountryPage'
+import { fieldsByAttribute } from '../../SystemPage'
+import { editSpec } from '../../Proposal'
+import { loadNext, type EditPage } from '../../EditData'
+
+export async function getStaticPaths () {
+  return (await loadNext()).map(page => ({ params: { system: page.system.id }, props: { page } }))
+}
+
+const { page } = Astro.props as { page: EditPage }
+const { system, state, removal } = page
+const isNew = state === 'new'
+const removed = state === 'removed'
+const { dpiType, record } = system
+// the system that replaces a removed one, if it has a page
+const replacement = removal?.duplicate_of
+const replacementTitle = replacement ? (await loadNext()).find(other => other.system.id === replacement && other.state !== 'removed')?.system.title : undefined
+const schema = schemas[dpiType] as Schema
+
+// the system page's groups: About the system, then each attribute
+const attributes = (await getCollection('dpiAttributes')).sort((a, b) => Number(a.id) - Number(b.id))
+const byAttribute = fieldsByAttribute(dpiType)
+const groups = [
+  { id: 0, name: 'About the system' },
+  ...attributes.map(a => ({ id: Number(a.id), name: a.data.attribute }))
+].map(group => ({ ...group, fields: byAttribute.get(group.id) ?? [] }))
+
+// what can be changed and how, from the next release's codebook, the root datapackage.json (D71),
+// which pending changesets are checked against. A field the page lists that it doesn't have is shown, not edited
+const resource = rootPackage.resources.find(r => r.name === system.resource)!
+const listed = groups.flatMap(group => group.fields)
+const inNext = (field: Field) => resource.schema.fields.some(f => f.name === field.id)
+const spec = editSpec(resource as never, system.values, { name: system.title, type: typeLabels[dpiType], country: system.country }, listed.filter(inNext).map(field => field.id))
+const specOf = (field: Field) => spec.fields.find(f => f.id === field.id)
+// the System ID, the place, the derived fields, and any not in the next codebook: shown, not edited
+const fixed = schema.fields.filter(field => !specOf(field))
+const updated = system.values.last_updated && system.values.last_updated !== 'NA' ? system.values.last_updated : undefined
+---
+
+<Edit title={`Propose changes: ${system.title}`}>
+  <main class="page">
+    <header class="page-header pb-5!">
+      <p class="page-crumbs">
+        { system.countryHref ? <a href={system.countryHref}>{system.country}</a> : system.country }
+        <span class="sep px-1">›</span>{ isNew ? system.title : <a href={systemHref(system.id)}>{system.title}</a> }
+        <span class="sep px-1">›</span>Propose changes
+      </p>
+      <h1 class="page-title page-h1">Propose changes</h1>
+      { removed ? (
+        <aside class="callout max-w-[44rem]" data-removal>
+          <p><strong class="font-semibold">This system is to be removed in the next release.</strong> It’s still on the map until then, and nothing can be proposed for it here.</p>
+          { removal!.reason && <p class="mt-1.5">Why: {removal!.reason}</p> }
+          { replacement && <p class="mt-1.5">{ replacementTitle ? <Fragment>Replaced by <a class="ul" href={`/${replacement}/edit/`}>{replacementTitle}</a> ({replacement}).</Fragment> : <Fragment>Replaced by {replacement}.</Fragment> }</p> }
+        </aside>
+      ) : <Fragment>
+        <aside class="callout max-w-[44rem]">Your proposal opens as a GitHub issue for review. Nothing on the map changes until it’s accepted.</aside>
+        { isNew && <aside class="callout mt-2.5 max-w-[44rem]" data-new-system><strong class="font-semibold">This system is new.</strong> It’s waiting for the next release, so it isn’t on the map yet and has no page there. A change you propose here is to the system as that release will have it.</aside> }
+      </Fragment> }
+      <p class="pt-2.5 text-sm text-secondary"><a class="ul" href="/edit/">Edit another system, or add one</a></p>
+      <p class="pt-3 text-sm text-strong" id="request" hidden></p>
+      <p class="pt-3 text-sm text-strong" id="draft-note" role="status" hidden></p>
+    </header>
+
+    <div class="sp-grid">
+      <p class="lane-head sp-lane"><span class="flex items-center gap-2"><TypeIcon dpiType={dpiType} /><span>{laneTitles[dpiType]}</span></span></p>
+      <SystemCard dpiType={dpiType} record={record} full heading="h2" unreleased={isNew}>
+        { removed ? (
+          <footer class="fields-foot">
+            <span class="narrow:hidden">Last updated {updated ?? 'NA'}</span>
+            <a class="ul whitespace-nowrap" href={systemHref(system.id)}>Back to the system page</a>
+          </footer>
+        ) : <Fragment>
+        <form class="sys-fields" id="edit" novalidate data-spec={JSON.stringify(spec)}>
+          <p class="fields-hint">Current values are filled in. Change a value and its row asks for the reason, sources and date. Field names link to the codebook.</p>
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-1.5 pt-2.5 pb-0.5" data-mode>
+            <fieldset class="inline-flex rounded-md border border-line-strong bg-zinc-100 p-0.5">
+              <legend class="sr-only">Mode</legend>
+              <label class="flex"><input class="peer sr-only" type="radio" name="mode" value="edit" checked /><span class={modeClass}>Edit</span></label>
+              <label class="flex"><input class="peer sr-only" type="radio" name="mode" value="recheck" aria-describedby="recheck-hint" /><span class={modeClass}>Recheck</span></label>
+            </fieldset>
+            <p class="min-w-0 flex-1 basis-60 text-ui text-muted" id="recheck-hint">Recheck: confirm values you’ve checked are still true, with fresh evidence.</p>
+          </div>
+          { groups.filter(group => group.fields.length).map(group => (
+            <section class="grp">
+              <h3 class="divider"><span>{group.name}</span></h3>
+              { group.fields.map(field => {
+                    const fieldSpec = specOf(field)
+                    return fieldSpec && <EditRow system={system} field={field} spec={fieldSpec}
+                      waiting={field.id in page.changed ? { released: page.changed[field.id] } : undefined} pending={page.latest[field.id]} />
+                  }) }
+            </section>
+          ))}
+
+          <section class="grp">
+            <h3 class="divider"><span>Not changed here</span></h3>
+            <dl class="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-1 px-1.5 text-ui">
+              { fixed.map(field => (
+                <Fragment>
+                  <dt class="text-secondary">{field.title}</dt>
+                  <dd class:list={['text-ink [overflow-wrap:anywhere]', { 'font-mono text-xs leading-4.5 pt-px': schema.primaryKey?.includes(field.id) }]}>{ system.values[field.id] && system.values[field.id] !== 'NA' ? system.values[field.id] : <span class="na-text">NA</span> }</dd>
+                </Fragment>
+              ))}
+            </dl>
+            <p class="mt-2 px-1.5 text-xs leading-4.5 text-muted">A system keeps its System ID and place, even when it’s renamed. Last updated, Count for DPI and ISO3 are worked out when the data is built.</p>
+          </section>
+
+          <section class="grp">
+            <h3 class="divider"><span>Remove this system</span></h3>
+            <div class="group/er -mx-2.25 rounded-lg border border-transparent px-2 py-1.75 scroll-mt-20 data-[changed]:border-line data-[changed]:bg-white data-[changed]:shadow" id="f-remove" data-field="remove">
+              <label class="flex items-start gap-2 pl-1.5 text-sm leading-5 text-ink">
+                <input type="checkbox" class="mt-0.75 size-3.5 accent-zinc-700" data-remove />
+                <span>Propose removing this system<span class="block text-xs leading-4.5 text-muted">If it doesn’t exist, isn’t this kind of system, or was replaced by another. Its history stays in the change log.</span></span>
+              </label>
+              <div class="hidden group-data-[changed]/er:grid gap-3 mt-2.5 pt-3 pl-1.5 border-t border-line-faint">
+                <div class="grid gap-1">
+                  <label class="grid gap-1">
+                    <span class={labelClass}>Replaced by <span class={noteClass}>optional: the System ID of the system that replaces it, or that it duplicates</span></span>
+                    <input class:list={[inputClass, 'max-w-60 font-mono']} type="text" autocomplete="off" spellcheck="false" placeholder={`like ${system.id.replace(/\d+$/, '02')}`} aria-describedby="e-remove" data-replacement />
+                  </label>
+                  <p class={errorLineClass} id="e-remove" aria-live="polite" data-error="duplicate_of"></p>
+                </div>
+                <div data-evidence data-placeholder="Why it should go, and how the source shows it"></div>
+              </div>
+            </div>
+          </section>
+        </form>
+        <footer class="fields-foot">
+          <span class="narrow:hidden">Last updated {updated ?? 'NA'}</span>
+          { !isNew && <a class="ul whitespace-nowrap narrow:ml-0" href={systemHref(system.id)}>Back to the system page</a> }
+          <a class="ul whitespace-nowrap wide:hidden" href="#proposal">Your proposal ↓</a>
+        </footer>
+        </Fragment> }
+      </SystemCard>
+
+      { !removed && <ReceiptPanel label={system.id} /> }
+    </div>
+    <template id="evidence"><Evidence /></template>
+  </main>
+</Edit>
+
+<script>
+  import { startEditor } from '../../components/edit/form'
+  const form = document.querySelector<HTMLFormElement>('form#edit')
+  if (form) startEditor(form)
+</script>

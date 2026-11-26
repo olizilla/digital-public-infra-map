@@ -1,0 +1,133 @@
+---
+// A new system's form (D91): /edit/new/<table>/, one static page for each of the three tables (identity, payment,
+// exchange). It's the same for every place, so it's built once and the place comes from `?place=<code>`, which the
+// browser reads (src/components/edit/newSystem.ts): the page is static. It's the edit page's form (EditRow,
+// Evidence, src/components/edit/form.ts) with every field empty, under a top section for the place, the System ID
+// the page suggests (the next free one, from the release and the changesets waiting in changesets/next/) and a
+// reason for adding the row. A name or a status isn't needed: teams record legislation and indicators before a
+// system exists (D91). The proposal is one changeset: a create, then an update for each field filled in.
+// Like the edit pages it's static, unlinked, noindex, robots.txt-disallowed and out of the sitemap (D59, D87).
+import Edit from '../../../layouts/Edit.astro'
+import TypeIcon from '../../../components/TypeIcon.astro'
+import EditRow from '../../../components/edit/EditRow.astro'
+import Evidence from '../../../components/edit/Evidence.astro'
+import ReceiptPanel from '../../../components/edit/ReceiptPanel.astro'
+import { errorLineClass, labelClass } from '../../../components/edit/styles'
+import rootPackage from '../../../../datapackage.json'
+import { getCollection } from 'astro:content'
+import { dpiTypes } from '../../../Systems'
+import { resourceNames, schemas, type Field, type DPIType } from '../../../Schema'
+import { laneTitles } from '../../../CountryPage'
+import { fieldsByAttribute } from '../../../SystemPage'
+import { nouns } from '../../../DpiTest'
+import { newSpec } from '../../../Proposal'
+import { loadEditIndex } from '../../../EditData'
+import { indexFor, type TypeId } from '../../../EditIndex'
+
+export function getStaticPaths () {
+  return dpiTypes.map(dpiType => ({ params: { resource: resourceNames[dpiType] }, props: { dpiType } }))
+}
+
+const { dpiType } = Astro.props as { dpiType: DPIType }
+const noun = nouns[dpiType]
+const resourceName = resourceNames[dpiType]
+
+// the system page's groups: About the system, then each attribute, as the edit page has them
+const attributes = (await getCollection('dpiAttributes')).sort((a, b) => Number(a.id) - Number(b.id))
+const byAttribute = fieldsByAttribute(dpiType)
+const groups = [
+  { id: 0, name: 'About the system' },
+  ...attributes.map(a => ({ id: Number(a.id), name: a.data.attribute }))
+].map(group => ({ ...group, fields: byAttribute.get(group.id) ?? [] }))
+
+// what can be set and how, from the next release's codebook (D71), as the edit page has it. The System ID, the
+// place and the derived fields aren't fields of the form
+const resource = rootPackage.resources.find(r => r.name === resourceName)!
+const listed = groups.flatMap(group => group.fields)
+const inNext = (field: Field) => resource.schema.fields.some(f => f.name === field.id)
+const spec = newSpec(resource as never, { type: noun }, listed.filter(inNext).map(field => field.id))
+const specOf = (field: Field) => spec.fields.find(f => f.id === field.id)
+
+// the table's rows and every place, for the next System ID and the place's name, which the script reads
+const type = ({ id: 'id', pay: 'pay', data: 'dx' } as const)[dpiType] satisfies TypeId
+const json = JSON.stringify(indexFor(await loadEditIndex(), [type])).replace(/</g, '\\u003c')
+---
+
+<Edit title={`Add a ${noun} system`}>
+  <main class="page">
+    <header class="page-header pb-5!">
+      <p class="page-crumbs"><a href="/edit/">Edit the map</a><span class="sep px-1">›</span>Add a {noun} system</p>
+      <h1 class="page-title page-h1">Add a {noun} system</h1>
+      <aside class="callout max-w-[44rem]">Your proposal opens as a GitHub issue for review. Nothing on the map changes until it’s accepted.</aside>
+      <p class="pt-3 text-sm text-strong" id="request" hidden></p>
+      <p class="pt-3 text-sm text-strong" id="draft-note" role="status" hidden></p>
+    </header>
+
+    <!-- no place, or one we don't have: a way to choose one -->
+    <p class="max-w-[44rem] text-sm text-strong" data-no-place hidden></p>
+
+    <div class="sp-grid" data-new-grid hidden>
+      <p class="lane-head sp-lane"><span class="flex items-center gap-2"><TypeIcon dpiType={dpiType} /><span>{laneTitles[dpiType]}</span></span></p>
+      <article class="sys" data-type={dpiType}>
+        <header class="sys-head">
+          <div class="flex-1 min-w-0">
+            <div class="sys-meta">
+              <span class="pin-ico" aria-hidden="true"><TypeIcon dpiType={dpiType} class="size-5!" /></span>
+              <span class="sys-country" data-place-name></span>
+              <span class="sys-id" data-new-id-label></span>
+            </div>
+            <h2 class="sys-title unnamed">New {noun} system</h2>
+          </div>
+        </header>
+
+        <form class="sys-fields" id="edit" novalidate data-spec={JSON.stringify(spec)}>
+          <aside class="callout" data-unnamed hidden></aside>
+          <p class="fields-hint">Every field is empty. Fill in what you know: each field you fill in asks for its reason, sources and date. A name or a status isn’t needed. Field names link to the codebook.</p>
+
+          <section class="grp">
+            <h3 class="divider"><span>The new system</span></h3>
+            <div class="-mx-2.25 mb-1 rounded-lg border border-line bg-white px-2 py-1.75 shadow scroll-mt-20 target:outline-2 target:outline-blue-300" id="f-create" role="group" aria-label="The new system" data-field="create">
+              <dl class="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-1 px-1.5 text-ui">
+                <dt class="text-secondary">Place</dt>
+                <dd class="text-ink [overflow-wrap:anywhere]" data-place-shown></dd>
+                <dt class="text-secondary">System ID</dt>
+                <dd class="font-mono text-xs leading-4.5 pt-px text-ink" data-new-id></dd>
+              </dl>
+              <p class="mt-1 px-1.5 text-xs leading-4.5 text-muted">The place and the System ID are set for you: the next free one for this place. The ID stays with the system, even when it’s renamed.</p>
+              <div class="grid gap-3 mt-2.5 pt-3 pl-1.5 border-t border-line-faint">
+                <div data-evidence data-placeholder="What this is, and why it should be added to the map"></div>
+                <p class={errorLineClass} id="create-value-error" aria-live="polite" data-error="value"></p>
+              </div>
+            </div>
+          </section>
+
+          { groups.filter(group => group.fields.length).map(group => (
+            <section class="grp">
+              <h3 class="divider"><span>{group.name}</span></h3>
+              { group.fields.map(field => {
+                const fieldSpec = specOf(field)
+                return fieldSpec && <EditRow dpiType={dpiType} field={field} spec={fieldSpec} />
+              }) }
+            </section>
+          ))}
+
+          <p class="mt-5.5 px-1.5 text-xs leading-4.5 text-muted">Last updated, Count for DPI and ISO3 are worked out when the data is built.</p>
+        </form>
+        <footer class="fields-foot">
+          <a class="ul whitespace-nowrap narrow:ml-0" href="/edit/">Back to search</a>
+          <a class="ul whitespace-nowrap wide:hidden" href="#proposal">Your proposal ↓</a>
+        </footer>
+      </article>
+
+      <ReceiptPanel />
+    </div>
+    <template id="evidence"><Evidence /></template>
+    <script type="application/json" id="edit-index" set:html={json}></script>
+  </main>
+</Edit>
+
+<script>
+  import { startNew } from '../../../components/edit/newSystem'
+  const form = document.querySelector<HTMLFormElement>('form#edit')
+  if (form) startNew(form)
+</script>

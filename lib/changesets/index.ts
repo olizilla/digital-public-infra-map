@@ -4,8 +4,9 @@
 
 export { build, fieldId, keyField, missingValue, missingValues, unreverted } from './build.ts'
 export { parseCSV, parseCSVRecords, writeCSV } from './csv.ts'
-export { changesetId, changesetTOML, draftChangeset, tomlString } from './draft.ts'
-export { CHANGESET_ID, isCalendarDate, laterThanExpected, PENDING_FOLDER, readChangeset, readFolders, releaseFolders, RELEASE_FOLDER, schema, validateChangeset } from './log.ts'
+export { changesetId, changesetTOML, draftChangeset } from './draft.ts'
+export { changesetText, tomlString } from './toml.ts'
+export { CHANGESET_ID, changesetFromText, idTime, isCalendarDate, laterThanExpected, PENDING_FOLDER, readChangeset, readFolders, releaseFolders, RELEASE_FOLDER, schema, schemaErrors, unrealDates, validateChangeset } from './log.ts'
 export type { ReadOptions } from './log.ts'
 export { checkItem, datedBy, introducedBy } from './checks.ts'
 export type { Failure } from './checks.ts'

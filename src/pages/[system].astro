@@ -2,7 +2,7 @@
 // One page per system, at /<System ID>, built from the current release (src/Release.ts) and
 // the history of its cells: the DPI test, then every field with what it means, its evidence and
 // its history, and the change log. See docs/design/system-page-brief.md (M3b) and D2, D62, D64.
-// Nothing links to /edit/ yet (D59), so proposing an update goes to /contribute/.
+// Nothing links to its edit page, /<id>/edit/, yet (D59, D87), so proposing an update goes to /contribute/.
 // It shares the root with [country].astro. Astro tries each route's getStaticPaths in turn,
 // and src/Systems.ts fails the build if a System ID is ever also a country page path.
 // A removed system has no page: `npm run data:build` redirects it to its country page (D64).

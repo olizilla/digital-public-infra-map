@@ -14,10 +14,13 @@
     "data:build": "node scripts/data-build.ts",
     "data:check": "node scripts/data-build.ts --check",
     "data:check-next": "node scripts/data-build.ts --pending",
+    "proposal:check": "node scripts/proposal-check.ts",
+    "proposal:accept": "node scripts/proposal-accept.ts",
     "validate": "node scripts/validate.mjs",
     "codebook:check": "node scripts/codebook-check.mjs",
     "test:changesets": "node --test 'lib/changesets/test/*.test.ts'",
-    "test:site": "node --test 'src/*.test.ts'"
+    "test:site": "node --test 'src/*.test.ts'",
+    "test:proposals": "node --test 'src/test/*.test.ts'"
   },
   "dependencies": {
     "@ascorbic/csv-loader": "^2.0.3",

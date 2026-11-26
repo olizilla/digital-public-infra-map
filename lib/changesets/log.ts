@@ -7,12 +7,14 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { parse, TomlDate } from 'smol-toml'
 import { Ajv2020 } from 'ajv/dist/2020.js'
+import type { ErrorObject } from 'ajv'
 // imported, not read from a path, so the library still finds it once a bundler has moved it
 import schema from './changeset.schema.json' with { type: 'json' }
 import { reportItem } from './report.ts'
+import { isCalendarDate } from './toml.ts'
 import type { Changeset, DataPackage, ReportItem } from './types.ts'
 
-export { schema }
+export { schema, isCalendarDate }
 
 /** A changeset id: the UTC time it was created, and 4 hex digits */
 export const CHANGESET_ID = /^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{6}Z-[0-9a-f]{4}$/
@@ -24,32 +26,59 @@ export const PENDING_FOLDER = 'next'
 const ajv = new Ajv2020({ allErrors: true, strict: false })
 const check = ajv.compile(schema)
 
-/** Whether `text` is a real calendar date, `YYYY-MM-DD`: one that reads back the same, so not 2026-02-31 (S2) */
-export function isCalendarDate (text: string): boolean {
-  const [, y, m, d] = text.match(/^(\d{4})-(\d{2})-(\d{2})$/) ?? []
-  if (!y) return false
-  const date = new Date(Date.UTC(+y, +m - 1, +d))
-  return date.getUTCFullYear() === +y && date.getUTCMonth() === +m - 1 && date.getUTCDate() === +d
-}
-
 // TOML's strings and comments, which can hold any text, or else a bare date or the date of a date-time
 const DATE_TOKENS = /"""(?:[^\\]|\\[\s\S])*?"""|'''[\s\S]*?'''|"(?:[^"\\\n]|\\.)*"|'[^'\n]*'|#[^\n]*|(?<![\w.-])(\d{4}-\d{2}-\d{2})(?![\d-])/g
 
 /**
  * The data in a changeset's TOML, as the schema checks it: bare TOML dates
- * become `YYYY-MM-DD` (D39), and other dates and times ISO 8601 text.
- * Throws if it isn't valid TOML, which includes a bare date that isn't a real
+ * become `YYYY-MM-DD` (D39), and other dates and times ISO 8601 text, and each
+ * change's values, reason and sources are trimmed (trimmed). Throws if it isn't
+ * valid TOML, which includes a bare date that isn't a real
  * one: smol-toml rolls `2026-02-31` over to 2026-03-03, a typo that would read
  * as a different, valid date, so the raw text is checked for them (S2).
  */
 export function readChangeset (text: string): unknown {
   const data = parse(text)
+  const [first] = unrealDates(text)
+  if (first) throw new Error(`line ${first.line}: ${first.date} is not a real calendar date`)
+  return trimmed(plain(data))
+}
+
+/**
+ * The bare dates in a changeset's TOML that aren't real calendar dates (S2), in order, with the line and
+ * the place in `text` of each, as readChangeset refuses the first: the proposal check (D92) reports them all.
+ */
+export function unrealDates (text: string): { date: string, line: number, index: number }[] {
+  const dates = []
   for (const match of text.matchAll(DATE_TOKENS)) {
     if (match[1] === undefined || isCalendarDate(match[1])) continue
-    const line = text.slice(0, match.index).split('\n').length
-    throw new Error(`line ${line}: ${match[1]} is not a real calendar date`)
+    dates.push({ date: match[1], line: text.slice(0, match.index).split('\n').length, index: match.index + match[0].length - match[1].length })
   }
-  return plain(data)
+  return dates
+}
+
+const isRecord = (value: unknown): value is Record<string, unknown> => value !== null && typeof value === 'object' && !Array.isArray(value)
+const trim = (value: unknown) => typeof value === 'string' ? value.trim() : value
+
+/**
+ * The data with every text in each change's `values`, its `reason` and its `sources` trimmed (D90), so stray
+ * spaces around what someone typed never reach the data, and a proposal isn't refused for them. Anything
+ * else is left as it is, for the schema to judge. No released changeset has such spaces, so the releases
+ * built from them don't change.
+ */
+function trimmed (data: unknown): unknown {
+  if (!isRecord(data) || !Array.isArray(data.changes)) return data
+  return {
+    ...data,
+    changes: data.changes.map(change => {
+      if (!isRecord(change)) return change
+      const out = { ...change }
+      if (isRecord(change.values)) out.values = Object.fromEntries(Object.entries(change.values).map(([id, value]) => [id, trim(value)]))
+      if ('reason' in change) out.reason = trim(change.reason)
+      if (Array.isArray(change.sources)) out.sources = change.sources.map(trim)
+      return out
+    })
+  }
 }
 
 function plain (value: unknown): unknown {
@@ -61,12 +90,16 @@ function plain (value: unknown): unknown {
   return value
 }
 
+/** The ways `data` doesn't match the changeset schema, as Ajv's errors. Empty if it does. */
+export function schemaErrors (data: unknown): ErrorObject[] {
+  if (check(data)) return []
+  // the if/then branches repeat the real error, so leave them out
+  return (check.errors ?? []).filter(error => error.keyword !== 'if')
+}
+
 /** The ways `data` doesn't match the changeset schema, as messages. Empty if it does. */
 export function validateChangeset (data: unknown): string[] {
-  if (check(data)) return []
-  return (check.errors ?? [])
-    // the if/then branches repeat the real error, so leave them out
-    .filter(error => error.keyword !== 'if')
+  return schemaErrors(data)
     .map(error => `${error.instancePath || '/'} ${error.message}${error.params && 'allowedValues' in error.params ? ` (${(error.params.allowedValues as unknown[]).join(', ')})` : ''}${error.params && 'additionalProperty' in error.params ? ` (${error.params.additionalProperty})` : ''}`)
 }
 
@@ -151,39 +184,51 @@ function readResource (log: string, folder: string, resource: string, report: Re
     }
     seen.set(`${resource}/${id}`, file)
     if (idTime(id) > now) report.push(reportItem('future-id', 'has a timestamp in the future', { ...about, changeset: id }))
-
-    let data
-    try {
-      data = readChangeset(fs.readFileSync(full, 'utf8'))
-    } catch (error) {
-      report.push(reportItem('invalid-toml', `is not valid TOML, so it is skipped: ${(error as Error).message.split('\n')[0]}`, about))
-      continue
-    }
-    const errors = validateChangeset(data)
-    if (errors.length) {
-      report.push(reportItem('invalid-changeset', `does not match the changeset schema, so it is skipped: ${errors.join('; ')}`, about))
-      continue
-    }
-    // an as_of that isn't a real calendar date blocks, like a schema failure (S2)
-    const changes = (data as Changeset).changes
-    const undated = changes.flatMap((change, i) => change.as_of === undefined || isCalendarDate(change.as_of) ? [] : [{ change: i, key: change.key, as_of: change.as_of }])
-    if (undated.length) {
-      for (const { change, key, as_of } of undated) {
-        report.push(reportItem('invalid-changeset', `as_of ${JSON.stringify(as_of)} is not a real calendar date, so the changeset is skipped`, { ...about, changeset: id, change, ...(key ? { key } : {}) }))
-      }
-      continue
-    }
-    // one later than expected is a warning, and the change still applies
-    changes.forEach((change, i) => {
-      const later = change.as_of && laterThanExpected(change.as_of, id, folder, now)
-      if (later) report.push(reportItem('future-as-of', `is dated ${change.as_of}, later than ${later}, and still applies`, { ...about, changeset: id, change: i, ...(change.key ? { key: change.key } : {}) }))
-    })
-    const snapshot = (data as Changeset).changes.findIndex(change => change.type === 'snapshot')
-    if (snapshot !== -1) {
-      report.push(reportItem('invalid-changeset', 'has a snapshot, which a changeset can no longer hold: the baseline is the previous release, so it is skipped', { ...about, changeset: id, change: snapshot }))
-      continue
-    }
-    changesets.push({ id, resource, folder, path: full, ...(data as Omit<Changeset, 'id' | 'resource' | 'folder' | 'path'>) })
+    const changeset = changesetFromText(fs.readFileSync(full, 'utf8'), { id, resource, folder, file, path: full }, report, now)
+    if (changeset) changesets.push(changeset)
   }
   return changesets
+}
+
+/**
+ * A changeset from its TOML text, with the checks a file in the log gets: it must be valid TOML and
+ * match the schema, and every as_of must be a real date (S2), or it's reported and skipped, and one
+ * dated later than expected is a warning (D85). `about` says where it is, or would be, in the log:
+ * the proposal check (D88) reads a proposal as a pending changeset that isn't a file yet.
+ */
+export function changesetFromText (text: string, about: { id: string, resource: string, folder: string, file: string, path: string }, report: ReportItem[], now: Date): Changeset | undefined {
+  const { id, resource, folder, file } = about
+  const where = { resource, file }
+  let data
+  try {
+    data = readChangeset(text)
+  } catch (error) {
+    report.push(reportItem('invalid-toml', `is not valid TOML, so it is skipped: ${(error as Error).message.split('\n')[0]}`, where))
+    return undefined
+  }
+  const errors = validateChangeset(data)
+  if (errors.length) {
+    report.push(reportItem('invalid-changeset', `does not match the changeset schema, so it is skipped: ${errors.join('; ')}`, where))
+    return undefined
+  }
+  // an as_of that isn't a real calendar date blocks, like a schema failure (S2)
+  const changes = (data as Changeset).changes
+  const undated = changes.flatMap((change, i) => change.as_of === undefined || isCalendarDate(change.as_of) ? [] : [{ change: i, key: change.key, as_of: change.as_of }])
+  if (undated.length) {
+    for (const { change, key, as_of } of undated) {
+      report.push(reportItem('invalid-changeset', `as_of ${JSON.stringify(as_of)} is not a real calendar date, so the changeset is skipped`, { ...where, changeset: id, change, ...(key ? { key } : {}) }))
+    }
+    return undefined
+  }
+  // one later than expected is a warning, and the change still applies
+  changes.forEach((change, i) => {
+    const later = change.as_of && laterThanExpected(change.as_of, id, folder, now)
+    if (later) report.push(reportItem('future-as-of', `is dated ${change.as_of}, later than ${later}, and still applies`, { ...where, changeset: id, change: i, ...(change.key ? { key: change.key } : {}) }))
+  })
+  const snapshot = changes.findIndex(change => change.type === 'snapshot')
+  if (snapshot !== -1) {
+    report.push(reportItem('invalid-changeset', 'has a snapshot, which a changeset can no longer hold: the baseline is the previous release, so it is skipped', { ...where, changeset: id, change: snapshot }))
+    return undefined
+  }
+  return { id, resource, folder, path: about.path, ...(data as Omit<Changeset, 'id' | 'resource' | 'folder' | 'path'>) }
 }

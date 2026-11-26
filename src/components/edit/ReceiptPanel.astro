@@ -1,0 +1,53 @@
+---
+// The side panel of the editor's pages (/<id>/edit/ and /edit/new/<table>/): a receipt, the changeset's TOML as
+// it builds up with only the changes that are ready, then the buttons (src/components/edit/form.ts). `label` is
+// the System ID shown at its top on desktop, which a new system's page gives once it has one.
+import { buttonClass, inputClass } from './styles'
+import { issueForm, repository } from '../../Proposal'
+
+interface Props { label?: string }
+const { label = '' } = Astro.props
+---
+<!-- the receipt: the changeset TOML of the ready changes, exactly as it will be sent, then the buttons.
+     On desktop it's always open and sticky, and scrolls inside the panel; on a phone it starts closed (form.ts) -->
+<aside class="sp-side self-stretch">
+  <section class="side-card bg-white wide:sticky wide:top-4 wide:flex wide:flex-col wide:max-h-[calc(100dvh-2rem)]" id="proposal" aria-label="Your proposal">
+    <details class="group/rc min-h-0 wide:overflow-y-auto" open data-receipt>
+      <summary class="sticky top-0 flex items-center gap-2 px-4 pt-3 pb-2 bg-white text-ui list-none [&::-webkit-details-marker]:hidden narrow:cursor-pointer narrow:hover:text-blue-500 wide:pointer-events-none">
+        <span class="wide:hidden size-1.5 border-r-[1.5px] border-b-[1.5px] border-current -rotate-45 group-open/rc:rotate-45" aria-hidden="true"></span>
+        <span class="font-semibold text-strong"><span class="narrow:hidden">Proposal</span><span class="wide:hidden">Changeset <span class="font-normal text-muted">· <span data-ready>nothing ready yet</span></span></span></span>
+        <span class="narrow:hidden ml-auto font-mono text-xs text-muted" data-receipt-id>{label}</span>
+      </summary>
+      <!-- lines don't wrap: a long reason or comment runs on, and the receipt scrolls sideways; its start is enough to recognise -->
+      <div class="pb-1 font-mono text-[11px] leading-4.5 text-ink overflow-x-auto" hidden data-receipt-body></div>
+    </details>
+    <p class="px-4 py-2.5 border-t border-dashed border-line-strong text-ui text-strong" role="status" data-total>Nothing ready yet. Change a value, then give its reason and a source.</p>
+    <div class="side-body grid gap-3 bg-zinc-50 border-t border-line">
+      <ul class="grid gap-1 text-ui text-red-700" hidden data-problems></ul>
+      <p class="text-ui text-secondary">This opens a GitHub issue with the ready changes; you need a GitHub account. A maintainer reviews it.</p>
+      <div class="grid gap-1">
+        <button type="submit" form="edit" class="button-blue w-full cursor-pointer disabled:bg-zinc-200 disabled:text-muted disabled:cursor-default" disabled>Open the GitHub issue</button>
+        <!-- over the length a link can carry, the button copies the changeset and opens the blank form (D56, D89) -->
+        <p class="text-xs leading-4.5 text-muted" hidden data-paste-note>Your proposal is too long for a link. Paste it into the Changeset box.</p>
+      </div>
+      <div class="grid gap-2.5 rounded-md border border-line bg-white p-3 text-ui text-strong outline-none" tabindex="-1" hidden data-confirm>
+        <p data-confirm-text></p>
+        <div class="flex flex-wrap gap-2">
+          <button type="button" class="button-blue cursor-pointer" data-confirm-send>Send the ready changes</button>
+          <button type="button" class={buttonClass} data-confirm-keep>Keep editing</button>
+        </div>
+      </div>
+      <!-- the draft link also does what a link to the issue would: open it in a browser that's signed in to GitHub (D87, D90) -->
+      <div class="grid gap-1" hidden data-copies>
+        <button type="button" class:list={[buttonClass, 'w-full']} data-copy-draft>Copy a link to this draft</button>
+        <p class="text-xs leading-4.5 text-muted">To finish later, to pass on, or to open in a browser that’s signed in to GitHub, with the changes that aren’t ready yet too. The draft is in the link, after the #, which is never sent to a server.</p>
+        <textarea class:list={[inputClass, 'mt-1 h-24 font-mono text-xs! leading-4! [overflow-wrap:anywhere]']} readonly hidden aria-label="The link to this draft, to copy" data-copy-text></textarea>
+      </div>
+      <!-- where the browser won't copy: the changeset, selected, to copy by hand -->
+      <div class="grid gap-2 rounded-md border border-line bg-white p-3 text-ui text-strong" hidden data-fallback>
+        <p>Copy the changeset (press Ctrl+C or ⌘C), then paste it into the Changeset box of the <a class="ul" href={`${repository}/issues/new?template=${issueForm}`} target="_blank" rel="noopener" data-fallback-link>proposal form</a>.</p>
+        <textarea class:list={[inputClass, 'h-40 font-mono text-xs! leading-4!']} readonly aria-label="The changeset" data-fallback-toml></textarea>
+      </div>
+    </div>
+  </section>
+</aside>
