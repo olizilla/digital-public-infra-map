@@ -1,0 +1,184 @@
+---
+// A live preview of a blog post from a Google Doc (D98): /blog/new/. Paste the doc's link, and the page fetches the doc's Word export
+// in the browser (src/BlogPreview.ts), converts it with the same module the import action uses (src/BlogConvert.ts, loaded only
+// when there is a doc to convert), and shows the post as the site will (the Post layout's own classes, src/BlogRender.ts), with the
+// import's notes above it: what to do in the doc before merging (a missing alt text, something left out) and what the import did. The details are open when there is something to do. "Send to GitHub" opens the
+// `blog-post` issue form with the fields filled in (.github/ISSUE_TEMPLATE/blog-post.yml); the action fetches and converts the doc
+// again itself, and the pull request's preview is the one that counts, which the page says.
+// The page is static and unlinked, and kept from search engines like the edit pages: noindex (src/layouts/Edit.astro), robots.txt, and
+// the sitemap's filter (astro.config.mjs). The addresses that are taken (a post, an entry's landing page, a folder of images) are in
+// the page as JSON, made at build time, so it can say that the import would refuse a title; the browser does the rest
+// (src/components/blog/preview.ts). It sits among the posts, so no post can be called `new`.
+import fs from 'node:fs'
+import path from 'node:path'
+import Edit from '../../layouts/Edit.astro'
+import PostHeader from '../../components/PostHeader.astro'
+import InsightEntry from '../../components/InsightEntry.astro'
+import { formatDate, HOME, type Insight } from '../../Insights'
+import { errorLineClass, inputClass, labelClass, noteClass } from '../../components/edit/styles'
+import { repository } from '../../Proposal'
+import { LIMITS } from '../../BlogDoc'
+
+const names = (dir: string) => { try { return fs.readdirSync(path.join(process.cwd(), dir)) } catch { return [] } }
+const taken = [...new Set([
+  'index', '[id]', 'new',
+  ...names('src/pages/blog').map(name => name.replace(/\.(md|mdx|astro)$/, '')),
+  ...names('src/content/links').map(name => name.replace(/\.md$/, '')),
+  ...names('public/blog')
+])].sort()
+// JSON in a script element must not be able to close it
+// the entry the index shows, with placeholders that the script fills in
+const entry: Insight = { id: 'preview', kind: 'post', title: 'Title', date: '2026', description: 'Description', authors: ['Author'], href: '#', external: false, publisher: HOME, pinned: false, links: [] }
+const site = (Astro.site ?? new URL('https://dpimap.org')).origin
+// the example post's figures, from the import's own limits
+const mb = (bytes: number) => `${Math.round(bytes / 1024 / 1024)} MB`
+// the fields' placeholders, which the example post shows until the fields are filled in (src/components/blog/preview.ts)
+const placeholders = { authors: 'Ada Lovelace, Grace Hopper', date: '2026-12-01' }
+const json = JSON.stringify({ taken, repository, site }).replace(/</g, '\\u003c')
+---
+
+<Edit title="Preview a blog post">
+  <main class="page">
+    <header class="page-header pb-5!">
+      <p class="page-crumbs"><a href="/blog/">Insights</a><span class="sep px-1">›</span>Preview a blog post</p>
+      <h1 class="page-title page-h1">Preview a blog post</h1>
+      <aside class="callout max-w-[44rem]">Write the post in a Google Doc, share it as “Anyone with the link can view”. Paste its link below and your browser will fetch it and show how it will look as a blog post. Fix any issues by editing the doc and refreshing the preview. When it’s ready, click Send to GitHub.</aside>
+    </header>
+
+    <noscript><p class="callout max-w-[44rem]">This page needs JavaScript to fetch and convert the doc. You can still <a class="ul" href={`${repository}/issues/new?template=blog-post.yml`} target="_blank" rel="noopener">open the issue form</a>.</p></noscript>
+
+    <div class="grid gap-8 wide:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] items-start" id="blog-preview">
+      <section class="side-card bg-white wide:sticky wide:top-4" aria-label="The post">
+        <form class="side-body grid gap-3 bg-white" id="blog" novalidate autocomplete="off">
+          <label class="grid gap-1">
+            <span class={labelClass}>Link to the Google Doc<span class={noteClass}>required</span></span>
+            <span class="relative block">
+              <input class:list={[inputClass, 'pr-10']} type="text" name="doc" inputmode="url" spellcheck="false" autocomplete="off" autofocus
+                placeholder="https://docs.google.com/document/d/…/edit" aria-describedby="doc-error doc-hint" />
+              <button type="button" class="absolute right-1 top-1/2 -translate-y-1/2 grid size-7 place-items-center rounded text-muted hover:text-ink hover:bg-zinc-100 cursor-pointer focus-visible:outline-2 focus-visible:outline-blue-300"
+                aria-label="Refresh the preview" title="Refresh the preview" data-refresh>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5" aria-hidden="true" data-refresh-icon>
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+                </svg>
+              </button>
+            </span>
+            <span class="min-h-4.5 text-xs leading-4.5">
+              <span class:list={[errorLineClass, 'peer block empty:hidden']} id="doc-error" data-error="doc" role="status"></span>
+              <span class="block text-muted peer-[:not(:empty)]:hidden" id="doc-hint">Shared as “Anyone with the link can view”.</span>
+            </span>
+          </label>
+          <label class="grid gap-1">
+            <span class={labelClass}>Author name(s)<span class={noteClass}>required</span></span>
+            <input class={inputClass} type="text" name="authors" autocomplete="off" placeholder={placeholders.authors} aria-describedby="authors-error authors-hint" />
+            <span class="min-h-4.5 text-xs leading-4.5">
+              <span class:list={[errorLineClass, 'peer block empty:hidden']} id="authors-error" data-error="authors" role="status"></span>
+              <span class="block text-muted peer-[:not(:empty)]:hidden" id="authors-hint">Separate names with commas.</span>
+            </span>
+          </label>
+          <label class="grid gap-1">
+            <span class={labelClass}>Publish date<span class={noteClass}>optional</span></span>
+            <input class={inputClass} type="text" name="date" autocomplete="off" placeholder={placeholders.date} aria-describedby="date-error date-hint" />
+            <span class="min-h-4.5 text-xs leading-4.5">
+              <span class:list={[errorLineClass, 'peer block empty:hidden']} id="date-error" data-error="date" role="status"></span>
+              <span class="block text-muted peer-[:not(:empty)]:hidden" id="date-hint">Empty: the day the pull request opens.</span>
+            </span>
+          </label>
+          <label class="grid gap-1">
+            <span class={labelClass}>Description<span class={noteClass}>optional</span></span>
+            <input class={inputClass} type="text" name="description" autocomplete="off" placeholder="One line about the post" aria-describedby="description-hint" />
+            <span class="min-h-4.5 text-xs leading-4.5"><span class="block text-muted" id="description-hint">Shown in the blog index and link previews.</span></span>
+          </label>
+          <div class="grid">
+            <a class:list={['button-blue text-center', 'aria-disabled:bg-zinc-200 aria-disabled:text-muted aria-disabled:pointer-events-none']} href={`${repository}/issues/new?template=blog-post.yml`} target="_blank" rel="noopener" aria-disabled="true" data-issue>Send to GitHub</a>
+          </div>
+          <div class="text-xs leading-4.5 text-muted" data-issue-hint>Once the doc has loaded and the authors are filled in, this opens the issue form in a new tab with them filled in. You need a GitHub account with write access to submit it.</div>
+        </form>
+      </section>
+
+      <section class="min-w-0" aria-label="The preview">
+        <!-- empty until a doc is fetched: the note above and the example say to paste a link -->
+        <p class="text-sm text-secondary empty:hidden" role="status" data-status></p>
+        <div class="callout max-w-[44rem] mt-3" role="alert" hidden data-problem></div>
+        <details class="side-card bg-white max-w-[44rem] mt-3 scroll-mt-4" id="preview-details" hidden data-notes>
+          <summary class="flex items-center gap-2.5 px-4 py-2.5 cursor-pointer">
+            <span class="text-title leading-5.5 font-semibold text-strong">Preview details</span>
+            <span class="rounded-md border px-2 py-px text-xs font-semibold" data-badge></span>
+          </summary>
+          <div class="side-body grid gap-5 border-t border-line bg-white text-ui text-strong">
+            <section class="grid gap-1" hidden data-todo-box>
+              <h2 class="text-ui font-semibold text-amber-800">To do before merging</h2>
+              <ul class="grid gap-1 list-disc pl-5 text-amber-800" data-todo-list></ul>
+            </section>
+            <dl class="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-1" data-facts></dl>
+            <section class="grid gap-1.5">
+              <h2 class="text-ui font-semibold text-strong">In the blog index, /blog/</h2>
+              <div class="pointer-events-none rounded-md border border-line bg-white px-3 py-1" data-index-card>
+                <section class="ins-year">
+                  <h3 class="ins-year-label" data-index-year>2026</h3>
+                  <ol class="ins-list"><InsightEntry entry={entry} /></ol>
+                </section>
+              </div>
+            </section>
+            <section class="grid gap-1.5">
+              <h2 class="text-ui font-semibold text-strong">When the link is shared</h2>
+              <article class="max-w-[26rem] overflow-hidden rounded-xl border border-line bg-white" data-share-card>
+                <img src="/map/preview.png" alt="" class="block aspect-[1200/630] w-full border-b border-line bg-zinc-100 object-cover" />
+                <div class="grid gap-0.5 px-3.5 py-3">
+                  <span class="text-xs text-muted" data-share-domain></span>
+                  <span class="font-semibold text-ink" data-share-title></span>
+                  <span class="line-clamp-2 text-sm text-secondary" data-share-description></span>
+                </div>
+              </article>
+              <p class="max-w-[44rem] text-xs leading-4.5 text-muted" data-description-hint></p>
+            </section>
+          </div>
+        </details>
+        <!-- before a doc is loaded, and when one can't be: an example post, in the Post layout's classes but muted and dashed,
+             saying how each part of a doc becomes part of the post -->
+        <article class="post relative max-w-2xl mt-0 rounded-xl border-2 border-dashed border-line px-5 pt-4 pb-6" aria-labelledby="example-title" data-example>
+          <!-- <p class="mb-2"><span class="rounded-md border border-line bg-zinc-50 px-2 py-px text-xs font-semibold text-secondary">Example</span></p> -->
+          <!-- muted, apart from the one thing to learn: the Heading 1 menu path, set apart in a soft yellow (not the callout's teal, which the page's own note uses) -->
+          <header class="post-head opacity-60">
+            <h2 class="page-title page-h1" id="example-title">Blog post preview</h2>
+            <p class="post-meta"><span class="ins-kind" data-kind="post">Post</span><span aria-hidden="true">·</span><time datetime={placeholders.date} data-example-date>{formatDate(placeholders.date)}</time></p>
+            <p class="paper-authors" data-example-authors>{placeholders.authors}</p>
+          </header>
+          <div class="prose">
+          	<p class="opacity-60 italic">This area will show a preview of your doc converted to a blog post on dpimap.org.</p>
+            <p class="opacity-60">The title above is your doc’s first line, styled as <strong>Heading 1</strong>. In Google Docs choose</p>
+            <p class="mx-auto my-5! w-fit max-w-full rounded-lg border border-amber-200 bg-amber-50 px-4 py-2 text-center font-semibold text-amber-900 text-balance narrow:px-3 narrow:text-sm"><span class="whitespace-nowrap">Format →</span> <span class="whitespace-nowrap">Paragraph styles →</span> <span class="whitespace-nowrap">Heading 1</span></p>
+            <!-- <p class="opacity-60">or press Ctrl+Alt+1 (⌘+Option+1 on a Mac).</p> -->
+            <!-- a section, not a div: the post's prose styles reach its direct children and a section's (global.css) -->
+            <section class="opacity-60">
+              <p>Everything after the title is the post. Write paragraphs as normal text. If you leave the description empty, the first paragraph is what the blog index and link previews show.</p>
+              <h2>A section heading</h2>
+              <p>Sections use <strong>Heading 2</strong> (Ctrl+Alt+2, or ⌘+Option+2), and sub-sections Heading 3. Bold, italics, lists, quotes and simple tables come through. For lines that belong together, like a quote or an address, press Shift+Enter between them. To link, select the text and choose Insert → Link.</p>
+              <figure class="my-6 grid aspect-[16/9] max-w-full place-items-center rounded-lg border-2 border-dashed border-line bg-zinc-50 text-muted">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-10" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                </svg>
+              </figure>
+              <p>Add images with Insert → Image. Then right-click each image, choose <strong>Alt text</strong>, and describe what it shows for someone who can’t see it. Images can be PNG, JPEG, GIF or WebP, up to {mb(LIMITS.imageBytes)} each and {LIMITS.images} in all. Charts, drawings and equations don’t come through: download them as a picture and insert that instead.</p>
+            </section>
+          </div>
+        </article>
+        <!-- the post as the site shows it: the Post layout's own header and classes -->
+        <article class="post max-w-2xl pt-6 pb-10" hidden data-post>
+          <PostHeader title="Title" kind="post" date="2026-01-01" authors={['Author']} />
+          <div class="prose" data-body></div>
+        </article>
+        <details class="max-w-[44rem] mt-6 text-ui text-secondary" hidden data-markdown>
+          <summary class="cursor-pointer text-strong">The post’s file, as the pull request will have it</summary>
+          <textarea class:list={[inputClass, 'mt-2 h-72 font-mono text-xs! leading-4!']} readonly aria-label="The post’s file" data-markdown-text></textarea>
+        </details>
+      </section>
+    </div>
+    <script type="application/json" id="blog-data" set:html={json}></script>
+  </main>
+</Edit>
+
+<script>
+  import { startPreview } from '../../components/blog/preview'
+  const root = document.querySelector<HTMLElement>('#blog-preview')
+  if (root) startPreview(root)
+</script>

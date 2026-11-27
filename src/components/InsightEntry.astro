@@ -1,0 +1,27 @@
+---
+// One entry of the Insights list, /blog/ (src/pages/blog/index.astro): its kind, where it was published, its date, its title as a link,
+// its authors, its description and its links. A session has its own, compact row. Also drawn, with placeholder text that a script fills
+// in, by the blog post preview (/blog/new/), so a post is previewed in the markup the index really uses.
+import { formatDate, kindLabels, type Insight } from '../Insights'
+
+interface Props { entry: Insight }
+const { entry: e } = Astro.props
+const ext = (external: boolean) => external ? { rel: 'external' } : {}
+---
+<li class="ins-entry" data-kind={e.kind}>
+  <p class="ins-meta">
+    <span class="ins-kind" data-kind={e.kind}>{kindLabels[e.kind]}</span>
+    <span class="sep" aria-hidden="true">·</span>
+    <span class="ins-pub">{e.source ? `First published on ${e.publisher}` : e.publisher}{ e.external && <span class="ins-arrow" aria-hidden="true">&nbsp;↗</span> }</span>
+    { e.date ? <time datetime={e.date}>{formatDate(e.date, true)}</time> : <span class="ins-undated">{formatDate()}</span> }
+  </p>
+  <h3><a href={e.href} {...ext(e.external)}>{e.title}</a></h3>
+  { e.authors.length > 0 && <p class="ins-authors">{e.authors.join(', ')}</p> }
+  { e.description && <p class="ins-desc">{e.description}</p> }
+  { (e.pdf || e.links.length > 0) && (
+    <p class="ins-links">
+      { e.pdf && <a href={e.pdf} rel="external">PDF</a> }
+      { e.links.map(l => <a href={l.href}>{l.label}</a>) }
+    </p>
+  )}
+</li>

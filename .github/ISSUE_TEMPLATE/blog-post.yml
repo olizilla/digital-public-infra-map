@@ -1,0 +1,43 @@
+# Publishes a post written in a Google Doc. The workflow .github/workflows/blog-import.yml turns the doc into a
+# pull request that adds the post to the blog (Insights); merging that pull request publishes it. The labels
+# below are the field's headings in the issue body: scripts/blog-import.ts (FORM) reads them, and
+# scripts/blog-import.test.ts checks that they match, so change them in both places.
+# The `blog-post` label must exist in the repository, or GitHub doesn't add it and the workflow doesn't start.
+name: Blog post from a Google Doc
+description: Add a post, written in a Google Doc, to the blog. A pull request with the post is opened for you to check.
+title: "Blog post: "
+labels: ["blog-post"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Write the post in a Google Doc and share it as **Anyone with the link can view**. Its first line, a Title or Heading 1, is the post's title. When you submit this form a pull request is opened with the post, and a preview of it. Only people who can write to this repository can use this form.
+
+        To change the post afterwards, edit the doc and comment `/update` here. To publish it, merge the pull request.
+  - type: input
+    id: doc
+    attributes:
+      label: Link to the Google Doc
+      description: The link from the doc's Share button, shared as "Anyone with the link can view". Only the doc's ID is used.
+      placeholder: https://docs.google.com/document/d/…/edit
+    validations:
+      required: true
+  - type: input
+    id: authors
+    attributes:
+      label: Author name(s)
+      description: The names shown on the post, separated by commas.
+      placeholder: Ada Lovelace, Grace Hopper
+    validations:
+      required: true
+  - type: input
+    id: date
+    attributes:
+      label: Publish date
+      description: YYYY-MM-DD, or YYYY-MM, or YYYY. If you leave it empty, the post is dated the day the pull request is opened, and you can change it there.
+      placeholder: 2026-12-01
+  - type: input
+    id: description
+    attributes:
+      label: Description
+      description: One line for search results and link previews. If you leave it empty, the post's first paragraph is used.

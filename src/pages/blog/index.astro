@@ -7,12 +7,12 @@
 import Layout from '../../layouts/Layout.astro'
 import Footer from '../../components/Footer.astro'
 import PageHeader from '../../components/PageHeader.astro'
+import InsightEntry from '../../components/InsightEntry.astro'
 import { getInsights, formatDate, kindLabels, type Kind } from '../../Insights'
 
 const insights = await getInsights()
 const pinned = insights.filter(i => i.pinned)
 const entries = insights.filter(i => !i.pinned)
-const ext = (external: boolean) => external ? { rel: 'external' } : {}
 
 // entries by year, newest first (entries are already newest first)
 // (undated entries are last, in a group of their own)
@@ -85,25 +85,7 @@ const tabs = [
                 </p>
                 <h3><a href={e.href}>{e.title}</a></h3>
               </li>
-            ) : (
-              <li class="ins-entry" data-kind={e.kind}>
-                <p class="ins-meta">
-                  <span class="ins-kind" data-kind={e.kind}>{kindLabels[e.kind]}</span>
-                  <span class="sep" aria-hidden="true">·</span>
-                  <span class="ins-pub">{e.source ? `First published on ${e.publisher}` : e.publisher}{ e.external && <span class="ins-arrow" aria-hidden="true">&nbsp;↗</span> }</span>
-                  { e.date ? <time datetime={e.date}>{formatDate(e.date, true)}</time> : <span class="ins-undated">{formatDate()}</span> }
-                </p>
-                <h3><a href={e.href} {...ext(e.external)}>{e.title}</a></h3>
-                { e.authors.length > 0 && <p class="ins-authors">{e.authors.join(', ')}</p> }
-                { e.description && <p class="ins-desc">{e.description}</p> }
-                { (e.pdf || e.links.length > 0) && (
-                  <p class="ins-links">
-                    { e.pdf && <a href={e.pdf} rel="external">PDF</a> }
-                    { e.links.map(l => <a href={l.href}>{l.label}</a>) }
-                  </p>
-                )}
-              </li>
-            ))}
+            ) : <InsightEntry entry={e} />)}
           </ol>
         </section>
       ))}

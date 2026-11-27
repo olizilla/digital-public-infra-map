@@ -1,0 +1,374 @@
+# Imports a blog post from a Google Doc (scripts/blog-import.ts). Someone who can write to the repository opens an
+# issue from the "Blog post from a Google Doc" form (.github/ISSUE_TEMPLATE/blog-post.yml), with the doc's link,
+# the author names, and optionally the date and a description. This workflow then:
+# 1. checks who it's for: the issue's author, and whoever just edited it or commented, must have write, maintain or
+#    admin access (getCollaboratorPermissionLevel). Otherwise it says so in a comment and stops;
+# 2. finds this issue's pull request, if it has one, or chooses a branch: blog- and 4 random lowercase letters or digits
+#    (blog-k3f9), one that doesn't exist yet. The slug (the post's address, /blog/<slug>/) is made from the title at the
+#    first import, and kept after that. Both are found again from the pull request's hidden marker;
+# 3. fetches the doc's Word export (only https://docs.google.com/document/d/<ID>/export?format=docx, with the ID
+#    from the form), converts it (src/BlogConvert.ts: mammoth, the same JavaScript the preview at /blog/new/ runs; no other
+#    program is installed) into a folder outside the repository, and checks it;
+# 4. makes one commit on the branch, adding src/pages/blog/<slug>.md and public/blog/<slug>/image-<n>.<ext>: on a new
+#    branch from the default branch's tip, or, for an update, on top of the branch's tip, replacing those files (and
+#    removing images that are no longer in the doc). It is pushed as an ordinary push, never a force push, and nothing
+#    already on the branch is rewritten, and commits that people added to the branch are kept in its history. If nothing
+#    changed it adds no commit and says so on the issue;
+# 5. opens the pull request, or updates its description, and comments on the issue with its link and the preview's address.
+# Cloudflare Pages builds a preview of the branch at https://<branch>.dpi-map.pages.dev (the branch name decides it,
+# which is why it is short), so the post is at https://blog-xxxx.dpi-map.pages.dev/blog/<slug>/. Cloudflare's check on the
+# pull request links the exact address.
+# To update the post, edit the doc and comment `/update` on the issue, or edit the issue. To publish it, merge the pull
+# request. Public drafts and pull requests are fine.
+#
+# The issue's body and the comment are data: the script reads the body from the event's file ($GITHUB_EVENT_PATH),
+# and nothing from the issue, the comment or the doc is put in a shell command or a ${{ }} expression. Only the
+# default branch is checked out, without credentials (npm ci and the scripts never see the token): the token is
+# given to git only to fetch and push, in an unexported shell variable. Every action is pinned by commit.
+# The script checks the doc, the images and the output (see its header); this workflow then makes sure, in shell
+# and apart from the script, before it pushes, that
+# - the branch is refs/heads/blog-[a-z0-9]{4}, and not the default branch;
+# - the new commit has exactly one parent, the tip of the branch as fetched (or the default branch's tip, for a new
+#   branch), so the push is a fast-forward; if the branch moved and the push is rejected, it fetches the branch again,
+#   checks again and tries again, up to 5 times, as proposal-accept.yml does;
+# - the files the script wrote are only src/pages/blog/<slug>.md and public/blog/<slug>/image-<n>.<png|jpg|gif|webp>, and
+#   the commit's diff against its parent only touches those paths, as plain files: adds and changes, and deletes of images.
+#   Other files in the post's folder are left alone.
+# People may add their own commits to the branch, and an update goes ahead anyway: everything stays in the branch's
+# history. If commits since the bot's last one changed the post or its images, and the update replaced those changes, the
+# comment on the issue says which files, and the commits to find them in.
+#
+# Settings it needs, on the repository:
+# - Settings > Actions > General > "Allow GitHub Actions to create and approve pull requests" must be on: the pull
+#   request is opened with the built-in token. (Events made with that token start no other workflows, so Data check
+#   doesn't run on the pull request's branch itself, but Cloudflare's preview builds don't depend on Actions.)
+# - the label `blog-post` must exist (the issue form adds it, and this workflow only runs for issues that have it).
+# - Like every workflow that starts from an issue event, it runs from the default branch: it has no effect until merged.
+name: Blog import
+
+on:
+  issues:
+    types: [opened, edited]
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  blog-import:
+    # an issue with the label, not a pull request, and for a comment, one that starts with /update
+    if: >-
+      contains(github.event.issue.labels.*.name, 'blog-post') &&
+      !github.event.issue.pull_request &&
+      (github.event_name == 'issues' || startsWith(github.event.comment.body, '/update'))
+    runs-on: ubuntu-latest
+    # the conversion has no time limit of its own, so the job has one
+    timeout-minutes: 15
+    # one import of an issue at a time, and none dropped: a later one waits for the one running
+    concurrency:
+      group: blog-import-${{ github.event.issue.number }}
+      cancel-in-progress: false
+    steps:
+      - name: Check who it's for
+        id: who
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        with:
+          script: |
+            const { owner, repo } = context.repo
+            const issue = context.payload.issue
+            const issue_number = issue.number
+            const allowed = ['write', 'maintain', 'admin']
+            // write, maintain, admin, triage, read or a custom role's name; none for someone the API doesn't know
+            const roleOf = async username => {
+              try {
+                const { data } = await github.rest.repos.getCollaboratorPermissionLevel({ owner, repo, username })
+                return data.role_name ?? null
+              } catch (error) {
+                if (error.status !== 404) throw error
+                return null
+              }
+            }
+            const author = issue.user.login
+            const actor = context.payload.sender.login
+            const [authorRole, actorRole] = await Promise.all([roleOf(author), author === actor ? undefined : roleOf(actor)])
+            const ok = allowed.includes(authorRole) && allowed.includes(actorRole === undefined ? authorRole : actorRole)
+            core.setOutput('ok', ok ? 'true' : 'false')
+            // a quiet no for an edit: only opening an issue or commenting is answered, so an edit can't be made to answer again and again
+            const answered = context.eventName === 'issue_comment' || context.payload.action === 'opened'
+            if (!ok && answered) {
+              const who = allowed.includes(authorRole) ? 'whoever commented' : 'the person who opened this issue'
+              await github.rest.issues.createComment({ owner, repo, issue_number, body: `Blog posts are only imported for people who can write to this repository, and ${who} can't. A maintainer can open the issue instead.` })
+            }
+
+      - name: Checkout the default branch
+        if: steps.who.outputs.ok == 'true'
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
+          # the whole history, to tell the bot's commits on a branch from anyone else's
+          fetch-depth: 0
+
+      # the scripts run TypeScript directly with Node, which strips types from 22.18 on
+      - name: Setup Node.js
+        if: steps.who.outputs.ok == 'true'
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Install the dependencies
+        if: steps.who.outputs.ok == 'true'
+        run: npm ci
+
+      # the pull request this issue already has, if any: its branch and the post's slug are kept, so the address and the
+      # preview don't change with the title, and the date stays the day it was opened. Only a pull request opened by this
+      # workflow, from a branch of this repository, with this issue's marker in its body, counts. Without one, a new
+      # branch: blog- and 4 random lowercase letters or digits, one that doesn't exist.
+      - name: Find this issue's pull request, or choose a branch
+        id: existing
+        if: steps.who.outputs.ok == 'true'
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        with:
+          script: |
+            const crypto = require('node:crypto')
+            const { owner, repo } = context.repo
+            const number = context.payload.issue.number
+            const marker = new RegExp(`<!-- blog-import-issue: ${number} slug: ([a-z0-9]+(?:-[a-z0-9]+)*) -->`)
+            const prs = await github.paginate(github.rest.pulls.list, { owner, repo, state: 'open', per_page: 100 })
+            const pr = prs.find(pr => pr.user?.login === 'github-actions[bot]'
+              && pr.head.repo?.full_name === `${owner}/${repo}`
+              && /^blog-[a-z0-9]{4}$/.test(pr.head.ref)
+              && (marker.exec(pr.body ?? '')?.[1] ?? '').length <= 60
+              && marker.test(pr.body ?? ''))
+            let branch = pr?.head.ref ?? ''
+            for (let tries = 0; !branch && tries < 20; tries++) {
+              const id = Array.from({ length: 4 }, () => 'abcdefghijklmnopqrstuvwxyz0123456789'[crypto.randomInt(36)]).join('')
+              try {
+                await github.rest.repos.getBranch({ owner, repo, branch: `blog-${id}` })
+              } catch (error) {
+                if (error.status !== 404) throw error
+                branch = `blog-${id}`
+              }
+            }
+            if (!branch) throw new Error('no free branch name')
+            core.setOutput('date', (pr ? pr.created_at : new Date().toISOString()).slice(0, 10))
+            core.setOutput('number', pr ? String(pr.number) : '')
+            core.setOutput('slug', pr ? marker.exec(pr.body)[1] : '')
+            core.setOutput('branch', branch)
+
+      # the script decides, and writes the post and its images into a folder outside the repository, where it checks the slug
+      # against the repository's own pages; it prints its result as JSON
+      - name: Convert the doc
+        id: convert
+        if: steps.who.outputs.ok == 'true'
+        env:
+          RESULT: ${{ runner.temp }}/import.json
+          OUT: ${{ runner.temp }}/out
+          DEFAULT_DATE: ${{ steps.existing.outputs.date }}
+          SLUG: ${{ steps.existing.outputs.slug }}
+          BRANCH: ${{ steps.existing.outputs.branch }}
+        run: |
+          set -euo pipefail
+          args=(--event "$GITHUB_EVENT_PATH" --default-date "$DEFAULT_DATE" --branch "$BRANCH" --out "$OUT" --root .)
+          if [ -n "$SLUG" ]; then args+=(--slug "$SLUG"); fi
+          node scripts/blog-import.ts "${args[@]}" > "$RESULT"
+          action=$(jq -r .action "$RESULT")
+          case "$action" in import|refuse) echo "action=$action" >> "$GITHUB_OUTPUT" ;; *) exit 1 ;; esac
+
+      # An update adds a commit to the branch: on top of its tip, replacing the post's files. A new post makes the branch
+      # from the default branch. The guards are in shell, apart from the script and from npm, which ran before.
+      - name: Commit the post, and push the branch
+        id: push
+        if: steps.convert.outputs.action == 'import'
+        env:
+          TOKEN: ${{ github.token }}
+          RESULT: ${{ runner.temp }}/import.json
+          OUT: ${{ runner.temp }}/out
+          BASE: ${{ github.event.repository.default_branch }}
+          EXISTING: ${{ steps.existing.outputs.number }}
+          ISSUE: ${{ github.event.issue.number }}
+        run: |
+          set -euo pipefail
+          # the token goes into `remote`, a shell variable that isn't exported, and is unset at once
+          remote="https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          unset TOKEN
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          bot='41898282+github-actions[bot]@users.noreply.github.com'
+          tab=$(printf '\t')
+
+          slug=$(jq -r .slug "$RESULT")
+          branch=$(jq -r .branch "$RESULT")
+          ref="refs/heads/$branch"
+          printf '%s\n' "$ref" | grep -Eqx 'refs/heads/blog-[a-z0-9]{4}' || { echo "Not a blog branch: $ref"; exit 1; }
+          [ "$ref" != "refs/heads/$BASE" ] || { echo "That's the default branch"; exit 1; }
+          printf '%s\n' "$slug" | grep -Eqx '[a-z0-9]+(-[a-z0-9]+)*' && [ "${#slug}" -le 60 ] || { echo "Not a slug: $slug"; exit 1; }
+          printf '%s\n' "$ISSUE" | grep -Eqx '[0-9]{1,9}' || exit 1
+          printf '%s\n' "$EXISTING" | grep -Eqx '[0-9]{0,9}' || exit 1
+          md="src/pages/blog/${slug}\.md"
+          img="public/blog/${slug}/image-[0-9]{1,2}\.(png|jpg|gif|webp)"
+          # the files the script wrote are the post and its images, and plain files
+          files=$(jq -r '.files[]' "$RESULT")
+          [ -z "$(printf '%s\n' "$files" | grep -Evx "${md}|${img}" || true)" ] || { echo "The script wrote more than the post and its images:"; printf '%s\n' "$files"; exit 1; }
+          [ "$(printf '%s\n' "$files" | grep -Ecx "$md")" = 1 ] || { echo "The post isn't among the files"; exit 1; }
+          while IFS= read -r file; do [ -f "$OUT/$file" ] && [ ! -L "$OUT/$file" ] || { echo "Not a plain file: $file"; exit 1; }; done <<< "$files"
+          # the checkout has nothing changed or added (ignored files aside), and is the default branch's tip
+          [ -z "$(git status --porcelain --untracked-files=all)" ] || { echo "The checkout isn't clean:"; git status --porcelain --untracked-files=all; exit 1; }
+          base_sha=$(git rev-parse HEAD)
+
+          # a refusal is not a failure: say why, and stop without changing the branch
+          refuse () { echo "problem=$1" >> "$GITHUB_OUTPUT"; echo "$1"; exit 0; }
+
+          # the new commit on `parent`, the branch's tip or the default branch's, checked, and unless nothing changed, in HEAD
+          attempt () {
+            local status=0 exists=0 parent last_bot="" changes allowed net ours replaced shas files_said
+            overwritten=""
+            git -c core.hooksPath=/dev/null ls-remote --exit-code --quiet --heads "$remote" "$ref" > /dev/null || status=$?
+            case "$status" in 0) exists=1 ;; 2) exists=0 ;; *) echo "Could not ask for the branch"; exit 1 ;; esac
+            if [ -n "$EXISTING" ]; then
+              [ "$exists" = 1 ] || refuse "This post's pull request is #${EXISTING}, but its branch ${branch} is missing. Close the pull request, and comment \`/update\` again."
+              git update-ref -d refs/blog-import/tip
+              git -c core.hooksPath=/dev/null fetch --quiet --no-tags "$remote" "${ref}:refs/blog-import/tip"
+              parent=$(git rev-parse refs/blog-import/tip)
+              # people may have added commits: the update goes on top of them, and what it replaces of theirs is said at the end.
+              # the bot's last commit on the branch is what the doc was last imported as
+              last_bot=$(git log --format='%H %ae %ce' "${base_sha}..${parent}" | awk -v bot="$bot" '$2 == bot && $3 == bot { print $1; exit }')
+            else
+              [ "$exists" = 0 ] || refuse "There is already a branch called ${branch}, so nothing was changed. Comment \`/update\` to try again with another name."
+              parent="$base_sha"
+            fi
+            git checkout --quiet --detach "$parent"
+            # the post's files: its images are replaced and the post is written over; anything else in the folder is left alone
+            git ls-files -z -- "public/blog/${slug}" | while IFS= read -r -d '' tracked; do
+              if printf '%s\n' "$tracked" | grep -Eqx "$img"; then git rm --quiet -- "$tracked"; fi
+            done
+            while IFS= read -r file; do mkdir -p -- "$(dirname -- "$file")"; cp -- "$OUT/$file" "$file"; done <<< "$files"
+            git add --all -- "src/pages/blog/${slug}.md"
+            if [ -d "public/blog/${slug}" ]; then git add --all -- "public/blog/${slug}"; fi
+            [ -z "$(git status --porcelain --untracked-files=all | grep -v '^[AMTD]  ' || true)" ] || { echo "More changed than the post:"; git status --porcelain --untracked-files=all; exit 1; }
+            if git diff --cached --quiet; then
+              echo "unchanged=true" >> "$GITHUB_OUTPUT"
+              echo "Nothing changed since the last import"
+              exit 0
+            fi
+            local message="blog: add ${slug} from a Google Doc (#${ISSUE})"
+            if [ -n "$EXISTING" ]; then message="blog: update ${slug} from the Google Doc (#${ISSUE})"; fi
+            git -c core.hooksPath=/dev/null commit --quiet --message "$message"
+            # the last guard: one commit on top of the tip (so a fast-forward push), touching only the post and its images, as plain files
+            [ "$(git rev-list --parents -n 1 HEAD | wc -w)" -eq 2 ] || { echo "Not a single commit"; exit 1; }
+            [ "$(git rev-parse HEAD~1)" = "$parent" ] || { echo "Not on top of the branch's tip"; exit 1; }
+            changes=$(git diff --no-renames --name-status HEAD~1 HEAD)
+            if [ -n "$EXISTING" ]; then allowed="[AMT]${tab}${md}|[AMTD]${tab}${img}"; else allowed="A${tab}(${md}|${img})"; fi
+            [ -z "$(printf '%s\n' "$changes" | grep -Evx "$allowed" || true)" ] || { echo "The commit changes more than the post and its images:"; printf '%s\n' "$changes"; exit 1; }
+            [ -z "$(git diff --no-renames --raw HEAD~1 HEAD | awk '$2 != "100644" && $2 != "000000"')" ] || { echo "The commit has something that isn't a plain file"; exit 1; }
+            git cat-file -e "HEAD:src/pages/blog/${slug}.md" || { echo "The post isn't in the commit"; exit 1; }
+            # what the update replaced of other people's changes since the bot's last commit: the post's files they changed that it changed back
+            if [ -n "$EXISTING" ] && [ -n "${last_bot:-}" ]; then
+              net=$(git diff --no-renames --name-only "$last_bot" "$parent" -- "src/pages/blog/${slug}.md" "public/blog/${slug}" | grep -Ex "${md}|${img}" || true)
+              ours=$(git diff --no-renames --name-only HEAD~1 HEAD)
+              replaced=$(printf '%s\n' "$net" | grep -Fxf <(printf '%s\n' "$ours") | head -n 10 || true)
+              if [ -n "$replaced" ]; then
+                shas=$(git log --no-merges --format=%h "${last_bot}..${parent}" -- "src/pages/blog/${slug}.md" "public/blog/${slug}" | head -n 10 | paste -sd, - | sed 's/,/, /g')
+                if [ -z "$shas" ]; then shas=$(git log --format=%h -n 5 "${last_bot}..${parent}" | paste -sd, - | sed 's/,/, /g'); fi
+                files_said=$(printf '%s\n' "$replaced" | sed 's/.*/`&`/' | paste -sd, - | sed 's/,/, /g')
+                overwritten="This update replaced changes made on the branch to ${files_said} since the last import (still in the history: ${shas})."
+              fi
+            fi
+          }
+
+          # an ordinary push: if the branch moved, it's rejected, and the next try starts from the branch as it is then
+          for retry in 0 1 2 3 4; do
+            if [ "$retry" -gt 0 ]; then
+              sleep "${RETRY_PAUSE:-$(( RANDOM % 15 + 3 ))}"
+              echo "The push was rejected: fetching the branch and checking again ($retry of 4)"
+            fi
+            attempt
+            if git -c core.hooksPath=/dev/null push --quiet "$remote" "HEAD:${ref}"; then
+              echo "pushed=true" >> "$GITHUB_OUTPUT"
+              if [ -n "$overwritten" ]; then echo "overwritten=${overwritten}" >> "$GITHUB_OUTPUT"; fi
+              exit 0
+            fi
+          done
+          exit 1
+
+      - name: Open or update the pull request, and tell the issue
+        if: steps.push.outputs.pushed == 'true'
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        env:
+          RESULT: ${{ runner.temp }}/import.json
+          PR: ${{ steps.existing.outputs.number }}
+          OVERWRITTEN: ${{ steps.push.outputs.overwritten }}
+        with:
+          script: |
+            const fs = require('node:fs')
+            const { owner, repo } = context.repo
+            const issue_number = context.payload.issue.number
+            const result = JSON.parse(fs.readFileSync(process.env.RESULT, 'utf8'))
+            const base = context.payload.repository.default_branch
+            let number = Number(process.env.PR) || 0
+            const created = !number
+            try {
+              if (number) {
+                await github.rest.pulls.update({ owner, repo, pull_number: number, title: result.prTitle, body: result.prBody })
+              } else {
+                const { data } = await github.rest.pulls.create({ owner, repo, head: result.branch, base, title: result.prTitle, body: result.prBody })
+                number = data.number
+                await github.rest.issues.addLabels({ owner, repo, issue_number: number, labels: ['blog-post'] })
+              }
+            } catch (error) {
+              if (error.status === 403 || error.status === 422) {
+                await github.rest.issues.createComment({ owner, repo, issue_number, body: `The post's branch \`${result.branch}\` is pushed, but the pull request couldn't be ${created ? 'opened' : 'updated'}: ${error.message}\n\nIf this says GitHub Actions isn't permitted to create pull requests, a maintainer can turn on "Allow GitHub Actions to create and approve pull requests" in the repository's Settings > Actions > General. Then comment \`/update\` here.` })
+              }
+              throw error
+            }
+            const lines = [
+              created ? `Opened #${number} with the post.` : `Updated #${number}: a new commit with the doc's current text and images.`,
+              '',
+              `The preview, once Cloudflare has built the branch \`${result.branch}\` (the check on the pull request has the exact link): ${result.preview}`,
+              ''
+            ]
+            // people's changes to the post on the branch that this update replaced: built from file names that match the post's own, and short commit ids
+            if (process.env.OVERWRITTEN) lines.push(process.env.OVERWRITTEN, '')
+            // the to-dos are sentences the script writes (names from the doc only inside code spans); the pull request has them too, and what the import did
+            if (result.notes.todo.length) lines.push('**To do in the doc before merging:**', '', ...result.notes.todo.map(text => `- ${text}`), '')
+            if (result.notes.did.length) lines.push('The pull request has the import’s notes.', '')
+            lines.push('To change the post, edit the doc and comment `/update` here. To publish it, merge the pull request.')
+            await github.rest.issues.createComment({ owner, repo, issue_number, body: lines.join('\n') })
+
+      - name: Say that nothing changed
+        if: steps.push.outputs.unchanged == 'true'
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        env:
+          PR: ${{ steps.existing.outputs.number }}
+        with:
+          script: |
+            const { owner, repo } = context.repo
+            await github.rest.issues.createComment({ owner, repo, issue_number: context.payload.issue.number, body: `The doc and this issue's details haven't changed since the last import, so nothing was added to #${process.env.PR}.` })
+
+      # a refusal, from the script (its sentence has nothing from the doc in it) or from the push step's checks
+      - name: Say why nothing was imported
+        if: steps.convert.outputs.action == 'refuse' || steps.push.outputs.problem != ''
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        env:
+          RESULT: ${{ runner.temp }}/import.json
+          PROBLEM: ${{ steps.push.outputs.problem }}
+        with:
+          script: |
+            const fs = require('node:fs')
+            const { owner, repo } = context.repo
+            const result = JSON.parse(fs.readFileSync(process.env.RESULT, 'utf8'))
+            const body = process.env.PROBLEM || result.comment
+            await github.rest.issues.createComment({ owner, repo, issue_number: context.payload.issue.number, body: `Nothing was imported: ${body}` })
+
+      - name: Say that it failed
+        if: failure()
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        with:
+          script: |
+            const { owner, repo } = context.repo
+            const run = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`
+            await github.rest.issues.createComment({ owner, repo, issue_number: context.payload.issue.number, body: `The import failed. [The workflow run](${run}) says why. Comment \`/update\` to try again.` })

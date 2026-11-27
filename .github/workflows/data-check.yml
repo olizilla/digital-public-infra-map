@@ -33,6 +33,9 @@ jobs:
 
       - run: npm run test:site
 
+      # the blog import's tests (scripts/blog-import.ts, src/BlogConvert.ts): all of them run here, nothing else needs installing
+      - run: npm run test:blog
+
       - name: Check the release data and the pending changesets
         run: |
           set +e
