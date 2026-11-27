@@ -34,12 +34,12 @@ export default defineConfig({
     mdx(),
     sitemap({
       // unlinked or internal for now: the editor, /<id>/edit/ (D87), its front door /edit/ and the forms to add a
-      // system, /edit/new/<table>/ (D91), and the payment analysis scratch
+      // system, /edit/new/<table>/ (D91), the blog post preview, /blog/new/ (D98), and the payment analysis scratch
       // pages. And the pending changes, /changes/ and /changes/<type>/, which aren't published (D81);
       // a release's changelog, /changes/<date>/…, is fixed, so it's in.
       filter: (page) => {
         const { pathname } = new URL(page)
-        return !/^\/edit(\/|$)/.test(pathname) && !/^\/[^/]+\/edit(\/|$)/.test(pathname) && !/\/(pay-diff|pay-test|share-previews)(\/|$)/.test(pathname) && !/^\/changes\/(?![0-9]{4}-[0-9]{2}-[0-9]{2}\/)/.test(pathname)
+        return !/^\/edit(\/|$)/.test(pathname) && !/^\/blog\/new(\/|$)/.test(pathname) && !/^\/[^/]+\/edit(\/|$)/.test(pathname) && !/\/(pay-diff|pay-test|share-previews)(\/|$)/.test(pathname) && !/^\/changes\/(?![0-9]{4}-[0-9]{2}-[0-9]{2}\/)/.test(pathname)
       }
     })
   ],

@@ -20,7 +20,9 @@
     "codebook:check": "node scripts/codebook-check.mjs",
     "test:changesets": "node --test 'lib/changesets/test/*.test.ts'",
     "test:site": "node --test 'src/*.test.ts'",
-    "test:proposals": "node --test 'src/test/*.test.ts'"
+    "test:proposals": "node --test 'src/test/*.test.ts'",
+    "test:blog": "node --test scripts/blog-import.test.ts",
+    "blog:import": "node scripts/blog-import.ts"
   },
   "dependencies": {
     "@ascorbic/csv-loader": "^2.0.3",
@@ -32,11 +34,25 @@
     "astro": "^5.9.1",
     "d3-geo": "^3.1.1",
     "d3-geo-projection": "^4.0.0",
+    "github-slugger": "2.0.0",
+    "hast-util-to-mdast": "10.1.4",
+    "js-yaml": "^4.1.0",
+    "mammoth": "1.13.0",
+    "rehype-parse": "9.0.1",
+    "rehype-remark": "10.0.1",
+    "rehype-sanitize": "6.0.0",
+    "rehype-stringify": "10.0.1",
+    "remark-gfm": "4.0.1",
+    "remark-parse": "11.0.0",
+    "remark-rehype": "11.1.2",
+    "remark-smartypants": "3.0.2",
+    "remark-stringify": "11.0.0",
     "sharp": "^0.34.2",
     "slug": "^10.0.0",
     "smol-toml": "^1.9.1",
     "tailwindcss": "^4.1.11",
     "topojson-client": "^3.1.0",
+    "unified": "11.0.5",
     "world-atlas": "^2.0.2"
   },
   "devDependencies": {

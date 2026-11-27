@@ -157,7 +157,8 @@
   :where(.prose) :where(li > p) { @apply my-3; }
 
   /* inline */
-  :where(.prose) :where(a) { @apply text-ink ul; }
+  /* a long address (a bibliography's) wraps instead of widening the page on a phone */
+  :where(.prose) :where(a) { @apply text-ink ul; overflow-wrap: anywhere; }
   :where(.prose) :where(strong, b) { @apply font-semibold text-ink; }
   :where(.prose) :where(code) { @apply font-mono text-[0.875em]; }
   :where(.prose) :where(pre) { @apply px-4 py-3 rounded-lg bg-zinc-50 border border-line text-sm leading-6 overflow-x-auto; }

@@ -4,6 +4,9 @@
 // /measurement-community/. A `links` entry with a body (a paper's abstract) or a PDF has a landing
 // page here, /blog/<id>/ (src/pages/blog/[id].astro); one with neither links straight to its source. Used by the index (src/pages/blog/index.astro) and the feed (src/pages/rss.xml.js).
 import { getCollection } from 'astro:content'
+import { excerpt, strip } from './Excerpt.ts'
+
+export { excerpt }
 
 // a post is written for this site; an article is a piece on another site: a blog, a magazine, a newspaper's comment pages
 // a case study is a teaching case: how one government built one system, and what it teaches
@@ -61,30 +64,8 @@ export function sessionTitle (id: string, title: string) {
   }
 }
 
-// markdown as plain text, on one line: no tags, images, link targets or emphasis
-const strip = (text: string) => text
-  .replace(/<[^>]+>/g, '')
-  .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
-  .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
-  .replace(/[*_`]/g, '')
-  .replace(/\s+/g, ' ')
-  .trim()
-
 // a body's prose as plain text, a paragraph after another: an abstract, for its citation meta tags
 export const plainText = (body = '') => body.split(/\n\s*\n/).map(strip).filter(Boolean).join(' ')
-
-// a short summary from the body, for entries without a description: the first paragraph of
-// prose long enough to say something, else the first list item, stripped of markdown
-export function excerpt (body = '', max = 300) {
-  const blocks = body.split(/\n\s*\n/).map(b => b.trim()).filter(Boolean)
-  const prose = blocks.find(b => !/^(#|<|---|>|[-*] |\d+\. |import |export )/.test(b) && strip(b).length >= 80)
-  const item = blocks.find(b => /^[-*] /.test(b))?.split('\n')[0].replace(/^[-*] /, '')
-  const text = strip(prose ?? item ?? '')
-  if (text.length <= max) return text
-  // cut at a word, and drop a trailing comma or the like
-  const cut = text.slice(0, max - 1)
-  return cut.slice(0, cut.lastIndexOf(' ')).replace(/[\s,;:.\-–—]+$/, '') + '…'
-}
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
